@@ -2,11 +2,185 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FixZone - Phone & Tablet Repair</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FixZone – Phone & Tablet Repair</title>
+
+  <!-- AOS & Icons -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a2e3e6e6f1.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --primary: #ff5e5e;
+      --secondary: #ffe5e5;
+      --dark: #333;
+      --white: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--primary);
+      padding: 15px 20px;
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: block;
+    }
+
+    .nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      background: var(--primary);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .nav a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: var(--white);
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .nav.show {
+      display: flex;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: var(--secondary);
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+
+    .buttons .btn {
+      padding: 12px 24px;
+      margin: 5px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: 0.3s ease;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn.secondary {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: white;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Services */
+    .services {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .services h2 {
+      margin-bottom: 30px;
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--secondary);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .card i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    /* Footer Contact Buttons */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--primary);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      color: white;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @media (min-width: 768px) {
+      .nav {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        background: none;
+      }
+      .nav a {
+        border: none;
+        color: white;
+        padding: 0 10px;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -18,41 +192,47 @@
       <a href="#">Home</a>
       <a href="#">Services</a>
       <a href="#">Pricing</a>
-      <a href="#">Book Repair</a>
+      <a href="#">Book</a>
       <a href="#">Contact</a>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero" data-aos="fade-up">
-    <h1>Cracked Screen? Battery Issues?</h1>
-    <p>Expert Phone & Tablet Repairs at Your Doorstep.</p>
+    <h1>Cracked Screen? Battery Trouble?</h1>
+    <p>We fix phones and tablets fast. On-site & affordable!</p>
     <div class="buttons">
       <a href="#" class="btn primary">Book a Repair</a>
       <a href="#" class="btn secondary">Get a Quote</a>
     </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Services -->
   <section class="services">
     <h2 data-aos="fade-up">Our Services</h2>
     <div class="service-cards">
-      <div class="card" data-aos="zoom-in"><i class="fas fa-mobile-alt"></i> Screen Repair</div>
-      <div class="card" data-aos="zoom-in"><i class="fas fa-battery-half"></i> Battery Replacement</div>
-      <div class="card" data-aos="zoom-in"><i class="fas fa-bolt"></i> Charging Issues</div>
-      <div class="card" data-aos="zoom-in"><i class="fas fa-tint"></i> Water Damage</div>
+      <div class="card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-mobile-alt"></i><div>Screen Repair</div></div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-battery-half"></i><div>Battery Replace</div></div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-bolt"></i><div>Charging Issue</div></div>
+      <div class="card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-tint"></i><div>Water Damage</div></div>
     </div>
   </section>
 
-  <!-- Footer with Contact Buttons -->
+  <!-- Footer -->
   <footer class="footer">
     <a href="tel:+1234567890"><i class="fas fa-phone"></i> Call</a>
-    <a href="sms:+1234567890"><i class="fas fa-comment-alt"></i> Text</a>
+    <a href="sms:+1234567890"><i class="fas fa-comment"></i> Text</a>
     <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="script.js"></script>
-  <script>AOS.init();</script>
+  <script>
+    AOS.init();
+    function toggleMenu() {
+      document.getElementById('nav').classList.toggle('show');
+    }
+  </script>
+
 </body>
 </html>
