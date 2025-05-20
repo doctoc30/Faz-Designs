@@ -2,52 +2,256 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LUXSITE – Web Design Agency</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaFlow Studio</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0; font-family: 'Poppins', sans-serif, sans-serif;
+      background: #fff; color: #222;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      margin: 0.5em 0;
+    }
+    a {
+      text-decoration: none; color: inherit;
+    }
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #7f00ff, #e100ff);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      flex-direction: column;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.3rem;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      max-width: 320px;
+    }
+    .cta-btn {
+      background: white;
+      color: #7f00ff;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+    .cta-btn:hover {
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+      max-width: 960px;
+      margin: auto;
+    }
+    section h2 {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+      color: #7f00ff;
+    }
+    section p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 600px;
+      margin: auto;
+    }
+    /* Services */
+    .service-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: #f7f7f7;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 280px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(127,0,255,0.3);
+      cursor: default;
+    }
+    .card h3 {
+      color: #7f00ff;
+      margin-bottom: 0.8rem;
+    }
+    /* Projects */
+    .project-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .project {
+      border-radius: 10px;
+      overflow: hidden;
+      width: 350px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .project:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+    .project img {
+      width: 100%;
+      display: block;
+    }
+    /* Footer */
+    footer {
+      background: #f0f0f0;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #555;
+    }
+    footer h2 {
+      color: #7f00ff;
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
+    }
+    footer p {
+      margin: 0.3rem 0;
+      font-size: 1.1rem;
+    }
+    .footer-buttons {
+      margin: 1.5rem 0;
+    }
+    .btn {
+      background: #7f00ff;
+      color: white;
+      padding: 0.8rem 1.6rem;
+      margin: 0 0.4rem;
+      border-radius: 6px;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #6000cc;
+      cursor: pointer;
+    }
+    .copy {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .service-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .project-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Simple fade-in animation on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation-fill-mode: forwards;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
 
   <header class="hero">
-    <div class="hero-content" data-aos="fade-up">
-      <h1>LUXSITE</h1>
-      <p>Luxury Web Design for Elite Brands</p>
-      <a href="#contact" class="cta">Book a Free Demo</a>
-    </div>
+    <h1 class="fade-in">NovaFlow</h1>
+    <p class="fade-in" style="animation-delay: 0.2s;">Creative Digital Studio for Modern Brands</p>
+    <a href="#contact" class="cta-btn fade-in" style="animation-delay: 0.4s;">Let's Talk</a>
   </header>
 
-  <section class="services" id="services">
-    <h2 data-aos="fade-up">We Build For</h2>
-    <div class="cards">
-      <div class="card" data-aos="fade-up"><h3>Restaurants</h3><p>Clean, delicious layouts with menus & online ordering.</p></div>
-      <div class="card" data-aos="fade-up" data-aos-delay="100"><h3>Repair Shops</h3><p>Mobile-first designs with click-to-call and contact buttons.</p></div>
-      <div class="card" data-aos="fade-up" data-aos-delay="200"><h3>Personal Brands</h3><p>Authority-focused websites that feel expensive.</p></div>
+  <section class="about fade-in" style="animation-delay: 0.6s;">
+    <h2>Who We Are</h2>
+    <p>We build beautiful, fast, mobile-first websites for startups, local businesses, and creators. Fully custom. Fully impressive.</p>
+  </section>
+
+  <section class="services">
+    <h2 class="fade-in" style="animation-delay: 0.8s;">What We Do</h2>
+    <div class="service-cards">
+      <div class="card fade-in" style="animation-delay: 1s;">
+        <h3>Web Design</h3>
+        <p>Stunning layouts that work on all devices and convert like magic.</p>
+      </div>
+      <div class="card fade-in" style="animation-delay: 1.2s;">
+        <h3>Branding</h3>
+        <p>Logos, colors, and vibes that make people trust you instantly.</p>
+      </div>
+      <div class="card fade-in" style="animation-delay: 1.4s;">
+        <h3>Speed Optimization</h3>
+        <p>Lightning-fast loading websites that pass all Core Web Vitals.</p>
+      </div>
     </div>
   </section>
 
-  <section class="portfolio" id="work">
-    <h2 data-aos="fade-up">Our Work</h2>
-    <div class="grid">
-      <img src="https://via.placeholder.com/400x300" data-aos="zoom-in" />
-      <img src="https://via.placeholder.com/400x300" data-aos="zoom-in" data-aos-delay="100"/>
-      <img src="https://via.placeholder.com/400x300" data-aos="zoom-in" data-aos-delay="200"/>
+  <section class="projects">
+    <h2 class="fade-in" style="animation-delay: 1.6s;">Latest Projects</h2>
+    <div class="project-grid">
+      <div class="project fade-in" style="animation-delay: 1.8s;">
+        <img src="https://via.placeholder.com/350x250" alt="Project 1" />
+      </div>
+      <div class="project fade-in" style="animation-delay: 2s;">
+        <img src="https://via.placeholder.com/350x250" alt="Project 2" />
+      </div>
     </div>
   </section>
 
   <footer id="contact">
-    <h2 data-aos="fade-up">Work With Us</h2>
-    <p data-aos="fade-up">hello@luxsite.com</p>
-    <div class="footer-buttons" data-aos="fade-up" data-aos-delay="100">
-      <a href="tel:+123456789" class="btn">Call</a>
-      <a href="https://wa.me/123456789" class="btn">WhatsApp</a>
-      <a href="mailto:hello@luxsite.com" class="btn">Email</a>
+    <h2 class="fade-in" style="animation-delay: 2.2s;">Get in Touch</h2>
+    <p class="fade-in" style="animation-delay: 2.4s;">Email us at <strong>hello@novaflow.studio</strong></p>
+    <div class="footer-buttons fade-in" style="animation-delay: 2.6s;">
+      <a href="mailto:hello@novaflow.studio" class="btn">Email</a>
+      <a href="https://wa.me/1234567890" class="btn" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
-    <p class="copy">© 2025 LUXSITE</p>
+    <p class="copy fade-in" style="animation-delay: 2.8s;">© 2025 NovaFlow Studio</p>
   </footer>
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="script.js"></script>
+  <script>
+    // Simple fade-in on scroll
+    function onEntry(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }
+    let options = { threshold: [0.1] };
+    let observer = new IntersectionObserver(onEntry, options);
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
