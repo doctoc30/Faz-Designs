@@ -1,1 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get a Quote – FixZone</title>
 
+  <!-- AOS & Icons -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e3e6e6f1.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --primary: #ff5e5e;
+      --secondary: #ffe5e5;
+      --dark: #333;
+      --white: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--primary);
+      padding: 15px 20px;
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: block;
+    }
+
+    .nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      background: var(--primary);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .nav a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: var(--white);
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .nav.show {
+      display: flex;
+    }
+
+    @media (min-width: 768px) {
+      .nav {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        background: none;
+      }
+      .nav a {
+        border: none;
+        color: white;
+        padding: 0 10px;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+
+    /* Quote Form */
+    .quote-section {
+      padding: 60px 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .quote-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input, select, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      transform: scale(1.05);
+    }
+
+    /* Footer Contact Buttons */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--primary);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      color: white;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">FixZone</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav class="nav" id="nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="#">Pricing</a>
+      <a href="#">Book</a>
+      <a href="quote.html">Quote</a>
+    </nav>
+  </header>
+
+  <!-- Quote Section -->
+  <section class="quote-section" data-aos="fade-up">
+    <h2>Get a Free Quote</h2>
+    <form>
+      <div>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+      </div>
+      <div>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="e.g. +1234567890" required>
+      </div>
+      <div>
+        <label for="device">Device Type</label>
+        <select id="device" name="device" required>
+          <option value="">-- Select Device --</option>
+          <option>iPhone</option>
+          <option>iPad</option>
+          <option>Android Phone</option>
+          <option>Tablet</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="issue">Describe the Issue</label>
+        <textarea id="issue" name="issue" placeholder="Tell us what needs fixing..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Submit Request</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="tel:+1234567890"><i class="fas fa-phone"></i> Call</a>
+    <a href="sms:+1234567890"><i class="fas fa-comment"></i> Text</a>
+    <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function toggleMenu() {
+      document.getElementById('nav').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
