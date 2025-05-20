@@ -154,3 +154,29 @@ nav ul li a {
   background: var(--gray);
   color: white;
 }
+
+
+.wow {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.wow.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  transform: translateX(-30px);
+}
+
+.fade-in-right {
+  transform: translateX(30px);
+}
+
+.fade-in-left.animate,
+.fade-in-right.animate {
+  transform: translateX(0);
+  opacity: 1;
+}
