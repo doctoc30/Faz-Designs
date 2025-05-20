@@ -1,12 +1,134 @@
-
-  background-color: black;
+/* General Layout */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #000;
   color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 50px;
+  overflow-x: hidden;
 }
 
-a {
-  color: gold;
-  font-size: 20px;
+/* Sticky Nav */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff0033;
+}
+
+.navbar .nav-links a {
+  color: white;
+  margin-left: 20px;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #ff0033;
+}
+
+/* Header */
+header {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0;
+  color: #ff0033;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #ccc;
+}
+
+/* Search Bar */
+.search-bar {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  padding: 15px;
+  border: 2px solid #ff0033;
+  background: transparent;
+  border-radius: 30px;
+  width: 300px;
+  font-size: 1rem;
+  color: white;
+  outline: none;
+}
+
+/* Sections */
+.section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.section h2 {
+  color: #ff0033;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #ff0033;
+  border-radius: 20px;
+  padding: 30px;
+  width: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff0033;
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 1.4rem;
+  color: white;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .card {
+    width: 90%;
+  }
+}
