@@ -1,4 +1,4 @@
-function toggleMenu() {
-  const nav = document.getElementById('nav');
-  nav.classList.toggle('show');
-}
+AOS.init({
+  duration: 800,
+  once: true,
+});
