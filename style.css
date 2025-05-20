@@ -1,134 +1,156 @@
-/* Base Styles */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #000;
-  color: white;
-  overflow-x: hidden;
+:root {
+  --orange: #f97316;
+  --orange-dark: #ea580c;
+  --white: #ffffff;
+  --gray: #1f2937;
+  --bg: #f8f8f8;
 }
 
-/* Sticky Navigation Bar */
-.navbar {
-  position: sticky;
-  top: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 1rem 2rem;
+  background: var(--white);
+  position: sticky;
+  top: 0;
   z-index: 1000;
 }
 
-.navbar .logo {
-  font-size: 1.5rem;
+.logo {
   font-weight: bold;
-  color: #ff0033;
+  font-size: 1.5rem;
+  color: var(--gray);
 }
 
-.navbar .nav-links a {
-  color: white;
-  margin-left: 20px;
+.logo span {
+  color: var(--orange);
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+nav ul li a {
+  color: var(--gray);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
 }
 
-.navbar .nav-links a:hover {
-  color: #ff0033;
+.btn {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
-/* Header Section */
-header {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-header h1 {
-  font-size: 3rem;
-  font-weight: 600;
-  margin: 0;
-  color: #ff0033;
-}
-
-header p {
-  font-size: 1.2rem;
-  margin-top: 10px;
-  color: #ccc;
-}
-
-/* Search Bar */
-.search-bar {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-}
-
-.search-bar input {
-  padding: 15px;
-  border: 2px solid #ff0033;
-  background: transparent;
-  border-radius: 30px;
-  width: 300px;
-  font-size: 1rem;
+.primary {
+  background: var(--orange);
   color: white;
-  outline: none;
 }
 
-/* Section Styling */
-.section {
-  padding: 80px 20px;
+.glow {
+  background: var(--orange-dark);
+  box-shadow: 0 0 10px var(--orange);
+  transition: all 0.3s ease;
+}
+
+.glow:hover {
+  box-shadow: 0 0 20px var(--orange-dark);
+}
+
+.hero {
+  background: linear-gradient(145deg, var(--orange), var(--orange-dark));
+  color: white;
+  padding: 6rem 2rem;
   text-align: center;
 }
 
-.section h2 {
-  color: #ff0033;
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-/* Cards Section */
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.section {
+  padding: 4rem 2rem;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #ff0033;
-  border-radius: 20px;
-  padding: 30px;
-  width: 280px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 250px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #ff0033;
+  transform: translateY(-5px);
 }
 
-.card h3 {
-  margin: 10px 0;
-  font-size: 1.4rem;
+.dark {
+  background: var(--gray);
   color: white;
 }
 
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 0.9rem;
-  color: #888;
+.features {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 2rem;
-  }
+.feature {
+  flex: 1 1 200px;
+}
 
-  .card {
-    width: 90%;
-  }
+.contact-form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--gray);
+  color: white;
 }
