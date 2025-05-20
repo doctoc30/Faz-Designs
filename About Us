@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Ensure this file exists -->
+    <link rel="stylesheet" href="../styles.css"> <!-- Adjust path if needed -->
 </head>
 <body>
     <header>
         <h1>About Us</h1>
         <nav>
-            <a href="index.html">Home</a>
+            <a href="../index.html">Home</a>
+            <a href="../Pages/services.html">Services</a>
+            <a href="../Pages/contact.html">Contact</a>
         </nav>
     </header>
 
     <section>
         <h2>Who We Are</h2>
-        <p>Welcome to Faz-Designs, where creativity meets functionality.</p>
+        <p>Welcome to Faz-Designs, where creativity meets functionality. We specialize in tailored website designs with niche categories and app-like experiences to elevate your online presence.</p>
     </section>
 
     <footer>
