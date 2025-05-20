@@ -1,257 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NovaFlow Studio</title>
-  <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0; font-family: 'Poppins', sans-serif, sans-serif;
-      background: #fff; color: #222;
-      overflow-x: hidden;
-    }
-    h1, h2, h3 {
-      margin: 0.5em 0;
-    }
-    a {
-      text-decoration: none; color: inherit;
-    }
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(135deg, #7f00ff, #e100ff);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      flex-direction: column;
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 0.3rem;
-    }
-    .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-      max-width: 320px;
-    }
-    .cta-btn {
-      background: white;
-      color: #7f00ff;
-      padding: 0.9rem 2rem;
-      border-radius: 6px;
-      font-weight: 700;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease;
-    }
-    .cta-btn:hover {
-      background-color: #f0f0f0;
-      cursor: pointer;
-    }
-    /* Sections */
-    section {
-      padding: 4rem 2rem;
-      text-align: center;
-      max-width: 960px;
-      margin: auto;
-    }
-    section h2 {
-      font-size: 2.6rem;
-      margin-bottom: 1rem;
-      color: #7f00ff;
-    }
-    section p {
-      font-size: 1.1rem;
-      color: #555;
-      max-width: 600px;
-      margin: auto;
-    }
-    /* Services */
-    .service-cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .card {
-      background: #f7f7f7;
-      padding: 2rem;
-      border-radius: 10px;
-      width: 280px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(127,0,255,0.3);
-      cursor: default;
-    }
-    .card h3 {
-      color: #7f00ff;
-      margin-bottom: 0.8rem;
-    }
-    /* Projects */
-    .project-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .project {
-      border-radius: 10px;
-      overflow: hidden;
-      width: 350px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-    .project:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
-    .project img {
-      width: 100%;
-      display: block;
-    }
-    /* Footer */
-    footer {
-      background: #f0f0f0;
-      padding: 3rem 2rem;
-      text-align: center;
-      color: #555;
-    }
-    footer h2 {
-      color: #7f00ff;
-      margin-bottom: 1rem;
-      font-size: 2.2rem;
-    }
-    footer p {
-      margin: 0.3rem 0;
-      font-size: 1.1rem;
-    }
-    .footer-buttons {
-      margin: 1.5rem 0;
-    }
-    .btn {
-      background: #7f00ff;
-      color: white;
-      padding: 0.8rem 1.6rem;
-      margin: 0 0.4rem;
-      border-radius: 6px;
-      font-weight: 700;
-      transition: background-color 0.3s ease;
-      display: inline-block;
-    }
-    .btn:hover {
-      background-color: #6000cc;
-      cursor: pointer;
-    }
-    .copy {
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
-      color: #999;
-    }
-    /* Responsive */
-    @media (max-width: 768px) {
-      .service-cards {
-        flex-direction: column;
-        align-items: center;
-      }
-      .project-grid {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GoldenPixel Studio - Sharp Luxury Web Design</title>
+<style>
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #bfa635; /* sharp flat gold */
+    overflow-x: hidden;
+  }
+  a {
+    color: #bfa635;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #fff;
+  }
 
-    /* Simple fade-in animation on scroll */
-    .fade-in {
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid #5c4b10;
+    position: sticky;
+    top: 0;
+    background: #0a0a0acc;
+    z-index: 1000;
+  }
+  header .logo {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #bfa635;
+    user-select: none;
+  }
+  nav a {
+    margin-left: 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  /* Hero */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    background:
+      linear-gradient(135deg, #bfa635cc, #8c7402cc),
+      url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center/cover;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #000000cc, #000000cc);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    animation: fadeInUp 1.3s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .hero h1 {
+    font-size: 4rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #bfa635;
+  }
+  .hero p {
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    color: #d9c762;
+  }
+  .btn-primary {
+    padding: 1rem 3rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: linear-gradient(45deg, #bfa635, #8c7402);
+    border: none;
+    border-radius: 40px;
+    color: #0a0a0a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.1em;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(45deg, #d6c551, #a29204);
+    color: #111;
+  }
+
+  /* Sections */
+  section {
+    padding: 5rem 0;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  section h2 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #bfa635;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  section p {
+    font-weight: 300;
+    color: #d9c762;
+    font-size: 1.15rem;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+  }
+
+  /* Services Cards */
+  .services-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .card {
+    background: #1a1a1a;
+    border: 1px solid #7a6610;
+    border-radius: 15px;
+    padding: 2rem;
+    width: 280px;
+    color: #d9c762;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+  }
+  .card:hover {
+    transform: translateY(-15px) scale(1.05);
+    border-color: #bfa635;
+    cursor: default;
+  }
+  .card h3 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #bfa635;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  .card p {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .project {
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #bfa635;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    background: #111;
+  }
+  .project img {
+    width: 100%;
+    display: block;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+  }
+  .project:hover img {
+    filter: brightness(1);
+  }
+  .project:hover {
+    transform: scale(1.05);
+    border-color: #d9c762;
+    z-index: 10;
+  }
+  .project-title {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    color: #bfa635;
+    font-weight: 700;
+    font-size: 1.3rem;
+    background: #0a0a0a;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  /* Footer */
+  footer {
+    background: #111;
+    padding: 3rem 1rem;
+    text-align: center;
+    color: #bfa635;
+    border-top: 1px solid #5c4b10;
+    user-select: none;
+  }
+  footer h2 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+  }
+  footer p {
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+  }
+  .footer-links {
+    margin: 2rem 0;
+  }
+  .footer-links a {
+    margin: 0 1rem;
+    color: #bfa635;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  .footer-links a:hover {
+    color: #fff;
+  }
+  .copy {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #7a6610;
+  }
+
+  /* Scroll animations */
+  .fadeInUp {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fadeInUp.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Keyframes for hero text */
+  @keyframes fadeInUp {
+    from {
       opacity: 0;
-      transform: translateY(30px);
-      animation-fill-mode: forwards;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
+      transform: translateY(40px);
     }
-    .fade-in.visible {
+    to {
       opacity: 1;
       transform: translateY(0);
     }
-  </style>
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .services-grid {
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+    header {
+      flex-direction: column;
+      padding: 1.5rem 2rem;
+    }
+    nav a {
+      margin-left: 1rem;
+      font-size: 0.9rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    .hero p {
+      font-size: 1rem;
+    }
+  }
+</style>
 </head>
 <body>
 
-  <header class="hero">
-    <h1 class="fade-in">NovaFlow</h1>
-    <p class="fade-in" style="animation-delay: 0.2s;">Creative Digital Studio for Modern Brands</p>
-    <a href="#contact" class="cta-btn fade-in" style="animation-delay: 0.4s;">Let's Talk</a>
-  </header>
+<header>
+  <div class="container">
+    <div class="logo">GoldenPixel</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <section class="about fade-in" style="animation-delay: 0.6s;">
-    <h2>Who We Are</h2>
-    <p>We build beautiful, fast, mobile-first websites for startups, local businesses, and creators. Fully custom. Fully impressive.</p>
-  </section>
+<section class="hero">
+  <div class="hero-content">
+    <h1>GoldenPixel Studio</h1>
+    <p>Crafting Digital Experiences That Shine</p>
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Work With Us</button>
+  </div>
+</section>
 
-  <section class="services">
-    <h2 class="fade-in" style="animation-delay: 0.8s;">What We Do</h2>
-    <div class="service-cards">
-      <div class="card fade-in" style="animation-delay: 1s;">
-        <h3>Web Design</h3>
-        <p>Stunning layouts that work on all devices and convert like magic.</p>
-      </div>
-      <div class="card fade-in" style="animation-delay: 1.2s;">
-        <h3>Branding</h3>
-        <p>Logos, colors, and vibes that make people trust you instantly.</p>
-      </div>
-      <div class="card fade-in" style="animation-delay: 1.4s;">
-        <h3>Speed Optimization</h3>
-        <p>Lightning-fast loading websites that pass all Core Web Vitals.</p>
-      </div>
+<section id="about" class="fadeInUp">
+  <h2>Who We Are</h2>
+  <p>At GoldenPixel Studio, we transform visions into captivating digital realities. Our expert team blends artistry with technology to deliver bespoke websites that not only look stunning but perform flawlessly.</p>
+</section>
+
+<section id="services" class="fadeInUp">
+  <h2>Our Services</h2>
+  <div class="services-grid">
+    <div class="card">
+      <h3>Premium Web Design</h3>
+      <p>Tailored designs with pixel-perfect precision to elevate your brand's online presence.</p>
     </div>
-  </section>
-
-  <section class="projects">
-    <h2 class="fade-in" style="animation-delay: 1.6s;">Latest Projects</h2>
-    <div class="project-grid">
-      <div class="project fade-in" style="animation-delay: 1.8s;">
-        <img src="https://via.placeholder.com/350x250" alt="Project 1" />
-      </div>
-      <div class="project fade-in" style="animation-delay: 2s;">
-        <img src="https://via.placeholder.com/350x250" alt="Project 2" />
-      </div>
+    <div class="card">
+      <h3>Brand Identity</h3>
+      <p>Luxurious logos, color palettes, and typography that resonate with your audience.</p>
     </div>
-  </section>
-
-  <footer id="contact">
-    <h2 class="fade-in" style="animation-delay: 2.2s;">Get in Touch</h2>
-    <p class="fade-in" style="animation-delay: 2.4s;">Email us at <strong>hello@novaflow.studio</strong></p>
-    <div class="footer-buttons fade-in" style="animation-delay: 2.6s;">
-      <a href="mailto:hello@novaflow.studio" class="btn">Email</a>
-      <a href="https://wa.me/1234567890" class="btn" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <div class="card">
+      <h3>Performance Optimization</h3>
+      <p>Lightning-fast load times and smooth interactions for an unforgettable user experience.</p>
     </div>
-    <p class="copy fade-in" style="animation-delay: 2.8s;">© 2025 NovaFlow Studio</p>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    // Simple fade-in on scroll
-    function onEntry(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }
-    let options = { threshold: [0.1] };
-    let observer = new IntersectionObserver(onEntry, options);
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
+<section id="projects" class="fadeInUp">
+  <h2>Featured Projects</h2>
+  <div class="projects-grid">
+    <div class="project" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Project Gold Rush" />
+      <div class="project-title">Gold Rush</div>
+    </div>
+    <div class="project" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Project Luxe" />
+      <div class="project-title">Luxe</div>
+    </div>
+    <div class="project" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=600&q=80" alt="Project Radiance" />
+      <div class="project-title">Radiance</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="fadeInUp">
+  <h2>Get In Touch</h2>
+  <p>Ready to elevate your digital presence? Reach out and let’s start building your masterpiece.</p>
+  <a href="mailto:contact@goldenpixelstudio.com" class="btn-primary" style="text-decoration:none; display:inline-block; margin-top:1rem;">Email Us</a>
+</section>
+
+<footer>
+  <h2>GoldenPixel Studio</h2>
+  <p>© 2025 GoldenPixel Studio. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="copy">Designed & Developed with Precision</div>
+</footer>
+
+<script>
+  // Scroll animations
+  const faders = document.querySelectorAll('.fadeInUp');
+  const options = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px"
+  };
+  const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      appearOnScroll.unobserve(entry.target);
     });
-  </script>
+  }, options);
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+</script>
+
 </body>
 </html>
