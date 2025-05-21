@@ -2,295 +2,271 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>London Driving Instructor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/a2e0e6f91e.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    :root {
-      --blue: #3a8df0;
-      --green: #7ed957;
-      --red: #ff6a6a;
-      --glass: rgba(255, 255, 255, 0.15);
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
-      font-family: 'Urbanist', sans-serif;
-    }
+    /* Reset + Fonts */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #f5f9ff;
-      color: #222;
-      line-height: 1.6;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f3bff, #f95f89);
+      color: #fff;
+      overflow-x: hidden;
     }
+    h1, h2, h3 { margin-bottom: 1rem; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Glass Box */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Header / Hero */
     header {
-      background: linear-gradient(to right, var(--blue), var(--green));
-      color: white;
-      padding: 2rem 1rem;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1583594474572-d9c5f1a0b35c') no-repeat center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
-    header img {
-      width: 100%;
-      max-height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 1rem;
+    .hero-content {
+      max-width: 700px;
+      padding: 2rem;
+      animation: fadeInUp 1s ease;
     }
-    header h1 {
-      font-size: 2.5rem;
-      animation: slideIn 1s ease forwards;
-    }
-    @keyframes slideIn {
-      from {transform: translateY(-50px); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
-    .quote-form {
-      margin: 2rem auto;
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 1rem;
-      max-width: 500px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    .hero-content h1 {
+      font-size: 3rem;
+      animation: slideIn 2s ease;
     }
     .quote-form input, .quote-form button {
-      width: 100%;
       padding: 0.8rem;
       margin: 0.5rem 0;
+      width: 100%;
       border: none;
       border-radius: 8px;
-    }
-    .quote-form input {
-      background: white;
     }
     .quote-form button {
-      background: var(--green);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 1rem;
-    }
-    .slider img {
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
-    section {
-      padding: 3rem 1.5rem;
-    }
-    .about, .services, .gallery, .testimonials, .faq, .contact, .subscribe {
-      max-width: 1000px;
-      margin: auto;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1.5rem;
-      text-align: center;
-    }
-    .services-grid i {
-      font-size: 2rem;
-      color: var(--blue);
-    }
-    .gallery img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      margin: 0.5rem 0;
-      border-radius: 10px;
-    }
-    .testimonial {
       background: #fff;
-      border-left: 5px solid var(--green);
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 8px;
-    }
-    .faq-item {
-      margin: 1rem 0;
-    }
-    .faq-item h4 {
-      cursor: pointer;
-      background: var(--blue);
-      color: white;
-      padding: 0.8rem;
-      border-radius: 6px;
-    }
-    .faq-item p {
-      display: none;
-      padding: 0.5rem 1rem;
-      background: #e9f7ff;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 0.8rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-    }
-    form button {
-      background: var(--blue);
-      color: white;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 6px;
+      color: #1f3bff;
       font-weight: bold;
       cursor: pointer;
     }
-    .subscribe input[type="email"] {
-      border: 1px solid var(--green);
-    }
-    .floating-quote {
-      position: fixed;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      background: var(--red);
-      color: white;
-      padding: 0.7rem 1rem;
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-      font-weight: bold;
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      cursor: pointer;
-      z-index: 999;
-    }
+
+    /* Sticky Bar */
     .sticky-bar {
       position: fixed;
       bottom: 0;
+      left: 0;
       width: 100%;
-      background: white;
+      background: #000;
       display: flex;
       justify-content: space-around;
-      padding: 0.5rem 0;
-      border-top: 1px solid #ccc;
+      padding: 1rem 0;
       z-index: 999;
     }
-    .sticky-bar a {
-      color: var(--blue);
-      font-size: 1.5rem;
+    .sticky-bar a i {
+      font-size: 24px;
+      color: #fff;
     }
-    .hamburger {
+
+    /* Nav */
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    .menu-toggle {
+      font-size: 30px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .services, .gallery, .testimonials, .faq {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .service-item, .testimonial, .faq-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    /* Slider */
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+    }
+    .slider img {
+      scroll-snap-align: start;
+      width: 300px;
+      height: 200px;
+      border-radius: 12px;
+    }
+
+    /* FAQ */
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Horizontal Quote Bar */
+    .quote-bar {
       position: fixed;
-      top: 15px;
-      left: 15px;
-      z-index: 1000;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.8);
+      padding: 0.7rem;
+      text-align: center;
+      font-weight: 600;
+      z-index: 999;
     }
-    .hamburger i {
-      font-size: 1.8rem;
-      color: var(--blue);
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes slideIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Responsive */
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
+      .hero-content h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="hamburger"><i class="fas fa-bars"></i></div>
+<div class="quote-bar">Get a Quote Today - Affordable Driving Lessons in London</div>
 
+<!-- NAV -->
+<nav>
+  <i class="fas fa-bars menu-toggle"></i>
+</nav>
+
+<!-- HERO -->
 <header>
-  <img src="https://images.unsplash.com/photo-1601933471664-b279a2b8c8ee?auto=format&fit=crop&w=1050&q=80" alt="Driving School Car" />
-  <h1>London Driving School</h1>
-  <div class="quote-form">
-    <input type="text" placeholder="Your Name"/>
-    <input type="tel" placeholder="Phone Number"/>
-    <button>Get Quote</button>
+  <div class="glass hero-content">
+    <h1>Drive Confidently in London</h1>
+    <p>Expert Independent Driving Instructor | Affordable Lessons</p>
+    <form class="quote-form">
+      <input type="text" placeholder="Your Name">
+      <input type="text" placeholder="Phone Number">
+      <button>Get Quote</button>
+    </form>
   </div>
 </header>
 
-<div class="slider">
-  <img src="https://source.unsplash.com/300x200/?car,lesson" />
-  <img src="https://source.unsplash.com/300x200/?driving" />
-  <img src="https://source.unsplash.com/300x200/?traffic" />
-</div>
-
-<section class="about">
-  <h2>About Our Driving School</h2>
-  <p>We offer professional, friendly driving lessons across London. Whether you're a new learner or brushing up your skills, we’ll get you road-ready with confidence.</p>
+<!-- SLIDER -->
+<section class="slider">
+  <img src="https://source.unsplash.com/300x200/?car,driving" alt="Slide 1">
+  <img src="https://source.unsplash.com/300x200/?driving,school" alt="Slide 2">
+  <img src="https://source.unsplash.com/300x200/?london,car" alt="Slide 3">
 </section>
 
-<section class="services">
-  <h2>Services</h2>
-  <div class="services-grid">
-    <div><i class="fas fa-car"></i><p>Manual Lessons</p></div>
-    <div><i class="fas fa-cogs"></i><p>Automatic Lessons</p></div>
-    <div><i class="fas fa-user-shield"></i><p>Refresher Courses</p></div>
-    <div><i class="fas fa-chalkboard-teacher"></i><p>Mock Tests</p></div>
+<!-- ABOUT -->
+<section>
+  <div class="glass">
+    <h2>About Us</h2>
+    <p>I’m an independent DVSA-approved driving instructor in London offering calm, clear, and confidence-building driving lessons tailored to you.</p>
   </div>
 </section>
 
-<section class="gallery">
+<!-- SERVICES -->
+<section>
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="service-item"><i class="fas fa-car"></i> Manual Lessons</div>
+    <div class="service-item"><i class="fas fa-car-side"></i> Automatic Lessons</div>
+    <div class="service-item"><i class="fas fa-road"></i> Refresher Courses</div>
+    <div class="service-item"><i class="fas fa-book"></i> Theory Prep</div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section>
   <h2>Gallery</h2>
-  <img src="https://source.unsplash.com/1000x300/?driving,student"/>
-  <img src="https://source.unsplash.com/1000x300/?driving,instructor"/>
+  <div class="gallery">
+    <img src="https://source.unsplash.com/300x200/?car,instructor" alt="">
+    <img src="https://source.unsplash.com/300x200/?driving,student" alt="">
+  </div>
 </section>
 
-<section class="testimonials">
-  <h2>What Our Clients Say</h2>
-  <div class="testimonial">“Brilliant instructor, very patient and clear. Passed on my first try!”</div>
-  <div class="testimonial">“Made me feel confident behind the wheel. 10/10 service!”</div>
+<!-- TESTIMONIALS -->
+<section>
+  <h2>Testimonials</h2>
+  <div class="testimonials">
+    <div class="testimonial">"Passed first time! Great teaching style!"</div>
+    <div class="testimonial">"Really helped me gain confidence behind the wheel."</div>
+  </div>
 </section>
 
-<section class="faq">
-  <h2>FAQs</h2>
-  <div class="faq-item"><h4>How much are lessons?</h4><p>Prices start at £30/hr for manual or automatic lessons.</p></div>
-  <div class="faq-item"><h4>Where do lessons take place?</h4><p>All across London zones 1–6.</p></div>
-  <div class="faq-item"><h4>How many lessons do I need?</h4><p>Depends on experience—new drivers typically need 20–40 hours.</p></div>
-  <div class="faq-item"><h4>Do you offer weekend lessons?</h4><p>Yes, weekends and evenings available.</p></div>
-  <div class="faq-item"><h4>Do you provide the car for test?</h4><p>Yes, car hire for test day is included.</p></div>
-  <div class="faq-item"><h4>Can I choose my instructor?</h4><p>Yes, we match you with your preferred instructor.</p></div>
-  <div class="faq-item"><h4>Is there a cancellation fee?</h4><p>We require 24h notice to avoid a £15 fee.</p></div>
-  <div class="faq-item"><h4>Do you offer intensive courses?</h4><p>Yes, 1-week and 2-week courses available.</p></div>
-  <div class="faq-item"><h4>How do I book?</h4><p>Use the quote form or contact us directly.</p></div>
-  <div class="faq-item"><h4>What age can I start?</h4><p>You can start from 17 with a provisional license.</p></div>
+<!-- FAQ -->
+<section>
+  <h2>FAQ</h2>
+  <div class="faq">
+    <details class="faq-item"><summary>How long is each lesson?</summary><p>Each lesson is typically 1 hour, but 1.5 and 2-hour lessons are available.</p></details>
+    <details class="faq-item"><summary>Do you offer weekend lessons?</summary><p>Yes, I offer weekend and evening slots.</p></details>
+    <details class="faq-item"><summary>Can I take lessons in my own car?</summary><p>Yes, if it's insured for learner drivers.</p></details>
+    <details class="faq-item"><summary>Is the instructor DVSA-approved?</summary><p>Yes, I’m a fully qualified DVSA-approved ADI.</p></details>
+    <details class="faq-item"><summary>What areas do you cover?</summary><p>Most parts of North and Central London.</p></details>
+    <details class="faq-item"><summary>How do I pay?</summary><p>Bank transfer or cash. Discounts for block bookings.</p></details>
+    <details class="faq-item"><summary>What’s your pass rate?</summary><p>My current pass rate is above 85%.</p></details>
+    <details class="faq-item"><summary>Do you teach nervous drivers?</summary><p>Yes, with a calm and supportive approach.</p></details>
+    <details class="faq-item"><summary>Are lessons in English only?</summary><p>I teach in English and basic Spanish.</p></details>
+    <details class="faq-item"><summary>Do you provide a car for the test?</summary><p>Yes, the car is available for your practical test.</p></details>
+  </div>
 </section>
 
-<section class="contact">
-  <h2>Contact Us</h2>
-  <form>
-    <input type="text" placeholder="Your Name"/>
-    <input type="tel" placeholder="Phone Number"/>
-    <textarea placeholder="Message..."></textarea>
-    <button>Send Message</button>
-  </form>
+<!-- CONTACT -->
+<section>
+  <div class="glass">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" /><br><br>
+      <input type="text" placeholder="Phone Number" /><br><br>
+      <textarea placeholder="Your Message" rows="4" style="width:100%; border-radius:8px;"></textarea><br><br>
+      <button style="padding:0.8rem 2rem; border:none; border-radius:8px; background:#fff; color:#1f3bff;">Send Message</button>
+    </form>
+  </div>
 </section>
 
-<section class="subscribe">
-  <h2>Stay Updated</h2>
-  <form>
-    <input type="email" placeholder="Email Address"/>
-    <button>Subscribe</button>
-  </form>
+<!-- SUBSCRIBE -->
+<section>
+  <div class="glass">
+    <h2>Subscribe for Updates</h2>
+    <input type="email" placeholder="Your Email" style="width:100%; padding:0.8rem; border-radius:8px; border:none;">
+    <button style="margin-top:1rem; padding:0.8rem 2rem; background:#fff; border:none; border-radius:8px; color:#1f3bff;">Subscribe</button>
+  </div>
 </section>
 
-<div class="floating-quote">Get A Quote</div>
-
+<!-- STICKY BAR -->
 <div class="sticky-bar">
-  <a href="#"><i class="fas fa-phone"></i></a>
-  <a href="#"><i class="fas fa-sms"></i></a>
-  <a href="#"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+447700900000"><i class="fas fa-phone"></i></a>
+  <a href="sms:+447700900000"><i class="fas fa-comment"></i></a>
+  <a href="https://wa.me/447700900000"><i class="fab fa-whatsapp"></i></a>
 </div>
 
-<script>
-  document.querySelectorAll('.faq-item h4').forEach(q => {
-    q.addEventListener('click', () => {
-      const p = q.nextElementSibling;
-      p.style.display = p.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-</script>
 </body>
 </html>
