@@ -1,254 +1,203 @@
-<!DOCTYPE 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faz Designs - Premium Web Agency</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #F8E0E0;
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
 
-    header h1 {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
+        .hero {
+            background: linear-gradient(45deg, #F82222, #FF6666);
+            padding: 50px;
+            color: white;
+            font-size: 1.8em;
+            animation: fadeIn 1s ease-in-out;
+        }
 
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
+        .cta {
+            background: white;
+            color: #F82222;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
 
-    .menu-toggle span {
-      background: var(--white);
-      height: 3px;
-      width: 25px;
-      margin: 4px 0;
-      transition: 0.3s;
-    }
+        .cta:hover {
+            transform: scale(1.05);
+        }
 
-    nav {
-      display: flex;
-      gap: 20px;
-    }
+        .section {
+            padding: 40px 10%;
+            font-size: 1.2em;
+            animation: slideIn 1s ease-in-out;
+        }
 
-    nav a {
-      color: var(--white);
-      font-weight: bold;
-    }
+        .gallery img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin: 10px;
+        }
 
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        background: var(--red);
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 20px;
-      }
-      nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-    }
+        .contact-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #F82222;
+            padding: 12px;
+            display: flex;
+            justify-content: space-around;
+        }
 
-    section {
-      padding: 100px 20px 60px;
-      max-width: 1200px;
-      margin: auto;
-    }
+        .contact-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
 
-    .hero {
-      background: linear-gradient(to right, var(--red), var(--light-red));
-      color: var(--white);
-      text-align: center;
-      padding: 150px 20px 100px;
-    }
+        .menu-icon {
+            font-size: 2em;
+            cursor: pointer;
+            display: none;
+        }
 
-    .hero h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
+        .menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+        }
 
-    .btn {
-      background: var(--white);
-      color: var(--red);
-      padding: 10px 20px;
-      border: none;
-      font-weight: bold;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        .menu li {
+            display: inline-block;
+        }
 
-    .btn:hover {
-      background: #ffe6e6;
-    }
+        .menu a {
+            text-decoration: none;
+            color: #F82222;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
 
-    .services, .gallery, .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-    .services div, .gallery img, .testimonial {
-      background: var(--light-red);
-      padding: 20px;
-      border-radius: 10px;
-      transition: transform 0.4s ease;
-    }
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-    .services div:hover, .gallery img:hover, .testimonial:hover {
-      transform: scale(1.03);
-    }
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
 
-    .services img, .testimonial img {
-      width: 40px;
-      margin-bottom: 10px;
-    }
+            .menu-icon {
+                display: block;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("scroll", function() {
+            const elements = document.querySelectorAll(".section");
+            elements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.style.opacity = "1";
+                    el.style.transform = "translateY(0)";
+                }
+            });
+        });
 
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      background: #f8f8f8;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    input, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-
-    .sticky-bar {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: var(--red);
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      z-index: 1000;
-    }
-
-    .sticky-bar a {
-      color: white;
-      font-weight: bold;
-      font-size: 0.9em;
-      text-align: center;
-    }
-
-    /* ANIMATIONS */
-    [data-animate] {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: 0.8s ease-out;
-    }
-
-    [data-animate].animated {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+        function toggleMenu() {
+            const menu = document.querySelector(".menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+    </script>
 </head>
 <body>
 
-  <header>
-    <h1>RedFusion</h1>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="logo">Faz Designs</div>
+        <h1>Your Brand, Elevated.</h1>
+        <button class="cta">Get a Free Quote</button>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about">
+        <h2>About Us</h2>
+        <p>We craft stunning, high-performance websites designed for businesses to scale effortlessly.</p>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section services">
+        <h2>Our Services</h2>
+        <div>
+            <p>✅ Custom Web Design</p>
+            <p>✅ Branding & Identity</p>
+            <p>✅ SEO & Marketing</p>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="section gallery">
+        <h2>Our Work</h2>
+        <img src="images/project1.jpg" alt="Project 1">
+        <img src="images/project2.jpg" alt="Project 2">
+        <img src="images/project3.jpg" alt="Project 3">
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="section testimonials">
+        <h2>Client Feedback</h2>
+        <p>"Faz Designs transformed our brand—highly recommend!"</p>
+        <p>"Professional, sleek, and innovative web solutions."</p>
+        <p>"The best experience working with a web agency!"</p>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="section contact">
+        <h2>Let's Connect</h2>
+        <form>
+            <input type="text" placeholder="Your Name">
+            <input type="tel" placeholder="Your Phone">
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- STICKY CONTACT BAR -->
+    <div class="contact-bar">
+        <a href="tel:+123456789">📞 Call</a>
+        <a href="sms:+123456789">📩 Text</a>
+        <a href="https://wa.me/+123456789">💬 WhatsApp</a>
     </div>
-    <nav id="nav">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#testimonials">Reviews</a>
-      <a href="#contact">Contact</a>
+
+    <!-- HAMBURGER MENU -->
+    <nav>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <section class="hero">
-    <h2>Premium Web Design Agency</h2>
-    <p>Creating $50,000 quality websites for every budget.</p>
-    <button class="btn">Get Started</button>
-  </section>
-
-  <section id="about" data-animate>
-    <h2>About Us</h2>
-    <p>We build high-end, responsive, animated websites that drive conversions and impress clients. From plumbers to luxury brands — we’ve got you covered.</p>
-  </section>
-
-  <section id="services" data-animate>
-    <h2>Services</h2>
-    <div class="services">
-      <div><img src="https://img.icons8.com/ios-filled/50/laptop.png"/><p>Web Design</p></div>
-      <div><img src="https://img.icons8.com/ios-filled/50/computer.png"/><p>Responsive Layouts</p></div>
-      <div><img src="https://img.icons8.com/ios-filled/50/code.png"/><p>Custom Development</p></div>
-    </div>
-  </section>
-
-  <section id="gallery" data-animate>
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="https://via.placeholder.com/400x300?text=Before" alt="Before" />
-      <img src="https://via.placeholder.com/400x300?text=After" alt="After" />
-    </div>
-  </section>
-
-  <section id="testimonials" data-animate>
-    <h2>Testimonials</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <img src="https://img.icons8.com/emoji/48/ok-hand.png"/>
-        <p>“RedFusion built our site in days — and it looks like we spent $100k.”</p>
-      </div>
-      <div class="testimonial">
-        <img src="https://img.icons8.com/emoji/48/star.png"/>
-        <p>“Our business doubled after launching with their design.”</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" data-animate>
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="tel" placeholder="Phone Number" required />
-      <textarea placeholder="Message..." rows="4" required></textarea>
-      <button class="btn" type="submit">Send Message</button>
-    </form>
-  </section>
-
-  <div class="sticky-bar">
-    <a href="tel:+123456789">📞 Call</a>
-    <a href="sms:+123456789">💬 Text</a>
-    <a href="https://wa.me/123456789">🟢 WhatsApp</a>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('nav').classList.toggle('active');
-    }
-
-    // Simple scroll animation
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-  </script>
+</body>
+</html>
