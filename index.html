@@ -145,277 +145,29 @@
 
 <nav class="menu" id="menu">
   <ul>
-    <
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>London Driving Instructor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    /* Reset + Fonts */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f3bff, #f95f89);
-      color: #fff;
-      overflow-x: hidden;
-    }
-    h1, h2, h3 { margin-bottom: 1rem; }
-    a { color: inherit; text-decoration: none; }
-
-    /* Glass Box */
-    .glass {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 2rem;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Header / Hero */
-    header {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1583594474572-d9c5f1a0b35c') no-repeat center/cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-    }
-    .hero-content {
-      max-width: 700px;
-      padding: 2rem;
-      animation: fadeInUp 1s ease;
-    }
-    .hero-content h1 {
-      font-size: 3rem;
-      animation: slideIn 2s ease;
-    }
-    .quote-form input, .quote-form button {
-      padding: 0.8rem;
-      margin: 0.5rem 0;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-    }
-    .quote-form button {
-      background: #fff;
-      color: #1f3bff;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* Sticky Bar */
-    .sticky-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #000;
-      display: flex;
-      justify-content: space-around;
-      padding: 1rem 0;
-      z-index: 999;
-    }
-    .sticky-bar a i {
-      font-size: 24px;
-      color: #fff;
-    }
-
-    /* Nav */
-    nav {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 999;
-    }
-    .menu-toggle {
-      font-size: 30px;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    /* Sections */
-    section {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-    .services, .gallery, .testimonials, .faq {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .service-item, .testimonial, .faq-item {
-      background: rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 1rem;
-    }
-
-    /* Slider */
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 1rem;
-    }
-    .slider img {
-      scroll-snap-align: start;
-      width: 300px;
-      height: 200px;
-      border-radius: 12px;
-    }
-
-    /* FAQ */
-    .faq-item summary {
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    /* Horizontal Quote Bar */
-    .quote-bar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.8);
-      padding: 0.7rem;
-      text-align: center;
-      font-weight: 600;
-      z-index: 999;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideIn {
-      0% { transform: scale(0.9); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .hero-content h1 { font-size: 2rem; }
-    }
-  </style>
-</head>
-<body>
-
-<div class="quote-bar">Get a Quote Today - Affordable Driving Lessons in London</div>
-
-<!-- NAV -->
-<nav>
-  <i class="fas fa-bars menu-toggle"></i>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Lessons</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<!-- HERO -->
-<header>
-  <div class="glass hero-content">
-    <h1>Drive Confidently in London</h1>
-    <p>Expert Independent Driving Instructor | Affordable Lessons</p>
-    <form class="quote-form">
-      <input type="text" placeholder="Your Name">
-      <input type="text" placeholder="Phone Number">
-      <button>Get Quote</button>
-    </form>
-  </div>
-</header>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
 
-<!-- SLIDER -->
-<section class="slider">
-  <img src="https://source.unsplash.com/300x200/?car,driving" alt="Slide 1">
-  <img src="https://source.unsplash.com/300x200/?driving,school" alt="Slide 2">
-  <img src="https://source.unsplash.com/300x200/?london,car" alt="Slide 3">
-</section>
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    menu.classList.toggle('active');
+  });
 
-<!-- ABOUT -->
-<section>
-  <div class="glass">
-    <h2>About Us</h2>
-    <p>I’m an independent DVSA-approved driving instructor in London offering calm, clear, and confidence-building driving lessons tailored to you.</p>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section>
-  <h2>Our Services</h2>
-  <div class="services">
-    <div class="service-item"><i class="fas fa-car"></i> Manual Lessons</div>
-    <div class="service-item"><i class="fas fa-car-side"></i> Automatic Lessons</div>
-    <div class="service-item"><i class="fas fa-road"></i> Refresher Courses</div>
-    <div class="service-item"><i class="fas fa-book"></i> Theory Prep</div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section>
-  <h2>Gallery</h2>
-  <div class="gallery">
-    <img src="https://source.unsplash.com/300x200/?car,instructor" alt="">
-    <img src="https://source.unsplash.com/300x200/?driving,student" alt="">
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section>
-  <h2>Testimonials</h2>
-  <div class="testimonials">
-    <div class="testimonial">"Passed first time! Great teaching style!"</div>
-    <div class="testimonial">"Really helped me gain confidence behind the wheel."</div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section>
-  <h2>FAQ</h2>
-  <div class="faq">
-    <details class="faq-item"><summary>How long is each lesson?</summary><p>Each lesson is typically 1 hour, but 1.5 and 2-hour lessons are available.</p></details>
-    <details class="faq-item"><summary>Do you offer weekend lessons?</summary><p>Yes, I offer weekend and evening slots.</p></details>
-    <details class="faq-item"><summary>Can I take lessons in my own car?</summary><p>Yes, if it's insured for learner drivers.</p></details>
-    <details class="faq-item"><summary>Is the instructor DVSA-approved?</summary><p>Yes, I’m a fully qualified DVSA-approved ADI.</p></details>
-    <details class="faq-item"><summary>What areas do you cover?</summary><p>Most parts of North and Central London.</p></details>
-    <details class="faq-item"><summary>How do I pay?</summary><p>Bank transfer or cash. Discounts for block bookings.</p></details>
-    <details class="faq-item"><summary>What’s your pass rate?</summary><p>My current pass rate is above 85%.</p></details>
-    <details class="faq-item"><summary>Do you teach nervous drivers?</summary><p>Yes, with a calm and supportive approach.</p></details>
-    <details class="faq-item"><summary>Are lessons in English only?</summary><p>I teach in English and basic Spanish.</p></details>
-    <details class="faq-item"><summary>Do you provide a car for the test?</summary><p>Yes, the car is available for your practical test.</p></details>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section>
-  <div class="glass">
-    <h2>Contact Me</h2>
-    <form>
-      <input type="text" placeholder="Your Name" /><br><br>
-      <input type="text" placeholder="Phone Number" /><br><br>
-      <textarea placeholder="Your Message" rows="4" style="width:100%; border-radius:8px;"></textarea><br><br>
-      <button style="padding:0.8rem 2rem; border:none; border-radius:8px; background:#fff; color:#1f3bff;">Send Message</button>
-    </form>
-  </div>
-</section>
-
-<!-- SUBSCRIBE -->
-<section>
-  <div class="glass">
-    <h2>Subscribe for Updates</h2>
-    <input type="email" placeholder="Your Email" style="width:100%; padding:0.8rem; border-radius:8px; border:none;">
-    <button style="margin-top:1rem; padding:0.8rem 2rem; background:#fff; border:none; border-radius:8px; color:#1f3bff;">Subscribe</button>
-  </div>
-</section>
-
-<!-- STICKY BAR -->
-<div class="sticky-bar">
-  <a href="tel:+447700900000"><i class="fas fa-phone"></i></a>
-  <a href="sms:+447700900000"><i class="fas fa-comment"></i></a>
-  <a href="https://wa.me/447700900000"><i class="fab fa-whatsapp"></i></a>
-</div>
-
+  document.querySelectorAll('.menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      menu.classList.remove('active');
+    });
+  });
+</script>
 </body>
 </html>
