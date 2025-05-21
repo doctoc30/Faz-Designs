@@ -1,6 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 Star Driving</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-color: #ff3131;
+      --bg-dark: #111;
+      --text-light: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px 30px;
+      background: var(--main-color);
+      color: var(--text-light);
+      position: relative;
+      z-index: 1001;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .hamburger {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      background: var(--text-light);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transform: translateY(-100%);
+      transition: transform 0.5s ease;
+      z-index: 1000;
+    }
+
+    .menu.active {
+      transform: translateY(0);
+    }
+
+    .menu ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    .menu li {
+      margin: 20px 0;
+      font-size: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideIn 0.6s forwards;
+    }
+
+    .menu li:nth-child(1) { animation-delay: 0.2s; }
+    .menu li:nth-child(2) { animation-delay: 0.3s; }
+    .menu li:nth-child(3) { animation-delay: 0.4s; }
+    .menu li:nth-child(4) { animation-delay: 0.5s; }
+    .menu li:nth-child(5) { animation-delay: 0.6s; }
+
+    .menu a {
+      text-decoration: none;
+      color: var(--text-light);
+      transition: color 0.3s ease;
+    }
+
+    .menu a:hover {
+      color: var(--main-color);
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    @media (min-width: 768px) {
+      header {
+        padding: 20px 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">5 Star Driving</div>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<nav class="menu" id="menu">
+  <ul>
+    <
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>London Driving Instructor</title>
