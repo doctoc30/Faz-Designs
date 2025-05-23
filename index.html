@@ -218,7 +218,83 @@
   });
 </script>
 
-  
+  <section class="fade-slider">
+  <h2 class="slider-title">🔥 Our Local Business Templates</h2>
+  <div class="fade-slider-container">
+    <div class="fade-slider-track">
+      <img src="https://i.imgur.com/SLIkSd7.jpeg" alt="Template 1" />
+      <img src="https://i.imgur.com/XORsJrG.jpeg" alt="Template 2" />
+      <img src="https://i.imgur.com/WZGiLeI.jpeg" alt="Template 3" />
+      <img src="https://i.imgur.com/moV46Py.jpeg" alt="Template 4" />
+
+      <!-- Duplicates for seamless infinite scroll -->
+      <img src="https://i.imgur.com/SLIkSd7.jpeg" alt="Template 1" />
+      <img src="https://i.imgur.com/XORsJrG.jpeg" alt="Template 2" />
+      <img src="https://i.imgur.com/WZGiLeI.jpeg" alt="Template 3" />
+      <img src="https://i.imgur.com/moV46Py.jpeg" alt="Template 4" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .fade-slider {
+    padding: 2rem 1.5rem;
+    background: transparent;
+    color: white;
+  }
+
+  .fade-slider .slider-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    color: #ff3131;
+    text-shadow: 0 0 10px rgba(255, 49, 49, 0.6);
+  }
+
+  .fade-slider-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .fade-slider-track {
+    display: flex;
+    gap: 1.2rem;
+    animation: scrollFade 22s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .fade-slider-track img {
+    width: 300px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 3px solid #ff3131;
+    flex-shrink: 0;
+    opacity: 0.4;
+    transform: scale(0.92);
+    transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.6s;
+    box-shadow: 0 0 0 transparent;
+    background: transparent;
+  }
+
+  .fade-slider-track img.visible {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 49, 49, 0.8);
+  }
+
+  @keyframes scrollFade {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-1600px); }
+  }
+
+  @media (max-width: 600px) {
+    .fade-slider-track img {
+      width: 200px;
+      height: 130px;
+    }
+
     @keyframes scrollFade {
       0% { transform: translateX(0); }
       100% { transform: translateX(-1100px); }
@@ -244,3 +320,4 @@
     observer.observe(img);
   });
 </script>
+    
