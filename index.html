@@ -1,173 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5 Star Driving</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --main-color: #ff3131;
-      --bg-dark: #111;
-      --text-light: #fff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Faz Designs</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ff3131;
+    color: white;
+    overflow-x: hidden;
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #ff3131;
+    z-index: 2000;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    user-select: none;
+    cursor: default;
+  }
+  /* Hamburger */
+  .hamburger {
+    width: 28px;
+    height: 22px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2100;
+  }
+  .hamburger span {
+    display: block;
+    height: 3.5px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.35s ease-in-out;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  /* Fullscreen sliding menu from left */
+  nav.menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ff3131;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4rem;
+    z-index: 2050;
+  }
+  nav.menu.open {
+    transform: translateX(0);
+  }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-    }
+  nav.menu ul {
+    list-style: none;
+  }
+  nav.menu ul li {
+    margin-bottom: 2.2rem;
+    opacity: 0;
+    transform: translateX(-40px);
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
+  }
+  nav.menu ul li a {
+    color: white;
+    text-decoration: none;
+    user-select: none;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  nav.menu ul li a:hover {
+    color: #222;
+  }
 
-    header {
-      width: 100%;
-      padding: 20px 30px;
-      background: var(--main-color);
-      color: var(--text-light);
-      position: relative;
-      z-index: 1001;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  /* Animate menu items on open */
+  nav.menu.open ul li {
+    animation: slideInFade 0.4s forwards;
+  }
+  nav.menu.open ul li:nth-child(1) {
+    animation-delay: 0.15s;
+  }
+  nav.menu.open ul li:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+  nav.menu.open ul li:nth-child(3) {
+    animation-delay: 0.55s;
+  }
+  nav.menu.open ul li:nth-child(4) {
+    animation-delay: 0.75s;
+  }
+  nav.menu.open ul li:nth-child(5) {
+    animation-delay: 0.95s;
+  }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
+  @keyframes slideInFade {
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
+  }
 
+  /* Desktop view */
+  @media (min-width: 768px) {
     .hamburger {
-      width: 30px;
-      height: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
+      display: none;
     }
-
-    .hamburger span {
-      height: 3px;
-      background: var(--text-light);
-      border-radius: 3px;
-      transition: all 0.3s ease;
-    }
-
-    .menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--bg-dark);
-      color: var(--text-light);
-      display: flex;
-      justify-content: center;
+    nav.menu {
+      position: static;
+      height: auto;
+      width: auto;
+      background: transparent;
+      transform: none !important;
+      padding-left: 0;
+      flex-direction: row;
+      justify-content: flex-end;
       align-items: center;
-      flex-direction: column;
-      transform: translateY(-100%);
-      transition: transform 0.5s ease;
-      z-index: 1000;
     }
-
-    .menu.active {
-      transform: translateY(0);
+    nav.menu ul {
+      display: flex;
+      gap: 3rem;
     }
-
-    .menu ul {
-      list-style: none;
-      text-align: center;
+    nav.menu ul li {
+      margin: 0;
+      opacity: 1 !important;
+      transform: none !important;
+      font-size: 1.25rem;
+      animation: none !important;
     }
-
-    .menu li {
-      margin: 20px 0;
-      font-size: 2rem;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: slideIn 0.6s forwards;
+    nav.menu ul li a {
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: white;
+      letter-spacing: 0.15em;
     }
-
-    .menu li:nth-child(1) { animation-delay: 0.2s; }
-    .menu li:nth-child(2) { animation-delay: 0.3s; }
-    .menu li:nth-child(3) { animation-delay: 0.4s; }
-    .menu li:nth-child(4) { animation-delay: 0.5s; }
-    .menu li:nth-child(5) { animation-delay: 0.6s; }
-
-    .menu a {
-      text-decoration: none;
-      color: var(--text-light);
-      transition: color 0.3s ease;
+    nav.menu ul li a:hover {
+      color: #222;
     }
-
-    .menu a:hover {
-      color: var(--main-color);
-    }
-
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translateY(8px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translateY(-8px);
-    }
-
-    @media (min-width: 768px) {
-      header {
-        padding: 20px 50px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-
 <header>
-  <div class="logo">5 Star Driving</div>
-  <div class="hamburger" id="hamburger">
+  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
+  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
     <span></span>
     <span></span>
     <span></span>
   </div>
+  <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
 </header>
 
-<nav class="menu" id="menu">
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Lessons</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const menu = document.getElementById('menu');
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('nav.menu');
 
-  hamburger.addEventListener('click', () => {
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
     hamburger.classList.toggle('active');
-    menu.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
   });
 
-  document.querySelectorAll('.menu a').forEach(link => {
+  // Close menu when clicking on a link
+  menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      menu.classList.remove('active');
+      if(menu.classList.contains('open')) {
+        toggleMenu();
+      }
     });
   });
 </script>
-</body>
-</html>
