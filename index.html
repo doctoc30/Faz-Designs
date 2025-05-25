@@ -219,7 +219,6 @@
 </script>
 
 
-  
   <style>
   html, body {
     margin: 0;
@@ -256,22 +255,42 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: clamp(1.8rem, 6vw, 3.5rem);
     font-weight: bold;
     color: white;
     text-shadow: 0 0 30px #b30000;
     z-index: 1;
     opacity: 0;
     text-align: center;
-    white-space: pre-line;
     animation:
       fadeIn 3s ease 5s forwards,
       rocketRise 4s ease 8s forwards;
+    line-height: 1.3;
+  }
+
+  .portrait-text {
+    display: none;
+    font-size: clamp(3.6rem, 12vw, 7rem); /* double size */
+    white-space: pre-line;
+    max-width: 90vw;
+  }
+
+  .landscape-text {
+    display: none;
+    font-size: clamp(1.8rem, 5vw, 3rem); /* normal size */
+    white-space: normal;
+    max-width: 40ch; /* strict max width in characters to force 2 lines */
+    line-height: 1.2;
   }
 
   @media (orientation: portrait) {
-    .overlay-text {
-      font-size: clamp(3.6rem, 12vw, 7rem); /* doubled */
+    .portrait-text {
+      display: block;
+    }
+  }
+
+  @media (orientation: landscape) {
+    .landscape-text {
+      display: block;
     }
   }
 
@@ -294,16 +313,27 @@
 </style>
 
 <div class="color-rise"></div>
-<div class="overlay-text">
-We build  
-custom 
-websites  
-for small  
-businesses
+
+<!-- Portrait: 5 lines with manual breaks -->
+<div class="overlay-text portrait-text">
+  We build<br>
+  custom<br>
+  websites<br>
+  for small<br>
+  businesses
 </div>
+
+<!-- Landscape: 2 lines forced by manual break and max-width -->
+<div class="overlay-text landscape-text">
+  We build custom websites<br>for small businesses
+</div>
+  
+  
 
 
   
+
+
 
 
 
