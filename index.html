@@ -219,9 +219,12 @@
 </script>
 
 
-    <meta charset="UTF-8" />
+  
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Responsive Overlay Text</title>
+  <title>Typewriter + Rocket</title>
   <style>
     html, body {
       margin: 0;
@@ -245,12 +248,8 @@
     }
 
     @keyframes solidRise {
-      0% {
-        background-color: white;
-      }
-      100% {
-        background-color: #ff3131;
-      }
+      0% { background-color: white; }
+      100% { background-color: #ff3131; }
     }
 
     .overlay-text {
@@ -262,26 +261,22 @@
       color: white;
       text-shadow: 0 0 30px #b30000;
       z-index: 1;
-      opacity: 0;
       text-align: center;
-      animation:
-        fadeIn 3s ease 5s forwards,
-        rocketRise 4s ease 8s forwards;
+      opacity: 0;
     }
 
     .portrait-text {
       display: none;
-      font-size: clamp(3.6rem, 12vw, 7rem); /* doubled size */
+      font-size: clamp(3.6rem, 12vw, 7rem);
       white-space: pre-line;
       max-width: 90vw;
-      line-height: 1; /* tighter vertical spacing */
+      line-height: 1;
     }
 
     .landscape-text {
       display: none;
-      font-size: clamp(1.8rem, 5vw, 3rem); /* smaller */
-      white-space: normal;
-      max-width: 40ch; /* force wrap into 2 lines */
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      max-width: 40ch;
       line-height: 1.2;
     }
 
@@ -294,13 +289,12 @@
     @media (orientation: landscape) {
       .landscape-text {
         display: block;
+        animation: fadeIn 3s ease 5s forwards, rocketRise 4s ease 8s forwards;
       }
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
 
     @keyframes rocketRise {
@@ -313,27 +307,95 @@
         opacity: 0;
       }
     }
+
+    .typed-line {
+      display: block;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 1ch;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
   </style>
 </head>
 <body>
 
   <div class="color-rise"></div>
 
-  <!-- ✅ Portrait: 5 lines with manual line breaks -->
-  <div class="overlay-text portrait-text">
-    We build<br>
-    custom<br>
-    websites<br>
-    for small<br>
-    businesses
-  </div>
+  <!-- Portrait typewriter target -->
+  <div class="overlay-text portrait-text" id="portraitText"></div>
 
-  <!-- ✅ Landscape: forced 2-line layout -->
+  <!-- Landscape fallback -->
   <div class="overlay-text landscape-text">
     We build custom websites<br>for small businesses
   </div>
 
+  <script>
+    const portraitText = document.getElementById('portraitText');
+    const lines = [
+      "We build",
+      "custom",
+      "websites",
+      "for small",
+      "businesses"
+    ];
 
+    const typingSpeed = 100; // ms per character
+    const lineDelay = 500;   // delay between lines
+    let currentLine = 0;
+    let currentChar = 0;
+    let lineElement = null;
+    const cursor = document.createElement('span');
+    cursor.classList.add('cursor');
+    cursor.textContent = '|';
+
+    function typeChar() {
+      if (currentLine >= lines.length) {
+        cursor.remove();
+        setTimeout(() => {
+          portraitText.style.animation = 'rocketRise 2s ease forwards';
+        }, 1000);
+        return;
+      }
+
+      const text = lines[currentLine];
+
+      if (!lineElement) {
+        lineElement = document.createElement('div');
+        lineElement.classList.add('typed-line');
+        portraitText.appendChild(lineElement);
+        lineElement.appendChild(cursor);
+      }
+
+      if (currentChar < text.length) {
+        const char = document.createTextNode(text[currentChar]);
+        lineElement.insertBefore(char, cursor);
+        currentChar++;
+        setTimeout(typeChar, typingSpeed);
+      } else {
+        currentLine++;
+        currentChar = 0;
+        lineElement = null;
+        setTimeout(typeChar, lineDelay);
+      }
+    }
+
+    // Start after background animation completes
+    setTimeout(() => {
+      portraitText.style.opacity = 1;
+      typeChar();
+    }, 5000);
+  </script>
+
+
+
+  
 
 
   
