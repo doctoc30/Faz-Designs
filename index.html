@@ -218,7 +218,8 @@
   });
 </script>
 
- <style>
+
+  <style>
   html, body {
     margin: 0;
     padding: 0;
@@ -254,13 +255,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 9vw;
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
     font-weight: bold;
     color: white;
     text-shadow: 0 0 30px #b30000;
     z-index: 1;
     opacity: 0;
-    white-space: nowrap; /* prevent wrapping */
+    text-align: center;
+    white-space: pre-line;
     animation:
       fadeIn 3s ease 5s forwards,
       rocketRise 4s ease 8s forwards;
@@ -285,4 +287,9 @@
 </style>
 
 <div class="color-rise"></div>
-<div class="overlay-text">Faz Designs</div>
+<div class="overlay-text">
+We build  
+custom websites  
+for small  
+businesses
+</div>
