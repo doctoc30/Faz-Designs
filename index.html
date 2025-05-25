@@ -218,7 +218,6 @@
   });
 </script>
 
-
 <style>
   html, body {
     margin: 0;
@@ -246,13 +245,12 @@
     100% { background-color: #ff3131; }
   }
 
-  .overlay-text {
+  .overlay-text,
+  .overlay-text-landscape {
     position: absolute;
-    top: 50%;
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 8vw;
-    line-height: 1.1;
     font-weight: bold;
     color: white;
     text-shadow: 0 0 30px #b30000;
@@ -264,11 +262,26 @@
       rocketRise 4s ease 8s forwards;
   }
 
-  /* Landscape on mobile: reduce font size and line spacing */
+  .overlay-text {
+    font-size: clamp(2.5rem, 9vw, 7rem);
+    line-height: 1.1;
+    display: block;
+  }
+
+  .overlay-text-landscape {
+    display: none;
+  }
+
+  /* Show alternate version on landscape */
   @media (max-width: 768px) and (orientation: landscape) {
     .overlay-text {
-      font-size: 4vw;
-      line-height: 1.05;
+      display: none;
+    }
+
+    .overlay-text-landscape {
+      display: block;
+      font-size: clamp(1.4rem, 4vw, 2.5rem);
+      line-height: 1.1;
     }
   }
 
@@ -289,9 +302,18 @@
 </style>
 
 <div class="color-rise"></div>
+
+<!-- Portrait version (4-line format) -->
 <div class="overlay-text">
   We build<br>
   custom websites<br>
   for small<br>
+  businesses
+</div>
+
+<!-- Landscape version (3-line format) -->
+<div class="overlay-text-landscape">
+  We build custom<br>
+  websites for small<br>
   businesses
 </div>
