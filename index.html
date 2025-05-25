@@ -255,7 +255,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: clamp(3.6rem, 12vw, 7rem); /* large for portrait */
+    font-size: clamp(3.6rem, 12vw, 7rem);
     font-weight: bold;
     color: white;
     text-shadow: 0 0 30px #b30000;
@@ -268,11 +268,11 @@
       rocketRise 4s ease 8s forwards;
   }
 
-  /* Landscape mode on small screens: reduce text size and shift down */
+  /* Landscape mode on small screens: smaller text + move down a lot */
   @media (max-width: 768px) and (orientation: landscape) {
     .overlay-text {
-      font-size: clamp(1.8rem, 6vw, 3.5rem);
-      top: 60%; /* shift text lower to avoid header */
+      font-size: clamp(1.2rem, 4vw, 2.5rem); /* smaller */
+      top: 75%; /* significantly lower */
     }
   }
 
