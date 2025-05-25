@@ -219,7 +219,7 @@
 </script>
 
 
-  <style>
+<style>
   html, body {
     margin: 0;
     padding: 0;
@@ -268,10 +268,11 @@
       rocketRise 4s ease 8s forwards;
   }
 
-  /* Landscape mode on small screens: reduce text size */
+  /* Landscape mode on small screens: reduce text size and shift down */
   @media (max-width: 768px) and (orientation: landscape) {
     .overlay-text {
       font-size: clamp(1.8rem, 6vw, 3.5rem);
+      top: 60%; /* shift text lower to avoid header */
     }
   }
 
