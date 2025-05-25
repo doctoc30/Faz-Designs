@@ -219,7 +219,7 @@
 </script>
 
 
-<style>
+ <style>
   html, body {
     margin: 0;
     padding: 0;
@@ -262,17 +262,15 @@
     z-index: 1;
     opacity: 0;
     text-align: center;
-    white-space: pre-line;
     animation:
       fadeIn 3s ease 5s forwards,
       rocketRise 4s ease 8s forwards;
   }
 
-  /* Landscape mode on small screens: smaller text + move down a lot */
+  /* Landscape mode: smaller text only, keep position */
   @media (max-width: 768px) and (orientation: landscape) {
     .overlay-text {
-      font-size: clamp(1.2rem, 4vw, 2.5rem); /* smaller */
-      top: 75%; /* significantly lower */
+      font-size: clamp(1.2rem, 5vw, 3.5rem);
     }
   }
 
@@ -296,8 +294,8 @@
 
 <div class="color-rise"></div>
 <div class="overlay-text">
-We build  
-custom websites  
-for small  
-businesses
-</div>
+  We build<br>
+  custom websites<br>
+  for small<br>
+  businesses
+</div> 
