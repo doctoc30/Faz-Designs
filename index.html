@@ -218,58 +218,57 @@
   });
 </script>
 
-  slider">
-  <div class="horizontal-slider-track">
-    <div class="slide"><img src="https://i.imgur.com/SLIkSd7.jpeg" alt="Template 1" /></div>
-    <div class="slide"><img src="https://i.imgur.com/XORsJrG.jpeg" alt="Template 2" /></div>
-    <div class="slide"><img src="https://i.imgur.com/WZGiLeI.jpeg" alt="Template 3" /></div>
-    <div class="slide"><img src="https://i.imgur.com/moV46Py.jpeg" alt="Template 4" /></div>
-
-    <!-- Duplicates for infinite effect -->
-    <div class="slide"><img src="https://i.imgur.com/SLIkSd7.jpeg" alt="Template 1" /></div>
-    <div class="slide"><img src="https://i.imgur.com/XORsJrG.jpeg" alt="Template 2" /></div>
-  </div>
-</section>
-
-<style>
-  .horizontal-slider {
-    width: 100vw;
+ <style>
+  html, body {
+    margin: 0;
+    padding: 0;
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
-    position: relative;
-    background: transparent;
+    font-family: 'Poppins', sans-serif;
+    background: white;
   }
 
-  .horizontal-slider-track {
-    display: flex;
-    animation: horizontalScroll 28s linear infinite;
-    height: 100vh;
-  }
-
-  .slide {
-    flex-shrink: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .slide img {
-    width: 100%;
+  .color-rise {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
-    object-fit: cover;
-    border: 5px solid #ff3131;
-    opacity: 0.92;
-    transition: transform 0.6s ease;
+    width: 100%;
+    background-color: white;
+    animation: solidRise 8s ease-in-out forwards;
+    z-index: 0;
   }
 
-  .slide img:hover {
-    transform: scale(1.02);
+  @keyframes solidRise {
+    0% {
+      background-color: white;
+    }
+    100% {
+      background-color: #ff3131;
+    }
   }
 
-  @keyframes horizontalScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-600vw); } /* 6 slides */
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 9vw;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 30px #b30000;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeIn 3s ease 5s forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
   }
 </style>
+
+<div class="color-rise"></div>
+<div class="overlay-text">FAZ Design</div>
