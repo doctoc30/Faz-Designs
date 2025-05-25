@@ -219,7 +219,55 @@
 </script>
 
 
-portrait mode text */
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .color-rise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    animation: solidRise 8s ease-in-out forwards;
+    z-index: 0;
+  }
+
+  @keyframes solidRise {
+    0% { background-color: white; }
+    100% { background-color: #ff3131; }
+  }
+
+  .overlay-container {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .overlay-text,
+  .overlay-text-landscape {
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 30px #b30000;
+    opacity: 0;
+    animation:
+      fadeIn 3s ease 5s forwards,
+      rocketRise 4s ease 8s forwards;
+  }
+
+  /* Full-width portrait mode text */
   .overlay-text {
     font-size: clamp(3rem, 10vw, 8rem);
     line-height: 1.2;
@@ -285,3 +333,9 @@ portrait mode text */
 
 
 
+
+
+
+
+
+    
