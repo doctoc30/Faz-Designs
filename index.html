@@ -219,10 +219,7 @@
 </script>
 
 
-  
-
-<style>
-  /* Reset and base */
+  <style>
   html, body {
     margin: 0;
     padding: 0;
@@ -231,12 +228,8 @@
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
     background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
-  /* Background color rising animation */
   .color-rise {
     position: absolute;
     top: 0;
@@ -249,106 +242,56 @@
   }
 
   @keyframes solidRise {
-    0% { background-color: white; }
-    100% { background-color: #ff3131; }
+    0% {
+      background-color: white;
+    }
+    100% {
+      background-color: #ff3131;
+    }
   }
 
-  /* Container for overlay text */
-  .overlay-container {
-    position: relative;
-    text-align: center;
-    z-index: 1;
-    max-width: 90vw;
-  }
-
-  /* Base styles for both text versions */
-  .overlay-text,
-  .overlay-text-landscape {
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
     font-weight: bold;
     color: white;
     text-shadow: 0 0 30px #b30000;
+    z-index: 1;
     opacity: 0;
+    text-align: center;
+    white-space: pre-line;
     animation:
       fadeIn 3s ease 5s forwards,
       rocketRise 4s ease 8s forwards;
   }
 
-  /* Portrait text (multi-line) */
-  .overlay-text {
-    font-size: clamp(3rem, 10vw, 8rem);
-    line-height: 1.2;
-    display: block;
-    width: 100%;
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  /* Landscape text (smaller, two-line) */
-  .overlay-text-landscape {
-    display: none;
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    max-width: 80%;
-    margin: 0 auto;
-    line-height: 1.2;
-    text-align: center;
-    white-space: normal;
-  }
-
-  /* Show landscape text on small screens in landscape */
-  @media (max-width: 768px) and (orientation: landscape) {
-    .overlay-text {
-      display: none;
-    }
-
-    .overlay-text-landscape {
-      display: block;
-    }
-  }
-
-  /* Fade-in animation */
   @keyframes fadeIn {
-    to { opacity: 1; }
+    to {
+      opacity: 1;
+    }
   }
 
-  /* Rocket rise animation */
   @keyframes rocketRise {
     0% {
-      transform: translateY(0);
+      transform: translate(-50%, -50%) translateY(0);
       opacity: 1;
     }
     100% {
-      transform: translateY(-100vh);
+      transform: translate(-50%, -150%) translateY(-100vh);
       opacity: 0;
     }
   }
 </style>
 
-<!--
-HTML text to use with above CSS:
-
 <div class="color-rise"></div>
-
-<div class="overlay-container">
-  <!-- Portrait version (5-line format) -->
-  <div class="overlay-text">
-    We build<br>
-    custom<br>
-    websites<br>
-    for small<br>
-    businesses<br>
-  </div>
-
-  <!-- Landscape version (2-line format) -->
-  <div class="overlay-text-landscape">
-    We build custom websites<br>
-    for small businesses<br>
-  </div>
+<div class="overlay-text">
+We build  
+custom websites  
+for small  
+businesses
 </div>
 
 
-  
-  
-
-
-
-  
