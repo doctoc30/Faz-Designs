@@ -395,3 +395,245 @@
 
 
 
+  <!-- Add this right before closing </body> tag -->
+
+<style>
+  /* Lead form styles */
+  #leadForm {
+    position: fixed;
+    top: 60px; /* below header */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    background: #ff3131;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    font-size: 1.3rem;
+    text-align: center;
+    z-index: 1500;
+  }
+  #leadForm .question {
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+  #leadForm input[type="text"],
+  #leadForm input[type="email"],
+  #leadForm select,
+  #leadForm textarea {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    border: none;
+    margin-top: 0.8rem;
+  }
+  #leadForm button {
+    background: white;
+    color: #ff3131;
+    font-weight: 700;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  #leadForm button:hover {
+    background: #b30000;
+    color: white;
+  }
+  #leadForm .skip-btn {
+    background: transparent;
+    color: white;
+    margin-top: 1rem;
+    text-decoration: underline;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+  }
+  #leadForm .skip-btn:hover {
+    color: #b30000;
+  }
+  #leadForm input:focus,
+  #leadForm select:focus,
+  #leadForm textarea:focus {
+    outline: 2px solid white;
+  }
+</style>
+
+<div id="leadForm" hidden aria-live="polite" aria-atomic="true">
+  <form id="multiStepForm" novalidate>
+    <!-- Question container -->
+    <div class="question" id="questionText"></div>
+
+    <!-- Input container -->
+    <div id="inputContainer"></div>
+
+    <!-- Navigation buttons -->
+    <button type="button" id="nextBtn">Next</button>
+    <button type="button" class="skip-btn" id="skipBtn">Skip to site</button>
+  </form>
+</div>
+
+<script>
+  // Questions array - 10 questions + final name/email
+  const questions = [
+    { q: "What type of website do you need?", type: "select", options: ["Business", "E-commerce", "Portfolio", "Blog", "Other"] },
+    { q: "What is your budget range?", type: "select", options: ["Under $1000", "$1000-$3000", "$3000-$5000", "Above $5000"] },
+    { q: "Do you have a preferred website style?", type: "text" },
+    { q: "Do you have existing branding (logo, colors)?", type: "select", options: ["Yes", "No"] },
+    { q: "Will you need ongoing website maintenance?", type: "select", options: ["Yes", "No"] },
+    { q: "How soon do you need the website completed?", type: "select", options: ["Within 1 month", "1-3 months", "3-6 months", "No rush"] },
+    { q: "Do you require SEO services?", type: "select", options: ["Yes", "No"] },
+    { q: "Will you provide the content (text/images)?", type: "select", options: ["Yes", "No, I need help"] },
+    { q: "Do you want e-commerce features?", type: "select", options: ["Yes", "No"] },
+    { q: "Any additional notes or requirements?", type: "textarea" },
+    { q: "What is your full name?", type: "text", name: "fullName" },
+    { q: "What is your email address?", type: "email", name: "email" }
+  ];
+
+  // State tracking
+  let currentStep = 0;
+  const totalSteps = questions.length;
+
+  // Elements
+  const introDiv = document.getElementById('portraitText')?.parentElement || document.getElementById('intro'); // fallback
+  const leadForm = document.getElementById('leadForm');
+  const questionText = document.getElementById('questionText');
+  const inputContainer = document.getElementById('inputContainer');
+  const nextBtn = document.getElementById('nextBtn');
+  const skipBtn = document.getElementById('skipBtn');
+
+  // After your typewriter animation ends, show the form
+  // Your current code triggers portraitText rocketRise animation at end
+  // So we'll hook into that via a delay after your existing animation (~12s after page load)
+  setTimeout(() => {
+    // Hide intro typewriter elements
+    const introWrapper = document.querySelector('.overlay-text.portrait-text');
+    if(introWrapper) {
+      introWrapper.style.transition = 'opacity 1s ease';
+      introWrapper.style.opacity = '0';
+      setTimeout(() => {
+        introWrapper.style.display = 'none';
+      }, 1000);
+    }
+    // Show lead form
+    leadForm.hidden = false;
+  }, 12000); // 12s from page load
+
+  // Create input field depending on question type
+  function createInputField(question) {
+    let inputHTML = '';
+    if(question.type === 'select') {
+      inputHTML = `<select name="answer" required>
+        <option value="" disabled selected>Select one</option>
+        ${question.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+      </select>`;
+    } else if(question.type === 'textarea') {
+      inputHTML = `<textarea name="answer" rows="4" placeholder="Your answer here..."></textarea>`;
+    } else {
+      const inputType = question.type === 'email' ? 'email' : 'text';
+      inputHTML = `<input type="${inputType}" name="answer" required placeholder="Your answer here..." />`;
+    }
+    return inputHTML;
+  }
+
+  // Load current step question and input
+  function loadStep(step) {
+    if(step >= totalSteps) {
+      showCompletion();
+      return;
+    }
+    const q = questions[step];
+    questionText.textContent = q.q;
+    inputContainer.innerHTML = createInputField(q);
+
+    // Focus first input automatically
+    const input = inputContainer.querySelector('input, select, textarea');
+    if(input) input.focus();
+
+    // Change button text on last step
+    nextBtn.textContent = (step === totalSteps - 1) ? "Submit" : "Next";
+  }
+
+  // On next button click
+  nextBtn.addEventListener('click', () => {
+    const input = inputContainer.querySelector('input, select, textarea');
+    if(!input) return;
+
+    // Simple validation: required field must be filled (except textarea can be empty)
+    if(input.hasAttribute('required') && !input.value.trim()) {
+      alert('Please fill in your answer before continuing.');
+      input.focus();
+      return;
+    }
+
+    // Save answer if needed (here just console.log for demo)
+    console.log(`Answer for Q${currentStep+1}:`, input.value.trim());
+
+    // Advance step
+    currentStep++;
+    if(currentStep < totalSteps) {
+      loadStep(currentStep);
+    } else {
+      // Last step completed
+      showCompletion();
+    }
+  });
+
+  // On skip button click - skip entire form
+  skipBtn.addEventListener('click', () => {
+    skipForm();
+  });
+
+  function skipForm() {
+    leadForm.hidden = true;
+    // Reveal main site content or homepage (placeholder here)
+    showMainSite();
+  }
+
+  // After form completion
+  function showCompletion() {
+    leadForm.innerHTML = `
+      <div style="font-size:1.5rem; max-width:600px; margin: auto; padding: 1rem;">
+        Thank you for your interest! We'll be in touch soon.
+      </div>
+      <button id="continueBtn" style="margin-top: 2rem; padding: 0.8rem 2rem; font-size:1.1rem; cursor:pointer; border:none; border-radius:30px; background:white; color:#ff3131; font-weight:700;">
+        Continue to site
+      </button>
+    `;
+    document.getElementById('continueBtn').addEventListener('click', () => {
+      skipForm();
+    });
+  }
+
+  // Show main site placeholder - you can replace with actual site reveal
+  function showMainSite() {
+    // For now just a placeholder: show header and site content
+    // You can add real site content or navigation here
+    const mainContent = document.createElement('div');
+    mainContent.style.padding = '100px 20px';
+    mainContent.style.color = 'white';
+    mainContent.style.background = '#ff3131';
+    mainContent.style.minHeight = 'calc(100vh - 60px)';
+    mainContent.innerHTML = `
+      <h1>Welcome to Faz Designs</h1>
+      <p>This is your main website content. You can build out your homepage here.</p>
+    `;
+    document.body.appendChild(mainContent);
+  }
+
+  // Start at step 0 when form is shown
+  leadForm.addEventListener('transitionend', () => {
+    if(!leadForm.hidden) {
+      loadStep(currentStep);
+    }
+  });
+</script>
+
