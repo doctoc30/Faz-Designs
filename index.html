@@ -1,130 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Faz Designs - Interactive Questionnaire</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-  body { background-color: #ff3131; color: white; text-align: center; overflow: hidden; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faz Designs - Interactive Questionnaire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background-color: #ff3131; color: white; text-align: center; overflow: hidden; height: 100vh; }
 
-  /* Splash Animation */
-  .overlay-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: white; text-shadow: 0 0 30px #b30000; opacity: 0; text-align: center; font-size: clamp(2rem, 5vw, 3rem); }
-  @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-  @keyframes moveUp { 0% { transform: translate(-50%, -50%); } 100% { transform: translate(-50%, -150%); opacity: 0; } }
+    /* Splash Typewriter */
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      text-shadow: 0 0 30px #b30000;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid white;
+      font-size: clamp(3rem, 6vw, 5rem);
+      opacity: 0;
+      animation: typewriter 4s steps(40, end) 0.5s forwards, moveUp 2s ease-in-out 4.5s forwards;
+    }
 
-  /* Questionnaire */
-  .container { display: none; padding: 20px; width: 90%; max-width: 500px; margin: auto; }
-  .question { display: none; font-size: 1.2rem; }
-  .active { display: block; }
+    @keyframes typewriter {
+      0% { width: 0; opacity: 1; }
+      100% { width: 100%; opacity: 1; }
+    }
 
-  .progress { font-size: 1rem; margin-bottom: 10px; font-weight: bold; }
+    @keyframes moveUp {
+      0% { transform: translate(-50%, -50%); opacity: 1; }
+      100% { transform: translate(-50%, -150%); opacity: 0; }
+    }
 
-  .btn { background: white; color: #ff3131; border: none; padding: 10px 15px; font-size: 1rem; cursor: pointer; }
-  .btn:hover { background: #ddd; }
+    /* Fullscreen Form Container */
+    .container {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 5vh 5vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #ff3131;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
 
-  .skip { margin-top: 15px; display: inline-block; color: white; font-size: 1rem; text-decoration: none; border-bottom: 2px solid white; }
-</style>
+    .progress {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .question {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      height: 60vh;
+      font-size: 1.8rem;
+    }
+
+    .question.active {
+      display: flex;
+      animation: fadeInSlide 0.5s ease-in-out;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      margin-top: 20px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid white;
+      color: white;
+      font-size: 1.5rem;
+      width: 100%;
+      text-align: center;
+      outline: none;
+      padding: 10px;
+    }
+
+    select {
+      appearance: none;
+      background: transparent;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    .btn {
+      background: white;
+      color: #ff3131;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 2rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #f4f4f4;
+    }
+
+    .skip {
+      margin-top: 1.5rem;
+      display: inline-block;
+      color: white;
+      font-size: 1rem;
+      text-decoration: none;
+      border-bottom: 2px solid white;
+    }
+  </style>
 </head>
 <body>
 
-<div class="overlay-text" id="introText">We build custom websites for small businesses</div>
+  <div class="overlay-text" id="introText">We build custom websites for small businesses</div>
 
-<div class="container" id="questionnaire">
-  <div class="progress" id="progress">Question 1 of 10</div>
+  <div class="container" id="questionnaire">
+    <div class="progress" id="progress">Question 1 of 10</div>
+    <form id="form">
+      <div class="question active"><label>What kind of website do you need?</label><input type="text" required></div>
+      <div class="question"><label>Do you have an existing website?</label><input type="text"></div>
+      <div class="question"><label>What’s your main goal for the website?</label><input type="text"></div>
+      <div class="question"><label>Do you need branding/logo design?</label>
+        <select>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+      <div class="question"><label>What features should be included?</label><input type="text"></div>
+      <div class="question"><label>Do you have preferred color schemes?</label><input type="text"></div>
+      <div class="question"><label>What’s your budget range?</label><input type="text"></div>
+      <div class="question"><label>Do you need ongoing support/maintenance?</label>
+        <select>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+      <div class="question"><label>What’s your deadline for the project?</label><input type="date"></div>
+      <div class="question"><label>Any additional details or specific requests?</label><textarea></textarea></div>
 
-  <form id="form">
-    <div class="question active">
-      <label>What kind of website do you need?</label>
-      <input type="text" required>
-    </div>
+      <button class="btn" type="button" id="nextBtn">Next</button>
+      <a href="homepage.html" class="skip">Skip to Homepage</a>
+    </form>
+  </div>
 
-    <div class="question">
-      <label>Do you have an existing website?</label>
-      <input type="text">
-    </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const introText = document.getElementById("introText");
+      const questionnaire = document.getElementById("questionnaire");
 
-    <div class="question">
-      <label>What’s your main goal for the website?</label>
-      <input type="text">
-    </div>
+      setTimeout(() => {
+        questionnaire.style.display = "flex";
+      }, 6000); // Display form after splash
 
-    <div class="question">
-      <label>Do you need branding/logo design?</label>
-      <select>
-        <option>Yes</option>
-        <option>No</option>
-      </select>
-    </div>
+      let currentStep = 0;
+      const questions = document.querySelectorAll(".question");
+      const progress = document.getElementById("progress");
 
-    <div class="question">
-      <label>What features should be included?</label>
-      <input type="text">
-    </div>
-
-    <div class="question">
-      <label>Do you have preferred color schemes?</label>
-      <input type="text">
-    </div>
-
-    <div class="question">
-      <label>What’s your budget range?</label>
-      <input type="text">
-    </div>
-
-    <div class="question">
-      <label>Do you need ongoing support/maintenance?</label>
-      <select>
-        <option>Yes</option>
-        <option>No</option>
-      </select>
-    </div>
-
-    <div class="question">
-      <label>What’s your deadline for the project?</label>
-      <input type="date">
-    </div>
-
-    <div class="question">
-      <label>Any additional details or specific requests?</label>
-      <textarea></textarea>
-    </div>
-
-    <button class="btn" type="button" id="nextBtn">Next</button>
-    <a href="homepage.html" class="skip">Skip to Homepage</a>
-  </form>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    console.log("Typewriter animation started...");
-    const introText = document.getElementById("introText");
-    introText.style.animation = "fadeIn 2s ease-in forwards, moveUp 3s ease-in-out 4s forwards";
-
-    setTimeout(() => { 
-      console.log("Showing questionnaire...");
-      document.getElementById("questionnaire").style.display = "block"; 
-    }, 5000); // Appears after animation ends
-
-    let currentStep = 0;
-    const questions = document.querySelectorAll(".question");
-    const progress = document.getElementById("progress");
-
-    document.getElementById("nextBtn").addEventListener("click", function() {
-      console.log(`Current step: ${currentStep + 1}`);
-
-      if (currentStep < questions.length - 1) {
-        questions[currentStep].classList.remove("active");
-        currentStep++;
-        questions[currentStep].classList.add("active");
-        progress.textContent = `Question ${currentStep + 1} of 10`;
-      } else {
-        console.log("Form complete!");
-        alert("Thank you for completing the questionnaire!");
-      }
+      document.getElementById("nextBtn").addEventListener("click", function () {
+        if (currentStep < questions.length - 1) {
+          questions[currentStep].classList.remove("active");
+          currentStep++;
+          questions[currentStep].classList.add("active");
+          progress.textContent = `Question ${currentStep + 1} of 10`;
+        } else {
+          alert("Thank you for completing the questionnaire!");
+        }
+      });
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
