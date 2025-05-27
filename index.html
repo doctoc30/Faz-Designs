@@ -1,396 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Faz Designs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faz Designs - Interactive Questionnaire</title>
 <style>
-  /* Reset and base */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ff3131;
-    color: white;
-    overflow-x: hidden;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: #ff3131;
-    z-index: 2000;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-  }
-  .logo {
-    font-weight: 900;
-    font-size: 1.7rem;
-    letter-spacing: 2px;
-    user-select: none;
-    cursor: default;
-  }
-  /* Hamburger */
-  .hamburger {
-    width: 28px;
-    height: 22px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 2100;
-  }
-  .hamburger span {
-    display: block;
-    height: 3.5px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.35s ease-in-out;
-  }
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  body { background-color: #ff3131; color: white; text-align: center; overflow: hidden; }
+  
+  /* Splash Animation */
+  .color-rise { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: white; animation: solidRise 5s ease-in-out forwards; }
+  @keyframes solidRise { 0% { background-color: white; } 100% { background-color: #ff3131; } }
 
-  /* Fullscreen sliding menu from left */
-  nav.menu {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ff3131;
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 4rem;
-    z-index: 2050;
-  }
-  nav.menu.open {
-    transform: translateX(0);
-  }
+  .overlay-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: white; text-shadow: 0 0 30px #b30000; opacity: 0; text-align: center; }
+  .portrait-text { display: none; font-size: clamp(3.6rem, 12vw, 7rem); white-space: pre-line; max-width: 90vw; line-height: 1; }
+  .landscape-text { display: none; font-size: clamp(1.8rem, 5vw, 3rem); max-width: 40ch; line-height: 1.2; }
+  @media (orientation: portrait) { .portrait-text { display: block; } }
+  @media (orientation: landscape) { .landscape-text { display: block; animation: fadeIn 3s ease 4s forwards, rocketRise 4s ease 7s forwards; } }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes rocketRise { 0% { transform: translate(-50%, -50%); opacity: 1; } 100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; } }
 
-  nav.menu ul {
-    list-style: none;
-  }
-  nav.menu ul li {
-    margin-bottom: 2.2rem;
-    opacity: 0;
-    transform: translateX(-40px);
-    font-weight: 900;
-    font-size: 3rem;
-    letter-spacing: 0.1em;
-  }
-  nav.menu ul li a {
-    color: white;
-    text-decoration: none;
-    user-select: none;
-    display: inline-block;
-    transition: color 0.3s ease;
-  }
-  nav.menu ul li a:hover {
-    color: #222;
-  }
+  /* Questionnaire */
+  .container { display: none; padding: 20px; width: 90%; max-width: 500px; margin: auto; }
+  .question { display: none; font-size: 1.2rem; }
+  .active { display: block; }
 
-  /* Animate menu items on open */
-  nav.menu.open ul li {
-    animation: slideInFade 0.4s forwards;
-  }
-  nav.menu.open ul li:nth-child(1) {
-    animation-delay: 0.15s;
-  }
-  nav.menu.open ul li:nth-child(2) {
-    animation-delay: 0.35s;
-  }
-  nav.menu.open ul li:nth-child(3) {
-    animation-delay: 0.55s;
-  }
-  nav.menu.open ul li:nth-child(4) {
-    animation-delay: 0.75s;
-  }
-  nav.menu.open ul li:nth-child(5) {
-    animation-delay: 0.95s;
-  }
+  .progress { font-size: 1rem; margin-bottom: 10px; font-weight: bold; }
 
-  @keyframes slideInFade {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+  .btn { background: white; color: #ff3131; border: none; padding: 10px 15px; font-size: 1rem; cursor: pointer; }
+  .btn:hover { background: #ddd; }
 
-  /* Desktop view */
-  @media (min-width: 768px) {
-    .hamburger {
-      display: none;
-    }
-    nav.menu {
-      position: static;
-      height: auto;
-      width: auto;
-      background: transparent;
-      transform: none !important;
-      padding-left: 0;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    nav.menu ul {
-      display: flex;
-      gap: 3rem;
-    }
-    nav.menu ul li {
-      margin: 0;
-      opacity: 1 !important;
-      transform: none !important;
-      font-size: 1.25rem;
-      animation: none !important;
-    }
-    nav.menu ul li a {
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: white;
-      letter-spacing: 0.15em;
-    }
-    nav.menu ul li a:hover {
-      color: #222;
-    }
-  }
+  .skip { margin-top: 15px; display: inline-block; color: white; font-size: 1rem; text-decoration: none; border-bottom: 2px solid white; }
 </style>
 </head>
 <body>
-<header>
-  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
-  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Portfolio</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+
+<div class="color-rise"></div>
+<div class="overlay-text portrait-text" id="portraitText"></div>
+<div class="overlay-text landscape-text">We build custom websites for small businesses</div>
+
+<div class="container" id="questionnaire">
+  <div class="progress" id="progress">Question 1 of 10</div>
+
+  <form id="form">
+    <div class="question active">
+      <label>What kind of website do you need?</label>
+      <input type="text" required>
+    </div>
+    
+    <div class="question">
+      <label>Do you have an existing website?</label>
+      <input type="text">
+    </div>
+
+    <div class="question">
+      <label>What’s your main goal for the website?</label>
+      <input type="text">
+    </div>
+
+    <div class="question">
+      <label>Do you need branding/logo design?</label>
+      <select>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>What features should be included?</label>
+      <input type="text">
+    </div>
+
+    <div class="question">
+      <label>Do you have preferred color schemes?</label>
+      <input type="text">
+    </div>
+
+    <div class="question">
+      <label>What’s your budget range?</label>
+      <input type="text">
+    </div>
+
+    <div class="question">
+      <label>Do you need ongoing support/maintenance?</label>
+      <select>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>What’s your deadline for the project?</label>
+      <input type="date">
+    </div>
+
+    <div class="question">
+      <label>Any additional details or specific requests?</label>
+      <textarea></textarea>
+    </div>
+    
+    <button class="btn" type="button" id="nextBtn">Next</button>
+    <a href="homepage.html" class="skip">Skip to Homepage</a>
+  </form>
+</div>
 
 <script>
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('nav.menu');
-
-  function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
-
-  hamburger.addEventListener('click', toggleMenu);
-  hamburger.addEventListener('keydown', e => {
-    if(e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleMenu();
-    }
-  });
-
-  // Close menu when clicking on a link
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if(menu.classList.contains('open')) {
-        toggleMenu();
+  document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(() => { 
+      console.log("Showing questionnaire...");
+      document.getElementById("questionnaire").style.display = "block"; 
+    }, 7000); // Appears after typewriter animation
+    
+    let currentStep = 0;
+    const questions = document.querySelectorAll(".question");
+    const progress = document.getElementById("progress");
+    
+    document.getElementById("nextBtn").addEventListener("click", function() {
+      console.log(`Current step: ${currentStep + 1}`);
+      
+      if (currentStep < questions.length - 1) {
+        questions[currentStep].classList.remove("active");
+        currentStep++;
+        questions[currentStep].classList.add("active");
+        progress.textContent = `Question ${currentStep + 1} of 10`;
+      } else {
+        console.log("Form complete!");
+        alert("Thank you for completing the questionnaire!");
       }
     });
   });
 </script>
 
-
-  
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Typewriter + Rocket</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-      background: white;
-    }
-
-    .color-rise {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background-color: white;
-      animation: solidRise 8s ease-in-out forwards;
-      z-index: 0;
-    }
-
-    @keyframes solidRise {
-      0% { background-color: white; }
-      100% { background-color: #ff3131; }
-    }
-
-    .overlay-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 0 30px #b30000;
-      z-index: 1;
-      text-align: center;
-      opacity: 0;
-    }
-
-    .portrait-text {
-      display: none;
-      font-size: clamp(3.6rem, 12vw, 7rem);
-      white-space: pre-line;
-      max-width: 90vw;
-      line-height: 1;
-    }
-
-    .landscape-text {
-      display: none;
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      max-width: 40ch;
-      line-height: 1.2;
-    }
-
-    @media (orientation: portrait) {
-      .portrait-text {
-        display: block;
-      }
-    }
-
-    @media (orientation: landscape) {
-      .landscape-text {
-        display: block;
-        animation: fadeIn 3s ease 5s forwards, rocketRise 4s ease 8s forwards;
-      }
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    @keyframes rocketRise {
-      0% {
-        transform: translate(-50%, -50%) translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(-50%, -150%) translateY(-100vh);
-        opacity: 0;
-      }
-    }
-
-    .typed-line {
-      display: block;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 1ch;
-      animation: blink 0.8s infinite;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="color-rise"></div>
-
-  <!-- Portrait typewriter target -->
-  <div class="overlay-text portrait-text" id="portraitText"></div>
-
-  <!-- Landscape fallback -->
-  <div class="overlay-text landscape-text">
-    We build custom websites<br>for small businesses
-  </div>
-
-  <script>
-    const portraitText = document.getElementById('portraitText');
-    const lines = [
-      "We build",
-      "custom",
-      "websites",
-      "for small",
-      "businesses"
-    ];
-
-    const typingSpeed = 100; // ms per character
-    const lineDelay = 500;   // delay between lines
-    let currentLine = 0;
-    let currentChar = 0;
-    let lineElement = null;
-    const cursor = document.createElement('span');
-    cursor.classList.add('cursor');
-    cursor.textContent = '|';
-
-    function typeChar() {
-      if (currentLine >= lines.length) {
-        cursor.remove();
-        setTimeout(() => {
-          portraitText.style.animation = 'rocketRise 2s ease forwards';
-        }, 1000);
-        return;
-      }
-
-      const text = lines[currentLine];
-
-      if (!lineElement) {
-        lineElement = document.createElement('div');
-        lineElement.classList.add('typed-line');
-        portraitText.appendChild(lineElement);
-        lineElement.appendChild(cursor);
-      }
-
-      if (currentChar < text.length) {
-        const char = document.createTextNode(text[currentChar]);
-        lineElement.insertBefore(char, cursor);
-        currentChar++;
-        setTimeout(typeChar, typingSpeed);
-      } else {
-        currentLine++;
-        currentChar = 0;
-        lineElement = null;
-        setTimeout(typeChar, lineDelay);
-      }
-    }
-
-    // Start after background animation completes
-    setTimeout(() => {
-      portraitText.style.opacity = 1;
-      typeChar();
-    }, 5000);
-  </script>
-
-
+</body>
+</html>
