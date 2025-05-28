@@ -1,8 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Faz Designs</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ff3131;
+    color: white;
+    overflow-x: hidden;
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #ff3131;
+    z-index: 2000;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    user-select: none;
+    cursor: default;
+  }
+  /* Hamburger */
+  .hamburger {
+    width: 28px;
+    height: 22px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2100;
+  }
+  .hamburger span {
+    display: block;
+    height: 3.5px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.35s ease-in-out;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Fullscreen sliding menu from left */
+  nav.menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ff3131;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4rem;
+    z-index: 2050;
+  }
+  nav.menu.open {
+    transform: translateX(0);
+  }
+
+  nav.menu ul {
+    list-style: none;
+  }
+  nav.menu ul li {
+    margin-bottom: 2.2rem;
+    opacity: 0;
+    transform: translateX(-40px);
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
+  }
+  nav.menu ul li a {
+    color: white;
+    text-decoration: none;
+    user-select: none;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  nav.menu ul li a:hover {
+    color: #222;
+  }
+
+  /* Animate menu items on open */
+  nav.menu.open ul li {
+    animation: slideInFade 0.4s forwards;
+  }
+  nav.menu.open ul li:nth-child(1) {
+    animation-delay: 0.15s;
+  }
+  nav.menu.open ul li:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+  nav.menu.open ul li:nth-child(3) {
+    animation-delay: 0.55s;
+  }
+  nav.menu.open ul li:nth-child(4) {
+    animation-delay: 0.75s;
+  }
+  nav.menu.open ul li:nth-child(5) {
+    animation-delay: 0.95s;
+  }
+
+  @keyframes slideInFade {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Desktop view */
+  @media (min-width: 768px) {
+    .hamburger {
+      display: none;
+    }
+    nav.menu {
+      position: static;
+      height: auto;
+      width: auto;
+      background: transparent;
+      transform: none !important;
+      padding-left: 0;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    nav.menu ul {
+      display: flex;
+      gap: 3rem;
+    }
+    nav.menu ul li {
+      margin: 0;
+      opacity: 1 !important;
+      transform: none !important;
+      font-size: 1.25rem;
+      animation: none !important;
+    }
+    nav.menu ul li a {
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: white;
+      letter-spacing: 0.15em;
+    }
+    nav.menu ul li a:hover {
+      color: #222;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
+  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('nav.menu');
+
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  // Close menu when clicking on a link
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(menu.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
+  });
+</script>
+
+
+  🔥
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Typewriter + Rocket + Jotform</title>
+  <title>Typewriter + Rocket</title>
   <style>
     html, body {
       margin: 0;
@@ -43,10 +265,9 @@
       opacity: 0;
     }
 
-    /* Portrait font bigger */
     .portrait-text {
       display: none;
-      font-size: clamp(5rem, 15vw, 10rem);
+      font-size: clamp(3.6rem, 12vw, 7rem);
       white-space: pre-line;
       max-width: 90vw;
       line-height: 1;
@@ -57,7 +278,6 @@
       font-size: clamp(1.8rem, 5vw, 3rem);
       max-width: 40ch;
       line-height: 1.2;
-      white-space: pre-line;
     }
 
     @media (orientation: portrait) {
@@ -69,7 +289,22 @@
     @media (orientation: landscape) {
       .landscape-text {
         display: block;
+        animation: fadeIn 3s ease 5s forwards, rocketRise 4s ease 8s forwards;
+      }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes rocketRise {
+      0% {
+        transform: translate(-50%, -50%) translateY(0);
         opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -150%) translateY(-100vh);
+        opacity: 0;
       }
     }
 
@@ -87,69 +322,6 @@
       0%, 50% { opacity: 1; }
       51%, 100% { opacity: 0; }
     }
-
-    @keyframes rocketRise {
-      0% {
-        transform: translate(-50%, -50%) translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(-50%, -150%) translateY(-100vh);
-        opacity: 0;
-      }
-    }
-
-    /* --- Jotform style multi-step form styles --- */
-    #jotform {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90vw;
-      max-width: 400px;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      color: #333;
-      z-index: 10;
-      font-size: 1.2rem;
-    }
-
-    #jotform h2 {
-      margin-bottom: 1rem;
-      color: #ff3131;
-      text-align: center;
-    }
-
-    .form-step {
-      display: none;
-    }
-
-    .form-step.active {
-      display: block;
-    }
-
-    .form-buttons {
-      margin-top: 1.5rem;
-      text-align: right;
-    }
-
-    button {
-      background-color: #ff3131;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      background-color: #ffa6a6;
-      cursor: default;
-    }
   </style>
 </head>
 <body>
@@ -159,50 +331,14 @@
   <!-- Portrait typewriter target -->
   <div class="overlay-text portrait-text" id="portraitText"></div>
 
-  <!-- Landscape typewriter target -->
-  <div class="overlay-text landscape-text" id="landscapeText"></div>
-
-  <!-- Jotform style multi-step form -->
-  <div id="jotform">
-    <h2>Quick Questions</h2>
-    <div class="form-step active" data-step="0">
-      <label>What is your website's main purpose?</label><br/>
-      <select id="q0">
-        <option value="">Select</option>
-        <option value="Business">Business</option>
-        <option value="Portfolio">Portfolio</option>
-        <option value="E-commerce">E-commerce</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-    <div class="form-step" data-step="1">
-      <label>What style do you prefer?</label><br/>
-      <select id="q1">
-        <option value="">Select</option>
-        <option value="Modern">Modern</option>
-        <option value="Classic">Classic</option>
-        <option value="Minimalist">Minimalist</option>
-      </select>
-    </div>
-    <div class="form-step" data-step="2">
-      <label>Your name:</label><br/>
-      <input type="text" id="q2" placeholder="Name" />
-    </div>
-    <div class="form-step" data-step="3">
-      <label>Your email:</label><br/>
-      <input type="email" id="q3" placeholder="Email" />
-    </div>
-    <div class="form-buttons">
-      <button id="nextBtn" disabled>Next</button>
-    </div>
+  <!-- Landscape fallback -->
+  <div class="overlay-text landscape-text">
+    We build custom websites<br>for small businesses
   </div>
 
   <script>
-    // Your existing portrait and landscape typing code here
     const portraitText = document.getElementById('portraitText');
-    const landscapeText = document.getElementById('landscapeText');
-
-    const portraitLines = [
+    const lines = [
       "We build",
       "custom",
       "websites",
@@ -210,148 +346,51 @@
       "businesses"
     ];
 
-    const landscapeLines = [
-      "We build custom websites",
-      "for small businesses"
-    ];
-
-    const typingSpeed = 100;
-    const lineDelay = 500;
-    const postTypingDelay = 1000;
-
+    const typingSpeed = 100; // ms per character
+    const lineDelay = 500;   // delay between lines
+    let currentLine = 0;
+    let currentChar = 0;
+    let lineElement = null;
     const cursor = document.createElement('span');
     cursor.classList.add('cursor');
     cursor.textContent = '|';
 
-    // Portrait typing logic
-    let pCurrentLine = 0;
-    let pCurrentChar = 0;
-    let pLineElement = null;
-
-    function typePortraitChar() {
-      if (pCurrentLine >= portraitLines.length) {
+    function typeChar() {
+      if (currentLine >= lines.length) {
         cursor.remove();
         setTimeout(() => {
           portraitText.style.animation = 'rocketRise 2s ease forwards';
-          // After rocket animation ends, show form
-          setTimeout(showForm, 2000);
-        }, postTypingDelay);
+        }, 1000);
         return;
       }
 
-      const text = portraitLines[pCurrentLine];
+      const text = lines[currentLine];
 
-      if (!pLineElement) {
-        pLineElement = document.createElement('div');
-        pLineElement.classList.add('typed-line');
-        portraitText.appendChild(pLineElement);
-        pLineElement.appendChild(cursor);
+      if (!lineElement) {
+        lineElement = document.createElement('div');
+        lineElement.classList.add('typed-line');
+        portraitText.appendChild(lineElement);
+        lineElement.appendChild(cursor);
       }
 
-      if (pCurrentChar < text.length) {
-        const char = document.createTextNode(text[pCurrentChar]);
-        pLineElement.insertBefore(char, cursor);
-        pCurrentChar++;
-        setTimeout(typePortraitChar, typingSpeed);
+      if (currentChar < text.length) {
+        const char = document.createTextNode(text[currentChar]);
+        lineElement.insertBefore(char, cursor);
+        currentChar++;
+        setTimeout(typeChar, typingSpeed);
       } else {
-        pCurrentLine++;
-        pCurrentChar = 0;
-        pLineElement = null;
-        setTimeout(typePortraitChar, lineDelay);
+        currentLine++;
+        currentChar = 0;
+        lineElement = null;
+        setTimeout(typeChar, lineDelay);
       }
     }
 
-    // Landscape typing logic
-    let lCurrentLine = 0;
-    let lCurrentChar = 0;
-    let lLineElement = null;
-
-    function typeLandscapeChar() {
-      if (lCurrentLine >= landscapeLines.length) {
-        cursor.remove();
-        setTimeout(() => {
-          landscapeText.style.animation = 'rocketRise 2s ease forwards';
-          setTimeout(showForm, 2000);
-        }, postTypingDelay);
-        return;
-      }
-
-      const text = landscapeLines[lCurrentLine];
-
-      if (!lLineElement) {
-        lLineElement = document.createElement('div');
-        lLineElement.classList.add('typed-line');
-        landscapeText.appendChild(lLineElement);
-        lLineElement.appendChild(cursor);
-      }
-
-      if (lCurrentChar < text.length) {
-        const char = document.createTextNode(text[lCurrentChar]);
-        lLineElement.insertBefore(char, cursor);
-        lCurrentChar++;
-        setTimeout(typeLandscapeChar, typingSpeed);
-      } else {
-        lCurrentLine++;
-        lCurrentChar = 0;
-        lLineElement = null;
-        setTimeout(typeLandscapeChar, lineDelay);
-      }
-    }
-
-    // Show the form and hide typewriter texts
-    function showForm() {
-      portraitText.style.display = 'none';
-      landscapeText.style.display = 'none';
-      document.getElementById('jotform').style.display = 'block';
-      document.body.style.backgroundColor = 'white';
-    }
-
-    // Start typing after background animation completes
+    // Start after background animation completes
     setTimeout(() => {
-      if (window.innerHeight > window.innerWidth) {
-        portraitText.style.opacity = 1;
-        typePortraitChar();
-      } else {
-        landscapeText.style.opacity = 1;
-        typeLandscapeChar();
-      }
+      portraitText.style.opacity = 1;
+      typeChar();
     }, 5000);
-
-    // --- Jotform multi-step logic ---
-    const form = document.getElementById('jotform');
-    const steps = form.querySelectorAll('.form-step');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentStep = 0;
-
-    // Enable next button only if input/select has value
-    function validateStep() {
-      const currentInput = steps[currentStep].querySelector('input, select');
-      if (!currentInput) return nextBtn.disabled = false;
-      nextBtn.disabled = currentInput.value.trim() === '';
-    }
-
-    form.addEventListener('input', validateStep);
-
-    nextBtn.addEventListener('click', () => {
-      if (nextBtn.disabled) return;
-
-      // Hide current step
-      steps[currentStep].classList.remove('active');
-      currentStep++;
-
-      if (currentStep >= steps.length) {
-        alert('Thank you! Form completed.');
-        // Optionally reset or do something else here
-        return;
-      }
-
-      // Show next step
-      steps[currentStep].classList.add('active');
-      validateStep();
-    });
-
-    // Initialize button state
-    validateStep();
   </script>
-</body>
-</html>
+
+  🔥
