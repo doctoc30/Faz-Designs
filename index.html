@@ -218,13 +218,13 @@
   });
 </script>
 
-
-  🔥
+🔥
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Typewriter + Rocket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Splash + Form</title>
   <style>
     html, body {
       margin: 0;
@@ -263,34 +263,8 @@
       z-index: 1;
       text-align: center;
       opacity: 0;
-    }
-
-    .portrait-text {
-      display: none;
-      font-size: clamp(3.6rem, 12vw, 7rem);
-      white-space: pre-line;
-      max-width: 90vw;
-      line-height: 1;
-    }
-
-    .landscape-text {
-      display: none;
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      max-width: 40ch;
+      font-size: clamp(2rem, 6vw, 5rem);
       line-height: 1.2;
-    }
-
-    @media (orientation: portrait) {
-      .portrait-text {
-        display: block;
-      }
-    }
-
-    @media (orientation: landscape) {
-      .landscape-text {
-        display: block;
-        animation: fadeIn 3s ease 5s forwards, rocketRise 4s ease 8s forwards;
-      }
     }
 
     @keyframes fadeIn {
@@ -322,35 +296,147 @@
       0%, 50% { opacity: 1; }
       51%, 100% { opacity: 0; }
     }
+
+    /* === FORM === */
+    .form-screen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: #ff3131;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 2rem;
+      box-sizing: border-box;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .form-screen.active {
+      display: flex;
+    }
+
+    .form-screen h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    select, input[type="text"], input[type="email"] {
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    button, .skip-link {
+      background: white;
+      color: #ff3131;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .skip-link {
+      background: transparent;
+      color: white;
+      text-decoration: underline;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Splash + Typewriter -->
   <div class="color-rise"></div>
+  <div class="overlay-text" id="typewriter"></div>
 
-  <!-- Portrait typewriter target -->
-  <div class="overlay-text portrait-text" id="portraitText"></div>
-
-  <!-- Landscape fallback -->
-  <div class="overlay-text landscape-text">
-    We build custom websites<br>for small businesses
+  <!-- Form Steps -->
+  <div id="formWrapper">
+    <div class="form-screen" id="q0">
+      <h2>What type of website are you looking for?</h2>
+      <select><option>Business</option><option>eCommerce</option><option>Portfolio</option><option>Blog</option><option>Other</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q1">
+      <h2>How soon do you need your website completed?</h2>
+      <select><option>Within 1 week</option><option>1–2 weeks</option><option>1 month</option><option>Flexible</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q2">
+      <h2>Do you already have a domain and hosting?</h2>
+      <select><option>Yes, both</option><option>Only domain</option><option>Only hosting</option><option>No, need help</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q3">
+      <h2>Do you need branding/logo design?</h2>
+      <select><option>Yes</option><option>No</option><option>Unsure</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q4">
+      <h2>How many pages do you expect the site to have?</h2>
+      <select><option>1 (Landing Page)</option><option>2–5</option><option>6–10</option><option>10+</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q5">
+      <h2>What’s your estimated budget?</h2>
+      <select><option>Under £500</option><option>£500–£1000</option><option>£1000–£3000</option><option>£3000+</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q6">
+      <h2>Do you need SEO or Google setup?</h2>
+      <select><option>Yes</option><option>No</option><option>Not sure</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q7">
+      <h2>What style of design do you prefer?</h2>
+      <select><option>Minimalist</option><option>Bold/Modern</option><option>Corporate</option><option>Fun/Creative</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q8">
+      <h2>Will you need content written?</h2>
+      <select><option>Yes, everything</option><option>I’ll provide content</option><option>Mix of both</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q9">
+      <h2>How did you hear about us?</h2>
+      <select><option>Google</option><option>Social Media</option><option>Referral</option><option>Other</option></select>
+      <button onclick="next()">Next</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
+    <div class="form-screen" id="q10">
+      <h2>Last step: What's your name?</h2>
+      <input type="text" placeholder="Your Name">
+      <h2>And your email?</h2>
+      <input type="email" placeholder="you@example.com">
+      <button onclick="window.location.href='index.html'">Submit</button>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
+    </div>
   </div>
 
   <script>
-    const portraitText = document.getElementById('portraitText');
-    const lines = [
-      "We build",
-      "custom",
-      "websites",
-      "for small",
-      "businesses"
-    ];
-
-    const typingSpeed = 100; // ms per character
-    const lineDelay = 500;   // delay between lines
-    let currentLine = 0;
-    let currentChar = 0;
-    let lineElement = null;
+    const el = document.getElementById('typewriter');
+    const lines = ["We build", "custom", "websites", "for small", "businesses"];
+    const typingSpeed = 100;
+    const lineDelay = 500;
+    let currentLine = 0, currentChar = 0, lineEl = null;
     const cursor = document.createElement('span');
     cursor.classList.add('cursor');
     cursor.textContent = '|';
@@ -359,38 +445,43 @@
       if (currentLine >= lines.length) {
         cursor.remove();
         setTimeout(() => {
-          portraitText.style.animation = 'rocketRise 2s ease forwards';
+          el.style.animation = 'rocketRise 2s ease forwards';
+          setTimeout(() => document.getElementById('q0').classList.add('active'), 2000);
         }, 1000);
         return;
       }
 
       const text = lines[currentLine];
-
-      if (!lineElement) {
-        lineElement = document.createElement('div');
-        lineElement.classList.add('typed-line');
-        portraitText.appendChild(lineElement);
-        lineElement.appendChild(cursor);
+      if (!lineEl) {
+        lineEl = document.createElement('div');
+        lineEl.classList.add('typed-line');
+        el.appendChild(lineEl);
+        lineEl.appendChild(cursor);
       }
 
       if (currentChar < text.length) {
         const char = document.createTextNode(text[currentChar]);
-        lineElement.insertBefore(char, cursor);
+        lineEl.insertBefore(char, cursor);
         currentChar++;
         setTimeout(typeChar, typingSpeed);
       } else {
-        currentLine++;
-        currentChar = 0;
-        lineElement = null;
+        currentLine++; currentChar = 0; lineEl = null;
         setTimeout(typeChar, lineDelay);
       }
     }
 
-    // Start after background animation completes
     setTimeout(() => {
-      portraitText.style.opacity = 1;
+      el.style.opacity = 1;
       typeChar();
     }, 5000);
-  </script>
 
-  🔥
+    let q = 0;
+    function next() {
+      document.getElementById('q' + q).classList.remove('active');
+      q++;
+      const nextScreen = document.getElementById('q' + q);
+      if (nextScreen) nextScreen.classList.add('active');
+    }
+  </script>
+</body>
+</html>
