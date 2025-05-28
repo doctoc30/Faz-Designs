@@ -219,7 +219,7 @@
 </script>
 
 🔥
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -227,7 +227,6 @@
   <title>Splash + Form</title>
 
   <style>
-    /* General Styling */
     html, body {
       margin: 0;
       padding: 0;
@@ -238,7 +237,6 @@
       background: white;
     }
 
-    /* Background Animation */
     .color-rise {
       position: absolute;
       top: 0;
@@ -255,7 +253,6 @@
       100% { background-color: #ff3131; }
     }
 
-    /* Overlay Text */
     .overlay-text {
       position: absolute;
       top: 50%;
@@ -279,7 +276,6 @@
 
     .typed-line { display: block; }
 
-    /* Cursor Animation */
     .cursor {
       display: inline-block;
       width: 1ch;
@@ -291,7 +287,6 @@
       51%, 100% { opacity: 0; }
     }
 
-    /* Form Screen */
     .form-screen {
       position: absolute;
       top: 0;
@@ -320,35 +315,32 @@
       line-height: 1.4;
     }
 
-    /* Form Inputs */
     select, input[type="text"], input[type="email"] {
       padding: 1rem;
       border: none;
       border-radius: 8px;
       font-size: 1rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       width: 80%;
       max-width: 400px;
       cursor: pointer;
+      appearance: none;
     }
 
-    /* Buttons & Links */
     button {
       background: white;
       color: #ff3131;
       border: none;
-      padding: 0 3rem;
-      height: 3.5rem;
-      border-radius: 5px;
+      padding: 1rem;
+      border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 1.1rem;
-      margin-top: 2rem;
-      width: 50%;
-      max-width: 250px;
-      line-height: 3.5rem;
-      transition: background 0.3s ease;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      width: 80%;
+      max-width: 400px;
       box-sizing: border-box;
+      transition: background 0.3s ease;
     }
 
     button:hover {
@@ -371,7 +363,6 @@
       z-index: 3;
     }
 
-    /* Landscape Media Query */
     @media screen and (orientation: landscape) {
       .overlay-text {
         font-size: clamp(2rem, 4vw, 4rem);
@@ -381,51 +372,35 @@
       }
       .form-screen {
         justify-content: flex-start;
-        padding-top: 5.5rem; /* Lower content below assumed header height */
-        height: calc(100vh - 5.5rem);
-        overflow-y: auto;
+        padding-top: 6rem;
+        height: calc(100vh - 6rem);
       }
-      .form-screen h2 {
-        margin-bottom: 2rem;
-      }
-      select, input[type="text"], input[type="email"] {
-        margin-bottom: 2rem;
+      select, input[type="text"], input[type="email"], button {
         width: 60%;
-      }
-      button {
-        margin-top: 1.5rem;
-        width: 30%;
-        max-width: none;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        padding: 1rem;
       }
     }
 
-    /* Responsive for smaller phones */
     @media screen and (max-width: 400px) {
       .form-screen h2 {
         font-size: 1.4rem;
         margin-bottom: 2rem;
       }
-      select, input[type="text"], input[type="email"] {
+      select, input[type="text"], input[type="email"], button {
         width: 100%;
-        font-size: 0.9rem;
-        padding: 0.75rem;
-        margin-bottom: 2rem;
-      }
-      button {
-        width: 70%;
-        padding: 0 2rem;
-        font-size: 1rem;
+        font-size: 0.95rem;
+        padding: 0.9rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Splash + Typewriter -->
   <div class="color-rise"></div>
   <div class="overlay-text" id="typewriter"></div>
 
-  <!-- Form Steps -->
   <div id="formWrapper">
     <div class="form-screen" id="q0">
       <h2>What type of website are you looking for?</h2>
@@ -449,8 +424,6 @@
       </select>
       <button onclick="next()">Next</button>
     </div>
-
-    <!-- Add more questions here as needed -->
 
     <a href='index.html' class="skip-link">Skip to Homepage</a>
   </div>
@@ -499,7 +472,6 @@
       typeChar();
     }, 5000);
 
-    // Simple next button handler for demo - cycles between steps
     let step = 0;
     function next() {
       const current = document.getElementById(`q${step}`);
@@ -507,11 +479,9 @@
       step++;
       const nextStep = document.getElementById(`q${step}`);
       if (nextStep) nextStep.classList.add('active');
-      else {
-        // No more steps — you can redirect or show final message here
-        alert('Form complete or no more steps');
-      }
+      else alert('Form complete or no more steps');
     }
   </script>
 </body>
 </html>
+
