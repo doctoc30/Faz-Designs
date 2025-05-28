@@ -220,13 +220,13 @@
 
 🔥
 
-  
   <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Splash + Form</title>
+
   <style>
     html, body {
       margin: 0;
@@ -240,8 +240,7 @@
 
     .color-rise {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       height: 100%;
       width: 100%;
       background-color: white;
@@ -271,19 +270,11 @@
     }
 
     @keyframes rocketRise {
-      0% {
-        transform: translate(-50%, -50%) translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(-50%, -150%) translateY(-100vh);
-        opacity: 0;
-      }
+      0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
+      100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
     }
 
-    .typed-line {
-      display: block;
-    }
+    .typed-line { display: block; }
 
     .cursor {
       display: inline-block;
@@ -296,14 +287,17 @@
       51%, 100% { opacity: 0; }
     }
 
+    /* Form Screen */
     .form-screen {
       position: absolute;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 60px; /* lowered for header */
+      left: 0;
+      width: 100vw;
+      height: calc(100vh - 60px);
       background: #ff3131;
       display: none;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between; /* space inputs and skip */
       align-items: center;
       color: white;
       padding: 2rem;
@@ -312,13 +306,20 @@
       z-index: 2;
     }
 
-    .form-screen.active {
-      display: flex;
-    }
+    .form-screen.active { display: flex; }
 
     .form-screen h2 {
       font-size: 1.8rem;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Container for inputs + next button */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
     }
 
     select, input[type="text"], input[type="email"] {
@@ -326,31 +327,39 @@
       border: none;
       border-radius: 8px;
       font-size: 1rem;
-      margin-bottom: 1.5rem;
-      width: 80%;
-      max-width: 400px;
+      margin-bottom: 2rem;
+      width: 100%;
+      cursor: pointer;
+      /* appearance removed for native dropdown arrow */
     }
 
-    button, .skip-link {
+    button {
       background: white;
       color: #ff3131;
       border: none;
-      padding: 0.75rem 2rem;
-      border-radius: 5px;
+      padding: 1rem 2rem;
+      border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
       font-size: 1rem;
-      margin-top: 0.5rem;
+      width: 100%;
     }
 
     .skip-link {
       background: transparent;
       color: white;
       text-decoration: underline;
-      margin-top: 1rem;
+      margin-top: 0; /* reset */
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      align-self: center;
+      /* keep skip link at bottom */
     }
 
-    /* LANDSCAPE MEDIA QUERY */
+    /* Landscape */
     @media screen and (orientation: landscape) {
       .overlay-text {
         font-size: clamp(2rem, 4vw, 4rem);
@@ -358,85 +367,79 @@
         max-width: 90vw;
         line-height: 1.3;
       }
+      .form-screen {
+        top: 80px;
+        height: calc(100vh - 80px);
+        padding: 3rem;
+        justify-content: space-between; /* keep skip at bottom */
+      }
+      .form-screen h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+      .input-group {
+        max-width: 400px;
+        width: 60%;
+      }
+      select, input[type="text"], input[type="email"], button, .skip-link {
+        width: 100%;
+      }
+      .skip-link {
+        margin-top: 0;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .form-screen {
+        padding: 1.5rem;
+      }
+      .input-group {
+        max-width: none;
+        width: 100%;
+      }
+      select, input[type="text"], input[type="email"], button, .skip-link {
+        width: 100%;
+        max-width: none;
+      }
     }
   </style>
 </head>
-<body>
 
-  <!-- Splash + Typewriter -->
+<body>
   <div class="color-rise"></div>
   <div class="overlay-text" id="typewriter"></div>
 
-  <!-- Form Steps -->
   <div id="formWrapper">
     <div class="form-screen" id="q0">
       <h2>What type of website are you looking for?</h2>
-      <select><option>Business</option><option>eCommerce</option><option>Portfolio</option><option>Blog</option><option>Other</option></select>
-      <button onclick="next()">Next</button>
+      <div class="input-group">
+        <select>
+          <option>Business</option>
+          <option>eCommerce</option>
+          <option>Portfolio</option>
+          <option>Blog</option>
+          <option>Other</option>
+        </select>
+        <button onclick="next()">Next</button>
+      </div>
       <a href='index.html' class="skip-link">Skip to Homepage</a>
     </div>
+
     <div class="form-screen" id="q1">
       <h2>How soon do you need your website completed?</h2>
-      <select><option>Within 1 week</option><option>1–2 weeks</option><option>1 month</option><option>Flexible</option></select>
-      <button onclick="next()">Next</button>
+      <div class="input-group">
+        <select>
+          <option>Within 1 week</option>
+          <option>1–2 weeks</option>
+          <option>1 month</option>
+          <option>Flexible</option>
+        </select>
+        <button onclick="next()">Next</button>
+      </div>
       <a href='index.html' class="skip-link">Skip to Homepage</a>
     </div>
-    <div class="form-screen" id="q2">
-      <h2>Do you already have a domain and hosting?</h2>
-      <select><option>Yes, both</option><option>Only domain</option><option>Only hosting</option><option>No, need help</option></select>
-      <button onclick="next()">Next</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
-    <div class="form-screen" id="q3">
-      <h2>Do you need branding/logo design?</h2>
-      <select><option>Yes</option><option>No</option><option>Unsure</option></select>
-      <button onclick="next()">Next</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
-    <div class="form-screen" id="q4">
-      <h2>How many pages do you expect the site to have?</h2>
-      <select><option>1 (Landing Page)</option><option>2–5</option><option>6–10</option><option>10+</option></select>
-      <button onclick="next()">Next</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
-    <div class="form-screen" id="q5">
-      <h2>What’s your estimated budget?</h2>
-      <select><option>Under £500</option><option>£500–£1000</option><option>£1000–£3000</option><option>£3000+</option></select>
-      <button onclick="next()">Next</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
-    <div class="form-screen" id="q6">
-      <h2>Do you need SEO or Google setup?</h2>
-      <select><option>Yes</option><option>No</option><option>Not sure</option></select>
-      <button onclick="next()">Next</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
-    <div class="form-screen" id="q7">
-      <h2>What style of design do you prefer?</h2>
-      <select><option>Minimalist</option><option>Bold/Modern</option><option>Corporate</option><option>Fun/Creative</option></select>
-      <button onclick="next()">Next</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
-    <div class="form-screen" id="q8">
-      <h2>Will you need content written?</h2>
-      <select><option>Yes, everything</option><option>I’ll provide content</option><option>Mix of both</option></select>
-      <button onclick="next()">Next</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
-    <div class="form-screen" id="q9">
-      <h2>How did you hear about us?</h2>
-      <select><option>Google</option><option>Social Media</option><option>Referral</option><option>Other</option></select>
-      <button onclick="next()">Next</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
-    <div class="form-screen" id="q10">
-      <h2>Last step: What's your name?</h2>
-      <input type="text" placeholder="Your Name">
-      <h2>And your email?</h2>
-      <input type="email" placeholder="you@example.com">
-      <button onclick="window.location.href='index.html'">Submit</button>
-      <a href='index.html' class="skip-link">Skip to Homepage</a>
-    </div>
+    <!-- More form screens as needed -->
   </div>
 
   <script>
@@ -483,12 +486,14 @@
       typeChar();
     }, 5000);
 
-    let q = 0;
     function next() {
-      document.getElementById('q' + q).classList.remove('active');
-      q++;
-      const nextScreen = document.getElementById('q' + q);
-      if (nextScreen) nextScreen.classList.add('active');
+      const active = document.querySelector('.form-screen.active');
+      if (!active) return;
+      const nextId = `q${parseInt(active.id.slice(1)) + 1}`;
+      active.classList.remove('active');
+      const nextEl = document.getElementById(nextId);
+      if (nextEl) nextEl.classList.add('active');
+      else alert('End of form or add more steps');
     }
   </script>
 </body>
