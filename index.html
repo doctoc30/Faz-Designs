@@ -220,7 +220,6 @@
 
 🔥
 
-  
   <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -241,8 +240,7 @@
 
     .color-rise {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       height: 100%;
       width: 100%;
       background-color: white;
@@ -289,32 +287,39 @@
       51%, 100% { opacity: 0; }
     }
 
+    /* Form Screen */
     .form-screen {
       position: absolute;
-      top: 0;
+      top: 60px; /* lowered for header */
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(100vh - 60px);
       background: #ff3131;
       display: none;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between; /* space inputs and skip */
       align-items: center;
       color: white;
       padding: 2rem;
       box-sizing: border-box;
       text-align: center;
       z-index: 2;
-      overflow-y: auto;
     }
 
     .form-screen.active { display: flex; }
 
     .form-screen h2 {
       font-size: 1.8rem;
-      margin-bottom: 3rem;
-      max-width: 500px;
-      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+
+    /* Container for inputs + next button */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
     }
 
     select, input[type="text"], input[type="email"] {
@@ -323,48 +328,38 @@
       border-radius: 8px;
       font-size: 1rem;
       margin-bottom: 2rem;
-      width: 80%;
-      max-width: 400px;
+      width: 100%;
       cursor: pointer;
-      appearance: none;
+      /* appearance removed for native dropdown arrow */
     }
 
     button {
       background: white;
       color: #ff3131;
       border: none;
-      padding: 1rem;
+      padding: 1rem 2rem;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
       font-size: 1rem;
-      margin-bottom: 2rem;
-      width: 80%;
-      max-width: 400px;
-      box-sizing: border-box;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #e60000;
-      color: white;
+      width: 100%;
     }
 
     .skip-link {
       background: transparent;
       color: white;
       text-decoration: underline;
-      margin-top: 4rem;
-      font-size: 1rem;
+      margin-top: 0; /* reset */
       cursor: pointer;
-      user-select: none;
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      align-self: center;
+      /* keep skip link at bottom */
     }
 
+    /* Landscape */
     @media screen and (orientation: landscape) {
       .overlay-text {
         font-size: clamp(2rem, 4vw, 4rem);
@@ -373,27 +368,39 @@
         line-height: 1.3;
       }
       .form-screen {
-        justify-content: flex-start;
-        padding-top: 6rem;
-        height: calc(100vh - 6rem);
+        top: 80px;
+        height: calc(100vh - 80px);
+        padding: 3rem;
+        justify-content: space-between; /* keep skip at bottom */
       }
-      select, input[type="text"], input[type="email"], button {
+      .form-screen h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+      .input-group {
+        max-width: 400px;
         width: 60%;
-        margin-bottom: 2rem;
-        font-size: 1rem;
-        padding: 1rem;
+      }
+      select, input[type="text"], input[type="email"], button, .skip-link {
+        width: 100%;
+      }
+      .skip-link {
+        margin-top: 0;
       }
     }
 
-    @media screen and (max-width: 400px) {
-      .form-screen h2 {
-        font-size: 1.4rem;
-        margin-bottom: 2rem;
+    /* Mobile */
+    @media (max-width: 480px) {
+      .form-screen {
+        padding: 1.5rem;
       }
-      select, input[type="text"], input[type="email"], button {
+      .input-group {
+        max-width: none;
         width: 100%;
-        font-size: 0.95rem;
-        padding: 0.9rem;
+      }
+      select, input[type="text"], input[type="email"], button, .skip-link {
+        width: 100%;
+        max-width: none;
       }
     }
   </style>
@@ -406,28 +413,33 @@
   <div id="formWrapper">
     <div class="form-screen" id="q0">
       <h2>What type of website are you looking for?</h2>
-      <select>
-        <option>Business</option>
-        <option>eCommerce</option>
-        <option>Portfolio</option>
-        <option>Blog</option>
-        <option>Other</option>
-      </select>
-      <button onclick="next()">Next</button>
+      <div class="input-group">
+        <select>
+          <option>Business</option>
+          <option>eCommerce</option>
+          <option>Portfolio</option>
+          <option>Blog</option>
+          <option>Other</option>
+        </select>
+        <button onclick="next()">Next</button>
+      </div>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
     </div>
 
     <div class="form-screen" id="q1">
       <h2>How soon do you need your website completed?</h2>
-      <select>
-        <option>Within 1 week</option>
-        <option>1–2 weeks</option>
-        <option>1 month</option>
-        <option>Flexible</option>
-      </select>
-      <button onclick="next()">Next</button>
+      <div class="input-group">
+        <select>
+          <option>Within 1 week</option>
+          <option>1–2 weeks</option>
+          <option>1 month</option>
+          <option>Flexible</option>
+        </select>
+        <button onclick="next()">Next</button>
+      </div>
+      <a href='index.html' class="skip-link">Skip to Homepage</a>
     </div>
-
-    <a href='index.html' class="skip-link">Skip to Homepage</a>
+    <!-- More form screens as needed -->
   </div>
 
   <script>
@@ -474,16 +486,15 @@
       typeChar();
     }, 5000);
 
-    let step = 0;
     function next() {
-      const current = document.getElementById(`q${step}`);
-      if (current) current.classList.remove('active');
-      step++;
-      const nextStep = document.getElementById(`q${step}`);
-      if (nextStep) nextStep.classList.add('active');
-      else alert('Form complete or no more steps');
+      const active = document.querySelector('.form-screen.active');
+      if (!active) return;
+      const nextId = `q${parseInt(active.id.slice(1)) + 1}`;
+      active.classList.remove('active');
+      const nextEl = document.getElementById(nextId);
+      if (nextEl) nextEl.classList.add('active');
+      else alert('End of form or add more steps');
     }
   </script>
 </body>
 </html>
-
