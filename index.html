@@ -265,10 +265,7 @@
       opacity: 0;
       font-size: clamp(3rem, 8vw, 6rem);
       line-height: 1.2;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+      white-space: pre-line;
     }
 
     @keyframes rocketRise {
@@ -297,7 +294,6 @@
       51%, 100% { opacity: 0; }
     }
 
-    /* === FORM === */
     .form-screen {
       position: absolute;
       top: 0; left: 0;
@@ -350,6 +346,16 @@
       color: white;
       text-decoration: underline;
       margin-top: 1rem;
+    }
+
+    /* LANDSCAPE MEDIA QUERY */
+    @media screen and (orientation: landscape) {
+      .overlay-text {
+        font-size: clamp(2rem, 4vw, 4rem);
+        white-space: normal;
+        max-width: 90vw;
+        line-height: 1.3;
+      }
     }
   </style>
 </head>
@@ -433,7 +439,7 @@
 
   <script>
     const el = document.getElementById('typewriter');
-    const lines = ["We build", "custom", "websites", "for small", "businesses"];
+    const lines = ["We build custom websites", "for small businesses"];
     const typingSpeed = 100;
     const lineDelay = 500;
     let currentLine = 0, currentChar = 0, lineEl = null;
@@ -446,8 +452,8 @@
         cursor.remove();
         setTimeout(() => {
           el.style.animation = 'rocketRise 2s ease forwards';
-          setTimeout(() => document.getElementById('q0').classList.add('active'), 2000);
-        }, 1000);
+          setTimeout(() => document.getElementById('q0').classList.add('active'), 2500);
+        }, 1500);
         return;
       }
 
