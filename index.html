@@ -219,7 +219,7 @@
 </script>
 
 🔥
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -304,7 +304,7 @@
       justify-content: center;
       align-items: center;
       color: white;
-      padding: 3rem 2rem; /* slightly more top and bottom padding */
+      padding: 3rem 2rem;
       box-sizing: border-box;
       text-align: center;
       z-index: 2;
@@ -314,7 +314,7 @@
 
     .form-screen h2 {
       font-size: 1.8rem;
-      margin-bottom: 3rem; /* increased vertical spacing */
+      margin-bottom: 3rem;
       line-height: 1.3;
       max-width: 600px;
     }
@@ -325,17 +325,17 @@
       border: none;
       border-radius: 8px;
       font-size: 1.1rem;
-      margin-bottom: 3rem; /* increased vertical spacing */
+      margin-bottom: 3rem;
       width: 80%;
       max-width: 400px;
       background: white;
       color: #ff3131;
       font-weight: 600;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      text-align-last: center;
       cursor: pointer;
+      appearance: auto; /* Show native arrow */
+      -webkit-appearance: auto;
+      -moz-appearance: auto;
+      text-align-last: left; /* text aligned left */
     }
 
     /* Buttons & Links */
@@ -343,12 +343,12 @@
       background: white;
       color: #ff3131;
       border: none;
-      padding: 1rem 3rem; /* bigger padding for minimal look */
+      padding: 1rem 3rem;
       border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
       font-size: 1.1rem;
-      margin-top: 2rem; /* more space above button */
+      margin-top: 2rem;
       width: 50%;
       max-width: 250px;
       transition: background 0.3s ease;
@@ -361,7 +361,7 @@
       background: transparent;
       color: white;
       text-decoration: underline;
-      margin-top: 4rem; /* put skip link at very bottom with more space */
+      margin-top: 4rem;
       font-size: 1rem;
     }
 
@@ -384,7 +384,7 @@
 
   <!-- Form Steps -->
   <div id="formWrapper">
-    <div class="form-screen" id="q0">
+    <div class="form-screen active" id="q0">
       <h2>What type of website are you looking for?</h2>
       <select>
         <option>Business</option>
@@ -408,8 +408,8 @@
       <button onclick="next()">Next</button>
       <a href='index.html' class="skip-link">Skip to Homepage</a>
     </div>
-    
-    <!-- Add spacing for remaining form steps... -->
+
+    <!-- Add more steps as needed -->
   </div>
 
   <script>
@@ -427,7 +427,9 @@
         cursor.remove();
         setTimeout(() => {
           el.style.animation = 'rocketRise 2s ease forwards';
-          setTimeout(() => document.getElementById('q0').classList.add('active'), 2500);
+          setTimeout(() => {
+            document.querySelector('.form-screen.active').classList.add('active');
+          }, 2500);
         }, 1500);
         return;
       }
@@ -456,7 +458,6 @@
       typeChar();
     }, 5000);
 
-    // Dummy next() function to prevent errors
     function next() {
       const active = document.querySelector('.form-screen.active');
       if (!active) return;
@@ -466,7 +467,6 @@
         active.classList.remove('active');
         nextEl.classList.add('active');
       } else {
-        // No more questions, redirect or show a message
         alert('Form complete!');
       }
     }
