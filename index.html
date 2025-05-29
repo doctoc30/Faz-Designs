@@ -333,6 +333,7 @@
       background-repeat: no-repeat;
       background-position: right 1rem center;
       background-size: 1rem;
+      height: 3.5rem;
     }
 
     button {
@@ -345,8 +346,9 @@
       cursor: pointer;
       font-size: 1rem;
       margin-bottom: 2rem;
-      width: 80%;
-      max-width: 400px;
+      width: 40%;
+      max-width: 200px;
+      height: 3.5rem;
       box-sizing: border-box;
       transition: background 0.3s ease;
     }
@@ -383,11 +385,16 @@
         padding-top: 6rem;
         height: calc(100vh - 6rem);
       }
-      select, input[type="text"], input[type="email"], button {
+      select, input[type="text"], input[type="email"] {
         width: 60%;
         margin-bottom: 2rem;
         font-size: 1rem;
         padding: 1rem;
+      }
+
+      button {
+        width: 30%;
+        max-width: 180px;
       }
     }
 
@@ -396,10 +403,15 @@
         font-size: 1.4rem;
         margin-bottom: 2rem;
       }
-      select, input[type="text"], input[type="email"], button {
+      select, input[type="text"], input[type="email"] {
         width: 100%;
         font-size: 0.95rem;
         padding: 0.9rem;
+      }
+
+      button {
+        width: 60%;
+        height: 3.5rem;
       }
     }
   </style>
@@ -492,5 +504,3 @@
   </script>
 </body>
 </html>
-
-  
