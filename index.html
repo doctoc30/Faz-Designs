@@ -219,8 +219,7 @@
 </script>
 
 🔥
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -336,19 +335,23 @@
       height: 3.5rem;
     }
 
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
     button {
       background: white;
       color: #ff3131;
       border: none;
-      padding: 1rem;
+      padding: 1rem 2rem;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
       font-size: 1rem;
-      margin-bottom: 2rem;
-      width: 40%;
-      max-width: 200px;
-      height: 3.5rem;
       box-sizing: border-box;
       transition: background 0.3s ease;
     }
@@ -391,11 +394,6 @@
         font-size: 1rem;
         padding: 1rem;
       }
-
-      button {
-        width: 30%;
-        max-width: 180px;
-      }
     }
 
     @media screen and (max-width: 400px) {
@@ -407,11 +405,6 @@
         width: 100%;
         font-size: 0.95rem;
         padding: 0.9rem;
-      }
-
-      button {
-        width: 60%;
-        height: 3.5rem;
       }
     }
   </style>
@@ -431,7 +424,9 @@
         <option>Blog</option>
         <option>Other</option>
       </select>
-      <button onclick="next()">Next</button>
+      <div class="button-row">
+        <button onclick="next()">Next</button>
+      </div>
     </div>
 
     <div class="form-screen" id="q1">
@@ -442,7 +437,10 @@
         <option>1 month</option>
         <option>Flexible</option>
       </select>
-      <button onclick="next()">Next</button>
+      <div class="button-row">
+        <button onclick="prev()">Previous</button>
+        <button onclick="next()">Next</button>
+      </div>
     </div>
 
     <a href='index.html' class="skip-link">Skip to Homepage</a>
@@ -501,6 +499,15 @@
       if (nextStep) nextStep.classList.add('active');
       else alert('Form complete or no more steps');
     }
+
+    function prev() {
+      const current = document.getElementById(`q${step}`);
+      if (current) current.classList.remove('active');
+      step--;
+      const prevStep = document.getElementById(`q${step}`);
+      if (prevStep) prevStep.classList.add('active');
+    }
   </script>
 </body>
 </html>
+  
