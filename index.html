@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -316,25 +317,25 @@
       line-height: 1.4;
     }
 
-    select, input[type="text"], input[type="email"] {
-      padding: 1rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      width: 80%;
-      max-width: 400px;
-      cursor: pointer;
-      appearance: none;
-      background-color: white;
-      color: #333;
-      padding-right: 2.5rem;
-      background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 1rem;
-      height: 3.5rem;
-    }
+select {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  width: 80%;
+  max-width: 400px;
+  cursor: pointer;
+  appearance: none;
+  background-color: white;
+  color: #333;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  height: 3.5rem;
+}
 
     .button-row {
       display: flex;
@@ -418,6 +419,28 @@
 
   🔥 FORM
   
+
+<style>
+  /* Remove scroll/spinner arrows ONLY on the name, email, and WhatsApp inputs */
+  form input[name="Full Name"],
+  form input[name="Email"],
+  form input[name="WhatsApp"] {
+    -moz-appearance: textfield;    /* Firefox */
+    -webkit-appearance: none;      /* Chrome, Safari */
+    appearance: none;              /* Standard */
+  }
+
+  /* Extra to remove spinner buttons on WhatsApp if it is type=number */
+  form input[name="WhatsApp"]::-webkit-inner-spin-button,
+  form input[name="WhatsApp"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  form input[name="WhatsApp"] {
+    -moz-appearance: textfield;
+  }
+</style>
+
   <div id="formWrapper">
     <div class="form-screen" id="q0">
       <h2>What type of website are you looking for?</h2>
