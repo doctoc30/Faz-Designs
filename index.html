@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Faz Designs</title>
 <style>
-  /* Reset and base */
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
@@ -34,7 +33,6 @@
     user-select: none;
     cursor: default;
   }
-  /* Hamburger */
   .hamburger {
     width: 28px;
     height: 22px;
@@ -62,7 +60,6 @@
     transform: translateY(-9px) rotate(-45deg);
   }
 
-  /* Fullscreen sliding menu from left */
   nav.menu {
     position: fixed;
     top: 0; left: 0;
@@ -80,7 +77,6 @@
   nav.menu.open {
     transform: translateX(0);
   }
-
   nav.menu ul {
     list-style: none;
   }
@@ -102,8 +98,6 @@
   nav.menu ul li a:hover {
     color: #222;
   }
-
-  /* Animate menu items on open */
   nav.menu.open ul li {
     animation: slideInFade 0.4s forwards;
   }
@@ -122,7 +116,6 @@
   nav.menu.open ul li:nth-child(5) {
     animation-delay: 0.95s;
   }
-
   @keyframes slideInFade {
     to {
       opacity: 1;
@@ -130,8 +123,8 @@
     }
   }
 
-  /* Desktop view */
-  @media (min-width: 768px) {
+  /* Desktop view - raised breakpoint to 1024px */
+  @media (min-width: 1024px) {
     .hamburger {
       display: none;
     }
@@ -208,7 +201,6 @@
     }
   });
 
-  // Close menu when clicking on a link
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       if(menu.classList.contains('open')) {
@@ -217,7 +209,7 @@
     });
   });
 </script>
-
+🔥
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -655,4 +647,5 @@
   </script>
 </body>
 </html>
+
 
