@@ -185,23 +185,36 @@
 }
 
 @media screen and (min-width: 768px) {
+  /* 1. Splash animation text */
   .splash-text {
-    display: flex;               /* Use flexbox to center */
-    flex-direction: column;      /* stack text if multiple lines */
-    justify-content: center;     /* vertical center */
-    align-items: center;         /* horizontal center */
-    height: 100vh;               /* full viewport height */
-    text-align: center;          /* center align text inside */
-    padding: 0 20px;             /* some horizontal padding */
+    font-size: 3.5vw;           /* bigger and responsive font */
+    text-align: center;         /* center horizontally */
+    position: relative;
+    top: 50%;                  /* vertically center */
+    transform: translateY(-50%);
+    width: 100%;
+  }
+
+  /* 2. Question form vertical centering */
+  #formWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;          /* full viewport height */
+    padding: 40px 20px;
     box-sizing: border-box;
   }
 
-  .splash-text h1, 
-  .splash-text p {
-    font-size: 2.5rem;           /* adjust size for bigger screens */
-    line-height: 1.3;
+  /* 3. Menu page titles spacing */
+  nav.menu a {
+    margin-right: 25px;          /* add space between links */
+    display: inline-block;
+  }
+  nav.menu a:last-child {
+    margin-right: 0;             /* no margin after last link */
   }
 }
+
   
 </style>
 
