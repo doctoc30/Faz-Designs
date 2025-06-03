@@ -193,6 +193,46 @@
     z-index: 0;
   }
 }
+
+ /* --- MENU STYLING: Fix joined words --- */
+nav ul {
+  display: flex;
+  gap: 30px;              /* adds space between menu items */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center; /* center menu items if needed */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;           /* adjust based on your theme */
+  font-size: 1.2rem;
+}
+
+/* --- TEXT CENTERING --- */
+.splash-screen {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-text {
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* --- OPTIONAL: Media Query to adjust font size for larger screens --- */
+@media screen and (min-width: 768px) {
+  .overlay-text h1,
+  .overlay-text p {
+    font-size: 2rem; /* increase text size on tablets and desktops */
+  }
+}
 </style>
 
 </head>
