@@ -184,33 +184,35 @@
   transform: translate(-50%, -50%);
 }
 
-/* Assuming splash text has a class like .splash-text */
-
 .splash-text {
-  position: absolute; /* or relative inside container */
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 5vw; /* responsive size based on viewport width */
+  font-size: 8vw;       /* bigger on small screens */
+  max-width: 900px;
+  width: 90%;
   text-align: center;
-  width: 90%; /* to avoid overflow on smaller screens */
-  max-width: 800px; /* max size on desktops */
-  line-height: 1.2;
-  font-weight: bold;
-  color: #fff; /* or whatever color */
+  line-height: 1.1;
+  font-weight: 900;
+  color: #fff;
   user-select: none;
+  padding: 0 10px;
 }
 
-/* Optional: adjust font size for tablets & desktops */
+/* Tablets */
 @media (min-width: 768px) {
   .splash-text {
-    font-size: 3rem;
+    font-size: 5rem;  /* bigger than before */
+    max-width: 700px;
   }
 }
 
+/* Desktops */
 @media (min-width: 1024px) {
   .splash-text {
-    font-size: 4rem;
+    font-size: 6.5rem;  /* bigger */
+    max-width: 900px;
   }
 }
 </style>
