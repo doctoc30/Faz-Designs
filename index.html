@@ -170,6 +170,30 @@
     z-index: 0;
   }
 }
+
+ /* Base styles for mobile (default) */
+.overlay-text {
+  font-size: 1.2rem; /* Mobile size (keep what you like here) */
+  display: none;
+  z-index: 5;
+  pointer-events: none;
+  text-align: center; /* Center text horizontally */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center text both horizontally & vertically */
+}
+
+/* Tablet and larger: override font size & ensure it's centered */
+@media screen and (min-width: 768px) {
+  .overlay-text {
+    display: block !important;
+    font-size: 3rem; /* Larger font for tablets and PCs */
+  }
+  .color-rise {
+    z-index: 0;
+  }
+}
 </style>
 
 </head>
