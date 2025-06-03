@@ -184,43 +184,33 @@
   transform: translate(-50%, -50%);
 }
 
-
-  /* ========== Splash Animation Text ========== */
-.splash, .splash-text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;          /* full viewport height */
-  text-align: center;
-  padding: 0 20px;        /* padding for smaller screens */
-}
+/* Assuming splash text has a class like .splash-text */
 
 .splash-text {
-  font-size: 4vw;         /* responsive font size */
-  width: 100%;
-  max-width: 900px;       /* optional max width for readability */
-  margin: 0 auto;
+  position: absolute; /* or relative inside container */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5vw; /* responsive size based on viewport width */
+  text-align: center;
+  width: 90%; /* to avoid overflow on smaller screens */
+  max-width: 800px; /* max size on desktops */
   line-height: 1.2;
+  font-weight: bold;
+  color: #fff; /* or whatever color */
+  user-select: none;
 }
 
-/* ========== Vertically Center Question Form on Tablets and Desktops ========== */
+/* Optional: adjust font size for tablets & desktops */
 @media (min-width: 768px) {
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;        /* full viewport height for vertical centering */
-    padding: 0 40px;      /* optional side padding */
+  .splash-text {
+    font-size: 3rem;
   }
 }
 
-/* ========== Add Spacing Between Menu Items on Tablets and Desktops ========== */
-@media (min-width: 768px) {
-  .nav-menu li {
-    margin-right: 30px;    /* space between menu items */
-  }
-  .nav-menu li:last-child {
-    margin-right: 0;       /* remove margin after last item */
+@media (min-width: 1024px) {
+  .splash-text {
+    font-size: 4rem;
   }
 }
 </style>
