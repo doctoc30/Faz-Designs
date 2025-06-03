@@ -184,38 +184,49 @@
   transform: translate(-50%, -50%);
 }
 
-.splash-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 90%;
-  max-width: 800px;
-  line-height: 1.2;
-  font-weight: bold;
-  color: #fff;
-  user-select: none;
+ .splash-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    line-height: 1.2;
+    font-weight: bold;
+    color: #fff;
+    user-select: none;
 
-  font-size: clamp(2rem, 5vw, 4rem);
-}
-
-  /* Mobile-first font size */
-  font-size: 6vw;
+    /* Ensuring better scaling across devices */
+    font-size: clamp(2.5rem, 5vw + 1vh, 5rem);
 }
 
 /* Tablets */
-@media (min-width: 768px) {
-  .splash-text {
-    font-size: 4vw;
-  }
+@media (min-width: 768px) and (max-width: 1023px) {
+    .splash-text {
+        font-size: 5vw;
+    }
 }
 
-/* Desktops */
-@media (min-width: 1024px) {
-  .splash-text {
-    font-size: 2.8vw;
-  }
+/* Small Desktops */
+@media (min-width: 1024px) and (max-width: 1366px) {
+    .splash-text {
+        font-size: 3.5vw;
+    }
+}
+
+/* Larger Desktops */
+@media (min-width: 1367px) {
+    .splash-text {
+        font-size: 3vw;
+    }
+}
+
+/* Alternative for Landscape Screens (Mixing vh for better scaling) */
+@media screen and (orientation: landscape) {
+    .splash-text {
+        font-size: clamp(2rem, 5vw + 2vh, 4.5rem);
+    }
 }
 </style>
 
