@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Faz Designs</title>
   <style>
+    .skip-link {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: #ff3131;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 3000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background 0.3s;
+}
+.skip-link:hover {
+  background: #ffe5e5;
+}
     /* === GLOBAL & RESET === */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
