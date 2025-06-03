@@ -184,7 +184,24 @@
   transform: translate(-50%, -50%);
 }
 
+@media screen and (min-width: 768px) {
+  .splash-text {
+    display: flex;               /* Use flexbox to center */
+    flex-direction: column;      /* stack text if multiple lines */
+    justify-content: center;     /* vertical center */
+    align-items: center;         /* horizontal center */
+    height: 100vh;               /* full viewport height */
+    text-align: center;          /* center align text inside */
+    padding: 0 20px;             /* some horizontal padding */
+    box-sizing: border-box;
+  }
 
+  .splash-text h1, 
+  .splash-text p {
+    font-size: 2.5rem;           /* adjust size for bigger screens */
+    line-height: 1.3;
+  }
+}
   
 </style>
 
