@@ -171,24 +171,23 @@
   }
 }
 
- /* Base styles for mobile (default) */
+/* Base styles for all devices (mobile first) */
 .overlay-text {
-  font-size: 1.2rem; /* Mobile size (keep what you like here) */
-  display: none;
+  display: block;
+  font-size: 1.2rem;
   z-index: 5;
   pointer-events: none;
-  text-align: center; /* Center text horizontally */
+  text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Center text both horizontally & vertically */
+  transform: translate(-50%, -50%);
 }
 
-/* Tablet and larger: override font size & ensure it's centered */
+/* Tablet and desktop overrides */
 @media screen and (min-width: 768px) {
   .overlay-text {
-    display: block !important;
-    font-size: 3rem; /* Larger font for tablets and PCs */
+    font-size: 3rem;
   }
   .color-rise {
     z-index: 0;
