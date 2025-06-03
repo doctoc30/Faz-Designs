@@ -193,7 +193,39 @@
     z-index: 0;
   }
 }
+/* ----------- Fix for tablets and desktops (min-width: 768px) ----------- */
+@media screen and (min-width: 768px) {
 
+  /* 1. Fix menu items spacing */
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* space between menu items */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li a {
+    font-size: 20px; /* or any size you prefer */
+    text-decoration: none;
+    color: white;
+  }
+
+  /* 2. Center the animated overlay text */
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 36px; /* larger text on tablet/desktop */
+    z-index: 5;
+    pointer-events: none;
+    color: white;
+  }
+
+}
 </style>
 
 </head>
