@@ -470,6 +470,29 @@
   document.querySelector('.color-rise').remove();
   document.getElementById('formWrapper').style.display = 'block';
 }, 2000);
+    window.onload = () => {
+  const overlay = document.getElementById("typewriter");
+  const messages = ["Welcome to Your New Website! 🚀", "Let’s build something great together..."];
+  let charIndex = 0;
+  let messageIndex = 0;
+
+  function typeText() {
+    if (charIndex < messages[messageIndex].length) {
+      overlay.textContent += messages[messageIndex].charAt(charIndex++);
+      setTimeout(typeText, 60);
+    } else {
+      overlay.style.animation = "rocketRise 2s ease-in-out forwards";
+      setTimeout(() => {
+        overlay.remove();
+        document.querySelector('.color-rise').remove();
+        document.getElementById('formWrapper').style.display = 'block';
+        document.querySelector('#q0').style.display = 'flex'; // Start the form
+      }, 2000);
+    }
+  }
+
+  typeText();
+};
   </script>
 </body>
 </html>
