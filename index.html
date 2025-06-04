@@ -1,3 +1,8 @@
+IMPROVEMENT 
+
+
+2
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,134 +165,7 @@
       color: #222;
     }
   }
- @media screen and (min-width: 768px) {
-  .overlay-text {
-    display: block !important;
-    z-index: 5;
-    pointer-events: none;
-  }
-  .color-rise {
-    z-index: 0;
-  }
-}
-
-/* Base styles for all devices (mobile first) */
-.overlay-text {
-  display: block;
-  font-size: 1.2rem;
-  z-index: 5;
-  pointer-events: none;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
- .splash-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 90%;
-    max-width: 800px;
-    line-height: 1.2;
-    font-weight: bold;
-    color: #fff;
-    user-select: none;
-
-    /* Ensuring better scaling across devices */
-    font-size: clamp(2.5rem, 5vw + 1vh, 5rem);
-}
-
-/* Tablets */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .splash-text {
-        font-size: 5vw;
-    }
-}
-
-/* Small Desktops */
-@media (min-width: 1024px) and (max-width: 1366px) {
-    .splash-text {
-        font-size: 3.5vw;
-    }
-}
-
-/* Larger Desktops */
-@media (min-width: 1367px) {
-    .splash-text {
-        font-size: 3vw;
-    }
-}
-
-/* Alternative for Landscape Screens (Mixing vh for better scaling) */
-@media screen and (orientation: landscape) {
-    .splash-text {
-        font-size: clamp(2rem, 5vw + 2vh, 4.5rem);
-    }
-}
-</style>
-
-</head>
-<body>
-<header>
-  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
-  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Portfolio</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-
-<script>
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('nav.menu');
-
-  function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
-
-  hamburger.addEventListener('click', toggleMenu);
-  hamburger.addEventListener('keydown', e => {
-    if(e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleMenu();
-    }
-  });
-
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if(menu.classList.contains('open')) {
-        toggleMenu();
-      }
-    });
-  });
-</script>
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Splash + Form</title>
-
-  <style>
-    html, body {
-      margin: 0;
+  Llmargin: 0;
       padding: 0;
       height: 100vh;
       width: 100vw;
@@ -479,13 +357,67 @@
         padding: 0.9rem;
       }
     }
-  </style>
+
+</style>
+
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
+  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('nav.menu');
+
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(menu.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
+  });
+</script>
+🔥🔥🔥🔥
+
+  <title>Splash + Form</title>
+
 </head>
 
 <body>
   <div class="color-rise"></div>
   <div class="overlay-text" id="typewriter"></div>
-
+  
   <div id="formWrapper">
     <div class="form-screen" id="q0">
       <h2>What type of website are you looking for?</h2>
