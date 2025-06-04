@@ -1,8 +1,3 @@
-IMPROVEMENT 
-
-
-2
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -357,7 +352,40 @@ IMPROVEMENT
         padding: 0.9rem;
       }
     }
+/* Mobile-first default already present */
+.overlay-text {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  max-width: 90vw;
+  white-space: pre-line;
+  line-height: 1.2;
+  text-align: center;
+}
 
+/* Tablets (portrait and landscape) */
+@media screen and (min-width: 600px) {
+  .overlay-text {
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    max-width: 80vw;
+    line-height: 1.3;
+  }
+}
+
+/* Small desktops and laptops */
+@media screen and (min-width: 1024px) {
+  .overlay-text {
+    font-size: clamp(3.5rem, 4vw, 6rem);
+    max-width: 70vw;
+    line-height: 1.4;
+  }
+}
+
+/* Large desktops */
+@media screen and (min-width: 1440px) {
+  .overlay-text {
+    font-size: 6rem;
+    max-width: 60vw;
+  }
+}
 </style>
 
 </head>
