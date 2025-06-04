@@ -1,227 +1,421 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Faz Designs</title>
-  <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #ff3131;
-      color: white;
-      overflow-x: hidden;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      background-color: #ff3131;
-      z-index: 2000;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-    }
-    .logo {
-      font-weight: 900;
-      font-size: 1.7rem;
-      letter-spacing: 2px;
-      user-select: none;
-      cursor: default;
-    }
-    .hamburger {
-      width: 28px;
-      height: 22px;
-      cursor: pointer;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 2100;
-    }
-    .hamburger span {
-      display: block;
-      height: 3.5px;
-      background: white;
-      border-radius: 2px;
-      transition: all 0.35s ease-in-out;
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: translateY(9px) rotate(45deg);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: translateY(-9px) rotate(-45deg);
-    }
-    nav.menu {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #ff3131;
-      transform: translateX(-100%);
-      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: 4rem;
-      z-index: 2050;
-    }
-    nav.menu.open {
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Faz Designs</title>
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ff3131;
+    color: white;
+    overflow-x: hidden;
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #ff3131;
+    z-index: 2000;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    user-select: none;
+    cursor: default;
+  }
+  .hamburger {
+    width: 28px;
+    height: 22px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2100;
+  }
+  .hamburger span {
+    display: block;
+    height: 3.5px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.35s ease-in-out;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  nav.menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ff3131;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4rem;
+    z-index: 2050;
+  }
+  nav.menu.open {
+    transform: translateX(0);
+  }
+  nav.menu ul {
+    list-style: none;
+  }
+  nav.menu ul li {
+    margin-bottom: 2.2rem;
+    opacity: 0;
+    transform: translateX(-40px);
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
+  }
+  nav.menu ul li a {
+    color: white;
+    text-decoration: none;
+    user-select: none;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  nav.menu ul li a:hover {
+    color: #222;
+  }
+  nav.menu.open ul li {
+    animation: slideInFade 0.4s forwards;
+  }
+  nav.menu.open ul li:nth-child(1) {
+    animation-delay: 0.15s;
+  }
+  nav.menu.open ul li:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+  nav.menu.open ul li:nth-child(3) {
+    animation-delay: 0.55s;
+  }
+  nav.menu.open ul li:nth-child(4) {
+    animation-delay: 0.75s;
+  }
+  nav.menu.open ul li:nth-child(5) {
+    animation-delay: 0.95s;
+  }
+  @keyframes slideInFade {
+    to {
+      opacity: 1;
       transform: translateX(0);
     }
+  }
+
+  /* Desktop view - raised breakpoint to 1024px */
+  @media (min-width: 1024px) {
+    .hamburger {
+      display: none;
+    }
+    nav.menu {
+      position: static;
+      height: auto;
+      width: auto;
+      background: transparent;
+      transform: none !important;
+      padding-left: 0;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+    }
     nav.menu ul {
-      list-style: none;
+      display: flex;
+      gap: 3rem;
     }
     nav.menu ul li {
-      margin-bottom: 2.2rem;
-      opacity: 0;
-      transform: translateX(-40px);
-      font-weight: 900;
-      font-size: 3rem;
-      letter-spacing: 0.1em;
+      margin: 0;
+      opacity: 1 !important;
+      transform: none !important;
+      font-size: 1.25rem;
+      animation: none !important;
     }
     nav.menu ul li a {
+      font-weight: 900;
+      font-size: 1.1rem;
       color: white;
-      text-decoration: none;
-      user-select: none;
-      display: inline-block;
-      transition: color 0.3s ease;
+      letter-spacing: 0.15em;
     }
     nav.menu ul li a:hover {
       color: #222;
     }
-    nav.menu.open ul li {
-      animation: slideInFade 0.4s forwards;
+  }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
+  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('nav.menu');
+
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
     }
-    nav.menu.open ul li:nth-child(1) { animation-delay: 0.15s; }
-    nav.menu.open ul li:nth-child(2) { animation-delay: 0.35s; }
-    nav.menu.open ul li:nth-child(3) { animation-delay: 0.55s; }
-    nav.menu.open ul li:nth-child(4) { animation-delay: 0.75s; }
-    nav.menu.open ul li:nth-child(5) { animation-delay: 0.95s; }
-    @keyframes slideInFade {
-      to {
-        opacity: 1;
-        transform: translateX(0);
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(menu.classList.contains('open')) {
+        toggleMenu();
       }
+    });
+  });
+</script>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Splash + Form</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: white;
     }
 
     .color-rise {
       position: absolute;
-      width: 100%;
-      height: 100vh;
-      background-color: #ff3131;
-      z-index: 999;
       top: 0;
       left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: white;
+      animation: solidRise 8s ease-in-out forwards;
+      z-index: 0;
     }
+
+    @keyframes solidRise {
+      0% { background-color: white; }
+      100% { background-color: #ff3131; }
+    }
+
     .overlay-text {
       position: absolute;
-      top: 45%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 2.2rem;
       font-weight: bold;
       color: white;
-      z-index: 1000;
+      text-shadow: 0 0 30px #b30000;
+      z-index: 1;
+      text-align: center;
+      opacity: 0;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.2;
+      white-space: pre-line;
     }
+
     @keyframes rocketRise {
-      to {
-        transform: translate(-50%, -120vh) scale(1.5);
-        opacity: 0;
-      }
-      #formWrapper {
-  display: none;
-}
+      0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
+      100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
+    }
+
+    .typed-line { display: block; }
+
+    .cursor {
+      display: inline-block;
+      width: 1ch;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
     }
 
     .form-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #ff3131;
       display: none;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding-top: 100px;
+      align-items: center;
+      color: white;
+      padding: 2rem;
+      box-sizing: border-box;
       text-align: center;
+      z-index: 2;
+      overflow-y: auto;
     }
+
+    .form-screen.active { display: flex; }
+
     .form-screen h2 {
-      margin-bottom: 20px;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+      max-width: 500px;
+      line-height: 1.4;
     }
-    .form-screen input {
-      padding: 10px 15px;
-      font-size: 1rem;
-      border-radius: 4px;
+
+    /* INPUT + SELECT */
+    select, input[type="text"], input[type="email"] {
+      padding: 1rem;
       border: none;
-      margin-bottom: 15px;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 2rem;
       width: 80%;
       max-width: 400px;
+      cursor: pointer;
+      appearance: none;
+      background-color: white;
+      color: #333;
+      height: 3.5rem;
+      padding-right: 2.5rem;
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1rem;
+      font-family: inherit;
     }
+
+    /* KEEP ARROW ONLY FOR SELECT */
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    }
+
+    /* REMOVE ARROW FROM TEXT/EMAIL INPUTS */
+    input[type="text"],
+    input[type="email"] {
+      background-image: none;
+      cursor: text;
+    }
+
     .button-row {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
-    .button-row button {
-      padding: 10px 20px;
+
+    button {
       background: white;
       color: #ff3131;
       border: none;
-      border-radius: 4px;
+      padding: 1rem 2rem;
+      border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: background 0.3s ease;
     }
-    .skip-link {
-      margin-top: 20px;
-      color: white;
-      font-size: 0.95rem;
-      text-decoration: underline;
-      cursor: pointer;
-      position: fixed;
-      bottom: 15px;
-    }
-    .overlay-text {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: white;
-  z-index: 1000;
-  animation: rocketRise 2s ease-in-out forwards;
-}
 
-@keyframes rocketRise {
-  to {
-    transform: translate(-50%, -120vh) scale(1.5);
-    opacity: 0;
-  }
-}
+    button:hover {
+      background: #e60000;
+      color: white;
+    }
+
+    .skip-link {
+      background: transparent;
+      color: white;
+      text-decoration: underline;
+      margin-top: 4rem;
+      font-size: 1rem;
+      cursor: pointer;
+      user-select: none;
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    @media screen and (orientation: landscape) {
+      .overlay-text {
+        font-size: clamp(2rem, 4vw, 4rem);
+        white-space: normal;
+        max-width: 90vw;
+        line-height: 1.3;
+      }
+      .form-screen {
+        justify-content: flex-start;
+        padding-top: 6rem;
+        height: calc(100vh - 6rem);
+      }
+      select, input[type="text"], input[type="email"] {
+        width: 60%;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        padding: 1rem;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      .form-screen h2 {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+      }
+      select, input[type="text"], input[type="email"] {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 0.9rem;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
-    <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-      <span></span><span></span><span></span>
-    </div>
-    <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-<main id="main-content">
   <div class="color-rise"></div>
   <div class="overlay-text" id="typewriter"></div>
 
@@ -254,240 +448,207 @@
       </div>
     </div>
 
-    <div class="form-screen" id="q2">
-      <h2>Do you already have a domain name?</h2>
-      <select>
-        <option>Yes</option>
-        <option>No</option>
-        <option>Need help choosing one</option>
-      </select>
-      <div class="button-row">
-        <button onclick="prev()">Previous</button>
-        <button onclick="next()">Next</button>
-      </div>
-    </div>
+<div class="form-screen" id="q2">
+  <h2>Do you already have a domain name?</h2>
+  <select>
+    <option>Yes</option>
+    <option>No</option>
+    <option>Need help choosing one</option>
+  </select>
+  <div class="button-row">
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+  </div>
+</div>
 
-    <div class="form-screen" id="q3">
-      <h2>Do you already have a logo and brand design?</h2>
-      <select>
-        <option>Yes, everything is ready</option>
-        <option>I have a logo but need help with branding</option>
-        <option>No, I need full branding</option>
-      </select>
-      <div class="button-row">
-        <button onclick="prev()">Previous</button>
-        <button onclick="next()">Next</button>
-      </div>
-    </div>
+<div class="form-screen" id="q3">
+  <h2>Do you already have a logo and brand design?</h2>
+  <select>
+    <option>Yes, everything is ready</option>
+    <option>I have a logo but need help with branding</option>
+    <option>No, I need full branding</option>
+  </select>
+  <div class="button-row">
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+  </div>
+</div>
 
-    <div class="form-screen" id="q4">
-      <h2>How many pages do you expect your site to have?</h2>
-      <select>
-        <option>1 (Single Page)</option>
-        <option>2–5</option>
-        <option>6–10</option>
-        <option>10+</option>
-        <option>Not sure yet</option>
-      </select>
-      <div class="button-row">
-        <button onclick="prev()">Previous</button>
-        <button onclick="next()">Next</button>
-      </div>
-    </div>
+<div class="form-screen" id="q4">
+  <h2>How many pages do you expect your site to have?</h2>
+  <select>
+    <option>1 (Single Page)</option>
+    <option>2–5</option>
+    <option>6–10</option>
+    <option>10+</option>
+    <option>Not sure yet</option>
+  </select>
+  <div class="button-row">
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+  </div>
+</div>
 
-    <div class="form-screen" id="q5">
-      <h2>Do you need us to write the content for your website?</h2>
-      <select>
-        <option>Yes, please write it all</option>
-        <option>I have some content, need help refining</option>
-        <option>No, I’ll provide all the content</option>
-      </select>
-      <div class="button-row">
-        <button onclick="prev()">Previous</button>
-        <button onclick="next()">Next</button>
-      </div>
-    </div>
+<div class="form-screen" id="q5">
+  <h2>Do you need us to write the content for your website?</h2>
+  <select>
+    <option>Yes, please write it all</option>
+    <option>I have some content, need help refining</option>
+    <option>No, I’ll provide all the content</option>
+  </select>
+  <div class="button-row">
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+  </div>
+</div>
 
-    <div class="form-screen" id="q6">
-      <h2>Will you be selling products or services online?</h2>
-      <select>
-        <option>Yes – I need full eCommerce setup</option>
-        <option>Yes – just a few products or services</option>
-        <option>No – informational site only</option>
-        <option>Not sure yet</option>
-      </select>
-      <div class="button-row">
-        <button onclick="prev()">Previous</button>
-        <button onclick="next()">Next</button>
-      </div>
-    </div>
+<div class="form-screen" id="q6">
+  <h2>Will you be selling products or services online?</h2>
+  <select>
+    <option>Yes – I need full eCommerce setup</option>
+    <option>Yes – just a few products or services</option>
+    <option>No – informational site only</option>
+    <option>Not sure yet</option>
+  </select>
+  <div class="button-row">
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+  </div>
+</div>
 
-    <div class="form-screen" id="q7">
-      <h2>Do you want to be able to edit the site yourself later?</h2>
-      <select>
-        <option>Yes, I want full control</option>
-        <option>Maybe – depends on how easy it is</option>
-        <option>No, I’d prefer you handle future updates</option>
-      </select>
-      <div class="button-row">
-        <button onclick="prev()">Previous</button>
-        <button onclick="next()">Next</button>
-      </div>
-    </div>
+<div class="form-screen" id="q7">
+  <h2>Do you want to be able to edit the site yourself later?</h2>
+  <select>
+    <option>Yes, I want full control</option>
+    <option>Maybe – depends on how easy it is</option>
+    <option>No, I’d prefer you handle future updates</option>
+  </select>
+  <div class="button-row">
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+  </div>
+</div>
 
-    <div class="form-screen" id="q8">
-      <h2>What’s your estimated budget for this project?</h2>
-      <select>
-        <option>Under £500</option>
-        <option>£500 – £1,000</option>
-        <option>£1,000 – £2,500</option>
-        <option>£2,500+</option>
-        <option>Need help deciding</option>
-      </select>
-      <div class="button-row">
-        <button onclick="prev()">Previous</button>
-        <button onclick="next()">Next</button>
-      </div>
-    </div>
+<div class="form-screen" id="q8">
+  <h2>What’s your estimated budget for this project?</h2>
+  <select>
+    <option>Under £500</option>
+    <option>£500 – £1,000</option>
+    <option>£1,000 – £2,500</option>
+    <option>£2,500+</option>
+    <option>Need help deciding</option>
+  </select>
+  <div class="button-row">
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+  </div>
+</div>
 
-    <div class="form-screen" id="q9">
-      <h2>Do you have examples of websites you like?</h2>
-      <select>
-        <option>Yes, I’ll share them</option>
-        <option>No, I need inspiration</option>
-        <option>A few ideas, but open to suggestions</option>
-      </select>
-      <div class="button-row">
-        <button onclick="prev()">Previous</button>
-        <button onclick="next()">Next</button>
-      </div>
-    </div>
+<div class="form-screen" id="q9">
+  <h2>Do you have examples of websites you like?</h2>
+  <select>
+    <option>Yes, I’ll share them</option>
+    <option>No, I need inspiration</option>
+    <option>A few ideas, but open to suggestions</option>
+  </select>
+  <div class="button-row">
+    <button onclick="prev()">Previous</button>
+    <button onclick="next()">Next</button>
+  </div>
+</div>
 
     <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST">
-      <div class="form-screen" id="q10">
-        <h2>Almost done! Please enter your details</h2>
+  <div class="form-screen" id="q10">
+    <h2>Almost done! Please enter your details</h2>
 
-        <label>Full Name</label>
-        <input type="text" name="Full Name" required>
+    <label>Full Name</label>
+    <input type="text" name="Full Name" required>
 
-        <label>Email Address</label>
-        <input type="email" name="Email" required>
+    <label>Email Address</label>
+    <input type="email" name="Email" required>
 
-        <label>WhatsApp Number (optional)</label>
-        <input type="text" name="WhatsApp">
+    <label>WhatsApp Number (optional)</label>
+    <input type="text" name="WhatsApp">
 
-        <label style="margin-top: 20px;">
-          <input type="checkbox" required name="GDPR Consent">
-          I consent to having this website store my submitted information so they can respond to my inquiry.
-        </label>
+    <label style="margin-top: 20px;">
+      <input type="checkbox" required name="GDPR Consent">
+      I consent to having this website store my submitted information so they can respond to my inquiry.
+    </label>
 
-        <div class="button-row">
-          <button type="button" onclick="prev()">Previous</button>
-          <button type="submit">Submit</button>
-        </div>
-      </div>
-    </form>
-
-    <a href="index.html" class="skip-link">Skip to Homepage</a>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="submit">Submit</button>
+    </div>
   </div>
-</main>
+</form>
+
+    <a href='index.html' class="skip-link">Skip to Homepage</a>
+  </div>
+
   <script>
-    const hamburger = document.querySelector('.hamburger');
-    const menu = document.querySelector('nav.menu');
-    hamburger.addEventListener('click', () => {
-      const isOpen = menu.classList.toggle('open');
-      hamburger.classList.toggle('active');
-      hamburger.setAttribute('aria-expanded', isOpen);
-      menu.setAttribute('aria-hidden', !isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
+    const el = document.getElementById('typewriter');
+    const lines = ["We build custom websites", "for small businesses"];
+    const typingSpeed = 100;
+    const lineDelay = 500;
+    let currentLine = 0, currentChar = 0, lineEl = null;
+    const cursor = document.createElement('span');
+    cursor.classList.add('cursor');
+    cursor.textContent = '|';
 
-    menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (menu.classList.contains('open')) {
-          hamburger.click();
-        }
-      });
-    });
-
-    // Typewriter effect
-    const text = "Welcome to Faz Designs";
-    const overlay = document.getElementById('overlay-text');
-    let index = 0;
-    const type = () => {
-      if (index < text.length) {
-        overlay.innerHTML += text.charAt(index);
-        index++;
-        setTimeout(type, 100);
-      } else {
-        overlay.style.animation = "rocketRise 2s ease-in-out forwards";
+    function typeChar() {
+      if (currentLine >= lines.length) {
+        cursor.remove();
         setTimeout(() => {
-          overlay.remove();
-          document.querySelector('.color-rise').remove();
-          document.getElementById('form-screen').style.display = 'flex';
-        }, 2000);
+          el.style.animation = 'rocketRise 2s ease forwards';
+          setTimeout(() => document.getElementById('q0').classList.add('active'), 2500);
+        }, 1500);
+        return;
       }
-    };
-    window.onload = type;
 
-    // Form logic
-    const questions = [
-      "What’s your name?",
-      "What’s your email address?",
-      "What kind of project are you planning?",
-      "What’s your budget range?",
-      "When do you need this project completed?",
-      "How did you hear about us?",
-      "Would you like a call back?",
-      "What’s your preferred contact method?",
-      "What services are you interested in?",
-      "Any other details you’d like to share?"
-    ];
-    let step = 0;
-    const input = document.getElementById("form-input");
-    const questionDisplay = document.getElementById("form-question");
-    const nextBtn = document.getElementById("next-btn");
-    nextBtn.addEventListener("click", () => {
-      if (step < questions.length - 1) {
-        step++;
-        questionDisplay.textContent = questions[step];
-        input.value = "";
+      const text = lines[currentLine];
+      if (!lineEl) {
+        lineEl = document.createElement('div');
+        lineEl.classList.add('typed-line');
+        el.appendChild(lineEl);
+        lineEl.appendChild(cursor);
+      }
+
+      if (currentChar < text.length) {
+        const char = document.createTextNode(text[currentChar]);
+        lineEl.insertBefore(char, cursor);
+        currentChar++;
+        setTimeout(typeChar, typingSpeed);
       } else {
-        endForm();
+        currentLine++; currentChar = 0; lineEl = null;
+        setTimeout(typeChar, lineDelay);
       }
-    });
-
-    function endForm() {
-      document.getElementById("form-screen").innerHTML = "<h2>Thank you! Redirecting to homepage...</h2>";
     }
+
     setTimeout(() => {
-  overlay.remove();
-  document.querySelector('.color-rise').remove();
-  document.getElementById('formWrapper').style.display = 'block';
-}, 2000);
-    window.onload = () => {
-  const overlay = document.getElementById("typewriter");
-  const messages = ["Welcome to Your New Website! 🚀", "Let’s build something great together..."];
-  let charIndex = 0;
-  let messageIndex = 0;
+      el.style.opacity = 1;
+      typeChar();
+    }, 5000);
 
-  function typeText() {
-    if (charIndex < messages[messageIndex].length) {
-      overlay.textContent += messages[messageIndex].charAt(charIndex++);
-      setTimeout(typeText, 60);
-    } else {
-      overlay.style.animation = "rocketRise 2s ease-in-out forwards";
-      setTimeout(() => {
-        overlay.remove();
-        document.querySelector('.color-rise').remove();
-        document.getElementById('formWrapper').style.display = 'block';
-        document.querySelector('#q0').style.display = 'flex'; // Start the form
-      }, 2000);
+    let step = 0;
+    function next() {
+      const current = document.getElementById(`q${step}`);
+      if (current) current.classList.remove('active');
+      step++;
+      const nextStep = document.getElementById(`q${step}`);
+      if (nextStep) nextStep.classList.add('active');
+      else alert('Form complete or no more steps');
     }
-  }
 
-  typeText();
-};
+    function prev() {
+      const current = document.getElementById(`q${step}`);
+      if (current) current.classList.remove('active');
+      step--;
+      const prevStep = document.getElementById(`q${step}`);
+      if (prevStep) prevStep.classList.add('active');
+    }
   </script>
 </body>
 </html>
+
+
+
