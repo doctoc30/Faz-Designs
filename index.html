@@ -136,6 +136,9 @@
         transform: translate(-50%, -120vh) scale(1.5);
         opacity: 0;
       }
+      #formWrapper {
+  display: none;
+}
     }
 
     .form-screen {
@@ -182,6 +185,24 @@
       position: fixed;
       bottom: 15px;
     }
+    .overlay-text {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: white;
+  z-index: 1000;
+  animation: rocketRise 2s ease-in-out forwards;
+}
+
+@keyframes rocketRise {
+  to {
+    transform: translate(-50%, -120vh) scale(1.5);
+    opacity: 0;
+  }
+}
   </style>
 </head>
 <body>
@@ -444,6 +465,11 @@
     function endForm() {
       document.getElementById("form-screen").innerHTML = "<h2>Thank you! Redirecting to homepage...</h2>";
     }
+    setTimeout(() => {
+  overlay.remove();
+  document.querySelector('.color-rise').remove();
+  document.getElementById('formWrapper').style.display = 'block';
+}, 2000);
   </script>
 </body>
 </html>
