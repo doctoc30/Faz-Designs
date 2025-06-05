@@ -614,17 +614,20 @@ button {
 
      const el = document.getElementById('typewriter');
 
-  // Detect landscape orientation
-  const isLandscape = window.matchMedia("(orientation: landscape)").matches;
+  // Detect landscape or portrait
+  function getLinesForOrientation() {
+    const isLandscape = window.matchMedia("(orientation: landscape)").matches;
+    return isLandscape
+      ? ["We build custom websites", "for small businesses"] // Landscape: 2 lines
+      : ["We build", "custom", "websites", "for small", "businesses"]; // Portrait: 5 lines
+  }
 
-  // Landscape: 2-line version
-  const lines = isLandscape
-    ? ["We build custom websites", "for small businesses"]
-    : ["We build", "custom", "websites", "for small", "businesses"]; // 5-line portrait version
-
+  const lines = getLinesForOrientation();
   const typingSpeed = 100;
   const lineDelay = 500;
-  let currentLine = 0, currentChar = 0, lineEl = null;
+  let currentLine = 0;
+  let currentChar = 0;
+  let lineEl = null;
 
   const cursor = document.createElement('span');
   cursor.classList.add('cursor');
@@ -652,7 +655,10 @@ button {
     }
   }
 
+  // Clear any previous content
+  el.innerHTML = '';
   typeNextChar();
+
 
     
 
