@@ -283,15 +283,16 @@
     cursor: text;
   }
 
-  .button-row {
+.button-row {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 2rem; /* Increased spacing */
     flex-wrap: wrap;
+    align-items: center; /* Ensures buttons are vertically aligned */
     margin-bottom: 2rem;
-  }
+}
 
-  button {
+button {
     background: white;
     color: #ff3131;
     border: none;
@@ -302,7 +303,8 @@
     font-size: 1rem;
     box-sizing: border-box;
     transition: background 0.3s ease;
-  }
+    min-width: 120px; /* Prevents buttons from collapsing */
+}
 
   button:hover {
     background: #e60000;
