@@ -395,19 +395,18 @@ button {
     display: block;
   }
 }
-
- @media screen and (min-width: 600px) and (max-width: 1024px) {
+@media screen and (min-width: 600px) and (max-width: 1024px) {
   .button-row {
-    display: flex;
-    justify-content: center;
-    gap: 1rem; /* adds spacing between the buttons */
-    flex-wrap: wrap;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 1rem !important; /* space between buttons */
+    flex-wrap: nowrap !important;
   }
 
   .button-row button {
-    min-width: 120px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+    flex: 0 0 auto !important;
+    min-width: 120px !important;
+    margin: 0 !important;
   }
 }
 </style>
