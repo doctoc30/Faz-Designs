@@ -366,6 +366,24 @@
     font-size: calc(8vw + 0.5rem) !important;
   }
 }
+ @media screen and (min-width: 768px) {
+  nav ul {
+    display: flex;
+    gap: 2rem; /* Adds space between menu items */
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav ul li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li a {
+    white-space: nowrap;
+  }
+}
 </style>
 
 
