@@ -223,19 +223,19 @@
     51%, 100% { opacity: 0; }
   }
 
- .form-screen {
+.form-screen {
   position: absolute;
-  top: 60px; /* match this to your header height */
+  top: 60px; /* adjust if your header is taller */
   left: 0;
   width: 100vw;
-  height: calc(100vh - 60px); /* use the space below header */
+  height: calc(100vh - 60px);
   background: #ff3131;
   display: none;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* move content down from top */
   align-items: center;
   color: white;
-  padding: 2rem;
+  padding: 6rem 2rem 2rem; /* more top padding added here */
   box-sizing: border-box;
   text-align: center;
   z-index: 2;
