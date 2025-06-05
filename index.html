@@ -223,24 +223,25 @@
     51%, 100% { opacity: 0; }
   }
 
-  .form-screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #ff3131;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding: 2rem;
-    box-sizing: border-box;
-    text-align: center;
-    z-index: 2;
-    overflow-y: auto;
-  }
+ .form-screen {
+  position: absolute;
+  top: 60px; /* match this to your header height */
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 60px); /* use the space below header */
+  background: #ff3131;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 2;
+  overflow-y: auto;
+}
+ 
 
   .form-screen.active { display: flex; }
 
