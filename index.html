@@ -225,17 +225,17 @@
 
 .form-screen {
   position: absolute;
-  top: 60px; /* adjust if your header is taller */
+  top: 60px; /* below the header */
   left: 0;
   width: 100vw;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 60px); /* full height minus header */
   background: #ff3131;
   display: none;
   flex-direction: column;
-  justify-content: flex-start; /* move content down from top */
+  justify-content: center; /* center vertically */
   align-items: center;
   color: white;
-  padding: 6rem 2rem 2rem; /* more top padding added here */
+  padding: 2rem;
   box-sizing: border-box;
   text-align: center;
   z-index: 2;
