@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,7 +160,202 @@
       color: #222;
     }
   }
+
+<title>Splash + Form</title>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: white;
+  }
+
+  .color-rise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    animation: solidRise 8s ease-in-out forwards;
+    z-index: 0;
+  }
+
+  @keyframes solidRise {
+    0% { background-color: white; }
+    100% { background-color: #ff3131; }
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 30px #b30000;
+    z-index: 1;
+    text-align: center;
+    opacity: 0;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.2;
+    white-space: pre-line;
+  }
+
+  @keyframes rocketRise {
+    0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
+    100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
+  }
+
+  .typed-line { display: block; }
+
+  .cursor {
+    display: inline-block;
+    width: 1ch;
+    animation: blink 0.8s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .form-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ff3131;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 2rem;
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 2;
+    overflow-y: auto;
+  }
+
+  .form-screen.active { display: flex; }
+
+  .form-screen h2 {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    max-width: 500px;
+    line-height: 1.4;
+  }
+
+  select, input[type="text"], input[type="email"] {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    width: 80%;
+    max-width: 400px;
+    cursor: pointer;
+    appearance: none;
+    background-color: white;
+    color: #333;
+    height: 3.5rem;
+    padding-right: 2.5rem;
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    font-family: inherit;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    background-image: none;
+    cursor: text;
+  }
+
+  .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  button {
+    background: white;
+    color: #ff3131;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: #e60000;
+    color: white;
+  }
+
+  .skip-link {
+    background: transparent;
+    color: white;
+    text-decoration: underline;
+    margin-top: 4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
+  @media screen and (orientation: landscape) {
+    .overlay-text {
+      font-size: clamp(2rem, 4vw, 4rem);
+      white-space: normal;
+      max-width: 90vw;
+      line-height: 1.3;
+    }
+    .form-screen {
+      justify-content: flex-start;
+      padding-top: 6rem;
+      height: calc(100vh - 6rem);
+    }
+    select, input[type="text"], input[type="email"] {
+      width: 60%;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .form-screen h2 {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+    }
+    select, input[type="text"], input[type="email"] {
+      width: 100%;
+      font-size: 0.95rem;
+      padding: 0.9rem;
+    }
+  }
 </style>
+
 
 </head>
 <body>
@@ -181,241 +375,8 @@
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>
-</header>
+</header> 
 
-<script>
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('nav.menu');
-
-  function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
-
-  hamburger.addEventListener('click', toggleMenu);
-  hamburger.addEventListener('keydown', e => {
-    if(e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleMenu();
-    }
-  });
-
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if(menu.classList.contains('open')) {
-        toggleMenu();
-      }
-    });
-  });
-</script>
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Splash + Form</title>
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-      background: white;
-    }
-
-    .color-rise {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background-color: white;
-      animation: solidRise 8s ease-in-out forwards;
-      z-index: 0;
-    }
-
-    @keyframes solidRise {
-      0% { background-color: white; }
-      100% { background-color: #ff3131; }
-    }
-
-    .overlay-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 0 30px #b30000;
-      z-index: 1;
-      text-align: center;
-      opacity: 0;
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1.2;
-      white-space: pre-line;
-    }
-
-    @keyframes rocketRise {
-      0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
-      100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
-    }
-
-    .typed-line { display: block; }
-
-    .cursor {
-      display: inline-block;
-      width: 1ch;
-      animation: blink 0.8s infinite;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    .form-screen {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #ff3131;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      padding: 2rem;
-      box-sizing: border-box;
-      text-align: center;
-      z-index: 2;
-      overflow-y: auto;
-    }
-
-    .form-screen.active { display: flex; }
-
-    .form-screen h2 {
-      font-size: 1.8rem;
-      margin-bottom: 3rem;
-      max-width: 500px;
-      line-height: 1.4;
-    }
-
-    /* INPUT + SELECT */
-    select, input[type="text"], input[type="email"] {
-      padding: 1rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      width: 80%;
-      max-width: 400px;
-      cursor: pointer;
-      appearance: none;
-      background-color: white;
-      color: #333;
-      height: 3.5rem;
-      padding-right: 2.5rem;
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 1rem;
-      font-family: inherit;
-    }
-
-    /* KEEP ARROW ONLY FOR SELECT */
-    select {
-      background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-    }
-
-    /* REMOVE ARROW FROM TEXT/EMAIL INPUTS */
-    input[type="text"],
-    input[type="email"] {
-      background-image: none;
-      cursor: text;
-    }
-
-    .button-row {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    button {
-      background: white;
-      color: #ff3131;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1rem;
-      box-sizing: border-box;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #e60000;
-      color: white;
-    }
-
-    .skip-link {
-      background: transparent;
-      color: white;
-      text-decoration: underline;
-      margin-top: 4rem;
-      font-size: 1rem;
-      cursor: pointer;
-      user-select: none;
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-    }
-
-    @media screen and (orientation: landscape) {
-      .overlay-text {
-        font-size: clamp(2rem, 4vw, 4rem);
-        white-space: normal;
-        max-width: 90vw;
-        line-height: 1.3;
-      }
-      .form-screen {
-        justify-content: flex-start;
-        padding-top: 6rem;
-        height: calc(100vh - 6rem);
-      }
-      select, input[type="text"], input[type="email"] {
-        width: 60%;
-        margin-bottom: 2rem;
-        font-size: 1rem;
-        padding: 1rem;
-      }
-    }
-
-    @media screen and (max-width: 400px) {
-      .form-screen h2 {
-        font-size: 1.4rem;
-        margin-bottom: 2rem;
-      }
-      select, input[type="text"], input[type="email"] {
-        width: 100%;
-        font-size: 0.95rem;
-        padding: 0.9rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
   <div class="color-rise"></div>
   <div class="overlay-text" id="typewriter"></div>
 
@@ -646,9 +607,33 @@
       const prevStep = document.getElementById(`q${step}`);
       if (prevStep) prevStep.classList.add('active');
     }
-  </script>
+
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('nav.menu');
+
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(menu.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
+  });
+</script>
 </body>
 </html>
-
-
-
