@@ -418,6 +418,16 @@ button {
     margin-left: 1rem !important;   /* 1 rem gap */
   }
 }
+
+ @media screen and (orientation: landscape) {
+  #typewriter {
+    font-size: 2.5vw;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+}
 </style>
 
 
@@ -611,16 +621,50 @@ button {
   </div>
 
   <script>
-   
-      const el = document.getElementById('typewriter');
-    const lines = ["We build custom websites", "for small businesses"];
-    const typingSpeed = 100;
-    const lineDelay = 500;
-    let currentLine = 0, currentChar = 0, lineEl = null;
-    const cursor = document.createElement('span');
-    cursor.classList.add('cursor');
-    cursor.textContent = '|';
 
+     const el = document.getElementById('typewriter');
+
+  // Detect landscape orientation
+  const isLandscape = window.matchMedia("(orientation: landscape)").matches;
+
+  // Landscape: 2-line version
+  const lines = isLandscape
+    ? ["We build custom websites", "for small businesses"]
+    : ["We build", "custom", "websites", "for small", "businesses"]; // 5-line portrait version
+
+  const typingSpeed = 100;
+  const lineDelay = 500;
+  let currentLine = 0, currentChar = 0, lineEl = null;
+
+  const cursor = document.createElement('span');
+  cursor.classList.add('cursor');
+  cursor.textContent = '|';
+
+  function typeNextChar() {
+    if (!lineEl) {
+      lineEl = document.createElement('div');
+      el.appendChild(lineEl);
+      lineEl.appendChild(cursor);
+    }
+
+    const line = lines[currentLine];
+    if (currentChar < line.length) {
+      lineEl.insertBefore(document.createTextNode(line[currentChar]), cursor);
+      currentChar++;
+      setTimeout(typeNextChar, typingSpeed);
+    } else {
+      currentLine++;
+      currentChar = 0;
+      lineEl = null;
+      if (currentLine < lines.length) {
+        setTimeout(typeNextChar, lineDelay);
+      }
+    }
+  }
+
+  typeNextChar();
+
+    
 
     function typeChar() {
       if (currentLine >= lines.length) {
