@@ -8,10 +8,18 @@
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
-  body {
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
     font-family: 'Poppins', sans-serif;
-    background-color: #ff3131;
+    background: white;
     color: white;
+  }
+  body {
+    background-color: #ff3131;
     overflow-x: hidden;
   }
   header {
@@ -101,21 +109,12 @@
   nav.menu.open ul li {
     animation: slideInFade 0.4s forwards;
   }
-  nav.menu.open ul li:nth-child(1) {
-    animation-delay: 0.15s;
-  }
-  nav.menu.open ul li:nth-child(2) {
-    animation-delay: 0.35s;
-  }
-  nav.menu.open ul li:nth-child(3) {
-    animation-delay: 0.55s;
-  }
-  nav.menu.open ul li:nth-child(4) {
-    animation-delay: 0.75s;
-  }
-  nav.menu.open ul li:nth-child(5) {
-    animation-delay: 0.95s;
-  }
+  nav.menu.open ul li:nth-child(1) { animation-delay: 0.15s; }
+  nav.menu.open ul li:nth-child(2) { animation-delay: 0.35s; }
+  nav.menu.open ul li:nth-child(3) { animation-delay: 0.55s; }
+  nav.menu.open ul li:nth-child(4) { animation-delay: 0.75s; }
+  nav.menu.open ul li:nth-child(5) { animation-delay: 0.95s; }
+
   @keyframes slideInFade {
     to {
       opacity: 1;
@@ -123,7 +122,7 @@
     }
   }
 
-  /* Desktop view - raised breakpoint to 1024px */
+  /* Desktop view */
   @media (min-width: 1024px) {
     .hamburger {
       display: none;
@@ -159,18 +158,6 @@
     nav.menu ul li a:hover {
       color: #222;
     }
-  }
-
-<title>Splash + Form</title>
- 
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    font-family: 'Poppins', sans-serif;
-    background: white;
   }
 
   .color-rise {
