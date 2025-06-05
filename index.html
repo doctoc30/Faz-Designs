@@ -227,9 +227,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%); /* Adjust vertical centering */
   width: 100vw;
-  height: calc(100vh - 60px); /* subtract header height */
+  height: auto; /* Allow dynamic height */
+  min-height: calc(100vh - 120px); /* Ensure enough space */
   background: #ff3131;
   display: none;
   flex-direction: column;
