@@ -354,8 +354,17 @@
     }
   }
 
+
+ /* Default for tablet & desktop */
 .overlay-text {
   font-size: calc(6vw + 0.5rem) !important;
+}
+
+/* Slightly larger on smaller screens (phones) */
+@media screen and (max-width: 480px) {
+  .overlay-text {
+    font-size: calc(8vw + 0.5rem) !important;
+  }
 }
 </style>
 
