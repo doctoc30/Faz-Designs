@@ -395,18 +395,27 @@ button {
     display: block;
   }
 }
+
+ /* 600 – 1024 px ≈ most tablets */
 @media screen and (min-width: 600px) and (max-width: 1024px) {
+
+  /* Make the row a flex container */
   .button-row {
     display: flex !important;
     justify-content: center !important;
-    gap: 1rem !important; /* space between buttons */
-    flex-wrap: nowrap !important;
+    flex-wrap: nowrap !important;   /* keep them on one line */
   }
 
+  /* Base button styling */
   .button-row button {
-    flex: 0 0 auto !important;
+    flex: 0 0 auto !important;      /* don’t stretch */
     min-width: 120px !important;
-    margin: 0 !important;
+    margin: 0 !important;           /* reset any global margins */
+  }
+
+  /* ←——  the actual spacing so old Safari works  ——→ */
+  .button-row button + button {     /* every button after the first */
+    margin-left: 1rem !important;   /* 1 rem gap */
   }
 }
 </style>
