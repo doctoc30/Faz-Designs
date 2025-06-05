@@ -321,16 +321,25 @@
     transform: translateX(-50%);
     z-index: 3;
   }
+ 
 @media screen and (orientation: landscape) and (min-width: 768px) {
   nav ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center; /* Optional: center the nav */
-    gap: 2rem; /* Adds spacing between menu items */
+    /* Force horizontal layout */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 2rem !important; /* Space between menu items */
   }
 
   nav ul li {
-    margin: 0; /* Ensure no extra margin interferes */
+    /* Remove default margins that may interfere */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  nav ul li a {
+    /* Optional: add padding for clickable area */
+    padding: 0.5rem 1rem;
   }
 }
  
