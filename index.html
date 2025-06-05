@@ -611,15 +611,15 @@ button {
   </div>
 
   <script>
+   document.addEventListener("DOMContentLoaded", function () {
+  const el = document.getElementById('typewriter');
 
-     const el = document.getElementById('typewriter');
-
-  // Detect landscape or portrait
+  // Use 2 lines for landscape, 5 lines for portrait
   function getLinesForOrientation() {
     const isLandscape = window.matchMedia("(orientation: landscape)").matches;
     return isLandscape
-      ? ["We build custom websites", "for small businesses"] // Landscape: 2 lines
-      : ["We build", "custom", "websites", "for small", "businesses"]; // Portrait: 5 lines
+      ? ["We build custom websites", "for small businesses"]     // 2-line landscape
+      : ["We build", "custom", "websites", "for small", "businesses"]; // 5-line portrait
   }
 
   const lines = getLinesForOrientation();
@@ -655,9 +655,11 @@ button {
     }
   }
 
-  // Clear any previous content
-  el.innerHTML = '';
+  el.innerHTML = ''; // Reset
   typeNextChar();
+});
+
+
 
 
     
