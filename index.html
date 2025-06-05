@@ -418,6 +418,24 @@ button {
     margin-left: 1rem !important;   /* 1 rem gap */
   }
 }
+
+ #typewriter {
+  font-size: 2.5vw;
+  line-height: 1.5;
+  text-align: center;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+.cursor {
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 0; }
+  50% { opacity: 1; }
+}
 </style>
 
 
