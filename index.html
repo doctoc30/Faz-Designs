@@ -432,41 +432,7 @@ button {
   }
 }
 
-   #typewriter {
-    font-family: monospace, monospace;
-    font-size: 2.2vw;
-    line-height: 1.4;
-    max-width: 40vw;
-    white-space: normal;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  /* Cursor blink */
-  .cursor {
-    display: inline-block;
-    background-color: black;
-    width: 2px;
-    animation: blink 1s step-start infinite;
-    margin-left: 2px;
-    vertical-align: bottom;
-  }
-  @keyframes blink {
-    50% { background-color: transparent; }
-  }
-
-  /* Portrait styles */
-  @media screen and (orientation: portrait) {
-    #typewriter {
-      font-size: 4vw;
-      max-width: none;
-      white-space: nowrap;
-      text-align: left;
-    }
-  }
-
- /* ----------  CORE TYPEWRITER STYLES  ---------- */
+/* ---------- CORE TYPEWRITER STYLES ---------- */
 #typewriter {
   position: fixed;
   top: 50%;
@@ -474,125 +440,25 @@ button {
   transform: translate(-50%, -50%);
   width: 90%;
   z-index: 1000;
-  font-family: monospace, monospace;
+  font-family: 'Arial Black', Arial, sans-serif;
   font-weight: 600;
   text-align: center;
   color: white;
-  opacity: 1 !important; /* make sure it's visible */
+  opacity: 1 !important;
   pointer-events: none;
-  
-  /* Strong responsive font size */
-  font-size: clamp(3rem, 8vw, 6rem) !important;
-  line-height: 1.3 !important;
-  max-width: none !important;
-}
-
-/* Landscape tablets & desktops */
-@media (orientation: landscape) and (min-width: 768px) {
-  #typewriter {
-    max-width: 50ch !important;
-    font-size: clamp(3rem, 6vw, 6rem) !important;
-    line-height: 1.3 !important;
-  }
-}
-
-/* Portrait mode */
-@media (orientation: portrait) {
-  #typewriter {
-    max-width: none !important;
-    font-size: clamp(3rem, 7vw, 6rem) !important;
-    line-height: 1.3 !important;
-  }
-}
-  
-
-/* each typed line lives in its own <div> */
-#typewriter .typed-line    { white-space: normal; }
-
-/* blinking cursor */
-.cursor {
-  display: inline-block;
-  width: 2px;
-  background:#fff;
-  animation: blink 1s step-start infinite;
-  vertical-align: bottom;
-  margin-left: 2px;
-}
-@keyframes blink { 50% { background: transparent; } }
-
-/* ----------  LANDSCAPE: force *visual* 3 rows  ---------- */
-@media screen and (orientation: landscape) and (min-width: 768px) {
-  #typewriter {
-    /* tweak these two numbers if you see 2 or 4 lines */
-    max-width: 38ch;       /* narrower = more wraps  */
-    font-size: clamp(1rem, 2.2vw, 2.4rem);
-    line-height: 1.25;
-  }
-}
-
-/* ----------  PORTRAIT: keep original look  ---------- */
-@media screen and (orientation: portrait) {
-  #typewriter {
-    /* no forced width — stays exactly your old two‑line layout */
-    max-width: none;
-    font-size: clamp(1.2rem, 4vw, 2.6rem);
-    line-height: 1.2;
-  }
-}
-#typewriter {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  z-index: 1000;
-  font-family: monospace, monospace;
-  font-weight: 600;
-  text-align: center;
-  color: white;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  /* Bigger, fully responsive font size */
   font-size: clamp(3rem, 8vw, 6rem);
   line-height: 1.3;
-  max-width: none;
+  max-width: 90vw;
 }
 
-/* Landscape mode (tablets & desktop) */
-@media (orientation: landscape) and (min-width: 768px) {
-  #typewriter {
-    max-width: 50ch; /* wider for bigger screens */
-    font-size: clamp(2.5rem, 4vw, 5rem);
-    line-height: 1.3;
-  }
+/* Typed lines inside */
+#typewriter .typed-line {
+  font-size: inherit;
+  margin: 0.1em 0;
+  white-space: normal;
 }
 
-/* Portrait mode (phones and tablets) */
-@media (orientation: portrait) {
-  #typewriter {
-    max-width: none;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 1.3;
-  }
-}
-
-/* force spacing to get exactly 2 lines in portrait, 3 in landscape */
-@media (orientation: portrait) {
-  #typewriter {
-    max-width: none;
-    font-size: clamp(1.2rem, 4vw, 2.6rem);
-    line-height: 1.3;
-  }
-}
-@media (orientation: landscape) {
-  #typewriter {
-    max-width: 38ch;
-    font-size: clamp(1rem, 2.2vw, 2.4rem);
-    line-height: 1.25;
-  }
-}
-
+/* ---------- CURSOR STYLING ---------- */
 .cursor {
   display: inline-block;
   width: 2px;
@@ -606,27 +472,22 @@ button {
   50% { background: transparent; }
 }
 
- header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 500; /* lower than typewriter (1000) */
+/* ---------- LANDSCAPE (tablets + desktops) ---------- */
+@media (orientation: landscape) and (min-width: 768px) {
+  #typewriter {
+    font-size: clamp(3rem, 6vw, 5rem);
+    max-width: 50ch;
+    line-height: 1.3;
+  }
 }
 
- #typewriter {
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 1.2;
-  font-weight: 600;
-  font-family: 'Arial Black', Arial, sans-serif;
-  text-align: center;
-  color: #222;
-  opacity: 1;
-}
-
-#typewriter .typed-line {
-  font-size: inherit; /* inherit size from #typewriter */
-  margin: 0.1em 0;
+/* ---------- PORTRAIT (phones + tablets) ---------- */
+@media (orientation: portrait) {
+  #typewriter {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    max-width: none;
+    line-height: 1.3;
+  }
 }
 </style>
 
