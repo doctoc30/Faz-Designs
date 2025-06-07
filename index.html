@@ -472,7 +472,7 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  max-width: 38ch;
+  max-width: none; /* Remove max-width to avoid limiting font size */
   z-index: 1000;
   font-family: monospace, monospace;
   font-weight: 600;
@@ -482,10 +482,11 @@ button {
   transition: opacity 0.4s ease;
   pointer-events: none;
 
-  /* ✅ Responsive font size */
-  font-size: clamp(1.4rem, 6vw, 3rem);
+  /* Larger responsive font size */
+  font-size: clamp(2.5rem, 8vw, 5rem);
   line-height: 1.3;
 }
+  
 
 /* each typed line lives in its own <div> */
 #typewriter .typed-line    { white-space: normal; }
