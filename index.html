@@ -5,236 +5,225 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Faz Designs</title>
 
- <style>
-/* Reset & base */
-* {
-  margin: 0; padding: 0; box-sizing: border-box;
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #ff3131;
-  color: white;
-  overflow-x: hidden;
-}
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ff3131;
+    color: white;
+    overflow-x: hidden;
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #ff3131;
+    z-index: 2000;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    user-select: none;
+    cursor: default;
+  }
+  .hamburger {
+    width: 28px;
+    height: 22px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2100;
+  }
+  .hamburger span {
+    display: block;
+    height: 3.5px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.35s ease-in-out;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
 
-/* Header */
-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  background-color: #ff3131;
-  z-index: 500; /* below #typewriter */
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-}
-
-.logo {
-  font-weight: 900;
-  font-size: 1.7rem;
-  letter-spacing: 2px;
-  user-select: none;
-  cursor: default;
-}
-
-/* Hamburger menu */
-.hamburger {
-  width: 28px;
-  height: 22px;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 2100;
-}
-.hamburger span {
-  display: block;
-  height: 3.5px;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.35s ease-in-out;
-}
-.hamburger.active span:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
-}
-
-/* Navigation menu */
-nav.menu {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ff3131;
-  transform: translateX(-100%);
-  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 4rem;
-  z-index: 2050;
-}
-nav.menu.open {
-  transform: translateX(0);
-}
-nav.menu ul {
-  list-style: none;
-}
-nav.menu ul li {
-  margin-bottom: 2.2rem;
-  opacity: 0;
-  transform: translateX(-40px);
-  font-weight: 900;
-  font-size: 3rem;
-  letter-spacing: 0.1em;
-}
-nav.menu ul li a {
-  color: white;
-  text-decoration: none;
-  user-select: none;
-  display: inline-block;
-  transition: color 0.3s ease;
-}
-nav.menu ul li a:hover {
-  color: #222;
-}
-nav.menu.open ul li {
-  animation: slideInFade 0.4s forwards;
-}
-nav.menu.open ul li:nth-child(1) {
-  animation-delay: 0.15s;
-}
-nav.menu.open ul li:nth-child(2) {
-  animation-delay: 0.35s;
-}
-nav.menu.open ul li:nth-child(3) {
-  animation-delay: 0.55s;
-}
-nav.menu.open ul li:nth-child(4) {
-  animation-delay: 0.75s;
-}
-nav.menu.open ul li:nth-child(5) {
-  animation-delay: 0.95s;
-}
-@keyframes slideInFade {
-  to {
-    opacity: 1;
+  nav.menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ff3131;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4rem;
+    z-index: 2050;
+  }
+  nav.menu.open {
     transform: translateX(0);
   }
-}
-
-/* Desktop view breakpoint */
-@media (min-width: 1024px) {
-  .hamburger {
-    display: none;
-  }
-  nav.menu {
-    position: static;
-    height: auto;
-    width: auto;
-    background: transparent;
-    transform: none !important;
-    padding-left: 0;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  }
   nav.menu ul {
-    display: flex;
-    gap: 3rem;
+    list-style: none;
   }
   nav.menu ul li {
-    margin: 0;
-    opacity: 1 !important;
-    transform: none !important;
-    font-size: 1.25rem;
-    animation: none !important;
+    margin-bottom: 2.2rem;
+    opacity: 0;
+    transform: translateX(-40px);
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
   }
   nav.menu ul li a {
-    font-weight: 900;
-    font-size: 1.1rem;
     color: white;
-    letter-spacing: 0.15em;
+    text-decoration: none;
+    user-select: none;
+    display: inline-block;
+    transition: color 0.3s ease;
   }
   nav.menu ul li a:hover {
     color: #222;
   }
-}
+  nav.menu.open ul li {
+    animation: slideInFade 0.4s forwards;
+  }
+  nav.menu.open ul li:nth-child(1) {
+    animation-delay: 0.15s;
+  }
+  nav.menu.open ul li:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+  nav.menu.open ul li:nth-child(3) {
+    animation-delay: 0.55s;
+  }
+  nav.menu.open ul li:nth-child(4) {
+    animation-delay: 0.75s;
+  }
+  nav.menu.open ul li:nth-child(5) {
+    animation-delay: 0.95s;
+  }
+  @keyframes slideInFade {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 
-/* Splash + Form base */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-  background: white;
-}
+  /* Desktop view - raised breakpoint to 1024px */
+  @media (min-width: 1024px) {
+    .hamburger {
+      display: none;
+    }
+    nav.menu {
+      position: static;
+      height: auto;
+      width: auto;
+      background: transparent;
+      transform: none !important;
+      padding-left: 0;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    nav.menu ul {
+      display: flex;
+      gap: 3rem;
+    }
+    nav.menu ul li {
+      margin: 0;
+      opacity: 1 !important;
+      transform: none !important;
+      font-size: 1.25rem;
+      animation: none !important;
+    }
+    nav.menu ul li a {
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: white;
+      letter-spacing: 0.15em;
+    }
+    nav.menu ul li a:hover {
+      color: #222;
+    }
+  }
 
-.color-rise {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: white;
-  animation: solidRise 8s ease-in-out forwards;
-  z-index: 0;
-}
+<title>Splash + Form</title>
 
-@keyframes solidRise {
-  0% { background-color: white; }
-  100% { background-color: #ff3131; }
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: white;
+  }
 
-.overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  color: white;
-  text-shadow: 0 0 30px #b30000;
-  z-index: 1;
-  text-align: center;
-  opacity: 0;
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 1.2;
-  white-space: pre-line;
-}
+  .color-rise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    animation: solidRise 8s ease-in-out forwards;
+    z-index: 0;
+  }
 
-/* Rocket Rise Animation */
-@keyframes rocketRise {
-  0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
-  100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
-}
+  @keyframes solidRise {
+    0% { background-color: white; }
+    100% { background-color: #ff3131; }
+  }
 
-/* Typed line */
-.typed-line {
-  display: block;
-}
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 30px #b30000;
+    z-index: 1;
+    text-align: center;
+    opacity: 0;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.2;
+    white-space: pre-line;
+  }
 
-/* Cursor blinking */
-.cursor {
-  display: inline-block;
-  width: 1ch;
-  animation: blink 0.8s infinite;
-}
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
+  @keyframes rocketRise {
+    0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
+    100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
+  }
 
-/* Form screen */
+  .typed-line { display: block; }
+
+  .cursor {
+    display: inline-block;
+    width: 1ch;
+    animation: blink 0.8s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
 .form-screen {
   position: absolute;
   top: 70%;
@@ -255,106 +244,338 @@ html, body {
   z-index: 2;
   overflow-y: auto;
 }
-.form-screen.active {
-  display: flex;
-}
-.form-screen h2 {
-  font-size: 1.8rem;
-  margin-bottom: 3rem;
-  max-width: 500px;
-  line-height: 1.4;
-}
-select, input[type="text"], input[type="email"] {
-  padding: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  width: 80%;
-  max-width: 400px;
-  cursor: pointer;
-  appearance: none;
-  background-color: white;
-  color: #333;
-  height: 3.5rem;
-  padding-right: 2.5rem;
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1rem;
-  font-family: inherit;
-}
-select {
-  background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-}
-input[type="text"],
-input[type="email"] {
-  background-image: none;
-  cursor: text;
-}
 
-/* Button row */
+  .form-screen.active { display: flex; }
+
+  .form-screen h2 {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    max-width: 500px;
+    line-height: 1.4;
+  }
+
+  select, input[type="text"], input[type="email"] {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    width: 80%;
+    max-width: 400px;
+    cursor: pointer;
+    appearance: none;
+    background-color: white;
+    color: #333;
+    height: 3.5rem;
+    padding-right: 2.5rem;
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    font-family: inherit;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    background-image: none;
+    cursor: text;
+  }
+
 .button-row {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem; /* Increased spacing */
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-button {
-  background: white;
-  color: #ff3131;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  box-sizing: border-box;
-  transition: background 0.3s ease;
-  min-width: 140px; /* Further ensures button sizing */
-}
-button:hover {
-  background: #e60000;
-  color: white;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem; /* Increased spacing */
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
-/* Typewriter text styling */
+button {
+    background: white;
+    color: #ff3131;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: background 0.3s ease;
+    min-width: 140px; /* Further ensures button sizing */
+}
+
+  button:hover {
+    background: #e60000;
+    color: white;
+  }
+
+  .skip-link {
+    background: transparent;
+    color: white;
+    text-decoration: underline;
+    margin-top: 4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+ 
+@media screen and (orientation: landscape) and (min-width: 768px) {
+  nav ul {
+    /* Force horizontal layout */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 2rem !important; /* Space between menu items */
+  }
+
+  nav ul li {
+    /* Remove default margins that may interfere */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  nav ul li a {
+    /* Optional: add padding for clickable area */
+    padding: 0.5rem 1rem;
+  }
+}
+ 
+    .form-screen {
+      justify-content: flex-start;
+      padding-top: 6rem;
+      height: calc(100vh - 6rem);
+    }
+    select, input[type="text"], input[type="email"] {
+      width: 60%;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .form-screen h2 {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+    }
+    select, input[type="text"], input[type="email"] {
+      width: 100%;
+      font-size: 0.95rem;
+      padding: 0.9rem;
+    }
+  }
+
+
+ /* Default for tablet & desktop */
+.overlay-text {
+  font-size: calc(6vw + 0.5rem) !important;
+}
+
+/* Slightly larger on smaller screens (phones) */
+@media screen and (max-width: 480px) {
+  .overlay-text {
+    font-size: calc(8vw + 0.5rem) !important;
+  }
+}
+
+
+@media screen and (orientation: landscape) {
+  .typewriter-text {
+    font-size: 2vw !important;
+    line-height: 1.2 !important;
+    max-width: 90vw;
+    white-space: normal !important;
+    display: block;
+  }
+}
+
+ /* 600 – 1024 px ≈ most tablets */
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+
+  /* Make the row a flex container */
+  .button-row {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;   /* keep them on one line */
+  }
+
+  /* Base button styling */
+  .button-row button {
+    flex: 0 0 auto !important;      /* don’t stretch */
+    min-width: 120px !important;
+    margin: 0 !important;           /* reset any global margins */
+  }
+
+  /* ←——  the actual spacing so old Safari works  ——→ */
+  .button-row button + button {     /* every button after the first */
+    margin-left: 1rem !important;   /* 1 rem gap */
+  }
+}
+
+ @media screen and (orientation: landscape) and (min-width: 768px) {
+  .typewriter-text {
+    font-size: 2.2vw !important;
+    line-height: 1.4 !important;
+    max-width: 40vw !important;
+    white-space: normal !important;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+   #typewriter {
+    font-family: monospace, monospace;
+    font-size: 2.2vw;
+    line-height: 1.4;
+    max-width: 40vw;
+    white-space: normal;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  /* Cursor blink */
+  .cursor {
+    display: inline-block;
+    background-color: black;
+    width: 2px;
+    animation: blink 1s step-start infinite;
+    margin-left: 2px;
+    vertical-align: bottom;
+  }
+  @keyframes blink {
+    50% { background-color: transparent; }
+  }
+
+  /* Portrait styles */
+  @media screen and (orientation: portrait) {
+    #typewriter {
+      font-size: 4vw;
+      max-width: none;
+      white-space: nowrap;
+      text-align: left;
+    }
+  }
+
+ /* ----------  CORE TYPEWRITER STYLES  ---------- */
 #typewriter {
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
-  font-size: clamp(5rem, 15vw, 11rem);
+  width: 90%;
+  max-width: none; /* Remove max-width to avoid limiting font size */
+  z-index: 1000;
+  font-family: monospace, monospace;
+  font-weight: 600;
+  text-align: center;
   color: white;
-  opacity: 0; /* Initially hidden, fade in controlled via JS */
-  letter-spacing: 0.1em;
-  white-space: nowrap;
-  z-index: 2000;
-  user-select: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
   pointer-events: none;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
-}
 
-/* Landscape small screen adjustments */
-@media (max-width: 640px) and (orientation: landscape) {
+  /* Larger responsive font size */
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1.3;
+}
+  
+
+/* each typed line lives in its own <div> */
+#typewriter .typed-line    { white-space: normal; }
+
+/* blinking cursor */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background:#fff;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
+}
+@keyframes blink { 50% { background: transparent; } }
+
+/* ----------  LANDSCAPE: force *visual* 3 rows  ---------- */
+@media screen and (orientation: landscape) and (min-width: 768px) {
   #typewriter {
-    font-size: clamp(3.5rem, 10vw, 6.5rem);
-    top: 45%;
+    /* tweak these two numbers if you see 2 or 4 lines */
+    max-width: 38ch;       /* narrower = more wraps  */
+    font-size: clamp(1rem, 2.2vw, 2.4rem);
+    line-height: 1.25;
   }
 }
 
-/* Portrait phone adjustment */
-@media (max-width: 400px) and (orientation: portrait) {
+/* ----------  PORTRAIT: keep original look  ---------- */
+@media screen and (orientation: portrait) {
   #typewriter {
-    font-size: clamp(4rem, 12vw, 7rem);
-    top: 42%;
+    /* no forced width — stays exactly your old two‑line layout */
+    max-width: none;
+    font-size: clamp(1.2rem, 4vw, 2.6rem);
+    line-height: 1.2;
   }
+}
+
+ #typewriter {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  z-index: 1000;
+  font-family: monospace, monospace;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* force spacing to get exactly 2 lines in portrait, 3 in landscape */
+@media (orientation: portrait) {
+  #typewriter {
+    max-width: none;
+    font-size: clamp(1.2rem, 4vw, 2.6rem);
+    line-height: 1.3;
+  }
+}
+@media (orientation: landscape) {
+  #typewriter {
+    max-width: 38ch;
+    font-size: clamp(1rem, 2.2vw, 2.4rem);
+    line-height: 1.25;
+  }
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background: white;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { background: transparent; }
+}
+
+ header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 500; /* lower than typewriter (1000) */
 }
 </style>
-
 
 </head>
 <body>
