@@ -465,6 +465,51 @@ button {
     }
   }
 
+ /* ----------  CORE TYPEWRITER STYLES  ---------- */
+#typewriter {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-family: monospace, monospace;
+  font-weight: 600;
+  color: #fff;               /* or your brand colour */
+  opacity: 0;                /* JS flips to 1 */
+  transition: opacity .4s ease;
+}
+
+/* each typed line lives in its own <div> */
+#typewriter .typed-line    { white-space: normal; }
+
+/* blinking cursor */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background:#fff;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
+}
+@keyframes blink { 50% { background: transparent; } }
+
+/* ----------  LANDSCAPE: force *visual* 3 rows  ---------- */
+@media screen and (orientation: landscape) and (min-width: 768px) {
+  #typewriter {
+    /* tweak these two numbers if you see 2 or 4 lines */
+    max-width: 38ch;       /* narrower = more wraps  */
+    font-size: clamp(1rem, 2.2vw, 2.4rem);
+    line-height: 1.25;
+  }
+}
+
+/* ----------  PORTRAIT: keep original look  ---------- */
+@media screen and (orientation: portrait) {
+  #typewriter {
+    /* no forced width — stays exactly your old two‑line layout */
+    max-width: none;
+    font-size: clamp(1.2rem, 4vw, 2.6rem);
+    line-height: 1.2;
+  }
+}
 </style>
 
 
