@@ -623,15 +623,25 @@ button {
   </div>
 
   <script>
-   
-     const el = document.getElementById('typewriter');
-    const lines = ["We build custom websites", "for small businesses"];
-    const typingSpeed = 100;
-    const lineDelay = 500;
-    let currentLine = 0, currentChar = 0, lineEl = null;
-    const cursor = document.createElement('span');
-    cursor.classList.add('cursor');
-    cursor.textContent = '|';
+const el = document.getElementById('typewriter');
+const fullText = "We build custom websites for small businesses";
+const typingSpeed = 100;
+let currentChar = 0;
+
+const cursor = document.createElement('span');
+cursor.classList.add('cursor');
+cursor.textContent = '|';
+el.appendChild(cursor);
+
+function typeCharacter() {
+  if (currentChar < fullText.length) {
+    cursor.before(fullText.charAt(currentChar));
+    currentChar++;
+    setTimeout(typeCharacter, typingSpeed);
+  }
+}
+
+typeCharacter();
 
 
     
