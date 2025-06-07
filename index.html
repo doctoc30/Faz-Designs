@@ -430,6 +430,39 @@ button {
     margin: 0 auto;
   }
 }
+
+   #typewriter {
+    font-size: 2.2vw;
+    line-height: 1.4;
+    max-width: 40vw;
+    white-space: normal;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    font-family: monospace, monospace;
+  }
+  /* Cursor blink */
+  .cursor {
+    display: inline-block;
+    background-color: black;
+    width: 2px;
+    animation: blink 1s step-start infinite;
+    margin-left: 2px;
+    vertical-align: bottom;
+  }
+  @keyframes blink {
+    50% { background-color: transparent; }
+  }
+
+  @media screen and (orientation: portrait) {
+    #typewriter {
+      font-size: 4vw;
+      max-width: none;
+      white-space: nowrap;
+      text-align: left;
+    }
+  }
+
 </style>
 
 
@@ -622,29 +655,31 @@ button {
     <a href='index.html' class="skip-link">Skip to Homepage</a>
   </div>
 
+
+ 
   <script>
-const el = document.getElementById('typewriter');
-const fullText = "We build custom websites for small businesses";
-const typingSpeed = 100;
-let currentChar = 0;
+   
+  const el = document.getElementById('typewriter');
+  const fullText = "We build custom websites for small businesses";
+  const typingSpeed = 100;
+  let currentChar = 0;
 
-const cursor = document.createElement('span');
-cursor.classList.add('cursor');
-cursor.textContent = '|';
-el.appendChild(cursor);
+  // Create cursor element
+  const cursor = document.createElement('span');
+  cursor.classList.add('cursor');
+  el.appendChild(cursor);
 
-function typeCharacter() {
-  if (currentChar < fullText.length) {
-    cursor.before(fullText.charAt(currentChar));
-    currentChar++;
-    setTimeout(typeCharacter, typingSpeed);
+  function typeCharacter() {
+    if (currentChar < fullText.length) {
+      // Insert character before cursor
+      cursor.insertAdjacentText('beforebegin', fullText.charAt(currentChar));
+      currentChar++;
+      setTimeout(typeCharacter, typingSpeed);
+    }
   }
-}
 
-typeCharacter();
+  typeCharacter();
 
-
-    
 
     function typeChar() {
       if (currentLine >= lines.length) {
