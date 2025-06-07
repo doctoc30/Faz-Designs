@@ -658,16 +658,10 @@ button {
     <a href='index.html' class="skip-link">Skip to Homepage</a>
   </div>
 
-
- 
-  <script>
- 
+ <script>
 const el = document.getElementById('typewriter');
-const lines = [
-  "We build custom",
-  "websites for",
-  "small businesses"
-];
+
+let lines = [];
 const typingSpeed = 100;
 const lineDelay = 500;
 let currentLine = 0;
@@ -677,6 +671,26 @@ let lineEl = null;
 const cursor = document.createElement('span');
 cursor.classList.add('cursor');
 el.appendChild(cursor);
+
+function setLinesByOrientation() {
+  if(window.matchMedia("(orientation: landscape)").matches) {
+    // Landscape - 3 lines
+    lines = [
+      "We build custom",
+      "websites for",
+      "small businesses"
+    ];
+  } else {
+    // Portrait - 5 lines
+    lines = [
+      "We build",
+      "custom",
+      "websites",
+      "for small",
+      "businesses"
+    ];
+  }
+}
 
 function typeChar() {
   if (currentLine >= lines.length) {
@@ -709,57 +723,71 @@ function typeChar() {
   }
 }
 
+// Initialize lines based on current orientation
+setLinesByOrientation();
 el.style.opacity = 1;
 typeChar();
- 
 
+// Handle orientation/resize changes — reset and restart typing
+window.addEventListener('resize', () => {
+  currentLine = 0;
+  currentChar = 0;
+  lineEl = null;
+  el.textContent = ''; // Clear existing text
 
-  
+  el.appendChild(cursor); // Re-add cursor
 
-    let step = 0;
-    function next() {
-      const current = document.getElementById(`q${step}`);
-      if (current) current.classList.remove('active');
-      step++;
-      const nextStep = document.getElementById(`q${step}`);
-      if (nextStep) nextStep.classList.add('active');
-      else alert('Form complete or no more steps');
-    }
+  setLinesByOrientation();
+  el.style.opacity = 1;
+  typeChar();
+});
 
-    function prev() {
-      const current = document.getElementById(`q${step}`);
-      if (current) current.classList.remove('active');
-      step--;
-      const prevStep = document.getElementById(`q${step}`);
-      if (prevStep) prevStep.classList.add('active');
-    }
+// --- Your existing form navigation & hamburger menu code ---
 
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('nav.menu');
+let step = 0;
+function next() {
+  const current = document.getElementById(`q${step}`);
+  if (current) current.classList.remove('active');
+  step++;
+  const nextStep = document.getElementById(`q${step}`);
+  if (nextStep) nextStep.classList.add('active');
+  else alert('Form complete or no more steps');
+}
 
-  function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+function prev() {
+  const current = document.getElementById(`q${step}`);
+  if (current) current.classList.remove('active');
+  step--;
+  const prevStep = document.getElementById(`q${step}`);
+  if (prevStep) prevStep.classList.add('active');
+}
+
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('nav.menu');
+
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  menu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', toggleMenu);
+hamburger.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    toggleMenu();
   }
+});
 
-  hamburger.addEventListener('click', toggleMenu);
-  hamburger.addEventListener('keydown', e => {
-    if(e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
+menu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    if(menu.classList.contains('open')) {
       toggleMenu();
     }
   });
-
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if(menu.classList.contains('open')) {
-        toggleMenu();
-      }
-    });
-  });
+});
 </script>
 </body>
 </html>
