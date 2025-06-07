@@ -613,6 +613,21 @@ button {
   width: 100%;
   z-index: 500; /* lower than typewriter (1000) */
 }
+
+ #typewriter {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: 'Arial Black', Arial, sans-serif;
+  text-align: center;
+  color: #222;
+  opacity: 1;
+}
+
+#typewriter .typed-line {
+  font-size: inherit; /* inherit size from #typewriter */
+  margin: 0.1em 0;
+}
 </style>
 
 </head>
