@@ -662,24 +662,55 @@ button {
  
   <script>
  
-    const el = document.getElementById('typewriter');
-    const fullText = "We build custom websites for small businesses";
-    const typingSpeed = 100;
-    let currentChar = 0;
+const el = document.getElementById('typewriter');
+const lines = [
+  "We build custom",
+  "websites for",
+  "small businesses"
+];
+const typingSpeed = 100;
+const lineDelay = 500;
+let currentLine = 0;
+let currentChar = 0;
+let lineEl = null;
 
-    const cursor = document.createElement('span');
-    cursor.classList.add('cursor');
-    el.appendChild(cursor);
+const cursor = document.createElement('span');
+cursor.classList.add('cursor');
+el.appendChild(cursor);
 
-    function typeCharacter() {
-      if (currentChar < fullText.length) {
-        cursor.insertAdjacentText('beforebegin', fullText.charAt(currentChar));
-        currentChar++;
-        setTimeout(typeCharacter, typingSpeed);
-      }
-    }
+function typeChar() {
+  if (currentLine >= lines.length) {
+    cursor.remove();
+    setTimeout(() => {
+      el.style.animation = 'rocketRise 2s ease forwards';
+      setTimeout(() => document.getElementById('q0').classList.add('active'), 2500);
+    }, 1500);
+    return;
+  }
 
-    typeCharacter();
+  const text = lines[currentLine];
+  if (!lineEl) {
+    lineEl = document.createElement('div');
+    lineEl.classList.add('typed-line');
+    el.appendChild(lineEl);
+    lineEl.appendChild(cursor);
+  }
+
+  if (currentChar < text.length) {
+    const char = document.createTextNode(text[currentChar]);
+    lineEl.insertBefore(char, cursor);
+    currentChar++;
+    setTimeout(typeChar, typingSpeed);
+  } else {
+    currentLine++;
+    currentChar = 0;
+    lineEl = null;
+    setTimeout(typeChar, lineDelay);
+  }
+}
+
+el.style.opacity = 1;
+typeChar();
  
 
 
