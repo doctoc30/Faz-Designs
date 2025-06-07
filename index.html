@@ -714,39 +714,7 @@ typeChar();
  
 
 
-    function typeChar() {
-      if (currentLine >= lines.length) {
-        cursor.remove();
-        setTimeout(() => {
-          el.style.animation = 'rocketRise 2s ease forwards';
-          setTimeout(() => document.getElementById('q0').classList.add('active'), 2500);
-        }, 1500);
-        return;
-      }
-
-      const text = lines[currentLine];
-      if (!lineEl) {
-        lineEl = document.createElement('div');
-        lineEl.classList.add('typed-line');
-        el.appendChild(lineEl);
-        lineEl.appendChild(cursor);
-      }
-
-      if (currentChar < text.length) {
-        const char = document.createTextNode(text[currentChar]);
-        lineEl.insertBefore(char, cursor);
-        currentChar++;
-        setTimeout(typeChar, typingSpeed);
-      } else {
-        currentLine++; currentChar = 0; lineEl = null;
-        setTimeout(typeChar, lineDelay);
-      }
-    }
-
-    setTimeout(() => {
-      el.style.opacity = 1;
-      typeChar();
-    }, 5000);
+  
 
     let step = 0;
     function next() {
