@@ -432,6 +432,7 @@ button {
 }
 
    #typewriter {
+    font-family: monospace, monospace;
     font-size: 2.2vw;
     line-height: 1.4;
     max-width: 40vw;
@@ -439,8 +440,8 @@ button {
     display: block;
     text-align: center;
     margin: 0 auto;
-    font-family: monospace, monospace;
   }
+
   /* Cursor blink */
   .cursor {
     display: inline-block;
@@ -454,6 +455,7 @@ button {
     50% { background-color: transparent; }
   }
 
+  /* Portrait styles */
   @media screen and (orientation: portrait) {
     #typewriter {
       font-size: 4vw;
@@ -659,27 +661,26 @@ button {
 
  
   <script>
-   
-  const el = document.getElementById('typewriter');
-  const fullText = "We build custom websites for small businesses";
-  const typingSpeed = 100;
-  let currentChar = 0;
+ 
+    const el = document.getElementById('typewriter');
+    const fullText = "We build custom websites for small businesses";
+    const typingSpeed = 100;
+    let currentChar = 0;
 
-  // Create cursor element
-  const cursor = document.createElement('span');
-  cursor.classList.add('cursor');
-  el.appendChild(cursor);
+    const cursor = document.createElement('span');
+    cursor.classList.add('cursor');
+    el.appendChild(cursor);
 
-  function typeCharacter() {
-    if (currentChar < fullText.length) {
-      // Insert character before cursor
-      cursor.insertAdjacentText('beforebegin', fullText.charAt(currentChar));
-      currentChar++;
-      setTimeout(typeCharacter, typingSpeed);
+    function typeCharacter() {
+      if (currentChar < fullText.length) {
+        cursor.insertAdjacentText('beforebegin', fullText.charAt(currentChar));
+        currentChar++;
+        setTimeout(typeCharacter, typingSpeed);
+      }
     }
-  }
 
-  typeCharacter();
+    typeCharacter();
+ 
 
 
     function typeChar() {
