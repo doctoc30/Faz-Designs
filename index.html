@@ -477,23 +477,26 @@ input[type="email"] {
   }
 }
 
-  /* ---------- iPhone Landscape Final Fix ---------- */
+ /* ---------- iPhone Landscape Final Fix ---------- */
 @media screen and (max-width: 812px) and (orientation: landscape) {
   #typewriter {
-    top: 70% !important;
-    transform: translate(-50%, -50%) !important;
-    font-size: clamp(1.8rem, 4vw, 3rem) !important;
-    line-height: 1.1 !important;
-    max-width: 85vw !important;
+    position: absolute !important;
+    top: 6.5rem !important; /* Directly below typical header height */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: clamp(1.8rem, 3vw, 3rem) !important;
+    line-height: 1.2 !important;
+    max-width: 90vw !important;
+    z-index: 999 !important;
   }
 
   .typewriter-text {
     font-size: clamp(1.1rem, 2.5vw, 1.8rem) !important;
     line-height: 1.2 !important;
-    max-width: 80vw !important;
+    max-width: 85vw !important;
   }
 }
-
+ 
 </style>
 
 </head>
