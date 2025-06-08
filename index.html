@@ -419,7 +419,23 @@ input[type="email"] {
   }
 }
   
+/* 🚨 Fix: make type larger on portrait phones & tablets */
+@media screen and (orientation: portrait) {
+  #typewriter {
+    font-size: clamp(3.5rem, 8vw, 6rem) !important;
+    max-width: 95vw !important;
+    line-height: 1.3 !important;
+  }
 
+  .typewriter-text {
+    font-size: clamp(2rem, 6.5vw, 4rem) !important;
+    max-width: 95vw !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    white-space: normal !important;
+  }
+}
 
 
 
