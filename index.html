@@ -478,7 +478,13 @@ input[type="email"] {
 }
 
   
-
+/* ---------- iPhone Landscape Fix (max-height triggers narrow screens) ---------- */
+@media screen and (max-width: 812px) and (orientation: landscape) {
+  #typewriter {
+    top: 60% !important;
+    transform: translate(-50%, -50%);
+  }
+}
 
 </style>
 
