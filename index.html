@@ -477,12 +477,19 @@ input[type="email"] {
   }
 }
 
-  
-/* ---------- iPhone Landscape Fix (max-height triggers narrow screens) ---------- */
+  /* ---------- iPhone Landscape Final Fix ---------- */
 @media screen and (max-width: 812px) and (orientation: landscape) {
   #typewriter {
     top: 60% !important;
-    transform: translate(-50%, -50%);
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
+    line-height: 1.2 !important;
+    max-width: 90vw !important;
+  }
+
+  .typewriter-text {
+    font-size: clamp(1.2rem, 3vw, 2rem) !important;
+    line-height: 1.2 !important;
+    max-width: 85vw !important;
   }
 }
 
