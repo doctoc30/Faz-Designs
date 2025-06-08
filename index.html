@@ -401,23 +401,7 @@ input[type="email"] {
 }
 
 
-/* 🚨 Final fix: make text bigger on landscape tablets */
-@media screen and (orientation: landscape) and (min-width: 768px) and (max-width: 1024px) {
-  #typewriter {
-    font-size: 5.5rem !important;
-    max-width: 90vw !important;
-    line-height: 1.3 !important;
-  }
 
-  .typewriter-text {
-    font-size: 3.5rem !important;
-    max-width: 90vw !important;
-    line-height: 1.4 !important;
-    text-align: center !important;
-    margin: 0 auto !important;
-    white-space: normal !important;
-  }
-}
   
 /* ✅ Final Portrait Fix: Phones + Tablets */
 @media screen and (orientation: portrait) {
@@ -438,7 +422,23 @@ input[type="email"] {
 }
 
 
+/* ✅ Tablet-specific portrait boost (768px–1024px height) */
+@media screen and (orientation: portrait) and (min-width: 600px) and (max-width: 1024px) {
+  #typewriter {
+    font-size: clamp(5rem, 9vw, 8rem) !important;
+    max-width: 90vw !important;
+    line-height: 1.3 !important;
+  }
 
+  .typewriter-text {
+    font-size: clamp(3rem, 7.5vw, 6rem) !important;
+    max-width: 85vw !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+}
 
 
 </style>
