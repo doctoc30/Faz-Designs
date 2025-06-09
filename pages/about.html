@@ -1,1 +1,17 @@
+<div id="header-include"></div>
 
+<script>
+  fetch("../header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header-include").innerHTML = data;
+    });
+
+  fetch("../footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer-include").innerHTML = data;
+    });
+</script>
+
+<div id="footer-include"></div>
