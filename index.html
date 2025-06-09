@@ -494,14 +494,20 @@ input[type="email"] {
   }
 }
 
- .button-row {
-    display: flex;
+/* Tablet: Ensure space between buttons */
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .button-row {
+    gap: 3rem;         /* Increase spacing */
+    flex-wrap: wrap;   /* Allow buttons to wrap to next line if needed */
     justify-content: center;
-    gap: 2.5rem; /* Increased spacing */
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 2rem;
+  }
+
+  .button-row button {
+    min-width: 140px;  /* Prevent buttons from shrinking too much */
+    margin: 0.5rem 1rem; /* Extra spacing around each button */
+  }
 }
+
 </style>
 
 </head>
