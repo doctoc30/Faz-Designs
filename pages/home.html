@@ -508,6 +508,125 @@ input[type="email"] {
   }
 }
 
+ body, html {
+  margin: 0;
+  padding: 0;
+  background: white;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+.hero-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 30px;
+  background: white;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar input {
+  padding: 10px 15px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+#splash-background {
+  background: url('red-milk-splash.png') center/cover no-repeat;
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  transform: scale(1.1);
+  animation: splashZoom 3s ease-in forwards;
+  z-index: 1;
+}
+
+.agency-title {
+  font-size: 4rem;
+  color: #cc0000;
+  opacity: 0;
+  transform: rotateX(90deg);
+  animation: revealText 2s 2.5s forwards;
+  z-index: 2;
+  text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+}
+
+@keyframes splashZoom {
+  0% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes revealText {
+  to {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+#local-niches {
+  padding: 100px 20px;
+  background: #f8f8f8;
+  text-align: center;
+}
+
+.niche-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: 40px auto 0;
+}
+
+.niche-grid a {
+  display: block;
+  padding: 12px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.niche-grid a:hover {
+  background: #cc0000;
+  color: white;
+}
+
 </style>
 
 </head>
@@ -528,7 +647,46 @@ input[type="email"] {
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
+
+  <header class="hero-header">
+  <div class="search-bar">
+    <input type="text" placeholder="Search local business niche...">
+    <button type="submit">Search</button>
+  </div>
 </header> 
+
+
+
+<section id="hero">
+  <div id="splash-background"></div>
+  <h1 class="agency-title">RedMilk Creative</h1>
+</section>
+
+<section id="local-niches">
+  <h2>Explore Local Niches</h2>
+  <div class="niche-grid">
+    <a href="#">Plumber</a>
+    <a href="#">Electrician</a>
+    <a href="#">Landscaper</a>
+    <a href="#">Painter</a>
+    <a href="#">Contractor</a>
+    <a href="#">Dentist</a>
+    <a href="#">Chiropractor</a>
+    <a href="#">HVAC</a>
+    <a href="#">Auto Repair</a>
+    <a href="#">Roofing</a>
+    <a href="#">Cleaning</a>
+    <a href="#">Lawn Care</a>
+    <a href="#">Pest Control</a>
+    <a href="#">Security</a>
+    <a href="#">Moving Services</a>
+    <a href="#">Photographer</a>
+    <a href="#">Bakery</a>
+    <a href="#">Catering</a>
+    <a href="#">Fitness Coach</a>
+    <a href="#">Real Estate Agent</a>
+  </div>
+</section>
 
   <div class="color-rise"></div>
  <div id="typewriter"></div>
@@ -702,6 +860,19 @@ input[type="email"] {
   </div>
 
  <script>
+
+  
+  // Smooth scroll (optional)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.onclick = function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    };
+  });
+
+  
 const el = document.getElementById('typewriter');
 
 let lines = [];
