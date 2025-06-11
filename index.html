@@ -840,6 +840,15 @@ homeLink.addEventListener('click', (e) => {
   }
 });
 
+  document.querySelectorAll('nav.menu a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    if (window.location.href === link.href) {
+      e.preventDefault();
+      window.location.reload();
+    }
+  });
+});
+
 </script>
 </body>
 </html>
