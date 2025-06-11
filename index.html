@@ -831,21 +831,20 @@ menu.querySelectorAll('a').forEach(link => {
   });
 });
 
-
-  let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    currentLine = 0;
-    currentChar = 0;
-    lineEl = null;
-    el.textContent = ''; // Clear existing text
-    el.appendChild(cursor); // Re-add cursor
-    setLinesByOrientation();
-    el.style.opacity = 1;
-    typeChar();
-  }, 200);
+  menu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', e => {
+    if(menu.classList.contains('open')) {
+      toggleMenu(); // close menu if open
+    }
+    // If user clicks the link for the page already loaded, force reload:
+    if(link.href === window.location.href) {
+      e.preventDefault();
+      window.location.reload();
+    }
+  });
 });
+
+
 </script>
 </body>
 </html>
