@@ -831,19 +831,14 @@ menu.querySelectorAll('a').forEach(link => {
   });
 });
 
-  menu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', e => {
-    if(menu.classList.contains('open')) {
-      toggleMenu(); // close menu if open
-    }
-    // If user clicks the link for the page already loaded, force reload:
-    if(link.href === window.location.href) {
-      e.preventDefault();
-      window.location.reload();
-    }
-  });
-});
+ const homeLink = document.querySelector('nav.menu a[href$="/home.html"]');
 
+homeLink.addEventListener('click', (e) => {
+  if (window.location.href === homeLink.href) {
+    e.preventDefault();
+    window.location.reload();
+  }
+});
 
 </script>
 </body>
