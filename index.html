@@ -833,23 +833,18 @@ menu.querySelectorAll('a').forEach(link => {
   });
 });
 
- const homeLink = document.querySelector('nav.menu a[href$="/home.html"]');
-
-homeLink.addEventListener('click', (e) => {
-  if (window.location.href === homeLink.href) {
-    e.preventDefault();
-    window.location.reload();
-  }
-});
-
   document.querySelectorAll('nav.menu a').forEach(link => {
   link.addEventListener('click', (e) => {
-    if (window.location.href === link.href) {
-      e.preventDefault();
-      window.location.reload();
+    const currentPath = window.location.pathname;
+    const linkPath = new URL(link.href).pathname;
+
+    if (currentPath === linkPath) {
+      e.preventDefault();         // Stop default navigation
+      window.location.reload();   // Force reload if it's the same page
     }
   });
 });
+
 
 </script>
 </body>
