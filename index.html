@@ -830,6 +830,22 @@ menu.querySelectorAll('a').forEach(link => {
     }
   });
 });
+
+
+  let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    currentLine = 0;
+    currentChar = 0;
+    lineEl = null;
+    el.textContent = ''; // Clear existing text
+    el.appendChild(cursor); // Re-add cursor
+    setLinesByOrientation();
+    el.style.opacity = 1;
+    typeChar();
+  }, 200);
+});
 </script>
 </body>
 </html>
