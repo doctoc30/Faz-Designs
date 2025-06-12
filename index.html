@@ -842,7 +842,7 @@ menu.querySelectorAll('a').forEach(link => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
-
+🔥
   
 // Close menu when clicking outside
 document.addEventListener('click', (event) => {
@@ -858,6 +858,19 @@ document.addEventListener('click', (event) => {
   document.addEventListener('click', (event) => {
     console.log('Clicked:', event.target);
 });
+
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+
+    if (!isOpen) {
+        menu.classList.remove('open');
+        hamburger.classList.remove('active');
+    }
+}
 </script>
 </body>
 </html>
