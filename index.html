@@ -823,43 +823,14 @@ hamburger.addEventListener('keydown', e => {
     e.preventDefault();
     toggleMenu();
   }
-});
 
 menu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     if(menu.classList.contains('open')) {
       toggleMenu();
     }
-  });
-});
+ 
 
-  
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('.menu');
-
-  if (hamburger && menu) {
-    // Toggle menu open/close
-    hamburger.addEventListener('click', () => {
-      const isOpen = hamburger.classList.toggle('active');
-      menu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-      menu.setAttribute('aria-hidden', !isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    // Close menu when a link is clicked
-    document.querySelectorAll('nav.menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (menu.classList.contains('open')) {
-          menu.classList.remove('open');
-          hamburger.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', false);
-          menu.setAttribute('aria-hidden', true);
-          document.body.style.overflow = '';
-        }
-      });
-    });
-  }
 </script>
 </body>
 </html>
