@@ -806,32 +806,7 @@ function prev() {
   if (prevStep) prevStep.classList.add('active');
 }
 
-const hamburger = document.querySelector('.hamburger');
-const menu = document.querySelector('nav.menu');
 
-function toggleMenu() {
-  const isOpen = menu.classList.toggle('open');
-  hamburger.classList.toggle('active');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  menu.setAttribute('aria-hidden', !isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-
-hamburger.addEventListener('click', toggleMenu);
-hamburger.addEventListener('keydown', e => {
-  if(e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    toggleMenu();
-  }
-});
-
-menu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    if(menu.classList.contains('open')) {
-      toggleMenu();
-    }
-  });
-});
 
 
   function toggleMenu() {
@@ -842,24 +817,11 @@ menu.querySelectorAll('a').forEach(link => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
-🔥
-  
-// Close menu when clicking outside
-document.addEventListener('click', (event) => {
-    if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-        menu.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', false);
-        menu.setAttribute('aria-hidden', true);
-        document.body.style.overflow = '';
-    }
-});
 
-  document.addEventListener('click', (event) => {
-    console.log('Clicked:', event.target);
-});
+  const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('nav.menu');
 
-  function toggleMenu() {
+function toggleMenu() {
     const isOpen = menu.classList.toggle('open');
     hamburger.classList.toggle('active');
     hamburger.setAttribute('aria-expanded', isOpen);
@@ -871,6 +833,29 @@ document.addEventListener('click', (event) => {
         hamburger.classList.remove('active');
     }
 }
+
+// Attach event listeners
+hamburger.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent click conflicts
+    toggleMenu();
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+    if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+        menu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', false);
+        menu.setAttribute('aria-hidden', true);
+        document.body.style.overflow = '';
+    }
+});
+
+// Debugging: Log clicks to confirm event triggers
+document.addEventListener('click', (event) => {
+    console.log('Clicked:', event.target);
+});
+
 </script>
 </body>
 </html>
