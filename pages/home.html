@@ -181,60 +181,9 @@
 
   
 <script>
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('.menu');
-
-  if (hamburger && menu) {
-    // Toggle menu open/close
-    hamburger.addEventListener('click', () => {
-      const isOpen = hamburger.classList.toggle('active');
-      menu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-      menu.setAttribute('aria-hidden', !isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    // Close menu when a link is clicked
-    document.querySelectorAll('nav.menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (menu.classList.contains('open')) {
-          menu.classList.remove('open');
-          hamburger.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', false);
-          menu.setAttribute('aria-hidden', true);
-          document.body.style.overflow = '';
-        }
-      });
-    });
-  }
+ 
 
   
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('.menu');
-
-  if (hamburger && menu) {
-    hamburger.addEventListener('click', () => {
-      const isOpen = hamburger.classList.toggle('active');
-      menu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-      menu.setAttribute('aria-hidden', !isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    // Close the menu when any nav link is clicked
-    document.querySelectorAll('nav.menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (menu.classList.contains('open')) {
-          menu.classList.remove('open');
-          hamburger.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', false);
-          menu.setAttribute('aria-hidden', true);
-          document.body.style.overflow = '';
-        }
-        // Let the browser navigate naturally — no JS reload
-      });
-    });
-  }
 </script>
 
 </body>
