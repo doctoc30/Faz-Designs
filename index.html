@@ -842,6 +842,8 @@ menu.querySelectorAll('a').forEach(link => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
+
+  
 // Close menu when clicking outside
 document.addEventListener('click', (event) => {
     if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
@@ -851,6 +853,10 @@ document.addEventListener('click', (event) => {
         menu.setAttribute('aria-hidden', true);
         document.body.style.overflow = '';
     }
+});
+
+  document.addEventListener('click', (event) => {
+    console.log('Clicked:', event.target);
 });
 </script>
 </body>
