@@ -180,42 +180,8 @@
   </main>
 
   <script>
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('.menu');
 
-  if (hamburger && menu) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      menu.classList.toggle('open');
 
-      const isExpanded = hamburger.classList.contains('active');
-      hamburger.setAttribute('aria-expanded', isExpanded);
-      menu.setAttribute('aria-hidden', !isExpanded);
-      document.body.style.overflow = isExpanded ? 'hidden' : '';
-    });
-
-    document.querySelectorAll('nav.menu a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const currentPath = window.location.pathname;
-        const linkPath = new URL(link.href).pathname;
-
-        // Close the menu
-        if (menu.classList.contains('open')) {
-          menu.classList.remove('open');
-          hamburger.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', false);
-          menu.setAttribute('aria-hidden', true);
-          document.body.style.overflow = '';
-        }
-
-        // Reload page if link points to the current URL
-        if (currentPath === linkPath) {
-          e.preventDefault();
-          window.location.reload();
-        }
-      });
-    });
-  }
 </script>
 
 </body>
