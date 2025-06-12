@@ -832,6 +832,26 @@ menu.querySelectorAll('a').forEach(link => {
     }
   });
 });
+
+
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+    if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+        menu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', false);
+        menu.setAttribute('aria-hidden', true);
+        document.body.style.overflow = '';
+    }
+});
 </script>
 </body>
 </html>
