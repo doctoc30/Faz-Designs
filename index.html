@@ -833,19 +833,48 @@ menu.querySelectorAll('a').forEach(link => {
   });
 });
 
-  document.querySelectorAll('nav.menu a').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const currentPath = window.location.pathname;
-    const linkPath = new URL(link.href).pathname;
+  
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('nav.menu');
 
-    if (currentPath === linkPath) {
-      e.preventDefault();         // Stop default navigation
-      window.location.reload();   // Force reload if it's the same page
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  menu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+if (hamburger) {
+  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
     }
   });
-});
+}
 
+if (menu) {
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(menu.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
 
+    // Optional: reload if same page
+    link.addEventListener('click', (e) => {
+      const currentPath = window.location.pathname;
+      const linkPath = new URL(link.href).pathname;
+
+      if (currentPath === linkPath) {
+        e.preventDefault();
+        window.location.reload();
+      }
+    });
+  });
+}
 </script>
 </body>
 </html>
