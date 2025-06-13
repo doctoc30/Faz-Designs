@@ -175,14 +175,142 @@
 
   <!-- Optional: Page content below the header -->
   <main style="padding-top: 80px; text-align:center;">
-    <h1>Welcome to Faz Designs</h1>
-    <p>Scroll or navigate using the menu.</p>
+    <h1>H O M E</h1>
+    
   </main>
 
   
 <script>
  
+ const el = document.getElementById('typewriter');
 
+let lines = [];
+const typingSpeed = 100;
+const lineDelay = 500;
+let currentLine = 0;
+let currentChar = 0;
+let lineEl = null;
+
+const cursor = document.createElement('span');
+cursor.classList.add('cursor');
+el.appendChild(cursor);
+
+function setLinesByOrientation() {
+  if(window.matchMedia("(orientation: landscape)").matches) {
+    // Landscape - 3 lines
+    lines = [
+      "We build custom",
+      "websites for",
+      "small businesses"
+    ];
+  } else {
+    // Portrait - 5 lines
+    lines = [
+      "We build",
+      "custom",
+      "websites",
+      "for small",
+      "businesses"
+    ];
+  }
+}
+
+function typeChar() {
+  if (currentLine >= lines.length) {
+    cursor.remove();
+    setTimeout(() => {
+      el.style.animation = 'rocketRise 2s ease forwards';
+      setTimeout(() => document.getElementById('q0').classList.add('active'), 2500);
+    }, 1500);
+    return;
+  }
+
+  const text = lines[currentLine];
+  if (!lineEl) {
+    lineEl = document.createElement('div');
+    lineEl.classList.add('typed-line');
+    el.appendChild(lineEl);
+    lineEl.appendChild(cursor);
+  }
+
+  if (currentChar < text.length) {
+    const char = document.createTextNode(text[currentChar]);
+    lineEl.insertBefore(char, cursor);
+    currentChar++;
+    setTimeout(typeChar, typingSpeed);
+  } else {
+    currentLine++;
+    currentChar = 0;
+    lineEl = null;
+    setTimeout(typeChar, lineDelay);
+  }
+}
+
+// Initialize lines based on current orientation
+setLinesByOrientation();
+el.style.opacity = 1;
+typeChar();
+
+// Handle orientation/resize changes — reset and restart typing
+window.addEventListener('resize', () => {
+  currentLine = 0;
+  currentChar = 0;
+  lineEl = null;
+  el.textContent = ''; // Clear existing text
+
+  el.appendChild(cursor); // Re-add cursor
+
+  setLinesByOrientation();
+  el.style.opacity = 1;
+  typeChar();
+});
+
+// --- Your existing form navigation & hamburger menu code ---
+
+let step = 0;
+function next() {
+  const current = document.getElementById(`q${step}`);
+  if (current) current.classList.remove('active');
+  step++;
+  const nextStep = document.getElementById(`q${step}`);
+  if (nextStep) nextStep.classList.add('active');
+  else alert('Form complete or no more steps');
+}
+
+function prev() {
+  const current = document.getElementById(`q${step}`);
+  if (current) current.classList.remove('active');
+  step--;
+  const prevStep = document.getElementById(`q${step}`);
+  if (prevStep) prevStep.classList.add('active');
+}
+
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('nav.menu');
+
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  menu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', toggleMenu);
+hamburger.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    toggleMenu();
+  }
+});
+
+menu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    if(menu.classList.contains('open')) {
+      toggleMenu();
+    }
+  });
+});
   
 </script>
 
