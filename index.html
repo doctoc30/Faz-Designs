@@ -701,8 +701,7 @@ input[type="email"] {
 
     <a href='index.html' class="skip-link">Skip to Homepage</a>
   </div>
-
- <script>
+<script>
 const el = document.getElementById('typewriter');
 
 let lines = [];
@@ -772,21 +771,28 @@ setLinesByOrientation();
 el.style.opacity = 1;
 typeChar();
 
-// Handle orientation/resize changes — reset and restart typing
-window.addEventListener('resize', () => {
+// Debounce helper function
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+// Handle orientation/resize changes — reset and restart typing, debounced
+window.addEventListener('resize', debounce(() => {
   currentLine = 0;
   currentChar = 0;
   lineEl = null;
   el.textContent = ''; // Clear existing text
-
   el.appendChild(cursor); // Re-add cursor
-
   setLinesByOrientation();
   el.style.opacity = 1;
   typeChar();
-});
+}, 300));
 
-// --- Your existing form navigation & hamburger menu code ---
+// --- Form navigation ---
 
 let step = 0;
 function next() {
@@ -806,56 +812,41 @@ function prev() {
   if (prevStep) prevStep.classList.add('active');
 }
 
+// --- Hamburger menu ---
 
-
-
-  function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-
-
-  const hamburger = document.querySelector('.hamburger');
+const hamburger = document.querySelector('.hamburger');
 const menu = document.querySelector('nav.menu');
 
 function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-
-    if (!isOpen) {
-        menu.classList.remove('open');
-        hamburger.classList.remove('active');
-    }
+  const isOpen = menu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  menu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
 // Attach event listeners
 hamburger.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevent click conflicts
-    toggleMenu();
+  event.stopPropagation(); // Prevent click conflicts
+  toggleMenu();
 });
 
 // Close menu when clicking outside
 document.addEventListener('click', (event) => {
-    if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-        menu.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', false);
-        menu.setAttribute('aria-hidden', true);
-        document.body.style.overflow = '';
-    }
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+    menu.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', false);
+    menu.setAttribute('aria-hidden', true);
+    document.body.style.overflow = '';
+  }
 });
 
 // Debugging: Log clicks to confirm event triggers
+// Comment out or remove before production
 document.addEventListener('click', (event) => {
-    console.log('Clicked:', event.target);
+  console.log('Clicked:', event.target);
 });
-
-</script>
+</script>p
 </body>
 </html>
