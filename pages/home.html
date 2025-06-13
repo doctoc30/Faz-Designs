@@ -311,7 +311,43 @@ menu.querySelectorAll('a').forEach(link => {
     }
   });
 });
+
   
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('nav.menu');
+  const menuLinks = menu.querySelectorAll('a');
+
+  function toggleMenu(forceClose = false) {
+    const isOpen = forceClose ? true : menu.classList.contains('open');
+    if (isOpen || forceClose) {
+      menu.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    } else {
+      menu.classList.add('open');
+      hamburger.classList.add('active');
+      hamburger.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  hamburger.addEventListener('click', () => toggleMenu());
+  hamburger.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      // Delay closing only if navigating in-page (e.g. single-page app)
+      toggleMenu(true);
+    });
+  });
 </script>
 
 </body>
