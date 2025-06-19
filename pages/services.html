@@ -177,6 +177,12 @@ nav ul li a {
   padding: 0.5rem 1rem;
 }
 
+/* Main content styles */
+main {
+  padding: 80px 20px 20px; /* Top padding to clear fixed header + some bottom/side padding */
+  max-width: 960px;
+  margin: 0 auto;
+}
 </style>
 
 </head>
@@ -200,7 +206,12 @@ nav ul li a {
 </nav>
 </header>
 
- <script>
+<main>
+  <h1>Services</h1>
+  <p>This is your main page content area. Replace this with your actual content.</p>
+</main>
+
+<script>
 // --- Hamburger menu ---
 
 const hamburger = document.querySelector('.hamburger');
@@ -236,7 +247,6 @@ document.addEventListener('click', (event) => {
 document.addEventListener('click', (event) => {
   console.log('Clicked:', event.target);
 });
-</script>p
+</script>
 </body>
 </html>
-
