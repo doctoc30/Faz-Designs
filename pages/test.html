@@ -199,3 +199,44 @@ nav ul li a {
   </ul>
 </nav>
 </header>
+
+ <script>
+// --- Hamburger menu ---
+
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('nav.menu');
+
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  menu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+// Attach event listeners
+hamburger.addEventListener('click', (event) => {
+  event.stopPropagation(); // Prevent click conflicts
+  toggleMenu();
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+    menu.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', false);
+    menu.setAttribute('aria-hidden', true);
+    document.body.style.overflow = '';
+  }
+});
+
+// Debugging: Log clicks to confirm event triggers
+// Comment out or remove before production
+document.addEventListener('click', (event) => {
+  console.log('Clicked:', event.target);
+});
+</script>p
+</body>
+</html>
+
