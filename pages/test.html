@@ -1,242 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Faz Designs</title>
-
-<style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ff3131;
-    color: white;
-    overflow-x: hidden;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: #ff3131;
-    z-index: 2000;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-  }
-  .logo {
-    font-weight: 900;
-    font-size: 1.7rem;
-    letter-spacing: 2px;
-    user-select: none;
-    cursor: default;
-  }
-  .hamburger {
-    width: 28px;
-    height: 22px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 2100;
-  }
-  .hamburger span {
-    display: block;
-    height: 3.5px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.35s ease-in-out;
-  }
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-
-  nav.menu {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ff3131;
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 4rem;
-    z-index: 2050;
-  }
-  nav.menu.open {
-    transform: translateX(0);
-  }
-  nav.menu ul {
-    list-style: none;
-  }
-  nav.menu ul li {
-    margin-bottom: 2.2rem;
-    opacity: 0;
-    transform: translateX(-40px);
-    font-weight: 900;
-    font-size: 3rem;
-    letter-spacing: 0.1em;
-  }
-  nav.menu ul li a {
-    color: white;
-    text-decoration: none;
-    user-select: none;
-    display: inline-block;
-    transition: color 0.3s ease;
-  }
-  nav.menu ul li a:hover {
-    color: #222;
-  }
-  nav.menu.open ul li {
-    animation: slideInFade 0.4s forwards;
-  }
-  nav.menu.open ul li:nth-child(1) {
-    animation-delay: 0.15s;
-  }
-  nav.menu.open ul li:nth-child(2) {
-    animation-delay: 0.35s;
-  }
-  nav.menu.open ul li:nth-child(3) {
-    animation-delay: 0.55s;
-  }
-  nav.menu.open ul li:nth-child(4) {
-    animation-delay: 0.75s;
-  }
-  nav.menu.open ul li:nth-child(5) {
-    animation-delay: 0.95s;
-  }
-  @keyframes slideInFade {
-    to {
-      opacity: 1;
-      transform: translateX(0);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sunrise Estates</title>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --main-bg: linear-gradient(to bottom, #4e342e, #ffccbc);
+      --header-bg: #3e2723;
+      --accent: #ff7043;
+      --light-bg: #fff8f3;
     }
-  }
-
-  /* Desktop view - raised breakpoint to 1024px */
-  @media (min-width: 1024px) {
-    .hamburger {
-      display: none;
-    }
-    nav.menu {
-      position: static;
-      height: auto;
-      width: auto;
-      background: transparent;
-      transform: none !important;
-      padding-left: 0;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    nav.menu ul {
-      display: flex;
-      gap: 3rem;
-    }
-    nav.menu ul li {
+    body, html {
       margin: 0;
-      opacity: 1 !important;
-      transform: none !important;
-      font-size: 1.25rem;
-      animation: none !important;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--main-bg);
+      color: #333;
     }
-    nav.menu ul li a {
-      font-weight: 900;
-      font-size: 1.1rem;
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--header-bg);
       color: white;
-      letter-spacing: 0.15em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      z-index: 1000;
     }
-    nav.menu ul li a:hover {
-      color: #222;
+    header h1 {
+      font-size: 1.2rem;
+      margin: 0;
     }
-  }
- 
- /* ---------- BASE STYLES ---------- */
-
-nav ul {
-  display: block;
-}
-
-nav ul li {
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li a {
-  padding: 0.5rem 1rem;
-}
-
-</style>
-
+    .menu-toggle {
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: block;
+    }
+    nav {
+      display: none;
+      flex-direction: column;
+      background: var(--header-bg);
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+      border-top: 1px solid #555;
+    }
+    nav.show {
+      display: flex;
+    }
+    .view {
+      display: none;
+      padding: 90px 20px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .view.active {
+      display: block;
+    }
+    .quote-form {
+      background: var(--light-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .quote-form h2 {
+      margin-top: 0;
+    }
+    .quote-form input, .quote-form select {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .quote-form button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      color: #fff;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      background: #3e2723;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
-  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
+  <header>
+    <h1>Sunrise Estates</h1>
+    <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('show')">☰</div>
+    <nav>
+      <a href="#home" onclick="switchView('home')">Home</a>
+      <a href="#valuation" onclick="switchView('valuation')">Get a Quote</a>
+      <a href="#contact" onclick="switchView('contact')">Contact</a>
+    </nav>
+  </header>
+
+  <div id="home" class="view active" data-aos="fade-up">
+    <h2>Welcome to Sunrise Estates</h2>
+    <p>Begin your real estate journey with an elegant, app-like experience.</p>
   </div>
- 
-<nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-  <ul>
-    <li><a href="/Faz-Designs/pages/home.html">Home</a></li>
-    <li><a href="/Faz-Designs/pages/services.html">Services</a></li>
-    <li><a href="/Faz-Designs/pages/concepts.html">Portfolio</a></li>
-    <li><a href="/Faz-Designs/pages/about.html">About</a></li>
-    <li><a href="/Faz-Designs/pages/contact.html">Contact</a></li>
-  </ul>
-</nav>
-</header>
 
- <script>
-// --- Hamburger menu ---
+  <div id="valuation" class="view" data-aos="fade-up">
+    <div class="quote-form">
+      <h2>Get a Free Valuation</h2>
+      <input type="text" id="name" placeholder="Your Full Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="text" id="address" placeholder="Property Address" required />
+      <select id="propertyType" required>
+        <option value="">Select Property Type</option>
+        <option>Detached</option>
+        <option>Semi-detached</option>
+        <option>Apartment</option>
+        <option>Townhouse</option>
+      </select>
+      <button onclick="submitQuote()">Submit Quote Request</button>
+    </div>
+  </div>
 
-const hamburger = document.querySelector('.hamburger');
-const menu = document.querySelector('nav.menu');
+  <div id="contact" class="view" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <p>Email: info@sunriseestates.com</p>
+    <p>Phone: +1 234 567 8901</p>
+    <p>Address: 123 Sunrise Blvd, Real Estate City</p>
+  </div>
 
-function toggleMenu() {
-  const isOpen = menu.classList.toggle('open');
-  hamburger.classList.toggle('active');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  menu.setAttribute('aria-hidden', !isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
+  <footer>
+    &copy; 2025 Sunrise Estates. All rights reserved.
+  </footer>
 
-// Attach event listeners
-hamburger.addEventListener('click', (event) => {
-  event.stopPropagation(); // Prevent click conflicts
-  toggleMenu();
-});
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
 
-// Close menu when clicking outside
-document.addEventListener('click', (event) => {
-  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-    menu.classList.remove('open');
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', false);
-    menu.setAttribute('aria-hidden', true);
-    document.body.style.overflow = '';
-  }
-});
+    function switchView(id) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelector('nav').classList.remove('show');
+    }
 
-// Debugging: Log clicks to confirm event triggers
-// Comment out or remove before production
-document.addEventListener('click', (event) => {
-  console.log('Clicked:', event.target);
-});
-</script>p
+    function submitQuote() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const type = document.getElementById('propertyType').value;
+
+      if (name && email && address && type) {
+        const quotes = JSON.parse(localStorage.getItem('quotes') || '[]');
+        quotes.push({ name, email, address, type, date: new Date().toISOString() });
+        localStorage.setItem('quotes', JSON.stringify(quotes));
+        alert('Your quote request has been submitted!');
+        document.querySelector('.quote-form').reset();
+      } else {
+        alert('Please fill in all fields.');
+      }
+    }
+  </script>
 </body>
 </html>
-
