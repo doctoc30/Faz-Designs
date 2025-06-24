@@ -536,23 +536,20 @@ input[type="email"] {
 
 
 
+
+ <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+  <!-- QUESTION: How would you like to get started? -->
   <div id="form-start-choice" class="form-screen active">
-  <h2>How would you like to get started?</h2>
-  <div class="button-row">
-    <button onclick="selectFormType('package')">Choose a Package Deal Today</button>
-    <button onclick="selectFormType('custom')">Request a Custom Quote</button>
-  </div>
-</div>
-
-<div id="package-form" class="form-screen">
-  <!-- Your full form for 'Choose a Package Deal Today' goes here -->
-</div>
-
-<div id="custom-form" class="form-screen">
-  <!-- Your full form for 'Request a Custom Quote' goes here -->
-</div>
-
-<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+    <h2>How would you like to get started?</h2>
+    <div class="button-row">
+      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/portfolio.html'">
+        Choose a Package Deal Today
+      </button>
+      <button type="button" onclick="startCustomQuoteForm()">
+        Request a Custom Quote
+      </button>
+    </div>
+  
 
 
 
@@ -871,6 +868,46 @@ document.addEventListener('click', (event) => {
 
 
 
-</script>p
+ 
+  function startCustomQuoteForm() {
+    // Hide the choice screen
+    document.getElementById('form-start-choice').classList.remove('active');
+    document.getElementById('form-start-choice').style.display = 'none';
+
+    // Show the first form question
+    document.getElementById('q0').classList.add('active');
+    document.getElementById('q0').style.display = 'block';
+  }
+
+  // Optional: Hide all form screens except the first on page load
+  document.querySelectorAll('.form-screen').forEach((el, index) => {
+    if (!el.classList.contains('active')) el.style.display = 'none';
+  });
+
+  let currentStep = 0;
+  function next() {
+    const screens = document.querySelectorAll('.form-screen');
+    if (currentStep < screens.length - 1) {
+      screens[currentStep].classList.remove('active');
+      screens[currentStep].style.display = 'none';
+      currentStep++;
+      screens[currentStep].classList.add('active');
+      screens[currentStep].style.display = 'block';
+    }
+  }
+
+  function prev() {
+    const screens = document.querySelectorAll('.form-screen');
+    if (currentStep > 0) {
+      screens[currentStep].classList.remove('active');
+      screens[currentStep].style.display = 'none';
+      currentStep--;
+      screens[currentStep].classList.add('active');
+      screens[currentStep].style.display = 'block';
+    }
+  }
+
+
+</script>
 </body>
 </html>
