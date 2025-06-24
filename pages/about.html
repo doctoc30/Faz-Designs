@@ -185,40 +185,6 @@ main {
 }
 
 
-   .floating-contact-buttons {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    z-index: 4000;
-  }
-  .floating-contact-button {
-    width: 56px;
-    height: 56px;
-    background-color: #ff3131;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .floating-contact-button:hover,
-  .floating-contact-button:focus {
-    transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
-    outline: none;
-  }
-  .floating-contact-button img {
-    width: 28px;
-    height: 28px;
-    filter: brightness(0) invert(1);
-    pointer-events: none;
-    user-select: none;
-  }
 </style>
 
 </head>
@@ -246,11 +212,7 @@ main {
 <main>
   <h1>A B O U T</h1>
   
-<div class="floating-contact-buttons" aria-label="Floating contact buttons">
-  <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="floating-contact-button" aria-label="WhatsApp chat"></a>
-  <a href="tel:+1234567890" class="floating-contact-button" aria-label="Call us"></a>
-  <a href="sms:+1234567890" class="floating-contact-button" aria-label="Send SMS"></a>
-</div>
+
 </main>
 
 <script>
