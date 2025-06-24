@@ -553,16 +553,7 @@ input[type="email"] {
   <!-- Your full form for 'Request a Custom Quote' goes here -->
 </div>
 
-<script>
-  function selectFormType(type) {
-    document.getElementById('form-start-choice').classList.remove('active');
-    if (type === 'package') {
-      document.getElementById('package-form').classList.add('active');
-    } else {
-      document.getElementById('custom-form').classList.add('active');
-    }
-  }
-</script>
+
 
   <div class="form-screen" id="q0">
     <h2>What type of website are you looking for?</h2>
@@ -875,6 +866,16 @@ document.addEventListener('click', (event) => {
 document.addEventListener('click', (event) => {
   console.log('Clicked:', event.target);
 });
+
+
+ function selectFormType(type) {
+    document.getElementById('form-start-choice').classList.remove('active');
+    if (type === 'package') {
+      document.getElementById('package-form').classList.add('active');
+    } else {
+      document.getElementById('custom-form').classList.add('active');
+    }
+  }
 </script>p
 </body>
 </html>
