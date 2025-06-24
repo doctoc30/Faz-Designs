@@ -909,11 +909,35 @@ document.addEventListener('click', (event) => {
 
 
 
+let currentQuestion = 0;
+
+function startCustomQuoteForm() {
+  document.getElementById('form-start-choice').classList.remove('active');
+  showScreen('q0');
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.form-screen').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function next() {
+  currentQuestion++;
+  showScreen('q' + currentQuestion);
+}
+
+function prev() {
+  currentQuestion--;
+  showScreen('q' + currentQuestion);
+}
+
+// Reveal form only after typewriter finishes
+function showFormAfterTypewriter() {
+  document.getElementById('formWrapper').style.display = 'block';
+}
 
  
-  setTimeout(() => {
-    document.getElementById('form-start-choice').classList.add('active');
-  }, 5000); // Match your typewriter animation duration
+  
 </script>
 </body>
 </html>
