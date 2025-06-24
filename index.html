@@ -515,6 +515,10 @@ input[type="email"] {
 .form-screen.active {
   display: block;
 }
+
+ #form-start-choice {
+  display: none;
+}
 </style>
 
 </head>
@@ -896,6 +900,15 @@ function prev() {
 document.addEventListener("DOMContentLoaded", () => {
   showScreen(0);
 });
+
+   // Simulate when typewriter finishes (adjust timeout to match your actual animation)
+  window.addEventListener("DOMContentLoaded", () => {
+    // If your typewriter ends on its own after N ms, match that duration:
+    setTimeout(() => {
+      document.getElementById('form-start-choice').style.display = 'block';
+    }, 4000); // adjust to match actual animation duration (e.g. 4000ms = 4s)
+  });
+
 </script>
 </body>
 </html>
