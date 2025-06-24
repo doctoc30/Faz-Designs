@@ -537,9 +537,8 @@ input[type="email"] {
 
 
 
- <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
-  <!-- QUESTION: How would you like to get started? -->
-  <div id="form-start-choice" class="form-screen active">
+<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+  <div id="form-start-choice" class="form-screen">
     <h2>How would you like to get started?</h2>
     <div class="button-row">
       <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/portfolio.html'">
@@ -549,7 +548,10 @@ input[type="email"] {
         Request a Custom Quote
       </button>
     </div>
-  
+  </div>
+
+  <!-- other form screens (q0 to q10) go here -->
+</form>
 
 
 
@@ -908,6 +910,13 @@ document.addEventListener('click', (event) => {
   }
 
 
+
+
+
+ 
+  setTimeout(() => {
+    document.getElementById('form-start-choice').classList.add('active');
+  }, 5000); // Match your typewriter animation duration
 </script>
 </body>
 </html>
