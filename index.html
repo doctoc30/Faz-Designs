@@ -535,9 +535,8 @@ input[type="email"] {
  <div id="typewriter"></div>
 
 
-<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
 
- <div id="form-start-choice" class="form-screen active">
+  <div id="form-start-choice" class="form-screen active">
   <h2>How would you like to get started?</h2>
   <div class="button-row">
     <button onclick="selectFormType('package')">Choose a Package Deal Today</button>
@@ -552,6 +551,9 @@ input[type="email"] {
 <div id="custom-form" class="form-screen">
   <!-- Your full form for 'Request a Custom Quote' goes here -->
 </div>
+
+<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+
 
 
 
@@ -868,14 +870,7 @@ document.addEventListener('click', (event) => {
 });
 
 
- function selectFormType(type) {
-    document.getElementById('form-start-choice').classList.remove('active');
-    if (type === 'package') {
-      document.getElementById('package-form').classList.add('active');
-    } else {
-      document.getElementById('custom-form').classList.add('active');
-    }
-  }
+
 </script>p
 </body>
 </html>
