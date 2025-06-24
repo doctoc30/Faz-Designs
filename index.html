@@ -537,6 +537,33 @@ input[type="email"] {
 
 <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
 
+ <div id="form-start-choice" class="form-screen active">
+  <h2>How would you like to get started?</h2>
+  <div class="button-row">
+    <button onclick="selectFormType('package')">Choose a Package Deal Today</button>
+    <button onclick="selectFormType('custom')">Request a Custom Quote</button>
+  </div>
+</div>
+
+<div id="package-form" class="form-screen">
+  <!-- Your full form for 'Choose a Package Deal Today' goes here -->
+</div>
+
+<div id="custom-form" class="form-screen">
+  <!-- Your full form for 'Request a Custom Quote' goes here -->
+</div>
+
+<script>
+  function selectFormType(type) {
+    document.getElementById('form-start-choice').classList.remove('active');
+    if (type === 'package') {
+      document.getElementById('package-form').classList.add('active');
+    } else {
+      document.getElementById('custom-form').classList.add('active');
+    }
+  }
+</script>
+
   <div class="form-screen" id="q0">
     <h2>What type of website are you looking for?</h2>
     <select name="Website Type">
