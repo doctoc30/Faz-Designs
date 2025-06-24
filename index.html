@@ -521,19 +521,14 @@ input[type="email"] {
 }
 
 
-
- 
-#form-start-choice {
+ #form-start-choice {
   display: none;
   opacity: 0;
   transition: opacity 1s ease;
 }
-
 #form-start-choice.show {
-  display: block;
   opacity: 1;
 }
-
 </style>
 
 </head>
@@ -740,8 +735,7 @@ input[type="email"] {
 
 <a href="/Faz-Designs/pages/about.html" class="skip-link">Skip Questions For Now</a>
   </div>
- 
-<script>
+ <script>
 const el = document.getElementById('typewriter');
 
 let lines = [];
@@ -757,21 +751,9 @@ el.appendChild(cursor);
 
 function setLinesByOrientation() {
   if(window.matchMedia("(orientation: landscape)").matches) {
-    // Landscape - 3 lines
-    lines = [
-      "We build custom",
-      "websites for",
-      "small businesses"
-    ];
+    lines = ["We build custom", "websites for", "small businesses"];
   } else {
-    // Portrait - 5 lines
-    lines = [
-      "We build",
-      "custom",
-      "websites",
-      "for small",
-      "businesses"
-    ];
+    lines = ["We build", "custom", "websites", "for small", "businesses"];
   }
 }
 
@@ -780,8 +762,12 @@ function typeChar() {
     cursor.remove();
     setTimeout(() => {
       el.style.animation = 'rocketRise 2s ease forwards';
-      setTimeout(() => document.getElementById('q0').classList.add('active'), 2500);
-    }, 1500);
+      setTimeout(() => {
+        const choiceScreen = document.getElementById('form-start-choice');
+        choiceScreen.style.display = 'block';
+        setTimeout(() => choiceScreen.classList.add('show'), 50);
+      }, 2000);
+    }, 1000);
     return;
   }
 
@@ -806,12 +792,10 @@ function typeChar() {
   }
 }
 
-// Initialize lines based on current orientation
 setLinesByOrientation();
 el.style.opacity = 1;
 typeChar();
 
-// Debounce helper function
 function debounce(func, wait) {
   let timeout;
   return function(...args) {
@@ -820,75 +804,20 @@ function debounce(func, wait) {
   };
 }
 
-// Handle orientation/resize changes — reset and restart typing, debounced
 window.addEventListener('resize', debounce(() => {
   currentLine = 0;
   currentChar = 0;
   lineEl = null;
-  el.textContent = ''; // Clear existing text
-  el.appendChild(cursor); // Re-add cursor
+  el.textContent = '';
+  el.appendChild(cursor);
   setLinesByOrientation();
   el.style.opacity = 1;
   typeChar();
 }, 300));
 
-// --- Form navigation ---
+// ------------------ FORM SCREEN FLOW --------------------
 
-let step = 0;
-function next() {
-  const current = document.getElementById(`q${step}`);
-  if (current) current.classList.remove('active');
-  step++;
-  const nextStep = document.getElementById(`q${step}`);
-  if (nextStep) nextStep.classList.add('active');
-  else alert('Form complete or no more steps');
-}
-
-function prev() {
-  const current = document.getElementById(`q${step}`);
-  if (current) current.classList.remove('active');
-  step--;
-  const prevStep = document.getElementById(`q${step}`);
-  if (prevStep) prevStep.classList.add('active');
-}
-
-// --- Hamburger menu ---
-
-const hamburger = document.querySelector('.hamburger');
-const menu = document.querySelector('nav.menu');
-
-function toggleMenu() {
-  const isOpen = menu.classList.toggle('open');
-  hamburger.classList.toggle('active');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  menu.setAttribute('aria-hidden', !isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-
-// Attach event listeners
-hamburger.addEventListener('click', (event) => {
-  event.stopPropagation(); // Prevent click conflicts
-  toggleMenu();
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (event) => {
-  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-    menu.classList.remove('open');
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', false);
-    menu.setAttribute('aria-hidden', true);
-    document.body.style.overflow = '';
-  }
-});
-
-// Debugging: Log clicks to confirm event triggers
-// Comment out or remove before production
-document.addEventListener('click', (event) => {
-  console.log('Clicked:', event.target);
-});
-
-let currentScreen = 0;
+let currentScreen = -1;
 const screens = document.querySelectorAll(".form-screen");
 
 function showScreen(index) {
@@ -905,28 +834,45 @@ function next() {
 }
 
 function prev() {
-  if (currentScreen > 1) {
+  if (currentScreen > 0) {
     showScreen(currentScreen - 1);
-  } else {
-    showScreen(0); // Return to choice screen
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  showScreen(0);
+// ------------------ HAMBURGER MENU ---------------------
+
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('nav.menu');
+
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  menu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', (event) => {
+  event.stopPropagation();
+  toggleMenu();
 });
 
+document.addEventListener('click', (event) => {
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+    menu.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', false);
+    menu.setAttribute('aria-hidden', true);
+    document.body.style.overflow = '';
+  }
+});
 
+// ------------------ INITIAL STATE ---------------------
 
-
-    // Simulate when typewriter finishes (adjust timeout to match your actual animation)
-  window.addEventListener("DOMContentLoaded", () => {
-    // If your typewriter ends on its own after N ms, match that duration:
-    setTimeout(() => {
-      document.getElementById('form-start-choice').style.display = 'block';
-    }, 4000); // adjust to match actual animation duration (e.g. 4000ms = 4s)
-  });
- 
+document.addEventListener("DOMContentLoaded", () => {
+  showScreen(-1); // Hide all
+});
 </script>
+
 </body>
 </html>
