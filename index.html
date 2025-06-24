@@ -535,23 +535,7 @@ input[type="email"] {
  <div id="typewriter"></div>
 
 
-
-
 <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
-  <div id="form-start-choice" class="form-screen">
-    <h2>How would you like to get started?</h2>
-    <div class="button-row">
-      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/portfolio.html'">
-        Choose a Package Deal Today
-      </button>
-      <button type="button" onclick="startCustomQuoteForm()">
-        Request a Custom Quote
-      </button>
-    </div>
-  </div>
-
-
-
 
   <div class="form-screen" id="q0">
     <h2>What type of website are you looking for?</h2>
@@ -864,80 +848,6 @@ document.addEventListener('click', (event) => {
 document.addEventListener('click', (event) => {
   console.log('Clicked:', event.target);
 });
-
-
-
- 
-  function startCustomQuoteForm() {
-    // Hide the choice screen
-    document.getElementById('form-start-choice').classList.remove('active');
-    document.getElementById('form-start-choice').style.display = 'none';
-
-    // Show the first form question
-    document.getElementById('q0').classList.add('active');
-    document.getElementById('q0').style.display = 'block';
-  }
-
-  // Optional: Hide all form screens except the first on page load
-  document.querySelectorAll('.form-screen').forEach((el, index) => {
-    if (!el.classList.contains('active')) el.style.display = 'none';
-  });
-
-  let currentStep = 0;
-  function next() {
-    const screens = document.querySelectorAll('.form-screen');
-    if (currentStep < screens.length - 1) {
-      screens[currentStep].classList.remove('active');
-      screens[currentStep].style.display = 'none';
-      currentStep++;
-      screens[currentStep].classList.add('active');
-      screens[currentStep].style.display = 'block';
-    }
-  }
-
-  function prev() {
-    const screens = document.querySelectorAll('.form-screen');
-    if (currentStep > 0) {
-      screens[currentStep].classList.remove('active');
-      screens[currentStep].style.display = 'none';
-      currentStep--;
-      screens[currentStep].classList.add('active');
-      screens[currentStep].style.display = 'block';
-    }
-  }
-
-
-
-
-let currentQuestion = 0;
-
-function startCustomQuoteForm() {
-  document.getElementById('form-start-choice').classList.remove('active');
-  showScreen('q0');
-}
-
-function showScreen(id) {
-  document.querySelectorAll('.form-screen').forEach(el => el.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-function next() {
-  currentQuestion++;
-  showScreen('q' + currentQuestion);
-}
-
-function prev() {
-  currentQuestion--;
-  showScreen('q' + currentQuestion);
-}
-
-// Reveal form only after typewriter finishes
-function showFormAfterTypewriter() {
-  document.getElementById('formWrapper').style.display = 'block';
-}
-
- 
-  
-</script>
+</script>p
 </body>
 </html>
