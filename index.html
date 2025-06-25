@@ -224,6 +224,35 @@
     51%, 100% { opacity: 0; }
   }
 
+.form-screen {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: auto;
+  min-height: 60vh;
+  background: #ff3131;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 2;
+  overflow-y: auto;
+}
+
+  .form-screen.active { display: flex; }
+
+  .form-screen h2 {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    max-width: 500px;
+    line-height: 1.4;
+  }
 
   select, input[type="text"], input[type="email"] {
     padding: 1rem;
@@ -313,7 +342,11 @@ nav ul li a {
   padding: 0.5rem 1rem;
 }
 
- 
+.form-screen {
+  justify-content: flex-start;
+  padding-top: 6rem;
+  height: calc(100vh - 6rem);
+}
 
 select,
 input[type="text"],
@@ -475,112 +508,43 @@ input[type="email"] {
   }
 }
 
-/*============================
-=         FORM STYLES       =
-============================*/
 
-/* START CHOICE SCREEN */
-#form-start-choice {
+ .form-screen {
   display: none;
-  position: fixed;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, calc(-50% + 30px)); /* Avoids fixed header */
-  width: 90%;
-  max-width: 500px;
-  padding: 2rem;
-  background-color: #ff3131;
-  color: white;
-  box-sizing: border-box;
-  z-index: 1000;
-  border-radius: 12px;
+}
+.form-screen.active {
+  display: block;
+}
+
+ #form-start-choice {
+  display: none;
+}
+
+
+ #form-start-choice {
+  display: none;
   opacity: 0;
   transition: opacity 1s ease;
-  text-align: center;
 }
 #form-start-choice.show {
-  display: block;
   opacity: 1;
 }
 
-/* FORM SCREEN */
-.form-screen {
+ .form-screen {
   display: none;
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, calc(-50% + 30px)); /* Accounts for header */
+  transform: translate(-50%, -50%);
   width: 90%;
   max-width: 500px;
-  padding: 2rem;
-  background-color: #ff3131;
-  color: white;
-  box-sizing: border-box;
-  border-radius: 12px;
   text-align: center;
   z-index: 1000;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
 }
+
 .form-screen.active {
-  display: flex;
+  display: block;
 }
-
-/* Headings */
-.form-screen h2 {
-  font-size: 1.8rem;
-  margin-bottom: 3rem;
-  line-height: 1.4;
-}
-
- 
-/* Buttons */
-.form-screen button,
-#form-start-choice button {
-  background-color: white;
-  color: #ff3131;
-  border: none;
-  padding: 20px 20px;
-  margin-top: 8px;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-.form-screen button:hover,
-#form-start-choice button:hover {
-  background-color: #ffcccc;
-  color: #b30000;
-}
-
-/* Responsive */
-@media screen and (max-width: 480px) {
-  .form-screen,
-  #form-start-choice {
-    padding: 1.5rem;
-    transform: translate(-50%, calc(-50% + 40px)); /* Extra offset for small screens */
-  }
-
-  .form-screen h2,
-  #form-start-choice h2 {
-    font-size: 1.5rem;
-  }
-
-  .form-screen button,
-  #form-start-choice button {
-    font-size: 1.5rem;
-    padding: 10px 18px;
-  }
-}
-
- .form-screen {
-  justify-content: flex-start;
-  padding-top: 6rem;
-  height: calc(100vh - 6rem);
-}
-
 
 
 </style>
@@ -616,14 +580,13 @@ input[type="email"] {
     <h2>How would you like to get started?</h2>
     <div class="button-row">
       <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/portfolio.html'">
-        Choose a Package Deal
+        Choose a Package Deal Today
       </button>
       <button type="button" onclick="showScreen(1)">
         Request a Custom Quote
       </button>
     </div>
   </div>
- <a href="/Faz-Designs/pages/about.html" class="skip-link">Skip Questions For Now</a>
 
   <!-- LAYER 2: FULL QUOTE FORM -->
 
@@ -640,8 +603,6 @@ input[type="email"] {
       <button type="button" onclick="next()">Next</button>
     </div>
   </div>
-
- <a href="/Faz-Designs/pages/about.html" class="skip-link">Skip Questions For Now</a>
 
   <div class="form-screen" id="q1">
     <h2>How soon do you need your website completed?</h2>
