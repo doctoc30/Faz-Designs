@@ -534,27 +534,30 @@ input[type="email"] {
   opacity: 1;
 }
 
+.form-screen h2 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
 
  .form-screen {
   display: none;
   position: fixed;
-  top: 60%; /* adjust for fixed header */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 500px;
-  padding: 2rem;
+  inset: 0;
+  z-index: 1000;
   background-color: #ff3131;
   color: white;
-  text-align: center;
-  z-index: 1000;
-  border-radius: 12px;
-  overflow-y: auto;
+  padding: 2rem;
   box-sizing: border-box;
-  flex-direction: column;
+  overflow-y: auto;
+
+  display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
+
 .form-screen.active {
   display: flex;
 }
@@ -562,6 +565,7 @@ input[type="email"] {
 .form-screen h2 {
   font-size: 1.8rem;
   margin-bottom: 2rem;
+  max-width: 500px;
   line-height: 1.4;
 }
 
