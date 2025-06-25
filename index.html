@@ -508,44 +508,61 @@ input[type="email"] {
   }
 }
 
+/* ===============================
+   FIXED FORM POSITIONING
+   =============================== */
 
- .form-screen {
+#form-start-choice {
   display: none;
-}
-.form-screen.active {
-  display: block;
-}
-
- #form-start-choice {
-  display: none;
-}
-
-
- #form-start-choice {
-  display: none;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-#form-start-choice.show {
-  opacity: 1;
-}
-
- .form-screen {
-  display: none;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 500px;
+  padding: 2rem;
+  background-color: #ff3131;
+  color: white;
   text-align: center;
   z-index: 1000;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
-
-.form-screen.active {
+#form-start-choice.show {
   display: block;
+  opacity: 1;
 }
 
+.form-screen {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  background-color: #ff3131;
+  color: white;
+  text-align: center;
+  z-index: 1000;
+  border-radius: 12px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-screen.active {
+  display: flex;
+}
+
+.form-screen h2 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
 
 </style>
 
