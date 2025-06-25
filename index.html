@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -508,45 +509,6 @@ input[type="email"] {
   }
 }
 
-
- .form-screen {
-  display: none;
-}
-.form-screen.active {
-  display: block;
-}
-
- #form-start-choice {
-  display: none;
-}
-
-
- #form-start-choice {
-  display: none;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-#form-start-choice.show {
-  opacity: 1;
-}
-
- .form-screen {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 500px;
-  text-align: center;
-  z-index: 1000;
-}
-
-.form-screen.active {
-  display: block;
-}
-
-
 </style>
 
 </head>
@@ -573,26 +535,12 @@ input[type="email"] {
   <div class="color-rise"></div>
  <div id="typewriter"></div>
 
+
 <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
-
-  <!-- LAYER 1: ENTRY SCREEN -->
-  <div class="form-screen active" id="form-start-choice">
-    <h2>How would you like to get started?</h2>
-    <div class="button-row">
-      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/portfolio.html'">
-        Choose a Package Deal Today
-      </button>
-      <button type="button" onclick="showScreen(1)">
-        Request a Custom Quote
-      </button>
-    </div>
-  </div>
-
-  <!-- LAYER 2: FULL QUOTE FORM -->
 
   <div class="form-screen" id="q0">
     <h2>What type of website are you looking for?</h2>
-    <select name="Website Type" required>
+    <select name="Website Type">
       <option>Business</option>
       <option>eCommerce</option>
       <option>Portfolio</option>
@@ -606,7 +554,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q1">
     <h2>How soon do you need your website completed?</h2>
-    <select name="Timeline" required>
+    <select name="Timeline">
       <option>Within 1 week</option>
       <option>1–2 weeks</option>
       <option>1 month</option>
@@ -620,7 +568,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q2">
     <h2>Do you already have a domain name?</h2>
-    <select name="Domain Name" required>
+    <select name="Domain Name">
       <option>Yes</option>
       <option>No</option>
       <option>Need help choosing one</option>
@@ -633,7 +581,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q3">
     <h2>Do you already have a logo and brand design?</h2>
-    <select name="Branding" required>
+    <select name="Branding">
       <option>Yes, everything is ready</option>
       <option>I have a logo but need help with branding</option>
       <option>No, I need full branding</option>
@@ -646,7 +594,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q4">
     <h2>How many pages do you expect your site to have?</h2>
-    <select name="Number of Pages" required>
+    <select name="Number of Pages">
       <option>1 (Single Page)</option>
       <option>2–5</option>
       <option>6–10</option>
@@ -661,7 +609,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q5">
     <h2>Do you need us to write the content for your website?</h2>
-    <select name="Content Writing" required>
+    <select name="Content Writing">
       <option>Yes, please write it all</option>
       <option>I have some content, need help refining</option>
       <option>No, I’ll provide all the content</option>
@@ -674,7 +622,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q6">
     <h2>Will you be selling products or services online?</h2>
-    <select name="eCommerce" required>
+    <select name="eCommerce">
       <option>Yes – I need full eCommerce setup</option>
       <option>Yes – just a few products or services</option>
       <option>No – informational site only</option>
@@ -688,7 +636,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q7">
     <h2>Do you want to be able to edit the site yourself later?</h2>
-    <select name="Editing Access" required>
+    <select name="Editing Access">
       <option>Yes, I want full control</option>
       <option>Maybe – depends on how easy it is</option>
       <option>No, I’d prefer you handle future updates</option>
@@ -701,7 +649,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q8">
     <h2>What’s your estimated budget for this project?</h2>
-    <select name="Budget" required>
+    <select name="Budget">
       <option>Under £500</option>
       <option>£500 – £1,000</option>
       <option>£1,000 – £2,500</option>
@@ -716,7 +664,7 @@ input[type="email"] {
 
   <div class="form-screen" id="q9">
     <h2>Do you have examples of websites you like?</h2>
-    <select name="Inspiration Examples" required>
+    <select name="Inspiration Examples">
       <option>Yes, I’ll share them</option>
       <option>No, I need inspiration</option>
       <option>A few ideas, but open to suggestions</option>
@@ -749,11 +697,13 @@ input[type="email"] {
       <button type="submit">Submit</button>
     </div>
   </div>
+
 </form>
 
 <a href="/Faz-Designs/pages/about.html" class="skip-link">Skip Questions For Now</a>
   </div>
- <script>
+ 
+<script>
 const el = document.getElementById('typewriter');
 
 let lines = [];
@@ -769,9 +719,21 @@ el.appendChild(cursor);
 
 function setLinesByOrientation() {
   if(window.matchMedia("(orientation: landscape)").matches) {
-    lines = ["We build custom", "websites for", "small businesses"];
+    // Landscape - 3 lines
+    lines = [
+      "We build custom",
+      "websites for",
+      "small businesses"
+    ];
   } else {
-    lines = ["We build", "custom", "websites", "for small", "businesses"];
+    // Portrait - 5 lines
+    lines = [
+      "We build",
+      "custom",
+      "websites",
+      "for small",
+      "businesses"
+    ];
   }
 }
 
@@ -780,12 +742,8 @@ function typeChar() {
     cursor.remove();
     setTimeout(() => {
       el.style.animation = 'rocketRise 2s ease forwards';
-      setTimeout(() => {
-        const choiceScreen = document.getElementById('form-start-choice');
-        choiceScreen.style.display = 'block';
-        setTimeout(() => choiceScreen.classList.add('show'), 50);
-      }, 2000);
-    }, 1000);
+      setTimeout(() => document.getElementById('q0').classList.add('active'), 2500);
+    }, 1500);
     return;
   }
 
@@ -810,10 +768,12 @@ function typeChar() {
   }
 }
 
+// Initialize lines based on current orientation
 setLinesByOrientation();
 el.style.opacity = 1;
 typeChar();
 
+// Debounce helper function
 function debounce(func, wait) {
   let timeout;
   return function(...args) {
@@ -822,42 +782,39 @@ function debounce(func, wait) {
   };
 }
 
+// Handle orientation/resize changes — reset and restart typing, debounced
 window.addEventListener('resize', debounce(() => {
   currentLine = 0;
   currentChar = 0;
   lineEl = null;
-  el.textContent = '';
-  el.appendChild(cursor);
+  el.textContent = ''; // Clear existing text
+  el.appendChild(cursor); // Re-add cursor
   setLinesByOrientation();
   el.style.opacity = 1;
   typeChar();
 }, 300));
 
-// ------------------ FORM SCREEN FLOW --------------------
+// --- Form navigation ---
 
-let currentScreen = -1;
-const screens = document.querySelectorAll(".form-screen");
-
-function showScreen(index) {
-  screens.forEach((screen, i) => {
-    screen.classList.toggle("active", i === index);
-  });
-  currentScreen = index;
-}
-
+let step = 0;
 function next() {
-  if (currentScreen < screens.length - 1) {
-    showScreen(currentScreen + 1);
-  }
+  const current = document.getElementById(`q${step}`);
+  if (current) current.classList.remove('active');
+  step++;
+  const nextStep = document.getElementById(`q${step}`);
+  if (nextStep) nextStep.classList.add('active');
+  else alert('Form complete or no more steps');
 }
 
 function prev() {
-  if (currentScreen > 0) {
-    showScreen(currentScreen - 1);
-  }
+  const current = document.getElementById(`q${step}`);
+  if (current) current.classList.remove('active');
+  step--;
+  const prevStep = document.getElementById(`q${step}`);
+  if (prevStep) prevStep.classList.add('active');
 }
 
-// ------------------ HAMBURGER MENU ---------------------
+// --- Hamburger menu ---
 
 const hamburger = document.querySelector('.hamburger');
 const menu = document.querySelector('nav.menu');
@@ -870,11 +827,13 @@ function toggleMenu() {
   document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
+// Attach event listeners
 hamburger.addEventListener('click', (event) => {
-  event.stopPropagation();
+  event.stopPropagation(); // Prevent click conflicts
   toggleMenu();
 });
 
+// Close menu when clicking outside
 document.addEventListener('click', (event) => {
   if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
     menu.classList.remove('open');
@@ -885,12 +844,11 @@ document.addEventListener('click', (event) => {
   }
 });
 
-// ------------------ INITIAL STATE ---------------------
-
-document.addEventListener("DOMContentLoaded", () => {
-  showScreen(-1); // Hide all
+// Debugging: Log clicks to confirm event triggers
+// Comment out or remove before production
+document.addEventListener('click', (event) => {
+  console.log('Clicked:', event.target);
 });
-</script>
-
+</script>p
 </body>
 </html>
