@@ -550,7 +550,6 @@ input[type="email"] {
   margin-bottom: 3rem;
   line-height: 1.4;
 }
-
 /* Buttons */
 .form-screen button,
 #form-start-choice button {
@@ -563,7 +562,10 @@ input[type="email"] {
   border-radius: 8px;
   font-size: 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%; /* Makes button same width as dropdown */
+  box-sizing: border-box; /* Ensures padding fits within width */
 }
+
 .form-screen button:hover,
 #form-start-choice button:hover {
   background-color: #ffcccc;
