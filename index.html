@@ -537,19 +537,34 @@ input[type="email"] {
 
 <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
 
- <div class="form-screen" id="q0">
- <h2>What type of website are you looking for?</h2>
- <select name="Website Type">
- <option>Business</option>
- <option>eCommerce</option>
- <option>Portfolio</option>
- <option>Blog</option>
- <option>Other</option>
- </select>
- <div class="button-row">
- <button type="button" onclick="next()">Next</button>
- </div>
- </div>
+  <!-- LAYER 1: ENTRY SCREEN -->
+  <div class="form-screen active" id="form-start-choice">
+    <h2>How would you like to get started?</h2>
+    <div class="button-row">
+      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/portfolio.html'">
+        Choose a Package Deal Today
+      </button>
+      <button type="button" onclick="showScreen(1)">
+        Request a Custom Quote
+      </button>
+    </div>
+  </div>
+
+  <!-- LAYER 2: FULL QUOTE FORM -->
+
+  <div class="form-screen" id="q0">
+    <h2>What type of website are you looking for?</h2>
+    <select name="Website Type" required>
+      <option>Business</option>
+      <option>eCommerce</option>
+      <option>Portfolio</option>
+      <option>Blog</option>
+      <option>Other</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
 
  <div class="form-screen" id="q1">
  <h2>How soon do you need your website completed?</h2>
