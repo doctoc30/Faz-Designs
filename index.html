@@ -550,21 +550,27 @@ input[type="email"] {
   margin-bottom: 3rem;
   line-height: 1.4;
 }
+ 
 /* Buttons */
-.form-screen button,
+ .form-screen button,
 #form-start-choice button {
   background-color: white;
   color: #ff3131;
   border: none;
-  padding: 12px 20px;
+  height: 48px; /* Match select height */
   margin-top: 20px;
   cursor: pointer;
   border-radius: 8px;
   font-size: 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
-  width: 100%; /* Makes button same width as dropdown */
-  box-sizing: border-box; /* Ensures padding fits within width */
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20px; /* horizontal only, to avoid increasing height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .form-screen button:hover,
 #form-start-choice button:hover {
