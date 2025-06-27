@@ -482,22 +482,17 @@ input[type="email"] {
 #form-start-choice .start-buttons {
   display: flex;
   justify-content: center;
-  gap: 2rem; /* Controls the space between the two buttons */
-  margin-top: 2rem;
-  flex-wrap: wrap; /* Optional: lets buttons wrap on small screens */
+  gap: 2.5rem; /* Increased horizontal space between buttons */
+  margin: 3rem auto; /* More vertical spacing and center alignment */
+  flex-wrap: wrap;
+  max-width: 90%; /* Constrain container width on large screens */
 }
 
 #form-start-choice .start-buttons button {
-  padding: 1rem 2.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: white;
-  color: #ff3131;
-  font-weight: 600;
-  cursor: pointer;
-  min-width: 140px;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
+  padding: 1.2rem 3rem; /* Slightly more padding for larger touch area */
+  font-size: 1.05rem;
+  min-width: 160px; /* Wider minimum width */
+  margin: 0.5rem 0.25rem; /* Small vertical margin to separate wrapped buttons */
 }
 
 #form-start-choice .start-buttons button:hover {
