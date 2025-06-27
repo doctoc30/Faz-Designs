@@ -489,63 +489,118 @@ input[type="email"] {
   }
 }
 
-
- .form-screen {
-  display: none;
-}
-.form-screen.active {
-  display: block;
-}
-
- #form-start-choice {
-  display: none;
-}
-
-
- #form-start-choice {
-  display: none;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-#form-start-choice.show {
-  opacity: 1;
-}
-
- .form-screen {
-  display: none;
-  position: absolute;
-  top: 30%;
+/* Base hidden state */
+.form-screen {
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 500px;
-  text-align: center;
-  z-index: 1000;
-}
-
-.form-screen.active {
-  display: block;
-}
-
-.form-screen {
-  position: Scrollable;
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw;
-  height: auto;
   min-height: 60vh;
   background: #ff3131;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   color: white;
   padding: 2rem;
   box-sizing: border-box;
   text-align: center;
-  z-index: 2;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   overflow-y: auto;
+  border-radius: 12px;
+}
+
+/* Make it visible when active */
+.form-screen.active {
+  display: flex;
+}
+
+/* Form title */
+.form-screen h2 {
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  max-width: 500px;
+  line-height: 1.4;
+}
+
+/* Input and select styling */
+select,
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  appearance: none;
+  background-color: white;
+  color: #333;
+  height: 3.5rem;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* Consent + skip wrapper */
+.consent-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 14px;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.consent-wrapper input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Button styles */
+button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  color: #ff3131;
+  font-weight: bold;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Button container (optional, if you need them side-by-side) */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+}
+
+/* Start choice section */
+#form-start-choice {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#form-start-choice.show {
+  opacity: 1;
+}
+
+/* Mobile adjustment if needed */
+@media (max-height: 600px) {
+  .form-screen {
+    top: 55%;
+    transform: translate(-50%, -55%);
+  }
 }
 </style>
 
