@@ -653,7 +653,24 @@ button:hover {
 }
 
 
+.skip-link {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: white;
+  color: #ff3131;
+  padding: 10px 15px;
+  font-weight: bold;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
 
+.skip-link:hover {
+  background-color: #ff3131;
+  color: #fff;
+}
 
 </style>
 
@@ -678,16 +695,18 @@ button:hover {
 </nav>
 </header> 
 
-  <div class="color-rise"></div>
- <div id="typewriter"></div>
 
- <!-- Moved into formWrapper -->
+
+<div class="color-rise"></div>
+<div id="typewriter"></div>
+
+<!-- ✅ Skip link placed just BEFORE form starts -->
+<a href="/Faz-Designs/pages/about.html" class="skip-link">Skip Questions For Now</a>
+
+<!-- ✅ Single form wrapper starts here -->
 <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
-  <a href="/Faz-Designs/pages/about.html" class="skip-link">Skip Questions For Now</a>
-
-
-
-<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+  <!-- Your form content goes here -->
+</form>
 
   <!-- LAYER 1: ENTRY SCREEN -->
   <div class="form-screen active" id="form-start-choice">
