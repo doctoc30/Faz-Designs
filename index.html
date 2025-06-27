@@ -978,10 +978,18 @@ let currentScreen = -1;
 const screens = document.querySelectorAll(".form-screen");
 
 function showScreen(index) {
+  // toggle active screen
   screens.forEach((screen, i) => {
     screen.classList.toggle("active", i === index);
   });
   currentScreen = index;
+
+  /* ───── Hide the skip link ONLY on the final screen (lead-capture) ───── */
+  const lastIndex = screens.length - 1;        // q10 is the last .form-screen
+  const skipBtn = document.getElementById("skipToPackages");
+  if (skipBtn) {
+    skipBtn.style.display = (index === lastIndex) ? "none" : "block";
+  }
 }
 
 function next() {
