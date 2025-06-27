@@ -639,28 +639,25 @@ button:hover {
   opacity: 0.9;
 }
 
-
-/* ───────── Skip-link ───────── */
-.skip-link{
-  position:fixed;
-  left:50%;
-  bottom:1.25rem;                 /* just above the safe-area on iPhone */
-  transform:translateX(-50%);
-  background:#ff3131;             /* Faz Designs brand red */
-  color:#fff;
-  padding:.6rem 1.1rem;
-  border-radius:4px;
-  font-weight:600;
-  font-size:.9rem;
-  text-decoration:none;
-  z-index:9999;
-  box-shadow:0 2px 4px rgba(0,0,0,.15);
-  opacity:0;                      /* hidden until intro ends */
-  pointer-events:none;
-  transition:opacity .3s ease;
+.skip-link {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff3131;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
 }
-.skip-link:focus-visible{outline:2px solid #fff;}
-.skip-link.visible{opacity:1; pointer-events:auto;}
+.skip-link:hover {
+  background-color: #cc1f1f;
+}
 
 </style>
 
@@ -875,13 +872,10 @@ button:hover {
   </div>
 </form>
 
- <!-- Persistent skip link -->
-<a id="skipLink"
-   class="skip-link"
-   href="https://doctoc30.github.io/Faz-Designs/pages/portfolio.html">
-  Skip to Packages
+<a href="https://doctoc30.github.io/Faz-Designs/pages/portfolio.html" 
+   id="skipToPackages" class="skip-link" style="display: none;">
+  Skip to Package Deals →
 </a>
-
   </div>
  <script>
 const el = document.getElementById('typewriter');
@@ -910,11 +904,20 @@ function typeChar() {
     cursor.remove();
     setTimeout(() => {
       el.style.animation = 'rocketRise 2s ease forwards';
+
       setTimeout(() => {
         const choiceScreen = document.getElementById('form-start-choice');
         choiceScreen.style.display = 'block';
         setTimeout(() => choiceScreen.classList.add('show'), 50);
+
+        // ✅ Show skip button now
+        const skipBtn = document.getElementById('skipToPackages');
+        if (skipBtn) {
+          skipBtn.style.display = 'block';
+        }
+
       }, 2000);
+
     }, 1000);
     return;
   }
@@ -1023,12 +1026,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  function showSkipLink(){ document.getElementById('skipLink').classList.add('visible'); }
-/* ✱ Example – adapt to your actual typewriter code ✱ */
-typewriter.on('complete', showSkipLink);    // if using a library
-// OR, if you already run a custom “revealForm()” function:
-revealForm();
-showSkipLink();
+
 </script>
 
 </body>
