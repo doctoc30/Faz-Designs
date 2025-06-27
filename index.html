@@ -226,14 +226,7 @@
 
 
 
-  .form-screen.active { display: flex; }
 
-  .form-screen h2 {
-    font-size: 1.8rem;
-    margin-bottom: 3rem;
-    max-width: 500px;
-    line-height: 1.4;
-  }
 
   select, input[type="text"], input[type="email"] {
     padding: 1rem;
@@ -489,10 +482,42 @@ input[type="email"] {
   }
 }
 
-/* Base hidden state */
+ /* --------------------------------------------
+   1. FIRST QUESTION SCREEN (#form-start-choice)
+--------------------------------------------- */
+#form-start-choice {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background: #ff3131;
+  color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#form-start-choice.show {
+  display: flex;
+  opacity: 1;
+}
+
+/* --------------------------------------------
+   2. MULTI-STEP FORM SCREENS (.form-screen)
+--------------------------------------------- */
 .form-screen {
   position: fixed;
-  top: 80%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -512,12 +537,10 @@ input[type="email"] {
   border-radius: 12px;
 }
 
-/* Make it visible when active */
 .form-screen.active {
   display: flex;
 }
 
-/* Form title */
 .form-screen h2 {
   font-size: 1.8rem;
   margin-bottom: 3rem;
@@ -525,7 +548,9 @@ input[type="email"] {
   line-height: 1.4;
 }
 
-/* Input and select styling */
+/* --------------------------------------------
+   3. FORM FIELDS (input, select)
+--------------------------------------------- */
 select,
 input[type="text"],
 input[type="email"],
@@ -545,7 +570,9 @@ input[type="tel"] {
   font-family: inherit;
 }
 
-/* Consent + skip wrapper */
+/* --------------------------------------------
+   4. CONSENT CHECKBOX SECTION
+--------------------------------------------- */
 .consent-wrapper {
   display: flex;
   flex-direction: column;
@@ -559,7 +586,9 @@ input[type="tel"] {
   margin-right: 8px;
 }
 
-/* Button styles */
+/* --------------------------------------------
+   5. BUTTONS
+--------------------------------------------- */
 button {
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -576,7 +605,7 @@ button:hover {
   opacity: 0.9;
 }
 
-/* Button container (optional, if you need them side-by-side) */
+/* Optional: group buttons side-by-side */
 .button-group {
   display: flex;
   justify-content: space-between;
@@ -584,19 +613,11 @@ button:hover {
   gap: 1rem;
 }
 
-/* Start choice section */
-#form-start-choice {
-  display: none;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-#form-start-choice.show {
-  opacity: 1;
-}
-
-/* Mobile adjustment if needed */
+/* --------------------------------------------
+   6. MOBILE HEIGHT ADJUSTMENTS
+--------------------------------------------- */
 @media (max-height: 600px) {
+  #form-start-choice,
   .form-screen {
     top: 55%;
     transform: translate(-50%, -55%);
