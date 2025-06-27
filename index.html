@@ -480,28 +480,29 @@ input[type="email"] {
    1. FIRST QUESTION SCREEN (#form-start-choice)
 --------------------------------------------- */
 
-#form-start-choice .start-buttons {
+#form-start-choice .button-row {
   display: flex;
-  flex-direction: column;     /* Keep buttons stacked */
-  align-items: center;
-  gap: 2.5rem;                /* Adjust gap between buttons */
-  margin-top: 2.5rem;
+  flex-direction: column;    /* Stack vertically */
+  align-items: center;       /* Center horizontally */
+  gap: 2.5rem;               /* Spacing between buttons */
+  margin-top: 2rem;
 }
 
-#form-start-choice .start-buttons button {
+#form-start-choice .button-row button {
   padding: 1.2rem 2.5rem;
   font-size: 1.05rem;
-  min-width: 160px;
   border: none;
   border-radius: 8px;
   background: white;
   color: #ff3131;
   font-weight: bold;
   cursor: pointer;
+  min-width: 220px;
+  max-width: 100%;
   transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
-#form-start-choice .start-buttons button:hover {
+#form-start-choice .button-row button:hover {
   background-color: #ffe5e5;
   opacity: 0.95;
 }
