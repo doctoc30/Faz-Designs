@@ -640,7 +640,27 @@ button:hover {
 }
 
 
-
+/* ───────── Skip-link ───────── */
+.skip-link{
+  position:fixed;
+  left:50%;
+  bottom:1.25rem;                 /* just above the safe-area on iPhone */
+  transform:translateX(-50%);
+  background:#ff3131;             /* Faz Designs brand red */
+  color:#fff;
+  padding:.6rem 1.1rem;
+  border-radius:4px;
+  font-weight:600;
+  font-size:.9rem;
+  text-decoration:none;
+  z-index:9999;
+  box-shadow:0 2px 4px rgba(0,0,0,.15);
+  opacity:0;                      /* hidden until intro ends */
+  pointer-events:none;
+  transition:opacity .3s ease;
+}
+.skip-link:focus-visible{outline:2px solid #fff;}
+.skip-link.visible{opacity:1; pointer-events:auto;}
 
 </style>
 
@@ -855,6 +875,12 @@ button:hover {
   </div>
 </form>
 
+ <!-- Persistent skip link -->
+<a id="skipLink"
+   class="skip-link"
+   href="https://doctoc30.github.io/Faz-Designs/pages/portfolio.html">
+  Skip to Packages
+</a>
 
   </div>
  <script>
@@ -994,6 +1020,15 @@ document.addEventListener('click', (event) => {
 document.addEventListener("DOMContentLoaded", () => {
   showScreen(-1); // Hide all
 });
+
+
+
+  function showSkipLink(){ document.getElementById('skipLink').classList.add('visible'); }
+/* ✱ Example – adapt to your actual typewriter code ✱ */
+typewriter.on('complete', showSkipLink);    // if using a library
+// OR, if you already run a custom “revealForm()” function:
+revealForm();
+showSkipLink();
 </script>
 
 </body>
