@@ -652,6 +652,25 @@ button:hover {
   opacity: 0.9;
 }
 
+
+ .skip-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background: #ff3131;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+
+.skip-link.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 </style>
 
 </head>
