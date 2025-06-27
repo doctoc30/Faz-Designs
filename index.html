@@ -628,14 +628,12 @@ button:hover {
 
 .button-row {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
+  justify-content: center;  /* Center the buttons */
+  gap: 1rem;                /* Space between buttons */
   margin-top: 2rem;
 }
 
 .button-row button {
-  flex: 1;
   padding: 1rem 2rem;
   font-size: 1rem;
   border: none;
@@ -644,6 +642,8 @@ button:hover {
   color: #ff3131;
   font-weight: bold;
   cursor: pointer;
+  width: auto;              /* Make sure buttons size to content */
+  min-width: 100px;         /* Optional: consistent width */
 }
 
 .button-row button:hover {
