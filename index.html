@@ -479,33 +479,33 @@ input[type="email"] {
  /* --------------------------------------------
    1. FIRST QUESTION SCREEN (#form-start-choice)
 --------------------------------------------- */
+#form-start-choice {
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background: #ff3131;
+  color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
 
-#form-start-choice .button-row {
+#form-start-choice.show {
   display: flex;
-  flex-direction: column;    /* Stack vertically */
-  align-items: center;       /* Center horizontally */
-  gap: 2.5rem;               /* Spacing between buttons */
-  margin-top: 2rem;
+  opacity: 1;
 }
 
-#form-start-choice .button-row button {
-  padding: 1.2rem 2.5rem;
-  font-size: 1.05rem;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  color: #ff3131;
-  font-weight: bold;
-  cursor: pointer;
-  min-width: 220px;
-  max-width: 100%;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
-}
-
-#form-start-choice .button-row button:hover {
-  background-color: #ffe5e5;
-  opacity: 0.95;
-}
 
  
 /* --------------------------------------------
