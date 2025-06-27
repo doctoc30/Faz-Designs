@@ -479,22 +479,25 @@ input[type="email"] {
  /* --------------------------------------------
    1. FIRST QUESTION SCREEN (#form-start-choice)
 --------------------------------------------- */
-#form-start-choice .start-buttons {
+
+
+ #form-start-choice .start-buttons {
   display: flex;
-  justify-content: center;
-  gap: 2.5rem; /* Increased horizontal space between buttons */
-  margin: 3rem auto; /* More vertical spacing and center alignment */
+  justify-content: space-between; /* Push buttons apart */
   flex-wrap: wrap;
-  max-width: 90%; /* Constrain container width on large screens */
+  row-gap: 1rem; /* Vertical space when wrapped */
+  column-gap: 3rem; /* Bigger space between buttons */
+  margin: 3rem auto;
+  max-width: 100%;
 }
 
 #form-start-choice .start-buttons button {
-  padding: 1.2rem 3rem; /* Slightly more padding for larger touch area */
+  flex: 1 1 45%; /* Allows each button to take up to 45% of row */
+  padding: 1.2rem 2rem;
   font-size: 1.05rem;
-  min-width: 160px; /* Wider minimum width */
-  margin: 0.5rem 0.25rem; /* Small vertical margin to separate wrapped buttons */
+  min-width: 160px;
+  margin: 0.25rem;
 }
-
 #form-start-choice .start-buttons button:hover {
   background-color: #ffe5e5;
   opacity: 0.95;
