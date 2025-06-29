@@ -266,7 +266,7 @@ main {
 <footer style="background:transparent;padding:3rem 1rem 2rem;text-align:center;color:#999;font-size:0.95rem;">
   <div style="max-width:1000px;margin:0 auto;" data-aos="fade-up">
     <p>&copy; 2025 Faz Designs. All rights reserved.</p>
-    <div style="margin-top:1rem;display:flex;justify-content:center;gap:2rem;">
+    <div class="social-icons">
       <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="spin-icon">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X / Twitter">
       </a>
@@ -280,6 +280,25 @@ main {
   </div>
 
   <style>
+    .social-icons {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 600px) {
+      .social-icons {
+        gap: 2.5rem;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .social-icons {
+        gap: 3rem;
+      }
+    }
+
     .spin-icon {
       display: inline-block;
       width: 42px;
