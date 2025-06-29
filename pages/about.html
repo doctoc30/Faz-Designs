@@ -211,15 +211,12 @@ main {
 
 <main>
 
- <!-- ==== Full Width Rotating Header Slider (No Overlap, Large Font) ==== -->
 <section class="header-slider">
   <div class="slider-rotator">
-    <!-- Slide 1 -->
     <div class="slider-face front">
       <h1>White social icons,<br>with invert fallback<br>for light/dark mode</h1>
     </div>
 
-    <!-- Slide 2 -->
     <div class="slider-face back">
       <h1>Mobile-first,<br>responsive,<br>&amp; elegant</h1>
     </div>
@@ -257,6 +254,7 @@ main {
     justify-content: center;
     text-align: center;
     transform-style: preserve-3d;
+    transition: opacity 0.3s ease;
   }
 
   .slider-face h1 {
@@ -267,19 +265,36 @@ main {
     font-weight: 600;
   }
 
+  /* Front face */
   .front {
     transform: rotateY(0deg) translateZ(2rem);
+    animation: frontFade 10s linear infinite;
     z-index: 2;
   }
 
+  /* Back face */
   .back {
     transform: rotateY(180deg) translateZ(2rem);
+    animation: backFade 10s linear infinite;
   }
 
+  /* Coin rotation */
   @keyframes coinSpin {
     0%   { transform: rotateY(0deg); }
     50%  { transform: rotateY(180deg); }
     100% { transform: rotateY(360deg); }
+  }
+
+  /* Fade front in/out */
+  @keyframes frontFade {
+    0%, 45%, 55%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Fade back in/out */
+  @keyframes backFade {
+    0%, 45%, 55%, 100% { opacity: 0; }
+    50% { opacity: 1; }
   }
 </style>
 
