@@ -210,7 +210,8 @@ main {
 </header>
 
 <main>
-<!-- ==== Full Width Rotating Header Slider (Brand: #ff3131) ==== -->
+
+ <!-- ==== Full Width Rotating Header Slider (No Overlap, Large Font) ==== -->
 <section class="header-slider">
   <div class="slider-rotator">
     <!-- Slide 1 -->
@@ -226,56 +227,55 @@ main {
 </section>
 
 <style>
-  /* ——— Container ——— */
   .header-slider {
     width: 100%;
-    height: 60vh;
-    background: #ff3131; /* Your brand red */
-    perspective: 1200px;
+    height: 70vh;
+    background: #ff3131;
+    perspective: 1500px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* ——— Rotating Wrapper ——— */
   .slider-rotator {
     position: relative;
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    animation: coinSpin 8s linear infinite;
+    animation: coinSpin 10s linear infinite;
   }
 
-  /* ——— Slide Faces ——— */
   .slider-face {
     position: absolute;
     width: 100%;
     height: 100%;
+    padding: 0 1.5rem;
     backface-visibility: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 1rem;
+    transform-style: preserve-3d;
   }
 
   .slider-face h1 {
-    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     line-height: 1.2;
     margin: 0;
-    color: #fff; /* Always white text */
+    color: #fff;
+    font-weight: 600;
   }
 
   .front {
-    transform: rotateY(0deg) translateZ(1px);
+    transform: rotateY(0deg) translateZ(2rem);
+    z-index: 2;
   }
 
   .back {
-    transform: rotateY(180deg) translateZ(1px);
+    transform: rotateY(180deg) translateZ(2rem);
   }
 
-  /* ——— Coin-style Spin ——— */
   @keyframes coinSpin {
     0%   { transform: rotateY(0deg); }
     50%  { transform: rotateY(180deg); }
