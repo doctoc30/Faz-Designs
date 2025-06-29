@@ -255,7 +255,6 @@ main {
 
   .slider-face.visible {
     opacity: 1;
-    transition: opacity 0.5s ease;
   }
 
   .slider-face h1 {
@@ -266,17 +265,19 @@ main {
     font-weight: 600;
   }
 
-  /* Animation timing */
-  @keyframes toggleSlides {
-    0%, 49.99% {
-      opacity: 1;
-    }
-    50%, 100% {
-      opacity: 0;
+  /* Tablets and up */
+  @media (min-width: 768px) {
+    .slider-face h1 {
+      font-size: 5rem;  /* Larger font for tablets */
     }
   }
 
-  /* We'll control the toggle with JS below */
+  /* Desktops and up */
+  @media (min-width: 1024px) {
+    .slider-face h1 {
+      font-size: 6rem;  /* Even bigger for desktops */
+    }
+  }
 </style>
 
 <script>
@@ -296,6 +297,8 @@ main {
     visibleFront = !visibleFront;
   }, 5000);
 </script>
+
+
 
   <!-- Our Story -->
   <section class="card" data-aos="flip-left">
