@@ -896,10 +896,21 @@ cursor.classList.add('cursor');
 el.appendChild(cursor);
 
 function setLinesByOrientation() {
-  if(window.matchMedia("(orientation: landscape)").matches) {
-    lines = ["We build custom", "websites for", "small businesses"];
+  if (window.matchMedia("(orientation: landscape)").matches) {
+    lines = [
+      "We build",
+      "your website.",
+      "You approve,",
+      "then pay."
+    ];
   } else {
-    lines = ["We build", "custom", "websites", "for small", "businesses"];
+    lines = [
+      "We build",
+      "your",
+      "website.",
+      "You approve,",
+      "then pay."
+    ];
   }
 }
 
