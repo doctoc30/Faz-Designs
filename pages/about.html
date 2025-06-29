@@ -263,54 +263,60 @@ main {
     </div>
   </section>
 
-
-
-   <footer style="background:transparent;padding:3rem 1rem 2rem;text-align:center;color:#999;font-size:0.95rem;">
+<footer style="background:transparent;padding:3rem 1rem 2rem;text-align:center;color:#999;font-size:0.95rem;">
   <div style="max-width:1000px;margin:0 auto;" data-aos="fade-up">
     <p>&copy; 2025 Faz Designs. All rights reserved.</p>
     <div style="margin-top:1rem;display:flex;justify-content:center;gap:1.5rem;">
-      <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="swirl-icon">
+      <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="spin-icon">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X / Twitter">
       </a>
-      <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook" class="swirl-icon">
+      <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook" class="spin-icon">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
       </a>
-      <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram" class="swirl-icon">
+      <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram" class="spin-icon">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
       </a>
     </div>
   </div>
+
   <style>
-    .swirl-icon {
+    .spin-icon {
       display: inline-block;
-      width: 28px;
-      height: 28px;
-      animation: swirl 6s ease-in-out infinite;
-      opacity: 0.85;
+      width: 32px;
+      height: 32px;
+      perspective: 1000px;
+      animation: coinSpin 3s linear infinite;
+      opacity: 0.9;
     }
-    .swirl-icon img {
+    .spin-icon img {
       width: 100%;
       height: auto;
       filter: invert(100%);
+      display: block;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
     }
-    @keyframes swirl {
-      0%   { transform: rotate(0deg) scale(1); }
-      25%  { transform: rotate(10deg) scale(1.05); }
-      50%  { transform: rotate(0deg) scale(1); }
-      75%  { transform: rotate(-10deg) scale(1.05); }
-      100% { transform: rotate(0deg) scale(1); }
+
+    @keyframes coinSpin {
+      0%   { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
     }
-    .swirl-icon:hover {
-      transform: scale(1.2) rotate(0deg) !important;
+
+    .spin-icon:hover {
+      animation-play-state: paused;
+      transform: scale(1.2);
       opacity: 1;
     }
+
     @media (prefers-color-scheme: light) {
-      .swirl-icon img {
+      .spin-icon img {
         filter: invert(20%) !important;
       }
     }
   </style>
 </footer>
+
+  
 </main>
 
 <script>
