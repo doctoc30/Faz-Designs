@@ -266,7 +266,7 @@ main {
 <footer style="background:transparent;padding:3rem 1rem 2rem;text-align:center;color:#999;font-size:0.95rem;">
   <div style="max-width:1000px;margin:0 auto;" data-aos="fade-up">
     <p>&copy; 2025 Faz Designs. All rights reserved.</p>
-    <div style="margin-top:1rem;display:flex;justify-content:center;gap:1.5rem;">
+    <div style="margin-top:1rem;display:flex;justify-content:center;gap:2rem;">
       <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="spin-icon">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X / Twitter">
       </a>
@@ -282,16 +282,18 @@ main {
   <style>
     .spin-icon {
       display: inline-block;
-      width: 32px;
-      height: 32px;
+      width: 42px;
+      height: 42px;
       perspective: 1000px;
       animation: coinSpin 3s linear infinite;
-      opacity: 0.9;
+      opacity: 0.95;
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
+
     .spin-icon img {
       width: 100%;
       height: auto;
-      filter: invert(100%);
+      filter: brightness(0) invert(1); /* pure white */
       display: block;
       transform-style: preserve-3d;
       backface-visibility: hidden;
@@ -310,12 +312,11 @@ main {
 
     @media (prefers-color-scheme: light) {
       .spin-icon img {
-        filter: invert(20%) !important;
+        filter: brightness(0) invert(1); /* still white in light mode */
       }
     }
   </style>
 </footer>
-
   
 </main>
 
