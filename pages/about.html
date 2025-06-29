@@ -279,23 +279,40 @@ main {
     </div>
   </div>
 
+  <footer style="background:transparent;padding:3rem 1rem 2rem;text-align:center;color:#999;font-size:0.95rem;">
+  <div style="max-width:1000px;margin:0 auto;" data-aos="fade-up">
+    <p>&copy; 2025 Faz Designs. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="spin-icon">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X / Twitter">
+      </a>
+      <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook" class="spin-icon">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+      </a>
+      <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram" class="spin-icon">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+      </a>
+    </div>
+  </div>
+
   <style>
     .social-icons {
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
+      margin-top: 2rem;
+      display: flex !important;
+      justify-content: center !important;
+      flex-wrap: wrap;
+      gap: 2rem; /* Default for mobile */
     }
 
     @media (min-width: 600px) {
       .social-icons {
-        gap: 2.5rem;
+        gap: 3rem !important;
       }
     }
 
     @media (min-width: 992px) {
       .social-icons {
-        gap: 3rem;
+        gap: 4rem !important;
       }
     }
 
@@ -312,7 +329,7 @@ main {
     .spin-icon img {
       width: 100%;
       height: auto;
-      filter: brightness(0) invert(1); /* pure white */
+      filter: brightness(0) invert(1); /* white icons */
       display: block;
       transform-style: preserve-3d;
       backface-visibility: hidden;
@@ -331,12 +348,11 @@ main {
 
     @media (prefers-color-scheme: light) {
       .spin-icon img {
-        filter: brightness(0) invert(1); /* still white in light mode */
+        filter: brightness(0) invert(1); /* stay white on light background */
       }
     }
   </style>
 </footer>
-  
 </main>
 
 <script>
