@@ -280,6 +280,23 @@ main {
   </div>
 
   <style>
+<footer>
+  <div class="footer-inner" data-aos="fade-up">
+    <p>&copy; 2025 Faz Designs. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="spin-icon">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X / Twitter">
+      </a>
+      <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook" class="spin-icon">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+      </a>
+      <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram" class="spin-icon">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+      </a>
+    </div>
+  </div>
+
+  <style>
     footer {
       background: transparent;
       padding: 3rem 1rem 2rem;
@@ -297,20 +314,22 @@ main {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      row-gap: 1.5rem;
-      column-gap: 2rem;
       margin-top: 2rem;
     }
 
+    .social-icons a {
+      margin: 0 1.2rem; /* base spacing */
+    }
+
     @media (min-width: 600px) {
-      .social-icons {
-        column-gap: 3rem;
+      .social-icons a {
+        margin: 0 1.8rem;
       }
     }
 
     @media (min-width: 992px) {
-      .social-icons {
-        column-gap: 4rem;
+      .social-icons a {
+        margin: 0 2.4rem;
       }
     }
 
@@ -347,64 +366,6 @@ main {
     @media (prefers-color-scheme: light) {
       .spin-icon img {
         filter: brightness(0) invert(1);
-      }
-    }
-  </style>
-</footer>
-  <style>
-    .social-icons {
-      margin-top: 2rem;
-      display: flex !important;
-      justify-content: center !important;
-      flex-wrap: wrap;
-      gap: 2rem; /* Default for mobile */
-    }
-
-    @media (min-width: 600px) {
-      .social-icons {
-        gap: 3rem !important;
-      }
-    }
-
-    @media (min-width: 992px) {
-      .social-icons {
-        gap: 4rem !important;
-      }
-    }
-
-    .spin-icon {
-      display: inline-block;
-      width: 42px;
-      height: 42px;
-      perspective: 1000px;
-      animation: coinSpin 3s linear infinite;
-      opacity: 0.95;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .spin-icon img {
-      width: 100%;
-      height: auto;
-      filter: brightness(0) invert(1); /* white icons */
-      display: block;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-    }
-
-    @keyframes coinSpin {
-      0%   { transform: rotateY(0deg); }
-      100% { transform: rotateY(360deg); }
-    }
-
-    .spin-icon:hover {
-      animation-play-state: paused;
-      transform: scale(1.2);
-      opacity: 1;
-    }
-
-    @media (prefers-color-scheme: light) {
-      .spin-icon img {
-        filter: brightness(0) invert(1); /* stay white on light background */
       }
     }
   </style>
