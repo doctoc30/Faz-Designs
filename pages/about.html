@@ -253,15 +253,18 @@ main {
   font-size: 0.95rem;
 }
 
-
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
   background-color: #222;
-  width: 100vw; /* full viewport width */
+  width: 100vw;
   box-sizing: border-box;
+
+  /* Fix iPhone landscape safe area */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .social-icons {
@@ -269,10 +272,11 @@ footer {
   gap: 40px;
   justify-content: center;
   align-items: center;
-  width: 100%;
   max-width: 400px;
+  width: 100%;
 }
 
+/* Coin spin animation */
 .social-icons a {
   font-size: 40px;
   width: 60px;
@@ -281,8 +285,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  /* Upright slow coin spin */
   animation: coin-spin 6s linear infinite;
   transform-style: preserve-3d;
   perspective: 1000px;
@@ -294,6 +296,14 @@ footer {
   }
   100% {
     transform: rotateY(360deg);
+  }
+}
+
+/* Extra fix for iPhone landscape */
+@media (orientation: landscape) and (max-device-width: 812px) {
+  footer {
+    padding-left: max(env(safe-area-inset-left), 20px);
+    padding-right: max(env(safe-area-inset-right), 20px);
   }
 }
 </style>
