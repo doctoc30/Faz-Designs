@@ -279,6 +279,35 @@ main > .footer-inner {
   }
 }
 
+
+ /* Base social icons style (no animation) */
+.social-icons a {
+  display: inline-block;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+/* On hover, rotate the icon smoothly */
+.social-icons a:hover {
+  transform: rotate(360deg);
+}
+
+/* Add swirl rotation animation on medium screens and up */
+@media (min-width: 768px) {
+  .social-icons a {
+    animation: swirl 4s linear infinite;
+  }
+}
+
+/* Define swirl keyframes */
+@keyframes swirl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 </style>
 </head>
 <body>
