@@ -280,32 +280,48 @@ main > .footer-inner {
 }
 
 
- /* Base social icons style (no animation) */
+.social-icons {
+  position: relative;
+  width: 300px;   /* bigger container */
+  height: 300px;
+  margin: 0 auto; /* center horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .social-icons a {
-  display: inline-block;
-  margin: 0 10px;
-  transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px; /* half width and height to center */
+  animation: orbit 6s linear infinite, spin 1.2s linear infinite;
 }
 
-/* On hover, rotate the icon smoothly */
-.social-icons a:hover {
-  transform: rotate(360deg);
-}
+/* Spread icons evenly on orbit, adjust delays */
+.social-icons a:nth-child(1) { animation-delay: 0s, 0s; }
+.social-icons a:nth-child(2) { animation-delay: 2s, 0.4s; }
+.social-icons a:nth-child(3) { animation-delay: 4s, 0.8s; }
 
-/* Add swirl rotation animation on medium screens and up */
-@media (min-width: 768px) {
-  .social-icons a {
-    animation: swirl 4s linear infinite;
+/* Orbit animation */
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
   }
 }
 
-/* Define swirl keyframes */
-@keyframes swirl {
-  from {
-    transform: rotate(0deg);
+/* Spin upright */
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: rotateY(360deg);
   }
 }
 </style>
