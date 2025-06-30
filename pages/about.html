@@ -293,8 +293,7 @@ footer {
   padding-top: 10px;
 }
 
-
-/* CONTACT FORM STYLING */
+ /* CONTACT FORM STYLING */
 .contact-section {
   padding: 60px 20px;
   background: transparent;
@@ -331,7 +330,7 @@ footer {
   background: transparent;
   border: none;
   border-bottom: 2px solid #fff;
-  color: #fff;
+  color: #fff; /* WHITE TEXT */
   font-size: 16px;
   font-weight: 600;
   outline: none;
@@ -355,26 +354,29 @@ footer {
 .form-group textarea:valid + label {
   top: -16px;
   font-size: 13px;
-  color: #ff3131;
+  color: #fff;
 }
 
-/* Submit Button */
+/* Submit Button Group */
+.submit-group {
+  text-align: center;
+}
+
 .contact-form button {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #ff3131;
+  padding: 12px 30px;
+  border: 2px solid #fff;
   background: transparent;
-  color: #ff3131;
-  font-weight: 600;
+  color: #fff;
+  font-weight: 700;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .contact-form button:hover {
-  background: #ff3131;
-  color: #fff;
-  box-shadow: 0 0 10px rgba(255, 49, 49, 0.6);
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
 /* Responsive */
@@ -390,8 +392,10 @@ footer {
 
   .contact-form button {
     font-size: 14px;
+    padding: 10px 25px;
   }
 }
+
 </style>
  
 
@@ -440,7 +444,9 @@ footer {
       <label>Your Message</label>
     </div>
 
-    <button type="submit">Send</button>
+    <div class="form-group submit-group">
+      <button type="submit">Send</button>
+    </div>
   </form>
 </section>
  
