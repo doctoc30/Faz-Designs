@@ -377,25 +377,31 @@ main {
     }
   }
 
- .gdpr-consent {
+
+ footer {
   display: flex;
+  flex-direction: column; /* <- forces vertical layout */
   align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
+  gap: 20px;
+  padding: 40px 0;
   color: #fff;
-  margin: 10px 0;
-  text-align: left;
+  background: transparent;
 }
 
-.gdpr-note {
-  font-size: 0.8rem;
-  color: #ccc;
-  margin-bottom: 20px;
+.social-icons {
+  display: flex;
+  gap: 20px;
 }
 
-.gdpr-note a {
-  color: #ff3131;
-  text-decoration: underline;
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1); /* white icons */
+  transition: transform 0.4s ease;
+}
+
+.spin-icon:hover img {
+  transform: rotate(360deg);
 }
 </style>
 
