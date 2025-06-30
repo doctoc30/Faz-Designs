@@ -293,41 +293,47 @@ footer {
   padding-top: 10px;
 }
 
- .contact-section {
-  width: 100%;
-  max-width: 600px;
-  margin: 60px auto;
-  padding: 20px;
+
+/* CONTACT FORM STYLING */
+.contact-section {
+  padding: 60px 20px;
   background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+  max-width: 500px;
+  width: 100%;
+  background: transparent;
   color: #fff;
 }
 
 .contact-form h2 {
   text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 700;
   color: #fff;
 }
 
+/* Input Group */
 .form-group {
   position: relative;
+  margin-bottom: 30px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 10px 5px;
-  font-size: 1rem;
-  color: #fff;
+  padding: 10px 0;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
   outline: none;
   resize: none;
 }
@@ -335,45 +341,55 @@ footer {
 .form-group label {
   position: absolute;
   top: 10px;
-  left: 5px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  left: 0;
+  color: #aaa;
+  font-weight: 600;
   pointer-events: none;
-  transition: 0.2s ease all;
+  transition: 0.3s ease;
 }
 
+/* Float label on focus */
 .form-group input:focus + label,
 .form-group input:valid + label,
 .form-group textarea:focus + label,
 .form-group textarea:valid + label {
-  top: -14px;
-  font-size: 0.75rem;
+  top: -16px;
+  font-size: 13px;
   color: #ff3131;
 }
 
+/* Submit Button */
 .contact-form button {
-  padding: 12px 20px;
-  border: none;
-  background: #ff3131;
-  color: #fff;
-  font-size: 1rem;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ff3131;
+  background: transparent;
+  color: #ff3131;
+  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .contact-form button:hover {
-  background: #e02b2b;
+  background: #ff3131;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 49, 49, 0.6);
 }
 
-/* Mobile responsiveness */
+/* Responsive */
 @media (max-width: 500px) {
-  .contact-section {
-    padding: 20px 10px;
+  .contact-form h2 {
+    font-size: 20px;
   }
 
-  .contact-form h2 {
-    font-size: 1.5rem;
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px;
+  }
+
+  .contact-form button {
+    font-size: 14px;
   }
 }
 </style>
@@ -404,26 +420,27 @@ footer {
 
 <main>
 
-<section class="contact-section" data-aos="fade-up">
-  <form class="contact-form">
+<!-- CONTACT FORM -->
+<section class="contact-section">
+  <form class="contact-form" data-aos="fade-up">
     <h2>Contact Us</h2>
-    
+
     <div class="form-group">
-      <input type="text" name="name" required>
-      <label>Name</label>
+      <input type="text" required>
+      <label>Your Name</label>
     </div>
 
     <div class="form-group">
-      <input type="email" name="email" required>
-      <label>Email</label>
+      <input type="email" required>
+      <label>Email Address</label>
     </div>
 
     <div class="form-group">
-      <textarea name="message" rows="4" required></textarea>
-      <label>Message</label>
+      <textarea rows="4" required></textarea>
+      <label>Your Message</label>
     </div>
 
-    <button type="submit">Send Message</button>
+    <button type="submit">Send</button>
   </form>
 </section>
  
