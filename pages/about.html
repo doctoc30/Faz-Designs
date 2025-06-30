@@ -223,12 +223,12 @@ main {
 
  .footer-inner {
   text-align: center;
+  padding: 1.5rem 0;
+  display: block; /* ensures vertical stacking */
 }
 
- /* Add to your existing stylesheet */
-.footer-inner {
-  text-align: center;          /* keeps everything centered */
-  padding: 1.5rem 0;
+.social-icons {
+  margin-bottom: 1rem; /* spacing between icons and text */
 }
 
 .social-icons a {
@@ -237,7 +237,7 @@ main {
 }
 
 .social-icons img {
-  width: 24px;                 /* size the icons as you prefer */
+  width: 24px;
   height: 24px;
 }
 
@@ -245,9 +245,8 @@ main {
   transition: transform 0.3s;
 }
 .spin-icon:hover img {
-  transform: rotate(360deg);   /* simple spin on hover */
+  transform: rotate(360deg);
 }
-</style>
 
 </head>
 <body>
