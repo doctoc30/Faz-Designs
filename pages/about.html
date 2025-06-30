@@ -224,6 +224,29 @@ main {
  .footer-inner {
   text-align: center;
 }
+
+ /* Add to your existing stylesheet */
+.footer-inner {
+  text-align: center;          /* keeps everything centered */
+  padding: 1.5rem 0;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+.social-icons img {
+  width: 24px;                 /* size the icons as you prefer */
+  height: 24px;
+}
+
+.spin-icon img {
+  transition: transform 0.3s;
+}
+.spin-icon:hover img {
+  transform: rotate(360deg);   /* simple spin on hover */
+}
 </style>
 
 </head>
