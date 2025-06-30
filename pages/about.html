@@ -565,7 +565,170 @@ button:hover {
       hamburger.click();
     }
   });
+</script> 🔥
+
+ <div class="laminate-slider" aria-label="Laminate floor sample slider" tabindex="0">
+  <!-- 20 planks for demo -->
+  <a href="https://example.com/sample1" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/101/180/100" alt="Laminate sample 1" />
+  </a>
+  <a href="https://example.com/sample2" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/102/180/100" alt="Laminate sample 2" />
+  </a>
+  <a href="https://example.com/sample3" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/103/180/100" alt="Laminate sample 3" />
+  </a>
+  <a href="https://example.com/sample4" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/104/180/100" alt="Laminate sample 4" />
+  </a>
+  <a href="https://example.com/sample5" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/105/180/100" alt="Laminate sample 5" />
+  </a>
+  <a href="https://example.com/sample6" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/106/180/100" alt="Laminate sample 6" />
+  </a>
+  <a href="https://example.com/sample7" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/107/180/100" alt="Laminate sample 7" />
+  </a>
+  <a href="https://example.com/sample8" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/108/180/100" alt="Laminate sample 8" />
+  </a>
+  <a href="https://example.com/sample9" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/109/180/100" alt="Laminate sample 9" />
+  </a>
+  <a href="https://example.com/sample10" target="_blank" rel="noopener" class="plank">
+    <img src="https://picsum.photos/id/110/180/100" alt="Laminate sample 10" />
+  </a>
+  <!-- repeat similarly to 20 or more -->
+</div>
+
+<style>
+  .laminate-slider {
+    display: flex;
+    gap: 12px;
+    padding: 14px 8px;
+    cursor: grab;
+    background: transparent;
+    user-select: none;
+    overflow-x: hidden; /* hide scrollbar for clean look */
+    position: relative;
+    width: 100vw;
+  }
+
+  .laminate-slider .plank {
+    flex-shrink: 0;
+    width: 180px;
+    height: 100px;
+    border-radius: 6px;
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.2),
+      inset 0 0 8px rgba(255,255,255,0.2);
+    overflow: hidden;
+    background: #f5f3f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .laminate-slider .plank img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  .laminate-slider .plank:hover,
+  .laminate-slider .plank:focus-visible {
+    transform: translateY(-6px) scale(1.07);
+    box-shadow:
+      0 6px 14px rgba(0, 0, 0, 0.3),
+      inset 0 0 10px rgba(255,255,255,0.3);
+    outline: none;
+  }
+</style>
+
+<script>
+  const slider = document.querySelector('.laminate-slider');
+
+  // Duplicate slider content for infinite loop effect
+  slider.innerHTML += slider.innerHTML;
+
+  let position = 0;
+  const speed = 0.5; // px per frame
+  let direction = 1; // 1 for left->right, -1 for right->left
+
+  // Scroll direction toggle based on vertical scroll position
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    // Change direction when scrollY crosses half viewport height
+    direction = (scrollY % (window.innerHeight * 2)) < window.innerHeight ? 1 : -1;
+  });
+
+  // Animation loop for auto scroll
+  function animate() {
+    position += speed * direction;
+    if (position > slider.scrollWidth / 2) {
+      position = 0;
+    } else if (position < 0) {
+      position = slider.scrollWidth / 2;
+    }
+    slider.style.transform = `translateX(${-position}px)`;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Optional: pause auto scroll while user is interacting with slider
+  let isDragging = false;
+  let startX, scrollLeft;
+
+  slider.addEventListener('mousedown', e => {
+    isDragging = true;
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = position;
+    slider.style.cursor = 'grabbing';
+  });
+
+  slider.addEventListener('mouseup', e => {
+    isDragging = false;
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mouseleave', e => {
+    isDragging = false;
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX);
+    position = scrollLeft - walk;
+  });
+
+  // Touch support for mobile dragging
+  slider.addEventListener('touchstart', e => {
+    isDragging = true;
+    startX = e.touches[0].pageX - slider.offsetLeft;
+    scrollLeft = position;
+  });
+
+  slider.addEventListener('touchend', e => {
+    isDragging = false;
+  });
+
+  slider.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - slider.offsetLeft;
+    const walk = (x - startX);
+    position = scrollLeft - walk;
+  });
 </script>
+
+
+
+ 
 
 </body>
 </html>
