@@ -220,67 +220,32 @@ main {
   color: #fff;
 }
 
-/* FIXED Footer inside main */
 
-.social-icons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
 
-.social-icons a {
-  display: inline-block;
-  margin: 0 1.2rem;
-}
-
-.social-icons img {
-  width: 30px;
-  height: 30px;
-  filter: brightness(0) invert(1); /* white icons */
-  transition: transform 0.4s ease;
-}
-
-.spin-icon:hover img {
-  transform: rotate(360deg);
-}
-
-/* Footer text */
-.footer-inner {
-  text-align: center;
-  color: #999;
-  font-size: 0.95rem;
-}
-
+ /* Ensure footer uses column layout for content centering */
 footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-  background-color: #222;
-  width: 100vw;
-  box-sizing: border-box;
-
-  /* Fix iPhone landscape safe area */
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+  flex-direction: column; /* stack content vertically */
+  text-align: center;     /* center text inside */
 }
 
+/* Your social-icons container */
 .social-icons {
-  display: flex;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
   gap: 40px;
   justify-content: center;
   align-items: center;
-  max-width: 400px;
-  width: 100%;
+  display: flex !important; /* enforce flex */
+  flex-wrap: nowrap;        /* prevent wrapping */
+  padding: 0;
 }
 
-/* Coin spin animation */
+/* Social links: bigger and center aligned */
 .social-icons a {
-  font-size: 40px;
   width: 60px;
   height: 60px;
+  font-size: 40px;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -288,8 +253,18 @@ footer {
   animation: coin-spin 6s linear infinite;
   transform-style: preserve-3d;
   perspective: 1000px;
+  margin: 0; /* remove extra margin */
 }
 
+/* Make sure images inside scale and center */
+.social-icons img {
+  width: 48px;  /* bigger icons */
+  height: 48px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.4s ease;
+}
+
+/* Coin spin keyframes unchanged */
 @keyframes coin-spin {
   0% {
     transform: rotateY(0deg);
@@ -299,22 +274,12 @@ footer {
   }
 }
 
-/* Extra fix for iPhone landscape */
+/* iPhone landscape fix */
 @media (orientation: landscape) and (max-device-width: 812px) {
   footer {
     padding-left: max(env(safe-area-inset-left), 20px);
     padding-right: max(env(safe-area-inset-right), 20px);
   }
-}
-
- .footer-social {
-  display: flex !important;             /* Use flexbox */
-  justify-content: center !important;  /* Center horizontally */
-  align-items: center !important;      /* Center vertically */
-  gap: 30px;                           /* Space between icons */
-  width: 100%;                        /* Full width so it can center */
-  margin: 0 auto;                     /* Center block */
-  padding: 10px 0;
 }
 </style>
  
