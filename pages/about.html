@@ -339,6 +339,27 @@ main {
       font-size: 6rem;  /* Even bigger for desktops */
     }
   }
+
+ .gdpr-consent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #fff;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.gdpr-note {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.gdpr-note a {
+  color: #ff3131;
+  text-decoration: underline;
+}
 </style>
 
 <script>
@@ -413,7 +434,27 @@ main {
   </div>
 </section>
 
-  
+  <section class="contact-section" data-aos="fade-up">
+  <h2>Contact Us</h2>
+  <p>Let’s talk about your next project. Just drop us a message below.</p>
+
+  <form class="contact-form" action="#" method="post">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+
+    <label class="gdpr-consent">
+      <input type="checkbox" name="gdpr" required>
+      I consent to having Faz Designs store my submitted information so they can respond to my inquiry.
+    </label>
+
+    <p class="gdpr-note">
+      Read our <a href="/privacy-policy.html" target="_blank">Privacy Policy</a> for full details.
+    </p>
+
+    <button type="submit">Send Message</button>
+  </form>
+</section>
 
 <footer>
 
