@@ -277,39 +277,31 @@ main > .footer-inner {
 }
 
 
- <!-- Footer -->
-<footer style="background:#222; padding:40px 0; text-align:center;">
 
-  <div class="social-icons">
-    <a href="#" aria-label="Facebook" style="color:#fff;">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="#" aria-label="Twitter" style="color:#fff;">
-      <i class="fab fa-twitter"></i>
-    </a>
-    <a href="#" aria-label="Instagram" style="color:#fff;">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="#" aria-label="LinkedIn" style="color:#fff;">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
-  </div>
+  footer {
+    display: flex;
+    justify-content: center;  /* center the entire footer content horizontally */
+    align-items: center;      /* vertically center if footer height changes */
+    background: #222;
+    padding: 40px 0;
+  }
 
-</footer>
-
-<style>
   .social-icons {
     display: flex;
-    justify-content: center; /* center horizontally */
     gap: 40px; /* space between icons */
   }
 
   .social-icons a {
-    display: inline-block;
-    font-size: 40px; /* bigger icons */
-    animation: coin-spin 6s linear infinite; /* slow spin */
-    transform-style: preserve-3d; /* 3D effect */
+    font-size: 40px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: coin-spin 6s linear infinite;
+    transform-style: preserve-3d;
     perspective: 1000px;
+    width: 50px;
+    height: 50px;
   }
 
   @keyframes coin-spin {
@@ -321,6 +313,7 @@ main > .footer-inner {
     }
   }
 </style>
+ 
 
 
 </head>
