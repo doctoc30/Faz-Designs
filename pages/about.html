@@ -276,11 +276,10 @@ main > .footer-inner {
   }
 }
 
-
 .social-icons {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -294,22 +293,62 @@ main > .footer-inner {
   width: 60px;
   height: 60px;
   margin: -30px;
-  animation: orbit 12s linear infinite, spin 1.2s linear infinite;
-  /* Each icon will be spaced by rotation delay */
+  animation: spin 12s linear infinite;
+  /* Each link will have a unique orbit radius */
 }
 
-/* Separate orbit delays for even spacing */
-.social-icons a:nth-child(1) { animation-delay: 0s, 0s; }
-.social-icons a:nth-child(2) { animation-delay: 4s, 0.4s; }
-.social-icons a:nth-child(3) { animation-delay: 8s, 0.8s; }
+/* Separate orbits by radius and starting angle */
+.social-icons a:nth-child(1) {
+  animation-name: orbit1, spin;
+  animation-duration: 12s, 1.2s;
+  animation-timing-function: linear, linear;
+  animation-iteration-count: infinite, infinite;
+  animation-delay: 0s, 0s;
+}
 
-/* Orbit animation */
-@keyframes orbit {
+.social-icons a:nth-child(2) {
+  animation-name: orbit2, spin;
+  animation-duration: 12s, 1.2s;
+  animation-timing-function: linear, linear;
+  animation-iteration-count: infinite, infinite;
+  animation-delay: 0s, 0.4s;
+}
+
+.social-icons a:nth-child(3) {
+  animation-name: orbit3, spin;
+  animation-duration: 12s, 1.2s;
+  animation-timing-function: linear, linear;
+  animation-iteration-count: infinite, infinite;
+  animation-delay: 0s, 0.8s;
+}
+
+/* Orbit 1 - largest radius */
+@keyframes orbit1 {
   0% {
-    transform: rotate(0deg) translateX(100px) rotate(0deg);
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+/* Orbit 2 - middle radius */
+@keyframes orbit2 {
+  0% {
+    transform: rotate(120deg) translateX(90px) rotate(-120deg);
+  }
+  100% {
+    transform: rotate(480deg) translateX(90px) rotate(-480deg);
+  }
+}
+
+/* Orbit 3 - smallest radius */
+@keyframes orbit3 {
+  0% {
+    transform: rotate(240deg) translateX(60px) rotate(-240deg);
+  }
+  100% {
+    transform: rotate(600deg) translateX(60px) rotate(-600deg);
   }
 }
 
@@ -322,6 +361,7 @@ main > .footer-inner {
     transform: rotateY(360deg);
   }
 }
+
 </style>
 </head>
 <body>
