@@ -264,16 +264,17 @@ footer {
   transition: transform 0.4s ease;
 }
 
- .social-icons {
+.social-icons {
   max-width: 400px;
   width: 100%;
   margin: 0 auto;
-  display: flex !important;
-  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 40px;  /* space between icons */
+  display: flex !important;
+  flex-wrap: nowrap;
   padding: 0;
+  /* remove gap to avoid confusion */
+  /* gap: 40px; */
 }
 
 .social-icons a {
@@ -287,8 +288,13 @@ footer {
   animation: coin-spin 6s linear infinite;
   transform-style: preserve-3d;
   perspective: 1000px;
-  margin: 0;  /* no margin so gap works */
-  flex-shrink: 0;  /* prevent shrinking */
+  margin: 0;
+}
+
+
+
+ .social-icons a:not(:last-child) {
+  margin-right: 40px;
 }
 
 .social-icons img {
