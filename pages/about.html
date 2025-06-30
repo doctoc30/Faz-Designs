@@ -276,46 +276,53 @@ main > .footer-inner {
   }
 }
 
-.social-icons {
-  position: relative;
-  width: 240px;
-  height: 240px;
-  margin: 0 auto;
-  animation: spin 20s linear infinite; /* slow group rotation */
-}
 
-.social-icons a {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  top: 50%;
-  left: 50%;
-  margin: -25px;
-  /* Keep icons upright */
-  transform-origin: 50% 150px; /* distance from center */
-}
+ <!-- Footer -->
+<footer style="background:#222; padding:40px 0; text-align:center;">
 
-/* Position icons evenly around the circle by rotating them */
-.social-icons a:nth-child(1) {
-  transform: rotate(0deg) translateX(120px) rotate(0deg);
-}
-.social-icons a:nth-child(2) {
-  transform: rotate(120deg) translateX(120px) rotate(-120deg);
-}
-.social-icons a:nth-child(3) {
-  transform: rotate(240deg) translateX(120px) rotate(-240deg);
-}
+  <div class="social-icons">
+    <a href="#" aria-label="Facebook" style="color:#fff;">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" aria-label="Twitter" style="color:#fff;">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" aria-label="Instagram" style="color:#fff;">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="#" aria-label="LinkedIn" style="color:#fff;">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+  </div>
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+</footer>
+
+<style>
+  .social-icons {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    gap: 40px; /* space between icons */
   }
-  to {
-    transform: rotate(360deg);
+
+  .social-icons a {
+    display: inline-block;
+    font-size: 40px; /* bigger icons */
+    animation: coin-spin 6s linear infinite; /* slow spin */
+    transform-style: preserve-3d; /* 3D effect */
+    perspective: 1000px;
   }
-}
- 
+
+  @keyframes coin-spin {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
 </style>
+
+
 </head>
 <body>
 <header>
