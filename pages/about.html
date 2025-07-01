@@ -472,6 +472,74 @@ button:hover {
   background-color: #e60000 !important; /* dark red background on hover */
   color: white !important;               /* white text on hover */
 }
+
+
+ .about-section {
+  padding: 100px 20px;
+  background: transparent;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 60px;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff3131;
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
+.about-grid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+}
+
+.about-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.about-box:hover {
+  transform: scale(1.02);
+}
+
+.about-box h3 {
+  font-size: 1.4rem;
+  color: #ff8f31;
+  margin-bottom: 10px;
+}
+
+.about-box p {
+  color: #ddd;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 </style>
  
 
@@ -499,6 +567,38 @@ button:hover {
 </header>
 
 <main>
+
+ <section id="about" class="about-section">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">About Us — What We Do</h2>
+    <div class="about-grid">
+      <div class="about-box" data-aos="fade-right">
+        <h3>Premium Web Design</h3>
+        <p>We craft luxury-level websites with app-like speed, UX, and conversion architecture built in.</p>
+      </div>
+      <div class="about-box" data-aos="fade-right" data-aos-delay="100">
+        <h3>Brand Identity</h3>
+        <p>Not just logos — we deliver full visual branding with emotion, strategy, and consistency.</p>
+      </div>
+      <div class="about-box" data-aos="fade-right" data-aos-delay="200">
+        <h3>SEO & Performance</h3>
+        <p>We optimize your site for visibility, speed, and search dominance — all built into the structure.</p>
+      </div>
+      <div class="about-box" data-aos="fade-right" data-aos-delay="300">
+        <h3>Mobile-First UX</h3>
+        <p>App-like, touch-optimized layouts that feel native on iPhone and Android for deep engagement.</p>
+      </div>
+      <div class="about-box" data-aos="fade-right" data-aos-delay="400">
+        <h3>Marketing Funnels</h3>
+        <p>We design intelligent lead generation systems that turn clicks into customers on autopilot.</p>
+      </div>
+      <div class="about-box" data-aos="fade-right" data-aos-delay="500">
+        <h3>AI Integration</h3>
+        <p>From chatbots to content automation — we integrate AI to boost value, scale, and experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- CONTACT FORM -->
 <section class="contact-section">
@@ -565,6 +665,10 @@ button:hover {
       hamburger.click();
     }
   });
+
+ <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init();
 </script>
 
 
