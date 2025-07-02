@@ -183,6 +183,62 @@ main {
   max-width: 960px;
   margin: 0 auto;
 }
+
+ .social-icons {
+  max-width: 400px;
+  width: 100%;
+  margin: 100px auto 40px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 0;
+  gap: 40px;
+}
+
+.social-icons a {
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: coin-spin 6s linear infinite;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  margin: 0;
+}
+
+.social-icons img {
+  width: 48px;
+  height: 48px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.4s ease;
+}
+
+@keyframes coin-spin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  padding-top: 10px;
+}
+
+@media (orientation: landscape) and (max-device-width: 812px) {
+  .footer-inner {
+    padding-left: max(env(safe-area-inset-left), 20px);
+    padding-right: max(env(safe-area-inset-right), 20px);
+  }
+}
 </style>
 
 </head>
@@ -208,8 +264,27 @@ main {
 </header>
 
 <main>
-  <h1>S E R V I C E S</h1>
   
+
+
+
+<div class="social-icons" aria-label="Social media links">
+  <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="spin-icon">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X / Twitter">
+  </a>
+  <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook" class="spin-icon">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+  </a>
+  <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram" class="spin-icon">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+  </a>
+</div>
+
+<div class="footer-inner">
+  <p>&copy; 2025 Faz Designs. All rights reserved.</p>
+</div>
+
+ 
 
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
