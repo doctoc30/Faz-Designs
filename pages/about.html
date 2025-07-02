@@ -6,595 +6,99 @@
 <title>Faz Designs</title>
 
 <style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ff3131;
-    color: white;
-    overflow-x: hidden;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: #ff3131;
-    z-index: 2000;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-  }
-  .logo {
-    font-weight: 900;
-    font-size: 1.7rem;
-    letter-spacing: 2px;
-    user-select: none;
-    cursor: default;
-  }
-  .hamburger {
-    width: 28px;
-    height: 22px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 2100;
-  }
-  .hamburger span {
-    display: block;
-    height: 3.5px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.35s ease-in-out;
-  }
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Poppins',sans-serif;background-color:#ff3131;color:#fff;overflow-x:hidden;}
+
+  /* ----- HEADER / NAV ----- */
+  header{position:fixed;top:0;left:0;right:0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background-color:#ff3131;z-index:2000;box-shadow:0 2px 8px rgb(0 0 0 / 0.15);}
+  .logo{font-weight:900;font-size:1.7rem;letter-spacing:2px;user-select:none;cursor:default;}
+  .hamburger{width:28px;height:22px;cursor:pointer;position:relative;display:flex;flex-direction:column;justify-content:space-between;z-index:2100;}
+  .hamburger span{display:block;height:3.5px;background:#fff;border-radius:2px;transition:all 0.35s ease-in-out;}
+  .hamburger.active span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+  .hamburger.active span:nth-child(2){opacity:0;}
+  .hamburger.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+
+  nav.menu{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#ff3131;transform:translateX(-100%);transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;justify-content:center;padding-left:4rem;z-index:2050;}
+  nav.menu.open{transform:translateX(0);}
+  nav.menu ul{list-style:none;}
+  nav.menu ul li{margin-bottom:2.2rem;opacity:0;transform:translateX(-40px);font-weight:900;font-size:3rem;letter-spacing:0.1em;}
+  nav.menu ul li a{color:#fff;text-decoration:none;user-select:none;display:inline-block;transition:color 0.3s ease;}
+  nav.menu ul li a:hover{color:#222;}
+  nav.menu.open ul li{animation:slideInFade 0.4s forwards;}
+  nav.menu.open ul li:nth-child(1){animation-delay:0.15s;}
+  nav.menu.open ul li:nth-child(2){animation-delay:0.35s;}
+  nav.menu.open ul li:nth-child(3){animation-delay:0.55s;}
+  nav.menu.open ul li:nth-child(4){animation-delay:0.75s;}
+  nav.menu.open ul li:nth-child(5){animation-delay:0.95s;}
+  @keyframes slideInFade{to{opacity:1;transform:translateX(0);}}
+
+  /* Desktop menu */
+  @media(min-width:1024px){
+    .hamburger{display:none;}
+    nav.menu{position:static;height:auto;width:auto;background:transparent;transform:none!important;padding-left:0;flex-direction:row;justify-content:flex-end;align-items:center;}
+    nav.menu ul{display:flex;gap:3rem;}
+    nav.menu ul li{margin:0;opacity:1!important;transform:none!important;font-size:1.25rem;animation:none!important;}
+    nav.menu ul li a{font-weight:900;font-size:1.1rem;letter-spacing:0.15em;}
+    nav.menu ul li a:hover{color:#222;}
   }
 
-  nav.menu {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ff3131;
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 4rem;
-    z-index: 2050;
-  }
-  nav.menu.open {
-    transform: translateX(0);
-  }
-  nav.menu ul {
-    list-style: none;
-  }
-  nav.menu ul li {
-    margin-bottom: 2.2rem;
-    opacity: 0;
-    transform: translateX(-40px);
-    font-weight: 900;
-    font-size: 3rem;
-    letter-spacing: 0.1em;
-  }
-  nav.menu ul li a {
-    color: white;
-    text-decoration: none;
-    user-select: none;
-    display: inline-block;
-    transition: color 0.3s ease;
-  }
-  nav.menu ul li a:hover {
-    color: #222;
-  }
-  nav.menu.open ul li {
-    animation: slideInFade 0.4s forwards;
-  }
-  nav.menu.open ul li:nth-child(1) {
-    animation-delay: 0.15s;
-  }
-  nav.menu.open ul li:nth-child(2) {
-    animation-delay: 0.35s;
-  }
-  nav.menu.open ul li:nth-child(3) {
-    animation-delay: 0.55s;
-  }
-  nav.menu.open ul li:nth-child(4) {
-    animation-delay: 0.75s;
-  }
-  nav.menu.open ul li:nth-child(5) {
-    animation-delay: 0.95s;
-  }
-  @keyframes slideInFade {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+  /* ----- GLOBAL BASE ----- */
+  nav ul{display:block;}
+  nav ul li{margin:0;padding:0;}
+  nav ul li a{padding:0.5rem 1rem;}
 
-  /* Desktop view - raised breakpoint to 1024px */
-  @media (min-width: 1024px) {
-    .hamburger {
-      display: none;
-    }
-    nav.menu {
-      position: static;
-      height: auto;
-      width: auto;
-      background: transparent;
-      transform: none !important;
-      padding-left: 0;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    nav.menu ul {
-      display: flex;
-      gap: 3rem;
-    }
-    nav.menu ul li {
-      margin: 0;
-      opacity: 1 !important;
-      transform: none !important;
-      font-size: 1.25rem;
-      animation: none !important;
-    }
-    nav.menu ul li a {
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: white;
-      letter-spacing: 0.15em;
-    }
-    nav.menu ul li a:hover {
-      color: #222;
-    }
-  }
- 
- /* ---------- BASE STYLES ---------- */
+  main{padding:80px 20px 20px;max-width:960px;margin:0 auto;}
 
-nav ul {
-  display: block;
-}
+  .card{margin:80px auto;max-width:900px;padding:40px 20px;background:transparent;color:#fff;text-align:center;}
+  .card h2{font-size:2rem;margin-bottom:20px;}
+  .card p,.card ul,.card .timeline,.card .timeline-step{font-size:1.1rem;line-height:1.8;margin:0 auto 20px;text-align:center;color:#fff;}
+  .card ul{list-style:none;padding:0;}
 
-nav ul li {
-  margin: 0;
-  padding: 0;
-}
+  /* ----- FOOTER & SOCIAL ----- */
+  footer{flex-direction:column;text-align:center;}
+  .social-icons{max-width:400px;width:100%;margin:0 auto;justify-content:center;align-items:center;display:flex!important;flex-wrap:nowrap;padding:0;gap:40px;}
+  .social-icons a{width:60px;height:60px;font-size:40px;color:#fff;display:flex;justify-content:center;align-items:center;animation:coin-spin 6s linear infinite;transform-style:preserve-3d;perspective:1000px;margin:0;}
+  .social-icons img{width:48px;height:48px;filter:brightness(0) invert(1);transition:transform 0.4s ease;}
+  @keyframes coin-spin{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
+  @media(orientation:landscape) and (max-device-width:812px){footer{padding-left:max(env(safe-area-inset-left),20px);padding-right:max(env(safe-area-inset-right),20px);}}
+  .footer-inner{display:flex;justify-content:center;align-items:center;text-align:center;width:100%;color:rgba(255,255,255,0.6);font-size:0.95rem;padding-top:10px;}
 
-nav ul li a {
-  padding: 0.5rem 1rem;
-}
-
-/* Main content styles */
-main {
-  padding: 80px 20px 20px; /* Top padding to clear fixed header + some bottom/side padding */
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.card {
-  margin: 80px auto;
-  max-width: 900px;
-  padding: 40px 20px;
-  background-color: transparent; /* Transparent background */
-  color: #fff;                   /* All text white */
-  text-align: center;
-}
-
-.card h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-.card p,
-.card ul,
-.card .timeline,
-.card .timeline-step {
-  text-align: center;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin: 0 auto 20px;
-  color: #fff;
-}
-
-.card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.timeline-step {
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-
-
- /* Ensure footer uses column layout for content centering */
-footer {
-  flex-direction: column; /* stack content vertically */
-  text-align: center;     /* center text inside */
-}
-
-/* Your social-icons container */
-.social-icons {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
-  display: flex !important; /* enforce flex */
-  flex-wrap: nowrap;        /* prevent wrapping */
-  padding: 0;
-}
-
-/* Social links: bigger and center aligned */
-.social-icons a {
-  width: 60px;
-  height: 60px;
-  font-size: 40px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: coin-spin 6s linear infinite;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  margin: 0; /* remove extra margin */
-}
-
-/* Make sure images inside scale and center */
-.social-icons img {
-  width: 48px;  /* bigger icons */
-  height: 48px;
-  filter: brightness(0) invert(1);
-  transition: transform 0.4s ease;
-}
-
-.social-icons {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  display: flex !important;
-  flex-wrap: nowrap;
-  padding: 0;
-  /* remove gap to avoid confusion */
-  /* gap: 40px; */
-}
-
-.social-icons a {
-  width: 60px;
-  height: 60px;
-  font-size: 40px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: coin-spin 6s linear infinite;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  margin: 0;
-}
-
-
-
- .social-icons a:not(:last-child) {
-  margin-right: 40px;
-}
-
-.social-icons img {
-  width: 48px;
-  height: 48px;
-  filter: brightness(0) invert(1);
-  transition: transform 0.4s ease;
-}
-
-/* Coin spin keyframes unchanged */
-@keyframes coin-spin {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(360deg);
-  }
-}
-
-/* iPhone landscape fix */
-@media (orientation: landscape) and (max-device-width: 812px) {
-  footer {
-    padding-left: max(env(safe-area-inset-left), 20px);
-    padding-right: max(env(safe-area-inset-right), 20px);
-  }
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  color: rgba(255, 255, 255, 0.6); /* white with 60% opacity */
-  font-size: 0.95rem;
-  padding-top: 10px;
-}
-
- /* CONTACT FORM STYLING */
-.contact-section {
-  padding: 60px 20px;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.contact-form {
-  max-width: 500px;
-  width: 100%;
-  background: transparent;
-  color: #fff;
-}
-
-.contact-form h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-}
-
-/* Input Group */
-.form-group {
-  position: relative;
-  margin-bottom: 30px;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 10px 0;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid #fff;
-  color: #fff; /* WHITE TEXT */
-  font-size: 16px;
-  font-weight: 600;
-  outline: none;
-  resize: none;
-}
-
-.form-group label {
-  position: absolute;
-  top: 10px;
-  left: 0;
-  color: #aaa;
-  font-weight: 600;
-  pointer-events: none;
-  transition: 0.3s ease;
-}
-
-/* Float label on focus */
-.form-group input:focus + label,
-.form-group input:valid + label,
-.form-group textarea:focus + label,
-.form-group textarea:valid + label {
-  top: -16px;
-  font-size: 13px;
-  color: #fff;
-}
-
-/* Submit Button Group */
-.submit-group {
-  text-align: center;
-}
-
-.contact-form button {
-  padding: 12px 30px;
-  border: 2px solid #fff;
-  background: transparent;
-  color: #fff;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.contact-form button:hover {
-  background: #fff;
-  color: #000;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-}
-
-/* Responsive */
-@media (max-width: 500px) {
-  .contact-form h2 {
-    font-size: 20px;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    font-size: 14px;
-  }
-
-  .contact-form button {
-    font-size: 14px;
-    padding: 10px 25px;
-  }
-}
-
- .site-button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  color: #ff3131;
-  font-weight: bold;
-  cursor: pointer;
-  width: auto;
-  min-width: 100px;
-  transition: opacity 0.3s ease;
-}
-
-.site-button:hover {
-  opacity: 0.9;
-}
-
- button {
-  background-color: white !important;  /* solid white background */
-  color: #ff3131 !important;            /* branded red text */
-  border: none !important;              /* remove border */
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  box-sizing: border-box;
-  transition: background-color 0.3s ease;
-  min-width: 140px;
-}
-
-button:hover {
-  background-color: #e60000 !important; /* dark red background on hover */
-  color: white !important;               /* white text on hover */
-}
-
-
- .about-section {
-  padding: 100px 20px;
-  background: transparent;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 60px;
-  position: relative;
-}
-.section-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: #ff3131;
-  margin: 20px auto 0;
-  border-radius: 2px;
-}
-
-.about-grid {
-  display: grid;
-  gap: 40px;
-  grid-template-columns: 1fr;
-}
-
-.about-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 30px;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease;
-}
-
-.about-box:hover {
-  transform: scale(1.02);
-}
-
-.about-box h3 {
-  font-size: 1.4rem;
-  color: #ff8f31;
-  margin-bottom: 10px;
-}
-
-.about-box p {
-  color: #ddd;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-@media (min-width: 768px) {
-  .about-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (min-width: 1024px) {
-  .about-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
+  /* ----- ABOUT SECTION (unchanged) ----- */
+  .about-section{padding:100px 20px;background:transparent;backdrop-filter:blur(15px);}
+  .section-title{text-align:center;font-size:2.8rem;font-weight:700;margin-bottom:60px;position:relative;color:#fff;}
+  .section-title::after{content:'';display:block;width:60px;height:4px;background:#ff3131;margin:20px auto 0;border-radius:2px;}
+  .about-grid{display:grid;gap:40px;grid-template-columns:1fr;}
+  .about-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:30px;backdrop-filter:blur(10px);transition:transform 0.3s ease;}
+  .about-box:hover{transform:scale(1.02);}
+  .about-box h3{font-size:1.4rem;color:#ff8f31;margin-bottom:10px;}
+  .about-box p{color:#ddd;font-size:1rem;line-height:1.6;}
+  @media(min-width:768px){.about-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1024px){.about-grid{grid-template-columns:1fr 1fr 1fr;}}
 </style>
- 
-
-
 </head>
+
 <body>
 <header>
   <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
   <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </div>
 
- <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-  <ul>
-    <li><a href="/Faz-Designs/pages/home.html">Home</a></li>
-    <li><a href="/Faz-Designs/pages/about.html">About</a></li>
-    <li><a href="/Faz-Designs/pages/portfolio.html">Samples</a></li>
-    <li><a href="/Faz-Designs/pages/pricing.html">Pricing</a></li>
-    <li><a href="/Faz-Designs/pages/contact.html">Contact</a></li>
-<li><a href="/Faz-Designs/pages/test.html">Test</a></li>
-  </ul>
-</nav>
+  <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
+    <ul>
+      <li><a href="/Faz-Designs/pages/home.html">Home</a></li>
+      <li><a href="/Faz-Designs/pages/about.html">About</a></li>
+      <li><a href="/Faz-Designs/pages/portfolio.html">Samples</a></li>
+      <li><a href="/Faz-Designs/pages/pricing.html">Pricing</a></li>
+      <li><a href="/Faz-Designs/pages/contact.html">Contact</a></li>
+      <li><a href="/Faz-Designs/pages/test.html">Test</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
+  <!-- (Contact form section removed) -->
 
-
-<!-- CONTACT FORM -->
-<section class="contact-section">
-  <form class="contact-form" data-aos="fade-up">
-    <h2>Contact Us</h2>
-
-    <div class="form-group">
-      <input type="text" required>
-      <label>Your Name</label>
-    </div>
-
-    <div class="form-group">
-      <input type="email" required>
-      <label>Email Address</label>
-    </div>
-
-    <div class="form-group">
-      <textarea rows="4" required></textarea>
-      <label>Your Message</label>
-    </div>
-
-    <div class="form-group submit-group">
-      <button type="submit" class="site-button">Send</button>
-    </div>
-  </form>
-</section>
- 
   <div class="social-icons" aria-label="Social media links">
     <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="spin-icon">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X / Twitter">
@@ -606,27 +110,18 @@ button:hover {
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
     </a>
   </div>
-  <div class="footer-inner" data-aos="fade-up">
-    
 
   <div class="footer-inner" data-aos="fade-up">
     <p>&copy; 2025 Faz Designs. All rights reserved.</p>
   </div>
 </main>
 
-
-
- 
-<!-- AOS Stylesheet (put in <head> or before your scripts) -->
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-<!-- AOS Script and Hamburger Menu Logic (put just before </body>) -->
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  // Initialize AOS
   AOS.init();
 
-  // Hamburger menu logic
   document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const menu = document.querySelector('nav.menu');
@@ -649,7 +144,5 @@ button:hover {
     }
   });
 </script>
-
-
 </body>
 </html>
