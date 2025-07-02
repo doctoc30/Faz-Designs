@@ -500,7 +500,7 @@ input[type="email"] {
 --------------------------------------------- */
 .form-screen {
   position: fixed;
-  top: 60%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -602,7 +602,7 @@ button:hover {
 @media (max-height: 600px) {
   #form-start-choice,
   .form-screen {
-    top: 55%;
+    top: 70%;
     transform: translate(-50%, -55%);
   }
 }
@@ -675,11 +675,11 @@ button:hover {
     <span></span>
   </div>
  
- <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
+<nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
   <ul>
     <li><a href="/Faz-Designs/pages/home.html">Home</a></li>
     <li><a href="/Faz-Designs/pages/about.html">About</a></li>
-    <li><a href="/Faz-Designs/pages/portfolio.html">Samples</a></li>
+    <li><a href="/Faz-Designs/pages/samples.html">Samples</a></li>
     <li><a href="/Faz-Designs/pages/pricing.html">Pricing</a></li>
     <li><a href="/Faz-Designs/pages/contact.html">Contact</a></li>
   </ul>
@@ -703,7 +703,7 @@ button:hover {
   <div class="form-screen active" id="form-start-choice">
     <h2>How would you like to get started?</h2>
     <div class="button-row">
-      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/portfolio.html'">
+      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
         Choose a Package Deal Today
       </button>
      
@@ -877,7 +877,7 @@ button:hover {
   </div>
 </form>
 
-<a href="https://doctoc30.github.io/Faz-Designs/pages/portfolio.html" 
+<a href="https://doctoc30.github.io/Faz-Designs/pages/about.html" 
    id="skipToPackages" class="skip-link" style="display: none;">
   Skip Questions For Now →
 </a>
@@ -897,10 +897,21 @@ cursor.classList.add('cursor');
 el.appendChild(cursor);
 
 function setLinesByOrientation() {
-  if(window.matchMedia("(orientation: landscape)").matches) {
-    lines = ["We build custom", "websites for", "small businesses"];
+  if (window.matchMedia("(orientation: landscape)").matches) {
+    lines = [
+      "We build",
+      "your website.",
+      "You approve,",
+      "then pay."
+    ];
   } else {
-    lines = ["We build", "custom", "websites", "for small", "businesses"];
+    lines = [
+      "We build",
+      "your",
+      "website.",
+      "You approve,",
+      "then pay."
+    ];
   }
 }
 
@@ -979,10 +990,18 @@ let currentScreen = -1;
 const screens = document.querySelectorAll(".form-screen");
 
 function showScreen(index) {
+  // toggle active screen
   screens.forEach((screen, i) => {
     screen.classList.toggle("active", i === index);
   });
   currentScreen = index;
+
+  /* ───── Hide the skip link ONLY on the final screen (lead-capture) ───── */
+  const lastIndex = screens.length - 1;        // q10 is the last .form-screen
+  const skipBtn = document.getElementById("skipToPackages");
+  if (skipBtn) {
+    skipBtn.style.display = (index === lastIndex) ? "none" : "block";
+  }
 }
 
 function next() {
@@ -1038,3 +1057,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
