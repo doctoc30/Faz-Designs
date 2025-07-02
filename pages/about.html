@@ -1,5 +1,3 @@
-ABOUT 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -616,30 +614,40 @@ button:hover {
   </div>
 </main>
 
+
+
+ 
+<!-- AOS Stylesheet (put in <head> or before your scripts) -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+<!-- AOS Script and Hamburger Menu Logic (put just before </body>) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  // Hamburger menu toggle logic
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('nav.menu');
+  // Initialize AOS
+  AOS.init();
 
-  hamburger.addEventListener('click', () => {
-    const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-    hamburger.setAttribute('aria-expanded', !expanded);
-    hamburger.classList.toggle('active');
-    menu.classList.toggle('open');
-    menu.setAttribute('aria-hidden', expanded);
-  });
+  // Hamburger menu logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('nav.menu');
 
-  // Optional: keyboard accessibility for hamburger
-  hamburger.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      hamburger.click();
+    if (hamburger && menu) {
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        hamburger.classList.toggle('active');
+        menu.classList.toggle('open');
+        menu.setAttribute('aria-hidden', expanded ? 'true' : 'false');
+      });
+
+      hamburger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          hamburger.click();
+        }
+      });
     }
   });
-
- <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>AOS.init();
 </script>
 
 
