@@ -568,6 +568,31 @@ button:hover {
 <main>
 
 
+ <div class="about-us-section">
+  <p>At Faz Designs, we transform ideas into sleek, high-performing websites built to impress...</p>
+</div>
+
+<style>
+.about-us-section {
+  position: relative;
+  right: -100%;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+.about-us-section.animate {
+  right: 0;
+  opacity: 1;
+}
+</style>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const about = document.querySelector('.about-us-section');
+  setTimeout(() => about.classList.add('animate'), 500);
+});
+</script>
+
+
 <!-- CONTACT FORM -->
 <section class="contact-section">
   <form class="contact-form" data-aos="fade-up">
