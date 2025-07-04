@@ -540,6 +540,53 @@ button:hover {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+ 🔥
+
+ #our-process {
+  background: #f8f9fa;
+}
+
+.process-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.step {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: scale(1.02);
+}
+
+.step .icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
 </style>
  
 
@@ -590,8 +637,44 @@ window.addEventListener('DOMContentLoaded', () => {
   const about = document.querySelector('.about-us-section');
   setTimeout(() => about.classList.add('animate'), 500);
 });
+
+
 </script>
 
+ 🔥
+
+ <section id="our-process" style="padding: 60px 20px; background: #fff;">
+  <h2 style="text-align:center; font-size: 2rem; margin-bottom: 40px;">Our 4-Step Process</h2>
+  <div class="process-container">
+
+    <div class="step" data-aos="fade-up" data-aos-delay="100">
+      <img src="https://via.placeholder.com/80x80.png?text=🔍" alt="Step 1" class="icon" />
+      <h3>Step 1: Discovery</h3>
+      <p>We start by understanding your goals and vision. A quick chat to get aligned and inspired.</p>
+    </div>
+
+    <div class="step" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://via.placeholder.com/80x80.png?text=🧩" alt="Step 2" class="icon" />
+      <h3>Step 2: Planning</h3>
+      <p>We design the perfect layout and features based on what you actually need — no fluff.</p>
+    </div>
+
+    <div class="step" data-aos="fade-up" data-aos-delay="300">
+      <img src="https://via.placeholder.com/80x80.png?text=💻" alt="Step 3" class="icon" />
+      <h3>Step 3: Build</h3>
+      <p>We turn the plan into a working, mobile-first website with sleek animations and UI.</p>
+    </div>
+
+    <div class="step" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://via.placeholder.com/80x80.png?text=🚀" alt="Step 4" class="icon" />
+      <h3>Step 4: Launch</h3>
+      <p>Your site goes live. Fast, secure, and ready to turn visitors into customers.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- AOS (Animate on Scro
 
 <!-- CONTACT FORM -->
 <section class="contact-section">
@@ -672,6 +755,15 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+ 🔥
+ 
+<!-- AOS (Animate on Scroll) library -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</sc
 </script>
 
 
