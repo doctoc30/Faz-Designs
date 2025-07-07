@@ -928,124 +928,97 @@ button:hover {
   </div>
 
 <script>
-/* ───────────────────────── TYPEWRITER ANIMATION ───────────────────────── */
-const twEl = document.getElementById('typewriter');
-let lines = [], currentLine = 0, currentChar = 0, lineEl = null;
-const typingSpeed = 100, lineDelay = 500;
-const cursor = document.createElement('span');
-cursor.classList.add('cursor');
-twEl.appendChild(cursor);
+document.addEventListener('DOMContentLoaded', () => {
 
-function setLines() {
-  lines = window.matchMedia('(orientation: landscape)').matches
-    ? ["We build", "your website.", "You approve,", "then pay."]  // landscape
-    : ["We build", "your", "website.", "You approve,", "then pay."]; // portrait
-}
+  /*────────────────── TYPEWRITER ──────────────────*/
+  const twEl = document.getElementById('typewriter');
+  const cursor = document.createElement('span');
+  cursor.classList.add('cursor');
+  twEl.appendChild(cursor);
 
-function typeNextChar() {
-  if (currentLine >= lines.length) {
-    cursor.remove();
-    // rocket animation then reveal first funnel screen
-    setTimeout(() => {
-      twEl.style.animation = 'rocketRise 2s ease forwards';
-      setTimeout(() => revealScreen('entry-funnel'), 2000);
-    }, 1000);
-    return;
+  let lines = [], currentLine = 0, currentChar = 0, lineEl = null;
+  const typingSpeed = 100, lineDelay = 500;
+
+  function setLines() {
+    lines = window.matchMedia('(orientation: landscape)').matches
+      ? ["We build","your website.","You approve,","then pay."]
+      : ["We build","your","website.","You approve,","then pay."];
   }
-  if (!lineEl) {
-    lineEl = document.createElement('div');
-    lineEl.classList.add('typed-line');
-    twEl.appendChild(lineEl);
-    lineEl.appendChild(cursor);
+
+  function typeNext() {
+    if (currentLine >= lines.length) {
+      cursor.remove();
+      setTimeout(() => {
+        twEl.style.animation = 'rocketRise 2s ease forwards';
+        setTimeout(() => reveal('entry-funnel'), 2000);
+      }, 1000);
+      return;
+    }
+    if (!lineEl) {
+      lineEl = document.createElement('div');
+      lineEl.classList.add('typed-line');
+      twEl.appendChild(lineEl);
+      lineEl.appendChild(cursor);
+    }
+    const txt = lines[currentLine];
+    if (currentChar < txt.length) {
+      lineEl.insertBefore(document.createTextNode(txt[currentChar]), cursor);
+      currentChar++; setTimeout(typeNext, typingSpeed);
+    } else {
+      currentLine++; currentChar = 0; lineEl = null;
+      setTimeout(typeNext, lineDelay);
+    }
   }
-  const text = lines[currentLine];
-  if (currentChar < text.length) {
-    lineEl.insertBefore(document.createTextNode(text[currentChar]), cursor);
-    currentChar++;
-    setTimeout(typeNextChar, typingSpeed);
-  } else {
-    currentLine++; currentChar = 0; lineEl = null;
-    setTimeout(typeNextChar, lineDelay);
+  setLines(); twEl.style.opacity = 1; typeNext();
+
+  /* rerun typing on resize */
+  function debounce(f, w=300){let t;return (...a)=>{clearTimeout(t);t=setTimeout(()=>f(...a),w);};}
+  window.addEventListener('resize', debounce(()=>{ twEl.textContent=''; twEl.appendChild(cursor);
+    currentLine=currentChar=0; lineEl=null; setLines(); typeNext(); }));
+
+  /*────────────────── FORM FLOW ──────────────────*/
+  const allScreens      = Array.from(document.querySelectorAll('.form-screen'));
+  const questionScreens = allScreens.filter(s => /^q\d+$/.test(s.id));
+  let currentQ = 0;
+
+  function hideAll(){ allScreens.forEach(s=>{s.style.display='none';s.classList.remove('active');}); }
+  function reveal(id){
+    hideAll();
+    const el = document.getElementById(id);
+    if(el){ el.style.display='block'; el.classList.add('active'); }
+    const skip = document.getElementById('skipToPackages');
+    if (skip) skip.style.display = (id === questionScreens.at(-1)?.id) ? 'none':'block';
   }
-}
 
-setLines(); twEl.style.opacity = 1; typeNextChar();
+  window.goToFormStart = () => reveal('form-start-choice');
+  window.showScreen    = n  => { const t = questionScreens[n]; if(t){currentQ=n; reveal(t.id);} };
+  window.next = ()     => { if(currentQ < questionScreens.length-1) showScreen(currentQ+1); };
+  window.prev = ()     => { if(currentQ > 0) showScreen(currentQ-1); };
 
-/* Restart typewriter on orientation change */
-function debounce(fn, wait = 300){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait);} }
-window.addEventListener('resize', debounce(()=>{ twEl.textContent=''; twEl.appendChild(cursor);
-  currentLine=currentChar=0; lineEl=null; setLines(); typeNextChar(); }));
+  hideAll();            // start with everything hidden
+  twEl.style.display='block';   // show only the splash
 
+  /*────────────────── HAMBURGER MENU ─────────────*/
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu   = document.querySelector('nav.menu');
 
-/* ───────────────────────── FORM SCREEN NAVIGATION ─────────────────────── */
-const allScreens      = Array.from(document.querySelectorAll('.form-screen')); // includes funnels + questions
-const questionScreens = allScreens.filter(s => /^q\d+$/.test(s.id));           // only q0–q11 etc.
-let   currentQIndex   = 0;                                                     // position in questionScreens[]
-
-/* Hide every screen */
-function hideAll(){ allScreens.forEach(s=>{ s.style.display='none'; s.classList.remove('active'); }); }
-
-/* Reveal a screen by element or id */
-function revealScreen(elOrId){
-  hideAll();
-  const el = typeof elOrId === 'string' ? document.getElementById(elOrId) : elOrId;
-  if (el){ el.style.display='block'; el.classList.add('active'); }
-  // show/hide skip link
-  const skip = document.getElementById('skipToPackages');
-  if (skip) skip.style.display = (el && el.id === questionScreens.at(-1)?.id) ? 'none' : 'block';
-}
-
-/* Called by "Website Design" button */
-window.goToFormStart = ()=> revealScreen('form-start-choice');
-
-/* showScreen(n) used by "Request a Custom Quote" */
-window.showScreen = n => {
-  const target = questionScreens[n];
-  if (!target) return;
-  currentQIndex = n;
-  revealScreen(target);
-};
-
-/* Next / Prev for q0 → q11 only */
-window.next = ()=> { if (currentQIndex < questionScreens.length-1) showScreen(currentQIndex+1); };
-window.prev = ()=> { if (currentQIndex > 0) showScreen(currentQIndex-1); };
-
-/* Initial state on DOM ready */
-document.addEventListener('DOMContentLoaded', ()=>{ hideAll(); twEl.style.display='block'; });
-
-
-/* ───────────────────────── HAMBURGER MENU (fixed version) ─────────────────── */
-const hamburger = document.querySelector('.hamburger'),
-      navMenu   = document.querySelector('nav.menu');
-
-function toggleMenu(forceState = null) {
-  const shouldOpen = (forceState === null)
-        ? !navMenu.classList.contains('open')   // toggle if no arg
-        : forceState;                           // else force open/close
-
-  navMenu.classList.toggle('open', shouldOpen);
-  hamburger.classList.toggle('active', shouldOpen);
-  hamburger.setAttribute('aria-expanded', shouldOpen);
-  navMenu.setAttribute('aria-hidden', !shouldOpen);
-  document.body.style.overflow = shouldOpen ? 'hidden' : '';
-}
-
-hamburger?.addEventListener('click', e => {
-  e.stopPropagation();
-  toggleMenu(); // toggles open/close normally
-});
-
-document.addEventListener('click', e => {
-  if (
-    navMenu.classList.contains('open') &&
-    !navMenu.contains(e.target) &&
-    !hamburger.contains(e.target)
-  ) {
-    toggleMenu(false); // force close if clicking outside
+  function toggleMenu(force=null){
+    const open = force===null ? !navMenu.classList.contains('open') : force;
+    navMenu.classList.toggle('open', open);
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open);
+    navMenu .setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
   }
-});
+  hamburger?.addEventListener('click',e=>{e.stopPropagation();toggleMenu();});
+  document.addEventListener('click',e=>{
+    if(navMenu.classList.contains('open') && !navMenu.contains(e.target) && !hamburger.contains(e.target)){
+      toggleMenu(false);
+    }
+  });
+
+}); // end DOMContentLoaded
 </script>
-
 
 
 </body>
