@@ -927,8 +927,7 @@ button:hover {
 </a>
   </div>
 
-
- <script>
+<script>
 /* ───────────────────────── TYPEWRITER ANIMATION ───────────────────────── */
 const twEl = document.getElementById('typewriter');
 let lines = [], currentLine = 0, currentChar = 0, lineEl = null;
@@ -1014,20 +1013,36 @@ window.prev = ()=> { if (currentQIndex > 0) showScreen(currentQIndex-1); };
 /* Initial state on DOM ready */
 document.addEventListener('DOMContentLoaded', ()=>{ hideAll(); twEl.style.display='block'; });
 
-/* ───────────────────────── HAMBURGER MENU (unchanged) ─────────────────── */
+
+/* ───────────────────────── HAMBURGER MENU (fixed version) ─────────────────── */
 const hamburger = document.querySelector('.hamburger'),
       navMenu   = document.querySelector('nav.menu');
 
-function toggleMenu(){
-  const open = navMenu.classList.toggle('open');
-  hamburger.classList.toggle('active', open);
-  hamburger.setAttribute('aria-expanded', open);
-  navMenu.setAttribute('aria-hidden', !open);
-  document.body.style.overflow = open ? 'hidden' : '';
+function toggleMenu(forceState = null) {
+  const shouldOpen = (forceState === null)
+        ? !navMenu.classList.contains('open')   // toggle if no arg
+        : forceState;                           // else force open/close
+
+  navMenu.classList.toggle('open', shouldOpen);
+  hamburger.classList.toggle('active', shouldOpen);
+  hamburger.setAttribute('aria-expanded', shouldOpen);
+  navMenu.setAttribute('aria-hidden', !shouldOpen);
+  document.body.style.overflow = shouldOpen ? 'hidden' : '';
 }
-hamburger?.addEventListener('click', e=>{ e.stopPropagation(); toggleMenu(); });
-document.addEventListener('click', e=>{
-  if(!navMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false);
+
+hamburger?.addEventListener('click', e => {
+  e.stopPropagation();
+  toggleMenu(); // toggles open/close normally
+});
+
+document.addEventListener('click', e => {
+  if (
+    navMenu.classList.contains('open') &&
+    !navMenu.contains(e.target) &&
+    !hamburger.contains(e.target)
+  ) {
+    toggleMenu(false); // force close if clicking outside
+  }
 });
 </script>
 
