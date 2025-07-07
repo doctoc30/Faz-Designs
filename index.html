@@ -928,193 +928,171 @@ button:hover {
   </div>
 
 
- 
  <script>
+  // ------------------ TYPEWRITER ANIMATION ------------------
 
-// ------------------ TYPEWRITER ANIMATION ------------------
+  const el = document.getElementById('typewriter');
+  let lines = [];
+  const typingSpeed = 100;
+  const lineDelay = 500;
+  let currentLine = 0;
+  let currentChar = 0;
+  let lineEl = null;
 
-const el = document.getElementById('typewriter');
-
-let lines = [];
-const typingSpeed = 100;
-const lineDelay = 500;
-let currentLine = 0;
-let currentChar = 0;
-let lineEl = null;
-
-// Create and append cursor element
-const cursor = document.createElement('span');
-cursor.classList.add('cursor');
-el.appendChild(cursor);
-
-// Set lines array depending on device orientation
-function setLinesByOrientation() {
-  if (window.matchMedia("(orientation: landscape)").matches) {
-    lines = [
-      "We build",
-      "your website.",
-      "You approve,",
-      "then pay."
-    ];
-  } else {
-    lines = [
-      "We build",
-      "your",
-      "website.",
-      "You approve,",
-      "then pay."
-    ];
-  }
-}
-
-// Recursive function to type characters line by line
-function typeChar() {
-  if (currentLine >= lines.length) {
-    cursor.remove();
-
-    // After typing finishes, animate rocket rise, then show form choice screen
-    setTimeout(() => {
-      el.style.animation = 'rocketRise 2s ease forwards';
-
-      setTimeout(() => {
-        const choiceScreen = document.getElementById('form-start-choice');
-        choiceScreen.style.display = 'block';
-        setTimeout(() => choiceScreen.classList.add('show'), 50);
-
-        // Show skip button now
-        const skipBtn = document.getElementById('skipToPackages');
-        if (skipBtn) {
-          skipBtn.style.display = 'block';
-        }
-      }, 2000);
-
-    }, 1000);
-
-    return;
-  }
-
-  const text = lines[currentLine];
-
-  // Create a new line container if none exists
-  if (!lineEl) {
-    lineEl = document.createElement('div');
-    lineEl.classList.add('typed-line');
-    el.appendChild(lineEl);
-    lineEl.appendChild(cursor);
-  }
-
-  // Type the next character
-  if (currentChar < text.length) {
-    const char = document.createTextNode(text[currentChar]);
-    lineEl.insertBefore(char, cursor);
-    currentChar++;
-    setTimeout(typeChar, typingSpeed);
-  } else {
-    // Move to next line after delay
-    currentLine++;
-    currentChar = 0;
-    lineEl = null;
-    setTimeout(typeChar, lineDelay);
-  }
-}
-
-// Initialize lines and start typing
-setLinesByOrientation();
-el.style.opacity = 1;
-typeChar();
-
-// Debounce function to limit how often resize triggers typing reset
-function debounce(func, wait) {
-  let timeout;
-  return function(...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), wait);
-  };
-}
-
-// On window resize, reset typing animation with new lines if orientation changed
-window.addEventListener('resize', debounce(() => {
-  currentLine = 0;
-  currentChar = 0;
-  lineEl = null;
-  el.textContent = '';
+  // Create and append cursor
+  const cursor = document.createElement('span');
+  cursor.classList.add('cursor');
   el.appendChild(cursor);
+
+  function setLinesByOrientation() {
+    if (window.matchMedia("(orientation: landscape)").matches) {
+      lines = ["We build", "your website.", "You approve,", "then pay."];
+    } else {
+      lines = ["We build", "your", "website.", "You approve,", "then pay."];
+    }
+  }
+
+  function typeChar() {
+    if (currentLine >= lines.length) {
+      cursor.remove();
+      setTimeout(() => {
+        el.style.animation = 'rocketRise 2s ease forwards';
+        setTimeout(() => {
+          document.getElementById('entry-funnel').style.display = 'block';
+          setTimeout(() => {
+            document.getElementById('entry-funnel').classList.add('active');
+          }, 50);
+          const skipBtn = document.getElementById('skipToPackages');
+          if (skipBtn) skipBtn.style.display = 'block';
+        }, 2000);
+      }, 1000);
+      return;
+    }
+
+    const text = lines[currentLine];
+    if (!lineEl) {
+      lineEl = document.createElement('div');
+      lineEl.classList.add('typed-line');
+      el.appendChild(lineEl);
+      lineEl.appendChild(cursor);
+    }
+
+    if (currentChar < text.length) {
+      const char = document.createTextNode(text[currentChar]);
+      lineEl.insertBefore(char, cursor);
+      currentChar++;
+      setTimeout(typeChar, typingSpeed);
+    } else {
+      currentLine++;
+      currentChar = 0;
+      lineEl = null;
+      setTimeout(typeChar, lineDelay);
+    }
+  }
+
   setLinesByOrientation();
   el.style.opacity = 1;
   typeChar();
-}, 300));
 
+  window.addEventListener('resize', debounce(() => {
+    currentLine = 0;
+    currentChar = 0;
+    lineEl = null;
+    el.textContent = '';
+    el.appendChild(cursor);
+    setLinesByOrientation();
+    el.style.opacity = 1;
+    typeChar();
+  }, 300));
 
-// ------------------ FORM SCREEN FLOW --------------------
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
 
-let currentScreen = -1;
-const screens = document.querySelectorAll(".form-screen");
+  // ------------------ FORM SCREEN FLOW --------------------
 
-function showScreen(index) {
-  // Show the screen at given index, hide others
-  screens.forEach((screen, i) => {
-    screen.classList.toggle("active", i === index);
+  const screens = document.querySelectorAll(".form-screen");
+  let currentStep = 0;
+
+  function showScreen(index) {
+    screens.forEach((screen, i) => {
+      screen.classList.remove("active");
+      screen.style.display = "none";
+    });
+
+    const target = screens[index];
+    if (target) {
+      target.classList.add("active");
+      target.style.display = "block";
+      currentStep = index;
+    }
+
+    const skipBtn = document.getElementById("skipToPackages");
+    if (skipBtn) {
+      skipBtn.style.display = (index === screens.length - 1) ? "none" : "block";
+    }
+  }
+
+  function next() {
+    showScreen(currentStep + 1);
+  }
+
+  function prev() {
+    showScreen(currentStep - 1);
+  }
+
+  function goToFormStart() {
+    screens.forEach(screen => {
+      screen.classList.remove("active");
+      screen.style.display = "none";
+    });
+    const choiceScreen = document.getElementById("form-start-choice");
+    choiceScreen.style.display = "block";
+    choiceScreen.classList.add("active");
+  }
+
+  // ------------------ HAMBURGER MENU --------------------
+
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('nav.menu');
+
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', event => {
+    event.stopPropagation();
+    toggleMenu();
   });
-  currentScreen = index;
 
-  // Hide skip button on final screen only
-  const lastIndex = screens.length - 1; // last screen index
-  const skipBtn = document.getElementById("skipToPackages");
-  if (skipBtn) {
-    skipBtn.style.display = (index === lastIndex) ? "none" : "block";
-  }
-}
+  document.addEventListener('click', event => {
+    if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+      menu.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', false);
+      menu.setAttribute('aria-hidden', true);
+      document.body.style.overflow = '';
+    }
+  });
 
-function next() {
-  if (currentScreen < screens.length - 1) {
-    showScreen(currentScreen + 1);
-  }
-}
+  // ------------------ INITIAL STATE --------------------
 
-function prev() {
-  if (currentScreen > 0) {
-    showScreen(currentScreen - 1);
-  }
-}
-
-
-// ------------------ HAMBURGER MENU ---------------------
-
-const hamburger = document.querySelector('.hamburger');
-const menu = document.querySelector('nav.menu');
-
-function toggleMenu() {
-  const isOpen = menu.classList.toggle('open');
-  hamburger.classList.toggle('active');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  menu.setAttribute('aria-hidden', !isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-
-hamburger.addEventListener('click', (event) => {
-  event.stopPropagation();
-  toggleMenu();
-});
-
-document.addEventListener('click', (event) => {
-  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-    menu.classList.remove('open');
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', false);
-    menu.setAttribute('aria-hidden', true);
-    document.body.style.overflow = '';
-  }
-});
-
-
-// ------------------ INITIAL STATE ---------------------
-
-document.addEventListener("DOMContentLoaded", () => {
-  showScreen(-1); // Hide all form screens initially
-});
-
-
+  document.addEventListener("DOMContentLoaded", () => {
+    screens.forEach(screen => screen.style.display = "none");
+    const splash = document.getElementById('typewriter');
+    if (splash) splash.style.display = "block";
+  });
 </script>
+
+
 
 </body>
 </html>
