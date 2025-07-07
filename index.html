@@ -692,240 +692,101 @@ button:hover {
 <div class="color-rise"></div>
 <div id="typewriter"></div>
 
+<form action="https://formsubmit.co/fazhoq1977@gmail.com"
+ method="POST"
+ id="formWrapper">
 
+ <!-- ── SCREEN 0 : FUNNEL QUESTION ─────────────────────── -->
+ <div class="form-screen active" id="entry-funnel">
+ <h2>What do you need help with?</h2>
+ <div class="button-row">
+ <button type="button" onclick="goToFormStart()">Website Design</button>
+ <button type="button" onclick="alert('Coming soon')">Website Redesign</button>
+ <button type="button" onclick="alert('Coming soon')">Website Technical Support</button>
+ </div>
+ </div>
 
-<!-- ✅ Single form wrapper starts here -->
-<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
-  <!-- Your form content goes here -->
-</form>
+ <!-- ── SCREEN 1 : START CHOICE ─────────────────────────── -->
+ <div class="form-screen" id="form-start-choice">
+ <h2>How would you like to get started?</h2>
+ <div class="button-row">
+ <button type="button"
+ onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
+ Choose a Package Deal
+ </button>
+ <button type="button" onclick="showScreen(2)">Request a Custom Quote</button>
+ </div>
+ </div>
 
-<!-- ENTRY FUNNEL SCREEN -->
-<div class="form-screen active" id="entry-funnel">
-  <h2>What do you need help with?</h2>
-  <div class="button-row">
-    <button type="button" onclick="goToFormStart()">Website Design</button>
-    <button type="button" onclick="alert('Coming soon')">Website Redesign</button>
-    <button type="button" onclick="alert('Coming soon')">Website Technical Support</button>
-  </div>
-</div>
+ <!-- ── SCREENS 2 – 12 : QUOTE QUESTIONS ───────────────── -->
+ <div class="form-screen" id="q0">
+ <h2>What type of website are you looking for?</h2>
+ <select name="Website Type" required>
+ <option>Business</option><option>eCommerce</option><option>Portfolio</option>
+ <option>Blog</option><option>Other</option>
+ </select>
+ <div class="button-row"><button type="button" onclick="next()">Next</button></div>
+ </div>
 
-<!-- LAYER 1: ENTRY SCREEN -->
-<div class="form-screen" id="form-start-choice">
-  <h2>How would you like to get started?</h2>
-  <div class="button-row">
-    <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
-      Choose a Package Deal
-    </button>
-    <button type="button" onclick="showScreen(1)">Request a Custom Quote</button>
-  </div>
-</div>
+ <div class="form-screen" id="q1">
+ <h2>Which platform would you prefer your website to be built on?</h2>
+ <select name="Preferred Platform" required>
+ <option>WordPress</option><option>Wix</option><option>Shopify</option>
+ <option>Webflow</option><option>Squarespace</option>
+ <option>I’m not sure — please recommend</option>
+ </select>
+ <div class="button-row">
+ <button type="button" onclick="prev()">Previous</button>
+ <button type="button" onclick="next()">Next</button>
+ </div>
+ </div>
 
-<!-- LAYER 2: FULL QUOTE FORM -->
-<div class="form-screen" id="q0">
-  <h2>What type of website are you looking for?</h2>
-  <select name="Website Type" required>
-    <option>Business</option>
-    <option>eCommerce</option>
-    <option>Portfolio</option>
-    <option>Blog</option>
-    <option>Other</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
+ <!-- … keep q2 → q9 exactly as-is … -->
 
-<div class="form-screen" id="q1">
-  <h2>Which platform would you prefer your website to be built on?</h2>
-  <select name="Preferred Platform" required>
-    <option>WordPress</option>
-    <option>Wix</option>
-    <option>Shopify</option>
-    <option>Webflow</option>
-    <option>Squarespace</option>
-    <option>I’m not sure — please recommend</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
+ <div class="form-screen" id="q10">
+ <h2>Do you have examples of websites you like?</h2>
+ <select name="Inspiration Examples" required>
+ <option>Yes, I’ll share them</option>
+ <option>No, I need inspiration</option>
+ <option>A few ideas, but open to suggestions</option>
+ </select>
+ <div class="button-row">
+ <button type="button" onclick="prev()">Previous</button>
+ <button type="button" onclick="next()">Next</button>
+ </div>
+ </div>
 
-<div class="form-screen" id="q2">
-  <h2>How soon do you need your website completed?</h2>
-  <select name="Timeline" required>
-    <option>Within 1 week</option>
-    <option>1–2 weeks</option>
-    <option>1 month</option>
-    <option>Flexible</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
+ <div class="form-screen" id="q11">
+ <h2>Almost done! Please enter your details</h2>
 
-<div class="form-screen" id="q3">
-  <h2>Do you already have a domain name?</h2>
-  <select name="Domain Name" required>
-    <option>Yes</option>
-    <option>No</option>
-    <option>Need help choosing one</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
+ <label>Full Name</label>
+ <input type="text" name="Full Name" required>
 
-<div class="form-screen" id="q4">
-  <h2>Do you already have a logo and brand design?</h2>
-  <select name="Branding" required>
-    <option>Yes, everything is ready</option>
-    <option>I have a logo but need help with branding</option>
-    <option>No, I need full branding</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
+ <label>Email Address</label>
+ <input type="email" name="Email" required>
 
-<div class="form-screen" id="q5">
-  <h2>How many pages do you expect your site to have?</h2>
-  <select name="Number of Pages" required>
-    <option>1 (Single Page)</option>
-    <option>2–5</option>
-    <option>6–10</option>
-    <option>10+</option>
-    <option>Not sure yet</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
+ <label>WhatsApp Number (optional)</label>
+ <input type="text" name="WhatsApp">
 
-<div class="form-screen" id="q6">
-  <h2>Do you need us to write the content for your website?</h2>
-  <select name="Content Writing" required>
-    <option>Yes, please write it all</option>
-    <option>I have some content, need help refining</option>
-    <option>No, I’ll provide all the content</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
+ <label style="margin-top:20px;">
+ <input type="checkbox" required name="GDPR Consent">
+ I consent to having this website store my submitted information so they can respond to my inquiry.
+ </label>
 
-<div class="form-screen" id="q7">
-  <h2>Will you be selling products or services online?</h2>
-  <select name="eCommerce" required>
-    <option>Yes – I need full eCommerce setup</option>
-    <option>Yes – just a few products or services</option>
-    <option>No – informational site only</option>
-    <option>Not sure yet</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
-
-<div class="form-screen" id="q8">
-  <h2>Do you want to be able to edit the site yourself later?</h2>
-  <select name="Editing Access" required>
-    <option>Yes, I want full control</option>
-    <option>Maybe – depends on how easy it is</option>
-    <option>No, I’d prefer you handle future updates</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
-
-<div class="form-screen" id="q9">
-  <h2>What’s your estimated budget for this project?</h2>
-  <select name="Budget" required>
-    <option>Under £500</option>
-    <option>£500 – £1,000</option>
-    <option>£1,000 – £2,500</option>
-    <option>£2,500+</option>
-    <option>Need help deciding</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
-
-<div class="form-screen" id="q10">
-  <h2>Do you have examples of websites you like?</h2>
-  <select name="Inspiration Examples" required>
-    <option>Yes, I’ll share them</option>
-    <option>No, I need inspiration</option>
-    <option>A few ideas, but open to suggestions</option>
-  </select>
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="button" onclick="next()">Next</button>
-  </div>
-</div>
-
-<div class="form-screen" id="q11">
-  <h2>Almost done! Please enter your details</h2>
-
-  <label>Full Name</label>
-  <input type="text" name="Full Name" required>
-
-  <label>Email Address</label>
-  <input type="email" name="Email" required>
-
-  <label>WhatsApp Number (optional)</label>
-  <input type="text" name="WhatsApp">
-
-  <label style="margin-top: 20px;">
-    <input type="checkbox" required name="GDPR Consent">
-    I consent to having this website store my submitted information so they can respond to my inquiry.
-  </label>
-
-  <div class="button-row">
-    <button type="button" onclick="prev()">Previous</button>
-    <button type="submit">Submit</button>
-  </div>
-</div>
-
-  <div class="form-screen" id="q11">
-    <h2>Almost done! Please enter your details</h2>
-
-    <label>Full Name</label>
-    <input type="text" name="Full Name" required>
-
-    <label>Email Address</label>
-    <input type="email" name="Email" required>
-
-    <label>WhatsApp Number (optional)</label>
-    <input type="text" name="WhatsApp">
-
-    <label style="margin-top: 20px;">
-      <input type="checkbox" required name="GDPR Consent">
-      I consent to having this website store my submitted information so they can respond to my inquiry.
-    </label>
-
-    <div class="button-row">
-      <button type="button" onclick="prev()">Previous</button>
-      <button type="submit">Submit</button>
-    </div>
-  </div>
-</form>
+ <div class="button-row">
+ <button type="button" onclick="prev()">Previous</button>
+ <button type="submit">Submit</button>
+ </div>
+ </div>
 
 <a href="https://doctoc30.github.io/Faz-Designs/pages/about.html" 
    id="skipToPackages" class="skip-link" style="display: none;">
   Skip Questions For Now →
 </a>
   </div>
+
+
+ 
  <script>
 /* ─────────────────────────  TYPEWRITER SPLASH  ───────────────────────── */
 const typewriterEl   = document.getElementById('typewriter');
@@ -1069,6 +930,27 @@ document.addEventListener('DOMContentLoaded', () => {
   /* The splash itself (typewriter) is visible already */
 });
 
+  /* Collect every .form-screen in the order they appear */
+ const screens = Array.from(document.querySelectorAll('.form-screen'));
+ let current = 0; // index in screens[]
+
+ function showScreen(idx){
+ if(idx < 0 || idx >= screens.length) return;
+ screens.forEach((s,i)=>s.classList.toggle('active', i===idx));
+ current = idx;
+ }
+
+ function next(){ if(current < screens.length-1) showScreen(current+1); }
+ function prev(){ if(current > 1) showScreen(current-1); }
+
+ /* Called by the “Website Design” button */
+ function goToFormStart(){ showScreen(screens.indexOf(document.getElementById('form-start-choice'))); }
+</script>
+
+<!-- OPTIONAL minimal CSS to hide non-active screens -->
+<style>
+ .form-screen{display:none}
+ .form-screen.active{display:block}
 </script>
 
 </body>
