@@ -1,3 +1,5 @@
+INDEX
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -704,7 +706,7 @@ button:hover {
     <h2>How would you like to get started?</h2>
     <div class="button-row">
       <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
-        Choose a Package Deal
+        Choose a Package Deal Today
       </button>
      
       <button type="button" onclick="showScreen(1)">
@@ -730,7 +732,23 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q1">
+<div class="form-screen" id="q1">
+  <h2>Which platform would you prefer your website to be built on?</h2>
+  <select name="Preferred Platform" required>
+    <option>WordPress</option>
+    <option>Wix</option>
+    <option>Shopify</option>
+    <option>Webflow</option>
+    <option>Squarespace</option>
+    <option>I’m not sure — please recommend</option>
+  </select>
+  <div class="button-row">
+    <button type="button" onclick="prev()">Previous</button>
+    <button type="button" onclick="next()">Next</button>
+  </div>
+</div>
+
+  <div class="form-screen" id="q2">
     <h2>How soon do you need your website completed?</h2>
     <select name="Timeline" required>
       <option>Within 1 week</option>
@@ -744,7 +762,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q2">
+  <div class="form-screen" id="q3">
     <h2>Do you already have a domain name?</h2>
     <select name="Domain Name" required>
       <option>Yes</option>
@@ -757,7 +775,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q3">
+  <div class="form-screen" id="q4">
     <h2>Do you already have a logo and brand design?</h2>
     <select name="Branding" required>
       <option>Yes, everything is ready</option>
@@ -770,7 +788,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q4">
+  <div class="form-screen" id="q5">
     <h2>How many pages do you expect your site to have?</h2>
     <select name="Number of Pages" required>
       <option>1 (Single Page)</option>
@@ -785,7 +803,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q5">
+  <div class="form-screen" id="q6">
     <h2>Do you need us to write the content for your website?</h2>
     <select name="Content Writing" required>
       <option>Yes, please write it all</option>
@@ -798,7 +816,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q6">
+  <div class="form-screen" id="q7">
     <h2>Will you be selling products or services online?</h2>
     <select name="eCommerce" required>
       <option>Yes – I need full eCommerce setup</option>
@@ -812,7 +830,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q7">
+  <div class="form-screen" id="q8">
     <h2>Do you want to be able to edit the site yourself later?</h2>
     <select name="Editing Access" required>
       <option>Yes, I want full control</option>
@@ -825,7 +843,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q8">
+  <div class="form-screen" id="q9">
     <h2>What’s your estimated budget for this project?</h2>
     <select name="Budget" required>
       <option>Under £500</option>
@@ -840,7 +858,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q9">
+  <div class="form-screen" id="q10">
     <h2>Do you have examples of websites you like?</h2>
     <select name="Inspiration Examples" required>
       <option>Yes, I’ll share them</option>
@@ -853,7 +871,7 @@ button:hover {
     </div>
   </div>
 
-  <div class="form-screen" id="q10">
+  <div class="form-screen" id="q11">
     <h2>Almost done! Please enter your details</h2>
 
     <label>Full Name</label>
