@@ -898,7 +898,13 @@ button:hover {
   Skip Questions For Now →
 </a>
   </div>
+
+
+ 
  <script>
+
+// ------------------ TYPEWRITER ANIMATION ------------------
+
 const el = document.getElementById('typewriter');
 
 let lines = [];
@@ -908,10 +914,12 @@ let currentLine = 0;
 let currentChar = 0;
 let lineEl = null;
 
+// Create and append cursor element
 const cursor = document.createElement('span');
 cursor.classList.add('cursor');
 el.appendChild(cursor);
 
+// Set lines array depending on device orientation
 function setLinesByOrientation() {
   if (window.matchMedia("(orientation: landscape)").matches) {
     lines = [
@@ -931,9 +939,12 @@ function setLinesByOrientation() {
   }
 }
 
+// Recursive function to type characters line by line
 function typeChar() {
   if (currentLine >= lines.length) {
     cursor.remove();
+
+    // After typing finishes, animate rocket rise, then show form choice screen
     setTimeout(() => {
       el.style.animation = 'rocketRise 2s ease forwards';
 
@@ -942,19 +953,21 @@ function typeChar() {
         choiceScreen.style.display = 'block';
         setTimeout(() => choiceScreen.classList.add('show'), 50);
 
-        // ✅ Show skip button now
+        // Show skip button now
         const skipBtn = document.getElementById('skipToPackages');
         if (skipBtn) {
           skipBtn.style.display = 'block';
         }
-
       }, 2000);
 
     }, 1000);
+
     return;
   }
 
   const text = lines[currentLine];
+
+  // Create a new line container if none exists
   if (!lineEl) {
     lineEl = document.createElement('div');
     lineEl.classList.add('typed-line');
@@ -962,12 +975,14 @@ function typeChar() {
     lineEl.appendChild(cursor);
   }
 
+  // Type the next character
   if (currentChar < text.length) {
     const char = document.createTextNode(text[currentChar]);
     lineEl.insertBefore(char, cursor);
     currentChar++;
     setTimeout(typeChar, typingSpeed);
   } else {
+    // Move to next line after delay
     currentLine++;
     currentChar = 0;
     lineEl = null;
@@ -975,12 +990,12 @@ function typeChar() {
   }
 }
 
-
-
+// Initialize lines and start typing
 setLinesByOrientation();
 el.style.opacity = 1;
 typeChar();
 
+// Debounce function to limit how often resize triggers typing reset
 function debounce(func, wait) {
   let timeout;
   return function(...args) {
@@ -989,6 +1004,7 @@ function debounce(func, wait) {
   };
 }
 
+// On window resize, reset typing animation with new lines if orientation changed
 window.addEventListener('resize', debounce(() => {
   currentLine = 0;
   currentChar = 0;
@@ -1000,20 +1016,21 @@ window.addEventListener('resize', debounce(() => {
   typeChar();
 }, 300));
 
+
 // ------------------ FORM SCREEN FLOW --------------------
 
 let currentScreen = -1;
 const screens = document.querySelectorAll(".form-screen");
 
 function showScreen(index) {
-  // toggle active screen
+  // Show the screen at given index, hide others
   screens.forEach((screen, i) => {
     screen.classList.toggle("active", i === index);
   });
   currentScreen = index;
 
-  /* ───── Hide the skip link ONLY on the final screen (lead-capture) ───── */
-  const lastIndex = screens.length - 1;        // q10 is the last .form-screen
+  // Hide skip button on final screen only
+  const lastIndex = screens.length - 1; // last screen index
   const skipBtn = document.getElementById("skipToPackages");
   if (skipBtn) {
     skipBtn.style.display = (index === lastIndex) ? "none" : "block";
@@ -1031,6 +1048,7 @@ function prev() {
     showScreen(currentScreen - 1);
   }
 }
+
 
 // ------------------ HAMBURGER MENU ---------------------
 
@@ -1060,13 +1078,12 @@ document.addEventListener('click', (event) => {
   }
 });
 
+
 // ------------------ INITIAL STATE ---------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-  showScreen(-1); // Hide all
+  showScreen(-1); // Hide all form screens initially
 });
-
-
 
 
 </script>
