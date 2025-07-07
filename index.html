@@ -692,265 +692,383 @@ button:hover {
 <div class="color-rise"></div>
 <div id="typewriter"></div>
 
-<form action="https://formsubmit.co/fazhoq1977@gmail.com"
- method="POST"
- id="formWrapper">
 
- <!-- ── SCREEN 0 : FUNNEL QUESTION ─────────────────────── -->
- <div class="form-screen active" id="entry-funnel">
- <h2>What do you need help with?</h2>
- <div class="button-row">
- <button type="button" onclick="goToFormStart()">Website Design</button>
- <button type="button" onclick="alert('Coming soon')">Website Redesign</button>
- <button type="button" onclick="alert('Coming soon')">Website Technical Support</button>
- </div>
- </div>
 
- <!-- ── SCREEN 1 : START CHOICE ─────────────────────────── -->
- <div class="form-screen" id="form-start-choice">
- <h2>How would you like to get started?</h2>
- <div class="button-row">
- <button type="button"
- onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
- Choose a Package Deal
- </button>
- <button type="button" onclick="showScreen(2)">Request a Custom Quote</button>
- </div>
- </div>
+<!-- ✅ Single form wrapper starts here -->
+<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+  <!-- Your form content goes here -->
+</form>
 
- <!-- ── SCREENS 2 – 12 : QUOTE QUESTIONS ───────────────── -->
- <div class="form-screen" id="q0">
- <h2>What type of website are you looking for?</h2>
- <select name="Website Type" required>
- <option>Business</option><option>eCommerce</option><option>Portfolio</option>
- <option>Blog</option><option>Other</option>
- </select>
- <div class="button-row"><button type="button" onclick="next()">Next</button></div>
- </div>
+  <!-- LAYER 1: ENTRY SCREEN -->
+  <div class="form-screen active" id="form-start-choice">
+    <h2>How would you like to get started?</h2>
+    <div class="button-row">
+      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
+        Choose a Package Deal
+      </button>
+     
+      <button type="button" onclick="showScreen(1)">
+        Request a Custom Quote
+      </button>
+    </div>
+  </div>
 
- <div class="form-screen" id="q1">
- <h2>Which platform would you prefer your website to be built on?</h2>
- <select name="Preferred Platform" required>
- <option>WordPress</option><option>Wix</option><option>Shopify</option>
- <option>Webflow</option><option>Squarespace</option>
- <option>I’m not sure — please recommend</option>
- </select>
- <div class="button-row">
- <button type="button" onclick="prev()">Previous</button>
- <button type="button" onclick="next()">Next</button>
- </div>
- </div>
+  <!-- LAYER 2: FULL QUOTE FORM -->
 
- <!-- … keep q2 → q9 exactly as-is … -->
+  <div class="form-screen" id="q0">
+    <h2>What type of website are you looking for?</h2>
+    <select name="Website Type" required>
+      <option>Business</option>
+      <option>eCommerce</option>
+      <option>Portfolio</option>
+      <option>Blog</option>
+      <option>Other</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="next()">Next</button>
+   
+    </div>
+  </div>
 
- <div class="form-screen" id="q10">
- <h2>Do you have examples of websites you like?</h2>
- <select name="Inspiration Examples" required>
- <option>Yes, I’ll share them</option>
- <option>No, I need inspiration</option>
- <option>A few ideas, but open to suggestions</option>
- </select>
- <div class="button-row">
- <button type="button" onclick="prev()">Previous</button>
- <button type="button" onclick="next()">Next</button>
- </div>
- </div>
+<div class="form-screen" id="q1">
+  <h2>Which platform would you prefer your website to be built on?</h2>
+  <select name="Preferred Platform" required>
+    <option>WordPress</option>
+    <option>Wix</option>
+    <option>Shopify</option>
+    <option>Webflow</option>
+    <option>Squarespace</option>
+    <option>I’m not sure — please recommend</option>
+  </select>
+  <div class="button-row">
+    <button type="button" onclick="prev()">Previous</button>
+    <button type="button" onclick="next()">Next</button>
+  </div>
+</div>
 
- <div class="form-screen" id="q11">
- <h2>Almost done! Please enter your details</h2>
+  <div class="form-screen" id="q2">
+    <h2>How soon do you need your website completed?</h2>
+    <select name="Timeline" required>
+      <option>Within 1 week</option>
+      <option>1–2 weeks</option>
+      <option>1 month</option>
+      <option>Flexible</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
 
- <label>Full Name</label>
- <input type="text" name="Full Name" required>
+  <div class="form-screen" id="q3">
+    <h2>Do you already have a domain name?</h2>
+    <select name="Domain Name" required>
+      <option>Yes</option>
+      <option>No</option>
+      <option>Need help choosing one</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
 
- <label>Email Address</label>
- <input type="email" name="Email" required>
+  <div class="form-screen" id="q4">
+    <h2>Do you already have a logo and brand design?</h2>
+    <select name="Branding" required>
+      <option>Yes, everything is ready</option>
+      <option>I have a logo but need help with branding</option>
+      <option>No, I need full branding</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
 
- <label>WhatsApp Number (optional)</label>
- <input type="text" name="WhatsApp">
+  <div class="form-screen" id="q5">
+    <h2>How many pages do you expect your site to have?</h2>
+    <select name="Number of Pages" required>
+      <option>1 (Single Page)</option>
+      <option>2–5</option>
+      <option>6–10</option>
+      <option>10+</option>
+      <option>Not sure yet</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
 
- <label style="margin-top:20px;">
- <input type="checkbox" required name="GDPR Consent">
- I consent to having this website store my submitted information so they can respond to my inquiry.
- </label>
+  <div class="form-screen" id="q6">
+    <h2>Do you need us to write the content for your website?</h2>
+    <select name="Content Writing" required>
+      <option>Yes, please write it all</option>
+      <option>I have some content, need help refining</option>
+      <option>No, I’ll provide all the content</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
 
- <div class="button-row">
- <button type="button" onclick="prev()">Previous</button>
- <button type="submit">Submit</button>
- </div>
- </div>
+  <div class="form-screen" id="q7">
+    <h2>Will you be selling products or services online?</h2>
+    <select name="eCommerce" required>
+      <option>Yes – I need full eCommerce setup</option>
+      <option>Yes – just a few products or services</option>
+      <option>No – informational site only</option>
+      <option>Not sure yet</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
+
+  <div class="form-screen" id="q8">
+    <h2>Do you want to be able to edit the site yourself later?</h2>
+    <select name="Editing Access" required>
+      <option>Yes, I want full control</option>
+      <option>Maybe – depends on how easy it is</option>
+      <option>No, I’d prefer you handle future updates</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
+
+  <div class="form-screen" id="q9">
+    <h2>What’s your estimated budget for this project?</h2>
+    <select name="Budget" required>
+      <option>Under £500</option>
+      <option>£500 – £1,000</option>
+      <option>£1,000 – £2,500</option>
+      <option>£2,500+</option>
+      <option>Need help deciding</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
+
+  <div class="form-screen" id="q10">
+    <h2>Do you have examples of websites you like?</h2>
+    <select name="Inspiration Examples" required>
+      <option>Yes, I’ll share them</option>
+      <option>No, I need inspiration</option>
+      <option>A few ideas, but open to suggestions</option>
+    </select>
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
+
+  <div class="form-screen" id="q11">
+    <h2>Almost done! Please enter your details</h2>
+
+    <label>Full Name</label>
+    <input type="text" name="Full Name" required>
+
+    <label>Email Address</label>
+    <input type="email" name="Email" required>
+
+    <label>WhatsApp Number (optional)</label>
+    <input type="text" name="WhatsApp">
+
+    <label style="margin-top: 20px;">
+      <input type="checkbox" required name="GDPR Consent">
+      I consent to having this website store my submitted information so they can respond to my inquiry.
+    </label>
+
+    <div class="button-row">
+      <button type="button" onclick="prev()">Previous</button>
+      <button type="submit">Submit</button>
+    </div>
+  </div>
+</form>
 
 <a href="https://doctoc30.github.io/Faz-Designs/pages/about.html" 
    id="skipToPackages" class="skip-link" style="display: none;">
   Skip Questions For Now →
 </a>
   </div>
-
-
- 
  <script>
-/* ─────────────────────────  TYPEWRITER SPLASH  ───────────────────────── */
-const typewriterEl   = document.getElementById('typewriter');
-const typingSpeed    = 100;   // ms per character
-const lineDelay      = 500;   // ms between lines
-let   lines          = [];
-let   currentLine    = 0;
-let   currentChar    = 0;
-let   lineEl         = null;
+const el = document.getElementById('typewriter');
+
+let lines = [];
+const typingSpeed = 100;
+const lineDelay = 500;
+let currentLine = 0;
+let currentChar = 0;
+let lineEl = null;
 
 const cursor = document.createElement('span');
 cursor.classList.add('cursor');
-typewriterEl.appendChild(cursor);
+el.appendChild(cursor);
 
 function setLinesByOrientation() {
-  if (window.matchMedia('(orientation: landscape)').matches) {
-    lines = ['We build', 'your website.', 'You approve,', 'then pay.'];
+  if (window.matchMedia("(orientation: landscape)").matches) {
+    lines = [
+      "We build",
+      "your website.",
+      "You approve,",
+      "then pay."
+    ];
   } else {
-    lines = ['We build', 'your', 'website.', 'You approve,', 'then pay.'];
+    lines = [
+      "We build",
+      "your",
+      "website.",
+      "You approve,",
+      "then pay."
+    ];
   }
 }
 
-function typeNextChar() {
+function typeChar() {
   if (currentLine >= lines.length) {
-    /* Finished typing  */
     cursor.remove();
-
-    /* Little rocket-rise flair, then reveal the funnel question */
     setTimeout(() => {
-      typewriterEl.style.animation = 'rocketRise 2s ease forwards';
+      el.style.animation = 'rocketRise 2s ease forwards';
+
       setTimeout(() => {
-        showScreenById('entry-funnel');              // <-- FIRST QUESTION
+        const choiceScreen = document.getElementById('form-start-choice');
+        choiceScreen.style.display = 'block';
+        setTimeout(() => choiceScreen.classList.add('show'), 50);
+
+        // ✅ Show skip button now
         const skipBtn = document.getElementById('skipToPackages');
-        if (skipBtn) skipBtn.style.display = 'block';
+        if (skipBtn) {
+          skipBtn.style.display = 'block';
+        }
+
       }, 2000);
+
     }, 1000);
     return;
   }
 
-  /* Start a new <div> for each line */
+  const text = lines[currentLine];
   if (!lineEl) {
     lineEl = document.createElement('div');
     lineEl.classList.add('typed-line');
-    typewriterEl.appendChild(lineEl);
+    el.appendChild(lineEl);
     lineEl.appendChild(cursor);
   }
 
-  const text = lines[currentLine];
   if (currentChar < text.length) {
-    lineEl.insertBefore(document.createTextNode(text[currentChar]), cursor);
+    const char = document.createTextNode(text[currentChar]);
+    lineEl.insertBefore(char, cursor);
     currentChar++;
-    setTimeout(typeNextChar, typingSpeed);
+    setTimeout(typeChar, typingSpeed);
   } else {
     currentLine++;
     currentChar = 0;
     lineEl = null;
-    setTimeout(typeNextChar, lineDelay);
+    setTimeout(typeChar, lineDelay);
   }
 }
 
-/* Kick off typing on load */
+
+
 setLinesByOrientation();
-typewriterEl.style.opacity = 1;
-typeNextChar();
+el.style.opacity = 1;
+typeChar();
 
-/* Re-run the splash if device is rotated */
-function debounce(fn, wait = 300) {
-  let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), wait); };
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
 }
+
 window.addEventListener('resize', debounce(() => {
-  currentLine = 0; currentChar = 0; lineEl = null;
-  typewriterEl.textContent = ''; typewriterEl.appendChild(cursor);
-  setLinesByOrientation(); typewriterEl.style.opacity = 1; typeNextChar();
-}));
+  currentLine = 0;
+  currentChar = 0;
+  lineEl = null;
+  el.textContent = '';
+  el.appendChild(cursor);
+  setLinesByOrientation();
+  el.style.opacity = 1;
+  typeChar();
+}, 300));
 
+// ------------------ FORM SCREEN FLOW --------------------
 
-/* ─────────────────────────  FORM-SCREEN FLOW  ───────────────────────── */
-const screens = Array.from(document.querySelectorAll('.form-screen'));
-let   currentScreen = 0;          // index within `screens` NodeList
+let currentScreen = -1;
+const screens = document.querySelectorAll(".form-screen");
 
-function updateSkipLink() {
-  const skipBtn = document.getElementById('skipToPackages');
-  if (skipBtn) skipBtn.style.display = (currentScreen === screens.length - 1) ? 'none' : 'block';
-}
-
-/* Show by index (0 = entry-funnel, 1 = form-start-choice, 2… = q0…) */
-function showScreenIndex(idx) {
-  if (idx < 0 || idx >= screens.length) return;
-  screens.forEach((scr, i) => scr.classList.toggle('active', i === idx));
-  currentScreen = idx;
-  updateSkipLink();
-}
-
-/* Plain alias so your HTML can still call showScreen(1) etc. */
-function showScreen(idx) { showScreenIndex(idx); }
-
-/* Show by ID (handy for buttons) */
-function showScreenById(id) {
-  const target = document.getElementById(id);
-  if (!target) return;
-  screens.forEach(scr => scr.classList.remove('active'));
-  target.classList.add('active');
-  currentScreen = screens.indexOf(target);
-  updateSkipLink();
-}
-
-/* Next / Prev (prevent going back before screen #1) */
-function next()  { if (currentScreen < screens.length - 1) showScreenIndex(currentScreen + 1); }
-function prev()  { if (currentScreen > 1)                  showScreenIndex(currentScreen - 1); }
-
-/* Button helper for “Website Design” */
-function goToFormStart() { showScreenById('form-start-choice'); }
-
-
-/* ─────────────────────────  HAMBURGER MENU  ───────────────────────── */
-const hamburger = document.querySelector('.hamburger');
-const navMenu   = document.querySelector('nav.menu');
-
-function toggleMenu(forceOpen) {
-  if (!hamburger || !navMenu) return;
-  const open = (typeof forceOpen === 'boolean') ? forceOpen : !navMenu.classList.contains('open');
-  navMenu.classList.toggle('open', open);
-  hamburger.classList.toggle('active', open);
-  hamburger.setAttribute('aria-expanded', open);
-  navMenu.setAttribute('aria-hidden', !open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-
-if (hamburger && navMenu) {
-  hamburger.addEventListener('click',  e => { e.stopPropagation(); toggleMenu(); });
-  document .addEventListener('click',  e => {
-    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false);
+function showScreen(index) {
+  // toggle active screen
+  screens.forEach((screen, i) => {
+    screen.classList.toggle("active", i === index);
   });
+  currentScreen = index;
+
+  /* ───── Hide the skip link ONLY on the final screen (lead-capture) ───── */
+  const lastIndex = screens.length - 1;        // q10 is the last .form-screen
+  const skipBtn = document.getElementById("skipToPackages");
+  if (skipBtn) {
+    skipBtn.style.display = (index === lastIndex) ? "none" : "block";
+  }
 }
 
+function next() {
+  if (currentScreen < screens.length - 1) {
+    showScreen(currentScreen + 1);
+  }
+}
 
-/* ─────────────────────────  INITIAL STATE  ───────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
-  /* Hide every .form-screen until the splash finishes */
-  screens.forEach(scr => scr.classList.remove('active'));
-  /* The splash itself (typewriter) is visible already */
+function prev() {
+  if (currentScreen > 0) {
+    showScreen(currentScreen - 1);
+  }
+}
+
+// ------------------ HAMBURGER MENU ---------------------
+
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('nav.menu');
+
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  menu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', (event) => {
+  event.stopPropagation();
+  toggleMenu();
 });
 
-  /* Collect every .form-screen in the order they appear */
- const screens = Array.from(document.querySelectorAll('.form-screen'));
- let current = 0; // index in screens[]
+document.addEventListener('click', (event) => {
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+    menu.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', false);
+    menu.setAttribute('aria-hidden', true);
+    document.body.style.overflow = '';
+  }
+});
 
- function showScreen(idx){
- if(idx < 0 || idx >= screens.length) return;
- screens.forEach((s,i)=>s.classList.toggle('active', i===idx));
- current = idx;
- }
+// ------------------ INITIAL STATE ---------------------
 
- function next(){ if(current < screens.length-1) showScreen(current+1); }
- function prev(){ if(current > 1) showScreen(current-1); }
+document.addEventListener("DOMContentLoaded", () => {
+  showScreen(-1); // Hide all
+});
 
- /* Called by the “Website Design” button */
- function goToFormStart(){ showScreen(screens.indexOf(document.getElementById('form-start-choice'))); }
-</script>
 
-<!-- OPTIONAL minimal CSS to hide non-active screens -->
-<style>
- .form-screen{display:none}
- .form-screen.active{display:block}
+
+
 </script>
 
 </body>
