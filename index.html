@@ -929,167 +929,106 @@ button:hover {
 
 
  <script>
-  // ------------------ TYPEWRITER ANIMATION ------------------
+/* ───────────────────────── TYPEWRITER ANIMATION ───────────────────────── */
+const twEl = document.getElementById('typewriter');
+let lines = [], currentLine = 0, currentChar = 0, lineEl = null;
+const typingSpeed = 100, lineDelay = 500;
+const cursor = document.createElement('span');
+cursor.classList.add('cursor');
+twEl.appendChild(cursor);
 
-  const el = document.getElementById('typewriter');
-  let lines = [];
-  const typingSpeed = 100;
-  const lineDelay = 500;
-  let currentLine = 0;
-  let currentChar = 0;
-  let lineEl = null;
+function setLines() {
+  lines = window.matchMedia('(orientation: landscape)').matches
+    ? ["We build", "your website.", "You approve,", "then pay."]  // landscape
+    : ["We build", "your", "website.", "You approve,", "then pay."]; // portrait
+}
 
-  // Create and append cursor
-  const cursor = document.createElement('span');
-  cursor.classList.add('cursor');
-  el.appendChild(cursor);
-
-  function setLinesByOrientation() {
-    if (window.matchMedia("(orientation: landscape)").matches) {
-      lines = ["We build", "your website.", "You approve,", "then pay."];
-    } else {
-      lines = ["We build", "your", "website.", "You approve,", "then pay."];
-    }
+function typeNextChar() {
+  if (currentLine >= lines.length) {
+    cursor.remove();
+    // rocket animation then reveal first funnel screen
+    setTimeout(() => {
+      twEl.style.animation = 'rocketRise 2s ease forwards';
+      setTimeout(() => revealScreen('entry-funnel'), 2000);
+    }, 1000);
+    return;
   }
-
-  function typeChar() {
-    if (currentLine >= lines.length) {
-      cursor.remove();
-      setTimeout(() => {
-        el.style.animation = 'rocketRise 2s ease forwards';
-        setTimeout(() => {
-          document.getElementById('entry-funnel').style.display = 'block';
-          setTimeout(() => {
-            document.getElementById('entry-funnel').classList.add('active');
-          }, 50);
-          const skipBtn = document.getElementById('skipToPackages');
-          if (skipBtn) skipBtn.style.display = 'block';
-        }, 2000);
-      }, 1000);
-      return;
-    }
-
-    const text = lines[currentLine];
-    if (!lineEl) {
-      lineEl = document.createElement('div');
-      lineEl.classList.add('typed-line');
-      el.appendChild(lineEl);
-      lineEl.appendChild(cursor);
-    }
-
-    if (currentChar < text.length) {
-      const char = document.createTextNode(text[currentChar]);
-      lineEl.insertBefore(char, cursor);
-      currentChar++;
-      setTimeout(typeChar, typingSpeed);
-    } else {
-      currentLine++;
-      currentChar = 0;
-      lineEl = null;
-      setTimeout(typeChar, lineDelay);
-    }
+  if (!lineEl) {
+    lineEl = document.createElement('div');
+    lineEl.classList.add('typed-line');
+    twEl.appendChild(lineEl);
+    lineEl.appendChild(cursor);
   }
-
-  setLinesByOrientation();
-  el.style.opacity = 1;
-  typeChar();
-
-  window.addEventListener('resize', debounce(() => {
-    currentLine = 0;
-    currentChar = 0;
-    lineEl = null;
-    el.textContent = '';
-    el.appendChild(cursor);
-    setLinesByOrientation();
-    el.style.opacity = 1;
-    typeChar();
-  }, 300));
-
-  function debounce(func, wait) {
-    let timeout;
-    return function (...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
+  const text = lines[currentLine];
+  if (currentChar < text.length) {
+    lineEl.insertBefore(document.createTextNode(text[currentChar]), cursor);
+    currentChar++;
+    setTimeout(typeNextChar, typingSpeed);
+  } else {
+    currentLine++; currentChar = 0; lineEl = null;
+    setTimeout(typeNextChar, lineDelay);
   }
+}
 
-  // ------------------ FORM SCREEN FLOW --------------------
+setLines(); twEl.style.opacity = 1; typeNextChar();
 
-  const screens = document.querySelectorAll(".form-screen");
-  let currentStep = 0;
+/* Restart typewriter on orientation change */
+function debounce(fn, wait = 300){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait);} }
+window.addEventListener('resize', debounce(()=>{ twEl.textContent=''; twEl.appendChild(cursor);
+  currentLine=currentChar=0; lineEl=null; setLines(); typeNextChar(); }));
 
-  function showScreen(index) {
-    screens.forEach((screen, i) => {
-      screen.classList.remove("active");
-      screen.style.display = "none";
-    });
 
-    const target = screens[index];
-    if (target) {
-      target.classList.add("active");
-      target.style.display = "block";
-      currentStep = index;
-    }
+/* ───────────────────────── FORM SCREEN NAVIGATION ─────────────────────── */
+const allScreens      = Array.from(document.querySelectorAll('.form-screen')); // includes funnels + questions
+const questionScreens = allScreens.filter(s => /^q\d+$/.test(s.id));           // only q0–q11 etc.
+let   currentQIndex   = 0;                                                     // position in questionScreens[]
 
-    const skipBtn = document.getElementById("skipToPackages");
-    if (skipBtn) {
-      skipBtn.style.display = (index === screens.length - 1) ? "none" : "block";
-    }
-  }
+/* Hide every screen */
+function hideAll(){ allScreens.forEach(s=>{ s.style.display='none'; s.classList.remove('active'); }); }
 
-  function next() {
-    showScreen(currentStep + 1);
-  }
+/* Reveal a screen by element or id */
+function revealScreen(elOrId){
+  hideAll();
+  const el = typeof elOrId === 'string' ? document.getElementById(elOrId) : elOrId;
+  if (el){ el.style.display='block'; el.classList.add('active'); }
+  // show/hide skip link
+  const skip = document.getElementById('skipToPackages');
+  if (skip) skip.style.display = (el && el.id === questionScreens.at(-1)?.id) ? 'none' : 'block';
+}
 
-  function prev() {
-    showScreen(currentStep - 1);
-  }
+/* Called by "Website Design" button */
+window.goToFormStart = ()=> revealScreen('form-start-choice');
 
-  function goToFormStart() {
-    screens.forEach(screen => {
-      screen.classList.remove("active");
-      screen.style.display = "none";
-    });
-    const choiceScreen = document.getElementById("form-start-choice");
-    choiceScreen.style.display = "block";
-    choiceScreen.classList.add("active");
-  }
+/* showScreen(n) used by "Request a Custom Quote" */
+window.showScreen = n => {
+  const target = questionScreens[n];
+  if (!target) return;
+  currentQIndex = n;
+  revealScreen(target);
+};
 
-  // ------------------ HAMBURGER MENU --------------------
+/* Next / Prev for q0 → q11 only */
+window.next = ()=> { if (currentQIndex < questionScreens.length-1) showScreen(currentQIndex+1); };
+window.prev = ()=> { if (currentQIndex > 0) showScreen(currentQIndex-1); };
 
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('nav.menu');
+/* Initial state on DOM ready */
+document.addEventListener('DOMContentLoaded', ()=>{ hideAll(); twEl.style.display='block'; });
 
-  function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
+/* ───────────────────────── HAMBURGER MENU (unchanged) ─────────────────── */
+const hamburger = document.querySelector('.hamburger'),
+      navMenu   = document.querySelector('nav.menu');
 
-  hamburger.addEventListener('click', event => {
-    event.stopPropagation();
-    toggleMenu();
-  });
-
-  document.addEventListener('click', event => {
-    if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-      menu.classList.remove('open');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', false);
-      menu.setAttribute('aria-hidden', true);
-      document.body.style.overflow = '';
-    }
-  });
-
-  // ------------------ INITIAL STATE --------------------
-
-  document.addEventListener("DOMContentLoaded", () => {
-    screens.forEach(screen => screen.style.display = "none");
-    const splash = document.getElementById('typewriter');
-    if (splash) splash.style.display = "block";
-  });
+function toggleMenu(){
+  const open = navMenu.classList.toggle('open');
+  hamburger.classList.toggle('active', open);
+  hamburger.setAttribute('aria-expanded', open);
+  navMenu.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+hamburger?.addEventListener('click', e=>{ e.stopPropagation(); toggleMenu(); });
+document.addEventListener('click', e=>{
+  if(!navMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false);
+});
 </script>
 
 
