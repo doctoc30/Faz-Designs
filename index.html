@@ -927,202 +927,147 @@ button:hover {
 </a>
   </div>
  <script>
-const el = document.getElementById('typewriter');
-
-let lines = [];
-const typingSpeed = 100;
-const lineDelay = 500;
-let currentLine = 0;
-let currentChar = 0;
-let lineEl = null;
+/* ─────────────────────────  TYPEWRITER SPLASH  ───────────────────────── */
+const typewriterEl   = document.getElementById('typewriter');
+const typingSpeed    = 100;   // ms per character
+const lineDelay      = 500;   // ms between lines
+let   lines          = [];
+let   currentLine    = 0;
+let   currentChar    = 0;
+let   lineEl         = null;
 
 const cursor = document.createElement('span');
 cursor.classList.add('cursor');
-el.appendChild(cursor);
+typewriterEl.appendChild(cursor);
 
 function setLinesByOrientation() {
-  if (window.matchMedia("(orientation: landscape)").matches) {
-    lines = [
-      "We build",
-      "your website.",
-      "You approve,",
-      "then pay."
-    ];
+  if (window.matchMedia('(orientation: landscape)').matches) {
+    lines = ['We build', 'your website.', 'You approve,', 'then pay.'];
   } else {
-    lines = [
-      "We build",
-      "your",
-      "website.",
-      "You approve,",
-      "then pay."
-    ];
+    lines = ['We build', 'your', 'website.', 'You approve,', 'then pay.'];
   }
 }
 
-function typeChar() {
+function typeNextChar() {
   if (currentLine >= lines.length) {
+    /* Finished typing  */
     cursor.remove();
+
+    /* Little rocket-rise flair, then reveal the funnel question */
     setTimeout(() => {
-      el.style.animation = 'rocketRise 2s ease forwards';
-
+      typewriterEl.style.animation = 'rocketRise 2s ease forwards';
       setTimeout(() => {
-        const choiceScreen = document.getElementById('form-start-choice');
-        choiceScreen.style.display = 'block';
-        setTimeout(() => choiceScreen.classList.add('show'), 50);
-
-        // ✅ Show skip button now
+        showScreenById('entry-funnel');              // <-- FIRST QUESTION
         const skipBtn = document.getElementById('skipToPackages');
-        if (skipBtn) {
-          skipBtn.style.display = 'block';
-        }
-
+        if (skipBtn) skipBtn.style.display = 'block';
       }, 2000);
-
     }, 1000);
     return;
   }
 
-  const text = lines[currentLine];
+  /* Start a new <div> for each line */
   if (!lineEl) {
     lineEl = document.createElement('div');
     lineEl.classList.add('typed-line');
-    el.appendChild(lineEl);
+    typewriterEl.appendChild(lineEl);
     lineEl.appendChild(cursor);
   }
 
+  const text = lines[currentLine];
   if (currentChar < text.length) {
-    const char = document.createTextNode(text[currentChar]);
-    lineEl.insertBefore(char, cursor);
+    lineEl.insertBefore(document.createTextNode(text[currentChar]), cursor);
     currentChar++;
-    setTimeout(typeChar, typingSpeed);
+    setTimeout(typeNextChar, typingSpeed);
   } else {
     currentLine++;
     currentChar = 0;
     lineEl = null;
-    setTimeout(typeChar, lineDelay);
+    setTimeout(typeNextChar, lineDelay);
   }
 }
 
-
-
+/* Kick off typing on load */
 setLinesByOrientation();
-el.style.opacity = 1;
-typeChar();
+typewriterEl.style.opacity = 1;
+typeNextChar();
 
-function debounce(func, wait) {
-  let timeout;
-  return function(...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), wait);
-  };
+/* Re-run the splash if device is rotated */
+function debounce(fn, wait = 300) {
+  let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), wait); };
 }
-
 window.addEventListener('resize', debounce(() => {
-  currentLine = 0;
-  currentChar = 0;
-  lineEl = null;
-  el.textContent = '';
-  el.appendChild(cursor);
-  setLinesByOrientation();
-  el.style.opacity = 1;
-  typeChar();
-}, 300));
+  currentLine = 0; currentChar = 0; lineEl = null;
+  typewriterEl.textContent = ''; typewriterEl.appendChild(cursor);
+  setLinesByOrientation(); typewriterEl.style.opacity = 1; typeNextChar();
+}));
 
-// ------------------ FORM SCREEN FLOW --------------------
 
-let currentScreen = -1;
-const screens = document.querySelectorAll(".form-screen");
+/* ─────────────────────────  FORM-SCREEN FLOW  ───────────────────────── */
+const screens = Array.from(document.querySelectorAll('.form-screen'));
+let   currentScreen = 0;          // index within `screens` NodeList
 
-function showScreen(index) {
-  // toggle active screen
-  screens.forEach((screen, i) => {
-    screen.classList.toggle("active", i === index);
-  });
-  currentScreen = index;
-
-  /* ───── Hide the skip link ONLY on the final screen (lead-capture) ───── */
-  const lastIndex = screens.length - 1;        // q10 is the last .form-screen
-  const skipBtn = document.getElementById("skipToPackages");
-  if (skipBtn) {
-    skipBtn.style.display = (index === lastIndex) ? "none" : "block";
-  }
+function updateSkipLink() {
+  const skipBtn = document.getElementById('skipToPackages');
+  if (skipBtn) skipBtn.style.display = (currentScreen === screens.length - 1) ? 'none' : 'block';
 }
 
-function next() {
-  if (currentScreen < screens.length - 1) {
-    showScreen(currentScreen + 1);
-  }
+/* Show by index (0 = entry-funnel, 1 = form-start-choice, 2… = q0…) */
+function showScreenIndex(idx) {
+  if (idx < 0 || idx >= screens.length) return;
+  screens.forEach((scr, i) => scr.classList.toggle('active', i === idx));
+  currentScreen = idx;
+  updateSkipLink();
 }
 
-function prev() {
-  if (currentScreen > 0) {
-    showScreen(currentScreen - 1);
-  }
+/* Plain alias so your HTML can still call showScreen(1) etc. */
+function showScreen(idx) { showScreenIndex(idx); }
+
+/* Show by ID (handy for buttons) */
+function showScreenById(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  screens.forEach(scr => scr.classList.remove('active'));
+  target.classList.add('active');
+  currentScreen = screens.indexOf(target);
+  updateSkipLink();
 }
 
-// ------------------ HAMBURGER MENU ---------------------
+/* Next / Prev (prevent going back before screen #1) */
+function next()  { if (currentScreen < screens.length - 1) showScreenIndex(currentScreen + 1); }
+function prev()  { if (currentScreen > 1)                  showScreenIndex(currentScreen - 1); }
 
+/* Button helper for “Website Design” */
+function goToFormStart() { showScreenById('form-start-choice'); }
+
+
+/* ─────────────────────────  HAMBURGER MENU  ───────────────────────── */
 const hamburger = document.querySelector('.hamburger');
-const menu = document.querySelector('nav.menu');
+const navMenu   = document.querySelector('nav.menu');
 
-function toggleMenu() {
-  const isOpen = menu.classList.toggle('open');
-  hamburger.classList.toggle('active');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  menu.setAttribute('aria-hidden', !isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
+function toggleMenu(forceOpen) {
+  if (!hamburger || !navMenu) return;
+  const open = (typeof forceOpen === 'boolean') ? forceOpen : !navMenu.classList.contains('open');
+  navMenu.classList.toggle('open', open);
+  hamburger.classList.toggle('active', open);
+  hamburger.setAttribute('aria-expanded', open);
+  navMenu.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
 }
 
-hamburger.addEventListener('click', (event) => {
-  event.stopPropagation();
-  toggleMenu();
+if (hamburger && navMenu) {
+  hamburger.addEventListener('click',  e => { e.stopPropagation(); toggleMenu(); });
+  document .addEventListener('click',  e => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(false);
+  });
+}
+
+
+/* ─────────────────────────  INITIAL STATE  ───────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  /* Hide every .form-screen until the splash finishes */
+  screens.forEach(scr => scr.classList.remove('active'));
+  /* The splash itself (typewriter) is visible already */
 });
-
-document.addEventListener('click', (event) => {
-  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-    menu.classList.remove('open');
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', false);
-    menu.setAttribute('aria-hidden', true);
-    document.body.style.overflow = '';
-  }
-});
-
-// ------------------ INITIAL STATE ---------------------
-
-document.addEventListener("DOMContentLoaded", () => {
-  showScreen(-1); // Hide all
-});
-
-
-  function showScreen(index) {
-    document.querySelectorAll('.form-screen').forEach(el => el.classList.remove('active'));
-    document.getElementById('q' + index).classList.add('active');
-  }
-
-  function next() {
-    const active = document.querySelector('.form-screen.active');
-    const next = active.nextElementSibling;
-    if (next && next.classList.contains('form-screen')) {
-      active.classList.remove('active');
-      next.classList.add('active');
-    }
-  }
-
-  function prev() {
-    const active = document.querySelector('.form-screen.active');
-    const prev = active.previousElementSibling;
-    if (prev && prev.classList.contains('form-screen')) {
-      active.classList.remove('active');
-      prev.classList.add('active');
-    }
-  }
-
-  function goToFormStart() {
-    document.querySelectorAll('.form-screen').forEach(el => el.classList.remove('active'));
-    document.getElementById('form-start-choice').classList.add('active');
-  }
-
 
 </script>
 
