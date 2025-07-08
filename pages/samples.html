@@ -1,151 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Faz Designs</title>
-
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Poppins',sans-serif;background-color:#ff3131;color:#fff;overflow-x:hidden;}
-
-  /* ----- HEADER / NAV ----- */
-  header{position:fixed;top:0;left:0;right:0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background-color:#ff3131;z-index:2000;box-shadow:0 2px 8px rgb(0 0 0 / 0.15);}
-  .logo{font-weight:900;font-size:1.7rem;letter-spacing:2px;user-select:none;cursor:default;}
-  .hamburger{width:28px;height:22px;cursor:pointer;position:relative;display:flex;flex-direction:column;justify-content:space-between;z-index:2100;}
-  .hamburger span{display:block;height:3.5px;background:#fff;border-radius:2px;transition:all 0.35s ease-in-out;}
-  .hamburger.active span:nth-child(1){transform:translateY(9px) rotate(45deg);}
-  .hamburger.active span:nth-child(2){opacity:0;}
-  .hamburger.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
-
-  nav.menu{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#ff3131;transform:translateX(-100%);transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;justify-content:center;padding-left:4rem;z-index:2050;}
-  nav.menu.open{transform:translateX(0);}
-  nav.menu ul{list-style:none;}
-  nav.menu ul li{margin-bottom:2.2rem;opacity:0;transform:translateX(-40px);font-weight:900;font-size:3rem;letter-spacing:0.1em;}
-  nav.menu ul li a{color:#fff;text-decoration:none;user-select:none;display:inline-block;transition:color 0.3s ease;}
-  nav.menu ul li a:hover{color:#222;}
-  nav.menu.open ul li{animation:slideInFade 0.4s forwards;}
-  nav.menu.open ul li:nth-child(1){animation-delay:0.15s;}
-  nav.menu.open ul li:nth-child(2){animation-delay:0.35s;}
-  nav.menu.open ul li:nth-child(3){animation-delay:0.55s;}
-  nav.menu.open ul li:nth-child(4){animation-delay:0.75s;}
-  nav.menu.open ul li:nth-child(5){animation-delay:0.95s;}
-  @keyframes slideInFade{to{opacity:1;transform:translateX(0);}}
-
-  /* Desktop menu */
-  @media(min-width:1024px){
-    .hamburger{display:none;}
-    nav.menu{position:static;height:auto;width:auto;background:transparent;transform:none!important;padding-left:0;flex-direction:row;justify-content:flex-end;align-items:center;}
-    nav.menu ul{display:flex;gap:3rem;}
-    nav.menu ul li{margin:0;opacity:1!important;transform:none!important;font-size:1.25rem;animation:none!important;}
-    nav.menu ul li a{font-weight:900;font-size:1.1rem;letter-spacing:0.15em;}
-    nav.menu ul li a:hover{color:#222;}
-  }
-
-  /* ----- GLOBAL BASE ----- */
-  nav ul{display:block;}
-  nav ul li{margin:0;padding:0;}
-  nav ul li a{padding:0.5rem 1rem;}
-
-  main{padding:80px 20px 20px;max-width:960px;margin:0 auto;}
-
-  .card{margin:80px auto;max-width:900px;padding:40px 20px;background:transparent;color:#fff;text-align:center;}
-  .card h2{font-size:2rem;margin-bottom:20px;}
-  .card p,.card ul,.card .timeline,.card .timeline-step{font-size:1.1rem;line-height:1.8;margin:0 auto 20px;text-align:center;color:#fff;}
-  .card ul{list-style:none;padding:0;}
-
-  /* ----- FOOTER & SOCIAL ----- */
-  footer{flex-direction:column;text-align:center;}
-  .social-icons{max-width:400px;width:100%;margin:0 auto;justify-content:center;align-items:center;display:flex!important;flex-wrap:nowrap;padding:0;gap:40px;}
-  .social-icons a{width:60px;height:60px;font-size:40px;color:#fff;display:flex;justify-content:center;align-items:center;animation:coin-spin 6s linear infinite;transform-style:preserve-3d;perspective:1000px;margin:0;}
-  .social-icons img{width:48px;height:48px;filter:brightness(0) invert(1);transition:transform 0.4s ease;}
-  @keyframes coin-spin{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
-  @media(orientation:landscape) and (max-device-width:812px){footer{padding-left:max(env(safe-area-inset-left),20px);padding-right:max(env(safe-area-inset-right),20px);}}
-  .footer-inner{display:flex;justify-content:center;align-items:center;text-align:center;width:100%;color:rgba(255,255,255,0.6);font-size:0.95rem;padding-top:10px;}
-
-  /* ----- ABOUT SECTION (unchanged) ----- */
-  .about-section{padding:100px 20px;background:transparent;backdrop-filter:blur(15px);}
-  .section-title{text-align:center;font-size:2.8rem;font-weight:700;margin-bottom:60px;position:relative;color:#fff;}
-  .section-title::after{content:'';display:block;width:60px;height:4px;background:#ff3131;margin:20px auto 0;border-radius:2px;}
-  .about-grid{display:grid;gap:40px;grid-template-columns:1fr;}
-  .about-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:30px;backdrop-filter:blur(10px);transition:transform 0.3s ease;}
-  .about-box:hover{transform:scale(1.02);}
-  .about-box h3{font-size:1.4rem;color:#ff8f31;margin-bottom:10px;}
-  .about-box p{color:#ddd;font-size:1rem;line-height:1.6;}
-  @media(min-width:768px){.about-grid{grid-template-columns:1fr 1fr;}}
-  @media(min-width:1024px){.about-grid{grid-template-columns:1fr 1fr 1fr;}}
-</style>
-</head>
-
-<body>
-<header>
-  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
-  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-    <span></span><span></span><span></span>
-  </div>
-
-  <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-    <ul>
-      <li><a href="/Faz-Designs/pages/home.html">Home</a></li>
-      <li><a href="/Faz-Designs/pages/about.html">About</a></li>
-      <li><a href="/Faz-Designs/pages/samples.html">Samples</a></li>
-      <li><a href="/Faz-Designs/pages/pricing.html">Pricing</a></li>
-      <li><a href="/Faz-Designs/pages/contact.html">Contact</a></li>
-      <li><a href="/Faz-Designs/pages/test.html">Test</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <!-- (Contact form section removed) -->
-
-  <div class="social-icons" aria-label="Social media links">
-    <a href="https://x.com/yourprofile" target="_blank" aria-label="X / Twitter" class="spin-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X / Twitter">
-    </a>
-    <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook" class="spin-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
-    </a>
-    <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram" class="spin-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
-    </a>
-  </div>
-
-  <div class="footer-inner" data-aos="fade-up">
-    <p>&copy; 2025 Faz Designs. All rights reserved.</p>
-  </div>
-</main>
-
-<!-- AOS -->
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init();
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const menu = document.querySelector('nav.menu');
-
-    if (hamburger && menu) {
-      hamburger.addEventListener('click', () => {
-        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !expanded);
-        hamburger.classList.toggle('active');
-        menu.classList.toggle('open');
-        menu.setAttribute('aria-hidden', expanded ? 'true' : 'false');
-      });
-
-      hamburger.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          hamburger.click();
-        }
-      });
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solo Plumber - Premium Plumbing Services</title>
+  <style>
+    :root {
+      --primary: #0a1e3f; /* Navy Blue */
+      --white: #ffffff;
+      --gray: #f5f7fa;
+      --gray-dark: #333;
+      --accent: #ff3131;
     }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--white);
+      color: var(--gray-dark);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+    }
+    button {
+      font-family: inherit;
+    }
+    /* Hero Section */
+    #hero {
+      background: url('https://images.unsplash.com/photo-1560184897-50c58f0c3d1f?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    #hero-content {
+      max-width: 700px;
+      background: rgba(10, 30, 63, 0.85);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(10, 30, 63, 0.7);
+    }
+    #hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+    }
+    #hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    #hero-content button {
+      background-color: var(--accent);
+      border: none;
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #hero-content button:hover {
+      background-color: #cc2626;
+    }
+    /* Why Choose Us */
+    section#why-choose-us {
+      background: var(--primary);
+      color: var(--white);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #why-choose-us h2 {
+      margin-bottom: 2rem;
+    }
+    #why-choose-us .features-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    #why-choose-us .feature-box {
+      flex: 1 1 250px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 2rem;
+      box-sizing: border-box;
+      transition: background 0.3s ease;
+    }
+    #why-choose-us .feature-box:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    #why-choose-us .feature-box img {
+      width: 50px;
+      margin-bottom: 1rem;
+    }
+    #why-choose-us .feature-box h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    #why-choose-us .feature-box p {
+      font-size: 0.95rem;
+    }
+    /* Services Offered */
+    section#services {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #services h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    #services .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+    }
+    #services .service-card {
+      flex: 1 1 280px;
+      background: var(--gray);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      transition: box-shadow 0.3s ease;
+    }
+    #services .service-card:hover {
+      box-shadow: 0 15px 30px rgba(10, 30, 63, 0.3);
+    }
+    #services .service-card img {
+      margin-bottom: 1rem;
+    }
+    #services .service-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    #services .service-card p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+    /* Testimonials */
+    section#testimonials {
+      background: var(--primary);
+      color: var(--white);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #testimonials h2 {
+      margin-bottom: 3rem;
+    }
+    #testimonials .testimonial-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    #testimonials .testimonial-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      flex: 1 1 280px;
+      box-sizing: border-box;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      font-style: italic;
+      position: relative;
+    }
+    #testimonials .testimonial-card::before {
+      content: "“";
+      font-size: 3rem;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    #testimonials .testimonial-text {
+      margin-bottom: 1.5rem;
+    }
+    #testimonials .testimonial-author {
+      font-weight: 700;
+      text-align: right;
+      color: var(--accent);
+    }
+    /* Lead Capture Form */
+    section#contact {
+      background: var(--gray);
+      padding: 4rem 2rem;
+      max-width: 600px;
+      margin: 0 auto 5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    #contact h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--primary);
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 5px var(--accent);
+    }
+    button[type="submit"] {
+      background-color: var(--accent);
+      color: var(--white);
+      border: none;
+      padding: 1.2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    button[type="submit"]:hover {
+      background-color: #cc2626;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      #hero-content h1 {
+        font-size: 2.2rem;
+      }
+      #hero-content p {
+        font-size: 1.1rem;
+      }
+      #why-choose-us .features-container,
+      #services .services-grid,
+      #testimonials .testimonial-grid {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      #why-choose-us .feature-box,
+      #services .service-card,
+      #testimonials .testimonial-card {
+        flex: 1 1 100%;
+      }
+      section#contact {
+        max-width: 100%;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section id="hero">
+  <div id="hero-content">
+    <h1>Trusted Local Plumbing Services</h1>
+    <p>Fast, Reliable, and Affordable Plumbing Solutions for Your Home</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Request a Quote</button>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section id="why-choose-us">
+  <h2>Why Choose Us?</h2>
+  <div class="features-container">
+    <div class="feature-box">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/wrench.png" alt="Expertise Icon" />
+      <h3>Expert Technicians</h3>
+      <p>Our certified plumbers bring years of experience and professional skills.</p>
+    </div>
+    <div class="feature-box">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/clock.png" alt="24/7 Icon" />
+      <h3>24/7 Emergency Service</h3>
+      <p>Always ready to help with urgent repairs any time of day or night.</p>
+    </div>
+    <div class="feature-box">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/price-tag.png" alt="Affordable Icon" />
+      <h3>Affordable Pricing</h3>
+      <p>Clear pricing with no hidden fees, giving you peace of mind.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Services Offered -->
+<section id="services">
+  <h2>Our Plumbing Services</h2>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/water-leak.png" alt="Leak Repair" />
+      <h3>Leak Repair</h3>
+      <p>Fast and effective fixes for leaks and dripping taps.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/boiler.png" alt="Boiler Repair" />
+      <h3>Boiler Repair</h3>
+      <p>Keep your home warm with expert boiler servicing and repairs.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/bathtub.png" alt="Bathroom Fitting" />
+      <h3>Bathroom Fitting</h3>
+      <p>Full installations and refurbishments with professional care.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/sewage.png" alt="Blocked Drains" />
+      <h3>Blocked Drains</h3>
+      <p>Clearing and unblocking to keep your drains flowing freely.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/pipe.png" alt="Pipe Installation" />
+      <h3>Pipe Installation</h3>
+      <p>Reliable pipe fitting and replacement for all plumbing needs.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/wrench.png" alt="Emergency Plumbing" />
+      <h3>Emergency Plumbing</h3>
+      <p>Rapid response for leaks, bursts, and urgent repairs.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+    <h2>What Our Customers Say</h2>
+  <div class="testimonial-grid">
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Fast, professional service. My leak was fixed the same day and at a great price!"</p>
+      <p class="testimonial-author">– Sarah M.</p>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Highly recommend for any plumbing emergency. Very reliable and friendly."</p>
+      <p class="testimonial-author">– James L.</p>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Excellent workmanship with a clean finish. My bathroom fitting looks amazing."</p>
+      <p class="testimonial-author">– Rachel K.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Lead Capture Contact Form -->
+<section id="contact">
+  <h2>Request Your Free Quote</h2>
+  <form id="lead-form" action="#" method="post" novalidate>
+    <input type="text" name="name" placeholder="Full Name" required autocomplete="name" />
+    <input type="email" name="email" placeholder="Email Address" required autocomplete="email" />
+    <input type="tel" name="phone" placeholder="Phone Number" required autocomplete="tel" />
+    <textarea name="message" placeholder="Describe your plumbing issue or request" required></textarea>
+    <button type="submit">Get a Free Quote</button>
+  </form>
+</section>
+
+<script>
+  // Simple form validation + submission simulation
+  const form = document.getElementById('lead-form');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+    alert('Thank you for your request! We will contact you shortly.');
+    form.reset();
   });
 </script>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div>
+      <h3>PlumbPro</h3>
+      <p>Your trusted local plumber — available 24/7 for emergencies & installations.</p>
+      <p>© 2025 PlumbPro. All rights reserved.</p>
+    </div>
+    <div>
+      <h4>Contact Info</h4>
+      <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+      <p>Email: <a href="mailto:info@plumbpro.com">info@plumbpro.com</a></p>
+      <p>Address: 123 Bluewater St, Plumbing City</p>
+    </div>
+    <div>
+      <h4>Follow Us</h4>
+      <p>
+        <a href="#" aria-label="Facebook">Facebook</a><br />
+        <a href="#" aria-label="Instagram">Instagram</a><br />
+        <a href="#" aria-label="Twitter">Twitter</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
-
-
-
