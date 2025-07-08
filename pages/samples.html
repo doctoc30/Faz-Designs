@@ -289,10 +289,93 @@
         border-radius: 0;
       }
     }
+
+    .site-header {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--white);
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav a {
+  color: var(--white);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--accent);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--white);
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--primary);
+    flex-direction: column;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav.open {
+    max-height: 300px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
   </style>
 </head>
 <body>
 
+  <header class="site-header">
+  <div class="container">
+    <div class="logo">Plumber X</div>
+    <nav class="nav" id="navbar">
+      <a href="#hero">Home</a>
+      <a href="#why-choose-us">Why Choose Us</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+  </div>
+</header>
 <!-- Hero Section -->
 <section id="hero">
   <div id="hero-content">
