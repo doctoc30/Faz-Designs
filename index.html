@@ -695,15 +695,16 @@ button:hover {
 <!-- █████████████  MULTI-STEP ENQUIRY FORM  █████████████ -->
 <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
 
-  <!-- ── FUNNEL SCREEN ──────────────────────────────── -->
-  <div class="form-screen active" id="entry-funnel">
-    <h2>What do you need help with?</h2>
-    <div class="button-row">
-     <button type="button" onclick="goToFormStart()">Website Design</button>
-      <button type="button" onclick="alert('Coming soon')">Website Redesign</button>
-      <button type="button" onclick="alert('Coming soon')">Website Technical Support</button>
-    </div>
+ <!-- MAIN INTRO SCREEN -->
+<div class="form-screen active" id="intro-screen">
+  <h2>What do you need help with?</h2>
+  <div class="button-row">
+    <button type="button" onclick="startFunnel('design')">Website Design</button>
+    <button type="button" onclick="alert('Coming soon!')">Website Redesign</button>
+    <button type="button" onclick="alert('Coming soon!')">Website Maintenance</button>
   </div>
+</div>
+
 
   <!-- ── START-CHOICE SCREEN ─────────────────────────── -->
   <div class="form-screen" id="form-start-choice">
@@ -1024,8 +1025,40 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 }); // end DOMContentLoaded
+
+
+
+  function startFunnel(type) {
+    if (type === 'design') {
+      document.getElementById('intro-screen').classList.remove('active');
+      document.getElementById('form-start-choice').classList.add('active');
+    }
+    // Later you can handle 'redesign' or 'maintenance' here as well
+  }
+
+  function showScreen(index) {
+    // Hide all form screens
+    document.querySelectorAll('.form-screen').forEach(screen => screen.classList.remove('active'));
+    // Show the selected screen by index
+    document.getElementById(`q${index}`).classList.add('active');
+  }
+
+  function next() {
+    let active = document.querySelector('.form-screen.active');
+    let next = active.nextElementSibling;
+    if (next && next.classList.contains('form-screen')) {
+      active.classList.remove('active');
+      next.classList.add('active');
+    }
+  }
+
+  function prev() {
+    let active = document.querySelector('.form-screen.active');
+    let prev = active.previousElementSibling;
+    if (prev && prev.classList.contains('form-screen')) {
+      active.classList.remove('active');
+      prev.classList.add('active');
+    }
 </script>
-
-
 </body>
 </html>
