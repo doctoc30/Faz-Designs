@@ -1,529 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Solo Plumber - Premium Plumbing Services</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Premium Plumber</title>
+  <!-- AOS animations -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
   <style>
     :root {
-      --primary: #0a1e3f; /* Navy Blue */
-      --white: #ffffff;
-      --gray: #f5f7fa;
-      --gray-dark: #333;
-      --accent: #ff3131;
+      --dark: #111;
+      --black: #000;
+      --red: #ff3333;
+      --white: #fff;
+      --gray: #333;
     }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--white);
-      color: var(--gray-dark);
-      line-height: 1.6;
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--white);
+      background: var(--black);
       scroll-behavior: smooth;
     }
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-    }
-    h1 {
-      font-size: 2.5rem;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    h3 {
-      font-size: 1.25rem;
-    }
-    button {
-      font-family: inherit;
-    }
-    /* Hero Section */
-    #hero {
-      background: url('https://images.unsplash.com/photo-1560184897-50c58f0c3d1f?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      text-align: center;
-      padding: 0 1.5rem;
-    }
-    #hero-content {
-      max-width: 700px;
-      background: rgba(10, 30, 63, 0.85);
-      padding: 3rem 2rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(10, 30, 63, 0.7);
-    }
-    #hero-content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      font-weight: 900;
-    }
-    #hero-content p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-    }
-    #hero-content button {
-      background-color: var(--accent);
-      border: none;
-      color: var(--white);
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    #hero-content button:hover {
-      background-color: #cc2626;
-    }
-    /* Why Choose Us */
-    section#why-choose-us {
-      background: var(--primary);
-      color: var(--white);
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    #why-choose-us h2 {
-      margin-bottom: 2rem;
-    }
-    #why-choose-us .features-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    #why-choose-us .feature-box {
-      flex: 1 1 250px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 2rem;
-      box-sizing: border-box;
-      transition: background 0.3s ease;
-    }
-    #why-choose-us .feature-box:hover {
-      background: rgba(255, 255, 255, 0.12);
-    }
-    #why-choose-us .feature-box img {
-      width: 50px;
-      margin-bottom: 1rem;
-    }
-    #why-choose-us .feature-box h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    #why-choose-us .feature-box p {
-      font-size: 0.95rem;
-    }
-    /* Services Offered */
-    section#services {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    #services h2 {
-      color: var(--primary);
-      font-size: 2rem;
-      margin-bottom: 2.5rem;
-    }
-    #services .services-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.8rem;
-      justify-content: center;
-    }
-    #services .service-card {
-      flex: 1 1 280px;
-      background: var(--gray);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      box-sizing: border-box;
-      transition: box-shadow 0.3s ease;
-    }
-    #services .service-card:hover {
-      box-shadow: 0 15px 30px rgba(10, 30, 63, 0.3);
-    }
-    #services .service-card img {
-      margin-bottom: 1rem;
-    }
-    #services .service-card h3 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-    #services .service-card p {
-      font-size: 0.95rem;
-      color: #333;
-    }
-    /* Testimonials */
-    section#testimonials {
-      background: var(--primary);
-      color: var(--white);
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    #testimonials h2 {
-      margin-bottom: 3rem;
-    }
-    #testimonials .testimonial-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    #testimonials .testimonial-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 2rem;
-      flex: 1 1 280px;
-      box-sizing: border-box;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      font-style: italic;
-      position: relative;
-    }
-    #testimonials .testimonial-card::before {
-      content: "“";
-      font-size: 3rem;
-      position: absolute;
-      top: 10px;
-      left: 20px;
-      color: var(--accent);
-      font-weight: bold;
-    }
-    #testimonials .testimonial-text {
-      margin-bottom: 1.5rem;
-    }
-    #testimonials .testimonial-author {
-      font-weight: 700;
-      text-align: right;
-      color: var(--accent);
-    }
-    /* Lead Capture Form */
-    section#contact {
-      background: var(--gray);
-      padding: 4rem 2rem;
-      max-width: 600px;
-      margin: 0 auto 5rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    #contact h2 {
-      text-align: center;
-      color: var(--primary);
-      margin-bottom: 2rem;
-      font-size: 2rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    textarea {
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1.5px solid var(--primary);
-      font-size: 1rem;
-      font-family: inherit;
-      resize: vertical;
-    }
-    textarea {
-      min-height: 100px;
-    }
-    input:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 5px var(--accent);
-    }
-    button[type="submit"] {
-      background-color: var(--accent);
-      color: var(--white);
-      border: none;
-      padding: 1.2rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: 0.5rem;
-    }
-    button[type="submit"]:hover {
-      background-color: #cc2626;
-    }
-    /* Responsive */
-    @media (max-width: 768px) {
-      #hero-content h1 {
-        font-size: 2.2rem;
-      }
-      #hero-content p {
-        font-size: 1.1rem;
-      }
-      #why-choose-us .features-container,
-      #services .services-grid,
-      #testimonials .testimonial-grid {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      #why-choose-us .feature-box,
-      #services .service-card,
-      #testimonials .testimonial-card {
-        flex: 1 1 100%;
-      }
-      section#contact {
-        max-width: 100%;
-        border-radius: 0;
-      }
-    }
+    a { color: var(--white); text-decoration: none; }
+    a:hover { opacity: 0.8; }
 
+    /* Header & Nav */
     .site-header {
-  background-color: var(--primary);
-  color: var(--white);
-  padding: 1rem 2rem;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: var(--dark); padding: 1rem 2rem;
+      display: flex; justify-content: space-between;
+      align-items: center; z-index: 1000;
+    }
+    .logo { font-size: 1.8rem; font-weight: bold; }
+    .nav { display: flex; gap: 1.5rem; transition: max-height 0.4s; }
+    .nav a { font-weight: 500; }
+    .menu-toggle { display: none; font-size: 2rem; cursor: pointer; }
+    @media (max-width:768px) {
+      .menu-toggle { display: block; }
+      .nav { position: absolute; top: 100%; right: 0; background: var(--dark);
+        flex-direction: column; width: 100%; max-height: 0; overflow: hidden;
+      }
+      .nav.open { max-height: 200px; }
+    }
 
-.site-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: auto;
-}
+    /* Hero */
+    #hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+        url('https://images.unsplash.com/photo-1560184897-50c58f0c3d1f?auto=format&fit=crop&w=1350&q=80')
+        center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 0 1rem;
+    }
+    #hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    #hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+    #hero button {
+      background: var(--red); border: none; color: var(--white);
+      font-size: 1.1rem; padding: 1rem 2rem; border-radius: 50px;
+      cursor: pointer; transition: background 0.3s;
+    }
+    #hero button:hover { background: #cc0000; }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: var(--white);
-}
+    /* Sections */
+    section { padding: 4rem 2rem; }
+    h2 { text-align: center; margin-bottom: 2rem; font-size: 2.2rem; }
 
-.nav {
-  display: flex;
-  gap: 1.5rem;
-}
+    /* Features */
+    #why-choose-us { background: var(--dark); }
+    .features { display: flex; flex-wrap: wrap; gap: 2rem;
+      justify-content: center; max-width: 1100px; margin: auto;
+    }
+    .features .box {
+      background: var(--black); border-radius: 10px;
+      padding: 2rem; flex: 1 1 250px;
+      text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+      transition: transform 0.3s;
+    }
+    .features .box:hover { transform: translateY(-5px); }
+    .features img { width:50px; margin-bottom:1rem; }
 
-.nav a {
-  color: var(--white);
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
+    /* Services */
+    #services .grid { display: flex; flex-wrap: wrap;
+      gap: 1.8rem; justify-content: center; max-width: 1100px;
+      margin: auto;
+    }
+    .service-card {
+      background: var(--dark); border-radius:12px;
+      padding:2rem; flex:1 1 280px;
+      box-shadow:0 4px 15px rgba(255,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: scale(1.02); }
+    .service-card img { margin-bottom:1rem; }
 
-.nav a:hover {
-  color: var(--accent);
-}
+    /* Testimonials */
+    #testimonials { background: #111; }
+    .testimonial-grid { display: flex; flex-wrap: wrap; gap:2rem;
+      justify-content:center; max-width:900px; margin:auto;
+    }
+    .testimonial {
+      background: #222; padding:2rem; border-radius:15px;
+      position:relative; font-style:italic;
+      box-shadow:0 4px 20px rgba(0,0,0,0.8);
+    }
+    .testimonial::before {
+      content:"“"; position:absolute; top:10px; left:20px;
+      font-size:3rem; color: var(--red);
+    }
 
-.menu-toggle {
-  display: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: var(--white);
-}
+    /* Contact Form */
+    #contact { background: var(--222); }
+    .contact-box {
+      background: var(--dark); max-width:600px; margin:auto;
+      padding:3rem; border-radius:15px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.7);
+    }
+    .contact-box form { display:flex; flex-direction:column; gap:1.2rem; }
+    .contact-box input, .contact-box textarea {
+      padding:1rem; border:none; border-radius:8px;
+      font-size:1rem;
+    }
+    .contact-box button {
+      background:var(--red); color:var(--white); border:none;
+      padding:1.2rem; font-size:1.1rem; border-radius:50px;
+      cursor:pointer; transition: background 0.3s;
+    }
+    .contact-box button:hover { background:#cc0000; }
 
-/* Responsive Menu */
-@media (max-width: 768px) {
-  .nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: var(--primary);
-    flex-direction: column;
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
+    /* Footer */
+    footer {
+      background: var(--black); color: var(--gray);
+      padding:2rem; text-align:center;
+    }
+    footer a { color: var(--red); }
 
-  .nav.open {
-    max-height: 300px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
+    /* Animations */
+    [data-aos] { opacity: 0; }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header class="site-header">
-  <div class="container">
-    <div class="logo">Plumber X</div>
+    <div class="logo">PlumberX</div>
     <nav class="nav" id="navbar">
       <a href="#hero">Home</a>
-      <a href="#why-choose-us">Why Choose Us</a>
+      <a href="#why-choose-us">Why Us</a>
       <a href="#services">Services</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-  </div>
-</header>
-<!-- Hero Section -->
-<section id="hero">
-  <div id="hero-content">
-    <h1>Trusted Local Plumbing Services</h1>
-    <p>Fast, Reliable, and Affordable Plumbing Solutions for Your Home</p>
-    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Request a Quote</button>
-  </div>
-</section>
+  </header>
 
-<!-- Why Choose Us -->
-<section id="why-choose-us">
-  <h2>Why Choose Us?</h2>
-  <div class="features-container">
-    <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/wrench.png" alt="Expertise Icon" />
-      <h3>Expert Technicians</h3>
-      <p>Our certified plumbers bring years of experience and professional skills.</p>
+  <!-- Hero -->
+  <section id="hero" data-aos="fade-up">
+    <h1>Fast, Reliable Plumbing Services</h1>
+    <p>24/7 Emergency Response • Expert Installations • No Hidden Fees</p>
+    <button onclick="scrollToSection('contact')">Request a Quote</button>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why-choose-us">
+    <h2 data-aos="fade-right">Why Choose Us?</h2>
+    <div class="features">
+      <div class="box" data-aos="zoom-in">
+        <img src="https://img.icons8.com/ios-filled/50/ff3333/wrench.png"/>
+        <h3>Certified Experts</h3>
+        <p>Highly trained plumbers ensuring top-quality service.</p>
+      </div>
+      <div class="box" data-aos="zoom-in" data-aos-delay="200">
+        <img src="https://img.icons8.com/ios-filled/50/ff3333/clock.png"/>
+        <h3>24/7 Availability</h3>
+        <p>Always ready for your plumbing emergencies.</p>
+      </div>
+      <div class="box" data-aos="zoom-in" data-aos-delay="400">
+        <img src="https://img.icons8.com/ios-filled/50/ff3333/price-tag.png"/>
+        <h3>Transparent Pricing</h3>
+        <p>No hidden costs—honest quotes you can trust.</p>
+      </div>
     </div>
-    <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/clock.png" alt="24/7 Icon" />
-      <h3>24/7 Emergency Service</h3>
-      <p>Always ready to help with urgent repairs any time of day or night.</p>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2 data-aos="fade-left">Our Services</h2>
+    <div class="grid">
+      <div class="service-card" data-aos="flip-left">
+        <img src="https://img.icons8.com/ios-filled/64/ff3333/water-leak.png"/>
+        <h3>Leak Repair</h3>
+        <p>Fast resolution for drips and leaks.</p>
+      </div>
+      <div class="service-card" data-aos="flip-left" data-aos-delay="100">
+        <img src="https://img.icons8.com/ios-filled/64/ff3333/boiler.png"/>
+        <h3>Boiler Service</h3>
+        <p>Comprehensive check-ups and repairs.</p>
+      </div>
+      <div class="service-card" data-aos="flip-left" data-aos-delay="200">
+        <img src="https://img.icons8.com/ios-filled/64/ff3333/sewage.png"/>
+        <h3>Drain Cleaning</h3>
+        <p>Keeping your pipes flowing smoothly.</p>
+      </div>
     </div>
-    <div class="feature-box">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/price-tag.png" alt="Affordable Icon" />
-      <h3>Affordable Pricing</h3>
-      <p>Clear pricing with no hidden fees, giving you peace of mind.</p>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2 data-aos="fade-up">What Our Clients Say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial" data-aos="fade-up">
+        <p>“Fixed a burst pipe in under an hour. Super professional!”</p>
+        <p style="text-align:right; color:var(--red); margin-top:1rem;">– Alex.</p>
+      </div>
+      <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+        <p>“Efficient and courteous. Would recommend to everybody!”</p>
+        <p style="text-align:right; color:var(--red); margin-top:1rem;">– Maria.</p>
+      </div>
+      <div class="testimonial" data-aos="fade-up" data-aos-delay="400">
+        <p>“Transparent pricing and excellent workmanship.</p>
+        <p style="text-align:right; color:var(--red); margin-top:1rem;">– James.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Services Offered -->
-<section id="services">
-  <h2>Our Plumbing Services</h2>
-  <div class="services-grid">
-
-    <div class="service-card">
-      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/water-leak.png" alt="Leak Repair" />
-      <h3>Leak Repair</h3>
-      <p>Fast and effective fixes for leaks and dripping taps.</p>
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-box" data-aos="zoom-in">
+      <h2>Request a Quote</h2>
+      <form id="lead-form">
+        <input type="text" name="name" placeholder="Full Name" required/>
+        <input type="tel" name="phone" placeholder="Phone Number" required/>
+        <input type="email" name="email" placeholder="Email Address" required/>
+        <textarea name="message" placeholder="Tell us about the issue…" required></textarea>
+        <button type="submit">Submit Request</button>
+      </form>
     </div>
+  </section>
 
-    <div class="service-card">
-      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/boiler.png" alt="Boiler Repair" />
-      <h3>Boiler Repair</h3>
-      <p>Keep your home warm with expert boiler servicing and repairs.</p>
-    </div>
+  <!-- Footer -->
+  <footer>
+    <p>©2025 PlumberX • <a href="tel:+123456789">+1 234‑567‑89</a> • <a href="mailto:info@plumberx.com">info@plumberx.com</a></p>
+  </footer>
 
-    <div class="service-card">
-      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/bathtub.png" alt="Bathroom Fitting" />
-      <h3>Bathroom Fitting</h3>
-      <p>Full installations and refurbishments with professional care.</p>
-    </div>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
 
-    <div class="service-card">
-      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/sewage.png" alt="Blocked Drains" />
-      <h3>Blocked Drains</h3>
-      <p>Clearing and unblocking to keep your drains flowing freely.</p>
-    </div>
+    document.getElementById('menu-toggle').onclick = () => {
+      document.getElementById('navbar').classList.toggle('open');
+    };
 
-    <div class="service-card">
-      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/pipe.png" alt="Pipe Installation" />
-      <h3>Pipe Installation</h3>
-      <p>Reliable pipe fitting and replacement for all plumbing needs.</p>
-    </div>
-
-    <div class="service-card">
-      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/wrench.png" alt="Emergency Plumbing" />
-      <h3>Emergency Plumbing</h3>
-      <p>Rapid response for leaks, bursts, and urgent repairs.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- Testimonials -->
-<section id="testimonials">
-    <h2>What Our Customers Say</h2>
-  <div class="testimonial-grid">
-
-    <div class="testimonial-card">
-      <p class="testimonial-text">"Fast, professional service. My leak was fixed the same day and at a great price!"</p>
-      <p class="testimonial-author">– Sarah M.</p>
-    </div>
-
-    <div class="testimonial-card">
-      <p class="testimonial-text">"Highly recommend for any plumbing emergency. Very reliable and friendly."</p>
-      <p class="testimonial-author">– James L.</p>
-    </div>
-
-    <div class="testimonial-card">
-      <p class="testimonial-text">"Excellent workmanship with a clean finish. My bathroom fitting looks amazing."</p>
-      <p class="testimonial-author">– Rachel K.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- Lead Capture Contact Form -->
-<section id="contact">
-  <h2>Request Your Free Quote</h2>
-  <form id="lead-form" action="#" method="post" novalidate>
-    <input type="text" name="name" placeholder="Full Name" required autocomplete="name" />
-    <input type="email" name="email" placeholder="Email Address" required autocomplete="email" />
-    <input type="tel" name="phone" placeholder="Phone Number" required autocomplete="tel" />
-    <textarea name="message" placeholder="Describe your plumbing issue or request" required></textarea>
-    <button type="submit">Get a Free Quote</button>
-  </form>
-</section>
-
-<script>
-  // Simple form validation + submission simulation
-  const form = document.getElementById('lead-form');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      alert('Please fill out all required fields.');
-      return;
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('navbar').classList.remove('open');
     }
-    alert('Thank you for your request! We will contact you shortly.');
-    form.reset();
-  });
-</script>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-container">
-    <div>
-      <h3>PlumbPro</h3>
-      <p>Your trusted local plumber — available 24/7 for emergencies & installations.</p>
-      <p>© 2025 PlumbPro. All rights reserved.</p>
-    </div>
-    <div>
-      <h4>Contact Info</h4>
-      <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
-      <p>Email: <a href="mailto:info@plumbpro.com">info@plumbpro.com</a></p>
-      <p>Address: 123 Bluewater St, Plumbing City</p>
-    </div>
-    <div>
-      <h4>Follow Us</h4>
-      <p>
-        <a href="#" aria-label="Facebook">Facebook</a><br />
-        <a href="#" aria-label="Instagram">Instagram</a><br />
-        <a href="#" aria-label="Twitter">Twitter</a>
-      </p>
-    </div>
-  </div>
-</footer>
+    document.getElementById('lead-form').onsubmit = e => {
+      e.preventDefault();
+      alert('Thanks! We’ll be in touch soon.');
+      e.target.reset();
+    };
+  </script>
 
 </body>
 </html>
