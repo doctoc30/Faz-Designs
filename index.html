@@ -699,7 +699,7 @@ button:hover {
   <div class="form-screen active" id="entry-funnel">
     <h2>What do you need help with?</h2>
     <div class="button-row">
-      <button type="button" onclick="goToFormStart()">Website Design</button>
+     <button type="button" onclick="goToFormStart()">Website Design</button>
       <button type="button" onclick="alert('Coming soon')">Website Redesign</button>
       <button type="button" onclick="alert('Coming soon')">Website Technical Support</button>
     </div>
@@ -910,7 +910,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cursor.remove();
       setTimeout(() => {
         twEl.style.animation = 'rocketRise 2s ease forwards';
-        setTimeout(() => reveal('entry-funnel'), 2000);
+        setTimeout(() => reveal('form-start-choice'), 2000);
       }, 1000);
       return;
     }
@@ -969,7 +969,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function reveal(id) {
-    console.log("Revealing:", id); // Debug log
     hideAll();
     const el = document.getElementById(id);
     if (el) {
@@ -981,21 +980,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.goToFormStart = () => reveal('form-start-choice');
+
   window.showScreen = n => {
     if (n >= 0 && n < questionScreens.length) {
       currentQ = n;
       reveal(questionScreens[n].id);
     }
   };
+
   window.next = () => {
     if (currentQ < questionScreens.length - 1) showScreen(currentQ + 1);
   };
+
   window.prev = () => {
     if (currentQ > 0) showScreen(currentQ - 1);
   };
 
-  hideAll(); // start with everything hidden
-  twEl.style.display = 'block'; // show only the splash
+  hideAll(); // Start with everything hidden
+  twEl.style.display = 'block'; // Show only the splash screen
 
   /*────────────────── HAMBURGER MENU ─────────────*/
   const hamburger = document.querySelector('.hamburger');
@@ -1022,51 +1024,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 }); // end DOMContentLoaded
-
-
-
- 
-function goToFormStart() {
-  // Hide all form screens
-  document.querySelectorAll('.form-screen').forEach(screen => {
-    screen.classList.remove('active');
-  });
-
-  // Show the 'form-start-choice' screen
-  document.getElementById('form-start-choice').classList.add('active');
-}
-
-  function showFormScreen(id) {
-    const allScreens = document.querySelectorAll('.form-screen');
-    allScreens.forEach(screen => screen.classList.remove('active'));
-
-    const target = document.getElementById(id);
-    if (target) {
-      target.classList.add('active');
-    }
-  }
-
-  // Example: go to next screen
-  document.querySelectorAll('.next-btn').forEach(button => {
-    button.addEventListener('click', function () {
-      const current = this.closest('.form-screen');
-      const next = current.nextElementSibling;
-      if (next && next.classList.contains('form-screen')) {
-        showFormScreen(next.id);
-      }
-    });
-  });
-
-  // Example: go to previous screen
-  document.querySelectorAll('.prev-btn').forEach(button => {
-    button.addEventListener('click', function () {
-      const current = this.closest('.form-screen');
-      const prev = current.previousElementSibling;
-      if (prev && prev.classList.contains('form-screen')) {
-        showFormScreen(prev.id);
-      }
-    });
-  });
 </script>
 
 
