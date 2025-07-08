@@ -1022,6 +1022,55 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 }); // end DOMContentLoaded
+
+
+
+ 
+function goToFormStart() {
+  // Hide all form screens
+  document.querySelectorAll('.form-screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
+
+  // Show the 'form-start-choice' screen
+  document.getElementById('form-start-choice').classList.add('active');
+}
+
+
+ 🔥
+
+ 
+  function showFormScreen(id) {
+    const allScreens = document.querySelectorAll('.form-screen');
+    allScreens.forEach(screen => screen.classList.remove('active'));
+
+    const target = document.getElementById(id);
+    if (target) {
+      target.classList.add('active');
+    }
+  }
+
+  // Example: go to next screen
+  document.querySelectorAll('.next-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const current = this.closest('.form-screen');
+      const next = current.nextElementSibling;
+      if (next && next.classList.contains('form-screen')) {
+        showFormScreen(next.id);
+      }
+    });
+  });
+
+  // Example: go to previous screen
+  document.querySelectorAll('.prev-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const current = this.closest('.form-screen');
+      const prev = current.previousElementSibling;
+      if (prev && prev.classList.contains('form-screen')) {
+        showFormScreen(prev.id);
+      }
+    });
+  });
 </script>
 
 
