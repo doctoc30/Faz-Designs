@@ -692,62 +692,67 @@ button:hover {
 <div class="color-rise"></div>
 <div id="typewriter"></div>
 
-<!-- █████████████  MULTI-STEP ENQUIRY FORM  █████████████ -->
+
+
+<!-- ✅ Single form wrapper starts here -->
 <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+  <!-- Your form content goes here -->
+</form>
 
- <!-- MAIN INTRO SCREEN -->
-<div class="form-screen" id="intro-screen" style="display: none;">
-  <h2>What do you need help with?</h2>
-  <div class="button-row">
-    <button type="button" onclick="startFunnel('design')">Website Design</button>
-    <button type="button" onclick="alert('Coming soon!')">Website Redesign</button>
-    <button type="button" onclick="alert('Coming soon!')">Website Maintenance</button>
-  </div>
-</div>
-
-
-  <!-- ── START-CHOICE SCREEN ─────────────────────────── -->
-  <div class="form-screen" id="form-start-choice">
+  <!-- LAYER 1: ENTRY SCREEN -->
+  <div class="form-screen active" id="form-start-choice">
     <h2>How would you like to get started?</h2>
     <div class="button-row">
-      <button type="button"
-              onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
+      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
         Choose a Package Deal
       </button>
-      <button type="button" onclick="showScreen(0)">Request a Custom Quote</button>
+     
+      <button type="button" onclick="showScreen(1)">
+        Request a Custom Quote
+      </button>
     </div>
   </div>
 
-  <!-- ── QUESTION SCREENS q0 - q11 ───────────────────── -->
+  <!-- LAYER 2: FULL QUOTE FORM -->
+
   <div class="form-screen" id="q0">
     <h2>What type of website are you looking for?</h2>
     <select name="Website Type" required>
-      <option>Business</option><option>eCommerce</option><option>Portfolio</option>
-      <option>Blog</option><option>Other</option>
+      <option>Business</option>
+      <option>eCommerce</option>
+      <option>Portfolio</option>
+      <option>Blog</option>
+      <option>Other</option>
     </select>
     <div class="button-row">
       <button type="button" onclick="next()">Next</button>
+   
     </div>
   </div>
 
-  <div class="form-screen" id="q1">
-    <h2>Which platform would you prefer your website to be built on?</h2>
-    <select name="Preferred Platform" required>
-      <option>WordPress</option><option>Wix</option><option>Shopify</option>
-      <option>Webflow</option><option>Squarespace</option>
-      <option>I’m not sure — please recommend</option>
-    </select>
-    <div class="button-row">
-      <button type="button" onclick="prev()">Previous</button>
-      <button type="button" onclick="next()">Next</button>
-    </div>
+<div class="form-screen" id="q1">
+  <h2>Which platform would you prefer your website to be built on?</h2>
+  <select name="Preferred Platform" required>
+    <option>WordPress</option>
+    <option>Wix</option>
+    <option>Shopify</option>
+    <option>Webflow</option>
+    <option>Squarespace</option>
+    <option>I’m not sure — please recommend</option>
+  </select>
+  <div class="button-row">
+    <button type="button" onclick="prev()">Previous</button>
+    <button type="button" onclick="next()">Next</button>
   </div>
+</div>
 
   <div class="form-screen" id="q2">
     <h2>How soon do you need your website completed?</h2>
     <select name="Timeline" required>
-      <option>Within 1 week</option><option>1–2 weeks</option>
-      <option>1 month</option><option>Flexible</option>
+      <option>Within 1 week</option>
+      <option>1–2 weeks</option>
+      <option>1 month</option>
+      <option>Flexible</option>
     </select>
     <div class="button-row">
       <button type="button" onclick="prev()">Previous</button>
@@ -758,7 +763,9 @@ button:hover {
   <div class="form-screen" id="q3">
     <h2>Do you already have a domain name?</h2>
     <select name="Domain Name" required>
-      <option>Yes</option><option>No</option><option>Need help choosing one</option>
+      <option>Yes</option>
+      <option>No</option>
+      <option>Need help choosing one</option>
     </select>
     <div class="button-row">
       <button type="button" onclick="prev()">Previous</button>
@@ -782,8 +789,11 @@ button:hover {
   <div class="form-screen" id="q5">
     <h2>How many pages do you expect your site to have?</h2>
     <select name="Number of Pages" required>
-      <option>1 (Single Page)</option><option>2–5</option><option>6–10</option>
-      <option>10+</option><option>Not sure yet</option>
+      <option>1 (Single Page)</option>
+      <option>2–5</option>
+      <option>6–10</option>
+      <option>10+</option>
+      <option>Not sure yet</option>
     </select>
     <div class="button-row">
       <button type="button" onclick="prev()">Previous</button>
@@ -834,8 +844,10 @@ button:hover {
   <div class="form-screen" id="q9">
     <h2>What’s your estimated budget for this project?</h2>
     <select name="Budget" required>
-      <option>Under £500</option><option>£500 – £1,000</option>
-      <option>£1,000 – £2,500</option><option>£2,500+</option>
+      <option>Under £500</option>
+      <option>£500 – £1,000</option>
+      <option>£1,000 – £2,500</option>
+      <option>£2,500+</option>
       <option>Need help deciding</option>
     </select>
     <div class="button-row">
@@ -869,7 +881,7 @@ button:hover {
     <label>WhatsApp Number (optional)</label>
     <input type="text" name="WhatsApp">
 
-    <label style="margin-top:20px;">
+    <label style="margin-top: 20px;">
       <input type="checkbox" required name="GDPR Consent">
       I consent to having this website store my submitted information so they can respond to my inquiry.
     </label>
@@ -879,7 +891,6 @@ button:hover {
       <button type="submit">Submit</button>
     </div>
   </div>
-
 </form>
 
 <a href="https://doctoc30.github.io/Faz-Designs/pages/about.html" 
@@ -887,178 +898,178 @@ button:hover {
   Skip Questions For Now →
 </a>
   </div>
+ <script>
+const el = document.getElementById('typewriter');
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+let lines = [];
+const typingSpeed = 100;
+const lineDelay = 500;
+let currentLine = 0;
+let currentChar = 0;
+let lineEl = null;
 
-  /*────────────────── TYPEWRITER ──────────────────*/
-  const twEl = document.getElementById('typewriter');
-  const cursor = document.createElement('span');
-  cursor.classList.add('cursor');
-  twEl.appendChild(cursor);
+const cursor = document.createElement('span');
+cursor.classList.add('cursor');
+el.appendChild(cursor);
 
-  let lines = [], currentLine = 0, currentChar = 0, lineEl = null;
-  const typingSpeed = 100, lineDelay = 500;
-
-  function setLines() {
-    lines = window.matchMedia('(orientation: landscape)').matches
-      ? ["We build", "your website.", "You approve,", "then pay."]
-      : ["We build", "your", "website.", "You approve,", "then pay."];
+function setLinesByOrientation() {
+  if (window.matchMedia("(orientation: landscape)").matches) {
+    lines = [
+      "We build",
+      "your website.",
+      "You approve,",
+      "then pay."
+    ];
+  } else {
+    lines = [
+      "We build",
+      "your",
+      "website.",
+      "You approve,",
+      "then pay."
+    ];
   }
+}
 
-  function typeNext() {
-    if (currentLine >= lines.length) {
-      cursor.remove();
+function typeChar() {
+  if (currentLine >= lines.length) {
+    cursor.remove();
+    setTimeout(() => {
+      el.style.animation = 'rocketRise 2s ease forwards';
+
       setTimeout(() => {
-        twEl.style.animation = 'rocketRise 2s ease forwards';
-        setTimeout(() => reveal('form-start-choice'), 2000);
-      }, 1000);
-      return;
-    }
-    if (!lineEl) {
-      lineEl = document.createElement('div');
-      lineEl.classList.add('typed-line');
-      twEl.appendChild(lineEl);
-      lineEl.appendChild(cursor);
-    }
-    const txt = lines[currentLine];
-    if (currentChar < txt.length) {
-      lineEl.insertBefore(document.createTextNode(txt[currentChar]), cursor);
-      currentChar++;
-      setTimeout(typeNext, typingSpeed);
-    } else {
-      currentLine++;
-      currentChar = 0;
-      lineEl = null;
-      setTimeout(typeNext, lineDelay);
-    }
+        const choiceScreen = document.getElementById('form-start-choice');
+        choiceScreen.style.display = 'block';
+        setTimeout(() => choiceScreen.classList.add('show'), 50);
+
+        // ✅ Show skip button now
+        const skipBtn = document.getElementById('skipToPackages');
+        if (skipBtn) {
+          skipBtn.style.display = 'block';
+        }
+
+      }, 2000);
+
+    }, 1000);
+    return;
   }
 
-  setLines();
-  twEl.style.opacity = 1;
-  typeNext();
-
-  function debounce(f, w = 300) {
-    let t;
-    return (...a) => {
-      clearTimeout(t);
-      t = setTimeout(() => f(...a), w);
-    };
+  const text = lines[currentLine];
+  if (!lineEl) {
+    lineEl = document.createElement('div');
+    lineEl.classList.add('typed-line');
+    el.appendChild(lineEl);
+    lineEl.appendChild(cursor);
   }
 
-  window.addEventListener('resize', debounce(() => {
-    twEl.textContent = '';
-    twEl.appendChild(cursor);
-    currentLine = currentChar = 0;
+  if (currentChar < text.length) {
+    const char = document.createTextNode(text[currentChar]);
+    lineEl.insertBefore(char, cursor);
+    currentChar++;
+    setTimeout(typeChar, typingSpeed);
+  } else {
+    currentLine++;
+    currentChar = 0;
     lineEl = null;
-    setLines();
-    typeNext();
-  }));
-
-  /*────────────────── FORM FLOW ──────────────────*/
-  const allScreens = Array.from(document.querySelectorAll('.form-screen'));
-  const questionScreens = allScreens.filter(s => /^q\d+$/.test(s.id));
-  let currentQ = -1;
-
-  function hideAll() {
-    allScreens.forEach(s => {
-      if (s.id !== 'typewriter') {
-        s.style.display = 'none';
-        s.classList.remove('active');
-      }
-    });
+    setTimeout(typeChar, lineDelay);
   }
+}
 
-  function reveal(id) {
-    hideAll();
-    const el = document.getElementById(id);
-    if (el) {
-      el.style.display = 'block';
-      el.classList.add('active');
-    }
-    const skip = document.getElementById('skipToPackages');
-    if (skip) skip.style.display = (id === questionScreens.at(-1)?.id) ? 'none' : 'block';
-  }
 
-  window.goToFormStart = () => reveal('form-start-choice');
 
-  window.showScreen = n => {
-    if (n >= 0 && n < questionScreens.length) {
-      currentQ = n;
-      reveal(questionScreens[n].id);
-    }
+setLinesByOrientation();
+el.style.opacity = 1;
+typeChar();
+
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
   };
+}
 
-  window.next = () => {
-    if (currentQ < questionScreens.length - 1) showScreen(currentQ + 1);
-  };
+window.addEventListener('resize', debounce(() => {
+  currentLine = 0;
+  currentChar = 0;
+  lineEl = null;
+  el.textContent = '';
+  el.appendChild(cursor);
+  setLinesByOrientation();
+  el.style.opacity = 1;
+  typeChar();
+}, 300));
 
-  window.prev = () => {
-    if (currentQ > 0) showScreen(currentQ - 1);
-  };
+// ------------------ FORM SCREEN FLOW --------------------
 
-  hideAll(); // Start with everything hidden
-  twEl.style.display = 'block'; // Show only the splash screen
+let currentScreen = -1;
+const screens = document.querySelectorAll(".form-screen");
 
-  /*────────────────── HAMBURGER MENU ─────────────*/
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav.menu');
-
-  function toggleMenu(force = null) {
-    const open = force === null ? !navMenu.classList.contains('open') : force;
-    navMenu.classList.toggle('open', open);
-    hamburger.classList.toggle('active', open);
-    hamburger.setAttribute('aria-expanded', open);
-    navMenu.setAttribute('aria-hidden', !open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-
-  hamburger?.addEventListener('click', e => {
-    e.stopPropagation();
-    toggleMenu();
+function showScreen(index) {
+  // toggle active screen
+  screens.forEach((screen, i) => {
+    screen.classList.toggle("active", i === index);
   });
+  currentScreen = index;
 
-  document.addEventListener('click', e => {
-    if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      toggleMenu(false);
-    }
-  });
-
-}); // end DOMContentLoaded
-
-
-
-  function startFunnel(type) {
-    if (type === 'design') {
-      document.getElementById('intro-screen').classList.remove('active');
-      document.getElementById('form-start-choice').classList.add('active');
-    }
-    // Later you can handle 'redesign' or 'maintenance' here as well
+  /* ───── Hide the skip link ONLY on the final screen (lead-capture) ───── */
+  const lastIndex = screens.length - 1;        // q10 is the last .form-screen
+  const skipBtn = document.getElementById("skipToPackages");
+  if (skipBtn) {
+    skipBtn.style.display = (index === lastIndex) ? "none" : "block";
   }
+}
 
-  function showScreen(index) {
-    // Hide all form screens
-    document.querySelectorAll('.form-screen').forEach(screen => screen.classList.remove('active'));
-    // Show the selected screen by index
-    document.getElementById(`q${index}`).classList.add('active');
+function next() {
+  if (currentScreen < screens.length - 1) {
+    showScreen(currentScreen + 1);
   }
+}
 
-  function next() {
-    let active = document.querySelector('.form-screen.active');
-    let next = active.nextElementSibling;
-    if (next && next.classList.contains('form-screen')) {
-      active.classList.remove('active');
-      next.classList.add('active');
-    }
+function prev() {
+  if (currentScreen > 0) {
+    showScreen(currentScreen - 1);
   }
+}
 
-  function prev() {
-    let active = document.querySelector('.form-screen.active');
-    let prev = active.previousElementSibling;
-    if (prev && prev.classList.contains('form-screen')) {
-      active.classList.remove('active');
-      prev.classList.add('active');
-    }
+// ------------------ HAMBURGER MENU ---------------------
+
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('nav.menu');
+
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  menu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', (event) => {
+  event.stopPropagation();
+  toggleMenu();
+});
+
+document.addEventListener('click', (event) => {
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+    menu.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', false);
+    menu.setAttribute('aria-hidden', true);
+    document.body.style.overflow = '';
+  }
+});
+
+// ------------------ INITIAL STATE ---------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+  showScreen(-1); // Hide all
+});
+
+
+
+
 </script>
+
 </body>
 </html>
