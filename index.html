@@ -699,8 +699,18 @@ button:hover {
   <!-- Your form content goes here -->
 </form>
 
+ <!-- MAIN INTRO OPTIONS -->
+<div class="form-screen active" id="main-intro-options">
+  <h2>What do you need help with?</h2>
+  <div class="button-row">
+    <button type="button" onclick="goToDesign()">Website Design</button>
+    <button type="button">Website Redesign</button>
+    <button type="button">Website Maintenance</button>
+  </div>
+</div>
+ 
   <!-- LAYER 1: ENTRY SCREEN -->
-  <div class="form-screen active" id="form-start-choice">
+ <div class="form-screen" id="form-start-choice">
     <h2>How would you like to get started?</h2>
     <div class="button-row">
       <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
@@ -898,6 +908,7 @@ button:hover {
   Skip Questions For Now →
 </a>
   </div>
+ 
  <script>
 const el = document.getElementById('typewriter');
 
@@ -1067,9 +1078,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-
+  function goToDesign() {
+    // Hide main intro screen
+    document.getElementById('main-intro-options').classList.remove('active');
+    // Show website design form start
+    document.getElementById('form-start-choice').classList.add('active');
+  }
 </script>
-
 </body>
 </html>
