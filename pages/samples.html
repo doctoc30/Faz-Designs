@@ -1,253 +1,843 @@
+Phone Repair 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gold & White Plumber</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold: #d4af37;
-      --white: #ffffff;
-      --black: #111111;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Phone Repair | Premium Template</title>
+<style>
+  /* Reset & basics */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin:0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:#fff; color:#222; line-height:1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color:#e63946; text-decoration:none;
+    transition: color 0.3s ease;
+  }
+  a:hover, a:focus {
+    color:#d62828;
+  }
+  img {
+    max-width: 100%; display: block;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--black);
-      background: var(--white);
-      line-height: 1.6;
-    }
+  /* Sticky header */
+  header {
+    position: sticky;
+    top: 0; left: 0; right: 0;
+    background: #1d3557;
+    color: #f1faee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  }
+  header .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    user-select: none;
+    cursor: default;
+  }
 
-    header {
-      background: var(--white);
-      border-bottom: 1px solid #ddd;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
+  /* Nav styles */
+  nav {
+    position: relative;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  nav ul li a {
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
 
-    header h1 {
-      color: var(--gold);
-      font-size: 1.5rem;
-    }
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 18px;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    height: 3px;
+    background: #f1faee;
+    border-radius: 2px;
+    transition: 0.3s ease;
+  }
 
-    nav {
-      display: flex;
+  /* Mobile nav */
+  @media (max-width: 768px) {
+    nav ul {
+      position: fixed;
+      top: 65px;
+      right: 0;
+      background: #1d3557;
+      height: calc(100vh - 65px);
+      width: 220px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem 1rem;
       gap: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      box-shadow: -2px 0 8px rgb(0 0 0 / 0.3);
+      border-left: 1px solid rgba(255 255 255 / 0.15);
+      z-index: 9998;
     }
-
-    nav a {
-      text-decoration: none;
-      color: var(--black);
-      font-weight: 500;
+    nav ul.open {
+      transform: translateX(0);
     }
-
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .menu-toggle span {
-      height: 3px;
-      background: var(--black);
-      margin: 4px 0;
-      width: 25px;
-    }
-
-    .hero {
-      padding: 4rem 2rem;
-      background: linear-gradient(to right, var(--white), #fff8e1);
-      text-align: center;
-    }
-
-    .hero h2 {
-      font-size: 2.5rem;
-      color: var(--gold);
-    }
-
-    .hero p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-    }
-
-    .btn {
-      margin-top: 2rem;
-      background: var(--gold);
-      color: var(--white);
-      padding: 0.75rem 1.5rem;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-
-    .btn:hover {
-      background: #bfa234;
-    }
-
-    section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .services, .why-choose, .testimonials {
-      text-align: center;
-    }
-
-    .services h3, .why-choose h3, .testimonials h3, .contact h3 {
-      color: var(--gold);
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .service-grid {
+    .hamburger {
       display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
     }
+  }
 
-    .service-card {
-      background: #fdf8e4;
-      padding: 2rem;
-      border-radius: 8px;
-      width: 250px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
+  /* Hamburger active animation */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
 
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-width: 500px;
-      margin: auto;
-    }
+  /* Hero section */
+  .hero {
+    background: linear-gradient(135deg, #e63946 0%, #f1faee 100%);
+    color: #1d3557;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1rem;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0.05rem;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    font-weight: 600;
+  }
+  .hero form {
+    max-width: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .hero input[type="text"],
+  .hero input[type="email"],
+  .hero input[type="tel"] {
+    flex: 1 1 150px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    outline-offset: 2px;
+    outline-color: transparent;
+    transition: outline-color 0.3s ease;
+  }
+  .hero input[type="text"]:focus,
+  .hero input[type="email"]:focus,
+  .hero input[type="tel"]:focus {
+    outline-color: #e63946;
+  }
+  .hero button {
+    background: #1d3557;
+    color: #f1faee;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    padding: 0 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    flex: 0 0 auto;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .hero button:hover,
+  .hero button:focus {
+    background: #457b9d;
+  }
 
-    .contact input, .contact textarea {
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
+  /* Section headings */
+  section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #1d3557;
+    font-weight: 800;
+  }
+  section p.intro {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    color: #555;
+    font-weight: 500;
+  }
 
-    .contact button {
-      background: var(--gold);
-      color: var(--white);
-      border: none;
-      padding: 0.75rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+  /* Services section */
+  .services {
+    background: #f1faee;
+    padding: 4rem 1rem 6rem;
+  }
+  .service-list {
+    display: flex;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .service-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+    flex: 1 1 280px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  .service-card:hover,
+  .service-card:focus-within {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 25px rgb(0 0 0 / 0.15);
+  }
+  .service-icon {
+    font-size: 3rem;
+    color: #e63946;
+    margin-bottom: 1rem;
+    user-select: none;
+  }
+  .service-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .service-desc {
+    font-weight: 400;
+    color: #555;
+  }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #f5f5f5;
-      color: #444;
-      font-size: 0.9rem;
-    }
+  /* Pricing */
+  .pricing {
+    padding: 4rem 1rem 6rem;
+  }
+  .pricing-cards {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pricing-card {
+    background: #1d3557;
+    color: #f1faee;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    flex: 1 1 300px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+  }
+  .pricing-card:hover,
+  .pricing-card:focus-within {
+    background: #457b9d;
+  }
+  .pricing-card h3 {
+    font-weight: 900;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .price {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05rem;
+  }
+  .price-duration {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+  }
+  .features li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.4rem;
+    position: relative;
+    font-weight: 500;
+  }
+  .features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #e63946;
+    font-weight: 700;
+  }
+  .pricing-card button {
+    background: #e63946;
+    color: #f1faee;
+    border: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .pricing-card button:hover,
+  .pricing-card button:focus {
+    background: #d62828;
+  }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        background: var(--white);
-        position: absolute;
-        top: 60px;
-        right: 2rem;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding: 1rem;
-      }
+  /* Testimonials */
+  .testimonials {
+    background: #f1faee;
+    padding: 4rem 1rem 6rem;
+  }
+  .testimonial-slider {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .testimonial {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+    padding: 2rem;
+    font-style: italic;
+    font-weight: 500;
+    color: #333;
+    min-height: 140px;
+    display: none;
+    user-select: none;
+  }
+  .testimonial.active {
+    display: block;
+  }
+  .testimonial-author {
+    margin-top: 1.5rem;
+    font-weight: 700;
+    text-align: right;
+    color: #1d3557;
+  }
+  .testimonial-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .testimonial-controls button {
+    background: #e63946;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: #f1faee;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .testimonial-controls button:hover,
+  .testimonial-controls button:focus {
+    background: #d62828;
+  }
 
-      nav.show {
-        display: flex;
-      }
+  /* FAQ */
+  .faq {
+    padding: 4rem 1rem 6rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+  }
+  .faq-question {
+    font-weight: 700;
+    font-size: 1.15rem;
+    cursor: pointer;
+    position: relative;
+    padding-right: 2rem;
+    user-select: none;
+  }
+  .faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+  .faq-question.active::after {
+    content: '−';
+    transform: translateY(-50%);
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    color: #555;
+    margin-top: 0.75rem;
+    font-weight: 400;
+  }
+  .faq-answer.open {
+    max-height: 400px; /* large enough */
+  }
 
-      .menu-toggle {
-        display: flex;
-      }
+  /* Contact section */
+  .contact {
+    background: #1d3557;
+    color: #f1faee;
+    padding: 4rem 1rem 6rem;
+  }
+  .contact h2 {
+    color: #f1faee;
+  }
+  .contact-form {
+    max-width: 600px;
+    margin: 2rem auto 0;
+  }
+  .contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  .contact-form textarea {
+    min-height: 120px;
+  }
+  .contact-form button {
+    background: #e63946;
+    color: #f1faee;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .contact-form button:hover,
+  .contact-form button:focus {
+    background: #d62828;
+  }
 
-      .service-grid {
-        flex-direction: column;
-        align-items: center;
-      }
+  /* Footer */
+  footer {
+    background: #1d3557;
+    color: #f1faee;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+    user-select: none;
+  }
 
-      .hero h2 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+  /* Animations */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  [data-animate].animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Gold Plumber</h1>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-    <nav id="navbar">
-      <a href="#services">Services</a>
-      <a href="#why">Why Us</a>
-      <a href="#contact">Contact</a>
+<header role="banner">
+  <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+    <div class="logo" aria-label="Company Logo" tabindex="0">PHONEFIX</div>
+    <nav role="navigation" aria-label="Primary Navigation">
+      <ul id="nav-list">
+        <li><a href="#services" tabindex="0">Services</a></li>
+        <li><a href="#pricing" tabindex="0">Pricing</a></li>
+        <li><a href="#testimonials" tabindex="0">Testimonials</a></li>
+        <li><a href="#faq" tabindex="0">FAQ</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
     </nav>
-  </header>
+    <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list" id="hamburger-btn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
-  <section class="hero">
-    <h2>Premium Plumbing Services</h2>
-    <p>Fast, reliable, and affordable plumbing — delivered with excellence.</p>
-    <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a Quote</button>
-  </section>
+<main>
 
-  <section class="services" id="services">
-    <h3>Our Services</h3>
-    <div class="service-grid">
-      <div class="service-card">Emergency Repairs</div>
-      <div class="service-card">Leak Detection</div>
-      <div class="service-card">Bathroom Installations</div>
-      <div class="service-card">Pipe Replacements</div>
-    </div>
-  </section>
-
-  <section class="why-choose" id="why">
-    <h3>Why Choose Us</h3>
-    <p>✔ 24/7 Availability<br>✔ Experienced Technicians<br>✔ Transparent Pricing<br>✔ 5-Star Customer Service</p>
-  </section>
-
-  <section class="contact" id="contact">
-    <h3>Request a Free Quote</h3>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <textarea rows="4" placeholder="Describe your issue..."></textarea>
-      <button type="submit">Send Request</button>
+  <!-- Hero -->
+  <section class="hero" role="region" aria-label="Hero Section">
+    <h1 data-animate>Fast & Reliable Phone Repair</h1>
+    <p data-animate>We fix your phone quickly and expertly with guaranteed quality.</p>
+    <form aria-label="Lead capture form" data-animate>
+      <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required autocomplete="name" />
+      <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required autocomplete="email" />
+      <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone Number" required autocomplete="tel" />
+      <button type="submit" aria-label="Request a Repair Quote">Get a Quote</button>
     </form>
   </section>
 
-  <footer>
-    &copy; 2025 Gold Plumber. All rights reserved.
-  </footer>
+  <!-- Services -->
+  <section id="services" class="services" role="region" aria-labelledby="services-heading">
+    <h2 id="services-heading" data-animate>Our Repair Services</h2>
+    <p class="intro" data-animate>Expert repairs for all phone brands & models with fast turnaround.</p>
+    <div class="service-list">
+      <article class="service-card" tabindex="0" data-animate>
+        <div class="service-icon" aria-hidden="true">🔋</div>
+        <h3 class="service-title">Battery Replacement</h3>
+        <p class="service-desc">Quick and efficient battery replacements to keep your phone powered all day.</p>
+      </article>
+      <article class="service-card" tabindex="0" data-animate>
+        <div class="service-icon" aria-hidden="true">📱</div>
+        <h3 class="service-title">Screen Repair</h3>
+        <p class="service-desc">Cracked or broken screens? We restore your display like new.</p>
+      </article>
+      <article class="service-card" tabindex="0" data
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('navbar').classList.toggle('show');
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-  </script>
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" aria-label="Phone Repair Logo">PhoneRepairPro</div>
+  <nav>
+    <ul id="nav-menu" aria-label="Primary navigation">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button aria-label="Toggle navigation menu" class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero" role="banner" aria-label="Phone repair service introduction">
+  <h1 class="fade-in-up" style="animation-delay: 0.3s;">Fast & Reliable Phone Repair Services</h1>
+  <p class="fade-in-up" style="animation-delay: 0.5s;">Screen replacements, battery repairs, water damage & more — trusted by thousands.</p>
+  <form class="fade-in-up" style="animation-delay: 0.7s;" aria-label="Request a repair quote form" id="quote-form" novalidate>
+    <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required />
+    <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone Number" required pattern="^\+?[0-9\s\-]{7,15}$" />
+    <input type="email" name="email" placeholder="Email Address" aria-label="Email Address" required />
+    <button type="submit" aria-label="Request quote">Get Quote</button>
+  </form>
+</section>
+
+<section id="services" class="services" aria-labelledby="services-title">
+  <h2 id="services-title">Our Services</h2>
+  <p class="intro">Comprehensive repairs for all phone models and issues.</p>
+  <div class="service-list">
+    <article class="service-card" tabindex="0">
+      <div class="service-icon" aria-hidden="true">📱</div>
+      <h3 class="service-title">Screen Repair</h3>
+      <p class="service-desc">Cracked or shattered screens replaced with high-quality parts.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <div class="service-icon" aria-hidden="true">🔋</div>
+      <h3 class="service-title">Battery Replacement</h3>
+      <p class="service-desc">Restore your phone's battery life with a genuine replacement.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <div class="service-icon" aria-hidden="true">💧</div>
+      <h3 class="service-title">Water Damage Repair</h3>
+      <p class="service-desc">Quick and effective recovery from liquid damage incidents.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <div class="service-icon" aria-hidden="true">⚙️</div>
+      <h3 class="service-title">Software Fixes</h3>
+      <p class="service-desc">Resolve crashes, slow performance, and OS issues efficiently.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <div class="service-icon" aria-hidden="true">🔧</div>
+      <h3 class="service-title">Charging Port Repair</h3>
+      <p class="service-desc">Fix faulty charging ports to ensure reliable power connection.</p>
+    </article>
+  </div>
+</section>
+
+<section id="pricing" class="pricing" aria-labelledby="pricing-title">
+  <h2 id="pricing-title">Pricing Plans</h2>
+  <div class="pricing-cards">
+    <article class="pricing-card" tabindex="0" aria-label="Standard Repair Plan">
+      <h3>Standard Repair</h3>
+      <div class="price">£49</div>
+      <div class="price-duration">Per repair</div>
+      <ul class="features">
+        <li>Screen replacement</li>
+        <li>Battery replacement</li>
+        <li>Basic software fixes</li>
+        <li>1-year warranty</li>
+      </ul>
+      <button type="button">Choose Plan</button>
+    </article>
+    <article class="pricing-card" tabindex="0" aria-label="Premium Repair Plan">
+      <h3>Premium Repair</h3>
+      <div class="price">£79</div>
+      <div class="price-duration">Per repair</div>
+      <ul class="features">
+        <li>All standard services</li>
+        <li>Water damage repair</li>
+        <li>Charging port repair</li>
+        <li>Priority service</li>
+        <li>2-year warranty</li>
+      </ul>
+      <button type="button">Choose Plan</button>
+    </article>
+  </div>
+</section>
+
+<section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
+  <h2 id="testimonials-title">What Our Customers Say</h2>
+  <div class="testimonial-slider" role="region" aria-live="polite" aria-atomic="true">
+    <blockquote class="testimonial active" tabindex="0">
+      "Fast, professional service! My phone looks brand new. Highly recommend PhoneRepairPro."
+      <footer class="testimonial-author">— Sarah J.</footer>
+    </blockquote>
+    <blockquote class="testimonial" tabindex="0">
+      "Affordable pricing and excellent communication throughout the repair process."
+      <footer class="testimonial-author">— Mike D.</footer>
+    </blockquote>
+    <blockquote class="testimonial" tabindex="0">
+      "They saved my water-damaged phone! Quick turnaround and great warranty."
+      <footer class="testimonial-author">— Linda K.</footer>
+    </blockquote>
+    <div class="testimonial-controls" role="tablist" aria-label="Testimonial navigation">
+      <button type="button" aria-controls="testimonial1" aria-selected="true" tabindex="0" class="testimonial-btn" data-index="0">1</button>
+      <button type="button" aria-controls="testimonial2" aria-selected="false" tabindex="-1" class="testimonial-btn" data-index="1">2</button>
+      <button type="button" aria-controls="testimonial3" aria-selected="false" tabindex="-1" class="testimonial-btn" data-index="2">3</button>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq" aria-labelledby="faq-title">
+  <h2 id="faq-title">Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-btn">
+      How long does a typical repair take?
+    </button>
+    <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-btn" hidden>
+      Most repairs are completed within 1-2 hours, depending on the issue.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-btn">
+      Do you use original manufacturer parts?
+    </button>
+    <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-btn" hidden>
+      Yes, we use high-quality OEM or OEM-equivalent parts for all repairs.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-btn">
+      Is there a warranty on repairs?
+    </button>
+    <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-btn" hidden>
+      We provide a warranty ranging from 1 to 2 years depending on the service.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq4" id="faq4-btn">
+      Can you repair all phone brands?
+    </button>
+    <div class="faq-answer" id="faq4" role="region" aria-labelledby="faq4-btn" hidden>
+      Yes, we repair all major brands including Apple, Samsung, Google, Huawei, and more.
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title">Contact Us</h2>
+  <p class="intro">Have questions or want to book a repair? Get in touch!</p>
+  
+
+  <form id="contact-form" aria-label="Contact form" novalidate>
+    <label for="contact-name" class="sr-only">Name</label>
+    <input type="text" id="contact-name" name="name" placeholder="Your Name" required aria-required="true" />
+
+    <label for="contact-email" class="sr-only">Email</label>
+    <input type="email" id="contact-email" name="email" placeholder="Your Email" required aria-required="true" />
+
+    <label for="contact-message" class="sr-only">Message</label>
+    <textarea id="contact-message" name="message" placeholder="Your Message" rows="5" required aria-required="true"></textarea>
+
+    <button type="submit" aria-label="Send message">Send Message</button>
+  </form>
+  <p id="contact-feedback" role="alert" aria-live="polite" style="margin-top: 1rem; color: #e84118;"></p>
+</section>
+
+<footer>
+  <p>&copy; 2025 PhoneRepairPro. All rights reserved.</p>
+  <p>
+    <a href="#top" aria-label="Back to top">Back to top ↑</a>
+  </p>
+</footer>
+
+<script>
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+    hamburger.setAttribute('aria-expanded', !expanded);
+    navMenu.classList.toggle('open');
+  });
+
+  // FAQ toggle
+  const faqButtons = document.querySelectorAll('.faq-question');
+  faqButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      // Close all FAQs
+      faqButtons.forEach(btn => {
+        btn.setAttribute('aria-expanded', 'false');
+        document.getElementById(btn.getAttribute('aria-controls')).hidden = true;
+      });
+      // Toggle current FAQ
+      if (!expanded) {
+        button.setAttribute('aria-expanded', 'true');
+        document.getElementById(button.getAttribute('aria-controls')).hidden = false;
+      }
+    });
+  });
+
+  // Testimonial slider
+  const testimonialButtons = document.querySelectorAll('.testimonial-btn');
+  const testimonials = document.querySelectorAll('.testimonial');
+
+  testimonialButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = parseInt(btn.dataset.index);
+
+      testimonials.forEach((testimonial, i) => {
+        testimonial.classList.toggle('active', i === index);
+      });
+      testimonialButtons.forEach((button, i) => {
+        button.setAttribute('aria-selected', i === index);
+        button.tabIndex = i === index ? 0 : -1;
+      });
+    });
+  });
+
+  // Quote form validation & submit (mock)
+  const quoteForm = document.getElementById('quote-form');
+  quoteForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!quoteForm.checkValidity()) {
+      quoteForm.reportValidity();
+      return;
+    }
+    alert('Thank you for your quote request! We will contact you soon.');
+    quoteForm.reset();
+  });
+
+  // Contact form validation & submit (mock)
+  const contactForm = document.getElementById('contact-form');
+  const contactFeedback = document.getElementById('contact-feedback');
+
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+    // Simulate sending message
+    contactFeedback.textContent = 'Sending message...';
+    setTimeout(() => {
+      contactFeedback.textContent = 'Thank you for contacting us! We will get back to you shortly.';
+      contactForm.reset();
+    }, 1500);
+  });
+</script>
+
 </body>
 </html>
+
