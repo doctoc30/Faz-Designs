@@ -775,26 +775,25 @@ button:hover {
   Skip Questions For Now →
 </a>
   </div>
-<script>
+
+ <script>
 document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById('typewriter');
-  let lines = [];
-  const typingSpeed = 100;
-  const lineDelay = 500;
-  let currentLine = 0;
-  let currentChar = 0;
-  let lineEl = null;
-
   const cursor = document.createElement('span');
   cursor.classList.add('cursor');
   el.appendChild(cursor);
 
+  let lines = [];
+  let currentLine = 0;
+  let currentChar = 0;
+  let lineEl = null;
+  const typingSpeed = 100;
+  const lineDelay = 500;
+
   function setLinesByOrientation() {
-    if (window.matchMedia("(orientation: landscape)").matches) {
-      lines = ["We build", "your website.", "You approve,", "then pay."];
-    } else {
-      lines = ["We build", "your", "website.", "You approve,", "then pay."];
-    }
+    lines = window.matchMedia("(orientation: landscape)").matches
+      ? ["We build", "your website.", "You approve,", "then pay."]
+      : ["We build", "your", "website.", "You approve,", "then pay."];
   }
 
   function typeChar() {
@@ -802,17 +801,14 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor.remove();
       setTimeout(() => {
         el.style.animation = 'rocketRise 2s ease forwards';
-
         setTimeout(() => {
           const introScreen = document.getElementById('main-intro-options');
           if (introScreen) {
             introScreen.style.display = 'block';
             introScreen.classList.add('active');
           }
-
           const skipBtn = document.getElementById('skipToPackages');
           if (skipBtn) skipBtn.style.display = 'block';
-
         }, 2000);
       }, 1000);
       return;
@@ -839,13 +835,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function debounce(func, wait) {
+  const debounce = (func, wait) => {
     let timeout;
-    return function(...args) {
+    return (...args) => {
       clearTimeout(timeout);
       timeout = setTimeout(() => func.apply(this, args), wait);
     };
-  }
+  };
 
   window.addEventListener('resize', debounce(() => {
     currentLine = 0;
@@ -866,15 +862,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const screens = document.querySelectorAll(".form-screen");
   let currentScreen = -1;
 
-  function showScreen(index) {
+  const showScreen = (index) => {
     screens.forEach(screen => {
       screen.classList.remove("active");
       screen.style.display = 'none';
     });
+
     if (index >= 0 && index < screens.length) {
       const screen = screens[index];
       screen.classList.add("active");
-      screen.style.display = 'block';
+      screen.style.display = 'flex'; // force flex layout
       currentScreen = index;
     } else {
       currentScreen = -1;
@@ -884,22 +881,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (skipBtn) {
       skipBtn.style.display = (index === screens.length - 1) ? "none" : "block";
     }
-  }
+  };
 
-  function next() {
+  const next = () => {
     if (currentScreen < screens.length - 1) {
       showScreen(currentScreen + 1);
     }
-  }
+  };
 
-  function prev() {
+  const prev = () => {
     if (currentScreen > 0) {
       showScreen(currentScreen - 1);
     }
-  }
+  };
 
   // Triggered by "Website Design" button
-  window.goToDesign = function() {
+  window.goToDesign = () => {
     const startChoice = document.getElementById('form-start-choice');
     screens.forEach(screen => {
       screen.classList.remove('active');
@@ -908,9 +905,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (startChoice) {
       startChoice.classList.add('active');
-      startChoice.style.display = 'block';
+      startChoice.style.display = 'flex'; // ✅ changed from 'block'
 
-      // Ensure it has .form-screen class for compatibility
       if (!startChoice.classList.contains('form-screen')) {
         startChoice.classList.add('form-screen');
       }
@@ -918,18 +914,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const updatedScreens = Array.from(document.querySelectorAll('.form-screen'));
       currentScreen = updatedScreens.indexOf(startChoice);
     }
-  }
+  };
 
   // Triggered by "Request a Custom Quote" button
-  window.showScreen = function(index) {
+  window.showScreen = (index) => {
     screens.forEach(screen => {
       screen.classList.remove('active');
       screen.style.display = 'none';
     });
+
     const nextScreen = document.getElementById('q' + index);
     if (nextScreen) {
       nextScreen.classList.add('active');
-      nextScreen.style.display = 'block';
+      nextScreen.style.display = 'flex'; // ✅ consistent layout
 
       if (!nextScreen.classList.contains('form-screen')) {
         nextScreen.classList.add('form-screen');
@@ -938,7 +935,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const updatedScreens = Array.from(document.querySelectorAll('.form-screen'));
       currentScreen = updatedScreens.indexOf(nextScreen);
     }
-  }
+  };
 
   window.next = next;
   window.prev = prev;
@@ -947,13 +944,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector('.hamburger');
   const menu = document.querySelector('nav.menu');
 
-  function toggleMenu() {
+  const toggleMenu = () => {
     const isOpen = menu.classList.toggle('open');
     hamburger.classList.toggle('active');
     hamburger.setAttribute('aria-expanded', isOpen);
     menu.setAttribute('aria-hidden', !isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
+  };
 
   hamburger.addEventListener('click', (event) => {
     event.stopPropagation();
@@ -972,24 +969,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ------------------ INITIAL STATE ---------------------
   showScreen(-1); // Hide all form screens on load
-});
 
-// SPLASH TO FORM
-document.addEventListener("DOMContentLoaded", function () {
+  // SPLASH TO FORM BUTTON
   const startButton = document.getElementById("start-quote-btn");
   const splash = document.querySelector(".splash-screen");
   const formStart = document.getElementById("form-start-choice");
 
-  startButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    splash.style.display = "none";
-    formStart.style.display = "flex";
+  if (startButton && splash && formStart) {
+    startButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      splash.style.display = "none";
+      formStart.style.display = "flex";
 
-    if (!formStart.classList.contains('form-screen')) {
-      formStart.classList.add('form-screen');
-    }
-  });
+      if (!formStart.classList.contains('form-screen')) {
+        formStart.classList.add('form-screen');
+      }
+    });
+  }
 });
-</script>
+  </script>   
 </body>
 </html>
