@@ -6,340 +6,211 @@
 <title>Faz Designs</title>
 
 <style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ff3131;
-    color: white;
-    overflow-x: hidden;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: #ff3131;
-    z-index: 2000;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-  }
-  .logo {
-    font-weight: 900;
-    font-size: 1.7rem;
-    letter-spacing: 2px;
-    user-select: none;
-    cursor: default;
-  }
-  .hamburger {
-    width: 28px;
-    height: 22px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 2100;
-  }
-  .hamburger span {
-    display: block;
-    height: 3.5px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.35s ease-in-out;
-  }
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: white;
+}
+body {
+  color: white;
+  background-color: #ff3131;
+  overflow-x: hidden;
+}
 
-  nav.menu {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ff3131;
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 4rem;
-    z-index: 2050;
-  }
-  nav.menu.open {
+/* Header */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: #ff3131;
+  z-index: 2000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.logo {
+  font-weight: 900;
+  font-size: 1.7rem;
+  letter-spacing: 2px;
+  user-select: none;
+  cursor: default;
+}
+
+/* Hamburger */
+.hamburger {
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2100;
+}
+.hamburger span {
+  display: block;
+  height: 3.5px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.35s ease-in-out;
+}
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Menu Navigation */
+nav.menu {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ff3131;
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 4rem;
+  z-index: 2050;
+}
+nav.menu.open {
+  transform: translateX(0);
+}
+nav.menu ul {
+  list-style: none;
+}
+nav.menu ul li {
+  margin-bottom: 2.2rem;
+  opacity: 0;
+  transform: translateX(-40px);
+  font-weight: 900;
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+}
+nav.menu ul li a {
+  color: white;
+  text-decoration: none;
+  user-select: none;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+nav.menu ul li a:hover {
+  color: #222;
+}
+nav.menu.open ul li {
+  animation: slideInFade 0.4s forwards;
+}
+nav.menu.open ul li:nth-child(1) { animation-delay: 0.15s; }
+nav.menu.open ul li:nth-child(2) { animation-delay: 0.35s; }
+nav.menu.open ul li:nth-child(3) { animation-delay: 0.55s; }
+nav.menu.open ul li:nth-child(4) { animation-delay: 0.75s; }
+nav.menu.open ul li:nth-child(5) { animation-delay: 0.95s; }
+
+@keyframes slideInFade {
+  to {
+    opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* Desktop Menu */
+@media (min-width: 1024px) {
+  .hamburger { display: none; }
+  nav.menu {
+    position: static;
+    height: auto;
+    width: auto;
+    background: transparent;
+    transform: none !important;
+    padding-left: 0;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
   nav.menu ul {
-    list-style: none;
+    display: flex;
+    gap: 3rem;
   }
   nav.menu ul li {
-    margin-bottom: 2.2rem;
-    opacity: 0;
-    transform: translateX(-40px);
-    font-weight: 900;
-    font-size: 3rem;
-    letter-spacing: 0.1em;
+    margin: 0;
+    opacity: 1 !important;
+    transform: none !important;
+    font-size: 1.25rem;
+    animation: none !important;
   }
   nav.menu ul li a {
+    font-weight: 900;
+    font-size: 1.1rem;
     color: white;
-    text-decoration: none;
-    user-select: none;
-    display: inline-block;
-    transition: color 0.3s ease;
+    letter-spacing: 0.15em;
   }
   nav.menu ul li a:hover {
     color: #222;
   }
-  nav.menu.open ul li {
-    animation: slideInFade 0.4s forwards;
-  }
-  nav.menu.open ul li:nth-child(1) {
-    animation-delay: 0.15s;
-  }
-  nav.menu.open ul li:nth-child(2) {
-    animation-delay: 0.35s;
-  }
-  nav.menu.open ul li:nth-child(3) {
-    animation-delay: 0.55s;
-  }
-  nav.menu.open ul li:nth-child(4) {
-    animation-delay: 0.75s;
-  }
-  nav.menu.open ul li:nth-child(5) {
-    animation-delay: 0.95s;
-  }
-  @keyframes slideInFade {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Desktop view - raised breakpoint to 1024px */
-  @media (min-width: 1024px) {
-    .hamburger {
-      display: none;
-    }
-    nav.menu {
-      position: static;
-      height: auto;
-      width: auto;
-      background: transparent;
-      transform: none !important;
-      padding-left: 0;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    nav.menu ul {
-      display: flex;
-      gap: 3rem;
-    }
-    nav.menu ul li {
-      margin: 0;
-      opacity: 1 !important;
-      transform: none !important;
-      font-size: 1.25rem;
-      animation: none !important;
-    }
-    nav.menu ul li a {
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: white;
-      letter-spacing: 0.15em;
-    }
-    nav.menu ul li a:hover {
-      color: #222;
-    }
-  }
-
-<title>Splash + Form</title>
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    font-family: 'Poppins', sans-serif;
-    background: white;
-  }
-
-  .color-rise {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    animation: solidRise 8s ease-in-out forwards;
-    z-index: 0;
-  }
-
-  @keyframes solidRise {
-    0% { background-color: white; }
-    100% { background-color: #ff3131; }
-  }
-
-  .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    color: white;
-    text-shadow: 0 0 30px #b30000;
-    z-index: 1;
-    text-align: center;
-    opacity: 0;
-    font-size: clamp(3rem, 8vw, 6rem);
-    line-height: 1.2;
-    white-space: pre-line;
-  }
-
-  @keyframes rocketRise {
-    0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
-    100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
-  }
-
-  .typed-line { display: block; }
-
-  .cursor {
-    display: inline-block;
-    width: 1ch;
-    animation: blink 0.8s infinite;
-  }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-
-
-
-
-  select, input[type="text"], input[type="email"] {
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    width: 80%;
-    max-width: 400px;
-    cursor: pointer;
-    appearance: none;
-    background-color: white;
-    color: #333;
-    height: 3.5rem;
-    padding-right: 2.5rem;
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1rem;
-    font-family: inherit;
-  }
-
-  select {
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  }
-
-  input[type="text"],
-  input[type="email"] {
-    background-image: none;
-    cursor: text;
-  }
-
-.button-row {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem; /* Increased spacing */
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 2rem;
 }
 
-button {
-    background: white;
-    color: #ff3131;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1rem;
-    box-sizing: border-box;
-    transition: background 0.3s ease;
-    min-width: 140px; /* Further ensures button sizing */
+/* Splash Background */
+.color-rise {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  animation: solidRise 8s ease-in-out forwards;
+  z-index: 0;
+}
+@keyframes solidRise {
+  0% { background-color: white; }
+  100% { background-color: #ff3131; }
 }
 
-  button:hover {
-    background: #e60000;
-    color: white;
-  }
-
-
- 
- /* ---------- BASE STYLES ---------- */
-
-nav ul {
-  display: block;
-}
-
-nav ul li {
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li a {
-  padding: 0.5rem 1rem;
-}
-
-select,
-input[type="text"],
-input[type="email"] {
-  width: 60%;
-  margin-bottom: 2rem;
-  font-size: 1rem;
-  padding: 1rem;
-}
-
-.overlay-text {
-  font-size: calc(6vw + 0.5rem);
-}
-
+/* Typewriter Text */
 #typewriter {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
+  max-width: 90vw;
   z-index: 1000;
   font-family: 'Arial Black', Arial, sans-serif;
   font-weight: 600;
   text-align: center;
   color: white;
-  opacity: 1;
   pointer-events: none;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  max-width: 90vw;
   line-height: 1.3;
+  font-size: clamp(2.5rem, 6vw, 5rem);
 }
-
 #typewriter .typed-line {
-  font-size: inherit;
+  white-space: normal;
+  display: block;
   margin: 0.1em 0;
+}
+.typewriter-text {
+  text-align: center;
+  line-height: 1.4;
+  display: block;
+  margin: 0 auto;
   white-space: normal;
 }
 
+/* Cursor */
 .cursor {
   display: inline-block;
   width: 2px;
@@ -348,91 +219,27 @@ input[type="email"] {
   vertical-align: bottom;
   margin-left: 2px;
 }
-
 @keyframes blink {
-  50% {
-    background: transparent;
-  }
+  50% { background: transparent; }
 }
 
-/* ---------- Base Typewriter Styles ---------- */
-#typewriter {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  z-index: 1000;
-  font-family: 'Arial Black', Arial, sans-serif;
-  font-weight: 600;
-  text-align: center;
-  color: white;
-  opacity: 1;
-  pointer-events: none;
-  line-height: 1.3;
-}
-
-.typewriter-text {
-  white-space: normal;
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-  line-height: 1.4;
-}
-
-/* ---------- Mobile (Up to 599px) ---------- */
+/* Responsive Typewriter Sizes */
 @media screen and (max-width: 599px) {
-  #typewriter {
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    max-width: 90vw;
-  }
-
-  .typewriter-text {
-    font-size: clamp(2rem, 6vw, 3rem);
-    max-width: 90vw;
-  }
+  #typewriter { font-size: clamp(2.8rem, 7vw, 5.5rem); }
+  .typewriter-text { font-size: clamp(2rem, 6vw, 3rem); }
 }
-
-/* ---------- Tablet Portrait (600–1024px) ---------- */
 @media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
-  #typewriter {
-    font-size: 6rem !important;
-    max-width: 90vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 3.5rem !important;
-    max-width: 85vw !important;
-  }
+  #typewriter { font-size: 6rem !important; }
+  .typewriter-text { font-size: 3.5rem !important; }
 }
-
-/* ---------- Tablet Landscape (600–1024px) ---------- */
 @media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
-  #typewriter {
-    font-size: 5.5rem !important;
-    max-width: 85vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 3.2rem !important;
-    max-width: 80vw !important;
-  }
+  #typewriter { font-size: 5.5rem !important; }
+  .typewriter-text { font-size: 3.2rem !important; }
 }
-
-/* ---------- Desktop (1025px+) ---------- */
 @media screen and (min-width: 1025px) {
-  #typewriter {
-    font-size: 6.5rem !important;
-    max-width: 75vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 4rem !important;
-    max-width: 60vw !important;
-  }
+  #typewriter { font-size: 6.5rem !important; max-width: 75vw; }
+  .typewriter-text { font-size: 4rem !important; max-width: 60vw; }
 }
-
- /* ---------- iPhone Landscape Final Fix ---------- */
 @media screen and (max-width: 812px) and (orientation: landscape) {
   #typewriter {
     top: 60% !important;
@@ -441,31 +248,13 @@ input[type="email"] {
     line-height: 1.2 !important;
     max-width: 90vw !important;
   }
-
   .typewriter-text {
     font-size: clamp(1rem, 3vw, 1.8rem) !important;
     line-height: 1.2 !important;
-    max-width: 85vw !important;
   }
 }
 
-/* Tablet: Ensure space between buttons */
-@media screen and (min-width: 600px) and (max-width: 1024px) {
-  .button-row {
-    gap: 3rem;         /* Increase spacing */
-    flex-wrap: wrap;   /* Allow buttons to wrap to next line if needed */
-    justify-content: center;
-  }
-
-  .button-row button {
-    min-width: 140px;  /* Prevent buttons from shrinking too much */
-    margin: 0.5rem 1rem; /* Extra spacing around each button */
-  }
-}
-
- /* --------------------------------------------
-   1. FIRST QUESTION SCREEN (#form-start-choice)
---------------------------------------------- */
+/* First Question Block */
 #form-start-choice {
   position: fixed;
   top: 80%;
@@ -476,7 +265,6 @@ input[type="email"] {
   background: #ff3131;
   color: white;
   padding: 2rem;
-  box-sizing: border-box;
   text-align: center;
   z-index: 1000;
   display: none;
@@ -487,17 +275,12 @@ input[type="email"] {
   opacity: 0;
   transition: opacity 1s ease;
 }
-
 #form-start-choice.show {
   display: flex;
   opacity: 1;
 }
 
-
- 
-/* --------------------------------------------
-   2. MULTI-STEP FORM SCREENS (.form-screen)
---------------------------------------------- */
+/* Form Screens */
 .form-screen {
   position: fixed;
   top: 55%;
@@ -509,8 +292,6 @@ input[type="email"] {
   background: #ff3131;
   color: white;
   padding: 2rem;
-  box-sizing: border-box;
-  text-align: center;
   z-index: 1000;
   display: none;
   flex-direction: column;
@@ -519,21 +300,16 @@ input[type="email"] {
   overflow-y: auto;
   border-radius: 12px;
 }
-
 .form-screen.active {
   display: flex;
 }
-
 .form-screen h2 {
   font-size: 1.8rem;
   margin-bottom: 3rem;
-  max-width: 500px;
   line-height: 1.4;
 }
 
-/* --------------------------------------------
-   3. FORM FIELDS (input, select)
---------------------------------------------- */
+/* Form Inputs */
 select,
 input[type="text"],
 input[type="email"],
@@ -542,227 +318,158 @@ input[type="tel"] {
   border: none;
   border-radius: 8px;
   font-size: 1rem;
-  margin-bottom: 1.5rem;
-  width: 100%;
-  max-width: 100%;
-  appearance: none;
+  margin-bottom: 2rem;
+  width: 80%;
+  max-width: 400px;
   background-color: white;
   color: #333;
+  appearance: none;
   height: 3.5rem;
-  box-sizing: border-box;
+  background-position: right 1rem center;
+  background-size: 1rem;
   font-family: inherit;
 }
-
-/* --------------------------------------------
-   4. CONSENT CHECKBOX SECTION
---------------------------------------------- */
-.consent-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 14px;
-  color: white;
-  margin-bottom: 2rem;
+select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+}
+input[type="text"],
+input[type="email"] {
+  background-image: none;
+  cursor: text;
 }
 
-.consent-wrapper input[type="checkbox"] {
-  margin-right: 8px;
-}
-
-/* --------------------------------------------
-   5. BUTTONS
---------------------------------------------- */
-button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  color: #ff3131;
-  font-weight: bold;
-  margin: 0.5rem;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* Optional: group buttons side-by-side */
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 1rem;
-}
-
-/* --------------------------------------------
-   6. MOBILE HEIGHT ADJUSTMENTS
---------------------------------------------- */
-@media (max-height: 600px) {
-  #form-start-choice,
-  .form-screen {
-    top: 70%;
-    transform: translate(-50%, -55%);
-  }
-}
-
-
-
-.form-screen {
-  justify-content: flex-start;
-  padding-top: 10rem;
-  height: calc(100vh - 6rem);
-}
-
+/* Buttons */
 .button-row {
   display: flex;
-  justify-content: center;  /* Center the buttons */
-  gap: 1rem;                /* Space between buttons */
-  margin-top: 2rem;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 2rem;
 }
-
-.button-row button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
+button {
   background: white;
   color: #ff3131;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  width: auto;              /* Make sure buttons size to content */
-  min-width: 100px;         /* Optional: consistent width */
+  font-size: 1rem;
+  transition: background 0.3s ease;
+  min-width: 140px;
+}
+button:hover {
+  background: #e60000;
+  color: white;
 }
 
-.button-row button:hover {
-  opacity: 0.9;
+/* Tablet Button Spacing */
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .button-row {
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .button-row button {
+    margin: 0.5rem 1rem;
+    min-width: 140px;
+  }
 }
-
-
-
-.skip-link {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: none;
-  color: #ffffff; /* Or use your brand color */
-  border: none;
-  padding: 0;
-  font-size: 16px;
-  font-weight: normal;
-  text-decoration: none;
-  z-index: 10000;
-  box-shadow: none;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-.skip-link:hover {
-  opacity: 0.8;
-}
- 
-
 </style>
 
 </head>
-<body>
-<header>
-  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
-  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
+ <body>
+  <header>
+    <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
+    <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
+      <ul>
+        <li><a href="/Faz-Designs/pages/home.html">Home</a></li>
+        <li><a href="/Faz-Designs/pages/about.html">About</a></li>
+        <li><a href="/Faz-Designs/pages/samples.html">Samples</a></li>
+        <li><a href="/Faz-Designs/pages/pricing.html">Pricing</a></li>
+        <li><a href="/Faz-Designs/pages/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Splash animation area -->
+  <div class="color-rise"></div>
+  <div id="typewriter"></div>
+
+  <!-- FORM AREA -->
+  <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+
+    <!-- LAYER 0: MAIN INTRO -->
+    <div class="form-screen" id="main-intro-options">
+      <h2>What do you need help with?</h2>
+      <div class="button-row">
+        <button type="button" onclick="goToDesign()">Website Design</button>
+        <button type="button">Website Redesign</button>
+        <button type="button">Website Maintenance</button>
+      </div>
+    </div>
+
+    <!-- LAYER 1: PACKAGE OR CUSTOM -->
+    <div class="form-screen" id="form-start-choice">
+      <h2>How would you like to get started?</h2>
+      <div class="button-row">
+        <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">Choose a Package Deal</button>
+        <button type="button" onclick="showScreen(0)">Request a Custom Quote</button>
+      </div>
+    </div>
+
+    <!-- LAYER 2: FORM QUESTIONS -->
+    <div class="form-screen" id="q0">
+      <h2>What type of website are you looking for?</h2>
+      <select name="Website Type" required>
+        <option>Business</option>
+        <option>eCommerce</option>
+        <option>Portfolio</option>
+        <option>Blog</option>
+        <option>Other</option>
+      </select>
+      <div class="button-row">
+        <button type="button" onclick="next()">Next</button>
+      </div>
+    </div>
+
+    <!-- FINAL STEP: LEAD CAPTURE -->
+    <div class="form-screen" id="q11">
+      <h2>Almost done! Please enter your details</h2>
+      <label>Full Name</label>
+      <input type="text" name="Full Name" required>
+
+      <label>Email Address</label>
+      <input type="email" name="Email" required>
+
+      <label>WhatsApp Number (optional)</label>
+      <input type="text" name="WhatsApp">
+
+      <label style="margin-top: 20px;">
+        <input type="checkbox" required name="GDPR Consent">
+        I consent to having this website store my submitted information so they can respond to my inquiry.
+      </label>
+
+      <div class="button-row">
+        <button type="button" onclick="prev()">Previous</button>
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Skip link (initially hidden) -->
+  <a href="https://doctoc30.github.io/Faz-Designs/pages/about.html" id="skipToPackages" class="skip-link" style="display: none;">
+    Skip Questions For Now →
+  </a>
   </div>
  
-<nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-  <ul>
-    <li><a href="/Faz-Designs/pages/home.html">Home</a></li>
-    <li><a href="/Faz-Designs/pages/about.html">About</a></li>
-    <li><a href="/Faz-Designs/pages/samples.html">Samples</a></li>
-    <li><a href="/Faz-Designs/pages/pricing.html">Pricing</a></li>
-    <li><a href="/Faz-Designs/pages/contact.html">Contact</a></li>
-  </ul>
-</nav>
- 
-</header> 
-
-
-<!-- This stays before form -->
-<div class="color-rise"></div>
-<div id="typewriter"></div>
-
-<!-- ✅ Wraps all form content now -->
-<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
-
-  <!-- MAIN INTRO OPTIONS -->
-  <div class="form-screen active" id="main-intro-options">
-    <h2>What do you need help with?</h2>
-    <div class="button-row">
-      <button type="button" onclick="goToDesign()">Website Design</button>
-      <button type="button">Website Redesign</button>
-      <button type="button">Website Maintenance</button>
-    </div>
-  </div>
-
-  <!-- LAYER 1: ENTRY SCREEN -->
-  <div class="form-screen" id="form-start-choice">
-    <h2>How would you like to get started?</h2>
-    <div class="button-row">
-      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
-        Choose a Package Deal
-      </button>
-      <button type="button" onclick="showScreen(0)">Request a Custom Quote</button>
-    </div>
-  </div>
-
-  <!-- LAYER 2: FULL QUOTE FORM -->
-  <div class="form-screen" id="q0">
-    <h2>What type of website are you looking for?</h2>
-    <select name="Website Type" required>
-      <option>Business</option>
-      <option>eCommerce</option>
-      <option>Portfolio</option>
-      <option>Blog</option>
-      <option>Other</option>
-    </select>
-    <div class="button-row">
-      <button type="button" onclick="next()">Next</button>
-    </div>
-  </div>
-
-  <!-- All other #q1 to #q11 screens remain unchanged... -->
-
-  <div class="form-screen" id="q11">
-    <h2>Almost done! Please enter your details</h2>
-
-    <label>Full Name</label>
-    <input type="text" name="Full Name" required>
-
-    <label>Email Address</label>
-    <input type="email" name="Email" required>
-
-    <label>WhatsApp Number (optional)</label>
-    <input type="text" name="WhatsApp">
-
-    <label style="margin-top: 20px;">
-      <input type="checkbox" required name="GDPR Consent">
-      I consent to having this website store my submitted information so they can respond to my inquiry.
-    </label>
-
-    <div class="button-row">
-      <button type="button" onclick="prev()">Previous</button>
-      <button type="submit">Submit</button>
-    </div>
-  </div>
-
-</form>
-
-<a href="https://doctoc30.github.io/Faz-Designs/pages/about.html" 
-   id="skipToPackages" class="skip-link" style="display: none;">
-  Skip Questions For Now →
-</a>
-  </div>
 <script>
 const el = document.getElementById('typewriter');
 let lines = [];
