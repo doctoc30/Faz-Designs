@@ -162,8 +162,6 @@
     }
   }
 
- 🔥
-
 <title>Splash + Form</title>
 
   html, body {
@@ -795,8 +793,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
           const introScreen = document.getElementById('main-intro-options');
-          introScreen.style.display = 'block';
-          introScreen.classList.add('active');
+          if (introScreen) {
+            introScreen.style.display = 'block';
+            introScreen.classList.add('active');
+          }
 
           const skipBtn = document.getElementById('skipToPackages');
           if (skipBtn) skipBtn.style.display = 'block';
@@ -855,11 +855,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentScreen = -1;
 
   function showScreen(index) {
-    screens.forEach(screen => screen.classList.remove("active"));
+    screens.forEach(screen => {
+      screen.classList.remove("active");
+      screen.style.display = 'none';
+    });
     if (index >= 0 && index < screens.length) {
-      screens[index].classList.add("active");
+      const screen = screens[index];
+      screen.classList.add("active");
+      screen.style.display = 'block';
+      currentScreen = index;
+    } else {
+      currentScreen = -1;
     }
-    currentScreen = index;
 
     const skipBtn = document.getElementById("skipToPackages");
     if (skipBtn) {
@@ -881,18 +888,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Triggered by "Website Design" button
   window.goToDesign = function() {
-    screens.forEach(el => el.classList.remove('active'));
-    document.getElementById('form-start-choice').classList.add('active');
-    currentScreen = 0;
+    screens.forEach(screen => {
+      screen.classList.remove('active');
+      screen.style.display = 'none';
+    });
+    const startChoice = document.getElementById('form-start-choice');
+    if (startChoice) {
+      startChoice.classList.add('active');
+      startChoice.style.display = 'block';
+      currentScreen = Array.from(screens).indexOf(startChoice);
+    }
   }
 
   // Triggered by "Request a Custom Quote" button
   window.showScreen = function(index) {
-    screens.forEach(el => el.classList.remove('active'));
+    screens.forEach(screen => {
+      screen.classList.remove('active');
+      screen.style.display = 'none';
+    });
     const nextScreen = document.getElementById('q' + index);
     if (nextScreen) {
       nextScreen.classList.add('active');
-      currentScreen = index;
+      nextScreen.style.display = 'block';
+      currentScreen = Array.from(screens).indexOf(nextScreen);
     }
   }
 
@@ -926,7 +944,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-    // ------------------ INITIAL STATE ---------------------
+  // ------------------ INITIAL STATE ---------------------
   showScreen(-1); // Hide all form screens on load
 });
 </script>
