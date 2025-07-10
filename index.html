@@ -801,8 +801,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const skipBtn = document.getElementById('skipToPackages');
           if (skipBtn) skipBtn.style.display = 'block';
 
-        }, 2000); // After rocket rise
-      }, 1000); // After typewriter ends
+        }, 2000);
+      }, 1000);
       return;
     }
 
@@ -888,15 +888,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Triggered by "Website Design" button
   window.goToDesign = function() {
+    const startChoice = document.getElementById('form-start-choice');
     screens.forEach(screen => {
       screen.classList.remove('active');
       screen.style.display = 'none';
     });
-    const startChoice = document.getElementById('form-start-choice');
+
     if (startChoice) {
       startChoice.classList.add('active');
       startChoice.style.display = 'block';
-      currentScreen = Array.from(screens).indexOf(startChoice);
+
+      // Ensure it has .form-screen class for compatibility
+      if (!startChoice.classList.contains('form-screen')) {
+        startChoice.classList.add('form-screen');
+      }
+
+      const updatedScreens = Array.from(document.querySelectorAll('.form-screen'));
+      currentScreen = updatedScreens.indexOf(startChoice);
     }
   }
 
@@ -910,7 +918,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nextScreen) {
       nextScreen.classList.add('active');
       nextScreen.style.display = 'block';
-      currentScreen = Array.from(screens).indexOf(nextScreen);
+
+      if (!nextScreen.classList.contains('form-screen')) {
+        nextScreen.classList.add('form-screen');
+      }
+
+      const updatedScreens = Array.from(document.querySelectorAll('.form-screen'));
+      currentScreen = updatedScreens.indexOf(nextScreen);
     }
   }
 
@@ -948,20 +962,22 @@ document.addEventListener("DOMContentLoaded", () => {
   showScreen(-1); // Hide all form screens on load
 });
 
+// SPLASH TO FORM
+document.addEventListener("DOMContentLoaded", function () {
+  const startButton = document.getElementById("start-quote-btn");
+  const splash = document.querySelector(".splash-screen");
+  const formStart = document.getElementById("form-start-choice");
 
+  startButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    splash.style.display = "none";
+    formStart.style.display = "flex";
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const startButton = document.getElementById("start-quote-btn");
-    const splash = document.querySelector(".splash-screen");
-    const formStart = document.getElementById("form-start-choice");
-
-    startButton.addEventListener("click", function (e) {
-      e.preventDefault(); // Prevents jump to top or blank screen if it's a link or form
-      splash.style.display = "none";
-      formStart.style.display = "flex";
-    });
+    if (!formStart.classList.contains('form-screen')) {
+      formStart.classList.add('form-screen');
+    }
   });
-
+});
 </script>
 </body>
 </html>
