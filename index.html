@@ -947,6 +947,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------ INITIAL STATE ---------------------
   showScreen(-1); // Hide all form screens on load
 });
+
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const startButton = document.getElementById("start-quote-btn");
+    const splash = document.querySelector(".splash-screen");
+    const formStart = document.getElementById("form-start-choice");
+
+    startButton.addEventListener("click", function (e) {
+      e.preventDefault(); // Prevents jump to top or blank screen if it's a link or form
+      splash.style.display = "none";
+      formStart.style.display = "flex";
+    });
+  });
+
 </script>
 </body>
 </html>
