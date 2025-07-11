@@ -927,6 +927,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // ------------------ INITIAL STATE ---------------------
   showScreen(-1); // Hide all form screens on load
 });
+
+
+function goToDesign() {
+  // Hide all form screens
+  document.querySelectorAll('.form-screen').forEach(screen => screen.classList.remove('active'));
+
+  // Show the form-start-choice screen
+  document.getElementById('form-start-choice').classList.add('active');
+}
 </script>
 </body>
 </html>
