@@ -763,7 +763,7 @@ button:hover {
   Skip Questions For Now →
 </a>
   </div>
-<script>
+ <script>
 document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById('typewriter');
   let lines = [];
@@ -847,60 +847,63 @@ document.addEventListener("DOMContentLoaded", () => {
   el.style.opacity = 1;
   typeChar();
 
-  // ------------------ FORM SCREEN FLOW --------------------
+  // ------------------ FORM FLOW --------------------
   const screens = document.querySelectorAll(".form-screen");
 
   function hideAllScreens() {
     screens.forEach(screen => screen.classList.remove("active"));
+    const startChoice = document.getElementById('form-start-choice');
+    if (startChoice) startChoice.classList.remove("show");
   }
 
-  // Show screen by ID (more specific control)
+  function showStartChoice() {
+    hideAllScreens();
+    const startChoice = document.getElementById('form-start-choice');
+    if (startChoice) {
+      startChoice.classList.add('show');
+      startChoice.style.display = 'flex';
+    }
+  }
+
   function showScreenById(id) {
     hideAllScreens();
-    const target = document.getElementById(id);
-    if (target) target.classList.add("active");
+    const screen = document.getElementById(id);
+    if (screen) screen.classList.add("active");
 
-    // Optional: toggle skip button
     const skipBtn = document.getElementById("skipToPackages");
     if (skipBtn) {
       skipBtn.style.display = (id === "q11") ? "none" : "block";
     }
   }
 
-  // Website Design button
   window.goToDesign = function () {
-    showScreenById('form-start-choice');
+    showStartChoice();
   };
 
-  // Request a Custom Quote
   window.showScreen = function (index) {
     showScreenById('q' + index);
   };
 
-  // Next and Prev for quote steps
   window.next = function () {
     const current = document.querySelector('.form-screen.active');
-    const allScreens = Array.from(document.querySelectorAll('.form-screen'));
-    const currentIndex = allScreens.indexOf(current);
-    const nextScreen = allScreens[currentIndex + 1];
-    if (nextScreen) {
+    const allScreens = Array.from(screens);
+    const i = allScreens.indexOf(current);
+    if (i >= 0 && i < allScreens.length - 1) {
       hideAllScreens();
-      nextScreen.classList.add('active');
+      allScreens[i + 1].classList.add('active');
     }
   };
 
   window.prev = function () {
     const current = document.querySelector('.form-screen.active');
-    const allScreens = Array.from(document.querySelectorAll('.form-screen'));
-    const currentIndex = allScreens.indexOf(current);
-    const prevScreen = allScreens[currentIndex - 1];
-    if (prevScreen) {
+    const allScreens = Array.from(screens);
+    const i = allScreens.indexOf(current);
+    if (i > 0) {
       hideAllScreens();
-      prevScreen.classList.add('active');
+      allScreens[i - 1].classList.add('active');
     }
   };
 
-  // Initial state — hide all form screens
   hideAllScreens();
 
   // ------------------ HAMBURGER MENU ---------------------
