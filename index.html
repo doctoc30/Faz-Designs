@@ -877,6 +877,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.goToDesign = function () {
+    // Hide intro question
+    const intro = document.getElementById('main-intro-options');
+    if (intro) {
+      intro.style.display = 'none';
+      intro.classList.remove('active');
+    }
+
+    // Show the "get started" screen
     showStartChoice();
   };
 
@@ -918,20 +926,22 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
   }
 
-  hamburger.addEventListener('click', (event) => {
-    event.stopPropagation();
-    toggleMenu();
-  });
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      toggleMenu();
+    });
 
-  document.addEventListener('click', (event) => {
-    if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-      menu.classList.remove('open');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', false);
-      menu.setAttribute('aria-hidden', true);
-      document.body.style.overflow = '';
-    }
-  });
+    document.addEventListener('click', (event) => {
+      if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+        menu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', false);
+        menu.setAttribute('aria-hidden', true);
+        document.body.style.overflow = '';
+      }
+    });
+  }
 });
 </script>
 </body>
