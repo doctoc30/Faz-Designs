@@ -778,11 +778,9 @@ document.addEventListener("DOMContentLoaded", () => {
   el.appendChild(cursor);
 
   function setLinesByOrientation() {
-    if (window.matchMedia("(orientation: landscape)").matches) {
-      lines = ["We build", "your website.", "You approve,", "then pay."];
-    } else {
-      lines = ["We build", "your", "website.", "You approve,", "then pay."];
-    }
+    lines = window.matchMedia("(orientation: landscape)").matches
+      ? ["We build", "your website.", "You approve,", "then pay."]
+      : ["We build", "your", "website.", "You approve,", "then pay."];
   }
 
   function typeChar() {
@@ -790,17 +788,18 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor.remove();
       setTimeout(() => {
         el.style.animation = 'rocketRise 2s ease forwards';
-
         setTimeout(() => {
           const introScreen = document.getElementById('main-intro-options');
-          introScreen.style.display = 'block';
-          introScreen.classList.add('active');
+          if (introScreen) {
+            introScreen.style.display = 'block';
+            introScreen.classList.add('active');
+          }
 
           const skipBtn = document.getElementById('skipToPackages');
           if (skipBtn) skipBtn.style.display = 'block';
 
-        }, 2000); // After rocket rise
-      }, 1000); // After typewriter ends
+        }, 2000);
+      }, 1000);
       return;
     }
 
@@ -850,52 +849,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ------------------ FORM SCREEN FLOW --------------------
   const screens = document.querySelectorAll(".form-screen");
-  let currentScreen = -1;
 
-  function showScreen(index) {
+  function hideAllScreens() {
     screens.forEach(screen => screen.classList.remove("active"));
-    if (index >= 0 && index < screens.length) {
-      screens[index].classList.add("active");
-    }
-    currentScreen = index;
+  }
 
+  // Show screen by ID (more specific control)
+  function showScreenById(id) {
+    hideAllScreens();
+    const target = document.getElementById(id);
+    if (target) target.classList.add("active");
+
+    // Optional: toggle skip button
     const skipBtn = document.getElementById("skipToPackages");
     if (skipBtn) {
-      skipBtn.style.display = (index === screens.length - 1) ? "none" : "block";
+      skipBtn.style.display = (id === "q11") ? "none" : "block";
     }
   }
 
-  function next() {
-    if (currentScreen < screens.length - 1) {
-      showScreen(currentScreen + 1);
-    }
-  }
+  // Website Design button
+  window.goToDesign = function () {
+    showScreenById('form-start-choice');
+  };
 
-  function prev() {
-    if (currentScreen > 0) {
-      showScreen(currentScreen - 1);
-    }
-  }
+  // Request a Custom Quote
+  window.showScreen = function (index) {
+    showScreenById('q' + index);
+  };
 
-  // Triggered by "Website Design" button
-  window.goToDesign = function() {
-    screens.forEach(el => el.classList.remove('active'));
-    document.getElementById('form-start-choice').classList.add('active');
-    currentScreen = 0;
-  }
-
-  // Triggered by "Request a Custom Quote" button
-  window.showScreen = function(index) {
-    screens.forEach(el => el.classList.remove('active'));
-    const nextScreen = document.getElementById('q' + index);
+  // Next and Prev for quote steps
+  window.next = function () {
+    const current = document.querySelector('.form-screen.active');
+    const allScreens = Array.from(document.querySelectorAll('.form-screen'));
+    const currentIndex = allScreens.indexOf(current);
+    const nextScreen = allScreens[currentIndex + 1];
     if (nextScreen) {
+      hideAllScreens();
       nextScreen.classList.add('active');
-      currentScreen = index;
     }
-  }
+  };
 
-  window.next = next;
-  window.prev = prev;
+  window.prev = function () {
+    const current = document.querySelector('.form-screen.active');
+    const allScreens = Array.from(document.querySelectorAll('.form-screen'));
+    const currentIndex = allScreens.indexOf(current);
+    const prevScreen = allScreens[currentIndex - 1];
+    if (prevScreen) {
+      hideAllScreens();
+      prevScreen.classList.add('active');
+    }
+  };
+
+  // Initial state — hide all form screens
+  hideAllScreens();
 
   // ------------------ HAMBURGER MENU ---------------------
   const hamburger = document.querySelector('.hamburger');
@@ -923,19 +929,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = '';
     }
   });
-
-    // ------------------ INITIAL STATE ---------------------
-  showScreen(-1); // Hide all form screens on load
 });
-
-
-function goToDesign() {
-  // Hide all form screens
-  document.querySelectorAll('.form-screen').forEach(screen => screen.classList.remove('active'));
-
-  // Show the form-start-choice screen
-  document.getElementById('form-start-choice').classList.add('active');
-}
 </script>
 </body>
 </html>
