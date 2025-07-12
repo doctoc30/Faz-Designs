@@ -763,9 +763,6 @@ button:hover {
   Skip Questions For Now →
 </a>
   </div>
-
-
-
  <script>
 document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById('typewriter');
@@ -861,14 +858,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showStartChoice() {
     hideAllScreens();
-
-    // ✅ ✅ HIDE the initial question screen
-    const introScreen = document.getElementById('main-intro-options');
-    if (introScreen) {
-      introScreen.style.display = 'none';
-      introScreen.classList.remove('active');
-    }
-
     const startChoice = document.getElementById('form-start-choice');
     if (startChoice) {
       startChoice.classList.add('show');
@@ -915,10 +904,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Initial state — hide all form screens
   hideAllScreens();
-});
-
 
   // ------------------ HAMBURGER MENU ---------------------
   const hamburger = document.querySelector('.hamburger');
