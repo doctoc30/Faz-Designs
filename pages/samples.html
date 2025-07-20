@@ -6,395 +6,354 @@
     <title>DrivePro - Affordable Driving Lessons</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background-color: #1e3a8a; /* Set body background to match container for full-width effect */
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            display: flex; /* Use flexbox for body to easily center the container */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            background-color: #1e3a8a;
-            border-radius: 1.25rem;
-            overflow: hidden;
-            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-            width: 90%; /* Default width for responsiveness */
-            max-width: 400px; /* Default max-width for smaller screens */
-            margin: 1rem auto;
-            position: relative;
-            display: flex; /* Make container a flex container */
-            flex-direction: column; /* Default to column for mobile */
-            align-items: center; /* Center items for mobile */
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.25rem;
-            color: white;
-            width: 100%; /* Ensure header spans full width */
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .menu-btn {
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            display: block;
-        }
-
-        .nav-drawer {
-            display: none;
-            position: absolute;
-            top: 100%; /* Position below the header */
-            right: 0; /* Align to the right */
-            width: 200px;
-            background-color: #1e3a8a;
-            color: white;
-            padding: 1rem;
-            z-index: 10;
-            border-radius: 0 0 1.25rem 1.25rem;
-            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
-        }
-
-        .nav-drawer.active {
-            display: block;
-        }
-
-        .nav-drawer a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 0;
-            font-size: 1rem;
-        }
-
-        .content {
-            padding: 1.25rem;
-            color: white;
-            text-align: center; /* Default center for mobile/column layout */
-            flex-grow: 1; /* Allow content to grow */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center content elements within the column */
-            width: 100%;
-        }
-
-        .content h1 {
-            font-size: 2rem;
-            margin-bottom: 0.625rem;
-            line-height: 1.2;
-        }
-
-        .content p {
-            font-size: 1rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .car-image {
-            width: 90%; /* Adjusted for better fitting */
-            max-width: 400px; /* Max width for image */
-            height: auto;
-            margin-bottom: 1.25rem;
-            border-radius: 0.625rem; /* Slightly rounded corners for the image */
-        }
-
-        .button {
-            display: inline-block;
-            padding: 0.9375rem 2rem;
-            background-color: #dc2626;
-            color: white;
-            text-decoration: none;
-            font-size: 1.125rem;
-            font-weight: bold;
-            border-radius: 0.625rem;
-            margin-bottom: 0.625rem;
-            transition: background-color 0.3s;
-            width: 80%; /* Make buttons take up more width on smaller screens */
-            max-width: 300px;
-        }
-
-        .button:hover {
-            background-color: #b91c1c;
-        }
-
-        .subtext {
-            font-size: 0.875rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .phone {
-            display: inline-block;
-            padding: 0.9375rem 2rem;
-            background-color: #3b82f6;
-            color: white;
-            text-decoration: none;
-            font-size: 1.125rem;
-            font-weight: bold;
-            border-radius: 0.625rem;
-            margin-bottom: 1.25rem;
-            transition: background-color 0.3s;
-            width: 80%; /* Make buttons take up more width on smaller screens */
-            max-width: 300px;
-        }
-
-        .phone:hover {
-            background-color: #2563eb;
-        }
-
-        .social {
-            display: flex;
-            justify-content: center; /* Center social icons */
-            gap: 0.9375rem;
-            margin-bottom: 1.25rem;
-            width: 100%;
-        }
-
-        .social a {
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-        }
-
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.625rem 1.25rem;
-            background-color: #f5f1e9;
-            width: 100%;
-            border-radius: 0 0 1.25rem 1.25rem; /* Ensure footer has rounded corners at bottom */
-        }
-
-        .footer button {
-            background: none;
-            border: none;
-            font-size: 1.25rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-            color: #1e3a8a; /* Dark blue color for footer buttons */
-        }
-
-        .footer button:hover {
-            transform: scale(1.1);
-        }
-
-        /* Mobile (up to 480px) */
-        @media (max-width: 480px) {
-            .container {
-                width: 100%;
-                border-radius: 0;
-                margin: 0;
-                min-height: 100vh; /* Make container full height on mobile */
-                justify-content: space-between; /* Distribute content top to bottom */
-            }
-            body {
-                align-items: flex-start; /* Align to top in mobile to avoid large empty space */
-                background-color: #1e3a8a; /* Ensure body is dark blue on mobile */
-            }
-            .content h1 {
-                font-size: 1.5rem;
-            }
-            .content p, .subtext {
-                font-size: 0.875rem;
-            }
-            .button, .phone {
-                width: 90%; /* Increase width for better touch targets */
-                max-width: none; /* Remove max-width on mobile */
-            }
-            .car-image {
-                width: 90%;
-            }
-        }
-
-        /* Tablet Portrait (481px to 768px) */
-        @media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
-            .container {
-                max-width: 500px;
-                min-height: 80vh; /* Adjust height for tablet portrait */
-                justify-content: space-between;
-            }
-            .content h1 {
-                font-size: 2.2rem;
-            }
-            .content p {
-                font-size: 1.1rem;
-            }
-            .button, .phone {
-                width: 70%;
-            }
-        }
-
-        /* Tablet Landscape (481px to 1024px) */
-        @media (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
-            .container {
-                max-width: 100%; /* Allow container to take full width */
-                width: 100%; /* Ensure it fills the width */
-                min-height: 100vh; /* Ensure container fills viewport height */
-                border-radius: 0; /* Remove border-radius in full screen landscape */
-                flex-direction: row; /* Arrange items in a row */
-                padding: 1.5rem; /* Add more padding for spacing */
-                align-items: center; /* Center items vertically */
-                justify-content: center; /* Center the entire flex content block */
-            }
-            .content {
-                flex: 1; /* Allow content to take available space */
-                text-align: center; /* Center text within content div */
-                padding-right: 1.5rem; /* Space between content and image */
-                align-items: center; /* Center content elements */
-            }
-            .car-image {
-                flex: 1; /* Allow image to take available space */
-                max-width: 45%; /* Control image size */
-                margin: 0; /* Remove margin-bottom */
-            }
-            .button, .phone {
-                width: auto; /* Revert to auto width */
-                min-width: 180px; /* Minimum width for buttons */
-                margin: 0.5rem; /* Add some margin around buttons for spacing */
-            }
-            .button + .phone {
-                 margin-top: 0.5rem; /* Adjust margin between buttons if they stack */
-                 margin-left: 0.5rem;
-            }
-            .content h1 {
-                font-size: 2.5rem;
-            }
-            .content p {
-                font-size: 1.1rem;
-            }
-            .social {
-                justify-content: center; /* Center social icons */
-            }
-            .header {
-                display: none; /* Hide header for this specific landscape range as per original desktop behavior logic */
-            }
-            .footer {
-                position: absolute;
-                bottom: 1rem;
-                right: 1rem;
-                background: none;
-                padding: 0;
-                width: auto;
-                border-radius: 0;
-            }
-            .footer button {
-                color: white;
-            }
-        }
-
-        /* Desktop (1025px and above) */
-        @media (min-width: 1025px) {
-            .container {
-                max-width: 100%; /* Allow container to take full width */
-                width: 100%; /* Ensure it fills the width */
-                min-height: 100vh; /* Ensure container fills viewport height */
-                border-radius: 0; /* Remove border-radius in full screen desktop */
-                flex-direction: row; /* Arrange items in a row */
-                padding: 2rem;
-                justify-content: center; /* Center the entire flex content block */
-            }
-            .content {
-                flex: 1;
-                max-width: 600px; /* Limit content width for readability on very large screens */
-                text-align: center; /* Center text within content div */
-                padding-right: 2rem;
-                align-items: center; /* Center content elements */
-            }
-            .car-image {
-                flex: 1;
-                max-width: 45%; /* Control image size */
-                margin: 0;
-            }
-            .button, .phone {
-                width: auto;
-                min-width: 200px; /* Adjusted min-width for desktop buttons */
-                display: inline-block;
-                margin: 0.5rem; /* Add some margin around buttons for spacing */
-            }
-            .social {
-                justify-content: center; /* Center social icons */
-            }
-            .content h1 {
-                font-size: 3.5rem; /* Larger font size for desktop heading */
-            }
-            .content p {
-                font-size: 1.25rem; /* Larger font size for desktop paragraph */
-            }
-            .subtext {
-                font-size: 1rem;
-            }
-            .header {
-                display: none; /* Hide header on desktop as per original logic */
-            }
-            .footer {
-                position: absolute;
-                bottom: 1rem;
-                right: 1rem;
-                background: none;
-                padding: 0;
-                width: auto;
-                border-radius: 0;
-            }
-            .footer button {
-                color: white;
-            }
-        }
-
-
-/* Default: hide full menu, show hamburger */
-.full-menu {
-  display: none;
+     * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-.hamburger-menu {
-  display: block;
+body {
+    background-color: #1e3a8a;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Portrait mode: hamburger visible, full menu hidden */
-@media (orientation: portrait) {
-  .hamburger-menu {
-    display: block;
-  }
-  .full-menu {
-    display: none;
-  }
+.container {
+    background-color: #1e3a8a;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 1rem auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Landscape mode: full menu visible, hamburger hidden */
-@media (orientation: landscape) {
-  .hamburger-menu {
-    display: none;
-  }
-  .full-menu {
-    display: flex;  /* or inline-flex */
-    gap: 20px;      /* spacing between links */
-    list-style: none;
-  }
-  
-  .full-menu li a {
-    text-decoration: none;
-    color: #000;    /* your menu link color */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    color: white;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
     font-weight: bold;
-  }
 }
+
+.menu-btn {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: block;
+}
+
+.nav-drawer {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background-color: #1e3a8a;
+    color: white;
+    padding: 1rem;
+    z-index: 10;
+    border-radius: 0 0 1.25rem 1.25rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.nav-drawer.active {
+    display: block;
+}
+
+.nav-drawer a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.content {
+    padding: 1.25rem;
+    color: white;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.content h1 {
+    font-size: 2rem;
+    margin-bottom: 0.625rem;
+    line-height: 1.2;
+}
+
+.content p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.car-image {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 1.25rem;
+    border-radius: 0.625rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.9375rem 2rem;
+    background-color: #dc2626;
+    color: white;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border-radius: 0.625rem;
+    margin-bottom: 0.625rem;
+    transition: background-color 0.3s;
+    width: 80%;
+    max-width: 300px;
+}
+
+.button:hover {
+    background-color: #b91c1c;
+}
+
+.subtext {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+}
+
+.phone {
+    display: inline-block;
+    padding: 0.9375rem 2rem;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border-radius: 0.625rem;
+    margin-bottom: 1.25rem;
+    transition: background-color 0.3s;
+    width: 80%;
+    max-width: 300px;
+}
+
+.phone:hover {
+    background-color: #2563eb;
+}
+
+.social {
+    display: flex;
+    justify-content: center;
+    gap: 0.9375rem;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.social a {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem 1.25rem;
+    background-color: #f5f1e9;
+    width: 100%;
+    border-radius: 0 0 1.25rem 1.25rem;
+}
+
+.footer button {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+    color: #1e3a8a;
+}
+
+.footer button:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile (up to 480px) */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        min-height: 100vh;
+        justify-content: space-between;
+    }
+    body {
+        align-items: flex-start;
+        background-color: #1e3a8a;
+    }
+    .content h1 {
+        font-size: 1.5rem;
+    }
+    .content p, .subtext {
+        font-size: 0.875rem;
+    }
+    .button, .phone {
+        width: 90%;
+        max-width: none;
+    }
+    .car-image {
+        width: 90%;
+    }
+}
+
+/* Tablet Portrait (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
+    .container {
+        max-width: 500px;
+        min-height: 80vh;
+        justify-content: space-between;
+    }
+    .content h1 {
+        font-size: 2.2rem;
+    }
+    .content p {
+        font-size: 1.1rem;
+    }
+    .button, .phone {
+        width: 70%;
+    }
+}
+
+/* Tablet Landscape (481px to 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
+    .container {
+        max-width: 100%;
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        flex-direction: row;
+        padding: 1.5rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .content {
+        flex: 1;
+        text-align: center;
+        padding-right: 1.5rem;
+        align-items: center;
+    }
+    .car-image {
+        flex: 1;
+        max-width: 45%;
+        margin: 0;
+    }
+    .button, .phone {
+        width: auto;
+        min-width: 180px;
+        margin: 0.5rem;
+    }
+    .button + .phone {
+         margin-top: 0.5rem;
+         margin-left: 0.5rem;
+    }
+    .content h1 {
+        font-size: 2.5rem;
+    }
+    .content p {
+        font-size: 1.1rem;
+    }
+    .social {
+        justify-content: center;
+    }
+    /* .header was hidden here - REMOVED */
+    .footer {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        background: none;
+        padding: 0;
+        width: auto;
+        border-radius: 0;
+    }
+    .footer button {
+        color: white;
+    }
+}
+
+/* Desktop (1025px and above) */
+@media (min-width: 1025px) {
+    .container {
+        max-width: 100%;
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        flex-direction: row;
+        padding: 2rem;
+        justify-content: center;
+    }
+    .content {
+        flex: 1;
+        max-width: 600px;
+        text-align: center;
+        padding-right: 2rem;
+        align-items: center;
+    }
+    .car-image {
+        flex: 1;
+        max-width: 45%;
+        margin: 0;
+    }
+    .button, .phone {
+        width: auto;
+        min-width: 200px;
+        display: inline-block;
+        margin: 0.5rem;
+    }
+    .social {
+        justify-content: center;
+    }
+    .content h1 {
+        font-size: 3.5rem;
+    }
+    .content p {
+        font-size: 1.25rem;
+    }
+    .subtext {
+        font-size: 1rem;
+    }
+    /* .header was hidden here - REMOVED */
+    .footer {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        background: none;
+        padding: 0;
+        width: auto;
+        border-radius: 0;
+    }
+    .footer button {
+        color: white;
+    }
+}
+
 
     </style>
 </head>
