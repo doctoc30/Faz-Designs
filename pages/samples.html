@@ -6,6 +6,29 @@
   <title>DrivePro - Affordable Driving Lessons</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
 
+  /* Mobile-first default */
+.hamburger {
+  display: block;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.nav {
+  display: none;
+}
+
+/* Tablet landscape and up: show full nav, hide hamburger */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+}
   <style>
     * {
       margin: 0;
