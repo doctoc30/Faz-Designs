@@ -359,7 +359,42 @@
         }
 
 
+/* Default: hide full menu, show hamburger */
+.full-menu {
+  display: none;
+}
 
+.hamburger-menu {
+  display: block;
+}
+
+/* Portrait mode: hamburger visible, full menu hidden */
+@media (orientation: portrait) {
+  .hamburger-menu {
+    display: block;
+  }
+  .full-menu {
+    display: none;
+  }
+}
+
+/* Landscape mode: full menu visible, hamburger hidden */
+@media (orientation: landscape) {
+  .hamburger-menu {
+    display: none;
+  }
+  .full-menu {
+    display: flex;  /* or inline-flex */
+    gap: 20px;      /* spacing between links */
+    list-style: none;
+  }
+  
+  .full-menu li a {
+    text-decoration: none;
+    color: #000;    /* your menu link color */
+    font-weight: bold;
+  }
+}
 
     </style>
 </head>
