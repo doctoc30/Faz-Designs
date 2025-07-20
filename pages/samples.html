@@ -15,10 +15,8 @@
         body {
             background-color: #f5f1e9;
             min-height: 100vh;
-            padding: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
@@ -28,6 +26,7 @@
             box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
+            margin: 1rem auto;
             position: relative;
         }
 
@@ -63,6 +62,7 @@
             color: white;
             padding: 1rem;
             z-index: 10;
+            border-radius: 0 0 1.25rem 1.25rem;
         }
 
         .nav-drawer.active {
@@ -177,6 +177,7 @@
             .container {
                 max-width: 100%;
                 border-radius: 0;
+                margin: 0;
             }
             .content h1 {
                 font-size: 1.5rem;
@@ -190,11 +191,10 @@
             }
         }
 
-        /* Tablet Portrait/Landscape (481px to 1024px) */
+        /* Tablet and Landscape (481px to 1024px) */
         @media (min-width: 481px) and (max-width: 1024px) {
             .container {
-                max-width: 600px;
-                margin: 1rem auto;
+                max-width: 90%;
             }
             .content {
                 display: flex;
@@ -216,16 +216,20 @@
             }
             @media (orientation: landscape) {
                 .container {
-                    max-width: 90%;
-                    height: 60vh;
+                    max-width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    padding: 1rem;
                 }
                 .content {
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
+                    flex: 1;
+                    text-align: left;
+                    padding-right: 1rem;
                 }
                 .car-image {
-                    max-width: 40%;
+                    flex: 1;
+                    max-width: 50%;
                     margin: 0;
                 }
                 .button, .phone {
@@ -237,6 +241,9 @@
                 }
                 .content p {
                     font-size: 1rem;
+                }
+                .social {
+                    justify-content: flex-start;
                 }
             }
         }
@@ -338,7 +345,6 @@
             location.reload();
         });
 
-        // Close nav drawer when clicking outside
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.header')) {
                 navDrawer.classList.remove('active');
