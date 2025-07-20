@@ -28,6 +28,7 @@
             box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
+            position: relative;
         }
 
         .header {
@@ -38,13 +39,42 @@
             color: white;
         }
 
-        .header .logo {
+        .logo {
             font-size: 1.5rem;
             font-weight: bold;
         }
 
-        .header .menu {
+        .menu-btn {
             font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: block;
+        }
+
+        .nav-drawer {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 200px;
+            background-color: #1e3a8a;
+            color: white;
+            padding: 1rem;
+            z-index: 10;
+        }
+
+        .nav-drawer.active {
+            display: block;
+        }
+
+        .nav-drawer a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            font-size: 1rem;
         }
 
         .content {
@@ -160,7 +190,7 @@
             }
         }
 
-        /* Tablet (481px to 1024px) */
+        /* Tablet Portrait/Landscape (481px to 1024px) */
         @media (min-width: 481px) and (max-width: 1024px) {
             .container {
                 max-width: 600px;
@@ -183,6 +213,31 @@
             }
             .content p {
                 font-size: 1.25rem;
+            }
+            @media (orientation: landscape) {
+                .container {
+                    max-width: 90%;
+                    height: 60vh;
+                }
+                .content {
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .car-image {
+                    max-width: 40%;
+                    margin: 0;
+                }
+                .button, .phone {
+                    width: auto;
+                    min-width: 150px;
+                }
+                .content h1 {
+                    font-size: 2rem;
+                }
+                .content p {
+                    font-size: 1rem;
+                }
             }
         }
 
@@ -238,7 +293,12 @@
     <div class="container">
         <div class="header">
             <div class="logo">🚗 DRIVEPRO</div>
-            <div class="menu">⋮</div>
+            <button class="menu-btn">☰</button>
+            <div class="nav-drawer">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
         </div>
         <div class="content">
             <h1>Affordable<br>driving lessons</h1>
@@ -248,9 +308,9 @@
             <p class="subtext">Grab your spot in seconds.</p>
             <a href="tel:01234567890" class="phone">01234 567 890</a>
             <div class="social">
-                <a href="#">f</a>
-                <a href="#">i</a>
-                <a href="#">🐦</a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
         <div class="footer">
@@ -260,6 +320,13 @@
     </div>
 
     <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const navDrawer = document.querySelector('.nav-drawer');
+
+        menuBtn.addEventListener('click', () => {
+            navDrawer.classList.toggle('active');
+        });
+
         const closeBtn = document.querySelector('.footer button:first-child');
         const refreshBtn = document.querySelector('.footer button:last-child');
 
@@ -270,6 +337,14 @@
         refreshBtn.addEventListener('click', () => {
             location.reload();
         });
+
+        // Close nav drawer when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header')) {
+                navDrawer.classList.remove('active');
+            }
+        });
     </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
