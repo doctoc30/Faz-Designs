@@ -361,7 +361,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+ <div class="container">
         <div class="header">
             <div class="logo">🚗 DRIVEPRO</div>
             <button class="menu-btn" aria-label="Open menu">☰</button>
@@ -371,6 +371,7 @@
                 <a href="#">Contact</a>
             </div>
         </div>
+
         <div class="content">
             <h1>Affordable<br>driving lessons</h1>
             <p>Book online, or call to speak with us.</p>
@@ -378,32 +379,28 @@
             <a href="#" class="button">BOOK NOW</a>
             <p class="subtext">Grab your spot in seconds.</p>
             <a href="tel:01234567890" class="phone">01234 567 890</a>
-          
-<!-- Lesson Packages Section -->
-<section style="padding: 2rem 1rem; color: white; text-align: center; width: 100%;">
-  <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">Our Lesson Packages</h2>
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-    
-    <div style="background: #3b82f6; padding: 1rem; border-radius: 1rem; width: 280px;">
-      <h3 style="margin-bottom: 0.5rem;">Single Lesson</h3>
-      <p style="font-size: 0.9rem; margin-bottom: 1rem;">Perfect for brushing up or trying us out.</p>
-      <strong style="font-size: 1.2rem;">£35/hr</strong>
-    </div>
-    
-    <div style="background: #10b981; padding: 1rem; border-radius: 1rem; width: 280px;">
-      <h3 style="margin-bottom: 0.5rem;">10-Lesson Bundle</h3>
-      <p style="font-size: 0.9rem; margin-bottom: 1rem;">Best value for consistent progress.</p>
-      <strong style="font-size: 1.2rem;">£320</strong>
-    </div>
 
-    <div style="background: #f59e0b; padding: 1rem; border-radius: 1rem; width: 280px;">
-      <h3 style="margin-bottom: 0.5rem;">Intensive Course</h3>
-      <p style="font-size: 0.9rem; margin-bottom: 1rem;">Get test-ready in just 2 weeks.</p>
-      <strong style="font-size: 1.2rem;">From £699</strong>
-    </div>
-
-  </div>
-</section>
+            <!-- Lesson Packages Section -->
+            <section style="padding: 2rem 1rem; color: white; text-align: center; width: 100%;">
+                <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">Our Lesson Packages</h2>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                    <div style="background: #3b82f6; padding: 1rem; border-radius: 1rem; width: 280px;">
+                        <h3 style="margin-bottom: 0.5rem;">Single Lesson</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Perfect for brushing up or trying us out.</p>
+                        <strong style="font-size: 1.2rem;">£35/hr</strong>
+                    </div>
+                    <div style="background: #10b981; padding: 1rem; border-radius: 1rem; width: 280px;">
+                        <h3 style="margin-bottom: 0.5rem;">10-Lesson Bundle</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Best value for consistent progress.</p>
+                        <strong style="font-size: 1.2rem;">£320</strong>
+                    </div>
+                    <div style="background: #f59e0b; padding: 1rem; border-radius: 1rem; width: 280px;">
+                        <h3 style="margin-bottom: 0.5rem;">Intensive Course</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Get test-ready in just 2 weeks.</p>
+                        <strong style="font-size: 1.2rem;">From £699</strong>
+                    </div>
+                </div>
+            </section>
             
             
             <div class="social">
@@ -414,50 +411,28 @@
 
 
     <script>
-        const menuBtn = document.querySelector('.menu-btn');
+             const menuBtn = document.querySelector('.menu-btn');
         const navDrawer = document.querySelector('.nav-drawer');
 
-        // Toggle navigation drawer on menu button click
-        menuBtn.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent click from bubbling up to document and closing drawer immediately
+        // Toggle drawer on button click
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             navDrawer.classList.toggle('active');
         });
 
-        const closeBtn = document.querySelector('.footer button:first-child');
-        const refreshBtn = document.querySelector('.footer button:last-child');
-
-        closeBtn.addEventListener('click', () => {
-            document.querySelector('.container').style.display = 'none';
-        });
-
-        refreshBtn.addEventListener('click', () => {
-            location.reload();
-        });
-
-        // Close nav drawer if clicked outside of header or nav drawer
+        // Close when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.header') && !e.target.closest('.nav-drawer')) {
+            if (!e.target.closest('.header')) {
                 navDrawer.classList.remove('active');
             }
         });
 
-
-
-    
-    const menuToggle = document.getElementById('menuToggle');
-    const navDrawer = document.getElementById('navDrawer');
-
-    menuToggle.addEventListener('click', () => {
-        navDrawer.classList.toggle('active');
-    });
-
-    // Optional: close drawer when clicking a nav link
-    navDrawer.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navDrawer.classList.remove('active');
+        // Close on nav link click
+        navDrawer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navDrawer.classList.remove('active');
+            });
         });
-    });
-
     </script>
 </body>
 </html>
