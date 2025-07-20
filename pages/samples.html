@@ -357,6 +357,10 @@
                 color: white;
             }
         }
+
+        .header {
+    display: none; /* REMOVE or COMMENT THIS */
+}
     </style>
 </head>
 <body>
@@ -439,6 +443,24 @@
                 navDrawer.classList.remove('active');
             }
         });
+
+
+
+    
+    const menuToggle = document.getElementById('menuToggle');
+    const navDrawer = document.getElementById('navDrawer');
+
+    menuToggle.addEventListener('click', () => {
+        navDrawer.classList.toggle('active');
+    });
+
+    // Optional: close drawer when clicking a nav link
+    navDrawer.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navDrawer.classList.remove('active');
+        });
+    });
+
     </script>
 </body>
 </html>
