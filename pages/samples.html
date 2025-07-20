@@ -295,6 +295,125 @@
   color: white;
   width: 100%;
 }
+
+
+    /* Basic header styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background-color: #1e3a8a;
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Logo style */
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Nav drawer - mobile menu links */
+.nav-drawer {
+  position: fixed;
+  top: 60px; /* height of header approx */
+  right: 0;
+  background-color: #1e3a8a;
+  width: 200px;
+  display: none;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+  box-sizing: border-box;
+}
+
+.nav-drawer.active {
+  display: flex;
+}
+
+.nav-drawer a {
+  color: white;
+  text-decoration: none;
+  margin: 0.75rem 0;
+  font-weight: 600;
+}
+
+/* Hamburger menu button */
+.menu-btn {
+  font-size: 2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+/* Default: nav links hidden, hamburger visible */
+
+/* Landscape mode: show full horizontal nav links, hide hamburger */
+@media (orientation: landscape) and (min-width: 600px) {
+  .menu-btn {
+    display: none;
+  }
+
+  .nav-drawer {
+    position: static;
+    display: flex !important; /* always show nav links */
+    flex-direction: row;
+    background: transparent;
+    width: auto;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .nav-drawer a {
+    margin: 0 1rem;
+    font-weight: 700;
+  }
+
+  .header {
+    padding: 1rem 2rem;
+  }
+}
+
+/* Adjust container top padding so content isn't hidden behind fixed header */
+.container {
+  padding-top: 70px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* Center & full width h1 section in landscape */
+@media (orientation: landscape) {
+  .content > h1,
+  .content > p,
+  .content > .car-image,
+  .content > .button,
+  .content > .subtext,
+  .content > .phone {
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center;
+  }
+
+  .content > .car-image {
+    display: block;
+    margin: 1rem auto;
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+  }
+}
   </style>
 </head>
 <body>
