@@ -240,6 +240,28 @@
     font-size: 1rem;
   }
 }
+
+    /* Base (mobile-first) */
+.hamburger {
+  display: block;
+}
+
+.nav {
+  display: none;
+}
+
+/* Landscape tablets and desktop (show full menu, hide hamburger) */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+}
   </style>
 </head>
 <body>
