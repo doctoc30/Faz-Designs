@@ -1,232 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driving School</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background: #003f4f;
-      color: white;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrivePro - Affordable Driving Lessons</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background: #003f4f;
-    }
+        body {
+            background-color: #f5f1e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.3rem;
-      font-weight: bold;
-    }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #1e3a8a;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .logo i {
-      margin-right: 0.5rem;
-    }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            color: white;
+        }
 
-    .hamburger {
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-    .hero {
-      padding: 1.5rem;
-      text-align: left;
-    }
+        .header .menu {
+            font-size: 24px;
+        }
 
-    .hero h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
+        .content {
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
 
-    .hero p {
-      margin: 0.5rem 0 1rem;
-      color: #cde9ec;
-    }
+        .content h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
 
-    .hero button {
-      background: #01292d;
-      color: white;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        .content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
 
-    .callback-box {
-      background: #45c5cd;
-      padding: 1rem;
-      margin-top: 1.5rem;
-      border-radius: 10px;
-      max-width: 300px;
-    }
+        .car-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
 
-    .callback-box h3 {
-      margin-top: 0;
-      color: black;
-    }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #dc2626;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
 
-    .callback-box input {
-      width: 100%;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
+        .button:hover {
+            background-color: #b91c1c;
+        }
 
-    .callback-box button {
-      width: 100%;
-      background: #003f4f;
-      color: white;
-      border: none;
-      padding: 0.6rem;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+        .subtext {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
 
-    .features {
-      display: flex;
-      justify-content: space-around;
-      padding: 1.5rem 0;
-      background: #004f5f;
-      flex-wrap: wrap;
-    }
+        .phone {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
 
-    .feature {
-      text-align: center;
-      margin: 1rem;
-      width: 120px;
-    }
+        .phone:hover {
+            background-color: #2563eb;
+        }
 
-    .feature i {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
 
-    .feature h4 {
-      margin: 0.3rem 0;
-    }
+        .social a {
+            color: white;
+            font-size: 24px;
+        }
 
-    .feature p {
-      font-size: 0.75rem;
-      color: #a0d1d4;
-    }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f5f1e9;
+        }
 
-    .services-header {
-      background: #004f5f;
-      padding: 1rem;
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
+        .footer button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
 
-    .social-icons {
-      display: flex;
-      justify-content: flex-end;
-      padding: 0.5rem 1rem;
-      background: #004f5f;
-    }
-
-    .social-icons a {
-      color: white;
-      margin-left: 1rem;
-      font-size: 1.2rem;
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 1.6rem;
-      }
-
-      .feature {
-        width: 100px;
-        margin: 0.5rem;
-      }
-
-      .callback-box {
-        width: 100%;
-      }
-    }
-  </style>
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <i class="fa-solid fa-triangle-exclamation"></i>
-      DRIVING SCHOOL
+    <div class="container">
+        <div class="header">
+            <div class="logo">🚗 DRIVEPRO</div>
+            <div class="menu">⋮</div>
+        </div>
+        <div class="content">
+            <h1>Affordable<br>driving lessons</h1>
+            <p>Book online, or call to speak with us.</p>
+            <img src="https://via.placeholder.com/300x150?text=Car+Image" alt="Driving Lesson Car" class="car-image">
+            <a href="#" class="button">BOOK NOW</a>
+            <p class="subtext">Grab your spot in seconds.</p>
+            <a href="tel:01234567890" class="phone">01234 567 890</a>
+            <div class="social">
+                <a href="#">f</a>
+                <a href="#">i</a>
+                <a href="#">🐦</a>
+            </div>
+        </div>
+        <div class="footer">
+            <button>×</button>
+            <button>↻</button>
+        </div>
     </div>
-    <div class="hamburger">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-  </header>
 
-  <section class="hero">
-    <h1>Learn to Drive</h1>
-    <p>Start your driving journey today</p>
-    <button>BOOK NOW</button>
+    <script>
+        // Simple functionality for buttons (can be expanded)
+        const closeBtn = document.querySelector('.footer button:first-child');
+        const refreshBtn = document.querySelector('.footer button:last-child');
 
-    <div class="callback-box">
-      <h3>Request Callback</h3>
-      <input type="text" placeholder="Full Name" />
-      <input type="text" placeholder="Phone Number" />
-      <button>Request</button>
-    </div>
-  </section>
+        closeBtn.addEventListener('click', () => {
+            document.querySelector('.container').style.display = 'none';
+        });
 
-  <section class="features">
-    <div class="feature">
-      <i class="fa-solid fa-calendar-check"></i>
-      <h4>Flexible Scheduling</h4>
-      <p>Children Przeozing</p>
-    </div>
-    <div class="feature">
-      <i class="fa-solid fa-shield-halved"></i>
-      <h4>Experienced Instructors</h4>
-      <p>Intențe Sorrecte</p>
-    </div>
-    <div class="feature">
-      <i class="fa-solid fa-id-badge"></i>
-      <h4>Practical Training</h4>
-      <p>Doostorwork</p>
-    </div>
-  </section>
-
-  <div class="services-header">
-    Our Services
-  </div>
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-  </div>
-
-  <!-- Optional Chat & Call Buttons -->
-  <div style="position: fixed; bottom: 90px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000;">
-    <a href="tel:+123456789" style="background: #004f5f; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-      <i class="fa-solid fa-phone"></i>
-    </a>
-    <a href="#" style="background: #004f5f; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-      <i class="fa-regular fa-comment-dots"></i>
-    </a>
-  </div>
-
-  <!-- Scroll-to-top & Share Button (mocked as per screenshot) -->
-  <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999;">
-    <div style="background: white; padding: 0.6rem 1.2rem; border-radius: 40px; display: flex; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-      <i class="fa-solid fa-xmark" style="margin-right: 1rem; color: #333;"></i>
-      <i class="fa-solid fa-arrow-up-from-bracket" style="color: #333;"></i>
-    </div>
-  </div>
-
+        refreshBtn.addEventListener('click', () => {
+            location.reload();
+        });
+    </script>
 </body>
 </html>
