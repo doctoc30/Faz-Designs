@@ -358,6 +358,42 @@
             }
         }
 
+
+
+        /* ✅ Fix header hidden in landscape */
+@media only screen and (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
+  .header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #1e40af; /* Match your existing header background */
+  }
+
+  .menu-btn {
+    display: block;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .nav-drawer {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 1rem;
+    background-color: #1e40af;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .nav-drawer.active {
+    display: flex;
+  }
+}
     </style>
 </head>
 <body>
@@ -409,40 +445,7 @@
                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
 
-/* ✅ Fix header hidden in landscape */
-@media only screen and (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
-  .header {
-    display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #1e40af; /* Match your existing header background */
-  }
 
-  .menu-btn {
-    display: block;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-
-  .nav-drawer {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 1rem;
-    background-color: #1e40af;
-    padding: 1rem;
-    border-radius: 0.5rem;
-  }
-
-  .nav-drawer.active {
-    display: flex;
-  }
-}
     <script>
              const menuBtn = document.querySelector('.menu-btn');
         const navDrawer = document.querySelector('.nav-drawer');
