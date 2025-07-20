@@ -28,13 +28,13 @@
             border-radius: 1.25rem;
             overflow: hidden;
             box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-            width: 90%; /* Adjusted for better overall responsiveness */
+            width: 90%; /* Default width for responsiveness */
             max-width: 400px; /* Default max-width for smaller screens */
             margin: 1rem auto;
             position: relative;
-            display: flex; /* Make container a flex container for desktop/landscape */
+            display: flex; /* Make container a flex container */
             flex-direction: column; /* Default to column for mobile */
-            align-items: center;
+            align-items: center; /* Center items for mobile */
         }
 
         .header {
@@ -89,11 +89,11 @@
         .content {
             padding: 1.25rem;
             color: white;
-            text-align: center;
+            text-align: center; /* Default center for mobile/column layout */
             flex-grow: 1; /* Allow content to grow */
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Center content elements within the column */
             width: 100%;
         }
 
@@ -161,7 +161,7 @@
 
         .social {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Center social icons */
             gap: 0.9375rem;
             margin-bottom: 1.25rem;
             width: 100%;
@@ -252,13 +252,13 @@
                 flex-direction: row; /* Arrange items in a row */
                 padding: 1.5rem; /* Add more padding for spacing */
                 align-items: center; /* Center items vertically */
-                justify-content: center; /* Center content horizontally within the container */
+                justify-content: center; /* Center the entire flex content block */
             }
             .content {
                 flex: 1; /* Allow content to take available space */
-                text-align: left; /* Align text to the left */
+                text-align: center; /* Center text within content div */
                 padding-right: 1.5rem; /* Space between content and image */
-                align-items: flex-start; /* Align content elements to the start */
+                align-items: center; /* Center content elements */
             }
             .car-image {
                 flex: 1; /* Allow image to take available space */
@@ -268,10 +268,11 @@
             .button, .phone {
                 width: auto; /* Revert to auto width */
                 min-width: 180px; /* Minimum width for buttons */
-                margin-right: 1rem; /* Space between buttons */
+                margin: 0.5rem; /* Add some margin around buttons for spacing */
             }
-            .button + .phone { /* Apply margin to the phone button if it follows a book now button */
-                margin-top: 0;
+            .button + .phone {
+                 margin-top: 0.5rem; /* Adjust margin between buttons if they stack */
+                 margin-left: 0.5rem;
             }
             .content h1 {
                 font-size: 2.5rem;
@@ -280,22 +281,22 @@
                 font-size: 1.1rem;
             }
             .social {
-                justify-content: flex-start; /* Align social icons to the left */
+                justify-content: center; /* Center social icons */
             }
             .header {
                 display: none; /* Hide header for this specific landscape range as per original desktop behavior logic */
             }
             .footer {
-                position: absolute; /* Position footer absolutely */
+                position: absolute;
                 bottom: 1rem;
                 right: 1rem;
-                background: none; /* Make footer background transparent */
+                background: none;
                 padding: 0;
                 width: auto;
                 border-radius: 0;
             }
             .footer button {
-                color: white; /* Make footer buttons white */
+                color: white;
             }
         }
 
@@ -308,15 +309,14 @@
                 border-radius: 0; /* Remove border-radius in full screen desktop */
                 flex-direction: row; /* Arrange items in a row */
                 padding: 2rem;
-                justify-content: center; /* Center content horizontally within the container */
-                align-items: center;
+                justify-content: center; /* Center the entire flex content block */
             }
             .content {
                 flex: 1;
                 max-width: 600px; /* Limit content width for readability on very large screens */
-                text-align: left;
+                text-align: center; /* Center text within content div */
                 padding-right: 2rem;
-                align-items: flex-start;
+                align-items: center; /* Center content elements */
             }
             .car-image {
                 flex: 1;
@@ -327,10 +327,10 @@
                 width: auto;
                 min-width: 200px; /* Adjusted min-width for desktop buttons */
                 display: inline-block;
-                margin-right: 1rem;
+                margin: 0.5rem; /* Add some margin around buttons for spacing */
             }
             .social {
-                justify-content: flex-start;
+                justify-content: center; /* Center social icons */
             }
             .content h1 {
                 font-size: 3.5rem; /* Larger font size for desktop heading */
