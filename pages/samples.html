@@ -1,443 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DrivePro - Affordable Driving Lessons</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
-    <style>
-     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DrivePro - Affordable Driving Lessons</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
 
-body {
-    background-color: #1e3a8a;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container {
-    background-color: #1e3a8a;
-    border-radius: 1.25rem;
-    overflow: hidden;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
-    margin: 1rem auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.25rem;
-    color: white;
-    width: 100%;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.menu-btn {
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    display: block;
-}
-
-.nav-drawer {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 200px;
-    background-color: #1e3a8a;
-    color: white;
-    padding: 1rem;
-    z-index: 10;
-    border-radius: 0 0 1.25rem 1.25rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-}
-
-.nav-drawer.active {
-    display: block;
-}
-
-.nav-drawer a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 0;
-    font-size: 1rem;
-}
-
-.content {
-    padding: 1.25rem;
-    color: white;
-    text-align: center;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.content h1 {
-    font-size: 2rem;
-    margin-bottom: 0.625rem;
-    line-height: 1.2;
-}
-
-.content p {
-    font-size: 1rem;
-    margin-bottom: 1.25rem;
-}
-
-.car-image {
-    width: 90%;
-    max-width: 400px;
-    height: auto;
-    margin-bottom: 1.25rem;
-    border-radius: 0.625rem;
-}
-
-.button {
-    display: inline-block;
-    padding: 0.9375rem 2rem;
-    background-color: #dc2626;
-    color: white;
-    text-decoration: none;
-    font-size: 1.125rem;
-    font-weight: bold;
-    border-radius: 0.625rem;
-    margin-bottom: 0.625rem;
-    transition: background-color 0.3s;
-    width: 80%;
-    max-width: 300px;
-}
-
-.button:hover {
-    background-color: #b91c1c;
-}
-
-.subtext {
-    font-size: 0.875rem;
-    margin-bottom: 1.25rem;
-}
-
-.phone {
-    display: inline-block;
-    padding: 0.9375rem 2rem;
-    background-color: #3b82f6;
-    color: white;
-    text-decoration: none;
-    font-size: 1.125rem;
-    font-weight: bold;
-    border-radius: 0.625rem;
-    margin-bottom: 1.25rem;
-    transition: background-color 0.3s;
-    width: 80%;
-    max-width: 300px;
-}
-
-.phone:hover {
-    background-color: #2563eb;
-}
-
-.social {
-    display: flex;
-    justify-content: center;
-    gap: 0.9375rem;
-    margin-bottom: 1.25rem;
-    width: 100%;
-}
-
-.social a {
-    color: white;
-    font-size: 1.5rem;
-    text-decoration: none;
-}
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.625rem 1.25rem;
-    background-color: #f5f1e9;
-    width: 100%;
-    border-radius: 0 0 1.25rem 1.25rem;
-}
-
-.footer button {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
-    cursor: pointer;
-    transition: transform 0.3s;
-    color: #1e3a8a;
-}
-
-.footer button:hover {
-    transform: scale(1.1);
-}
-
-/* Mobile (up to 480px) */
-@media (max-width: 480px) {
-    .container {
-        width: 100%;
-        border-radius: 0;
-        margin: 0;
-        min-height: 100vh;
-        justify-content: space-between;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
+
     body {
-        align-items: flex-start;
-        background-color: #1e3a8a;
+      background-color: #1e3a8a;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
     }
-    .content h1 {
-        font-size: 1.5rem;
-    }
-    .content p, .subtext {
-        font-size: 0.875rem;
-    }
-    .button, .phone {
-        width: 90%;
-        max-width: none;
-    }
-    .car-image {
-        width: 90%;
-    }
-}
 
-/* Tablet Portrait (481px to 768px) */
-@media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
-    .container {
-        max-width: 500px;
-        min-height: 80vh;
-        justify-content: space-between;
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1e3a8a;
+      color: white;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
     }
-    .content h1 {
-        font-size: 2.2rem;
-    }
-    .content p {
-        font-size: 1.1rem;
-    }
-    .button, .phone {
-        width: 70%;
-    }
-}
 
-/* Tablet Landscape (481px to 1024px) */
-@media (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
-    .container {
-        max-width: 100%;
-        width: 100%;
-        min-height: 100vh;
-        border-radius: 0;
-        flex-direction: row;
-        padding: 1.5rem;
-        align-items: center;
-        justify-content: center;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
     }
+
+    .menu-btn {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: block;
+    }
+
+    .nav-drawer {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 200px;
+      background-color: #1e3a8a;
+      color: white;
+      padding: 1rem;
+      z-index: 10;
+      border-radius: 0 0 1.25rem 1.25rem;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-drawer.active {
+      display: block;
+    }
+
+    .nav-drawer a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .container {
+      background-color: #1e3a8a;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 1000px;
+      margin: 7rem auto 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .content {
-        flex: 1;
-        text-align: center;
-        padding-right: 1.5rem;
-        align-items: center;
+      padding: 1.25rem;
+      color: white;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
+
+    .content h1 {
+      font-size: 2rem;
+      margin-bottom: 0.625rem;
+      line-height: 1.2;
+    }
+
+    .content p {
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
     .car-image {
+      width: 90%;
+      max-width: 600px;
+      height: auto;
+      margin-bottom: 1.25rem;
+      border-radius: 0.625rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.9375rem 2rem;
+      background-color: #dc2626;
+      color: white;
+      text-decoration: none;
+      font-size: 1.125rem;
+      font-weight: bold;
+      border-radius: 0.625rem;
+      margin-bottom: 0.625rem;
+      transition: background-color 0.3s;
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .button:hover {
+      background-color: #b91c1c;
+    }
+
+    .subtext {
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .phone {
+      display: inline-block;
+      padding: 0.9375rem 2rem;
+      background-color: #3b82f6;
+      color: white;
+      text-decoration: none;
+      font-size: 1.125rem;
+      font-weight: bold;
+      border-radius: 0.625rem;
+      margin-bottom: 1.25rem;
+      transition: background-color 0.3s;
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .phone:hover {
+      background-color: #2563eb;
+    }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      gap: 0.9375rem;
+      margin-bottom: 1.25rem;
+      width: 100%;
+    }
+
+    .social a {
+      color: white;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
+        max-width: 1100px;
+      }
+
+      .content {
+        flex: 1;
+        align-items: flex-start;
+        text-align: left;
+        padding-right: 2rem;
+      }
+
+      .car-image {
         flex: 1;
         max-width: 45%;
         margin: 0;
-    }
-    .button, .phone {
+      }
+
+      .button, .phone {
         width: auto;
         min-width: 180px;
-        margin: 0.5rem;
-    }
-    .button + .phone {
-         margin-top: 0.5rem;
-         margin-left: 0.5rem;
-    }
-    .content h1 {
-        font-size: 2.5rem;
-    }
-    .content p {
-        font-size: 1.1rem;
-    }
-    .social {
-        justify-content: center;
-    }
-    /* .header was hidden here - REMOVED */
-    .footer {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        background: none;
-        padding: 0;
-        width: auto;
-        border-radius: 0;
-    }
-    .footer button {
-        color: white;
-    }
-}
+        margin: 0.5rem 0;
+      }
 
-/* Desktop (1025px and above) */
-@media (min-width: 1025px) {
-    .container {
-        max-width: 100%;
-        width: 100%;
-        min-height: 100vh;
-        border-radius: 0;
-        flex-direction: row;
-        padding: 2rem;
-        justify-content: center;
-    }
-    .content {
-        flex: 1;
-        max-width: 600px;
-        text-align: center;
-        padding-right: 2rem;
-        align-items: center;
-    }
-    .car-image {
-        flex: 1;
-        max-width: 45%;
-        margin: 0;
-    }
-    .button, .phone {
-        width: auto;
-        min-width: 200px;
-        display: inline-block;
-        margin: 0.5rem;
-    }
-    .social {
-        justify-content: center;
-    }
-    .content h1 {
-        font-size: 3.5rem;
-    }
-    .content p {
-        font-size: 1.25rem;
-    }
-    .subtext {
-        font-size: 1rem;
-    }
-    /* .header was hidden here - REMOVED */
-    .footer {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        background: none;
-        padding: 0;
-        width: auto;
-        border-radius: 0;
-    }
-    .footer button {
-        color: white;
-    }
-}
+      .content h1 {
+        font-size: 3rem;
+      }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #1e3a8a;
-  z-index: 100;
-  padding: 1rem 1.25rem;
-}
-    </style>
+      .content p {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-        <div class="header">
-             <div class="container">
-            <div class="logo">🚗 DRIVEPRO</div>
-            <button class="menu-btn" aria-label="Open menu">☰</button>
-            <div class="nav-drawer">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-            </div>
+
+  <div class="header">
+    <div class="logo">🚗 DRIVEPRO</div>
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+    <div class="nav-drawer">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <h1>Affordable<br>driving lessons</h1>
+      <p>Book online, or call to speak with us.</p>
+      <img src="https://via.placeholder.com/600x300?text=Driving+Lesson+Car" alt="Driving Lesson Car" class="car-image">
+      <a href="#" class="button">BOOK NOW</a>
+      <p class="subtext">Grab your spot in seconds.</p>
+      <a href="tel:01234567890" class="phone">01234 567 890</a>
+
+      <section style="padding: 2rem 1rem; color: white; text-align: center; width: 100%;">
+        <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">Our Lesson Packages</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+          <div style="background: #3b82f6; padding: 1rem; border-radius: 1rem; width: 280px;">
+            <h3 style="margin-bottom: 0.5rem;">Single Lesson</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Perfect for brushing up or trying us out.</p>
+            <strong style="font-size: 1.2rem;">£35/hr</strong>
+          </div>
+          <div style="background: #10b981; padding: 1rem; border-radius: 1rem; width: 280px;">
+            <h3 style="margin-bottom: 0.5rem;">10-Lesson Bundle</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Best value for consistent progress.</p>
+            <strong style="font-size: 1.2rem;">£320</strong>
+          </div>
+          <div style="background: #f59e0b; padding: 1rem; border-radius: 1rem; width: 280px;">
+            <h3 style="margin-bottom: 0.5rem;">Intensive Course</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Get test-ready in just 2 weeks.</p>
+            <strong style="font-size: 1.2rem;">From £699</strong>
+          </div>
         </div>
+      </section>
 
-        <div class="content">
-            <h1>Affordable<br>driving lessons</h1>
-            <p>Book online, or call to speak with us.</p>
-            <img src="https://via.placeholder.com/600x300?text=Driving+Lesson+Car" alt="Driving Lesson Car" class="car-image">
-            <a href="#" class="button">BOOK NOW</a>
-            <p class="subtext">Grab your spot in seconds.</p>
-            <a href="tel:01234567890" class="phone">01234 567 890</a>
+      <div class="social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </div>
 
-            <!-- Lesson Packages Section -->
-            <section style="padding: 2rem 1rem; color: white; text-align: center; width: 100%;">
-                <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">Our Lesson Packages</h2>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-                    <div style="background: #3b82f6; padding: 1rem; border-radius: 1rem; width: 280px;">
-                        <h3 style="margin-bottom: 0.5rem;">Single Lesson</h3>
-                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Perfect for brushing up or trying us out.</p>
-                        <strong style="font-size: 1.2rem;">£35/hr</strong>
-                    </div>
-                    <div style="background: #10b981; padding: 1rem; border-radius: 1rem; width: 280px;">
-                        <h3 style="margin-bottom: 0.5rem;">10-Lesson Bundle</h3>
-                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Best value for consistent progress.</p>
-                        <strong style="font-size: 1.2rem;">£320</strong>
-                    </div>
-                    <div style="background: #f59e0b; padding: 1rem; border-radius: 1rem; width: 280px;">
-                        <h3 style="margin-bottom: 0.5rem;">Intensive Course</h3>
-                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Get test-ready in just 2 weeks.</p>
-                        <strong style="font-size: 1.2rem;">From £699</strong>
-                    </div>
-                </div>
-            </section>
-            
-            
-            <div class="social">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const navDrawer = document.querySelector('.nav-drawer');
 
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navDrawer.classList.toggle('active');
+    });
 
-    <script>
-             const menuBtn = document.querySelector('.menu-btn');
-        const navDrawer = document.querySelector('.nav-drawer');
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.header')) {
+        navDrawer.classList.remove('active');
+      }
+    });
 
-        // Toggle drawer on button click
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navDrawer.classList.toggle('active');
-        });
+    navDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navDrawer.classList.remove('active');
+      });
+    });
+  </script>
 
-        // Close when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.header')) {
-                navDrawer.classList.remove('active');
-            }
-        });
-
-        // Close on nav link click
-        navDrawer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navDrawer.classList.remove('active');
-            });
-        });
-    </script>
 </body>
 </html>
