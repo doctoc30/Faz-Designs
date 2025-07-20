@@ -14,7 +14,7 @@
         }
 
         body {
-            background-color: #f5f1e9;
+            background-color: #1e3a8a; /* Set body background to match container for full-width effect */
             min-height: 100vh;
             margin: 0;
             padding: 0;
@@ -202,9 +202,12 @@
                 width: 100%;
                 border-radius: 0;
                 margin: 0;
+                min-height: 100vh; /* Make container full height on mobile */
+                justify-content: space-between; /* Distribute content top to bottom */
             }
             body {
                 align-items: flex-start; /* Align to top in mobile to avoid large empty space */
+                background-color: #1e3a8a; /* Ensure body is dark blue on mobile */
             }
             .content h1 {
                 font-size: 1.5rem;
@@ -225,6 +228,8 @@
         @media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
             .container {
                 max-width: 500px;
+                min-height: 80vh; /* Adjust height for tablet portrait */
+                justify-content: space-between;
             }
             .content h1 {
                 font-size: 2.2rem;
@@ -240,10 +245,14 @@
         /* Tablet Landscape (481px to 1024px) */
         @media (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
             .container {
-                max-width: 90%; /* Allow container to take more width */
+                max-width: 100%; /* Allow container to take full width */
+                width: 100%; /* Ensure it fills the width */
+                min-height: 100vh; /* Ensure container fills viewport height */
+                border-radius: 0; /* Remove border-radius in full screen landscape */
                 flex-direction: row; /* Arrange items in a row */
                 padding: 1.5rem; /* Add more padding for spacing */
                 align-items: center; /* Center items vertically */
+                justify-content: center; /* Center content horizontally within the container */
             }
             .content {
                 flex: 1; /* Allow content to take available space */
@@ -274,8 +283,6 @@
                 justify-content: flex-start; /* Align social icons to the left */
             }
             .header {
-                /* Consider keeping the header visible or redesigning it for landscape if needed. */
-                /* For now, keeping it as is, but could be adjusted for larger screens. */
                 display: none; /* Hide header for this specific landscape range as per original desktop behavior logic */
             }
             .footer {
@@ -295,14 +302,18 @@
         /* Desktop (1025px and above) */
         @media (min-width: 1025px) {
             .container {
-                max-width: 960px; /* Increased max-width for desktop */
+                max-width: 100%; /* Allow container to take full width */
+                width: 100%; /* Ensure it fills the width */
+                min-height: 100vh; /* Ensure container fills viewport height */
+                border-radius: 0; /* Remove border-radius in full screen desktop */
                 flex-direction: row; /* Arrange items in a row */
                 padding: 2rem;
-                justify-content: space-between; /* Distribute space between content and image */
+                justify-content: center; /* Center content horizontally within the container */
                 align-items: center;
             }
             .content {
                 flex: 1;
+                max-width: 600px; /* Limit content width for readability on very large screens */
                 text-align: left;
                 padding-right: 2rem;
                 align-items: flex-start;
@@ -351,7 +362,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo"> DRIVEPRO</div>
+            <div class="logo">🚗 DRIVEPRO</div>
             <button class="menu-btn" aria-label="Open menu">☰</button>
             <div class="nav-drawer">
                 <a href="#">Home</a>
