@@ -18,68 +18,70 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 1rem;
         }
 
         .container {
             width: 100%;
             max-width: 400px;
             background-color: #1e3a8a;
-            border-radius: 20px;
+            border-radius: 1.25rem;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 1rem 1.25rem;
             color: white;
         }
 
         .header .logo {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
         .header .menu {
-            font-size: 24px;
+            font-size: 1.5rem;
         }
 
         .content {
-            padding: 20px;
+            padding: 1.25rem;
             color: white;
             text-align: center;
         }
 
         .content h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 0.625rem;
+            line-height: 1.2;
         }
 
         .content p {
-            font-size: 16px;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .car-image {
             width: 100%;
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
         }
 
         .button {
             display: block;
             width: 100%;
-            padding: 15px;
+            padding: 0.9375rem;
             background-color: #dc2626;
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: bold;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            border-radius: 0.625rem;
+            margin-bottom: 0.625rem;
+            transition: background-color 0.3s;
         }
 
         .button:hover {
@@ -87,21 +89,22 @@
         }
 
         .subtext {
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
         }
 
         .phone {
             display: block;
             width: 100%;
-            padding: 15px;
+            padding: 0.9375rem;
             background-color: #3b82f6;
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: bold;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            border-radius: 0.625rem;
+            margin-bottom: 1.25rem;
+            transition: background-color 0.3s;
         }
 
         .phone:hover {
@@ -111,33 +114,67 @@
         .social {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 0.9375rem;
+            margin-bottom: 1.25rem;
         }
 
         .social a {
             color: white;
-            font-size: 24px;
+            font-size: 1.5rem;
+            text-decoration: none;
         }
 
         .footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 0.625rem 1.25rem;
             background-color: #f5f1e9;
         }
 
         .footer button {
             background: none;
             border: none;
-            font-size: 20px;
+            font-size: 1.25rem;
             cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .footer button:hover {
+            transform: scale(1.1);
         }
 
         @media (max-width: 480px) {
             .container {
                 max-width: 100%;
+                border-radius: 0;
+            }
+            .content h1 {
+                font-size: 1.5rem;
+            }
+            .content p, .subtext {
+                font-size: 0.875rem;
+            }
+            .button, .phone {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                max-width: 90%;
+            }
+            .content h1 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .container {
+                max-width: 400px;
+            }
+            .content h1 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -168,7 +205,6 @@
     </div>
 
     <script>
-        // Simple functionality for buttons (can be expanded)
         const closeBtn = document.querySelector('.footer button:first-child');
         const refreshBtn = document.querySelector('.footer button:last-child');
 
