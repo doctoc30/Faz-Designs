@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DrivePro - Affordable Driving Lessons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
     <style>
         * {
             margin: 0;
@@ -17,6 +18,9 @@
             min-height: 100vh;
             margin: 0;
             padding: 0;
+            display: flex; /* Use flexbox for body to easily center the container */
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
@@ -24,10 +28,13 @@
             border-radius: 1.25rem;
             overflow: hidden;
             box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
+            width: 90%; /* Adjusted for better overall responsiveness */
+            max-width: 400px; /* Default max-width for smaller screens */
             margin: 1rem auto;
             position: relative;
+            display: flex; /* Make container a flex container for desktop/landscape */
+            flex-direction: column; /* Default to column for mobile */
+            align-items: center;
         }
 
         .header {
@@ -36,6 +43,7 @@
             align-items: center;
             padding: 1rem 1.25rem;
             color: white;
+            width: 100%; /* Ensure header spans full width */
         }
 
         .logo {
@@ -55,14 +63,15 @@
         .nav-drawer {
             display: none;
             position: absolute;
-            top: 100%;
-            left: 0;
+            top: 100%; /* Position below the header */
+            right: 0; /* Align to the right */
             width: 200px;
             background-color: #1e3a8a;
             color: white;
             padding: 1rem;
             z-index: 10;
             border-radius: 0 0 1.25rem 1.25rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
         }
 
         .nav-drawer.active {
@@ -81,6 +90,11 @@
             padding: 1.25rem;
             color: white;
             text-align: center;
+            flex-grow: 1; /* Allow content to grow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
         .content h1 {
@@ -95,9 +109,11 @@
         }
 
         .car-image {
-            width: 100%;
+            width: 90%; /* Adjusted for better fitting */
+            max-width: 400px; /* Max width for image */
             height: auto;
             margin-bottom: 1.25rem;
+            border-radius: 0.625rem; /* Slightly rounded corners for the image */
         }
 
         .button {
@@ -111,6 +127,8 @@
             border-radius: 0.625rem;
             margin-bottom: 0.625rem;
             transition: background-color 0.3s;
+            width: 80%; /* Make buttons take up more width on smaller screens */
+            max-width: 300px;
         }
 
         .button:hover {
@@ -133,6 +151,8 @@
             border-radius: 0.625rem;
             margin-bottom: 1.25rem;
             transition: background-color 0.3s;
+            width: 80%; /* Make buttons take up more width on smaller screens */
+            max-width: 300px;
         }
 
         .phone:hover {
@@ -144,6 +164,7 @@
             justify-content: center;
             gap: 0.9375rem;
             margin-bottom: 1.25rem;
+            width: 100%;
         }
 
         .social a {
@@ -158,6 +179,8 @@
             align-items: center;
             padding: 0.625rem 1.25rem;
             background-color: #f5f1e9;
+            width: 100%;
+            border-radius: 0 0 1.25rem 1.25rem; /* Ensure footer has rounded corners at bottom */
         }
 
         .footer button {
@@ -166,6 +189,7 @@
             font-size: 1.25rem;
             cursor: pointer;
             transition: transform 0.3s;
+            color: #1e3a8a; /* Dark blue color for footer buttons */
         }
 
         .footer button:hover {
@@ -175,9 +199,12 @@
         /* Mobile (up to 480px) */
         @media (max-width: 480px) {
             .container {
-                max-width: 100%;
+                width: 100%;
                 border-radius: 0;
                 margin: 0;
+            }
+            body {
+                align-items: flex-start; /* Align to top in mobile to avoid large empty space */
             }
             .content h1 {
                 font-size: 1.5rem;
@@ -186,90 +213,108 @@
                 font-size: 0.875rem;
             }
             .button, .phone {
-                width: 100%;
-                font-size: 1rem;
+                width: 90%; /* Increase width for better touch targets */
+                max-width: none; /* Remove max-width on mobile */
+            }
+            .car-image {
+                width: 90%;
             }
         }
 
-        /* Tablet and Landscape (481px to 1024px) */
-        @media (min-width: 481px) and (max-width: 1024px) {
+        /* Tablet Portrait (481px to 768px) */
+        @media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
             .container {
-                max-width: 90%;
+                max-width: 500px;
             }
-            .content {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+            .content h1 {
+                font-size: 2.2rem;
+            }
+            .content p {
+                font-size: 1.1rem;
             }
             .button, .phone {
-                width: auto;
-                min-width: 200px;
+                width: 70%;
+            }
+        }
+
+        /* Tablet Landscape (481px to 1024px) */
+        @media (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
+            .container {
+                max-width: 90%; /* Allow container to take more width */
+                flex-direction: row; /* Arrange items in a row */
+                padding: 1.5rem; /* Add more padding for spacing */
+                align-items: center; /* Center items vertically */
+            }
+            .content {
+                flex: 1; /* Allow content to take available space */
+                text-align: left; /* Align text to the left */
+                padding-right: 1.5rem; /* Space between content and image */
+                align-items: flex-start; /* Align content elements to the start */
             }
             .car-image {
-                max-width: 400px;
+                flex: 1; /* Allow image to take available space */
+                max-width: 45%; /* Control image size */
+                margin: 0; /* Remove margin-bottom */
+            }
+            .button, .phone {
+                width: auto; /* Revert to auto width */
+                min-width: 180px; /* Minimum width for buttons */
+                margin-right: 1rem; /* Space between buttons */
+            }
+            .button + .phone { /* Apply margin to the phone button if it follows a book now button */
+                margin-top: 0;
             }
             .content h1 {
                 font-size: 2.5rem;
             }
             .content p {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
             }
-            @media (orientation: landscape) {
-                .container {
-                    max-width: 100%;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    padding: 1rem;
-                }
-                .content {
-                    flex: 1;
-                    text-align: left;
-                    padding-right: 1rem;
-                }
-                .car-image {
-                    flex: 1;
-                    max-width: 50%;
-                    margin: 0;
-                }
-                .button, .phone {
-                    width: auto;
-                    min-width: 150px;
-                }
-                .content h1 {
-                    font-size: 2rem;
-                }
-                .content p {
-                    font-size: 1rem;
-                }
-                .social {
-                    justify-content: flex-start;
-                }
+            .social {
+                justify-content: flex-start; /* Align social icons to the left */
+            }
+            .header {
+                /* Consider keeping the header visible or redesigning it for landscape if needed. */
+                /* For now, keeping it as is, but could be adjusted for larger screens. */
+                display: none; /* Hide header for this specific landscape range as per original desktop behavior logic */
+            }
+            .footer {
+                position: absolute; /* Position footer absolutely */
+                bottom: 1rem;
+                right: 1rem;
+                background: none; /* Make footer background transparent */
+                padding: 0;
+                width: auto;
+                border-radius: 0;
+            }
+            .footer button {
+                color: white; /* Make footer buttons white */
             }
         }
 
         /* Desktop (1025px and above) */
         @media (min-width: 1025px) {
             .container {
-                max-width: 800px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
+                max-width: 960px; /* Increased max-width for desktop */
+                flex-direction: row; /* Arrange items in a row */
                 padding: 2rem;
+                justify-content: space-between; /* Distribute space between content and image */
+                align-items: center;
             }
             .content {
                 flex: 1;
                 text-align: left;
                 padding-right: 2rem;
+                align-items: flex-start;
             }
             .car-image {
                 flex: 1;
-                max-width: 50%;
+                max-width: 45%; /* Control image size */
                 margin: 0;
             }
             .button, .phone {
                 width: auto;
-                min-width: 250px;
+                min-width: 200px; /* Adjusted min-width for desktop buttons */
                 display: inline-block;
                 margin-right: 1rem;
             }
@@ -277,21 +322,28 @@
                 justify-content: flex-start;
             }
             .content h1 {
-                font-size: 3rem;
+                font-size: 3.5rem; /* Larger font size for desktop heading */
             }
             .content p {
-                font-size: 1.5rem;
+                font-size: 1.25rem; /* Larger font size for desktop paragraph */
             }
             .subtext {
                 font-size: 1rem;
             }
             .header {
-                display: none;
+                display: none; /* Hide header on desktop as per original logic */
             }
             .footer {
                 position: absolute;
                 bottom: 1rem;
                 right: 1rem;
+                background: none;
+                padding: 0;
+                width: auto;
+                border-radius: 0;
+            }
+            .footer button {
+                color: white;
             }
         }
     </style>
@@ -299,8 +351,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🚗 DRIVEPRO</div>
-            <button class="menu-btn">☰</button>
+            <div class="logo"> DRIVEPRO</div>
+            <button class="menu-btn" aria-label="Open menu">☰</button>
             <div class="nav-drawer">
                 <a href="#">Home</a>
                 <a href="#">About</a>
@@ -310,7 +362,7 @@
         <div class="content">
             <h1>Affordable<br>driving lessons</h1>
             <p>Book online, or call to speak with us.</p>
-            <img src="https://via.placeholder.com/300x150?text=Car+Image" alt="Driving Lesson Car" class="car-image">
+            <img src="https://via.placeholder.com/600x300?text=Driving+Lesson+Car" alt="Driving Lesson Car" class="car-image">
             <a href="#" class="button">BOOK NOW</a>
             <p class="subtext">Grab your spot in seconds.</p>
             <a href="tel:01234567890" class="phone">01234 567 890</a>
@@ -321,8 +373,8 @@
             </div>
         </div>
         <div class="footer">
-            <button>×</button>
-            <button>↻</button>
+            <button aria-label="Close site">×</button>
+            <button aria-label="Refresh page">↻</button>
         </div>
     </div>
 
@@ -330,7 +382,9 @@
         const menuBtn = document.querySelector('.menu-btn');
         const navDrawer = document.querySelector('.nav-drawer');
 
-        menuBtn.addEventListener('click', () => {
+        // Toggle navigation drawer on menu button click
+        menuBtn.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent click from bubbling up to document and closing drawer immediately
             navDrawer.classList.toggle('active');
         });
 
@@ -345,12 +399,12 @@
             location.reload();
         });
 
+        // Close nav drawer if clicked outside of header or nav drawer
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.header')) {
+            if (!e.target.closest('.header') && !e.target.closest('.nav-drawer')) {
                 navDrawer.classList.remove('active');
             }
         });
     </script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
