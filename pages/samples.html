@@ -1,272 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Golden Residence - [Agency Name] Premium Real Estate</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driving School</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #003f4f;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #003f4f;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .logo i {
+      margin-right: 0.5rem;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 1.5rem;
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      margin: 0.5rem 0 1rem;
+      color: #cde9ec;
+    }
+
+    .hero button {
+      background: #01292d;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .callback-box {
+      background: #45c5cd;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border-radius: 10px;
+      max-width: 300px;
+    }
+
+    .callback-box h3 {
+      margin-top: 0;
+      color: black;
+    }
+
+    .callback-box input {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .callback-box button {
+      width: 100%;
+      background: #003f4f;
+      color: white;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 1.5rem 0;
+      background: #004f5f;
+      flex-wrap: wrap;
+    }
+
+    .feature {
+      text-align: center;
+      margin: 1rem;
+      width: 120px;
+    }
+
+    .feature i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature h4 {
+      margin: 0.3rem 0;
+    }
+
+    .feature p {
+      font-size: 0.75rem;
+      color: #a0d1d4;
+    }
+
+    .services-header {
+      background: #004f5f;
+      padding: 1rem;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+      background: #004f5f;
+    }
+
+    .social-icons a {
+      color: white;
+      margin-left: 1rem;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .feature {
+        width: 100px;
+        margin: 0.5rem;
+      }
+
+      .callback-box {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      DRIVING SCHOOL
+    </div>
+    <div class="hamburger">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </header>
 
-    <header class="main-header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="/">[Agency Name]<span class="gold-text">.com</span></a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#" class="nav-link">Buy</a></li>
-                    <li><a href="#" class="nav-link">Sell</a></li>
-                    <li><a href="#" class="nav-link">Rent</a></li>
-                    <li><a href="#" class="nav-link">Agents</a></li>
-                    <li><a href="#" class="nav-link">About Us</a></li>
-                    <li><a href="#" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="header-actions">
-                <button class="icon-button"><i class="fas fa-search gold-text"></i></button>
-                <button class="icon-button"><i class="fas fa-heart gold-text"></i></button>
-                <button class="menu-toggle"><i class="fas fa-bars gold-text"></i></button>
-            </div>
-        </div>
-    </header>
+  <section class="hero">
+    <h1>Learn to Drive</h1>
+    <p>Start your driving journey today</p>
+    <button>BOOK NOW</button>
 
-    <main class="property-page-main">
-        <section class="hero-gallery">
-            <div class="gallery-container">
-                <img src="images/property-hero-1.jpg" alt="Luxury Property Exterior" class="active">
-                <img src="images/property-hero-2.jpg" alt="Luxury Living Room">
-                <img src="images/property-hero-3.jpg" alt="Luxury Bedroom">
-                <img src="images/property-hero-4.jpg" alt="Luxury Kitchen">
-                </div>
-            <div class="gallery-controls">
-                <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
-                <div class="gallery-thumbnails">
-                    <img src="images/property-hero-1-thumb.jpg" data-index="0" class="active">
-                    <img src="images/property-hero-2-thumb.jpg" data-index="1">
-                    <img src="images/property-hero-3-thumb.jpg" data-index="2">
-                    <img src="images/property-hero-4-thumb.jpg" data-index="3">
-                    </div>
-            </div>
-            <div class="view-options">
-                <button class="gold-button"><i class="fas fa-play-circle"></i> Video Tour</button>
-                <button class="gold-button"><i class="fas fa-vr-cardboard"></i> 3D Tour</button>
-                <button class="gold-button"><i class="fas fa-map-marked-alt"></i> Aerial View</button>
-            </div>
-        </section>
+    <div class="callback-box">
+      <h3>Request Callback</h3>
+      <input type="text" placeholder="Full Name" />
+      <input type="text" placeholder="Phone Number" />
+      <button>Request</button>
+    </div>
+  </section>
 
-        <section class="property-overview">
-            <div class="overview-header">
-                <h1 class="property-title">The Golden Residence</h1>
-                <p class="property-address">123 Exclusive Lane, Mayfair, London W1J 7QJ</p>
-                <p class="property-price">£50,000,000</p>
-            </div>
-            <div class="key-features">
-                <div class="feature-item">
-                    <i class="fas fa-bed gold-text"></i>
-                    <span>6 Beds</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-bath gold-text"></i>
-                    <span>8 Baths</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-ruler-combined gold-text"></i>
-                    <span>12,500 sqft</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-car gold-text"></i>
-                    <span>4 Garages</span>
-                </div>
-            </div>
+  <section class="features">
+    <div class="feature">
+      <i class="fa-solid fa-calendar-check"></i>
+      <h4>Flexible Scheduling</h4>
+      <p>Children Przeozing</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h4>Experienced Instructors</h4>
+      <p>Intențe Sorrecte</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid fa-id-badge"></i>
+      <h4>Practical Training</h4>
+      <p>Doostorwork</p>
+    </div>
+  </section>
 
-            <div class="property-actions-sticky">
-                <div class="price-mobile">£50,000,000</div>
-                <button class="gold-button full-width-mobile">Enquire Now</button>
-                <button class="transparent-button full-width-mobile"><i class="fas fa-calendar-alt"></i> Schedule Viewing</button>
-                <button class="icon-button"><i class="fas fa-share-alt"></i></button>
-                <button class="icon-button"><i class="fas fa-heart"></i></button>
-            </div>
+  <div class="services-header">
+    Our Services
+  </div>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
 
-        </section>
+  <!-- Optional Chat & Call Buttons -->
+  <div style="position: fixed; bottom: 90px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000;">
+    <a href="tel:+123456789" style="background: #004f5f; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="#" style="background: #004f5f; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+      <i class="fa-regular fa-comment-dots"></i>
+    </a>
+  </div>
 
-        <section class="property-details-section">
-            <div class="details-content">
-                <div class="description-area">
-                    <h2>Property Description</h2>
-                    <p>Nestled in the heart of Mayfair, The Golden Residence is an architectural masterpiece, offering unparalleled luxury and sophistication. This magnificent property seamlessly blends classic Georgian elegance with contemporary design, providing an exclusive urban sanctuary. Boasting expansive living spaces, bespoke finishes, and panoramic views of the city, every detail has been meticulously curated for the discerning homeowner.</p>
-                    <p>Experience grand entertaining in the triple-volume reception rooms, unwind in the private spa and wellness centre, or enjoy cinematic experiences in your state-of-the-art home theatre. The residence features a gourmet chef's kitchen, multiple entertaining terraces, and a meticulously landscaped private garden, perfect for secluded relaxation or lavish gatherings. With a dedicated team of staff and cutting-edge smart home technology, The Golden Residence offers a lifestyle of ultimate comfort, privacy, and prestige.</p>
-                    <button class="read-more-button gold-text">Read More <i class="fas fa-chevron-down"></i></button>
-                </div>
+  <!-- Scroll-to-top & Share Button (mocked as per screenshot) -->
+  <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999;">
+    <div style="background: white; padding: 0.6rem 1.2rem; border-radius: 40px; display: flex; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+      <i class="fa-solid fa-xmark" style="margin-right: 1rem; color: #333;"></i>
+      <i class="fa-solid fa-arrow-up-from-bracket" style="color: #333;"></i>
+    </div>
+  </div>
 
-                <div class="features-amenities">
-                    <h2>Features & Amenities</h2>
-                    <ul class="features-grid">
-                        <li><i class="fas fa-swimming-pool gold-text"></i> Indoor Heated Pool</li>
-                        <li><i class="fas fa-dumbbell gold-text"></i> Private Gym</li>
-                        <li><i class="fas fa-wine-bottle gold-text"></i> Wine Cellar</li>
-                        <li><i class="fas fa-film gold-text"></i> Home Cinema</li>
-                        <li><i class="fas fa-wifi gold-text"></i> Smart Home System</li>
-                        <li><i class="fas fa-leaf gold-text"></i> Landscaped Garden</li>
-                        <li><i class="fas fa-shield-alt gold-text"></i> 24/7 Security</li>
-                        <li><i class="fas fa-concierge-bell gold-text"></i> Concierge Service</li>
-                    </ul>
-                </div>
-
-                <div class="floor-plans">
-                    <h2>Floor Plans</h2>
-                    <div class="plan-tabs">
-                        <button class="plan-tab active" data-plan="ground">Ground Floor</button>
-                        <button class="plan-tab" data-plan="first">First Floor</button>
-                        <button class="plan-tab" data-plan="basement">Basement</button>
-                    </div>
-                    <img src="images/floor-plan-ground.jpg" alt="Ground Floor Plan" class="active-plan" id="ground-plan">
-                    <img src="images/floor-plan-first.jpg" alt="First Floor Plan" id="first-plan">
-                    <img src="images/floor-plan-basement.jpg" alt="Basement Floor Plan" id="basement-plan">
-                </div>
-
-                <div class="location-map">
-                    <h2>Location</h2>
-                    <p class="location-text">Mayfair, London W1J 7QJ</p>
-                    <div id="map" style="height: 400px;">
-                        <img src="images/map-placeholder.jpg" alt="Map of Mayfair" style="width:100%; height:100%; object-fit: cover;">
-                    </div>
-                    <div class="nearby-places">
-                        <h3>Nearby Attractions:</h3>
-                        <ul>
-                            <li><i class="fas fa-hotel gold-text"></i> The Ritz London (0.5 miles)</li>
-                            <li><i class="fas fa-shopping-bag gold-text"></i> Bond Street Shopping (0.3 miles)</li>
-                            <li><i class="fas fa-museum gold-text"></i> Royal Academy of Arts (0.6 miles)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <aside class="agent-contact-sidebar">
-                <div class="agent-card">
-                    <h3>Your Dedicated Agent</h3>
-                    <img src="images/agent-photo.jpg" alt="Agent Name" class="agent-photo">
-                    <p class="agent-name">Mr. Alistair Finch</p>
-                    <p class="agent-title">Head of Luxury Sales</p>
-                    <div class="agent-contact-info">
-                        <a href="tel:+442012345678" class="contact-link"><i class="fas fa-phone-alt gold-text"></i> +44 20 1234 5678</a>
-                        <a href="mailto:alistair.finch@agency.com" class="contact-link"><i class="fas fa-envelope gold-text"></i> alistair.finch@agency.com</a>
-                    </div>
-                    <button class="gold-button full-width">Message Alistair</button>
-                </div>
-
-                <div class="request-viewing-form">
-                    <h3>Request a Viewing</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Your Phone (Optional)</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" name="message" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="gold-button full-width">Send Request</button>
-                    </form>
-                </div>
-            </aside>
-        </section>
-
-        <section class="related-properties">
-            <h2>Similar Exceptional Residences</h2>
-            <div class="property-grid">
-                <div class="property-card">
-                    <img src="images/related-prop-1.jpg" alt="Related Property 1">
-                    <div class="card-info">
-                        <h3>The Regent Penthouse</h3>
-                        <p>Kensington, London</p>
-                        <p class="price">£35,000,000</p>
-                        <div class="card-features">
-                            <span>4 <i class="fas fa-bed"></i></span>
-                            <span>5 <i class="fas fa-bath"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <img src="images/related-prop-2.jpg" alt="Related Property 2">
-                    <div class="card-info">
-                        <h3>Hyde Park Villa</h3>
-                        <p>Knightsbridge, London</p>
-                        <p class="price">£42,000,000</p>
-                        <div class="card-features">
-                            <span>7 <i class="fas fa-bed"></i></span>
-                            <span>7 <i class="fas fa-bath"></i></span>
-                        </div>
-                    </div>
-                </div>
-                </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <a href="/">[Agency Name]<span class="gold-text">.com</span></a>
-            </div>
-            <div class="footer-nav-columns">
-                <div class="footer-column">
-                    <h4>Properties</h4>
-                    <ul>
-                        <li><a href="#">Houses</a></li>
-                        <li><a href="#">Apartments</a></li>
-                        <li><a href="#">Commercial</a></li>
-                        <li><a href="#">New Developments</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Agency</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Agents</a></li>
-                        <li><a href="#">Client Testimonials</a></li>
-                        <li><a href="#">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Blog & Insights</a></li>
-                        <li><a href="#">Market Reports</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p><i class="fas fa-map-marker-alt gold-text"></i> 100 Regent Street, London W1B 5FE</p>
-                <p><i class="fas fa-phone-alt gold-text"></i> +44 20 9876 5432</p>
-                <p><i class="fas fa-envelope gold-text"></i> info@agency.com</p>
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 [Agency Name]. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
-
