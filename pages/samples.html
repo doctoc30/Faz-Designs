@@ -391,6 +391,20 @@
     height: auto;
   }
 }
+
+
+    .hero-text {
+  font-size: 3rem; /* default size for desktop */
+  margin-top: 5vh;  /* default spacing from top */
+}
+
+/* Portrait mode adjustment */
+@media screen and (orientation: portrait) {
+  .hero-text {
+    font-size: 6rem;     /* double the size */
+    margin-top: 20vh;    /* push text further down */
+  }
+}
   </style>
 </head>
 <body>
