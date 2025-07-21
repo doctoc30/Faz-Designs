@@ -1,217 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Driving School</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2e0b1e8b0.js" crossorigin="anonymous"></script>
-  <style>
-    :root {
-      --primary: #ec4899;
-      --accent: #a21caf;
-      --text: #111827;
-      --light: #fce7f3;
-      --white: #fff;
-      --font: 'Inter', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
 
-    body {
-      font-family: var(--font);
-      background: var(--primary);
-      color: var(--text);
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+        /* Header */
+        header {
+            background-color: #00aaff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    header {
-      background: #000;
-      color: var(--white);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      font-size: 1rem;
-    }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
 
-    .menu-icon {
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+        .logo::before {
+            content: "🚗 ";
+        }
 
-    .hero {
-      padding: 2rem 1rem 1rem;
-      text-align: left;
-    }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-    .hero .cta-btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent);
-      color: var(--white);
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 0.5rem;
-      margin-bottom: 2rem;
-    }
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1200x400?text=Car+Dashboard') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
 
-    .hero-img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 2rem;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      padding: 0 1rem;
-      margin-bottom: 2rem;
-    }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
 
-    .card {
-      background: var(--light);
-      border-radius: 0.75rem;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
 
-    .card i {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
 
-    .card p {
-      font-weight: 600;
-    }
+        .btn {
+            background-color: #fff;
+            color: #00aaff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
 
-    .about {
-      background: #fdf2f8;
-      padding: 2rem 1rem;
-      text-align: left;
-    }
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
 
-    .about h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
+        /* Sections */
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+        }
 
-    .about p {
-      font-size: 1rem;
-      color: #444;
-    }
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #00aaff;
+        }
 
-    footer {
-      background: #fdf2f8;
-      padding: 1rem;
-      text-align: center;
-    }
+        .section p {
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
 
-    footer a {
-      margin: 0 0.5rem;
-      color: #111827;
-      text-decoration: none;
-      font-size: 1.25rem;
-    }
+        /* Courses */
+        .courses {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-    @media (min-width: 768px) {
-      .hero h1 {
-        font-size: 3.5rem;
-      }
+        .course-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            width: 200px;
+            border-radius: 5px;
+        }
 
-      .grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
+        .course-card img {
+            width: 50px;
+            height: 50px;
+        }
 
-      .hero {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 3rem;
-      }
+        /* Reviews and Contact */
+        .bottom-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-      .hero-text {
-        max-width: 50%;
-      }
+        .reviews, .contact {
+            flex: 1;
+            min-width: 200px;
+        }
 
-      .hero-img {
-        max-width: 45%;
-      }
+        .contact ul {
+            list-style: none;
+            text-align: left;
+        }
 
-      .about {
-        padding: 3rem;
-      }
-    }
-  </style>
+        .contact ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .courses {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .bottom-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="logo">DRIVING SCHOOL</div>
+        <nav>
+            <a href="#about">ABOUT</a>
+            <a href="#courses">COURSES</a>
+            <a href="#reviews">REVIEWS</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
 
-  <header>
-    <div id="time">10:49</div>
-    <div class="menu-icon"><i class="fas fa-bars"></i></div>
-  </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>LEARN TO DRIVE</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <a href="#get-started" class="btn">GET STARTED</a>
+        </div>
+    </section>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Learn to<br>Drive</h1>
-      <a href="#" class="cta-btn">CONTACT US</a>
-    </div>
-    <img src="https://via.placeholder.com/400x200.png?text=Driving+Car" alt="Driving Car" class="hero-img">
-  </section>
+    <section class="section" id="about">
+        <h2>ABOUT US</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </section>
 
-  <section class="grid">
-    <div class="card">
-      <i class="fas fa-calendar-alt"></i>
-      <p>Programs</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-car-side"></i>
-      <p>Our Vehicles</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-user"></i>
-      <p>Instructors</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-id-card"></i>
-      <p>Licensing</p>
-    </div>
-  </section>
+    <section class="section" id="courses">
+        <h2>OUR COURSES</h2>
+        <div class="courses">
+            <div class="course-card">
+                <img src="https://via.placeholder.com/50?text=Car" alt="Car">
+                <p>Lorem ipsum</p>
+                <p>Lorem ipsum dolor</p>
+            </div>
+            <div class="course-card">
+                <img src="https://via.placeholder.com/50?text=Sign" alt="Sign">
+                <p>Lorem ipsum</p>
+                <p>Lorem ipsum dolor</p>
+            </div>
+            <div class="course-card">
+                <img src="https://via.placeholder.com/50?text=Checklist" alt="Checklist">
+                <p>Lorem ipsum</p>
+                <p>Lorem ipsum dolor</p>
+            </div>
+            <div class="course-card">
+                <img src="https://via.placeholder.com/50?text=License" alt="License">
+                <p>Lorem ipsum</p>
+                <p>Lorem ipsum dolor</p>
+            </div>
+        </div>
+    </section>
 
-  <section class="about">
-    <h2>ABOUT US</h2>
-    <p>We offer comprehensive driving courses to suit all experience levels.</p>
-  </section>
+    <section class="section bottom-section">
+        <div class="reviews" id="reviews">
+            <h2>REVIEWS</h2>
+            <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</p>
+            <p>— John Doe</p>
+        </div>
+        <div class="contact" id="contact">
+            <h2>CONTACT US</h2>
+            <ul>
+                <li>1234 Elm St, Springfield, IL 62701</li>
+                <li>(123) 456-2830</li>
+                <li><a href="mailto:info@drivingschool.com">info@drivingschool.com</a></li>
+            </ul>
+        </div>
+    </section>
 
-  <footer>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-  </footer>
-
-  <script>
-    // Set static time as in design
-    document.getElementById("time").textContent = "10:49";
-  </script>
-
+    <script>
+        // Minimal JavaScript for smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
