@@ -2,18 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Driving School</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gold & White Plumber</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2e0b1e8b0.js" crossorigin="anonymous"></script>
   <style>
     :root {
-      --primary: #ec4899;
-      --accent: #a21caf;
-      --text: #111827;
-      --light: #fce7f3;
-      --white: #fff;
-      --font: 'Inter', sans-serif;
+      --gold: #d4af37;
+      --white: #ffffff;
+      --black: #111111;
     }
 
     * {
@@ -23,142 +19,177 @@
     }
 
     body {
-      font-family: var(--font);
-      background: var(--primary);
-      color: var(--text);
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
     }
 
     header {
-      background: #000;
-      color: var(--white);
+      background: var(--white);
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
-      font-size: 1rem;
+      padding: 1rem 2rem;
     }
 
-    .menu-icon {
+    header h1 {
+      color: var(--gold);
       font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
       cursor: pointer;
     }
 
+    .menu-toggle span {
+      height: 3px;
+      background: var(--black);
+      margin: 4px 0;
+      width: 25px;
+    }
+
     .hero {
-      padding: 2rem 1rem 1rem;
-      text-align: left;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-
-    .hero .cta-btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent);
-      color: var(--white);
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .hero-img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 2rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      padding: 0 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .card {
-      background: var(--light);
-      border-radius: 0.75rem;
-      padding: 1rem;
+      padding: 4rem 2rem;
+      background: linear-gradient(to right, var(--white), #fff8e1);
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .card i {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary);
+    .hero h2 {
+      font-size: 2.5rem;
+      color: var(--gold);
     }
 
-    .card p {
-      font-weight: 600;
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
     }
 
-    .about {
-      background: #fdf2f8;
-      padding: 2rem 1rem;
-      text-align: left;
-    }
-
-    .about h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .about p {
+    .btn {
+      margin-top: 2rem;
+      background: var(--gold);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      cursor: pointer;
       font-size: 1rem;
-      color: #444;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #bfa234;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .services, .why-choose, .testimonials {
+      text-align: center;
+    }
+
+    .services h3, .why-choose h3, .testimonials h3, .contact h3 {
+      color: var(--gold);
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .service-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .service-card {
+      background: #fdf8e4;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 250px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .contact input, .contact textarea {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .contact button {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 0.75rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
     }
 
     footer {
-      background: #fdf2f8;
-      padding: 1rem;
       text-align: center;
+      padding: 2rem;
+      background: #f5f5f5;
+      color: #444;
+      font-size: 0.9rem;
     }
 
-    footer a {
-      margin: 0 0.5rem;
-      color: #111827;
-      text-decoration: none;
-      font-size: 1.25rem;
-    }
-
-    @media (min-width: 768px) {
-      .hero h1 {
-        font-size: 3.5rem;
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: var(--white);
+        position: absolute;
+        top: 60px;
+        right: 2rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 1rem;
       }
 
-      .grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .hero {
+      nav.show {
         display: flex;
-        flex-direction: row;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .service-grid {
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        padding: 3rem;
       }
 
-      .hero-text {
-        max-width: 50%;
-      }
-
-      .hero-img {
-        max-width: 45%;
-      }
-
-      .about {
-        padding: 3rem;
+      .hero h2 {
+        font-size: 2rem;
       }
     }
   </style>
@@ -166,52 +197,57 @@
 <body>
 
   <header>
-    <div id="time">10:49</div>
-    <div class="menu-icon"><i class="fas fa-bars"></i></div>
+    <h1>Gold Plumber</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="navbar">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
   <section class="hero">
-    <div class="hero-text">
-      <h1>Learn to<br>Drive</h1>
-      <a href="#" class="cta-btn">CONTACT US</a>
-    </div>
-    <img src="https://via.placeholder.com/400x200.png?text=Driving+Car" alt="Driving Car" class="hero-img">
+    <h2>Premium Plumbing Services</h2>
+    <p>Fast, reliable, and affordable plumbing — delivered with excellence.</p>
+    <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a Quote</button>
   </section>
 
-  <section class="grid">
-    <div class="card">
-      <i class="fas fa-calendar-alt"></i>
-      <p>Programs</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-car-side"></i>
-      <p>Our Vehicles</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-user"></i>
-      <p>Instructors</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-id-card"></i>
-      <p>Licensing</p>
+  <section class="services" id="services">
+    <h3>Our Services</h3>
+    <div class="service-grid">
+      <div class="service-card">Emergency Repairs</div>
+      <div class="service-card">Leak Detection</div>
+      <div class="service-card">Bathroom Installations</div>
+      <div class="service-card">Pipe Replacements</div>
     </div>
   </section>
 
-  <section class="about">
-    <h2>ABOUT US</h2>
-    <p>We offer comprehensive driving courses to suit all experience levels.</p>
+  <section class="why-choose" id="why">
+    <h3>Why Choose Us</h3>
+    <p>✔ 24/7 Availability<br>✔ Experienced Technicians<br>✔ Transparent Pricing<br>✔ 5-Star Customer Service</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <h3>Request a Free Quote</h3>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <textarea rows="4" placeholder="Describe your issue..."></textarea>
+      <button type="submit">Send Request</button>
+    </form>
   </section>
 
   <footer>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
+    &copy; 2025 Gold Plumber. All rights reserved.
   </footer>
 
   <script>
-    // Set static time as in design
-    document.getElementById("time").textContent = "10:49";
+    function toggleMenu() {
+      document.getElementById('navbar').classList.toggle('show');
+    }
   </script>
-
 </body>
 </html>
