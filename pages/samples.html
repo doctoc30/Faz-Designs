@@ -2,478 +2,250 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DrivePro - Affordable Driving Lessons</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DrivePro Academy</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
     body {
-      background-color: #1e3a8a;
-      min-height: 100vh;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
     }
 
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #1e3a8a;
-      color: white;
-      z-index: 100;
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.25rem;
+      padding: 20px 30px;
+      background: #121212;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: bold;
     }
 
-    .menu-btn {
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      display: block;
-    }
-
-    .nav-drawer {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      width: 200px;
-      background-color: #1e3a8a;
-      color: white;
-      padding: 1rem;
-      z-index: 10;
-      border-radius: 0 0 1.25rem 1.25rem;
-      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-drawer.active {
-      display: block;
-    }
-
-    .nav-drawer a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 0.5rem 0;
-      font-size: 1rem;
-    }
-
-    .container {
-      background-color: #1e3a8a;
-      border-radius: 1.25rem;
-      overflow: hidden;
-      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 1000px;
-      margin: 7rem auto 2rem;
-      position: relative;
+    nav ul {
+      list-style: none;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      gap: 25px;
+      padding: 0;
     }
 
-    .content {
-      padding: 1.25rem;
-      color: white;
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #d8a31a, #000000);
+      color: #fff;
       text-align: center;
-      flex-grow: 1;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-button {
+      background: #fff;
+      color: #000;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .cars-section, .lead-form-section, .widgets {
+      padding: 60px 30px;
+      background: #fff;
+    }
+
+    .cars-section h2, .lead-form-section h2, .widgets h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .car-card {
+      background: #e3e3e3;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .lead-form {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      width: 100%;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
     }
 
-    .content h1 {
-      font-size: 2rem;
-      margin-bottom: 0.625rem;
-      line-height: 1.2;
-    }
-
-    .content p {
+    .lead-form input,
+    .lead-form select,
+    .lead-form textarea,
+    .lead-form button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
       font-size: 1rem;
-      margin-bottom: 1.25rem;
     }
 
-    .car-image {
-      width: 90%;
-      max-width: 600px;
-      height: auto;
-      margin-bottom: 1.25rem;
-      border-radius: 0.625rem;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 0.9375rem 2rem;
-      background-color: #dc2626;
-      color: white;
-      text-decoration: none;
-      font-size: 1.125rem;
+    .lead-form button {
+      background: #121212;
+      color: #fff;
       font-weight: bold;
-      border-radius: 0.625rem;
-      margin-bottom: 0.625rem;
-      transition: background-color 0.3s;
-      width: 80%;
-      max-width: 300px;
+      cursor: pointer;
     }
 
-    .button:hover {
-      background-color: #b91c1c;
+    .widgets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: center;
     }
 
-    .subtext {
-      font-size: 0.875rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .phone {
-      display: inline-block;
-      padding: 0.9375rem 2rem;
-      background-color: #3b82f6;
-      color: white;
-      text-decoration: none;
-      font-size: 1.125rem;
-      font-weight: bold;
-      border-radius: 0.625rem;
-      margin-bottom: 1.25rem;
-      transition: background-color 0.3s;
-      width: 80%;
-      max-width: 300px;
-    }
-
-    .phone:hover {
-      background-color: #2563eb;
-    }
-
-    .social {
+    .circle-widget {
+      background: #f0f0f0;
+      padding: 30px;
+      border-radius: 50%;
+      aspect-ratio: 1 / 1;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      gap: 0.9375rem;
-      margin-bottom: 1.25rem;
-      width: 100%;
+      align-items: center;
     }
 
-    .social a {
-      color: white;
-      font-size: 1.5rem;
+    footer {
+      background: #121212;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: #fff;
       text-decoration: none;
     }
 
-    @media (min-width: 768px) {
-      .container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem;
-        max-width: 1100px;
-      }
-
-      .content {
-        flex: 1;
-        align-items: flex-start;
-        text-align: left;
-        padding-right: 2rem;
-      }
-
-      .car-image {
-        flex: 1;
-        max-width: 45%;
-        margin: 0;
-      }
-
-      .button, .phone {
-        width: auto;
-        min-width: 180px;
-        margin: 0.5rem 0;
-      }
-
-      .content h1 {
-        font-size: 3rem;
-      }
-
-      .content p {
-        font-size: 1.2rem;
-      }
+    .floating-buttons {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
     }
 
-    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
-  }
-
-  .content {
-    width: 100%;
-    max-width: 100%;
-    align-items: center;
-    text-align: center;
-  }
-
-  .car-image {
-    max-width: 100%;
-  }
-
-  .button, .phone {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .subtext {
-    font-size: 1rem;
-  }
-}
-
-    /* Base (mobile-first) */
-.hamburger {
-  display: block;
-}
-
-.nav {
-  display: none;
-}
-
-/* Landscape tablets and desktop (show full menu, hide hamburger) */
-@media (min-width: 768px) {
-  .hamburger {
-    display: none;
-  }
-
-  .nav {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-}
-
-    .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  background-color: #1e3a8a;
-  color: white;
-  width: 100%;
-}
-
-
-    /* Basic header styling */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  background-color: #1e3a8a;
-  color: white;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  box-sizing: border-box;
-}
-
-/* Logo style */
-.logo {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-/* Nav drawer - mobile menu links */
-.nav-drawer {
-  position: fixed;
-  top: 60px; /* height of header approx */
-  right: 0;
-  background-color: #1e3a8a;
-  width: 200px;
-  display: none;
-  flex-direction: column;
-  padding: 1rem;
-  box-shadow: -2px 0 8px rgba(0,0,0,0.3);
-  box-sizing: border-box;
-}
-
-.nav-drawer.active {
-  display: flex;
-}
-
-.nav-drawer a {
-  color: white;
-  text-decoration: none;
-  margin: 0.75rem 0;
-  font-weight: 600;
-}
-
-/* Hamburger menu button */
-.menu-btn {
-  font-size: 2rem;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: block;
-}
-
-/* Default: nav links hidden, hamburger visible */
-
-/* Landscape mode: show full horizontal nav links, hide hamburger */
-@media (orientation: landscape) and (min-width: 600px) {
-  .menu-btn {
-    display: none;
-  }
-
-  .nav-drawer {
-    position: static;
-    display: flex !important; /* always show nav links */
-    flex-direction: row;
-    background: transparent;
-    width: auto;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .nav-drawer a {
-    margin: 0 1rem;
-    font-weight: 700;
-  }
-
-  .header {
-    padding: 1rem 2rem;
-  }
-}
-
-/* Adjust container top padding so content isn't hidden behind fixed header */
-.container {
-  padding-top: 70px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  box-sizing: border-box;
-}
-
-/* Center & full width h1 section in landscape */
-@media (orientation: landscape) {
-  .content > h1,
-  .content > p,
-  .content > .car-image,
-  .content > .button,
-  .content > .subtext,
-  .content > .phone {
-    max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center;
-  }
-
-  .content > .car-image {
-    display: block;
-    margin: 1rem auto;
-    max-width: 600px;
-    width: 100%;
-    height: auto;
-  }
-}
-
-
-/* Fix spacing for portrait mode */
-@media screen and (orientation: portrait) {
-  .content h1 {
-    font-size: 3.5rem;      /* bigger text on mobile */
-    margin-top: 6rem;       /* space from fixed header */
-    text-align: center;
-  }
-}
+    .floating-buttons a {
+      background: #000;
+      color: #fff;
+      padding: 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <div class="logo">🚗 DRIVEPRO</div>
-    <button class="menu-btn" aria-label="Open menu">☰</button>
-    <div class="nav-drawer">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+  <header>
+    <div class="logo">DrivePro</div>
+    <nav>
+      <ul>
+        <li><a href="#cars">Learner Cars</a></li>
+        <li><a href="#form">Book Lesson</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Ready to Hit the Road?</h1>
+    <a href="#form" class="cta-button">Book Now</a>
+  </section>
+
+  <section id="cars" class="cars-section">
+    <h2>Our Learner Vehicles</h2>
+    <div class="car-grid">
+      <div class="car-card">🚙 Toyota Yaris · Branded Wrap</div>
+      <div class="car-card">🚗 VW Polo · Dual Controls</div>
     </div>
-  </div>
+  </section>
 
-  <div class="container">
-    <div class="content">
-      <h1>Affordable<br>driving lessons</h1>
-      <p>Book online, or call to speak with us.</p>
-      <img src="https://via.placeholder.com/600x300?text=Driving+Lesson+Car" alt="Driving Lesson Car" class="car-image">
-      <a href="#" class="button">BOOK NOW</a>
-      <p class="subtext">Grab your spot in seconds.</p>
-      <a href="tel:01234567890" class="phone">01234 567 890</a>
+  <section id="form" class="lead-form-section">
+    <h2>Book a Lesson</h2>
+    <form class="lead-form">
+      <input type="text" placeholder="Full Name" />
+      <input type="email" placeholder="Email Address" />
+      <input type="tel" placeholder="Phone Number" />
+      <select>
+        <option>Transmission Type</option>
+        <option>Manual</option>
+        <option>Automatic</option>
+      </select>
+      <select>
+        <option>Preferred Location</option>
+        <option>East Hackney</option>
+        <option>Central London</option>
+        <option>Online Theory</option>
+      </select>
+      <input type="date" />
+      <textarea placeholder="Additional Notes"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
 
-      <section style="padding: 2rem 1rem; color: white; text-align: center; width: 100%;">
-        <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">Our Lesson Packages</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-          <div style="background: #3b82f6; padding: 1rem; border-radius: 1rem; width: 280px;">
-            <h3 style="margin-bottom: 0.5rem;">Single Lesson</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Perfect for brushing up or trying us out.</p>
-            <strong style="font-size: 1.2rem;">£35/hr</strong>
-          </div>
-          <div style="background: #10b981; padding: 1rem; border-radius: 1rem; width: 280px;">
-            <h3 style="margin-bottom: 0.5rem;">10-Lesson Bundle</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Best value for consistent progress.</p>
-            <strong style="font-size: 1.2rem;">£320</strong>
-          </div>
-          <div style="background: #f59e0b; padding: 1rem; border-radius: 1rem; width: 280px;">
-            <h3 style="margin-bottom: 0.5rem;">Intensive Course</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Get test-ready in just 2 weeks.</p>
-            <strong style="font-size: 1.2rem;">From £699</strong>
-          </div>
-        </div>
-      </section>
-
-      <div class="social">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+  <section class="widgets">
+    <h2>Why Choose Us?</h2>
+    <div class="widgets-grid">
+      <div class="circle-widget">
+        <h3>🚦</h3>
+        <p>95% pass first time</p>
+      </div>
+      <div class="circle-widget">
+        <h3>🧑‍🏫</h3>
+        <p>DVSA-approved instructors</p>
+      </div>
+      <div class="circle-widget">
+        <h3>📆</h3>
+        <p>Flexible scheduling</p>
       </div>
     </div>
+  </section>
+
+  <footer id="contact">
+    <div class="socials">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">TikTok</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <p>&copy; 2025 DrivePro Academy</p>
+  </footer>
+
+  <div class="floating-buttons">
+    <a href="tel:+123456789">📞</a>
+    <a href="mailto:info@drivepro.com">✉️</a>
+    <a href="#form">📝</a>
   </div>
-
-  <script>
-    const menuBtn = document.querySelector('.menu-btn');
-    const navDrawer = document.querySelector('.nav-drawer');
-
-    menuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navDrawer.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.header')) {
-        navDrawer.classList.remove('active');
-      }
-    });
-
-    navDrawer.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navDrawer.classList.remove('active');
-      });
-    });
-  </script>
 
 </body>
 </html>
