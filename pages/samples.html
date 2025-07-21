@@ -3,192 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Driving School Homepage</title>
+  <title>Driving School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0b1e8b0.js" crossorigin="anonymous"></script>
   <style>
-    /* Base Styles */
+    :root {
+      --primary: #ec4899;
+      --accent: #a21caf;
+      --text: #111827;
+      --light: #fce7f3;
+      --white: #fff;
+      --font: 'Inter', sans-serif;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f6f6f6;
-      color: #333;
+      font-family: var(--font);
+      background: var(--primary);
+      color: var(--text);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
-      background: #0d0d0d;
-      padding: 20px 30px;
+      background: #000;
+      color: var(--white);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
+      padding: 1rem;
+      font-size: 1rem;
     }
 
-    .logo {
-      color: #fff;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
+    .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
     }
 
     .hero {
-      background: linear-gradient(to right, #1a1a1a, #333333);
-      padding: 100px 20px;
-      text-align: center;
-      color: #fff;
+      padding: 2rem 1rem 1rem;
+      text-align: left;
     }
 
     .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
     }
 
-    .book-now {
-      background-color: #d8a31a;
-      color: #000;
-      padding: 14px 32px;
-      border-radius: 40px;
+    .hero .cta-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 600;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
     }
 
-    section {
-      padding: 60px 30px;
+    .hero-img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 2rem;
     }
 
-    .cars-section {
-      background-color: #fff;
-    }
-
-    .car-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 0 1rem;
+      margin-bottom: 2rem;
     }
 
-    .car-card {
-      background-color: #eaeaea;
-      padding: 20px;
-      border-radius: 10px;
+    .card {
+      background: var(--light);
+      border-radius: 0.75rem;
+      padding: 1rem;
       text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .widgets {
-      background-color: #f8f8f8;
+    .card i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
     }
 
-    .widgets-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .circle-widget {
-      background: #fff;
-      border-radius: 50%;
-      width: 180px;
-      height: 180px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      box-shadow: 0 0 12px rgba(0,0,0,0.08);
-    }
-
-    .circle-widget h3 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-    }
-
-    .lead-form-section {
-      background-color: #fff;
-    }
-
-    .lead-form {
-      display: grid;
-      gap: 15px;
-      max-width: 500px;
-      margin: auto;
-    }
-
-    .lead-form input,
-    .lead-form select,
-    .lead-form textarea,
-    .lead-form button {
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    .lead-form button {
-      background-color: #0d0d0d;
-      color: #fff;
-      cursor: pointer;
+    .card p {
       font-weight: 600;
+    }
+
+    .about {
+      background: #fdf2f8;
+      padding: 2rem 1rem;
+      text-align: left;
+    }
+
+    .about h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      font-size: 1rem;
+      color: #444;
     }
 
     footer {
-      background-color: #0d0d0d;
-      color: #fff;
-      padding: 30px 20px;
+      background: #fdf2f8;
+      padding: 1rem;
       text-align: center;
     }
 
-    .socials a {
-      color: #fff;
-      margin: 0 12px;
+    footer a {
+      margin: 0 0.5rem;
+      color: #111827;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1.25rem;
     }
 
-    .floating-buttons {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 998;
-    }
-
-    .floating-buttons a {
-      background-color: #000;
-      color: #fff;
-      padding: 14px;
-      text-decoration: none;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    @media(max-width: 768px) {
+    @media (min-width: 768px) {
       .hero h1 {
-        font-size: 2rem;
+        font-size: 3.5rem;
       }
-      nav ul {
-        flex-direction: column;
-        gap: 15px;
+
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 3rem;
+      }
+
+      .hero-text {
+        max-width: 50%;
+      }
+
+      .hero-img {
+        max-width: 45%;
+      }
+
+      .about {
+        padding: 3rem;
       }
     }
   </style>
@@ -196,85 +166,52 @@
 <body>
 
   <header>
-    <div class="logo">DrivePro</div>
-    <nav>
-      <ul>
-        <li><a href="#cars">Vehicles</a></li>
-        <li><a href="#form">Book</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div id="time">10:49</div>
+    <div class="menu-icon"><i class="fas fa-bars"></i></div>
   </header>
 
   <section class="hero">
-    <h1>Book Your First Driving Lesson</h1>
-    <a href="#form" class="book-now">Book Now</a>
+    <div class="hero-text">
+      <h1>Learn to<br>Drive</h1>
+      <a href="#" class="cta-btn">CONTACT US</a>
+    </div>
+    <img src="https://via.placeholder.com/400x200.png?text=Driving+Car" alt="Driving Car" class="hero-img">
   </section>
 
-  <section id="cars" class="cars-section">
-    <h2>Our Learner Cars</h2>
-    <div class="car-grid">
-      <div class="car-card">🚙 Toyota Yaris – Dual Controls</div>
-      <div class="car-card">🚗 VW Golf – Branded Wrap</div>
-      <div class="car-card">🚘 Ford Fiesta – Manual</div>
+  <section class="grid">
+    <div class="card">
+      <i class="fas fa-calendar-alt"></i>
+      <p>Programs</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-car-side"></i>
+      <p>Our Vehicles</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-user"></i>
+      <p>Instructors</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-id-card"></i>
+      <p>Licensing</p>
     </div>
   </section>
 
-  <section class="widgets">
-    <h2>Why Choose Us</h2>
-    <div class="widgets-grid">
-      <div class="circle-widget">
-        <h3>🚦 Pass Rate</h3>
-        <p>95% first time</p>
-      </div>
-      <div class="circle-widget">
-        <h3>📆 Scheduling</h3>
-        <p>Flexible Hours</p>
-      </div>
-      <div class="circle-widget">
-        <h3>🧑‍🏫 Instructors</h3>
-        <p>Certified Staff</p>
-      </div>
-    </div>
+  <section class="about">
+    <h2>ABOUT US</h2>
+    <p>We offer comprehensive driving courses to suit all experience levels.</p>
   </section>
 
-  <section id="form" class="lead-form-section">
-    <h2>Get Started</h2>
-    <form class="lead-form">
-      <input type="text" placeholder="Full Name" />
-      <input type="email" placeholder="Email Address" />
-      <input type="tel" placeholder="Phone Number" />
-      <select>
-        <option>Select Transmission</option>
-        <option>Manual</option>
-        <option>Automatic</option>
-      </select>
-      <select>
-        <option>Choose Location</option>
-        <option>East London</option>
-        <option>Hackney Central</option>
-        <option>Online Theory</option>
-      </select>
-      <input type="date" />
-      <textarea placeholder="Additional Notes"></textarea>
-      <button type="submit">Submit</button>
-    </form>
-  </section>
-
-  <footer id="contact">
-    <div class="socials">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">TikTok</a>
-    </div>
-    <p>&copy; 2025 DrivePro Academy</p>
+  <footer>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
   </footer>
 
-  <div class="floating-buttons">
-    <a href="tel:+123456789">📞</a>
-    <a href="mailto:info@drivepro.com">✉️</a>
-    <a href="#form">📝</a>
-  </div>
+  <script>
+    // Set static time as in design
+    document.getElementById("time").textContent = "10:49";
+  </script>
 
 </body>
 </html>
