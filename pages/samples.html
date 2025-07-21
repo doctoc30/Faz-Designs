@@ -1,265 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving School</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driving School</title>
+  <style>
+    /* --- Reset & Base Styles --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7f7;
+      color: #222;
+      line-height: 1.5;
+    }
 
-        body {
-            line-height: 1.6;
-            color: #333;
-        }
+    /* --- Header --- */
+    header {
+      background: #000;
+      padding: 20px 30px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        /* Header */
-        header {
-            background-color: #00aaff;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-        }
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
 
-        .logo::before {
-            content: "🚗 ";
-        }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 16px;
-        }
+    /* --- Hero Banner --- */
+    .hero {
+      background: linear-gradient(to right, #191919, #333);
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+    }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
 
-        /* Hero Section */
-        .hero {
-            background: url('https://via.placeholder.com/1200x400?text=Car+Dashboard') no-repeat center center/cover;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
+    .hero .book-now {
+      background: #ffcc00;
+      color: #000;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
+    /* --- Learner Cars --- */
+    .cars {
+      padding: 60px 30px;
+      background: #fff;
+      text-align: center;
+    }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
+    .cars h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
 
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
 
-        .hero p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+    .car-card {
+      background: #eee;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+    }
 
-        .btn {
-            background-color: #fff;
-            color: #00aaff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
+    /* --- Circle Widgets --- */
+    .widgets {
+      background: #f0f0f0;
+      padding: 60px 30px;
+      text-align: center;
+    }
 
-        .btn:hover {
-            background-color: #e0e0e0;
-        }
+    .widgets h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
 
-        /* Sections */
-        .section {
-            padding: 40px 20px;
-            text-align: center;
-        }
+    .widget-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
 
-        .section h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #00aaff;
-        }
+    .widget {
+      width: 160px;
+      height: 160px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-        .section p {
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
+    .widget h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
 
-        /* Courses */
-        .courses {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+    .widget p {
+      font-size: 0.85rem;
+      color: #666;
+    }
 
-        .course-card {
-            background-color: #f9f9f9;
-            padding: 20px;
-            width: 200px;
-            border-radius: 5px;
-        }
+    /* --- Lead Form --- */
+    .form-section {
+      background: #fff;
+      padding: 60px 30px;
+      text-align: center;
+    }
 
-        .course-card img {
-            width: 50px;
-            height: 50px;
-        }
+    .form-section h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
 
-        /* Reviews and Contact */
-        .bottom-section {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+    form {
+      max-width: 500px;
+      margin: auto;
+      display: grid;
+      gap: 15px;
+    }
 
-        .reviews, .contact {
-            flex: 1;
-            min-width: 200px;
-        }
+    input, select, textarea, button {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
 
-        .contact ul {
-            list-style: none;
-            text-align: left;
-        }
+    button {
+      background: #000;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-        .contact ul li {
-            margin-bottom: 10px;
-        }
+    /* --- Footer --- */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
+    .socials a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
 
-            nav a {
-                margin: 10px 0;
-            }
+    /* --- Floating Buttons --- */
+    .floating-buttons {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-            .hero h1 {
-                font-size: 24px;
-            }
+    .floating-buttons a {
+      background: #ffcc00;
+      color: #000;
+      padding: 14px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      text-align: center;
+    }
 
-            .courses {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .bottom-section {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+    /* --- Mobile Responsive --- */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      nav ul { flex-direction: column; gap: 10px; }
+      .widget { width: 140px; height: 140px; }
+    }
+  </style>
+  <script>
+    // JS Scroll Button Highlight or Future Extensions
+    document.addEventListener("DOMContentLoaded", () => {
+      // You can add animations or menu toggle logic here
+    });
+  </script>
 </head>
 <body>
-    <header>
-        <div class="logo">DRIVING SCHOOL</div>
-        <nav>
-            <a href="#about">ABOUT</a>
-            <a href="#courses">COURSES</a>
-            <a href="#reviews">REVIEWS</a>
-            <a href="#contact">CONTACT</a>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>LEARN TO DRIVE</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="#get-started" class="btn">GET STARTED</a>
-        </div>
-    </section>
+  <!-- Header -->
+  <header>
+    <div class="logo">DriveStart</div>
+    <nav>
+      <ul>
+        <li><a href="#cars">Cars</a></li>
+        <li><a href="#form">Booking</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section class="section" id="about">
-        <h2>ABOUT US</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Let’s Get You Driving</h1>
+    <a href="#form" class="book-now">Book Now</a>
+  </section>
 
-    <section class="section" id="courses">
-        <h2>OUR COURSES</h2>
-        <div class="courses">
-            <div class="course-card">
-                <img src="https://via.placeholder.com/50?text=Car" alt="Car">
-                <p>Lorem ipsum</p>
-                <p>Lorem ipsum dolor</p>
-            </div>
-            <div class="course-card">
-                <img src="https://via.placeholder.com/50?text=Sign" alt="Sign">
-                <p>Lorem ipsum</p>
-                <p>Lorem ipsum dolor</p>
-            </div>
-            <div class="course-card">
-                <img src="https://via.placeholder.com/50?text=Checklist" alt="Checklist">
-                <p>Lorem ipsum</p>
-                <p>Lorem ipsum dolor</p>
-            </div>
-            <div class="course-card">
-                <img src="https://via.placeholder.com/50?text=License" alt="License">
-                <p>Lorem ipsum</p>
-                <p>Lorem ipsum dolor</p>
-            </div>
-        </div>
-    </section>
+  <!-- Learner Cars -->
+  <section id="cars" class="cars">
+    <h2>Learner Cars</h2>
+    <div class="car-grid">
+      <div class="car-card">🚗 Ford Fiesta – Manual</div>
+      <div class="car-card">🚙 VW Polo – Automatic</div>
+      <div class="car-card">🚘 Toyota Yaris – Dual Control</div>
+    </div>
+  </section>
 
-    <section class="section bottom-section">
-        <div class="reviews" id="reviews">
-            <h2>REVIEWS</h2>
-            <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</p>
-            <p>— John Doe</p>
-        </div>
-        <div class="contact" id="contact">
-            <h2>CONTACT US</h2>
-            <ul>
-                <li>1234 Elm St, Springfield, IL 62701</li>
-                <li>(123) 456-2830</li>
-                <li><a href="mailto:info@drivingschool.com">info@drivingschool.com</a></li>
-            </ul>
-        </div>
-    </section>
+  <!-- Circle Widgets -->
+  <section class="widgets">
+    <h2>Why Choose Us</h2>
+    <div class="widget-grid">
+      <div class="widget">
+        <h3>🚦 Pass Rate</h3>
+        <p>98% First Time</p>
+      </div>
+      <div class="widget">
+        <h3>🧑‍🏫 Instructors</h3>
+        <p>DVSA Certified</p>
+      </div>
+      <div class="widget">
+        <h3>📆 Schedule</h3>
+        <p>Flexible Hours</p>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Minimal JavaScript for smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+  <!-- Lead Form -->
+  <section id="form" class="form-section">
+    <h2>Book Your Lesson</h2>
+    <form>
+      <input type="text" placeholder="Full Name" />
+      <input type="email" placeholder="Email Address" />
+      <input type="tel" placeholder="Phone Number" />
+      <select>
+        <option>Select Transmission</option>
+        <option>Manual</option>
+        <option>Automatic</option>
+      </select>
+      <select>
+        <option>Location</option>
+        <option>Hackney</option>
+        <option>East London</option>
+        <option>Online Theory</option>
+      </select>
+      <input type="date" />
+      <textarea placeholder="Additional Notes"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="socials">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">TikTok</a>
+    </div>
+    <p>&copy; 2025 DriveStart School</p>
+  </footer>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <a href="tel:+123456789">📞</a>
+    <a href="mailto:info@drivestart.com">✉️</a>
+    <a href="#form">📝</a>
+  </div>
+
 </body>
 </html>
