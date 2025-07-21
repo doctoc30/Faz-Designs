@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Driving School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     * {
       margin: 0;
@@ -12,20 +16,25 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f2f9ff;
+      color: #001b2e;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     header {
-      background: #008ecc;
-      color: white;
-      padding: 10px 0;
+      background-color: #ffffff;
+      padding: 15px 0;
+      border-bottom: 1px solid #e0e0e0;
     }
 
     .container {
       width: 90%;
-      max-width: 1100px;
+      max-width: 1140px;
       margin: auto;
     }
 
@@ -35,110 +44,168 @@
       align-items: center;
     }
 
-    nav .logo {
-      font-size: 1.5em;
-      font-weight: bold;
+    .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      font-weight: bold;
+      font-size: 1.4em;
+      color: #002855;
+    }
+
+    .logo i {
+      font-size: 1.8em;
+      color: #007bff;
+      margin-right: 10px;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 30px;
     }
 
     nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      font-size: 0.95em;
+      color: #002855;
     }
 
     .hero {
-      background: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d') center/cover no-repeat;
+      background: url('https://i.ibb.co/BjWhnMK/steering.jpg') center/cover no-repeat;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       color: white;
       text-align: center;
-      padding: 80px 20px;
       position: relative;
     }
 
     .hero h1 {
       font-size: 2.5em;
-      margin-bottom: 10px;
+      font-weight: 700;
     }
 
     .hero p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
+      font-size: 1em;
+      margin: 10px 0 20px;
     }
 
     .hero button {
-      background: #007bff;
-      color: white;
-      padding: 12px 25px;
+      background-color: #007bff;
       border: none;
+      padding: 12px 25px;
+      color: white;
+      font-weight: bold;
       font-size: 1em;
-      cursor: pointer;
       border-radius: 5px;
+      cursor: pointer;
     }
 
     section {
       padding: 40px 20px;
-      background: #f1f5f9;
+      background-color: #ffffff;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 30px;
       font-size: 1.8em;
-      font-weight: bold;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      text-align: center;
+      font-size: 0.95em;
+      color: #444;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .courses {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
-      text-align: center;
+      padding: 0 20px;
     }
 
     .course-box {
-      background: white;
-      padding: 20px;
+      border: 1px solid #e0e0e0;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: 0.3s;
+      background-color: #ffffff;
+    }
+
+    .course-box:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     .course-box i {
       font-size: 2em;
       color: #007bff;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .course-box h3 {
+      font-size: 1em;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .course-box p {
+      font-size: 0.9em;
+      color: #555;
     }
 
     .review-contact {
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      background: white;
-      padding: 30px 20px;
+      gap: 40px;
     }
 
     .review, .contact {
       flex: 1;
+      padding: 0 20px;
     }
 
     .review blockquote {
       font-style: italic;
-      color: #555;
+      font-size: 1em;
+      color: #333;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .review blockquote::before {
+      content: "“";
+      font-size: 2em;
+      color: #007bff;
+      position: absolute;
+      left: 0;
+      top: -10px;
+    }
+
+    .review cite {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 0.9em;
     }
 
     .contact p {
-      margin: 8px 0;
+      font-size: 0.95em;
+      margin-bottom: 10px;
     }
 
     .contact i {
-      color: #007bff;
       margin-right: 8px;
+      color: #007bff;
     }
 
     @media (min-width: 768px) {
@@ -147,8 +214,6 @@
       }
     }
   </style>
-  <!-- Icons from Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -156,7 +221,7 @@
   <header>
     <div class="container">
       <nav>
-        <div class="logo"><i class="fas fa-car"></i> DRIVING SCHOOL</div>
+        <div class="logo"><i class="fas fa-steering-wheel"></i> DRIVING SCHOOL</div>
         <ul>
           <li><a href="#about">ABOUT</a></li>
           <li><a href="#courses">COURSES</a></li>
@@ -170,62 +235,60 @@
   <!-- Hero Section -->
   <section class="hero">
     <h1>LEARN TO DRIVE</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur acesipcing elit, sed do elusmod</p>
+    <p>Lorem ipsum dolor sit amet, consectetur acipiscing elit, sed do elusmod</p>
     <button>GET STARTED</button>
   </section>
 
   <!-- About Us -->
   <section id="about">
-    <div class="container">
-      <h2 class="section-title">ABOUT US</h2>
-      <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        interdum sed eiusmod quis ec commodo consequat.</p>
-    </div>
+    <h2 class="section-title">ABOUT US</h2>
+    <p class="section-desc">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
+      elusmod interdum sed ec commodo consequat
+    </p>
   </section>
 
   <!-- Our Courses -->
   <section id="courses">
-    <div class="container">
-      <h2 class="section-title">OUR COURSES</h2>
-      <div class="courses">
-        <div class="course-box">
-          <i class="fas fa-car"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-box">
-          <i class="fas fa-traffic-light"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-box">
-          <i class="fas fa-clipboard-check"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-box">
-          <i class="fas fa-steering-wheel"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
+    <h2 class="section-title">OUR COURSES</h2>
+    <div class="courses container">
+      <div class="course-box">
+        <i class="fas fa-car"></i>
+        <h3>Lorem Ipsum</h3>
+        <p>Lorem ipsum dolor</p>
+      </div>
+      <div class="course-box">
+        <i class="fas fa-traffic-cone"></i>
+        <h3>Lorem Ipsum</h3>
+        <p>Lorem ipsum dolor</p>
+      </div>
+      <div class="course-box">
+        <i class="fas fa-clipboard-check"></i>
+        <h3>Lorem Ipsum</h3>
+        <p>Lorem ipsum dolor</p>
+      </div>
+      <div class="course-box">
+        <i class="fas fa-steering-wheel"></i>
+        <h3>Lorem Ipsum</h3>
+        <p>Lorem ipsum dolor</p>
       </div>
     </div>
   </section>
 
   <!-- Reviews and Contact -->
   <section id="reviews">
-    <div class="container review-contact">
+    <div class="review-contact container">
       <div class="review">
         <h2 class="section-title">REVIEWS</h2>
         <blockquote>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
-          <br><br>— John Doe
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elusmod
+          <cite>— John Doe</cite>
         </blockquote>
       </div>
       <div class="contact" id="contact">
         <h2 class="section-title">CONTACT US</h2>
         <p><i class="fas fa-map-marker-alt"></i> 1234 Elm St, Springfield, IL 62701</p>
-        <p><i class="fas fa-phone-alt"></i> (123) 456-2830</p>
+        <p><i class="fas fa-phone-alt"></i> (123) 456-2330</p>
         <p><i class="fas fa-envelope"></i> info@drivingschool.com</p>
       </div>
     </div>
