@@ -2,231 +2,528 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driving School</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solo Plumber - Premium Plumbing Services</title>
   <style>
+    :root {
+      --primary: #0a1e3f; /* Navy Blue */
+      --white: #ffffff;
+      --gray: #f5f7fa;
+      --gray-dark: #333;
+      --accent: #ff3131;
+    }
     body {
       margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background: #003f4f;
-      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--white);
+      color: var(--gray-dark);
+      line-height: 1.6;
+      scroll-behavior: smooth;
     }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background: #003f4f;
+    a {
+      color: var(--primary);
+      text-decoration: none;
     }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.3rem;
-      font-weight: bold;
+    a:hover {
+      text-decoration: underline;
     }
-
-    .logo i {
-      margin-right: 0.5rem;
+    h1, h2, h3 {
+      font-weight: 700;
     }
-
-    .hamburger {
-      font-size: 1.5rem;
-      cursor: pointer;
+    h1 {
+      font-size: 2.5rem;
     }
-
-    .hero {
-      padding: 1.5rem;
-      text-align: left;
-    }
-
-    .hero h1 {
+    h2 {
       font-size: 2rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
-
-    .hero p {
-      margin: 0.5rem 0 1rem;
-      color: #cde9ec;
+    h3 {
+      font-size: 1.25rem;
     }
-
-    .hero button {
-      background: #01292d;
-      color: white;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
+    button {
+      font-family: inherit;
     }
-
-    .callback-box {
-      background: #45c5cd;
-      padding: 1rem;
-      margin-top: 1.5rem;
-      border-radius: 10px;
-      max-width: 300px;
-    }
-
-    .callback-box h3 {
-      margin-top: 0;
-      color: black;
-    }
-
-    .callback-box input {
-      width: 100%;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    .callback-box button {
-      width: 100%;
-      background: #003f4f;
-      color: white;
-      border: none;
-      padding: 0.6rem;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .features {
+    /* Hero Section */
+    #hero {
+      background: url('https://images.unsplash.com/photo-1560184897-50c58f0c3d1f?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 100vh;
       display: flex;
-      justify-content: space-around;
-      padding: 1.5rem 0;
-      background: #004f5f;
-      flex-wrap: wrap;
-    }
-
-    .feature {
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
       text-align: center;
-      margin: 1rem;
-      width: 120px;
+      padding: 0 1.5rem;
     }
-
-    .feature i {
-      font-size: 1.5rem;
+    #hero-content {
+      max-width: 700px;
+      background: rgba(10, 30, 63, 0.85);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(10, 30, 63, 0.7);
+    }
+    #hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+    }
+    #hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    #hero-content button {
+      background-color: var(--accent);
+      border: none;
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #hero-content button:hover {
+      background-color: #cc2626;
+    }
+    /* Why Choose Us */
+    section#why-choose-us {
+      background: var(--primary);
+      color: var(--white);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #why-choose-us h2 {
+      margin-bottom: 2rem;
+    }
+    #why-choose-us .features-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    #why-choose-us .feature-box {
+      flex: 1 1 250px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 2rem;
+      box-sizing: border-box;
+      transition: background 0.3s ease;
+    }
+    #why-choose-us .feature-box:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    #why-choose-us .feature-box img {
+      width: 50px;
+      margin-bottom: 1rem;
+    }
+    #why-choose-us .feature-box h3 {
+      font-size: 1.2rem;
       margin-bottom: 0.5rem;
     }
-
-    .feature h4 {
-      margin: 0.3rem 0;
+    #why-choose-us .feature-box p {
+      font-size: 0.95rem;
     }
-
-    .feature p {
-      font-size: 0.75rem;
-      color: #a0d1d4;
+    /* Services Offered */
+    section#services {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
     }
-
-    .services-header {
-      background: #004f5f;
-      padding: 1rem;
-      font-size: 1.4rem;
+    #services h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    #services .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+    }
+    #services .service-card {
+      flex: 1 1 280px;
+      background: var(--gray);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      transition: box-shadow 0.3s ease;
+    }
+    #services .service-card:hover {
+      box-shadow: 0 15px 30px rgba(10, 30, 63, 0.3);
+    }
+    #services .service-card img {
+      margin-bottom: 1rem;
+    }
+    #services .service-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    #services .service-card p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+    /* Testimonials */
+    section#testimonials {
+      background: var(--primary);
+      color: var(--white);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #testimonials h2 {
+      margin-bottom: 3rem;
+    }
+    #testimonials .testimonial-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    #testimonials .testimonial-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      flex: 1 1 280px;
+      box-sizing: border-box;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      font-style: italic;
+      position: relative;
+    }
+    #testimonials .testimonial-card::before {
+      content: "“";
+      font-size: 3rem;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      color: var(--accent);
       font-weight: bold;
     }
-
-    .social-icons {
+    #testimonials .testimonial-text {
+      margin-bottom: 1.5rem;
+    }
+    #testimonials .testimonial-author {
+      font-weight: 700;
+      text-align: right;
+      color: var(--accent);
+    }
+    /* Lead Capture Form */
+    section#contact {
+      background: var(--gray);
+      padding: 4rem 2rem;
+      max-width: 600px;
+      margin: 0 auto 5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    #contact h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    form {
       display: flex;
-      justify-content: flex-end;
-      padding: 0.5rem 1rem;
-      background: #004f5f;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--primary);
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 5px var(--accent);
+    }
+    button[type="submit"] {
+      background-color: var(--accent);
+      color: var(--white);
+      border: none;
+      padding: 1.2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    button[type="submit"]:hover {
+      background-color: #cc2626;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      #hero-content h1 {
+        font-size: 2.2rem;
+      }
+      #hero-content p {
+        font-size: 1.1rem;
+      }
+      #why-choose-us .features-container,
+      #services .services-grid,
+      #testimonials .testimonial-grid {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      #why-choose-us .feature-box,
+      #services .service-card,
+      #testimonials .testimonial-card {
+        flex: 1 1 100%;
+      }
+      section#contact {
+        max-width: 100%;
+        border-radius: 0;
+      }
     }
 
-    .social-icons a {
-      color: white;
-      margin-left: 1rem;
-      font-size: 1.2rem;
-    }
+    .site-header {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 1.6rem;
-      }
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+}
 
-      .feature {
-        width: 100px;
-        margin: 0.5rem;
-      }
+.logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--white);
+}
 
-      .callback-box {
-        width: 100%;
-      }
-    }
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav a {
+  color: var(--white);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--accent);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--white);
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--primary);
+    flex-direction: column;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav.open {
+    max-height: 300px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <i class="fa-solid fa-triangle-exclamation"></i>
-      DRIVING SCHOOL
-    </div>
-    <div class="hamburger">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-  </header>
 
-  <section class="hero">
-    <h1>Learn to Drive</h1>
-    <p>Start your driving journey today</p>
-    <button>BOOK NOW</button>
-
-    <div class="callback-box">
-      <h3>Request Callback</h3>
-      <input type="text" placeholder="Full Name" />
-      <input type="text" placeholder="Phone Number" />
-      <button>Request</button>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="feature">
-      <i class="fa-solid fa-calendar-check"></i>
-      <h4>Flexible Scheduling</h4>
-      <p>Children Przeozing</p>
-    </div>
-    <div class="feature">
-      <i class="fa-solid fa-shield-halved"></i>
-      <h4>Experienced Instructors</h4>
-      <p>Intențe Sorrecte</p>
-    </div>
-    <div class="feature">
-      <i class="fa-solid fa-id-badge"></i>
-      <h4>Practical Training</h4>
-      <p>Doostorwork</p>
-    </div>
-  </section>
-
-  <div class="services-header">
-    Our Services
+  <header class="site-header">
+  <div class="container">
+    <div class="logo">Plumber X</div>
+    <nav class="nav" id="navbar">
+      <a href="#hero">Home</a>
+      <a href="#why-choose-us">Why Choose Us</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
   </div>
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
+</header>
+<!-- Hero Section -->
+<section id="hero">
+  <div id="hero-content">
+    <h1>Trusted Local Plumbing Services</h1>
+    <p>Fast, Reliable, and Affordable Plumbing Solutions for Your Home</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Request a Quote</button>
   </div>
+</section>
 
-  <!-- Optional Chat & Call Buttons -->
-  <div style="position: fixed; bottom: 90px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000;">
-    <a href="tel:+123456789" style="background: #004f5f; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-      <i class="fa-solid fa-phone"></i>
-    </a>
-    <a href="#" style="background: #004f5f; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-      <i class="fa-regular fa-comment-dots"></i>
-    </a>
-  </div>
-
-  <!-- Scroll-to-top & Share Button (mocked as per screenshot) -->
-  <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999;">
-    <div style="background: white; padding: 0.6rem 1.2rem; border-radius: 40px; display: flex; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-      <i class="fa-solid fa-xmark" style="margin-right: 1rem; color: #333;"></i>
-      <i class="fa-solid fa-arrow-up-from-bracket" style="color: #333;"></i>
+<!-- Why Choose Us -->
+<section id="why-choose-us">
+  <h2>Why Choose Us?</h2>
+  <div class="features-container">
+    <div class="feature-box">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/wrench.png" alt="Expertise Icon" />
+      <h3>Expert Technicians</h3>
+      <p>Our certified plumbers bring years of experience and professional skills.</p>
+    </div>
+    <div class="feature-box">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/clock.png" alt="24/7 Icon" />
+      <h3>24/7 Emergency Service</h3>
+      <p>Always ready to help with urgent repairs any time of day or night.</p>
+    </div>
+    <div class="feature-box">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/price-tag.png" alt="Affordable Icon" />
+      <h3>Affordable Pricing</h3>
+      <p>Clear pricing with no hidden fees, giving you peace of mind.</p>
     </div>
   </div>
+</section>
+
+<!-- Services Offered -->
+<section id="services">
+  <h2>Our Plumbing Services</h2>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/water-leak.png" alt="Leak Repair" />
+      <h3>Leak Repair</h3>
+      <p>Fast and effective fixes for leaks and dripping taps.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/boiler.png" alt="Boiler Repair" />
+      <h3>Boiler Repair</h3>
+      <p>Keep your home warm with expert boiler servicing and repairs.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/bathtub.png" alt="Bathroom Fitting" />
+      <h3>Bathroom Fitting</h3>
+      <p>Full installations and refurbishments with professional care.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/sewage.png" alt="Blocked Drains" />
+      <h3>Blocked Drains</h3>
+      <p>Clearing and unblocking to keep your drains flowing freely.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/pipe.png" alt="Pipe Installation" />
+      <h3>Pipe Installation</h3>
+      <p>Reliable pipe fitting and replacement for all plumbing needs.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="https://img.icons8.com/ios-filled/64/0a1e3f/wrench.png" alt="Emergency Plumbing" />
+      <h3>Emergency Plumbing</h3>
+      <p>Rapid response for leaks, bursts, and urgent repairs.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+    <h2>What Our Customers Say</h2>
+  <div class="testimonial-grid">
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Fast, professional service. My leak was fixed the same day and at a great price!"</p>
+      <p class="testimonial-author">– Sarah M.</p>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Highly recommend for any plumbing emergency. Very reliable and friendly."</p>
+      <p class="testimonial-author">– James L.</p>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Excellent workmanship with a clean finish. My bathroom fitting looks amazing."</p>
+      <p class="testimonial-author">– Rachel K.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Lead Capture Contact Form -->
+<section id="contact">
+  <h2>Request Your Free Quote</h2>
+  <form id="lead-form" action="#" method="post" novalidate>
+    <input type="text" name="name" placeholder="Full Name" required autocomplete="name" />
+    <input type="email" name="email" placeholder="Email Address" required autocomplete="email" />
+    <input type="tel" name="phone" placeholder="Phone Number" required autocomplete="tel" />
+    <textarea name="message" placeholder="Describe your plumbing issue or request" required></textarea>
+    <button type="submit">Get a Free Quote</button>
+  </form>
+</section>
+
+<script>
+  // Simple form validation + submission simulation
+  const form = document.getElementById('lead-form');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+    alert('Thank you for your request! We will contact you shortly.');
+    form.reset();
+  });
+</script>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div>
+      <h3>PlumbPro</h3>
+      <p>Your trusted local plumber — available 24/7 for emergencies & installations.</p>
+      <p>© 2025 PlumbPro. All rights reserved.</p>
+    </div>
+    <div>
+      <h4>Contact Info</h4>
+      <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+      <p>Email: <a href="mailto:info@plumbpro.com">info@plumbpro.com</a></p>
+      <p>Address: 123 Bluewater St, Plumbing City</p>
+    </div>
+    <div>
+      <h4>Follow Us</h4>
+      <p>
+        <a href="#" aria-label="Facebook">Facebook</a><br />
+        <a href="#" aria-label="Instagram">Instagram</a><br />
+        <a href="#" aria-label="Twitter">Twitter</a>
+      </p>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
