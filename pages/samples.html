@@ -2,216 +2,231 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Driving School</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2e0b1e8b0.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    :root {
-      --primary: #ec4899;
-      --accent: #a21caf;
-      --text: #111827;
-      --light: #fce7f3;
-      --white: #fff;
-      --font: 'Inter', sans-serif;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: var(--font);
-      background: var(--primary);
-      color: var(--text);
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #003f4f;
+      color: white;
     }
 
     header {
-      background: #000;
-      color: var(--white);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem;
-      font-size: 1rem;
+      background: #003f4f;
     }
 
-    .menu-icon {
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .logo i {
+      margin-right: 0.5rem;
+    }
+
+    .hamburger {
       font-size: 1.5rem;
       cursor: pointer;
     }
 
     .hero {
-      padding: 2rem 1rem 1rem;
+      padding: 1.5rem;
       text-align: left;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
 
-    .hero .cta-btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent);
-      color: var(--white);
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 0.5rem;
-      margin-bottom: 2rem;
+    .hero p {
+      margin: 0.5rem 0 1rem;
+      color: #cde9ec;
     }
 
-    .hero-img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 2rem;
+    .hero button {
+      background: #01292d;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      padding: 0 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .card {
-      background: var(--light);
-      border-radius: 0.75rem;
+    .callback-box {
+      background: #45c5cd;
       padding: 1rem;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-top: 1.5rem;
+      border-radius: 10px;
+      max-width: 300px;
     }
 
-    .card i {
+    .callback-box h3 {
+      margin-top: 0;
+      color: black;
+    }
+
+    .callback-box input {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .callback-box button {
+      width: 100%;
+      background: #003f4f;
+      color: white;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 1.5rem 0;
+      background: #004f5f;
+      flex-wrap: wrap;
+    }
+
+    .feature {
+      text-align: center;
+      margin: 1rem;
+      width: 120px;
+    }
+
+    .feature i {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
-      color: var(--primary);
     }
 
-    .card p {
-      font-weight: 600;
+    .feature h4 {
+      margin: 0.3rem 0;
     }
 
-    .about {
-      background: #fdf2f8;
-      padding: 2rem 1rem;
-      text-align: left;
+    .feature p {
+      font-size: 0.75rem;
+      color: #a0d1d4;
     }
 
-    .about h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .about p {
-      font-size: 1rem;
-      color: #444;
-    }
-
-    footer {
-      background: #fdf2f8;
+    .services-header {
+      background: #004f5f;
       padding: 1rem;
-      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
     }
 
-    footer a {
-      margin: 0 0.5rem;
-      color: #111827;
-      text-decoration: none;
-      font-size: 1.25rem;
+    .social-icons {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+      background: #004f5f;
     }
 
-    @media (min-width: 768px) {
+    .social-icons a {
+      color: white;
+      margin-left: 1rem;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
       .hero h1 {
-        font-size: 3.5rem;
+        font-size: 1.6rem;
       }
 
-      .grid {
-        grid-template-columns: repeat(4, 1fr);
+      .feature {
+        width: 100px;
+        margin: 0.5rem;
       }
 
-      .hero {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 3rem;
-      }
-
-      .hero-text {
-        max-width: 50%;
-      }
-
-      .hero-img {
-        max-width: 45%;
-      }
-
-      .about {
-        padding: 3rem;
+      .callback-box {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div id="time">10:49</div>
-    <div class="menu-icon"><i class="fas fa-bars"></i></div>
+    <div class="logo">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      DRIVING SCHOOL
+    </div>
+    <div class="hamburger">
+      <i class="fa-solid fa-bars"></i>
+    </div>
   </header>
 
   <section class="hero">
-    <div class="hero-text">
-      <h1>Learn to<br>Drive</h1>
-      <a href="#" class="cta-btn">CONTACT US</a>
-    </div>
-    <img src="https://via.placeholder.com/400x200.png?text=Driving+Car" alt="Driving Car" class="hero-img">
-  </section>
+    <h1>Learn to Drive</h1>
+    <p>Start your driving journey today</p>
+    <button>BOOK NOW</button>
 
-  <section class="grid">
-    <div class="card">
-      <i class="fas fa-calendar-alt"></i>
-      <p>Programs</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-car-side"></i>
-      <p>Our Vehicles</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-user"></i>
-      <p>Instructors</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-id-card"></i>
-      <p>Licensing</p>
+    <div class="callback-box">
+      <h3>Request Callback</h3>
+      <input type="text" placeholder="Full Name" />
+      <input type="text" placeholder="Phone Number" />
+      <button>Request</button>
     </div>
   </section>
 
-  <section class="about">
-    <h2>ABOUT US</h2>
-    <p>We offer comprehensive driving courses to suit all experience levels.</p>
+  <section class="features">
+    <div class="feature">
+      <i class="fa-solid fa-calendar-check"></i>
+      <h4>Flexible Scheduling</h4>
+      <p>Children Przeozing</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h4>Experienced Instructors</h4>
+      <p>Intențe Sorrecte</p>
+    </div>
+    <div class="feature">
+      <i class="fa-solid fa-id-badge"></i>
+      <h4>Practical Training</h4>
+      <p>Doostorwork</p>
+    </div>
   </section>
 
-  <footer>
-    <a href="#"><i class="fab fa-facebook"></i></a>
+  <div class="services-header">
+    Our Services
+  </div>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
     <a href="#"><i class="fab fa-twitter"></i></a>
     <a href="#"><i class="fab fa-instagram"></i></a>
-  </footer>
+  </div>
 
-  <script>
-    // Set static time as in design
-    document.getElementById("time").textContent = "10:49";
-  </script>
+  <!-- Optional Chat & Call Buttons -->
+  <div style="position: fixed; bottom: 90px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000;">
+    <a href="tel:+123456789" style="background: #004f5f; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="#" style="background: #004f5f; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+      <i class="fa-regular fa-comment-dots"></i>
+    </a>
+  </div>
+
+  <!-- Scroll-to-top & Share Button (mocked as per screenshot) -->
+  <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999;">
+    <div style="background: white; padding: 0.6rem 1.2rem; border-radius: 40px; display: flex; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+      <i class="fa-solid fa-xmark" style="margin-right: 1rem; color: #333;"></i>
+      <i class="fa-solid fa-arrow-up-from-bracket" style="color: #333;"></i>
+    </div>
+  </div>
 
 </body>
 </html>
