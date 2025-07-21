@@ -393,22 +393,12 @@
 }
 
 
-.hero-text {
-  font-size: 3rem;        /* default size */
-  margin-top: 5vh;        /* default spacing */
-}
-
-/* Portrait mode fix */
+/* Fix spacing for portrait mode */
 @media screen and (orientation: portrait) {
-  .hero-text {
-    font-size: 6rem;       /* double size (optional) */
-    margin-top: 25vh;      /* increase space below header */
-  }
-}
-
-    @media screen and (orientation: portrait) {
-  .hero-text {
-    padding-top: 25vh;
+  .content h1 {
+    font-size: 3.5rem;      /* bigger text on mobile */
+    margin-top: 6rem;       /* space from fixed header */
+    text-align: center;
   }
 }
   </style>
