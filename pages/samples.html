@@ -3,37 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DrivePro Academy</title>
+  <title>Driving School Homepage</title>
   <style>
-    body {
+    /* Base Styles */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
+      background-color: #f6f6f6;
       color: #333;
     }
 
     header {
+      background: #0d0d0d;
+      padding: 20px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 30px;
-      background: #121212;
-      color: #fff;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 999;
     }
 
     .logo {
-      font-size: 1.6rem;
+      color: #fff;
+      font-size: 1.8rem;
       font-weight: bold;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 25px;
-      padding: 0;
+      gap: 30px;
     }
 
     nav a {
@@ -43,53 +47,84 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, #d8a31a, #000000);
-      color: #fff;
-      text-align: center;
+      background: linear-gradient(to right, #1a1a1a, #333333);
       padding: 100px 20px;
+      text-align: center;
+      color: #fff;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 20px;
     }
 
-    .cta-button {
-      background: #fff;
+    .book-now {
+      background-color: #d8a31a;
       color: #000;
-      padding: 15px 30px;
-      border-radius: 30px;
-      font-weight: bold;
+      padding: 14px 32px;
+      border-radius: 40px;
       text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
-    .cars-section, .lead-form-section, .widgets {
+    section {
       padding: 60px 30px;
-      background: #fff;
     }
 
-    .cars-section h2, .lead-form-section h2, .widgets h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
+    .cars-section {
+      background-color: #fff;
     }
 
     .car-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      gap: 30px;
+      margin-top: 30px;
     }
 
     .car-card {
-      background: #e3e3e3;
+      background-color: #eaeaea;
       padding: 20px;
       border-radius: 10px;
       text-align: center;
     }
 
-    .lead-form {
+    .widgets {
+      background-color: #f8f8f8;
+    }
+
+    .widgets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .circle-widget {
+      background: #fff;
+      border-radius: 50%;
+      width: 180px;
+      height: 180px;
+      margin: auto;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    }
+
+    .circle-widget h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .lead-form-section {
+      background-color: #fff;
+    }
+
+    .lead-form {
+      display: grid;
       gap: 15px;
       max-width: 500px;
       margin: auto;
@@ -100,47 +135,30 @@
     .lead-form textarea,
     .lead-form button {
       padding: 12px;
-      border: none;
-      border-radius: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
       font-size: 1rem;
     }
 
     .lead-form button {
-      background: #121212;
+      background-color: #0d0d0d;
       color: #fff;
-      font-weight: bold;
       cursor: pointer;
-    }
-
-    .widgets-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      text-align: center;
-    }
-
-    .circle-widget {
-      background: #f0f0f0;
-      padding: 30px;
-      border-radius: 50%;
-      aspect-ratio: 1 / 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      font-weight: 600;
     }
 
     footer {
-      background: #121212;
+      background-color: #0d0d0d;
       color: #fff;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
     }
 
     .socials a {
-      margin: 0 10px;
       color: #fff;
+      margin: 0 12px;
       text-decoration: none;
+      font-size: 1rem;
     }
 
     .floating-buttons {
@@ -150,17 +168,28 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      z-index: 1000;
+      z-index: 998;
     }
 
     .floating-buttons a {
-      background: #000;
+      background-color: #000;
       color: #fff;
-      padding: 15px;
-      border-radius: 50%;
+      padding: 14px;
       text-decoration: none;
+      border-radius: 50%;
+      font-size: 1.2rem;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    @media(max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -170,41 +199,60 @@
     <div class="logo">DrivePro</div>
     <nav>
       <ul>
-        <li><a href="#cars">Learner Cars</a></li>
-        <li><a href="#form">Book Lesson</a></li>
+        <li><a href="#cars">Vehicles</a></li>
+        <li><a href="#form">Book</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Ready to Hit the Road?</h1>
-    <a href="#form" class="cta-button">Book Now</a>
+    <h1>Book Your First Driving Lesson</h1>
+    <a href="#form" class="book-now">Book Now</a>
   </section>
 
   <section id="cars" class="cars-section">
-    <h2>Our Learner Vehicles</h2>
+    <h2>Our Learner Cars</h2>
     <div class="car-grid">
-      <div class="car-card">🚙 Toyota Yaris · Branded Wrap</div>
-      <div class="car-card">🚗 VW Polo · Dual Controls</div>
+      <div class="car-card">🚙 Toyota Yaris – Dual Controls</div>
+      <div class="car-card">🚗 VW Golf – Branded Wrap</div>
+      <div class="car-card">🚘 Ford Fiesta – Manual</div>
+    </div>
+  </section>
+
+  <section class="widgets">
+    <h2>Why Choose Us</h2>
+    <div class="widgets-grid">
+      <div class="circle-widget">
+        <h3>🚦 Pass Rate</h3>
+        <p>95% first time</p>
+      </div>
+      <div class="circle-widget">
+        <h3>📆 Scheduling</h3>
+        <p>Flexible Hours</p>
+      </div>
+      <div class="circle-widget">
+        <h3>🧑‍🏫 Instructors</h3>
+        <p>Certified Staff</p>
+      </div>
     </div>
   </section>
 
   <section id="form" class="lead-form-section">
-    <h2>Book a Lesson</h2>
+    <h2>Get Started</h2>
     <form class="lead-form">
       <input type="text" placeholder="Full Name" />
       <input type="email" placeholder="Email Address" />
       <input type="tel" placeholder="Phone Number" />
       <select>
-        <option>Transmission Type</option>
+        <option>Select Transmission</option>
         <option>Manual</option>
         <option>Automatic</option>
       </select>
       <select>
-        <option>Preferred Location</option>
-        <option>East Hackney</option>
-        <option>Central London</option>
+        <option>Choose Location</option>
+        <option>East London</option>
+        <option>Hackney Central</option>
         <option>Online Theory</option>
       </select>
       <input type="date" />
@@ -213,30 +261,11 @@
     </form>
   </section>
 
-  <section class="widgets">
-    <h2>Why Choose Us?</h2>
-    <div class="widgets-grid">
-      <div class="circle-widget">
-        <h3>🚦</h3>
-        <p>95% pass first time</p>
-      </div>
-      <div class="circle-widget">
-        <h3>🧑‍🏫</h3>
-        <p>DVSA-approved instructors</p>
-      </div>
-      <div class="circle-widget">
-        <h3>📆</h3>
-        <p>Flexible scheduling</p>
-      </div>
-    </div>
-  </section>
-
   <footer id="contact">
     <div class="socials">
       <a href="#">Instagram</a>
       <a href="#">Facebook</a>
       <a href="#">TikTok</a>
-      <a href="#">LinkedIn</a>
     </div>
     <p>&copy; 2025 DrivePro Academy</p>
   </footer>
