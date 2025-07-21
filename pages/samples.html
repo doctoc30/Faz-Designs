@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Driving School</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     * {
       margin: 0;
@@ -30,6 +29,8 @@
       background-color: #ffffff;
       padding: 15px 0;
       border-bottom: 1px solid #e0e0e0;
+      position: relative;
+      z-index: 1000;
     }
 
     .container {
@@ -58,16 +59,22 @@
       margin-right: 10px;
     }
 
-    nav ul {
-      list-style: none;
+    .nav-links {
       display: flex;
+      list-style: none;
       gap: 30px;
     }
 
-    nav ul li a {
+    .nav-links li a {
       font-weight: 700;
       font-size: 0.95em;
       color: #002855;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5em;
+      cursor: pointer;
     }
 
     .hero {
@@ -79,7 +86,6 @@
       flex-direction: column;
       color: white;
       text-align: center;
-      position: relative;
     }
 
     .hero h1 {
@@ -137,12 +143,7 @@
       border-radius: 10px;
       padding: 20px;
       text-align: center;
-      transition: 0.3s;
       background-color: #ffffff;
-    }
-
-    .course-box:hover {
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     .course-box i {
@@ -208,9 +209,31 @@
       color: #007bff;
     }
 
-    @media (min-width: 768px) {
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        background: white;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
       .review-contact {
-        flex-direction: row;
+        flex-direction: column;
       }
     }
   </style>
@@ -222,33 +245,31 @@
     <div class="container">
       <nav>
         <div class="logo"><i class="fas fa-steering-wheel"></i> DRIVING SCHOOL</div>
-        <ul>
+        <ul class="nav-links" id="navLinks">
           <li><a href="#about">ABOUT</a></li>
           <li><a href="#courses">COURSES</a></li>
           <li><a href="#reviews">REVIEWS</a></li>
           <li><a href="#contact">CONTACT</a></li>
         </ul>
+        <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <h1>LEARN TO DRIVE</h1>
     <p>Lorem ipsum dolor sit amet, consectetur acipiscing elit, sed do elusmod</p>
     <button>GET STARTED</button>
   </section>
 
-  <!-- About Us -->
+  <!-- About -->
   <section id="about">
     <h2 class="section-title">ABOUT US</h2>
-    <p class="section-desc">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
-      elusmod interdum sed ec commodo consequat
-    </p>
+    <p class="section-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br> elusmod interdum sed ec commodo consequat</p>
   </section>
 
-  <!-- Our Courses -->
+  <!-- Courses -->
   <section id="courses">
     <h2 class="section-title">OUR COURSES</h2>
     <div class="courses container">
@@ -275,7 +296,7 @@
     </div>
   </section>
 
-  <!-- Reviews and Contact -->
+  <!-- Reviews & Contact -->
   <section id="reviews">
     <div class="review-contact container">
       <div class="review">
@@ -294,5 +315,14 @@
     </div>
   </section>
 
+  <!-- JavaScript -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
