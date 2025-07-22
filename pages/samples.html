@@ -78,7 +78,12 @@
     }
 
  .hero {
-  background: #001f3f url('https://raw.githubusercontent.com/doctoc30/Faz-Designs/main/IMG_6619.png') center/cover no-repeat;
+  position: relative;
+  background-color: #001f3f; /* Dark blue base */
+  background-image: url('https://raw.githubusercontent.com/doctoc30/Faz-Designs/main/IMG_6619.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   height: 360px;
   display: flex;
   align-items: center;
@@ -86,32 +91,8 @@
   flex-direction: column;
   color: white;
   text-align: center;
+  overflow: hidden;
 }
-
-    .hero {
-  background-color: #001f3f !important;
-}
-
-    .hero h1 {
-      font-size: 2.5em;
-      font-weight: 700;
-    }
-
-    .hero p {
-      font-size: 1em;
-      margin: 10px 0 20px;
-    }
-
-    .hero button {
-      background-color: #007bff;
-      border: none;
-      padding: 12px 25px;
-      color: white;
-      font-weight: bold;
-      font-size: 1em;
-      border-radius: 5px;
-      cursor: pointer;
-    }
 
     section {
       padding: 40px 20px;
@@ -260,12 +241,17 @@
     </div>
   </header>
 
+
+  
   <!-- Hero -->
-  <section class="hero">
-    <h1>LEARN TO DRIVE</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur acipiscing elit, sed do elusmod</p>
-    <button>GET STARTED</button>
-  </section>
+<div class="hero">
+  <img class="hero-img" src="https://raw.githubusercontent.com/doctoc30/Faz-Designs/main/IMG_6619.png" alt="Hero image">
+  <h1>Your Text Here</h1>
+</div>
+  
+
+
+  
 
   <!-- About -->
   <section id="about">
