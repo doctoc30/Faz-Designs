@@ -241,41 +241,53 @@
       }
     }
 
-    .review-contact.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+
+#reviews-contact {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 20px;
-  background-color: #f2f6fc; /* match to your design’s blue tone */
   padding: 20px;
+  background-color: transparent; /* Fully transparent background */
 }
 
-.review, .contact {
-  flex: 1 1 300px;
-  background-color: #e9f0fa; /* subtle variation in tone */
-  padding: 20px;
+/* Style for each block */
+.section-block {
+  background-color: #e6f0fc; /* From your visual tone */
+  padding: 15px;
   border-radius: 8px;
+  box-shadow: none; /* No frame or border */
 }
 
-.section-title {
+/* Headings */
+.section-block h2 {
+  color: #1a3c7d;
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-blockquote {
-  font-style: italic;
-  margin: 10px 0;
+/* Text styles */
+.section-block blockquote,
+.section-block p {
+  color: #2c4f93;
+  font-style: normal;
 }
 
-.contact p {
-  margin: 8px 0;
-}
-
-/* Optional: tweak typography and icons */
-.contact i {
-  color: #1d4ba8;
+/* Icon styling */
+.section-block i {
   margin-right: 8px;
+  color: #2c4f93;
 }
+
+/* Responsive grid for landscape or wider screens */
+@media (min-width: 600px) {
+  #reviews-contact {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+
+
   </style>
 </head>
 <body>
@@ -337,23 +349,25 @@ blockquote {
   </section>
 
   <!-- Reviews & Contact -->
-  <section id="reviews">
-    <div class="review-contact container">
-      <div class="review">
-        <h2 class="section-title">REVIEWS</h2>
-        <blockquote>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elusmod
-          <cite>— John Doe</cite>
-        </blockquote>
-      </div>
-      <div class="contact" id="contact">
-        <h2 class="section-title">CONTACT US</h2>
-        <p><i class="fas fa-map-marker-alt"></i> 1234 Elm St, Springfield, IL 62701</p>
-        <p><i class="fas fa-phone-alt"></i> (123) 456-2330</p>
-        <p><i class="fas fa-envelope"></i> info@drivingschool.com</p>
-      </div>
-    </div>
-  </section>
+
+    <section id="reviews-contact" style="background-color: #dfeaf9; padding: 20px; border-radius: 10px;">
+  <div class="section-block" style="margin-bottom: 20px; background-color: #e6f0fc; padding: 15px; border-radius: 8px;">
+    <h2 style="color: #1a3c7d; font-size: 1.5rem;">REVIEWS</h2>
+    <blockquote style="font-style: italic; color: #2c4f93;">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elusmod
+      <cite style="display: block; margin-top: 10px;">— John Doe</cite>
+    </blockquote>
+  </div>
+
+  <div class="section-block" style="background-color: #e6f0fc; padding: 15px; border-radius: 8px;">
+    <h2 style="color: #1a3c7d; font-size: 1.5rem;">CONTACT US</h2>
+    <p style="color: #2c4f93;"><i class="fas fa-map-marker-alt"></i> 1234 Elm St, Springfield, IL 62701</p>
+    <p style="color: #2c4f93;"><i class="fas fa-phone-alt"></i> (123) 456-2330</p>
+    <p style="color: #2c4f93;"><i class="fas fa-envelope"></i> info@drivingschool.com</p>
+  </div>
+</section>
+   
+
 
   <!-- JavaScript -->
   <script>
