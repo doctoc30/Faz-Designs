@@ -1,255 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Driving School</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #f2f9ff;
-    color: #001b2e;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  header {
-    background-color: #ffffff;
-    padding: 15px 0;
-    border-bottom: 1px solid #e0e0e0;
-    position: relative;
-    z-index: 1000;
-  }
-
-  .container {
-    width: 90%;
-    max-width: 1140px;
-    margin: auto;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.4em;
-    color: #002855;
-  }
-
-  .logo i {
-    font-size: 1.8em;
-    color: #007bff;
-    margin-right: 10px;
-  }
-
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-  }
-
-  .nav-links li a {
-    font-weight: 700;
-    font-size: 0.95em;
-    color: #002855;
-  }
-
-  .menu-toggle {
-    display: none;
-    font-size: 1.5em;
-    cursor: pointer;
-  }
-
-  .hero {
-    position: relative;
-    background-color: #001f3f; /* Dark blue */
-    background-image: url('https://raw.githubusercontent.com/doctoc30/Faz-Designs/main/IMG_6619.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 360px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: white;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .hero h1 {
-    font-size: 2.5em;
-    font-weight: 700;
-    z-index: 1;
-    position: relative;
-  }
-
-  .hero p {
-    font-size: 1em;
-    margin: 10px 0 20px;
-    z-index: 1;
-    position: relative;
-  }
-
-  .hero button {
-    background-color: #007bff;
-    border: none;
-    padding: 12px 25px;
-    color: white;
-    font-weight: bold;
-    font-size: 1em;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1;
-    position: relative;
-  }
-
-  section {
-    padding: 40px 20px;
-    background-color: #ffffff;
-  }
-
-  .section-title {
-    text-align: center;
-    font-size: 1.8em;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-
-  .section-desc {
-    text-align: center;
-    font-size: 0.95em;
-    color: #444;
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .courses {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    padding: 0 20px;
-  }
-
-  .course-box {
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    background-color: #ffffff;
-  }
-
-  .course-box i {
-    font-size: 2em;
-    color: #007bff;
-    margin-bottom: 15px;
-  }
-
-  .course-box h3 {
-    font-size: 1em;
-    margin-bottom: 8px;
-    font-weight: 700;
-  }
-
-  .course-box p {
-    font-size: 0.9em;
-    color: #555;
-  }
-
-  .review-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .review, .contact {
-    flex: 1;
-    padding: 0 20px;
-  }
-
-  .review blockquote {
-    font-style: italic;
-    font-size: 1em;
-    color: #333;
-    line-height: 1.6;
-    position: relative;
-    padding-left: 30px;
-  }
-
-  .review blockquote::before {
-    content: "“";
-    font-size: 2em;
-    color: #007bff;
-    position: absolute;
-    left: 0;
-    top: -10px;
-  }
-
-  .review cite {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 0.9em;
-  }
-
-  .contact p {
-    font-size: 0.95em;
-    margin-bottom: 10px;
-  }
-
-  .contact i {
-    margin-right: 8px;
-    color: #007bff;
-  }
-
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .nav-links {
-      position: absolute;
-      top: 65px;
-      right: 20px;
-      background: white;
-      flex-direction: column;
-      gap: 15px;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: none;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .nav-links.active {
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f2f9ff;
+      color: #001b2e;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background-color: #ffffff;
+      padding: 15px 0;
+      border-bottom: 1px solid #e0e0e0;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1140px;
+      margin: auto;
+    }
+
+    nav {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.4em;
+      color: #002855;
+    }
+
+    .logo i {
+      font-size: 1.8em;
+      color: #007bff;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      font-weight: 700;
+      font-size: 0.95em;
+      color: #002855;
     }
 
     .menu-toggle {
-      display: block;
+      display: none;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+ .hero {
+  background: #001f3f url('https://raw.githubusercontent.com/doctoc30/Faz-Designs/main/IMG_6619.png') center/cover no-repeat;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+}
+
+    .hero {
+  background-color: #001f3f !important;
+}
+
+    .hero h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1em;
+      margin: 10px 0 20px;
+    }
+
+    .hero button {
+      background-color: #007bff;
+      border: none;
+      padding: 12px 25px;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 40px 20px;
+      background-color: #ffffff;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      text-align: center;
+      font-size: 0.95em;
+      color: #444;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .course-box {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      background-color: #ffffff;
+    }
+
+    .course-box i {
+      font-size: 2em;
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    .course-box h3 {
+      font-size: 1em;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .course-box p {
+      font-size: 0.9em;
+      color: #555;
     }
 
     .review-contact {
+      display: flex;
       flex-direction: column;
+      gap: 40px;
     }
-  }
-</style>
+
+    .review, .contact {
+      flex: 1;
+      padding: 0 20px;
+    }
+
+    .review blockquote {
+      font-style: italic;
+      font-size: 1em;
+      color: #333;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .review blockquote::before {
+      content: "“";
+      font-size: 2em;
+      color: #007bff;
+      position: absolute;
+      left: 0;
+      top: -10px;
+    }
+
+    .review cite {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+
+    .contact p {
+      font-size: 0.95em;
+      margin-bottom: 10px;
+    }
+
+    .contact i {
+      margin-right: 8px;
+      color: #007bff;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        background: white;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .review-contact {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -269,17 +260,12 @@
     </div>
   </header>
 
-
-  
   <!-- Hero -->
-<div class="hero">
-  <img class="hero-img" src="https://raw.githubusercontent.com/doctoc30/Faz-Designs/main/IMG_6619.png" alt="Hero image">
-  <h1>Your Text Here</h1>
-</div>
-  
-
-
-  
+  <section class="hero">
+    <h1>LEARN TO DRIVE</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur acipiscing elit, sed do elusmod</p>
+    <button>GET STARTED</button>
+  </section>
 
   <!-- About -->
   <section id="about">
