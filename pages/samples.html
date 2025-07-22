@@ -242,43 +242,47 @@
     }
 
 
+/* Wrapper Grid */
 #reviews-contact {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
   padding: 20px;
-  background-color: transparent; /* Fully transparent background */
+  background-color: transparent; /* Seamless background */
+  box-sizing: border-box;
 }
 
-/* Style for each block */
+/* Section Styling */
 .section-block {
-  background-color: #e6f0fc; /* From your visual tone */
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: none; /* No frame or border */
+  background-color: #e6f0fc; /* Light brand blue */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: none;
 }
 
-/* Headings */
+/* Typography & Structure */
 .section-block h2 {
-  color: #1a3c7d;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  color: #1a3c7d; /* Bold headline tone */
+  font-size: 1.6rem;
+  margin-bottom: 12px;
 }
 
-/* Text styles */
 .section-block blockquote,
 .section-block p {
   color: #2c4f93;
-  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
 }
 
-/* Icon styling */
+/* Icons */
 .section-block i {
   margin-right: 8px;
   color: #2c4f93;
+  font-size: 1rem;
 }
 
-/* Responsive grid for landscape or wider screens */
+/* Grid transition for tablets & desktops */
 @media (min-width: 600px) {
   #reviews-contact {
     grid-template-columns: 1fr 1fr;
