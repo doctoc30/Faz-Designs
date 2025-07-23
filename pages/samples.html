@@ -1,231 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driving School</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
-  <style>
-    :root {
-      --primary: #d32f2f;
-      --secondary: #ffffff;
-      --dark: #000000;
-      --light: #f1f1f1;
-      --muted: #cccccc;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        body {
+            background-color: #00aaff;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--dark);
-      color: var(--light);
-    }
+        /* Header */
+        header {
+            background: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-    header {
-      background-color: var(--primary);
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      flex-wrap: wrap;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
 
-    header h1 {
-      font-size: 1.5rem;
-    }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
-    }
+        .logo h1 {
+            font-size: 24px;
+            color: #d32f2f;
+        }
 
-    .hero {
-      padding: 60px 20px;
-      text-align: center;
-      background-color: var(--dark);
-    }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
 
-    .hero h2 {
-      color: var(--primary);
-      font-size: 2.2rem;
-    }
+        nav a:hover {
+            color: #d32f2f;
+        }
 
-    .hero p {
-      max-width: 600px;
-      margin: 10px auto 30px;
-      color: var(--muted);
-    }
+        /* Main Content */
+        .main-content {
+            padding-top: 80px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
 
-    .hero button {
-      padding: 10px 20px;
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .hero {
+            background: #1a1a1a url('https://via.placeholder.com/600x400') no-repeat center/cover;
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .form-section {
-      background-color: #111;
-      padding: 40px 20px;
-      text-align: center;
-    }
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
 
-    .form-section h3 {
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
 
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+        .get-started {
+            background: #d32f2f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-    input {
-      padding: 10px;
-      border-radius: 4px;
-      border: none;
-    }
+        .get-started:hover {
+            background: #b71c1c;
+        }
 
-    button[type="submit"] {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 10px;
-      font-weight: bold;
-      border-radius: 4px;
-    }
+        .register-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            text-align: center;
+        }
 
-    section {
-      padding: 40px 20px;
-    }
+        .register-form h3 {
+            margin-bottom: 10px;
+            color: #d32f2f;
+        }
 
-    section h3 {
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
+        .register-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-    section p {
-      color: var(--muted);
-    }
+        .register-form button {
+            background: #d32f2f;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
 
-    .grid-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+        .register-form button:hover {
+            background: #b71c1c;
+        }
 
-    .testimonial {
-      background-color: #111;
-      padding: 20px;
-      border-radius: 8px;
-    }
+        .about, .courses, .testimonials, .contact {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
 
-    footer {
-      background-color: #111;
-      color: var(--muted);
-      padding: 20px;
-      text-align: center;
-    }
+        .courses, .rates {
+            background: #d32f2f;
+            color: #fff;
+        }
 
-    .socials img {
-      width: 24px;
-      margin: 0 5px;
-      vertical-align: middle;
-    }
+        .courses img, .rates img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
 
-      nav {
-        margin-top: 10px;
-      }
-    }
-  </style>
+        footer a {
+            color: #d32f2f;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .main-content {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .hero {
+                grid-column: 1 / -1;
+            }
+
+            .about {
+                grid-column: 1 / -1;
+            }
+
+            .courses, .rates {
+                grid-column: span 1;
+            }
+
+            .testimonials, .contact {
+                grid-column: span 1;
+            }
+        }
+
+        /* Scroll Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/40" alt="Logo">
+            <h1>Driving School</h1>
+        </div>
+        <nav>
+            <a href="#courses">Courses</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-  <header data-aos="fade-down">
-    <h1>DRIVING SCHOOL</h1>
-    <nav>
-      <a href="#courses">Courses</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <div class="main-content">
+        <section class="hero" id="hero">
+            <h2>LEARN TO DRIVE</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+            <button class="get-started">GET STARTED</button>
+            <div class="register-form">
+                <h3>Register Today!</h3>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <button>SIGN UP</button>
+            </div>
+        </section>
 
-  <section class="hero" data-aos="zoom-in">
-    <h2>Learn to Drive</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-    <button>Get Started</button>
-  </section>
+        <section class="about" id="about">
+            <h2>ABOUT US</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod interdum sed euismod quis ec commodo consequat.</p>
+        </section>
 
-  <section class="form-section" data-aos="fade-up">
-    <h3>Register Today!</h3>
-    <form>
-      <input type="text" placeholder="Name" required />
-      <input type="email" placeholder="Email" required />
-      <button type="submit">Sign Up</button>
-    </form>
-  </section>
+        <section class="courses" id="courses">
+            <h2>OUR COURSES</h2>
+            <img src="https://via.placeholder.com/50" alt="Car Icon">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
 
-  <section id="about" data-aos="fade-up">
-    <h3>About Us</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod interdum sed eiusmod quis ec commodo consequat</p>
-  </section>
+        <section class="rates" id="pricing">
+            <h2>AFFORDABLE RATES</h2>
+            <img src="https://via.placeholder.com/50" alt="Rate Icon">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
 
-  <section id="courses" data-aos="fade-up" class="grid-section">
-    <div>
-      <h3>Our Courses</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <section class="testimonials" id="testimonials">
+            <h2>TESTIMONIALS</h2>
+            <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”</p>
+        </section>
+
+        <section class="contact" id="contact">
+            <h2>CONTACT US</h2>
+            <p>📍 1234 Elm St. Springfield, IL 62701</p>
+            <p>📞 (123) 456-7890</p>
+            <p>📧 info@drivingschool.com</p>
+        </section>
     </div>
-    <div>
-      <h3>Affordable Rates</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-    </div>
-  </section>
 
-  <section id="testimonials" data-aos="fade-up" class="grid-section">
-    <div class="testimonial">
-      <h3>Testimonials</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod</p>
-    </div>
-  </section>
+    <footer>
+        <p>&copy; 2025 Driving School. All rights reserved.</p>
+        <div>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
 
-  <section id="contact" data-aos="fade-up">
-    <h3>Contact Us</h3>
-    <p>1234 Elm St. Springfield, IL 62701</p>
-    <p>(123) 456-7890</p>
-    <p>info@drivingschool.com</p>
-  </section>
+    <script>
+        // Scroll Animation
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.about, .courses, .rates, .testimonials, .contact');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    element.classList.add('animate');
+                }
+            });
+        });
 
-  <footer data-aos="fade-up">
-    <div class="socials">
-      <img src="facebook-icon.png" alt="Facebook" />
-      <img src="twitter-icon.png" alt="Twitter" />
-      <img src="instagram-icon.png" alt="Instagram" />
-    </div>
-    <p>© 2025 Driving School. All rights reserved.</p>
-  </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+        // Form Toggle
+        const getStartedBtn = document.querySelector('.get-started');
+        const registerForm = document.querySelector('.register-form');
+        getStartedBtn.addEventListener('click', function() {
+            registerForm.style.display = registerForm.style.display === 'block' ? 'none' : 'block';
+        });
+    </script>
 </body>
 </html>
