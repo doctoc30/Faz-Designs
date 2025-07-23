@@ -416,6 +416,56 @@
             background: #E6C200;
         }
 
+        /* Footer Socials */
+        .footer-socials {
+            background: #4A90E2; /* Exact theme color */
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons-footer {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon-footer {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon-footer:hover {
+            transform: scale(1.2);
+        }
+
+        .chat-bubble-footer {
+            width: 50px;
+            height: 50px;
+            background: #F5D800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .chat-bubble-footer:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-bubble-footer img {
+            width: 25px;
+            height: 25px;
+            filter: brightness(0) invert(0);
+        }
+
         /* Responsive Design */
         @media (min-width: 768px) {
             .container {
@@ -640,6 +690,18 @@
                 <a href="mailto:info@drivingschool.com" class="contact-btn">Send Email</a>
             </div>
         </section>
+
+        <!-- Footer Socials and Chat Bubble -->
+        <footer class="footer-socials">
+            <div class="social-icons-footer">
+                <img src="assets/facebook_icon.png" alt="Facebook" class="social-icon-footer" onclick="openSocial(\'facebook\')">
+                <img src="assets/twitter_icon.png" alt="Twitter" class="social-icon-footer" onclick="openSocial(\'twitter\')">
+                <img src="assets/instagram_icon.png" alt="Instagram" class="social-icon-footer" onclick="openSocial(\'instagram\')">
+            </div>
+            <div class="chat-bubble-footer" onclick="openChat()">
+                <img src="assets/chat_bubble_icon.png" alt="Chat">
+            </div>
+        </footer>
     </div>
 
     <script>
@@ -747,6 +809,24 @@
                 }, 150);
             });
         });
+
+        // Social Media Functions
+        function openSocial(platform) {
+            const urls = {
+                'facebook': 'https://facebook.com/drivingschool',
+                'twitter': 'https://twitter.com/drivingschool',
+                'instagram': 'https://instagram.com/drivingschool'
+            };
+            
+            if (urls[platform]) {
+                window.open(urls[platform], '_blank');
+            }
+        }
+
+        // Chat Function
+        function openChat() {
+            alert('Chat system would open here. You can also call (555) 123-4567 for immediate assistance!');
+        }
     </script>
 </body>
 </html>
