@@ -3,296 +3,696 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving School</title>
+    <title>Driving School - Learn to Drive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* General Styles */
+        :root {
+            --primary-blue: #2196F3; /* Bright blue for background */
+            --dark-blue: #1976D2; /* Slightly darker blue, not explicitly in image but good for accents */
+            --red-cta: #D32F2F; /* Red for CTA buttons/sections */
+            --dark-grey: #333; /* Dark text and hero overlay */
+            --white: #fff;
+            --light-grey-text: #eee; /* For text on dark backgrounds */
+            --section-bg-light: #F8F8F8; /* Light background for some sections */
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         body {
-            background-color: #00aaff;
-            color: #333;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
+            color: var(--dark-grey);
+            background-color: var(--primary-blue); /* Overall background */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
         }
 
         /* Header */
-        header {
-            background: #fff;
-            padding: 10px 20px;
+        .header {
+            background-color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
         }
 
         .logo {
             display: flex;
             align-items: center;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .logo h1 {
-            font-size: 24px;
-            color: #d32f2f;
-        }
-
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #333;
+            font-size: 1.3em;
             font-weight: bold;
+            color: var(--dark-grey);
         }
 
-        nav a:hover {
-            color: #d32f2f;
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8em;
+            color: var(--red-cta);
         }
 
-        /* Main Content */
-        .main-content {
-            padding-top: 80px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 20px;
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
         }
 
+        .main-nav a {
+            font-weight: bold;
+            color: var(--dark-grey);
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--red-cta);
+        }
+
+        /* Hero Section */
         .hero {
-            background: #1a1a1a url('https://via.placeholder.com/600x400') no-repeat center/cover;
-            color: #fff;
-            padding: 50px 20px;
-            text-align: center;
             position: relative;
-            overflow: hidden;
+            background-color: var(--dark-grey); /* Fallback */
+            color: var(--white);
+            padding: 80px 0;
+            overflow: hidden; /* For the car image */
         }
 
-        .hero h2 {
-            font-size: 48px;
-            margin-bottom: 10px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1200x600/333333/FFFFFF?text=Driving+Car+Interior') no-repeat center center/cover; /* Replace with your actual car interior image */
+            opacity: 0.3; /* Adjust opacity to blend with dark overlay */
+            z-index: 1;
         }
 
-        .hero p {
-            font-size: 16px;
+        .hero .container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 2;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .hero-left {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+            margin-bottom: 20px; /* For mobile spacing */
+        }
+
+        .hero-left h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            color: var(--light-grey-text);
+        }
+
+        .hero-left p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: var(--light-grey-text);
+        }
+
+        .hero-left .btn-get-started {
+            background-color: var(--red-cta);
+            color: var(--white);
+            padding: 15px 35px;
+            font-size: 1.1em;
+        }
+
+        .hero-left .btn-get-started:hover {
+            background-color: #a72222;
+        }
+
+        .hero-signs {
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            top: 20px; /* Adjust positioning as per image */
+            right: 20px;
+            z-index: 3;
+        }
+        .hero-signs img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .hero-right {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 350px; /* Fixed width for the form */
+            flex-shrink: 0; /* Prevent shrinking */
+            margin-top: -50px; /* Overlap with hero background */
+        }
+
+        .hero-right h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: var(--dark-grey);
+            text-align: center;
+        }
+
+        .register-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .register-form input[type="text"],
+        .register-form input[type="email"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .register-form input::placeholder {
+            color: #aaa;
+        }
+
+        .register-form .btn-sign-up {
+            width: 100%;
+            background-color: var(--red-cta);
+            color: var(--white);
+            padding: 15px;
+            font-size: 1.1em;
+        }
+
+        .register-form .btn-sign-up:hover {
+            background-color: #a72222;
+        }
+
+        /* About Us Section */
+        .about-us {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 60px 0;
+        }
+
+        .about-us h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .about-us p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            max-width: 800px; /* Constrain text width */
+        }
+
+        /* Courses and Rates Section */
+        .courses-rates-section {
+            background-color: var(--white);
+            padding: 60px 0;
+        }
+
+        .courses-rates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: var(--red-cta);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .course-card h3 {
+            font-size: 2em;
+            text-transform: uppercase;
+        }
+
+        .course-card .image-text-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .course-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .course-card p {
+            font-size: 1em;
+            flex-grow: 1;
+        }
+
+        .rates-card {
+            background-color: var(--section-bg-light); /* Off-white background */
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .rates-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-grey);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rates-card h3 i {
+            font-size: 1.2em;
+            color: var(--red-cta);
+        }
+
+        .rates-card p {
+            font-size: 1em;
+            color: var(--dark-grey);
+        }
+
+        /* Testimonials & Contact Section */
+        .bottom-grid-section {
+            background-color: var(--primary-blue);
+            padding: 60px 0;
+        }
+
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonials-card {
+            background-color: var(--primary-blue); /* Same as background for seamless look */
+            color: var(--white);
+            padding: 30px 0; /* No padding on sides for full width text */
+            text-align: left;
+        }
+
+        .testimonials-card h2 {
+            font-size: 2.5em;
             margin-bottom: 20px;
         }
 
-        .get-started {
-            background: #d32f2f;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
+        .testimonials-card blockquote {
+            font-size: 1.2em;
+            line-height: 1.8;
+            border-left: 5px solid var(--white); /* Emulate the quote visual */
+            padding-left: 20px;
+            font-style: italic;
         }
 
-        .get-started:hover {
-            background: #b71c1c;
+        .contact-card {
+            background-color: var(--primary-blue); /* Same as background */
+            color: var(--white);
+            padding: 30px 0;
+            text-align: left;
         }
 
-        .register-form {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
+        .contact-card h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start; /* Align icon and text at the top */
+            gap: 10px;
+            font-size: 1.1em;
+        }
+
+        .contact-item i {
+            color: var(--red-cta);
+            font-size: 1.2em;
+            margin-top: 3px; /* Adjust for visual alignment */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        /* Footer (Placeholder for socials if needed, image doesn't show them explicitly) */
+        .footer {
+            background-color: var(--dark-grey);
+            color: var(--white);
             text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
         }
 
-        .register-form h3 {
-            margin-bottom: 10px;
-            color: #d32f2f;
-        }
-
-        .register-form input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .register-form button {
-            background: #d32f2f;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
+        /* Mobile specific elements */
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.8em;
+            color: var(--dark-grey);
             cursor: pointer;
-            width: 100%;
         }
 
-        .register-form button:hover {
-            background: #b71c1c;
-        }
-
-        .about, .courses, .testimonials, .contact {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .courses, .rates {
-            background: #d32f2f;
-            color: #fff;
-        }
-
-        .courses img, .rates img {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        footer a {
-            color: #d32f2f;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media (min-width: 768px) {
-            .main-content {
-                grid-template-columns: 2fr 1fr;
+        /* Responsiveness */
+        @media (max-width: 992px) {
+            .hero-left h1 {
+                font-size: 2.8em;
             }
 
-            .hero {
-                grid-column: 1 / -1;
+            .hero .container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
 
-            .about {
-                grid-column: 1 / -1;
+            .hero-left {
+                padding-right: 0;
             }
 
-            .courses, .rates {
-                grid-column: span 1;
+            .hero-right {
+                margin-top: 30px; /* Adjust overlap for better mobile layout */
+                width: 90%; /* Make form wider on smaller screens */
+                max-width: 400px;
             }
 
-            .testimonials, .contact {
-                grid-column: span 1;
+            .hero-signs {
+                position: static; /* Remove absolute positioning */
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            .about-us h2, .testimonials-card h2, .contact-card h2 {
+                text-align: center;
+                font-size: 2em;
+            }
+            .about-us p {
+                text-align: center;
+                max-width: none;
+            }
+
+            .main-nav {
+                display: none; /* Hide desktop nav */
+            }
+            .mobile-menu-icon {
+                display: block; /* Show mobile menu icon */
+            }
+            .header .container {
+                justify-content: space-between;
             }
         }
 
-        /* Scroll Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 768px) {
+            .hero-left h1 {
+                font-size: 2.2em;
+            }
+            .hero-left p {
+                font-size: 1em;
+            }
+            .hero-left .btn-get-started {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            .hero-right {
+                padding: 20px;
+            }
+            .hero-signs img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .courses-rates-grid {
+                grid-template-columns: 1fr; /* Stack columns */
+            }
+            .course-card .image-text-group {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .course-card img {
+                margin-bottom: 15px;
+            }
+
+            .bottom-grid {
+                grid-template-columns: 1fr; /* Stack columns */
+            }
+            .testimonials-card, .contact-card {
+                padding: 0 20px; /* Add some horizontal padding */
+            }
+            .testimonials-card blockquote {
+                font-size: 1.1em;
+            }
         }
 
-        .animate {
-            animation: fadeIn 1s ease-in-out;
+        @media (max-width: 480px) {
+            .hero-left h1 {
+                font-size: 1.8em;
+            }
+            .hero-left p {
+                font-size: 0.9em;
+            }
+            .hero-right h3 {
+                font-size: 1.3em;
+            }
+            .register-form input {
+                padding: 10px;
+            }
+            .register-form .btn-sign-up {
+                padding: 12px;
+                font-size: 1em;
+            }
+            .logo {
+                font-size: 1.1em;
+            }
+            .logo i {
+                font-size: 1.5em;
+            }
+            .about-us h2, .testimonials-card h2, .contact-card h2 {
+                font-size: 1.8em;
+            }
+            .about-us p {
+                font-size: 0.9em;
+            }
+            .course-card h3 {
+                font-size: 1.7em;
+            }
+            .rates-card h3 {
+                font-size: 1.5em;
+            }
+            .testimonials-card blockquote {
+                font-size: 1em;
+                padding-left: 15px;
+            }
+            .contact-item {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://via.placeholder.com/40" alt="Logo">
-            <h1>Driving School</h1>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-steering-wheel"></i>
+                <span>DRIVING SCHOOL</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#courses-section">COURSES</a></li>
+                    <li><a href="#pricing-section">PRICING</a></li>
+                    <li><a href="#contact-section">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-icon" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-        <nav>
-            <a href="#courses">Courses</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Contact</a>
-        </nav>
     </header>
 
-    <div class="main-content">
-        <section class="hero" id="hero">
-            <h2>LEARN TO DRIVE</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-            <button class="get-started">GET STARTED</button>
-            <div class="register-form">
-                <h3>Register Today!</h3>
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <button>SIGN UP</button>
+    <main>
+        <section class="hero" id="hero-section">
+            <div class="hero-signs">
+                <img src="https://via.placeholder.com/100x100/FFD700/000000?text=Winding+Road+Sign" alt="Winding Road Sign">
+                <img src="https://via.placeholder.com/100x100/ED1C24/FFFFFF?text=STOP+Sign" alt="STOP Sign">
+            </div>
+            <div class="container">
+                <div class="hero-left">
+                    <h1>LEARN TO DRIVE</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    <button class="btn-get-started">GET STARTED</button>
+                </div>
+                <div class="hero-right">
+                    <h3>Register Today!</h3>
+                    <form class="register-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <button type="submit" class="btn-sign-up">SIGN UP</button>
+                    </form>
+                </div>
             </div>
         </section>
 
-        <section class="about" id="about">
-            <h2>ABOUT US</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod interdum sed euismod quis ec commodo consequat.</p>
+        <section class="about-us" id="about-us-section">
+            <div class="container">
+                <h2>ABOUT US</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+            </div>
         </section>
 
-        <section class="courses" id="courses">
-            <h2>OUR COURSES</h2>
-            <img src="https://via.placeholder.com/50" alt="Car Icon">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <section class="courses-rates-section" id="courses-section">
+            <div class="container courses-rates-grid">
+                <div class="course-card">
+                    <h3>OUR COURSES</h3>
+                    <div class="image-text-group">
+                        <img src="https://via.placeholder.com/120x120/555555/FFFFFF?text=Steering+Wheel" alt="Steering Wheel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                    </div>
+                </div>
+                <div class="rates-card" id="pricing-section">
+                    <h3><i class="fas fa-car"></i> AFFORDABLE RATES</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                </div>
+            </div>
         </section>
 
-        <section class="rates" id="pricing">
-            <h2>AFFORDABLE RATES</h2>
-            <img src="https://via.placeholder.com/50" alt="Rate Icon">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <section class="bottom-grid-section">
+            <div class="container bottom-grid">
+                <div class="testimonials-card">
+                    <h2>TESTIMONIALS</h2>
+                    <blockquote>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod"
+                    </blockquote>
+                </div>
+                <div class="contact-card" id="contact-section">
+                    <h2>CONTACT US</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>1234 Elm St. Springfield, IL 62701</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>(123) 456-7890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@drivingschool.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+    </main>
 
-        <section class="testimonials" id="testimonials">
-            <h2>TESTIMONIALS</h2>
-            <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.”</p>
-        </section>
-
-        <section class="contact" id="contact">
-            <h2>CONTACT US</h2>
-            <p>📍 1234 Elm St. Springfield, IL 62701</p>
-            <p>📞 (123) 456-7890</p>
-            <p>📧 info@drivingschool.com</p>
-        </section>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Driving School. All rights reserved.</p>
-        <div>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Driving School. All rights reserved.</p>
+            <div class="footer-socials">
+                </div>
         </div>
     </footer>
 
     <script>
-        // Scroll Animation
-        window.addEventListener('scroll', function() {
-            const elements = document.querySelectorAll('.about, .courses, .rates, .testimonials, .contact');
-            elements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    element.classList.add('animate');
-                }
+        // Basic JavaScript for mobile menu toggle
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.main-nav');
+            // This is a simplified toggle. For a real menu, you'd toggle a class
+            // and use CSS to show/hide with animations.
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            // Also need to handle closing when clicking outside or on a link
+            alert('Mobile menu toggled! (Implement actual menu display/hide with CSS)');
+        }
+
+        // JavaScript for scroll animations (Placeholder for IntersectionObserver / AOS.js)
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('h1, h2, p, button, .hero-signs, .hero-right, .course-card, .rates-card, .testimonials-card, .contact-card');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Example: Add a class to trigger a CSS animation
+                        // For instance, if you define `.fade-in { opacity: 1; transform: translateY(0); }`
+                        // and `.animated-element { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }`
+                        // entry.target.classList.add('fade-in');
+                        // For this example, we'll just log
+                        // console.log(`Element ${entry.target.tagName} is in view!`);
+                        // Optionally, stop observing after animation
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(el => {
+                // Add a class that sets initial state (e.g., opacity: 0, transform: translateY(20px))
+                // el.classList.add('animated-element'); // Uncomment if you add initial CSS for animations
+                observer.observe(el);
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // Optional: Close mobile menu after clicking a link
+                    const nav = document.querySelector('.main-nav');
+                    if (window.innerWidth <= 992 && nav.style.display === 'flex') {
+                        nav.style.display = 'none';
+                    }
+                });
             });
         });
-
-        // Form Toggle
-        const getStartedBtn = document.querySelector('.get-started');
-        const registerForm = document.querySelector('.register-form');
-        getStartedBtn.addEventListener('click', function() {
-            registerForm.style.display = registerForm.style.display === 'block' ? 'none' : 'block';
-        });
     </script>
+
 </body>
 </html>
