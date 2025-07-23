@@ -1,422 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving School</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* General Styles */
-        :root {
-            --primary-brown: #5a3c2b; /* Darker brown for text/elements */
-            --secondary-brown: #8b5f45; /* Lighter brown for sections */
-            --cream: #f4ece0; /* Background and light text */
-            --light-cream: #faf5ed; /* Even lighter background */
-            --text-color: #333;
-            --white: #fff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driving School</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <style>
+    :root {
+      --primary: #d32f2f;
+      --secondary: #ffffff;
+      --dark: #000000;
+      --light: #f1f1f1;
+      --muted: #cccccc;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--light-cream);
-        }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    header {
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+    header h1 {
+      font-size: 1.5rem;
+    }
 
-        button {
-            cursor: pointer;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
 
-        /* Header */
-        .header {
-            background-color: var(--cream);
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: var(--dark);
+    }
 
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .hero h2 {
+      color: var(--primary);
+      font-size: 2.2rem;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5em;
-            font-weight: bold;
-            color: var(--primary-brown);
-        }
+    .hero p {
+      max-width: 600px;
+      margin: 10px auto 30px;
+      color: var(--muted);
+    }
 
-        .logo i {
-            margin-right: 10px;
-            font-size: 1.8em;
-            color: var(--secondary-brown);
-        }
+    .hero button {
+      padding: 10px 20px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-        }
+    .form-section {
+      background-color: #111;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-        .nav-buttons .btn-book-now {
-            background-color: var(--primary-brown);
-            color: var(--white);
-        }
+    .form-section h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
 
-        .nav-buttons .btn-book-now:hover {
-            background-color: #4a2f22;
-        }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
 
-        .nav-buttons .btn-phone {
-            background-color: var(--secondary-brown);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-        }
+    input {
+      padding: 10px;
+      border-radius: 4px;
+      border: none;
+    }
 
-        .nav-buttons .btn-phone i {
-            font-size: 1.2em;
-        }
+    button[type="submit"] {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 4px;
+    }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 400px; /* Adjust as needed */
-            overflow: hidden;
-        }
+    section {
+      padding: 40px 20px;
+    }
 
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://via.placeholder.com/1200x400/8b5f45/FFFFFF?text=Driving+School+Car+Interior') no-repeat center center/cover; /* Placeholder. Replace with your actual image */
-            z-index: 1;
-        }
+    section h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
 
-        .hero-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--primary-brown);
-            color: var(--white);
-            padding: 30px 20px;
-            text-align: center;
-            z-index: 2;
-        }
+    section p {
+      color: var(--muted);
+    }
 
-        .hero-content h1 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
-        }
+    .grid-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-        /* Features Section */
-        .features-section {
-            background-color: var(--light-cream);
-            padding: 50px 0;
-        }
+    .testimonial {
+      background-color: #111;
+      padding: 20px;
+      border-radius: 8px;
+    }
 
-        .features-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 600px; /* Constrain width as per image */
-            margin: 0 auto;
-        }
+    footer {
+      background-color: #111;
+      color: var(--muted);
+      padding: 20px;
+      text-align: center;
+    }
 
-        .feature-item {
-            display: flex;
-            align-items: center;
-            font-size: 1.1em;
-            color: var(--primary-brown);
-            margin-bottom: 15px;
-        }
+    .socials img {
+      width: 24px;
+      margin: 0 5px;
+      vertical-align: middle;
+    }
 
-        .feature-item i {
-            margin-right: 15px;
-            color: var(--secondary-brown);
-            font-size: 1.5em;
-        }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-        /* Call to Action Section */
-        .cta-section {
-            background-color: var(--light-cream);
-            padding-bottom: 50px;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            color: var(--primary-brown);
-        }
-
-        .cta-section .btn-book-lesson {
-            background-color: var(--primary-brown);
-            color: var(--white);
-            padding: 15px 35px;
-            font-size: 1.1em;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .cta-section .btn-book-lesson:hover {
-            background-color: #4a2f22;
-        }
-
-        .cta-section p {
-            font-size: 0.95em;
-            color: var(--text-color);
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--primary-brown);
-            color: var(--white);
-            padding: 20px 0;
-            font-size: 0.9em;
-        }
-
-        .footer .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .footer-address {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-socials a {
-            color: var(--white);
-            font-size: 1.5em;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-socials a:hover {
-            color: var(--cream);
-        }
-
-        /* Mobile specific elements (hidden by default) */
-        .mobile-menu-icon {
-            display: none;
-            font-size: 1.8em;
-            color: var(--primary-brown);
-            cursor: pointer;
-        }
-
-        /* Responsiveness */
-        @media (max-width: 768px) {
-            .nav-buttons {
-                display: none; /* Hide navigation buttons on smaller screens */
-            }
-
-            .mobile-menu-icon {
-                display: block; /* Show mobile menu icon */
-            }
-
-            .hero-content h1 {
-                font-size: 1.8em;
-            }
-
-            .features-grid {
-                padding: 0 15px;
-            }
-
-            .feature-item {
-                font-size: 1em;
-            }
-
-            .feature-item i {
-                font-size: 1.3em;
-            }
-
-            .cta-section h2 {
-                font-size: 1.5em;
-            }
-
-            .footer .container {
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header .container {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .logo {
-                font-size: 1.3em;
-            }
-
-            .logo i {
-                font-size: 1.5em;
-            }
-
-            .hero-content h1 {
-                font-size: 1.5em;
-                padding: 0 10px;
-            }
-
-            .hero-content {
-                padding: 20px 10px;
-            }
-
-            .features-section {
-                padding: 30px 0;
-            }
-
-            .cta-section {
-                padding-bottom: 30px;
-            }
-
-            .cta-section .btn-book-lesson {
-                padding: 12px 25px;
-                font-size: 1em;
-            }
-        }
-    </style>
+      nav {
+        margin-top: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <i class="fas fa-steering-wheel"></i>
-                <span>DRIVING SCHOOL</span>
-            </div>
-            <nav class="nav-buttons">
-                <button class="btn-book-now">Book now</button>
-                <a href="tel:+1234567890" class="btn-phone">
-                    <i class="fas fa-phone-alt"></i>
-                </a>
-            </nav>
-            <div class="mobile-menu-icon" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
+  <header data-aos="fade-down">
+    <h1>DRIVING SCHOOL</h1>
+    <nav>
+      <a href="#courses">Courses</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-content">
-                <h1>Expert driving lessons available 7 days a week</h1>
-            </div>
-        </section>
+  <section class="hero" data-aos="zoom-in">
+    <h2>Learn to Drive</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+    <button>Get Started</button>
+  </section>
 
-        <section class="features-section">
-            <div class="container">
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> Teen and adult programs
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> Professional, licensed instructors
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> Flexible scheduling options
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> Competitive pricing
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section class="form-section" data-aos="fade-up">
+    <h3>Register Today!</h3>
+    <form>
+      <input type="text" placeholder="Name" required />
+      <input type="email" placeholder="Email" required />
+      <button type="submit">Sign Up</button>
+    </form>
+  </section>
 
-        <section class="cta-section">
-            <div class="container">
-                <h2>Book online and save 10%</h2>
-                <button class="btn-book-lesson">Book a lesson now</button>
-                <p>or call with questions or to book</p>
-            </div>
-        </section>
-    </main>
+  <section id="about" data-aos="fade-up">
+    <h3>About Us</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod interdum sed eiusmod quis ec commodo consequat</p>
+  </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-address">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>123 Anywhere St, City, State</span>
-            </div>
-            <div class="footer-socials">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
+  <section id="courses" data-aos="fade-up" class="grid-section">
+    <div>
+      <h3>Our Courses</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    </div>
+    <div>
+      <h3>Affordable Rates</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    </div>
+  </section>
 
-    <script>
-        // Basic JavaScript for mobile menu toggle (you'll need to expand this for actual menu functionality)
-        function toggleMobileMenu() {
-            const navButtons = document.querySelector('.nav-buttons');
-            // This is a placeholder. In a real scenario, you'd toggle a class on navButtons
-            // and use CSS to display/hide it, possibly with a slide animation.
-            alert('Mobile menu toggled! (Implement actual menu display here)');
-        }
+  <section id="testimonials" data-aos="fade-up" class="grid-section">
+    <div class="testimonial">
+      <h3>Testimonials</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod</p>
+    </div>
+  </section>
 
-        // Basic scroll animation placeholder
-        // For actual scroll animations, you'd use a library like AOS.js or write custom IntersectionObserver logic.
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
+  <section id="contact" data-aos="fade-up">
+    <h3>Contact Us</h3>
+    <p>1234 Elm St. Springfield, IL 62701</p>
+    <p>(123) 456-7890</p>
+    <p>info@drivingschool.com</p>
+  </section>
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Add a class for animation, e.g., entry.target.classList.add('fade-in');
-                        // For this example, we'll just log
-                        // console.log(`${entry.target.classList[0]} is in view!`);
-                        // observer.unobserve(entry.target); // Optional: stop observing once animated
-                    }
-                });
-            }, observerOptions);
+  <footer data-aos="fade-up">
+    <div class="socials">
+      <img src="facebook-icon.png" alt="Facebook" />
+      <img src="twitter-icon.png" alt="Twitter" />
+      <img src="instagram-icon.png" alt="Instagram" />
+    </div>
+    <p>© 2025 Driving School. All rights reserved.</p>
+  </footer>
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
