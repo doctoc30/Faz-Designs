@@ -1,229 +1,889 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driving School</title>
-  <style>
-    :root {
-      --primary-color: #234e9e;
-      --accent-color: #f5b400;
-      --text-color: #333;
-      --bg-light: #f7f7f7;
-      --font: 'Segoe UI', sans-serif;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: var(--font);
-      background: white;
-      color: var(--text-color);
-      scroll-behavior: smooth;
-    }
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .banner {
-      background: url('https://via.placeholder.com/1200x400?text=Driving+School') center/cover no-repeat;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .banner::after {
-      content: '▶';
-      font-size: 3rem;
-      color: white;
-      background: rgba(0,0,0,0.4);
-      border-radius: 50%;
-      padding: 0.5rem;
-      cursor: pointer;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .cta {
-      padding: 2rem;
-      background-color: var(--bg-light);
-      text-align: center;
-    }
-    .cta h1 {
-      margin-bottom: 1rem;
-      font-size: 2rem;
-    }
-    .cta p {
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-inline: auto;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .form-group input {
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      width: 300px;
-    }
-    .form-group button {
-      padding: 0.5rem 1.5rem;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem;
-      background-color: white;
-    }
-    .links a {
-      text-decoration: none;
-      color: var(--primary-color);
-      font-weight: bold;
-    }
-    .pricing {
-      background-color: var(--bg-light);
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-    .plan {
-      background: white;
-      border: 1px solid #ccc;
-      padding: 1.5rem;
-      width: 250px;
-    }
-    .plan h2 {
-      color: var(--primary-color);
-    }
-    footer {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    .socials a {
-      margin: 0 0.5rem;
-      color: white;
-      font-size: 1.5rem;
-      text-decoration: none;
-    }
-    @media (max-width: 768px) {
-      .pricing {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving School - Learn to Drive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #F97316;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            color: #F97316;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #F97316;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/car_hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid #333;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        /* Learn to Drive Section */
+        .learn-section {
+            background: #F97316;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .learn-content h2 {
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .learn-content p {
+            color: white;
+            font-size: 18px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h3 {
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #F97316;
+        }
+
+        .send-btn {
+            width: 100%;
+            background: #333;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Icon Navigation Section */
+        .icon-nav {
+            background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+            padding: 60px 20px;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .icon-item {
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 30px 20px;
+            border-radius: 15px;
+        }
+
+        .icon-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .icon-item img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            filter: brightness(0) invert(1);
+        }
+
+        .icon-item h3 {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+            padding: 80px 20px;
+        }
+
+        .pricing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .pricing-title {
+            color: white;
+        }
+
+        .pricing-title h2 {
+            font-size: 48px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .pricing-plans {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card .price {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #F97316;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card li {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .pricing-card li::before {
+            content: '•';
+            color: #F97316;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .pricing-btn {
+            background: #F97316;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-btn:hover {
+            background: #EA580C;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Section */
+        .footer {
+            background: linear-gradient(135deg, #1E40AF 0%, #7C3AED 100%);
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-address {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-address::before {
+            content: '📍';
+            font-size: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #F97316;
+            transform: translateY(-3px);
+        }
+
+        /* Additional Sections for Complete Driving School Website */
+        .about-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-container h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .about-container p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .services-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .services-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .services-container h2 {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #F97316;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .testimonials-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+            color: white;
+        }
+
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonials-container h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-card p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #F97316;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .learn-section {
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+            }
+
+            .icon-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .pricing-container {
+                grid-template-columns: 1fr 2fr;
+            }
+
+            .pricing-plans {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .hero {
+                background-attachment: fixed;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .learn-content h2 {
+                font-size: 36px;
+            }
+
+            .pricing-title h2 {
+                font-size: 36px;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🚗</div>
+            <div class="logo-text">Driving School</div>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
 
-  <header>
-    <h1>Driving School</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#programs">Programs</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="play-button" onclick="playVideo()"></div>
+    </section>
 
-  <section class="banner" id="home"></section>
+    <!-- Learn to Drive Section -->
+    <section class="learn-section">
+        <div class="learn-content slide-in-left">
+            <h2>Learn to Drive</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="form-container slide-in-right">
+            <h3>Get Started</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone" required>
+                </div>
+                <button type="submit" class="send-btn">Send</button>
+            </form>
+        </div>
+    </section>
 
-  <section class="cta">
-    <h1>Learn to Drive</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-    <div class="form-group">
-      <input type="text" placeholder="Name"/>
-      <input type="email" placeholder="Email"/>
-      <input type="tel" placeholder="Phone"/>
-      <button>SEND</button>
-    </div>
-  </section>
+    <!-- Icon Navigation Section -->
+    <section class="icon-nav">
+        <div class="icon-grid">
+            <div class="icon-item fade-in" onclick="navigateTo('courses')">
+                <img src="assets/icon_car.jpg" alt="Courses">
+                <h3>Courses</h3>
+            </div>
+            <div class="icon-item fade-in" onclick="navigateTo('testimonials')">
+                <img src="assets/icon_speech_bubble.png" alt="Testimonials">
+                <h3>Testimonials</h3>
+            </div>
+            <div class="icon-item fade-in" onclick="navigateTo('instructors')">
+                <img src="assets/icon_people.png" alt="Instructors">
+                <h3>Instructors</h3>
+            </div>
+            <div class="icon-item fade-in" onclick="navigateTo('contact')">
+                <img src="assets/icon_envelope.png" alt="Contact">
+                <h3>Contact</h3>
+            </div>
+        </div>
+    </section>
 
-  <section class="links">
-    <a href="#courses">Courses</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#instructors">Instructors</a>
-    <a href="#contact">Contact</a>
-  </section>
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="pricing-container">
+            <div class="pricing-title slide-in-left">
+                <h2>Pricing Plans</h2>
+            </div>
+            <div class="pricing-plans">
+                <div class="pricing-card scale-in">
+                    <h3>Basic</h3>
+                    <div class="price">$99</div>
+                    <ul>
+                        <li>Lorem ipsum dolor</li>
+                        <li>Lorem ipsum dolor</li>
+                        <li>Lorem ipsum dolor</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="selectPlan('basic')">Choose Plan</button>
+                </div>
+                <div class="pricing-card scale-in">
+                    <h3>Standard</h3>
+                    <div class="price">$149</div>
+                    <ul>
+                        <li>Lorem ipsum dolor</li>
+                        <li>Lorem ipsum dolor</li>
+                        <li>Lorem ipsum dolor</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="selectPlan('standard')">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="pricing" id="programs">
-    <div class="plan">
-      <h2>Basic</h2>
-      <p>$99</p>
-      <ul>
-        <li>Lorem ipsum dolor</li>
-        <li>Lorem ipsum dolor</li>
-        <li>Lorem ipsum dolor</li>
-      </ul>
-    </div>
-    <div class="plan">
-      <h2>Standard</h2>
-      <p>$149</p>
-      <ul>
-        <li>Lorem ipsum dolor</li>
-        <li>Lorem ipsum dolor</li>
-        <li>Lorem ipsum dolor</li>
-      </ul>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container fade-in">
+            <h2>About Our Driving School</h2>
+            <p>We are a professional driving school with over 20 years of experience in teaching safe and confident driving. Our certified instructors are dedicated to helping you become a skilled and responsible driver.</p>
+            <p>We offer comprehensive driving lessons for all skill levels, from beginners to advanced drivers looking to improve their skills. Our modern fleet of vehicles and proven teaching methods ensure you get the best driving education possible.</p>
+        </div>
+    </section>
 
-  <footer id="contact">
-    <p>123 Anywhere St., City, State</p>
-    <div class="socials">
-      <a href="#"><span>🔵</span></a>
-      <a href="#"><span>🐦</span></a>
-    </div>
-  </footer>
+    <!-- Services Section -->
+    <section id="programs" class="services-section">
+        <div class="services-container">
+            <h2 class="fade-in">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <h3>Beginner Lessons</h3>
+                    <p>Perfect for first-time drivers. Learn the basics of driving with our patient and experienced instructors.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <h3>Refresher Courses</h3>
+                    <p>Haven't driven in a while? Our refresher courses will help you regain confidence behind the wheel.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <h3>Test Preparation</h3>
+                    <p>Get ready for your driving test with our comprehensive preparation courses and mock tests.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <h3>Advanced Driving</h3>
+                    <p>Take your driving skills to the next level with our advanced driving techniques and safety courses.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <h3>Defensive Driving</h3>
+                    <p>Learn defensive driving techniques to stay safe on the road and reduce insurance premiums.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <h3>Highway Driving</h3>
+                    <p>Master highway driving with confidence through our specialized highway driving lessons.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    const banner = document.querySelector('.banner');
-    banner.addEventListener('click', () => {
-      alert("Video would play here!");
-    });
-    // Optional scroll animation effect
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.plan').forEach(plan => {
-        if (plan.getBoundingClientRect().top < window.innerHeight) {
-          plan.style.transform = 'translateY(0)';
-          plan.style.opacity = '1';
-        } else {
-          plan.style.transform = 'translateY(50px)';
-          plan.style.opacity = '0';
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <h2 class="fade-in">What Our Students Say</h2>
+            <div class="testimonial-card fade-in">
+                <p>"The instructors were amazing! They helped me pass my driving test on the first try. Highly recommended!"</p>
+                <div class="testimonial-author">- Sarah Johnson</div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <p>"Professional, patient, and knowledgeable. The best driving school in the city!"</p>
+                <div class="testimonial-author">- Mike Chen</div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <p>"Great experience! The lessons were well-structured and the instructors were very supportive."</p>
+                <div class="testimonial-author">- Emily Davis</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-address">
+                123 Anywhere St., City, State
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon" onclick="openSocial('facebook')">f</a>
+                <a href="#" class="social-icon" onclick="openSocial('twitter')">t</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // Interactive Functions
+        function playVideo() {
+            alert('Video player would open here. This would typically play a promotional video about the driving school.');
         }
-      });
-    });
-  </script>
 
+        function navigateTo(section) {
+            const sectionMap = {
+                'courses': '#programs',
+                'testimonials': '.testimonials-section',
+                'instructors': '#about',
+                'contact': '#contact'
+            };
+            
+            const targetSection = document.querySelector(sectionMap[section]);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function selectPlan(plan) {
+            alert(`You selected the ${plan.charAt(0).toUpperCase() + plan.slice(1)} plan. Contact us to get started!`);
+        }
+
+        function openSocial(platform) {
+            const urls = {
+                'facebook': 'https://facebook.com/drivingschool',
+                'twitter': 'https://twitter.com/drivingschool'
+            };
+            
+            if (urls[platform]) {
+                window.open(urls[platform], '_blank');
+            }
+        }
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you soon to schedule your driving lessons.');
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover effects to buttons
+        document.querySelectorAll('.send-btn, .pricing-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
