@@ -1,948 +1,723 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Faz Designs</title>
-
-<style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ff3131;
-    color: white;
-    overflow-x: hidden;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: #ff3131;
-    z-index: 2000;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-  }
-  .logo {
-    font-weight: 900;
-    font-size: 1.7rem;
-    letter-spacing: 2px;
-    user-select: none;
-    cursor: default;
-  }
-  .hamburger {
-    width: 28px;
-    height: 22px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 2100;
-  }
-  .hamburger span {
-    display: block;
-    height: 3.5px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.35s ease-in-out;
-  }
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-
-  nav.menu {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ff3131;
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 4rem;
-    z-index: 2050;
-  }
-  nav.menu.open {
-    transform: translateX(0);
-  }
-  nav.menu ul {
-    list-style: none;
-  }
-  nav.menu ul li {
-    margin-bottom: 2.2rem;
-    opacity: 0;
-    transform: translateX(-40px);
-    font-weight: 900;
-    font-size: 3rem;
-    letter-spacing: 0.1em;
-  }
-  nav.menu ul li a {
-    color: white;
-    text-decoration: none;
-    user-select: none;
-    display: inline-block;
-    transition: color 0.3s ease;
-  }
-  nav.menu ul li a:hover {
-    color: #222;
-  }
-  nav.menu.open ul li {
-    animation: slideInFade 0.4s forwards;
-  }
-  nav.menu.open ul li:nth-child(1) {
-    animation-delay: 0.15s;
-  }
-  nav.menu.open ul li:nth-child(2) {
-    animation-delay: 0.35s;
-  }
-  nav.menu.open ul li:nth-child(3) {
-    animation-delay: 0.55s;
-  }
-  nav.menu.open ul li:nth-child(4) {
-    animation-delay: 0.75s;
-  }
-  nav.menu.open ul li:nth-child(5) {
-    animation-delay: 0.95s;
-  }
-  @keyframes slideInFade {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Desktop view - raised breakpoint to 1024px */
-  @media (min-width: 1024px) {
-    .hamburger {
-      display: none;
-    }
-    nav.menu {
-      position: static;
-      height: auto;
-      width: auto;
-      background: transparent;
-      transform: none !important;
-      padding-left: 0;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    nav.menu ul {
-      display: flex;
-      gap: 3rem;
-    }
-    nav.menu ul li {
-      margin: 0;
-      opacity: 1 !important;
-      transform: none !important;
-      font-size: 1.25rem;
-      animation: none !important;
-    }
-    nav.menu ul li a {
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: white;
-      letter-spacing: 0.15em;
-    }
-    nav.menu ul li a:hover {
-      color: #222;
-    }
-  }
-
-<title>Splash + Form</title>
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    font-family: 'Poppins', sans-serif;
-    background: white;
-  }
-
-  .color-rise {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    animation: solidRise 8s ease-in-out forwards;
-    z-index: 0;
-  }
-
-  @keyframes solidRise {
-    0% { background-color: white; }
-    100% { background-color: #ff3131; }
-  }
-
-  .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    color: white;
-    text-shadow: 0 0 30px #b30000;
-    z-index: 1;
-    text-align: center;
-    opacity: 0;
-    font-size: clamp(3rem, 8vw, 6rem);
-    line-height: 1.2;
-    white-space: pre-line;
-  }
-
-  @keyframes rocketRise {
-    0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
-    100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
-  }
-
-  .typed-line { display: block; }
-
-  .cursor {
-    display: inline-block;
-    width: 1ch;
-    animation: blink 0.8s infinite;
-  }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-
-
-
-
-  select, input[type="text"], input[type="email"] {
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    width: 80%;
-    max-width: 400px;
-    cursor: pointer;
-    appearance: none;
-    background-color: white;
-    color: #333;
-    height: 3.5rem;
-    padding-right: 2.5rem;
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1rem;
-    font-family: inherit;
-  }
-
-  select {
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  }
-
-  input[type="text"],
-  input[type="email"] {
-    background-image: none;
-    cursor: text;
-  }
-
-.button-row {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem; /* Increased spacing */
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-button {
-    background: white;
-    color: #ff3131;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1rem;
-    box-sizing: border-box;
-    transition: background 0.3s ease;
-    min-width: 140px; /* Further ensures button sizing */
-}
-
-  button:hover {
-    background: #e60000;
-    color: white;
-  }
-
-
- 
- /* ---------- BASE STYLES ---------- */
-
-nav ul {
-  display: block;
-}
-
-nav ul li {
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li a {
-  padding: 0.5rem 1rem;
-}
-
-select,
-input[type="text"],
-input[type="email"] {
-  width: 60%;
-  margin-bottom: 2rem;
-  font-size: 1rem;
-  padding: 1rem;
-}
-
-.overlay-text {
-  font-size: calc(6vw + 0.5rem);
-}
-
-#typewriter {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  z-index: 1000;
-  font-family: 'Arial Black', Arial, sans-serif;
-  font-weight: 600;
-  text-align: center;
-  color: white;
-  opacity: 1;
-  pointer-events: none;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  max-width: 90vw;
-  line-height: 1.3;
-}
-
-#typewriter .typed-line {
-  font-size: inherit;
-  margin: 0.1em 0;
-  white-space: normal;
-}
-
-.cursor {
-  display: inline-block;
-  width: 2px;
-  background: white;
-  animation: blink 1s step-start infinite;
-  vertical-align: bottom;
-  margin-left: 2px;
-}
-
-@keyframes blink {
-  50% {
-    background: transparent;
-  }
-}
-
-/* ---------- Base Typewriter Styles ---------- */
-#typewriter {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  z-index: 1000;
-  font-family: 'Arial Black', Arial, sans-serif;
-  font-weight: 600;
-  text-align: center;
-  color: white;
-  opacity: 1;
-  pointer-events: none;
-  line-height: 1.3;
-}
-
-.typewriter-text {
-  white-space: normal;
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-  line-height: 1.4;
-}
-
-/* ---------- Mobile (Up to 599px) ---------- */
-@media screen and (max-width: 599px) {
-  #typewriter {
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    max-width: 90vw;
-  }
-
-  .typewriter-text {
-    font-size: clamp(2rem, 6vw, 3rem);
-    max-width: 90vw;
-  }
-}
-
-/* ---------- Tablet Portrait (600–1024px) ---------- */
-@media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
-  #typewriter {
-    font-size: 6rem !important;
-    max-width: 90vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 3.5rem !important;
-    max-width: 85vw !important;
-  }
-}
-
-/* ---------- Tablet Landscape (600–1024px) ---------- */
-@media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
-  #typewriter {
-    font-size: 5.5rem !important;
-    max-width: 85vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 3.2rem !important;
-    max-width: 80vw !important;
-  }
-}
-
-/* ---------- Desktop (1025px+) ---------- */
-@media screen and (min-width: 1025px) {
-  #typewriter {
-    font-size: 6.5rem !important;
-    max-width: 75vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 4rem !important;
-    max-width: 60vw !important;
-  }
-}
-
- /* ---------- iPhone Landscape Final Fix ---------- */
-@media screen and (max-width: 812px) and (orientation: landscape) {
-  #typewriter {
-    top: 60% !important;
-    transform: translate(-50%, -60%) !important;
-    font-size: clamp(1.5rem, 4vw, 2.8rem) !important;
-    line-height: 1.2 !important;
-    max-width: 90vw !important;
-  }
-
-  .typewriter-text {
-    font-size: clamp(1rem, 3vw, 1.8rem) !important;
-    line-height: 1.2 !important;
-    max-width: 85vw !important;
-  }
-}
-
-/* Tablet: Ensure space between buttons */
-@media screen and (min-width: 600px) and (max-width: 1024px) {
-  .button-row {
-    gap: 3rem;         /* Increase spacing */
-    flex-wrap: wrap;   /* Allow buttons to wrap to next line if needed */
-    justify-content: center;
-  }
-
-  .button-row button {
-    min-width: 140px;  /* Prevent buttons from shrinking too much */
-    margin: 0.5rem 1rem; /* Extra spacing around each button */
-  }
-}
-
- /* --------------------------------------------
-   1. FIRST QUESTION SCREEN (#form-start-choice)
---------------------------------------------- */
-#form-start-choice {
-  position: fixed;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 500px;
-  background: #ff3131;
-  color: white;
-  padding: 2rem;
-  box-sizing: border-box;
-  text-align: center;
-  z-index: 1000;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-#form-start-choice.show {
-  display: flex;
-  opacity: 1;
-}
-
-
- 
-/* --------------------------------------------
-   2. MULTI-STEP FORM SCREENS (.form-screen)
---------------------------------------------- */
-.form-screen {
-  position: fixed;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 500px;
-  min-height: 60vh;
-  background: #ff3131;
-  color: white;
-  padding: 2rem;
-  box-sizing: border-box;
-  text-align: center;
-  z-index: 1000;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
-  border-radius: 12px;
-}
-
-.form-screen.active {
-  display: flex;
-}
-
-.form-screen h2 {
-  font-size: 1.8rem;
-  margin-bottom: 3rem;
-  max-width: 500px;
-  line-height: 1.4;
-}
-
-/* --------------------------------------------
-   3. FORM FIELDS (input, select)
---------------------------------------------- */
-select,
-input[type="text"],
-input[type="email"],
-input[type="tel"] {
-  padding: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  width: 100%;
-  max-width: 100%;
-  appearance: none;
-  background-color: white;
-  color: #333;
-  height: 3.5rem;
-  box-sizing: border-box;
-  font-family: inherit;
-}
-
-/* --------------------------------------------
-   4. CONSENT CHECKBOX SECTION
---------------------------------------------- */
-.consent-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 14px;
-  color: white;
-  margin-bottom: 2rem;
-}
-
-.consent-wrapper input[type="checkbox"] {
-  margin-right: 8px;
-}
-
-/* --------------------------------------------
-   5. BUTTONS
---------------------------------------------- */
-button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  color: #ff3131;
-  font-weight: bold;
-  margin: 0.5rem;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* Optional: group buttons side-by-side */
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 1rem;
-}
-
-/* --------------------------------------------
-   6. MOBILE HEIGHT ADJUSTMENTS
---------------------------------------------- */
-@media (max-height: 600px) {
-  #form-start-choice,
-  .form-screen {
-    top: 70%;
-    transform: translate(-50%, -55%);
-  }
-}
-
-
-
-.form-screen {
-  justify-content: flex-start;
-  padding-top: 10rem;
-  height: calc(100vh - 6rem);
-}
-
-.button-row {
-  display: flex;
-  justify-content: center;  /* Center the buttons */
-  gap: 1rem;                /* Space between buttons */
-  margin-top: 2rem;
-}
-
-.button-row button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  color: #ff3131;
-  font-weight: bold;
-  cursor: pointer;
-  width: auto;              /* Make sure buttons size to content */
-  min-width: 100px;         /* Optional: consistent width */
-}
-
-.button-row button:hover {
-  opacity: 0.9;
-}
-
-
-
-.skip-link {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: none;
-  color: #ffffff; /* Or use your brand color */
-  border: none;
-  padding: 0;
-  font-size: 16px;
-  font-weight: normal;
-  text-decoration: none;
-  z-index: 10000;
-  box-shadow: none;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-.skip-link:hover {
-  opacity: 0.8;
-}
- 
-
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driving School</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    header {
+      background: #008ecc;
+      color: white;
+      padding: 10px 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .hero button {
+      background: #007bff;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    section {
+      padding: 40px 20px;
+      background: #f1f5f9;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+    .course-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .course-box i {
+      font-size: 2em;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+    .review-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      background: white;
+      padding: 30px 20px;
+    }
+    .review, .contact {
+      flex: 1;
+    }
+    .review blockquote {
+      font-style: italic;
+      color: #555;
+    }
+    .contact p {
+      margin: 8px 0;
+    }
+    .contact i {
+      color: #007bff;
+      margin-right: 8px;
+    }
+    @media (min-width: 768px) {
+      .review-contact {
+        flex-direction: row;
+      }
+    }
+  </style>
+  <!-- Icons from Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
-  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
-  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
- 
-<nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-  <ul>
-    <li><a href="/Faz-Designs/pages/home.html">Home</a></li>
-    <li><a href="/Faz-Designs/pages/about.html">About</a></li>
-    <li><a href="/Faz-Designs/pages/samples.html">Samples</a></li>
-    <li><a href="/Faz-Designs/pages/pricing.html">Pricing</a></li>
-    <li><a href="/Faz-Designs/pages/contact.html">Contact</a></li>
-  </ul>
-</nav>
- 
-</header> 
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><i class="fas fa-car"></i> DRIVING SCHOOL</div>
+        <ul>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#courses">COURSES</a></li>
+          <li><a href="#reviews">REVIEWS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>LEARN TO DRIVE</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur acesipcing elit, sed do elusmod</p>
+    <button>GET STARTED</button>
+  </section>
+  <!-- About Us -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">ABOUT US</h2>
+      <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        interdum sed eiusmod quis ec commodo consequat.</p>
+    </div>
+  </section>
+  <!-- Our Courses -->
+  <section id="courses">
+    <div class="container">
+      <h2 class="section-title">OUR COURSES</h2>
+      <div class="courses">
+        <div class="course-box">
+          <i class="fas fa-car"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="course-box">
+          <i class="fas fa-traffic-light"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="course-box">
+          <i class="fas fa-clipboard-check"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="course-box">
+          <i class="fas fa-steering-wheel"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Reviews and Contact -->
+  <section id="reviews">
+    <div class="container review-contact">
+      <div class="review">
+        <h2 class="section-title">REVIEWS</h2>
+        <blockquote>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+          <br><br>— John Doe
+        </blockquote>
+      </div>
+      <div class="contact" id="contact">
+        <h2 class="section-title">CONTACT US</h2>
+        <p><i class="fas fa-map-marker-alt"></i> 1234 Elm St, Springfield, IL 62701</p>
+        <p><i class="fas fa-phone-alt"></i> (123) 456-2830</p>
+        <p><i class="fas fa-envelope"></i> info@drivingschool.com</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
 
 
-<!-- This stays before form -->
-<div class="color-rise"></div>
-<div id="typewriter"></div>
+—————————————————————————
 
-<!-- ✅ Wraps all form content now -->
-<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
 
-  <!-- MAIN INTRO OPTIONS -->
-  <div class="form-screen active" id="main-intro-options">
-    <h2>What do you need help with?</h2>
-    <div class="button-row">
-      <button type="button" onclick="goToDesign()">Website Design</button>
-      <button type="button">Website Redesign</button>
-      <button type="button">Website Maintenance</button>
-    </div>
-  </div>
 
-  <!-- LAYER 1: ENTRY SCREEN -->
-  <div class="form-screen" id="form-start-choice">
-    <h2>How would you like to get started?</h2>
-    <div class="button-row">
-      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
-        Choose a Package Deal
-      </button>
-      <button type="button" onclick="showScreen(0)">Request a Custom Quote</button>
-    </div>
-  </div>
 
-  <!-- LAYER 2: FULL QUOTE FORM -->
-  <div class="form-screen" id="q0">
-    <h2>What type of website are you looking for?</h2>
-    <select name="Website Type" required>
-      <option>Business</option>
-      <option>eCommerce</option>
-      <option>Portfolio</option>
-      <option>Blog</option>
-      <option>Other</option>
-    </select>
-    <div class="button-row">
-      <button type="button" onclick="next()">Next</button>
-    </div>
-  </div>
 
-  <!-- All other #q1 to #q11 screens remain unchanged... -->
-
-  <div class="form-screen" id="q11">
-    <h2>Almost done! Please enter your details</h2>
-
-    <label>Full Name</label>
-    <input type="text" name="Full Name" required>
-
-    <label>Email Address</label>
-    <input type="email" name="Email" required>
-
-    <label>WhatsApp Number (optional)</label>
-    <input type="text" name="WhatsApp">
-
-    <label style="margin-top: 20px;">
-      <input type="checkbox" required name="GDPR Consent">
-      I consent to having this website store my submitted information so they can respond to my inquiry.
-    </label>
-
-    <div class="button-row">
-      <button type="button" onclick="prev()">Previous</button>
-      <button type="submit">Submit</button>
-    </div>
-  </div>
-
-</form>
-
-<a href="https://doctoc30.github.io/Faz-Designs/pages/about.html" 
-   id="skipToPackages" class="skip-link" style="display: none;">
-  Skip Questions For Now →
-</a>
-  </div>
- <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const el = document.getElementById('typewriter');
-  let lines = [];
-  const typingSpeed = 100;
-  const lineDelay = 500;
-  let currentLine = 0;
-  let currentChar = 0;
-  let lineEl = null;
-
-  const cursor = document.createElement('span');
-  cursor.classList.add('cursor');
-  el.appendChild(cursor);
-
-  function setLinesByOrientation() {
-    lines = window.matchMedia("(orientation: landscape)").matches
-      ? ["We build", "your website.", "You approve,", "then pay."]
-      : ["We build", "your", "website.", "You approve,", "then pay."];
-  }
-
-  function typeChar() {
-    if (currentLine >= lines.length) {
-      cursor.remove();
-      setTimeout(() => {
-        el.style.animation = 'rocketRise 2s ease forwards';
-        setTimeout(() => {
-          const introScreen = document.getElementById('main-intro-options');
-          if (introScreen) {
-            introScreen.style.display = 'block';
-            introScreen.classList.add('active');
-          }
-
-          const skipBtn = document.getElementById('skipToPackages');
-          if (skipBtn) skipBtn.style.display = 'block';
-
-        }, 2000);
-      }, 1000);
-      return;
-    }
-
-    const text = lines[currentLine];
-    if (!lineEl) {
-      lineEl = document.createElement('div');
-      lineEl.classList.add('typed-line');
-      el.appendChild(lineEl);
-      lineEl.appendChild(cursor);
-    }
-
-    if (currentChar < text.length) {
-      const char = document.createTextNode(text[currentChar]);
-      lineEl.insertBefore(char, cursor);
-      currentChar++;
-      setTimeout(typeChar, typingSpeed);
-    } else {
-      currentLine++;
-      currentChar = 0;
-      lineEl = null;
-      setTimeout(typeChar, lineDelay);
-    }
-  }
-
-  function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
-
-  window.addEventListener('resize', debounce(() => {
-    currentLine = 0;
-    currentChar = 0;
-    lineEl = null;
-    el.textContent = '';
-    el.appendChild(cursor);
-    setLinesByOrientation();
-    el.style.opacity = 1;
-    typeChar();
-  }, 300));
-
-  setLinesByOrientation();
-  el.style.opacity = 1;
-  typeChar();
-
-  // ------------------ FORM FLOW --------------------
-  const screens = document.querySelectorAll(".form-screen");
-
-  function hideAllScreens() {
-    screens.forEach(screen => screen.classList.remove("active"));
-    const startChoice = document.getElementById('form-start-choice');
-    if (startChoice) startChoice.classList.remove("show");
-  }
-
-  function showStartChoice() {
-    hideAllScreens();
-    const startChoice = document.getElementById('form-start-choice');
-    if (startChoice) {
-      startChoice.classList.add('show');
-      startChoice.style.display = 'flex';
-    }
-  }
-
-  function showScreenById(id) {
-    hideAllScreens();
-    const screen = document.getElementById(id);
-    if (screen) screen.classList.add("active");
-
-    const skipBtn = document.getElementById("skipToPackages");
-    if (skipBtn) {
-      skipBtn.style.display = (id === "q11") ? "none" : "block";
-    }
-  }
-
-  window.goToDesign = function () {
-    // Hide intro question
-    const intro = document.getElementById('main-intro-options');
-    if (intro) {
-      intro.style.display = 'none';
-      intro.classList.remove('active');
-    }
-
-    // Show the "get started" screen
-    showStartChoice();
-  };
-
-  window.showScreen = function (index) {
-    showScreenById('q' + index);
-  };
-
-  window.next = function () {
-    const current = document.querySelector('.form-screen.active');
-    const allScreens = Array.from(screens);
-    const i = allScreens.indexOf(current);
-    if (i >= 0 && i < allScreens.length - 1) {
-      hideAllScreens();
-      allScreens[i + 1].classList.add('active');
-    }
-  };
-
-  window.prev = function () {
-    const current = document.querySelector('.form-screen.active');
-    const allScreens = Array.from(screens);
-    const i = allScreens.indexOf(current);
-    if (i > 0) {
-      hideAllScreens();
-      allScreens[i - 1].classList.add('active');
-    }
-  };
-
-  hideAllScreens();
-
-  // ------------------ HAMBURGER MENU ---------------------
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('nav.menu');
-
-  function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
-
-  if (hamburger && menu) {
-    hamburger.addEventListener('click', (event) => {
-      event.stopPropagation();
-      toggleMenu();
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-        menu.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', false);
-        menu.setAttribute('aria-hidden', true);
-        document.body.style.overflow = '';
-      }
-    });
-  }
-});
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Driving School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a2b4a 0%, #2c4a7a 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .status-left {
+            font-size: 18px;
+        }
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .signal-bars {
+            display: flex;
+            gap: 2px;
+            align-items: flex-end;
+        }
+        .bar {
+            width: 3px;
+            background: white;
+            border-radius: 1px;
+        }
+        .bar:nth-child(1) { height: 4px; }
+        .bar:nth-child(2) { height: 6px; }
+        .bar:nth-child(3) { height: 8px; }
+        .wifi-icon {
+            width: 15px;
+            height: 15px;
+            margin: 0 5px;
+        }
+        .battery {
+            background: white;
+            color: black;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .steering-wheel-logo {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #ff4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        .steering-wheel-logo img {
+            width: 30px;
+            height: 30px;
+            filter: invert(1) sepia(1) saturate(5) hue-rotate(340deg);
+        }
+        .luxury-text {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .book-now-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .book-now-btn:hover {
+            background: #e63939;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+        }
+        /* Main Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+        .main-title {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+        /* Cars Section */
+        .cars-container {
+            position: relative;
+            height: 200px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .car {
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+        .car img {
+            height: 120px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+        .car-red {
+            left: 10%;
+            top: 20%;
+            z-index: 1;
+        }
+        .car-white {
+            left: 50%;
+            top: 10%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+        .car-white img {
+            height: 140px;
+        }
+        .car-blue {
+            right: 10%;
+            top: 20%;
+            z-index: 1;
+        }
+        .driving-school-text {
+            position: absolute;
+            left: 50%;
+            top: 60%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 4;
+        }
+        /* Pricing Section */
+        .pricing-section {
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+        .pay-as-you-go {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .pricing-cards {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .pricing-card {
+            flex: 1;
+            min-width: 100px;
+            max-width: 120px;
+            padding: 20px 10px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .pricing-card.blue {
+            background: #2c5aa0;
+        }
+        .pricing-card.red {
+            background: #ff4444;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .lesson-type {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .main-book-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+        }
+        .main-book-btn:hover {
+            background: #e63939;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 68, 68, 0.4);
+        }
+        /* Footer Section */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px 20px;
+        }
+        .about-us {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        /* Chat Bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #d4a574;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            background: #c19660;
+        }
+        .chat-bubble img {
+            width: 30px;
+            height: 30px;
+            filter: invert(1);
+        }
+        /* Bottom Navigation Area */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .home-indicator {
+            width: 134px;
+            height: 5px;
+            background: black;
+            border-radius: 3px;
+        }
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 28px;
+            }
+            
+            .pay-as-you-go {
+                font-size: 24px;
+            }
+            
+            .pricing-cards {
+                gap: 10px;
+            }
+            
+            .pricing-card {
+                min-width: 90px;
+                max-width: 100px;
+                padding: 15px 8px;
+            }
+            
+            .price {
+                font-size: 20px;
+            }
+            
+            .lesson-type {
+                font-size: 10px;
+            }
+        }
+        @media (min-width: 768px) {
+            body {
+                max-width: 400px;
+                margin: 0 auto;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            }
+            
+            .main-title {
+                font-size: 42px;
+            }
+            
+            .cars-container {
+                height: 250px;
+            }
+            
+            .car img {
+                height: 140px;
+            }
+            
+            .car-white img {
+                height: 160px;
+            }
+        }
+        @media (min-width: 1024px) {
+            body {
+                max-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">12:44</div>
+        <div class="status-right">
+            <div class="signal-bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <svg class="wifi-icon" viewBox="0 0 24 24" fill="white">
+                <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.07 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+            </svg>
+            <div class="battery">99</div>
+        </div>
+    </div>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="steering-wheel-logo">
+                <img src="assets/steering_wheel_logo.png" alt="Steering Wheel">
+            </div>
+            <div class="luxury-text">LUXURY</div>
+        </div>
+        <button class="book-now-btn" onclick="bookNow()">BOOK NOW</button>
+    </div>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="main-title">LUXURY<br>DRIVING SCHOOL</h1>
+        
+        <!-- Cars Container -->
+        <div class="cars-container">
+            <div class="car car-red">
+                <img src="assets/red_car.jpg" alt="Red Car">
+            </div>
+            <div class="car car-white">
+                <img src="assets/white_car.jpg" alt="White Car">
+                <div class="driving-school-text">DRIVING SCHOOL</div>
+            </div>
+            <div class="car car-blue">
+                <img src="assets/blue_car.jpg" alt="Blue Car">
+            </div>
+        </div>
+    </div>
+    <!-- Pricing Section -->
+    <div class="pricing-section">
+        <h2 class="pay-as-you-go">PAY AS YOU GO</h2>
+        
+        <div class="pricing-cards">
+            <div class="pricing-card blue" onclick="selectPackage('single')">
+                <div class="price">$50</div>
+                <div class="lesson-type">SINGLE LESSON</div>
+            </div>
+            <div class="pricing-card red" onclick="selectPackage('five')">
+                <div class="price">$230</div>
+                <div class="lesson-type">FIVE LESSONS</div>
+            </div>
+            <div class="pricing-card blue" onclick="selectPackage('ten')">
+                <div class="price">$450</div>
+                <div class="lesson-type">TEN LESSONS</div>
+            </div>
+        </div>
+        
+        <button class="main-book-btn" onclick="bookNow()">BOOK NOW</button>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="about-us">ABOUT US</div>
+        <div class="social-icons">
+            <img src="assets/facebook_icon.png" alt="Facebook" class="social-icon" onclick="openSocial('facebook')">
+            <img src="assets/twitter_icon.png" alt="Twitter" class="social-icon" onclick="openSocial('twitter')">
+            <img src="assets/instagram_icon.png" alt="Instagram" class="social-icon" onclick="openSocial('instagram')">
+        </div>
+    </div>
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" onclick="openChat()">
+        <img src="assets/chat_bubble_icon.png" alt="Chat">
+    </div>
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="home-indicator"></div>
+    </div>
+    <script>
+        // Interactive functionality
+        function bookNow() {
+            alert('Booking system would open here. Contact us to book your driving lessons!');
+        }
+        function selectPackage(packageType) {
+            const packages = {
+                'single': 'Single Lesson - $50',
+                'five': 'Five Lessons Package - $230',
+                'ten': 'Ten Lessons Package - $450'
+            };
+            
+            alert(`You selected: ${packages[packageType]}\n\nClick BOOK NOW to proceed with booking.`);
+        }
+        function openSocial(platform) {
+            const urls = {
+                'facebook': 'https://facebook.com',
+                'twitter': 'https://twitter.com',
+                'instagram': 'https://instagram.com'
+            };
+            
+            window.open(urls[platform], '_blank');
+        }
+        function openChat() {
+            alert('Chat support would open here. We\'re here to help with your driving school questions!');
+        }
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cars on load
+            const cars = document.querySelectorAll('.car');
+            cars.forEach((car, index) => {
+                car.style.opacity = '0';
+                car.style.transform += ' translateY(20px)';
+                
+                setTimeout(() => {
+                    car.style.transition = 'all 0.6s ease';
+                    car.style.opacity = '1';
+                    car.style.transform = car.style.transform.replace('translateY(20px)', 'translateY(0)');
+                }, index * 200);
+            });
+            // Add hover effects to pricing cards
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            pricingCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+        // Add touch support for mobile
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    </script>
 </body>
 </html>
