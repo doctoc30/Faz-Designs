@@ -318,10 +318,19 @@
         }
 
 
-        .hero-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
+
+
+        .hero {
+    background-image: url('https://i.imgur.com/LEqjYbS.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* makes it full screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
     </style>
 </head>
@@ -349,7 +358,7 @@
      <!-- Hero Section -->
 <section class="hero">
     <div class="hero-content">
-        <img src="https://i.imgur.com/LEqjYbS.png" alt="Hero Image" class="hero-image">
+        
         <h1>LEARN TO DRIVE</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
         <button class="cta-button">GET STARTED</button>
