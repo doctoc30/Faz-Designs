@@ -1,509 +1,207 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Driving School</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #1a2b4a 0%, #2c4a7a 100%);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        /* Status Bar */
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            background: rgba(0, 0, 0, 0.1);
-        }
-        .status-left {
-            font-size: 18px;
-        }
-        .status-right {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .signal-bars {
-            display: flex;
-            gap: 2px;
-            align-items: flex-end;
-        }
-        .bar {
-            width: 3px;
-            background: white;
-            border-radius: 1px;
-        }
-        .bar:nth-child(1) { height: 4px; }
-        .bar:nth-child(2) { height: 6px; }
-        .bar:nth-child(3) { height: 8px; }
-        .wifi-icon {
-            width: 15px;
-            height: 15px;
-            margin: 0 5px;
-        }
-        .battery {
-            background: white;
-            color: black;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        /* Header Section */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .steering-wheel-logo {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #ff4444;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-        }
-        .steering-wheel-logo img {
-            width: 30px;
-            height: 30px;
-            filter: invert(1) sepia(1) saturate(5) hue-rotate(340deg);
-        }
-        .luxury-text {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        .book-now-btn {
-            background: #ff4444;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .book-now-btn:hover {
-            background: #e63939;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
-        }
-        /* Main Hero Section */
-        .hero-section {
-            text-align: center;
-            padding: 0 20px;
-            margin-bottom: 40px;
-        }
-        .main-title {
-            font-size: 36px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            line-height: 1.2;
-        }
-        /* Cars Section */
-        .cars-container {
-            position: relative;
-            height: 200px;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .car {
-            position: absolute;
-            transition: all 0.3s ease;
-        }
-        .car img {
-            height: 120px;
-            width: auto;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-        }
-        .car-red {
-            left: 10%;
-            top: 20%;
-            z-index: 1;
-        }
-        .car-white {
-            left: 50%;
-            top: 10%;
-            transform: translateX(-50%);
-            z-index: 3;
-        }
-        .car-white img {
-            height: 140px;
-        }
-        .car-blue {
-            right: 10%;
-            top: 20%;
-            z-index: 1;
-        }
-        .driving-school-text {
-            position: absolute;
-            left: 50%;
-            top: 60%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            z-index: 4;
-        }
-        /* Pricing Section */
-        .pricing-section {
-            text-align: center;
-            padding: 0 20px;
-            margin-bottom: 40px;
-        }
-        .pay-as-you-go {
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-        .pricing-cards {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        .pricing-card {
-            flex: 1;
-            min-width: 100px;
-            max-width: 120px;
-            padding: 20px 10px;
-            border-radius: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        .pricing-card.blue {
-            background: #2c5aa0;
-        }
-        .pricing-card.red {
-            background: #ff4444;
-        }
-        .price {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        .lesson-type {
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.2;
-        }
-        .main-book-btn {
-            background: #ff4444;
-            color: white;
-            border: none;
-            padding: 18px 60px;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 40px;
-        }
-        .main-book-btn:hover {
-            background: #e63939;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(255, 68, 68, 0.4);
-        }
-        /* Footer Section */
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px 20px;
-        }
-        .about-us {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-        .social-icon {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: scale(1.2);
-        }
-        /* Chat Bubble */
-        .chat-bubble {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: #d4a574;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        .chat-bubble:hover {
-            transform: scale(1.1);
-            background: #c19660;
-        }
-        .chat-bubble img {
-            width: 30px;
-            height: 30px;
-            filter: invert(1);
-        }
-        /* Bottom Navigation Area */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .home-indicator {
-            width: 134px;
-            height: 5px;
-            background: black;
-            border-radius: 3px;
-        }
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 28px;
-            }
-            
-            .pay-as-you-go {
-                font-size: 24px;
-            }
-            
-            .pricing-cards {
-                gap: 10px;
-            }
-            
-            .pricing-card {
-                min-width: 90px;
-                max-width: 100px;
-                padding: 15px 8px;
-            }
-            
-            .price {
-                font-size: 20px;
-            }
-            
-            .lesson-type {
-                font-size: 10px;
-            }
-        }
-        @media (min-width: 768px) {
-            body {
-                max-width: 400px;
-                margin: 0 auto;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            }
-            
-            .main-title {
-                font-size: 42px;
-            }
-            
-            .cars-container {
-                height: 250px;
-            }
-            
-            .car img {
-                height: 140px;
-            }
-            
-            .car-white img {
-                height: 160px;
-            }
-        }
-        @media (min-width: 1024px) {
-            body {
-                max-width: 500px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driving School</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    header {
+      background: #008ecc;
+      color: white;
+      padding: 10px 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .hero button {
+      background: #007bff;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    section {
+      padding: 40px 20px;
+      background: #f1f5f9;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+    .course-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .course-box i {
+      font-size: 2em;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+    .review-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      background: white;
+      padding: 30px 20px;
+    }
+    .review, .contact {
+      flex: 1;
+    }
+    .review blockquote {
+      font-style: italic;
+      color: #555;
+    }
+    .contact p {
+      margin: 8px 0;
+    }
+    .contact i {
+      color: #007bff;
+      margin-right: 8px;
+    }
+    @media (min-width: 768px) {
+      .review-contact {
+        flex-direction: row;
+      }
+    }
+  </style>
+  <!-- Icons from Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Status Bar -->
-    <div class="status-bar">
-        <div class="status-left">12:44</div>
-        <div class="status-right">
-            <div class="signal-bars">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <svg class="wifi-icon" viewBox="0 0 24 24" fill="white">
-                <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.07 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
-            </svg>
-            <div class="battery">99</div>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><i class="fas fa-car"></i> DRIVING SCHOOL</div>
+        <ul>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#courses">COURSES</a></li>
+          <li><a href="#reviews">REVIEWS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>LEARN TO DRIVE</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur acesipcing elit, sed do elusmod</p>
+    <button>GET STARTED</button>
+  </section>
+  <!-- About Us -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">ABOUT US</h2>
+      <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        interdum sed eiusmod quis ec commodo consequat.</p>
+    </div>
+  </section>
+  <!-- Our Courses -->
+  <section id="courses">
+    <div class="container">
+      <h2 class="section-title">OUR COURSES</h2>
+      <div class="courses">
+        <div class="course-box">
+          <i class="fas fa-car"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
         </div>
-    </div>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo-section">
-            <div class="steering-wheel-logo">
-                <img src="assets/steering_wheel_logo.png" alt="Steering Wheel">
-            </div>
-            <div class="luxury-text">LUXURY</div>
+        <div class="course-box">
+          <i class="fas fa-traffic-light"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
         </div>
-        <button class="book-now-btn" onclick="bookNow()">BOOK NOW</button>
-    </div>
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <h1 class="main-title">LUXURY<br>DRIVING SCHOOL</h1>
-        
-        <!-- Cars Container -->
-        <div class="cars-container">
-            <div class="car car-red">
-                <img src="assets/red_car.jpg" alt="Red Car">
-            </div>
-            <div class="car car-white">
-                <img src="assets/white_car.jpg" alt="White Car">
-                <div class="driving-school-text">DRIVING SCHOOL</div>
-            </div>
-            <div class="car car-blue">
-                <img src="assets/blue_car.jpg" alt="Blue Car">
-            </div>
+        <div class="course-box">
+          <i class="fas fa-clipboard-check"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
         </div>
-    </div>
-    <!-- Pricing Section -->
-    <div class="pricing-section">
-        <h2 class="pay-as-you-go">PAY AS YOU GO</h2>
-        
-        <div class="pricing-cards">
-            <div class="pricing-card blue" onclick="selectPackage('single')">
-                <div class="price">$50</div>
-                <div class="lesson-type">SINGLE LESSON</div>
-            </div>
-            <div class="pricing-card red" onclick="selectPackage('five')">
-                <div class="price">$230</div>
-                <div class="lesson-type">FIVE LESSONS</div>
-            </div>
-            <div class="pricing-card blue" onclick="selectPackage('ten')">
-                <div class="price">$450</div>
-                <div class="lesson-type">TEN LESSONS</div>
-            </div>
+        <div class="course-box">
+          <i class="fas fa-steering-wheel"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
         </div>
-        
-        <button class="main-book-btn" onclick="bookNow()">BOOK NOW</button>
+      </div>
     </div>
-    <!-- Footer -->
-    <div class="footer">
-        <div class="about-us">ABOUT US</div>
-        <div class="social-icons">
-            <img src="assets/facebook_icon.png" alt="Facebook" class="social-icon" onclick="openSocial('facebook')">
-            <img src="assets/twitter_icon.png" alt="Twitter" class="social-icon" onclick="openSocial('twitter')">
-            <img src="assets/instagram_icon.png" alt="Instagram" class="social-icon" onclick="openSocial('instagram')">
-        </div>
+  </section>
+  <!-- Reviews and Contact -->
+  <section id="reviews">
+    <div class="container review-contact">
+      <div class="review">
+        <h2 class="section-title">REVIEWS</h2>
+        <blockquote>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+          <br><br>— John Doe
+        </blockquote>
+      </div>
+      <div class="contact" id="contact">
+        <h2 class="section-title">CONTACT US</h2>
+        <p><i class="fas fa-map-marker-alt"></i> 1234 Elm St, Springfield, IL 62701</p>
+        <p><i class="fas fa-phone-alt"></i> (123) 456-2830</p>
+        <p><i class="fas fa-envelope"></i> info@drivingschool.com</p>
+      </div>
     </div>
-    <!-- Chat Bubble -->
-    <div class="chat-bubble" onclick="openChat()">
-        <img src="assets/chat_bubble_icon.png" alt="Chat">
-    </div>
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <div class="home-indicator"></div>
-    </div>
-    <script>
-        // Interactive functionality
-        function bookNow() {
-            alert('Booking system would open here. Contact us to book your driving lessons!');
-        }
-        function selectPackage(packageType) {
-            const packages = {
-                'single': 'Single Lesson - $50',
-                'five': 'Five Lessons Package - $230',
-                'ten': 'Ten Lessons Package - $450'
-            };
-            
-            alert(`You selected: ${packages[packageType]}\n\nClick BOOK NOW to proceed with booking.`);
-        }
-        function openSocial(platform) {
-            const urls = {
-                'facebook': 'https://facebook.com',
-                'twitter': 'https://twitter.com',
-                'instagram': 'https://instagram.com'
-            };
-            
-            window.open(urls[platform], '_blank');
-        }
-        function openChat() {
-            alert('Chat support would open here. We\'re here to help with your driving school questions!');
-        }
-        // Add some interactive animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate cars on load
-            const cars = document.querySelectorAll('.car');
-            cars.forEach((car, index) => {
-                car.style.opacity = '0';
-                car.style.transform += ' translateY(20px)';
-                
-                setTimeout(() => {
-                    car.style.transition = 'all 0.6s ease';
-                    car.style.opacity = '1';
-                    car.style.transform = car.style.transform.replace('translateY(20px)', 'translateY(0)');
-                }, index * 200);
-            });
-            // Add hover effects to pricing cards
-            const pricingCards = document.querySelectorAll('.pricing-card');
-            pricingCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px) scale(1.05)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-        });
-        // Add touch support for mobile
-        document.addEventListener('touchstart', function() {}, {passive: true});
-    </script>
+  </section>
 </body>
 </html>
