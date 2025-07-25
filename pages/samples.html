@@ -332,6 +332,23 @@
     align-items: center;
     text-align: center;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: auto; /* allow section to size naturally */
+    padding: 40px 20px;
+  }
+
+  .hero-content {
+    background-color: rgba(0, 0, 0, 0.5); /* optional, to keep text readable */
+    padding: 10px;
+  }
+}
+
+        
     </style>
 </head>
 <body>
