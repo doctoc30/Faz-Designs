@@ -1,236 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driving School</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
 
-    header {
-      background: #008ecc;
-      color: white;
-      padding: 10px 0;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-    }
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .navbar {
+            padding: 1rem 0;
+        }
 
-    nav .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #3373dc;
+            font-size: 1.2rem;
+        }
 
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
 
-    .hero {
-      background: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
-      position: relative;
-    }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    .hero h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-    .hero p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-    }
+        .nav-menu a:hover {
+            color: #3373dc;
+        }
 
-    .hero button {
-      background: #007bff;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('steering_wheel_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 80px;
+        }
 
-    section {
-      padding: 40px 20px;
-      background: #f1f5f9;
-    }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 1.8em;
-      font-weight: bold;
-    }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .courses {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      text-align: center;
-    }
+        .cta-button {
+            background: #3373dc;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
 
-    .course-box {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+        .cta-button:hover {
+            background: #2563eb;
+        }
 
-    .course-box i {
-      font-size: 2em;
-      color: #007bff;
-      margin-bottom: 10px;
-    }
+        .page-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
 
-    .review-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      background: white;
-      padding: 30px 20px;
-    }
+        /* About Section */
+        .about {
+            background: #e6f3ff;
+            padding: 80px 0;
+            text-align: center;
+        }
 
-    .review, .contact {
-      flex: 1;
-    }
+        .about h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #333;
+        }
 
-    .review blockquote {
-      font-style: italic;
-      color: #555;
-    }
+        .about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+        }
 
-    .contact p {
-      margin: 8px 0;
-    }
+        /* Courses Section */
+        .courses {
+            background: white;
+            padding: 80px 0;
+            text-align: center;
+        }
 
-    .contact i {
-      color: #007bff;
-      margin-right: 8px;
-    }
+        .courses h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            color: #333;
+        }
 
-    @media (min-width: 768px) {
-      .review-contact {
-        flex-direction: row;
-      }
-    }
-  </style>
-  <!-- Icons from Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .course-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .course-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f8ff;
+            border-radius: 50%;
+        }
+
+        .course-icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .course-item h3 {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .course-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Bottom Sections */
+        .bottom-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: #e6f3ff;
+            padding: 60px 40px;
+        }
+
+        .reviews h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .review blockquote {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .review cite {
+            color: #333;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #b3d9ff;
+            padding: 60px 40px;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+        }
+
+        .contact-item .icon {
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .bottom-sections {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .about h2, .courses h2 {
+                font-size: 2rem;
+            }
+
+            .reviews, .contact {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIHN0cm9rZT0iIzMzNzNkYyIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEwIiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iMjAiIHkxPSIyIiB4Mj0iMjAiIHkyPSIxMCIgc3Ryb2tlPSIjMzM3M2RjIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjIwIiB5MT0iMzAiIHgyPSIyMCIgeTI9IjM4IiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iMzgiIHkxPSIyMCIgeDI9IjMwIiB5Mj0iMjAiIHN0cm9rZT0iIzMzNzNkYyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxsaW5lIHgxPSIxMCIgeTE9IjIwIiB4Mj0iMiIgeTI9IjIwIiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K" alt="Driving School Logo">
+                    <span>DRIVING SCHOOL</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#courses">COURSES</a></li>
+                    <li><a href="#reviews">REVIEWS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo"><i class="fas fa-car"></i> DRIVING SCHOOL</div>
-        <ul>
-          <li><a href="#about">ABOUT</a></li>
-          <li><a href="#courses">COURSES</a></li>
-          <li><a href="#reviews">REVIEWS</a></li>
-          <li><a href="#contact">CONTACT</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>LEARN TO DRIVE</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                <button class="cta-button">GET STARTED</button>
+            </div>
+            <div class="page-indicator">1/2</div>
+        </section>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>LEARN TO DRIVE</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur acesipcing elit, sed do elusmod</p>
-    <button>GET STARTED</button>
-  </section>
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>ABOUT US</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+            </div>
+        </section>
 
-  <!-- About Us -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">ABOUT US</h2>
-      <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        interdum sed eiusmod quis ec commodo consequat.</p>
-    </div>
-  </section>
+        <!-- Courses Section -->
+        <section id="courses" class="courses">
+            <div class="container">
+                <h2>OUR COURSES</h2>
+                <div class="courses-grid">
+                    <div class="course-item">
+                        <div class="course-icon">
+                            <img src="car_icon.jpg" alt="Car Icon">
+                        </div>
+                        <h3>Lorem Ipsum</h3>
+                        <p>Lorem ipsum dolor</p>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-icon">
+                            <img src="cone_icon.png" alt="Cone Icon">
+                        </div>
+                        <h3>Lorem Ipsum</h3>
+                        <p>Lorem ipsum dolor</p>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-icon">
+                            <img src="checklist_icon.png" alt="Checklist Icon">
+                        </div>
+                        <h3>Lorem Ipsum</h3>
+                        <p>Lorem ipsum dolor</p>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-icon">
+                            <img src="steering_wheel_icon.png" alt="Steering Wheel Icon">
+                        </div>
+                        <h3>Lorem Ipsum</h3>
+                        <p>Lorem ipsum dolor</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- Our Courses -->
-  <section id="courses">
-    <div class="container">
-      <h2 class="section-title">OUR COURSES</h2>
-      <div class="courses">
-        <div class="course-box">
-          <i class="fas fa-car"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
+        <!-- Reviews and Contact Section -->
+        <div class="bottom-sections">
+            <section id="reviews" class="reviews">
+                <div class="container">
+                    <h2>REVIEWS</h2>
+                    <div class="review">
+                        <blockquote>
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+                        </blockquote>
+                        <cite>—John Doe</cite>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact">
+                <div class="container">
+                    <h2>CONTACT US</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="icon">📍</span>
+                            <span>1234 Elm St, Springfield, IL 62701</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📞</span>
+                            <span>(123) 456-2830</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">✉️</span>
+                            <span>info@drivingschool.com</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-        <div class="course-box">
-          <i class="fas fa-traffic-light"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-box">
-          <i class="fas fa-clipboard-check"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-box">
-          <i class="fas fa-steering-wheel"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </main>
 
-  <!-- Reviews and Contact -->
-  <section id="reviews">
-    <div class="container review-contact">
-      <div class="review">
-        <h2 class="section-title">REVIEWS</h2>
-        <blockquote>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
-          <br><br>— John Doe
-        </blockquote>
-      </div>
-      <div class="contact" id="contact">
-        <h2 class="section-title">CONTACT US</h2>
-        <p><i class="fas fa-map-marker-alt"></i> 1234 Elm St, Springfield, IL 62701</p>
-        <p><i class="fas fa-phone-alt"></i> (123) 456-2830</p>
-        <p><i class="fas fa-envelope"></i> info@drivingschool.com</p>
-      </div>
-    </div>
-  </section>
+    <script>
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
 
+            // CTA Button click handler
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function() {
+                    const coursesSection = document.querySelector('#courses');
+                    if (coursesSection) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = coursesSection.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+
+            // Page indicator functionality (simulating carousel)
+            let currentPage = 1;
+            const totalPages = 2;
+            const pageIndicator = document.querySelector('.page-indicator');
+            
+            if (pageIndicator) {
+                setInterval(() => {
+                    currentPage = currentPage === totalPages ? 1 : currentPage + 1;
+                    pageIndicator.textContent = `${currentPage}/${totalPages}`;
+                }, 5000);
+            }
+
+            // Add animation on scroll for course items
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Initially hide course items for animation
+            const courseItems = document.querySelectorAll('.course-item');
+            courseItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(item);
+            });
+
+            // Mobile menu toggle (for future enhancement)
+            const createMobileMenu = () => {
+                const nav = document.querySelector('.nav-container');
+                const menuToggle = document.createElement('button');
+                menuToggle.className = 'mobile-menu-toggle';
+                menuToggle.innerHTML = '☰';
+                menuToggle.style.display = 'none';
+                menuToggle.style.background = 'none';
+                menuToggle.style.border = 'none';
+                menuToggle.style.fontSize = '1.5rem';
+                menuToggle.style.cursor = 'pointer';
+                
+                nav.appendChild(menuToggle);
+                
+                // Show/hide mobile menu toggle based on screen size
+                const checkScreenSize = () => {
+                    if (window.innerWidth <= 768) {
+                        menuToggle.style.display = 'block';
+                    } else {
+                        menuToggle.style.display = 'none';
+                    }
+                };
+                
+                window.addEventListener('resize', checkScreenSize);
+                checkScreenSize();
+            };
+            
+            createMobileMenu();
+        });
+    </script>
 </body>
 </html>
 
@@ -239,6 +547,7 @@
 
 
 
-—————————————————————————
+
+
 
 
