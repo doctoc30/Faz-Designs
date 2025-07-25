@@ -1,207 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driving School</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
-    header {
-      background: #008ecc;
-      color: white;
-      padding: 10px 0;
-    }
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .hero {
-      background: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
-      position: relative;
-    }
-    .hero h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-    }
-    .hero button {
-      background: #007bff;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    section {
-      padding: 40px 20px;
-      background: #f1f5f9;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 1.8em;
-      font-weight: bold;
-    }
-    .courses {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      text-align: center;
-    }
-    .course-box {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .course-box i {
-      font-size: 2em;
-      color: #007bff;
-      margin-bottom: 10px;
-    }
-    .review-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      background: white;
-      padding: 30px 20px;
-    }
-    .review, .contact {
-      flex: 1;
-    }
-    .review blockquote {
-      font-style: italic;
-      color: #555;
-    }
-    .contact p {
-      margin: 8px 0;
-    }
-    .contact i {
-      color: #007bff;
-      margin-right: 8px;
-    }
-    @media (min-width: 768px) {
-      .review-contact {
-        flex-direction: row;
-      }
-    }
-  </style>
-  <!-- Icons from Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driving School</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    header {
+      background: #008ecc;
+      color: white;
+      padding: 10px 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .hero button {
+      background: #007bff;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 40px 20px;
+      background: #f1f5f9;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+
+    .course-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .course-box i {
+      font-size: 2em;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .review-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      background: white;
+      padding: 30px 20px;
+    }
+
+    .review, .contact {
+      flex: 1;
+    }
+
+    .review blockquote {
+      font-style: italic;
+      color: #555;
+    }
+
+    .contact p {
+      margin: 8px 0;
+    }
+
+    .contact i {
+      color: #007bff;
+      margin-right: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .review-contact {
+        flex-direction: row;
+      }
+    }
+  </style>
+  <!-- Icons from Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo"><i class="fas fa-car"></i> DRIVING SCHOOL</div>
-        <ul>
-          <li><a href="#about">ABOUT</a></li>
-          <li><a href="#courses">COURSES</a></li>
-          <li><a href="#reviews">REVIEWS</a></li>
-          <li><a href="#contact">CONTACT</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>LEARN TO DRIVE</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur acesipcing elit, sed do elusmod</p>
-    <button>GET STARTED</button>
-  </section>
-  <!-- About Us -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">ABOUT US</h2>
-      <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        interdum sed eiusmod quis ec commodo consequat.</p>
-    </div>
-  </section>
-  <!-- Our Courses -->
-  <section id="courses">
-    <div class="container">
-      <h2 class="section-title">OUR COURSES</h2>
-      <div class="courses">
-        <div class="course-box">
-          <i class="fas fa-car"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-box">
-          <i class="fas fa-traffic-light"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-box">
-          <i class="fas fa-clipboard-check"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-box">
-          <i class="fas fa-steering-wheel"></i>
-          <h3>Lorem Ipsum</h3>
-          <p>Lorem ipsum dolor</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Reviews and Contact -->
-  <section id="reviews">
-    <div class="container review-contact">
-      <div class="review">
-        <h2 class="section-title">REVIEWS</h2>
-        <blockquote>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
-          <br><br>— John Doe
-        </blockquote>
-      </div>
-      <div class="contact" id="contact">
-        <h2 class="section-title">CONTACT US</h2>
-        <p><i class="fas fa-map-marker-alt"></i> 1234 Elm St, Springfield, IL 62701</p>
-        <p><i class="fas fa-phone-alt"></i> (123) 456-2830</p>
-        <p><i class="fas fa-envelope"></i> info@drivingschool.com</p>
-      </div>
-    </div>
-  </section>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><i class="fas fa-car"></i> DRIVING SCHOOL</div>
+        <ul>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#courses">COURSES</a></li>
+          <li><a href="#reviews">REVIEWS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>LEARN TO DRIVE</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur acesipcing elit, sed do elusmod</p>
+    <button>GET STARTED</button>
+  </section>
+
+  <!-- About Us -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">ABOUT US</h2>
+      <p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        interdum sed eiusmod quis ec commodo consequat.</p>
+    </div>
+  </section>
+
+  <!-- Our Courses -->
+  <section id="courses">
+    <div class="container">
+      <h2 class="section-title">OUR COURSES</h2>
+      <div class="courses">
+        <div class="course-box">
+          <i class="fas fa-car"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="course-box">
+          <i class="fas fa-traffic-light"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="course-box">
+          <i class="fas fa-clipboard-check"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="course-box">
+          <i class="fas fa-steering-wheel"></i>
+          <h3>Lorem Ipsum</h3>
+          <p>Lorem ipsum dolor</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews and Contact -->
+  <section id="reviews">
+    <div class="container review-contact">
+      <div class="review">
+        <h2 class="section-title">REVIEWS</h2>
+        <blockquote>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+          <br><br>— John Doe
+        </blockquote>
+      </div>
+      <div class="contact" id="contact">
+        <h2 class="section-title">CONTACT US</h2>
+        <p><i class="fas fa-map-marker-alt"></i> 1234 Elm St, Springfield, IL 62701</p>
+        <p><i class="fas fa-phone-alt"></i> (123) 456-2830</p>
+        <p><i class="fas fa-envelope"></i> info@drivingschool.com</p>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
+
+
+
+
+
+
+—————————————————————————
+
+
