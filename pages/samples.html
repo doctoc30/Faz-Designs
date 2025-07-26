@@ -363,6 +363,26 @@
   max-height: 200px;
   padding: 1rem;
 }
+
+           // Review Rotator
+  const reviews = [
+    '"Amazing instructors and easy scheduling!" — Alex T.',
+    '"Passed on my first attempt!" — Maria K.',
+    '"Great pricing and flexibility!" — Jamal R.'
+  ];
+  let currentReview = 0;
+  setInterval(() => {
+    currentReview = (currentReview + 1) % reviews.length;
+    document.getElementById("review-slider").innerHTML = reviews[currentReview];
+  }, 4000);
+
+  // FAQ Accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const ans = q.nextElementSibling;
+      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
+    });
+  });p
     </style>
 </head>
 <body>
@@ -542,25 +562,7 @@
   </div>
 </section>
 
-              // Review Rotator
-  const reviews = [
-    '"Amazing instructors and easy scheduling!" — Alex T.',
-    '"Passed on my first attempt!" — Maria K.',
-    '"Great pricing and flexibility!" — Jamal R.'
-  ];
-  let currentReview = 0;
-  setInterval(() => {
-    currentReview = (currentReview + 1) % reviews.length;
-    document.getElementById("review-slider").innerHTML = reviews[currentReview];
-  }, 4000);
-
-  // FAQ Accordion
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-      const ans = q.nextElementSibling;
-      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
-    });
-  });p
+           
 
 
 
