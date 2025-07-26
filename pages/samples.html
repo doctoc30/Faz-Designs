@@ -335,7 +335,34 @@
     background-position: center top;
   }
 }
-        
+
+        .faq-toggle {
+  width: 100%;
+  background: #fff;
+  color: #333;
+  text-align: left;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.faq-toggle:hover {
+  background: #f2f2f2;
+}
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #f9f9f9;
+  padding: 0 1rem;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-item.open .faq-content {
+  max-height: 200px;
+  padding: 1rem;
+}
     </style>
 </head>
 <body>
@@ -515,24 +542,27 @@
   </div>
 </section>
 
-<!-- FAQ Section -->
-<section class="courses" id="faq">
-  <div class="container">
-    <h2>FAQs</h2>
-    <div class="faq-item">
-      <h3 class="faq-question">What vehicles do you offer training on?</h3>
-      <div class="faq-answer">We offer both automatic and manual vehicles for training.</div>
-    </div>
-    <div class="faq-item">
-      <h3 class="faq-question">Do you offer pick-up and drop-off?</h3>
-      <div class="faq-answer">Yes, our instructors can meet you at home or work.</div>
-    </div>
-    <div class="faq-item">
-      <h3 class="faq-question">How do I reschedule a session?</h3>
-      <div class="faq-answer">Contact us at least 24 hours before your session.</div>
-    </div>
-  </div>
-</section>
+              // Review Rotator
+  const reviews = [
+    '"Amazing instructors and easy scheduling!" — Alex T.',
+    '"Passed on my first attempt!" — Maria K.',
+    '"Great pricing and flexibility!" — Jamal R.'
+  ];
+  let currentReview = 0;
+  setInterval(() => {
+    currentReview = (currentReview + 1) % reviews.length;
+    document.getElementById("review-slider").innerHTML = reviews[currentReview];
+  }, 4000);
+
+  // FAQ Accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const ans = q.nextElementSibling;
+      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
+    });
+  });p
+
+
 
 <!-- Newsletter Signup -->
 <section class="about" id="newsletter">
@@ -725,6 +755,25 @@
       ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
     });
   });
+
+       
+  document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const faqItem = button.parentElement;
+      const isOpen = faqItem.classList.contains('open');
+
+      // Close all FAQs
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('open');
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        faqItem.classList.add('open');
+      }
+    });
+  });
+
     </script>
 </body>
 </html>
