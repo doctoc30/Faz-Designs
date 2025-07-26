@@ -1,361 +1,810 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driving School</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
 
-    header {
-      background: #fff;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .nav-menu {
-      display: flex;
-      gap: 1rem;
-    }
+        .navbar {
+            padding: 1rem 0;
+        }
 
-    .nav-menu a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .hero {
-      background: #f9f9f9;
-      padding: 5rem 2rem;
-      text-align: center;
-      position: relative;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #3373dc;
+            font-size: 1.2rem;
+        }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      color: #a87532;
-    }
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
 
-    .hero p {
-      margin: 1rem 0;
-    }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    .cta-button {
-      background: #a87532;
-      color: white;
-      border: none;
-      padding: 0.75rem 2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s ease;
-    }
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-    .cta-button:hover {
-      background: #905f27;
-    }
+        .nav-menu a:hover {
+            color: #3373dc;
+        }
 
-    section {
-      padding: 4rem 2rem;
-    }
+        /* Hero Section */
+        .hero {            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(\'driving_school_cars.png\');            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 80px;
+        }
 
-    h2 {
-      color: #a87532;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .courses-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-    }
+        .cta-button {
+            background: #3373dc;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
 
-    .course-item {
-      background: #fff;
-      border: 1px solid #eee;
-      padding: 1.5rem;
-      text-align: center;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
+        .cta-button:hover {
+            background: #2563eb;
+        }
 
-    .course-icon img {
-      width: 60px;
-      margin-bottom: 1rem;
-    }
+        .page-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
 
-    .reviews blockquote {
-      font-style: italic;
-      font-size: 1.2rem;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+        /* About Section */
+        .about {
+            background: #e6f3ff;
+            padding: 80px 0;
+            text-align: center;
+        }
 
-    cite {
-      display: block;
-      text-align: center;
-      font-weight: bold;
-      color: #a87532;
-    }
+        .about h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #333;
+        }
 
-    .faq-item {
-      margin-bottom: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      overflow: hidden;
-    }
+        .about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+        }
 
-    .faq-toggle {
-      width: 100%;
-      padding: 1rem;
-      text-align: left;
-      background: #f5f5f5;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      color: #a87532;
-    }
+        /* Courses Section */
+        .courses {
+            background: white;
+            padding: 80px 0;
+            text-align: center;
+        }
 
-    .faq-item.open .faq-toggle {
-      background: #a87532;
-      color: white;
-    }
+        .courses h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            color: #333;
+        }
 
-    .faq-content {
-      display: none;
-      padding: 1rem;
-      background: #fff;
-    }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-    .faq-item.open .faq-content {
-      display: block;
-    }
+        .course-item {
+            text-align: center;
+            padding: 2rem;
+        }
 
-    .page-indicator {
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      background: #a87532;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-    }
+        .course-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f8ff;
+            border-radius: 50%;
+        }
 
-    .mobile-menu-toggle {
-      display: none;
-    }
+        .course-icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
 
-    @media (max-width: 768px) {
-      .nav-menu {
-        flex-direction: column;
-        background: white;
-        padding: 1rem;
-        position: absolute;
-        right: 20px;
-        top: 60px;
-        display: none;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      }
+        .course-item h3 {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
 
-      .nav-menu.open {
-        display: flex;
-      }
+        .course-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
 
-      .mobile-menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: #a87532;
-      }
-    }
-  </style>
+        /* Bottom Sections */
+        .bottom-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: #e6f3ff;
+            padding: 60px 40px;
+        }
+
+        .reviews h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .review blockquote {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .review cite {
+            color: #333;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #b3d9ff;
+            padding: 60px 40px;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+        }
+
+        .contact-item .icon {
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .bottom-sections {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .about h2, .courses h2 {
+                font-size: 2rem;
+            }
+
+            .reviews, .contact {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+
+
+.hero {
+  background-image: url('https://i.imgur.com/LEqjYbS.png');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-position: center top;
+  }
+}
+
+        .faq-toggle {
+  width: 100%;
+  background: #fff;
+  color: #333;
+  text-align: left;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.faq-toggle:hover {
+  background: #f2f2f2;
+}
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #f9f9f9;
+  padding: 0 1rem;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-item.open .faq-content {
+  max-height: 200px;
+  padding: 1rem;
+}
+
+           // Review Rotator
+  const reviews = [
+    '"Amazing instructors and easy scheduling!" — Alex T.',
+    '"Passed on my first attempt!" — Maria K.',
+    '"Great pricing and flexibility!" — Jamal R.'
+  ];
+  let currentReview = 0;
+  setInterval(() => {
+    currentReview = (currentReview + 1) % reviews.length;
+    document.getElementById("review-slider").innerHTML = reviews[currentReview];
+  }, 4000);
+
+  // FAQ Accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const ans = q.nextElementSibling;
+      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
+    });
+  });p
+    </style>
 </head>
 <body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIHN0cm9rZT0iIzMzNzNkYyIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEwIiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iMjAiIHkxPSIyIiB4Mj0iMjAiIHkyPSIxMCIgc3Ryb2tlPSIjMzM3M2RjIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjIwIiB5MT0iMzAiIHgyPSIyMCIgeTI9IjM4IiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iMzgiIHkxPSIyMCIgeDI9IjMwIiB5Mj0iMjAiIHN0cm9rZT0iIzMzNzNkYyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxsaW5lIHgxPSIxMCIgeTE9IjIwIiB4Mj0iMiIgeTI9IjIwIiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K" alt="Driving School Logo">
+                    <span>DRIVING SCHOOL</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#courses">COURSES</a></li>
+                    <li><a href="#reviews">REVIEWS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-  <header>
-    <div class="nav-container">
-      <h1 style="color:#a87532;">DriveSmart</h1>
-      <nav class="nav-menu">
-        <a href="#about">About</a>
-        <a href="#courses">Courses</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#faq">FAQ</a>
-        <a href="#newsletter">Newsletter</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
+    <!-- Main Content -->
+    <main>
+     <!-- Hero Section -->
+<section class="hero">
     <div class="hero-content">
-      <h1>LEARN TO DRIVE</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <button class="cta-button">GET STARTED</button>
+        
+        <h1>LEARN TO DRIVE</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+        <button class="cta-button">GET STARTED</button>
     </div>
     <div class="page-indicator">1/2</div>
-  </section>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about" class="about">
-    <div class="container">
-      <h2>ABOUT US</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-    </div>
-  </section>
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>ABOUT US</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+            </div>
+        </section>
 
-  <!-- COURSES -->
-  <section id="courses" class="courses">
-    <div class="container">
-      <h2>OUR COURSES</h2>
-      <div class="courses-grid">
-        <div class="course-item">
-          <div class="course-icon"><img src="car_icon.jpg" alt="Car Icon"></div>
-          <h3>Lorem Ipsum</h3><p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-item">
-          <div class="course-icon"><img src="cone_icon.png" alt="Cone Icon"></div>
-          <h3>Lorem Ipsum</h3><p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-item">
-          <div class="course-icon"><img src="checklist_icon.png" alt="Checklist Icon"></div>
-          <h3>Lorem Ipsum</h3><p>Lorem ipsum dolor</p>
-        </div>
-        <div class="course-item">
-          <div class="course-icon"><img src="steering_wheel_icon.png" alt="Steering Wheel Icon"></div>
-          <h3>Lorem Ipsum</h3><p>Lorem ipsum dolor</p>
-        </div>
+        <!-- Courses Section -->
+        <section id="courses" class="courses">
+            <div class="container">
+                <h2>OUR COURSES</h2>
+                <div class="courses-grid">
+                    <div class="course-item">
+                        <div class="course-icon">
+                            <img src="car_icon.jpg" alt="Car Icon">
+                        </div>
+                        <h3>Lorem Ipsum</h3>
+                        <p>Lorem ipsum dolor</p>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-icon">
+                            <img src="cone_icon.png" alt="Cone Icon">
+                        </div>
+                        <h3>Lorem Ipsum</h3>
+                        <p>Lorem ipsum dolor</p>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-icon">
+                            <img src="checklist_icon.png" alt="Checklist Icon">
+                        </div>
+                        <h3>Lorem Ipsum</h3>
+                        <p>Lorem ipsum dolor</p>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-icon">
+                            <img src="steering_wheel_icon.png" alt="Steering Wheel Icon">
+                        </div>
+                        <h3>Lorem Ipsum</h3>
+                        <p>Lorem ipsum dolor</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews and Contact Section -->
+        <div class="bottom-sections">
+            <section id="reviews" class="reviews">
+                <div class="container">
+                    <h2>REVIEWS</h2>
+                    <div class="review">
+                        <blockquote>
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+                        </blockquote>
+                        <cite>—John Doe</cite>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Theory Test Preparation Section -->
+<section id="theory" class="about">
+  <div class="container">
+    <h2>THEORY TEST PREPARATION</h2>
+    <p>Prepare for your theory test with expert-designed questions, real test simulations, and full explanations to boost your confidence.</p>
+  </div>
+</section>
+
+<!-- Courses Buy Now Section -->
+<section id="packages" class="courses">
+  <div class="container">
+    <h2>BUY COURSE PACKAGES</h2>
+    <div class="courses-grid">
+      <div class="course-item">
+        <div class="course-icon"><img src="car_icon.jpg" alt="Course Icon"></div>
+        <h3>Beginner Basics</h3>
+        <p>10 driving sessions</p>
+        <button class="cta-button">Buy Now</button>
+      </div>
+      <div class="course-item">
+        <div class="course-icon"><img src="cone_icon.png" alt="Course Icon"></div>
+        <h3>Intermediate</h3>
+        <p>15 driving sessions</p>
+        <button class="cta-button">Buy Now</button>
+      </div>
+      <div class="course-item">
+        <div class="course-icon"><img src="checklist_icon.png" alt="Course Icon"></div>
+        <h3>Test Ready</h3>
+        <p>5 mock tests + driving</p>
+        <button class="cta-button">Buy Now</button>
+      </div>
+      <div class="course-item">
+        <div class="course-icon"><img src="steering_wheel_icon.png" alt="Course Icon"></div>
+        <h3>Refresher</h3>
+        <p>5 custom driving sessions</p>
+        <button class="cta-button">Buy Now</button>
+      </div>
+      <div class="course-item">
+        <div class="course-icon"><img src="car_icon.jpg" alt="Course Icon"></div>
+        <h3>Weekend Warrior</h3>
+        <p>Weekend flexibility</p>
+        <button class="cta-button">Buy Now</button>
+      </div>
+      <div class="course-item">
+        <div class="course-icon"><img src="cone_icon.png" alt="Course Icon"></div>
+        <h3>Automatic Only</h3>
+        <p>10 auto transmission classes</p>
+        <button class="cta-button">Buy Now</button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- REVIEWS -->
-  <section id="reviews" class="reviews">
-    <div class="container">
-      <h2>REVIEWS</h2>
-      <blockquote>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</blockquote>
-      <cite>— John Doe</cite>
-    </div>
-  </section>
+            <!-- FAQ Section -->
+<section class="courses" id="faq">
+  <div class="container">
+    <h2>FAQs</h2>
 
-  <!-- FAQ -->
-  <section class="courses" id="faq">
-    <div class="container">
-      <h2>FAQs</h2>
-      <div class="faq-item">
-        <button class="faq-toggle">What vehicles do you offer training on?</button>
-        <div class="faq-content">We offer both automatic and manual vehicles for training.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-toggle">Do you offer pick-up and drop-off?</button>
-        <div class="faq-content">Yes, our instructors can meet you at home or work.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-toggle">How do I reschedule a session?</button>
-        <div class="faq-content">Contact us at least 24 hours before your session.</div>
+    <div class="faq-item">
+      <button class="faq-toggle">What vehicles do you offer training on?</button>
+      <div class="faq-content">
+        We offer both automatic and manual vehicles for training.
       </div>
     </div>
-  </section>
 
-  <!-- NEWSLETTER -->
-  <section class="about" id="newsletter">
-    <div class="container">
-      <h2>SUBSCRIBE TO OUR NEWSLETTER</h2>
-      <input type="email" placeholder="Enter your email" style="padding: 1rem; width: 300px; max-width: 90%;">
-      <br><br>
-      <button class="cta-button">Subscribe</button>
+    <div class="faq-item">
+      <button class="faq-toggle">Do you offer pick-up and drop-off?</button>
+      <div class="faq-content">
+        Yes, our instructors can meet you at home or work.
+      </div>
     </div>
-  </section>
 
-  <!-- JS -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const scrollWithOffset = (target) => {
-        const headerHeight = document.querySelector('header').offsetHeight;
-        const position = target.offsetTop - headerHeight;
-        window.scrollTo({ top: position, behavior: 'smooth' });
-      };
+    <div class="faq-item">
+      <button class="faq-toggle">How do I reschedule a session?</button>
+      <div class="faq-content">
+        Contact us at least 24 hours before your session.
+      </div>
+    </div>
+  </div>
+</section>
 
-      document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
-        link.addEventListener('click', e => {
-          e.preventDefault();
-          const target = document.querySelector(link.getAttribute('href'));
-          if (target) scrollWithOffset(target);
+<!-- Google Map -->
+<section class="about">
+  <div class="container">
+    <h2>FIND US ON MAP</h2>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.093541848671!2d-122.42067928468137!3d37.77492927975938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808581547d8dc7ef%3A0xfb3b761a21c28772!2s1234%20Elm%20St%2C%20Springfield%2C%20IL%2062701!5e0!3m2!1sen!2sus!4v1594312244279!5m2!1sen!2sus"
+      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- Google Reviews Slider -->
+<section class="reviews">
+  <div class="container">
+    <h2>GOOGLE REVIEWS</h2>
+    <div id="review-slider" style="text-align:center; font-style:italic;">"Amazing instructors and easy scheduling!"<br><strong>— Alex T.</strong></div>
+  </div>
+</section>
+
+<!-- Testimonials Grid 6x2 -->
+<section class="about" id="students">
+  <div class="container">
+    <h2>STUDENT TESTIMONIALS</h2>
+    <div class="courses-grid">
+      <div class="course-item"><img src="https://i.pravatar.cc/150?img=1" width="100"><p>"Great!"</p></div>
+      <div class="course-item"><img src="https://i.pravatar.cc/150?img=2" width="100"><p>"Passed first try!"</p></div>
+      <div class="course-item"><img src="https://i.pravatar.cc/150?img=3" width="100"><p>"Awesome service."</p></div>
+      <div class="course-item"><img src="https://i.pravatar.cc/150?img=4" width="100"><p>"Professional."</p></div>
+      <div class="course-item"><img src="https://i.pravatar.cc/150?img=5" width="100"><p>"Very flexible."</p></div>
+      <div class="course-item"><img src="https://i.pravatar.cc/150?img=6" width="100"><p>"Loved it."</p></div>
+    </div>
+  </div>
+</section>
+
+           
+
+
+
+<!-- Newsletter Signup -->
+<section class="about" id="newsletter">
+  <div class="container">
+    <h2>SUBSCRIBE TO OUR NEWSLETTER</h2>
+    <input type="email" placeholder="Enter your email" style="padding: 1rem; width: 300px; max-width: 90%;">
+    <br><br>
+    <button class="cta-button">Subscribe</button>
+  </div>
+</section>
+
+<!-- Contact Form -->
+<section class="contact" id="contact-form">
+  <div class="container">
+    <h2>GET IN TOUCH</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button class="cta-button" type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer Social Icons -->
+<footer class="contact">
+  <div class="container" style="text-align:center;">
+    <p>Follow us on</p>
+    <div class="social-icons">
+      <a href="#"><span>📘 Facebook</span></a> |
+      <a href="#"><span>📸 Instagram</span></a> |
+      <a href="#"><span>🐦 Twitter</span></a>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Buttons -->
+<button class="floating-button" style="position:fixed;top:50%;right:0;transform:rotate(-90deg);background:#3373dc;color:white;padding:0.7rem 1.2rem;z-index:1000;border:none;border-radius:0 0 8px 8px;">Book Now</button>
+
+<a href="mailto:info@drivingschool.com" class="email-btn skip-link" style="right: 80px;">✉️</a>
+<a href="tel:1234562830" class="call-btn skip-link" style="right: 20px;">📞</a>
+
+
+            <section id="contact" class="contact">
+                <div class="container">
+                    <h2>CONTACT US</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="icon">📍</span>
+                            <span>1234 Elm St, Springfield, IL 62701</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📞</span>
+                            <span>(123) 456-2830</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">✉️</span>
+                            <span>info@drivingschool.com</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // CTA Button click handler
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function() {
+                    const coursesSection = document.querySelector('#courses');
+                    if (coursesSection) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = coursesSection.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+
+            // Page indicator functionality (simulating carousel)
+            let currentPage = 1;
+            const totalPages = 2;
+            const pageIndicator = document.querySelector('.page-indicator');
+            
+            if (pageIndicator) {
+                setInterval(() => {
+                    currentPage = currentPage === totalPages ? 1 : currentPage + 1;
+                    pageIndicator.textContent = `${currentPage}/${totalPages}`;
+                }, 5000);
+            }
+
+            // Add animation on scroll for course items
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Initially hide course items for animation
+            const courseItems = document.querySelectorAll('.course-item');
+            courseItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(item);
+            });
+
+            // Mobile menu toggle (for future enhancement)
+            const createMobileMenu = () => {
+                const nav = document.querySelector('.nav-container');
+                const menuToggle = document.createElement('button');
+                menuToggle.className = 'mobile-menu-toggle';
+                menuToggle.innerHTML = '☰';
+                menuToggle.style.display = 'none';
+                menuToggle.style.background = 'none';
+                menuToggle.style.border = 'none';
+                menuToggle.style.fontSize = '1.5rem';
+                menuToggle.style.cursor = 'pointer';
+                
+                nav.appendChild(menuToggle);
+                
+                // Show/hide mobile menu toggle based on screen size
+                const checkScreenSize = () => {
+                    if (window.innerWidth <= 768) {
+                        menuToggle.style.display = 'block';
+                    } else {
+                        menuToggle.style.display = 'none';
+                    }
+                };
+                
+                window.addEventListener('resize', checkScreenSize);
+                checkScreenSize();
+            };
+            
+            createMobileMenu();
         });
-      });
 
-      const ctaButton = document.querySelector('.cta-button');
-      if (ctaButton) {
-        ctaButton.addEventListener('click', () => {
-          const target = document.querySelector('#courses');
-          if (target) scrollWithOffset(target);
-        });
-      }
 
-      let currentPage = 1;
-      const totalPages = 2;
-      const pageIndicator = document.querySelector('.page-indicator');
-      if (pageIndicator) {
-        setInterval(() => {
-          currentPage = (currentPage % totalPages) + 1;
-          pageIndicator.textContent = `${currentPage}/${totalPages}`;
-        }, 5000);
-      }
+          // Review Rotator
+  const reviews = [
+    '"Amazing instructors and easy scheduling!" — Alex T.',
+    '"Passed on my first attempt!" — Maria K.',
+    '"Great pricing and flexibility!" — Jamal R.'
+  ];
+  let currentReview = 0;
+  setInterval(() => {
+    currentReview = (currentReview + 1) % reviews.length;
+    document.getElementById("review-slider").innerHTML = reviews[currentReview];
+  }, 4000);
 
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-
-      document.querySelectorAll('.course-item').forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(30px)';
-        item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-        observer.observe(item);
-      });
-
-      document.querySelectorAll('.faq-toggle').forEach(button => {
-        button.addEventListener('click', () => {
-          const faqItem = button.parentElement;
-          const isOpen = faqItem.classList.contains('open');
-          document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
-          if (!isOpen) faqItem.classList.add('open');
-        });
-      });
+  // FAQ Accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const ans = q.nextElementSibling;
+      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
     });
-  </script>
+  });
+
+       
+  document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const faqItem = button.parentElement;
+      const isOpen = faqItem.classList.contains('open');
+
+      // Close all FAQs
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('open');
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        faqItem.classList.add('open');
+      }
+    });
+  });
+
+    </script>
 </body>
 </html>
+
