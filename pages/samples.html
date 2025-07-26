@@ -1,820 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving School</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driving School</title>
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* Header Styles */
-        header {
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
 
-        .navbar {
-            padding: 1rem 0;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    header {
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            color: #3373dc;
-            font-size: 1.2rem;
-        }
+    .navbar {
+      padding: 1rem 0;
+    }
 
-        .logo img {
-            width: 40px;
-            height: 40px;
-        }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      color: #3373dc;
+      font-size: 1.2rem;
+    }
 
-        .nav-menu a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
 
-        .nav-menu a:hover {
-            color: #3373dc;
-        }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
 
-        /* Hero Section */
-        .hero {            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(\'driving_school_cars.png\');            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            margin-top: 80px;
-        }
+    .nav-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
+    .nav-menu a:hover {
+      color: #3373dc;
+    }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .hero {
+      background-image: url('https://i.imgur.com/LEqjYbS.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      margin-top: 80px;
+      position: relative;
+    }
 
-        .cta-button {
-            background: #3373dc;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
 
-        .cta-button:hover {
-            background: #2563eb;
-        }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        .page-indicator {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
+    .cta-button {
+      background: #3373dc;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-        /* About Section */
-        .about {
-            background: #e6f3ff;
-            padding: 80px 0;
-            text-align: center;
-        }
+    .cta-button:hover {
+      background: #2563eb;
+    }
 
-        .about h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            color: #333;
-        }
+    .page-indicator {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
 
-        .about p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: #666;
-        }
+    section {
+      padding: 80px 20px;
+    }
 
-        /* Courses Section */
-        .courses {
-            background: white;
-            padding: 80px 0;
-            text-align: center;
-        }
+    .about, .reviews, .contact {
+      background: #e6f3ff;
+      text-align: center;
+    }
 
-        .courses h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 3rem;
-            color: #333;
-        }
+    .courses {
+      background: white;
+      text-align: center;
+    }
 
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-        .course-item {
-            text-align: center;
-            padding: 2rem;
-        }
+    .course-item {
+      padding: 2rem;
+      transition: 0.4s ease;
+    }
 
-        .course-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f0f8ff;
-            border-radius: 50%;
-        }
+    .course-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      background: #f0f8ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .course-icon img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
+    .course-icon img {
+      width: 50px;
+      height: 50px;
+    }
 
-        .course-item h3 {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
+    .course-item h3 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin: 1rem 0 0.5rem;
+    }
 
-        .course-item p {
-            color: #666;
-            font-size: 0.9rem;
-        }
+    .course-item p {
+      font-size: 0.95rem;
+      color: #666;
+    }
 
-        /* Bottom Sections */
-        .bottom-sections {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
+    .faq-toggle {
+      width: 100%;
+      background: #fff;
+      color: #333;
+      text-align: left;
+      font-size: 1.1rem;
+      padding: 1rem;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
 
-        /* Reviews Section */
-        .reviews {
-            background: #e6f3ff;
-            padding: 60px 40px;
-        }
+    .faq-toggle:hover {
+      background: #f2f2f2;
+    }
 
-        .reviews h2 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            color: #333;
-            text-align: center;
-        }
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      background: #f9f9f9;
+      padding: 0 1rem;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
 
-        .review blockquote {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1rem;
-            font-style: italic;
-            line-height: 1.6;
-        }
+    .faq-item.open .faq-content {
+      max-height: 200px;
+      padding: 1rem;
+    }
 
-        .review cite {
-            color: #333;
-            font-weight: bold;
-            font-style: normal;
-        }
+    .bottom-sections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
 
-        /* Contact Section */
-        .contact {
-            background: #b3d9ff;
-            padding: 60px 40px;
-        }
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
 
-        .contact h2 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            color: #333;
-            text-align: center;
-        }
+      .bottom-sections {
+        grid-template-columns: 1fr;
+      }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #333;
-        }
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
 
-        .contact-item .icon {
-            font-size: 1.2rem;
-            width: 25px;
-        }
+    @media (max-width: 480px) {
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .bottom-sections {
-                grid-template-columns: 1fr;
-            }
-
-            .courses-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .about h2, .courses h2 {
-                font-size: 2rem;
-            }
-
-            .reviews, .contact {
-                padding: 40px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-        }
-
-
-.hero {
-  background-image: url('https://i.imgur.com/LEqjYbS.png');
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .hero {
-    background-position: center top;
-  }
-}
-
-        .faq-toggle {
-  width: 100%;
-  background: #fff;
-  color: #333;
-  text-align: left;
-  font-size: 1.1rem;
-  padding: 1rem;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-.faq-toggle:hover {
-  background: #f2f2f2;
-}
-.faq-content {
-  max-height: 0;
-  overflow: hidden;
-  background: #f9f9f9;
-  padding: 0 1rem;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-}
-.faq-item.open .faq-content {
-  max-height: 200px;
-  padding: 1rem;
-}
-
-           // Review Rotator
-  const reviews = [
-    '"Amazing instructors and easy scheduling!" — Alex T.',
-    '"Passed on my first attempt!" — Maria K.',
-    '"Great pricing and flexibility!" — Jamal R.'
-  ];
-  let currentReview = 0;
-  setInterval(() => {
-    currentReview = (currentReview + 1) % reviews.length;
-    document.getElementById("review-slider").innerHTML = reviews[currentReview];
-  }, 4000);
-
-  // FAQ Accordion
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-      const ans = q.nextElementSibling;
-      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
-    });
-  });p
-    </style>
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIHN0cm9rZT0iIzMzNzNkYyIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEwIiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iMjAiIHkxPSIyIiB4Mj0iMjAiIHkyPSIxMCIgc3Ryb2tlPSIjMzM3M2RjIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjIwIiB5MT0iMzAiIHgyPSIyMCIgeTI9IjM4IiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iMzgiIHkxPSIyMCIgeDI9IjMwIiB5Mj0iMjAiIHN0cm9rZT0iIzMzNzNkYyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxsaW5lIHgxPSIxMCIgeTE9IjIwIiB4Mj0iMiIgeTI9IjIwIiBzdHJva2U9IiMzMzczZGMiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K" alt="Driving School Logo">
-                    <span>DRIVING SCHOOL</span>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#courses">COURSES</a></li>
-                    <li><a href="#reviews">REVIEWS</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+  <header>
+    <div class="nav-container">
+      <div class="logo"><i class="fas fa-car"></i> DriveNow</div>
+      <ul class="nav-menu">
+        <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="#courses"><i class="fas fa-book-open"></i> Courses</a></li>
+        <li><a href="#reviews"><i class="fas fa-star"></i> Reviews</a></li>
+        <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <main>
-     <!-- Hero Section -->
-<section class="hero">
+  <section class="hero">
     <div class="hero-content">
-        
-        <h1>LEARN TO DRIVE</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-        <button class="cta-button">GET STARTED</button>
+      <h1>LEARN TO DRIVE</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+      <button class="cta-button"><i class="fas fa-flag-checkered"></i> GET STARTED</button>
     </div>
     <div class="page-indicator">1/2</div>
-</section>
+  </section>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <h2>ABOUT US</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-            </div>
-        </section>
-
-        <!-- Courses Section -->
-        <section id="courses" class="courses">
-            <div class="container">
-                <h2>OUR COURSES</h2>
-                <div class="courses-grid">
-                    <div class="course-item">
-                        <div class="course-icon">
-                            <img src="car_icon.jpg" alt="Car Icon">
-                        </div>
-                        <h3>Lorem Ipsum</h3>
-                        <p>Lorem ipsum dolor</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-icon">
-                            <img src="cone_icon.png" alt="Cone Icon">
-                        </div>
-                        <h3>Lorem Ipsum</h3>
-                        <p>Lorem ipsum dolor</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-icon">
-                            <img src="checklist_icon.png" alt="Checklist Icon">
-                        </div>
-                        <h3>Lorem Ipsum</h3>
-                        <p>Lorem ipsum dolor</p>
-                    </div>
-                    <div class="course-item">
-                        <div class="course-icon">
-                            <img src="steering_wheel_icon.png" alt="Steering Wheel Icon">
-                        </div>
-                        <h3>Lorem Ipsum</h3>
-                        <p>Lorem ipsum dolor</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reviews and Contact Section -->
-        <div class="bottom-sections">
-            <section id="reviews" class="reviews">
-                <div class="container">
-                    <h2>REVIEWS</h2>
-                    <div class="review">
-                        <blockquote>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
-                        </blockquote>
-                        <cite>—John Doe</cite>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Theory Test Preparation Section -->
-<section id="theory" class="about">
-  <div class="container">
-    <h2>THEORY TEST PREPARATION</h2>
-    <p>Prepare for your theory test with expert-designed questions, real test simulations, and full explanations to boost your confidence.</p>
-  </div>
-</section>
-
-<!-- Courses Buy Now Section -->
-<section id="packages" class="courses">
-  <div class="container">
-    <h2>BUY COURSE PACKAGES</h2>
-    <div class="courses-grid">
-      <div class="course-item">
-        <div class="course-icon"><img src="car_icon.jpg" alt="Course Icon"></div>
-        <h3>Beginner Basics</h3>
-        <p>10 driving sessions</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="cone_icon.png" alt="Course Icon"></div>
-        <h3>Intermediate</h3>
-        <p>15 driving sessions</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="checklist_icon.png" alt="Course Icon"></div>
-        <h3>Test Ready</h3>
-        <p>5 mock tests + driving</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="steering_wheel_icon.png" alt="Course Icon"></div>
-        <h3>Refresher</h3>
-        <p>5 custom driving sessions</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="car_icon.jpg" alt="Course Icon"></div>
-        <h3>Weekend Warrior</h3>
-        <p>Weekend flexibility</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="cone_icon.png" alt="Course Icon"></div>
-        <h3>Automatic Only</h3>
-        <p>10 auto transmission classes</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
+  <section id="about" class="about">
+    <div class="container">
+      <h2><i class="fas fa-address-card"></i> ABOUT US</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
     </div>
-  </div>
-</section>
+  </section>
 
-            <!-- FAQ Section -->
-<section class="courses" id="faq">
-  <div class="container">
-    <h2>FAQs</h2>
-
-    <div class="faq-item">
-      <button class="faq-toggle">What vehicles do you offer training on?</button>
-      <div class="faq-content">
-        We offer both automatic and manual vehicles for training.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-toggle">Do you offer pick-up and drop-off?</button>
-      <div class="faq-content">
-        Yes, our instructors can meet you at home or work.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-toggle">How do I reschedule a session?</button>
-      <div class="faq-content">
-        Contact us at least 24 hours before your session.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Google Map -->
-<section class="about">
-  <div class="container">
-    <h2>FIND US ON MAP</h2>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.093541848671!2d-122.42067928468137!3d37.77492927975938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808581547d8dc7ef%3A0xfb3b761a21c28772!2s1234%20Elm%20St%2C%20Springfield%2C%20IL%2062701!5e0!3m2!1sen!2sus!4v1594312244279!5m2!1sen!2sus"
-      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </div>
-</section>
-
-<!-- Google Reviews Slider -->
-<section class="reviews">
-  <div class="container">
-    <h2>GOOGLE REVIEWS</h2>
-    <div id="review-slider" style="text-align:center; font-style:italic;">"Amazing instructors and easy scheduling!"<br><strong>— Alex T.</strong></div>
-  </div>
-</section>
-
-<!-- Testimonials Grid 6x2 -->
-<section class="about" id="students">
-  <div class="container">
-    <h2>STUDENT TESTIMONIALS</h2>
-    <div class="courses-grid">
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=1" width="100"><p>"Great!"</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=2" width="100"><p>"Passed first try!"</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=3" width="100"><p>"Awesome service."</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=4" width="100"><p>"Professional."</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=5" width="100"><p>"Very flexible."</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=6" width="100"><p>"Loved it."</p></div>
-    </div>
-  </div>
-</section>
-
-           
-
-
-
-<!-- Newsletter Signup -->
-<section class="about" id="newsletter">
-  <div class="container">
-    <h2>SUBSCRIBE TO OUR NEWSLETTER</h2>
-    <input type="email" placeholder="Enter your email" style="padding: 1rem; width: 300px; max-width: 90%;">
-    <br><br>
-    <button class="cta-button">Subscribe</button>
-  </div>
-</section>
-
-<!-- Contact Form -->
-<section class="contact" id="contact-form">
-  <div class="container">
-    <h2>GET IN TOUCH</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button class="cta-button" type="submit">Send Message</button>
-    </form>
-  </div>
-</section>
-
-<!-- Footer Social Icons -->
-<footer class="contact">
-  <div class="container" style="text-align:center;">
-    <p>Follow us on</p>
-    <div class="social-icons">
-      <a href="#"><span>📘 Facebook</span></a> |
-      <a href="#"><span>📸 Instagram</span></a> |
-      <a href="#"><span>🐦 Twitter</span></a>
-    </div>
-  </div>
-</footer>
-
-<!-- Floating Buttons -->
-<button class="floating-button" style="position:fixed;top:50%;right:0;transform:rotate(-90deg);background:#3373dc;color:white;padding:0.7rem 1.2rem;z-index:1000;border:none;border-radius:0 0 8px 8px;">Book Now</button>
-
-<a href="mailto:info@drivingschool.com" class="email-btn skip-link" style="right: 80px;">✉️</a>
-<a href="tel:1234562830" class="call-btn skip-link" style="right: 20px;">📞</a>
-
-
-            <section id="contact" class="contact">
-                <div class="container">
-                    <h2>CONTACT US</h2>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <span class="icon">📍</span>
-                            <span>1234 Elm St, Springfield, IL 62701</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="icon">📞</span>
-                            <span>(123) 456-2830</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="icon">✉️</span>
-                            <span>info@drivingschool.com</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+  <section id="courses" class="courses">
+    <div class="container">
+      <h2><i class="fas fa-road"></i> OUR COURSES</h2>
+      <div class="courses-grid">
+        <div class="course-item">
+          <div class="course-icon"><img src="car_icon.jpg" alt="Car Icon"></div>
+          <h3>Beginner Basics</h3>
+          <p>10 driving sessions</p>
+          <button class="cta-button"><i class="fas fa-cart-plus"></i> Buy Now</button>
         </div>
-    </main>
+        <div class="course-item">
+          <div class="course-icon"><img src="cone_icon.png" alt="Cone Icon"></div>
+          <h3>Intermediate</h3>
+          <p>15 driving sessions</p>
+          <button class="cta-button"><i class="fas fa-cart-plus"></i> Buy Now</button>
+        </div>
+        <div class="course-item">
+          <div class="course-icon"><img src="checklist_icon.png" alt="Checklist Icon"></div>
+          <h3>Test Ready</h3>
+          <p>5 mock tests + driving</p>
+          <button class="cta-button"><i class="fas fa-cart-plus"></i> Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = targetSection.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+  <section class="courses" id="faq">
+    <div class="container">
+      <h2><i class="fas fa-question-circle"></i> FAQs</h2>
 
-            // CTA Button click handler
-            const ctaButton = document.querySelector('.cta-button');
-            if (ctaButton) {
-                ctaButton.addEventListener('click', function() {
-                    const coursesSection = document.querySelector('#courses');
-                    if (coursesSection) {
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = coursesSection.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            }
+      <div class="faq-item">
+        <button class="faq-toggle"><i class="fas fa-car-side"></i> What vehicles do you offer training on?</button>
+        <div class="faq-content">We offer both automatic and manual vehicles for training.</div>
+      </div>
 
-            // Page indicator functionality (simulating carousel)
-            let currentPage = 1;
-            const totalPages = 2;
-            const pageIndicator = document.querySelector('.page-indicator');
-            
-            if (pageIndicator) {
-                setInterval(() => {
-                    currentPage = currentPage === totalPages ? 1 : currentPage + 1;
-                    pageIndicator.textContent = `${currentPage}/${totalPages}`;
-                }, 5000);
-            }
+      <div class="faq-item">
+        <button class="faq-toggle"><i class="fas fa-map-marker-alt"></i> Do you offer pick-up and drop-off?</button>
+        <div class="faq-content">Yes, our instructors can meet you at home or work.</div>
+      </div>
 
-            // Add animation on scroll for course items
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+      <div class="faq-item">
+        <button class="faq-toggle"><i class="fas fa-clock"></i> How do I reschedule a session?</button>
+        <div class="faq-content">Contact us at least 24 hours before your session.</div>
+      </div>
+    </div>
+  </section>
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <h2><i class="fas fa-comments"></i> GOOGLE REVIEWS</h2>
+      <div id="review-slider" style="text-align:center; font-style:italic;">"Amazing instructors and easy scheduling!"<br><strong>— Alex T.</strong></div>
+    </div>
+  </section>
 
-            // Initially hide course items for animation
-            const courseItems = document.querySelectorAll('.course-item');
-            courseItems.forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-                item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-                observer.observe(item);
-            });
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const scrollWithOffset = (target) => {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const position = target.offsetTop - headerHeight;
+        window.scrollTo({ top: position, behavior: 'smooth' });
+      };
 
-            // Mobile menu toggle (for future enhancement)
-            const createMobileMenu = () => {
-                const nav = document.querySelector('.nav-container');
-                const menuToggle = document.createElement('button');
-                menuToggle.className = 'mobile-menu-toggle';
-                menuToggle.innerHTML = '☰';
-                menuToggle.style.display = 'none';
-                menuToggle.style.background = 'none';
-                menuToggle.style.border = 'none';
-                menuToggle.style.fontSize = '1.5rem';
-                menuToggle.style.cursor = 'pointer';
-                
-                nav.appendChild(menuToggle);
-                
-                // Show/hide mobile menu toggle based on screen size
-                const checkScreenSize = () => {
-                    if (window.innerWidth <= 768) {
-                        menuToggle.style.display = 'block';
-                    } else {
-                        menuToggle.style.display = 'none';
-                    }
-                };
-                
-                window.addEventListener('resize', checkScreenSize);
-                checkScreenSize();
-            };
-            
-            createMobileMenu();
+      document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) scrollWithOffset(target);
         });
-
-
-          // Review Rotator
-  const reviews = [
-    '"Amazing instructors and easy scheduling!" — Alex T.',
-    '"Passed on my first attempt!" — Maria K.',
-    '"Great pricing and flexibility!" — Jamal R.'
-  ];
-  let currentReview = 0;
-  setInterval(() => {
-    currentReview = (currentReview + 1) % reviews.length;
-    document.getElementById("review-slider").innerHTML = reviews[currentReview];
-  }, 4000);
-
-  // FAQ Accordion
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-      const ans = q.nextElementSibling;
-      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-
-       
-  document.querySelectorAll('.faq-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-      const faqItem = button.parentElement;
-      const isOpen = faqItem.classList.contains('open');
-
-      // Close all FAQs
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('open');
       });
 
-      // Toggle current
-      if (!isOpen) {
-        faqItem.classList.add('open');
+      const ctaButton = document.querySelector('.cta-button');
+      if (ctaButton) {
+        ctaButton.addEventListener('click', () => {
+          const target = document.querySelector('#courses');
+          if (target) scrollWithOffset(target);
+        });
       }
-    });
-  });
 
-    </script>
+      let currentPage = 1;
+      const totalPages = 2;
+      const pageIndicator = document.querySelector('.page-indicator');
+      if (pageIndicator) {
+        setInterval(() => {
+          currentPage = (currentPage % totalPages) + 1;
+          pageIndicator.textContent = `${currentPage}/${totalPages}`;
+        }, 5000);
+      }
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      document.querySelectorAll('.course-item').forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(item);
+      });
+
+      document.querySelectorAll('.faq-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+          const faqItem = button.parentElement;
+          const isOpen = faqItem.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
+          if (!isOpen) faqItem.classList.add('open');
+        });
+      });
+
+      const reviews = [
+        '"Amazing instructors and easy scheduling!" — Alex T.',
+        '"Passed on my first attempt!" — Maria K.',
+        '"Great pricing and flexibility!" — Jamal R.'
+      ];
+      let currentReview = 0;
+      const reviewSlider = document.getElementById("review-slider");
+      if (reviewSlider) {
+        setInterval(() => {
+          currentReview = (currentReview + 1) % reviews.length;
+          reviewSlider.innerHTML = reviews[currentReview];
+        }, 4000);
+      }
+
+      // Mobile Menu Toggle
+      const nav = document.querySelector('.nav-container');
+      const navMenu = document.querySelector('.nav-menu');
+
+      const menuToggle = document.createElement('button');
+      menuToggle.className = 'mobile-menu-toggle';
+      menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      menuToggle.style.display = 'none';
+      menuToggle.style.background = 'none';
+      menuToggle.style.border = 'none';
+      menuToggle.style.fontSize = '1.5rem';
+      menuToggle.style.cursor = 'pointer';
+
+      nav.insertBefore(menuToggle, navMenu);
+
+      const toggleMenuVisibility = () => {
+        navMenu.style.display = (navMenu.style.display === 'flex') ? 'none' : 'flex';
+        navMenu.style.flexDirection = 'column';
+        navMenu.style.position = 'absolute';
+        navMenu.style.top = '60px';
+        navMenu.style.right = '20px';
+        navMenu.style.background = 'white';
+        navMenu.style.padding = '1rem';
+        navMenu.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+      };
+
+      menuToggle.addEventListener('click', toggleMenuVisibility);
+
+      const checkScreenSize = () => {
+        if (window.innerWidth <= 768) {
+          menuToggle.style.display = 'block';
+          navMenu.style.display = 'none';
+        } else {
+          menuToggle.style.display = 'none';
+          navMenu.style.display = 'flex';
+          navMenu.style.flexDirection = 'row';
+          navMenu.style.position = 'static';
+        }
+      };
+
+      window.addEventListener('resize', checkScreenSize);
+      checkScreenSize();
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
