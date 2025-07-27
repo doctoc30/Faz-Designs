@@ -78,7 +78,9 @@
         }
 
         /* Hero Section */
-        .hero {            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(\'driving_school_cars.png\');            background-size: cover;
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('steering_wheel_bg.jpg');
+            background-size: cover;
             background-position: center;
             height: 100vh;
             display: flex;
@@ -316,86 +318,9 @@
                 font-size: 2rem;
             }
         }
-
-
-.hero {
-  background-image: url('https://i.imgur.com/LEqjYbS.png');
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .hero {
-    background-position: center top;
-  }
-}
-
-        .faq-toggle {
-  width: 100%;
-  background: #fff;
-  color: #333;
-  text-align: left;
-  font-size: 1.1rem;
-  padding: 1rem;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-.faq-toggle:hover {
-  background: #f2f2f2;
-}
-.faq-content {
-  max-height: 0;
-  overflow: hidden;
-  background: #f9f9f9;
-  padding: 0 1rem;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-}
-.faq-item.open .faq-content {
-  max-height: 200px;
-  padding: 1rem;
-}
-
-       .footer {
-  background-color: #222;
-  color: #fff;
-  padding: 2rem 1rem;
-  text-align: center;
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.social-icons {
-  margin-bottom: 1rem;
-}
-
-.social-icon {
-  color: #a87532;
-  margin: 0 0.7rem;
-  font-size: 1.8rem;
-  transition: transform 0.6s ease;
-  display: inline-block;
-}
-
-.social-icon:hover {
-  transform: rotate(360deg);
-  color: #fff;
-} 
     </style>
 </head>
 <body>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Header with Navigation -->
     <header>
         <nav class="navbar">
@@ -416,16 +341,15 @@
 
     <!-- Main Content -->
     <main>
-     <!-- Hero Section -->
-<section class="hero">
-    <div class="hero-content">
-        
-        <h1>LEARN TO DRIVE</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-        <button class="cta-button">GET STARTED</button>
-    </div>
-    <div class="page-indicator">1/2</div>
-</section>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>LEARN TO DRIVE</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                <button class="cta-button">GET STARTED</button>
+            </div>
+            <div class="page-indicator">1/2</div>
+        </section>
 
         <!-- About Section -->
         <section id="about" class="about">
@@ -485,142 +409,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Theory Test Preparation Section -->
-<section id="theory" class="about">
-  <div class="container">
-    <h2>THEORY TEST PREPARATION</h2>
-    <p>Prepare for your theory test with expert-designed questions, real test simulations, and full explanations to boost your confidence.</p>
-  </div>
-</section>
-
-<!-- Courses Buy Now Section -->
-<section id="packages" class="courses">
-  <div class="container">
-    <h2>BUY COURSE PACKAGES</h2>
-    <div class="courses-grid">
-      <div class="course-item">
-        <div class="course-icon"><img src="car_icon.jpg" alt="Course Icon"></div>
-        <h3>Beginner Basics</h3>
-        <p>10 driving sessions</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="cone_icon.png" alt="Course Icon"></div>
-        <h3>Intermediate</h3>
-        <p>15 driving sessions</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="checklist_icon.png" alt="Course Icon"></div>
-        <h3>Test Ready</h3>
-        <p>5 mock tests + driving</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="steering_wheel_icon.png" alt="Course Icon"></div>
-        <h3>Refresher</h3>
-        <p>5 custom driving sessions</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="car_icon.jpg" alt="Course Icon"></div>
-        <h3>Weekend Warrior</h3>
-        <p>Weekend flexibility</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-      <div class="course-item">
-        <div class="course-icon"><img src="cone_icon.png" alt="Course Icon"></div>
-        <h3>Automatic Only</h3>
-        <p>10 auto transmission classes</p>
-        <button class="cta-button">Buy Now</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-            <!-- FAQ Section -->
-<section class="courses" id="faq">
-  <div class="container">
-    <h2>FAQs</h2>
-
-    <div class="faq-item">
-      <button class="faq-toggle">What vehicles do you offer training on?</button>
-      <div class="faq-content">
-        We offer both automatic and manual vehicles for training.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-toggle">Do you offer pick-up and drop-off?</button>
-      <div class="faq-content">
-        Yes, our instructors can meet you at home or work.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-toggle">How do I reschedule a session?</button>
-      <div class="faq-content">
-        Contact us at least 24 hours before your session.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Google Map -->
-<section class="about">
-  <div class="container">
-    <h2>FIND US ON MAP</h2>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.093541848671!2d-122.42067928468137!3d37.77492927975938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808581547d8dc7ef%3A0xfb3b761a21c28772!2s1234%20Elm%20St%2C%20Springfield%2C%20IL%2062701!5e0!3m2!1sen!2sus!4v1594312244279!5m2!1sen!2sus"
-      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </div>
-</section>
-
-<!-- Google Reviews Slider -->
-<section class="reviews">
-  <div class="container">
-    <h2>GOOGLE REVIEWS</h2>
-    <div id="review-slider" style="text-align:center; font-style:italic;">"Amazing instructors and easy scheduling!"<br><strong>— Alex T.</strong></div>
-  </div>
-</section>
-
-<!-- Testimonials Grid 6x2 -->
-<section class="about" id="students">
-  <div class="container">
-    <h2>STUDENT TESTIMONIALS</h2>
-    <div class="courses-grid">
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=1" width="100"><p>"Great!"</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=2" width="100"><p>"Passed first try!"</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=3" width="100"><p>"Awesome service."</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=4" width="100"><p>"Professional."</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=5" width="100"><p>"Very flexible."</p></div>
-      <div class="course-item"><img src="https://i.pravatar.cc/150?img=6" width="100"><p>"Loved it."</p></div>
-    </div>
-  </div>
-</section>
-
-           
-
-
-
-<!-- Newsletter Signup -->
-<section class="about" id="newsletter">
-  <div class="container">
-    <h2>SUBSCRIBE TO OUR NEWSLETTER</h2>
-    <input type="email" placeholder="Enter your email" style="padding: 1rem; width: 300px; max-width: 90%;">
-    <br><br>
-    <button class="cta-button">Subscribe</button>
-  </div>
-</section>
-
-
-<!-- Floating Buttons -->
-<button class="floating-button" style="position:fixed;top:50%;right:0;transform:rotate(-90deg);background:#3373dc;color:white;padding:0.7rem 1.2rem;z-index:1000;border:none;border-radius:0 0 8px 8px;">Book Now</button>
-
-<a href="mailto:info@drivingschool.com" class="email-btn skip-link" style="right: 80px;">✉️</a>
-<a href="tel:1234562830" class="call-btn skip-link" style="right: 20px;">📞</a>
-
 
             <section id="contact" class="contact">
                 <div class="container">
@@ -750,47 +538,6 @@
             
             createMobileMenu();
         });
-
-
-          // Review Rotator
-  const reviews = [
-    '"Amazing instructors and easy scheduling!" — Alex T.',
-    '"Passed on my first attempt!" — Maria K.',
-    '"Great pricing and flexibility!" — Jamal R.'
-  ];
-  let currentReview = 0;
-  setInterval(() => {
-    currentReview = (currentReview + 1) % reviews.length;
-    document.getElementById("review-slider").innerHTML = reviews[currentReview];
-  }, 4000);
-
-  // FAQ Accordion
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-      const ans = q.nextElementSibling;
-      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-
-       
-  document.querySelectorAll('.faq-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-      const faqItem = button.parentElement;
-      const isOpen = faqItem.classList.contains('open');
-
-      // Close all FAQs
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('open');
-      });
-
-      // Toggle current
-      if (!isOpen) {
-        faqItem.classList.add('open');
-      }
-    });
-  });
-
     </script>
 </body>
 </html>
-
