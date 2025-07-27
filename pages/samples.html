@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving School</title>
+    <title>Driving School - Learn to Drive with Confidence</title>
     <style>
         * {
             margin: 0;
@@ -15,6 +15,7 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
+            overflow-x: hidden;
         }
 
         .container {
@@ -25,12 +26,14 @@
 
         /* Header Styles */
         header {
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .navbar {
@@ -53,6 +56,11 @@
             font-weight: bold;
             color: #3373dc;
             font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo img {
@@ -70,18 +78,56 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
         }
 
         .nav-menu a:hover {
             color: #3373dc;
+            background: rgba(51, 115, 220, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #3373dc;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('steering_wheel_bg.jpg');
+            background: linear-gradient(135deg, rgba(51, 115, 220, 0.9), rgba(30, 58, 138, 0.9)), url('hero-bg.jpg');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -92,105 +138,253 @@
             margin-top: 80px;
         }
 
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0.9;
         }
 
         .cta-button {
-            background: #3373dc;
+            background: linear-gradient(45deg, #3373dc, #2563eb);
             color: white;
-            padding: 15px 30px;
+            padding: 18px 40px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(51, 115, 220, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
-            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(51, 115, 220, 0.6);
         }
 
-        .page-indicator {
+        .hero-features {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 20px;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2rem;
+            opacity: 0.8;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.9rem;
+        }
+
+        .hero-feature::before {
+            content: '✓';
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
         }
 
         /* About Section */
         .about {
-            background: #e6f3ff;
-            padding: 80px 0;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 100px 0;
             text-align: center;
+            position: relative;
         }
 
         .about h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
             margin-bottom: 2rem;
-            color: #333;
+            color: #1e293b;
+            position: relative;
+        }
+
+        .about h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #3373dc, #2563eb);
+            border-radius: 2px;
         }
 
         .about p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             max-width: 800px;
-            margin: 0 auto;
-            color: #666;
+            margin: 0 auto 3rem;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3373dc;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 1rem;
         }
 
         /* Courses Section */
         .courses {
             background: white;
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
         }
 
         .courses h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
             margin-bottom: 3rem;
-            color: #333;
+            color: #1e293b;
+            position: relative;
+        }
+
+        .courses h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #3373dc, #2563eb);
+            border-radius: 2px;
         }
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .course-item {
-            text-align: center;
-            padding: 2rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #3373dc, #2563eb);
+        }
+
+        .course-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(51, 115, 220, 0.2);
         }
 
         .course-icon {
             width: 80px;
             height: 80px;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f0f8ff;
+            background: linear-gradient(135deg, #f0f8ff, #e0f2fe);
             border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .course-item:hover .course-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .course-icon img {
@@ -200,81 +394,392 @@
         }
 
         .course-item h3 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
+            margin-bottom: 1rem;
+            color: #1e293b;
         }
 
         .course-item p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Bottom Sections */
-        .bottom-sections {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        /* Reviews Section */
-        .reviews {
-            background: #e6f3ff;
-            padding: 60px 40px;
-        }
-
-        .reviews h2 {
-            font-size: 2rem;
-            font-weight: bold;
+            color: #64748b;
+            font-size: 1rem;
             margin-bottom: 2rem;
-            color: #333;
-            text-align: center;
-        }
-
-        .review blockquote {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1rem;
-            font-style: italic;
             line-height: 1.6;
         }
 
-        .review cite {
-            color: #333;
+        .read-more-btn {
+            background: linear-gradient(45deg, #3373dc, #2563eb);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(51, 115, 220, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            padding: 100px 0;
+            color: white;
+        }
+
+        .features h2 {
+            font-size: 3rem;
             font-weight: bold;
-            font-style: normal;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .features h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #3373dc, #2563eb);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #f8fafc;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            color: #1e293b;
+            position: relative;
+        }
+
+        .testimonials h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #3373dc, #2563eb);
+            border-radius: 2px;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 0 1rem;
+        }
+
+        .testimonial blockquote {
+            font-size: 1.3rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3373dc, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            color: #1e293b;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: white;
+            padding: 100px 0;
+        }
+
+        .faq h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1e293b;
+            position: relative;
+        }
+
+        .faq h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #3373dc, #2563eb);
+            border-radius: 2px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .faq-toggle {
+            width: 100%;
+            background: white;
+            color: #1e293b;
+            text-align: left;
+            font-size: 1.1rem;
+            padding: 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-toggle:hover {
+            background: #f8fafc;
+        }
+
+        .faq-toggle::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #3373dc;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-toggle::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            background: #f8fafc;
+            padding: 0 1.5rem;
+            transition: all 0.3s ease;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .faq-item.open .faq-content {
+            max-height: 200px;
+            padding: 1.5rem;
         }
 
         /* Contact Section */
         .contact {
-            background: #b3d9ff;
-            padding: 60px 40px;
-        }
-
-        .contact h2 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            color: #333;
+            background: linear-gradient(135deg, #3373dc, #2563eb);
+            padding: 100px 0;
+            color: white;
             text-align: center;
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .contact h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .contact h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #333;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
         }
 
-        .contact-item .icon {
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h3 {
             font-size: 1.2rem;
-            width: 25px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #3373dc;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
         }
 
         /* Responsive Design */
@@ -283,40 +788,69 @@
                 display: none;
             }
 
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
             .hero-content h1 {
                 font-size: 2.5rem;
             }
 
             .hero-content p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
-            .bottom-sections {
-                grid-template-columns: 1fr;
-            }
-
-            .courses-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero-features {
+                flex-direction: column;
                 gap: 1rem;
             }
 
-            .about h2, .courses h2 {
-                font-size: 2rem;
+            .about h2, .courses h2, .features h2, .testimonials h2, .faq h2, .contact h2 {
+                font-size: 2.2rem;
             }
 
-            .reviews, .contact {
-                padding: 40px 20px;
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-
             .hero-content h1 {
                 font-size: 2rem;
             }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about h2, .courses h2, .features h2, .testimonials h2, .faq h2, .contact h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -332,9 +866,16 @@
                 <ul class="nav-menu">
                     <li><a href="#about">ABOUT</a></li>
                     <li><a href="#courses">COURSES</a></li>
-                    <li><a href="#reviews">REVIEWS</a></li>
+                    <li><a href="#features">FEATURES</a></li>
+                    <li><a href="#testimonials">TESTIMONIALS</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact">CONTACT</a></li>
                 </ul>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -343,201 +884,318 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <div class="floating-element">🚗</div>
+            <div class="floating-element">🛣️</div>
+            <div class="floating-element">🚦</div>
+            
             <div class="hero-content">
-                <h1>LEARN TO DRIVE</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-                <button class="cta-button">GET STARTED</button>
+                <h1>LEARN TO DRIVE WITH CONFIDENCE</h1>
+                <p>Professional driving instruction with experienced instructors. Get your license faster with our comprehensive courses and personalized training programs.</p>
+                <button class="cta-button" onclick="scrollToSection('courses')">GET STARTED TODAY</button>
             </div>
-            <div class="page-indicator">1/2</div>
+            
+            <div class="hero-features">
+                <div class="hero-feature">Certified Instructors</div>
+                <div class="hero-feature">Flexible Scheduling</div>
+                <div class="hero-feature">High Pass Rate</div>
+            </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="about">
+        <section id="about" class="about scroll-animate">
             <div class="container">
                 <h2>ABOUT US</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                <p>With over 15 years of experience in driver education, we are committed to providing the highest quality driving instruction. Our certified instructors use modern teaching methods and state-of-the-art vehicles to ensure you become a safe and confident driver.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Students Trained</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Pass Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Expert Instructors</div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Courses Section -->
-        <section id="courses" class="courses">
+        <section id="courses" class="courses scroll-animate">
             <div class="container">
                 <h2>OUR COURSES</h2>
                 <div class="courses-grid">
                     <div class="course-item">
                         <div class="course-icon">
-                            <img src="car_icon.jpg" alt="Car Icon">
+                            <img src="car-icon.png" alt="Beginner Course">
                         </div>
-                        <h3>Lorem Ipsum</h3>
-                        <p>Lorem ipsum dolor</p>
+                        <h3>Beginner Course</h3>
+                        <p>Perfect for first-time drivers. Learn the basics of driving with our patient and experienced instructors in a safe environment.</p>
+                        <a href="#" class="read-more-btn">Read More</a>
                     </div>
                     <div class="course-item">
                         <div class="course-icon">
-                            <img src="cone_icon.png" alt="Cone Icon">
+                            <img src="cone-icon.png" alt="Defensive Driving">
                         </div>
-                        <h3>Lorem Ipsum</h3>
-                        <p>Lorem ipsum dolor</p>
+                        <h3>Defensive Driving</h3>
+                        <p>Advanced techniques to help you anticipate and avoid potential hazards on the road. Reduce insurance costs and improve safety.</p>
+                        <a href="#" class="read-more-btn">Read More</a>
                     </div>
                     <div class="course-item">
                         <div class="course-icon">
-                            <img src="checklist_icon.png" alt="Checklist Icon">
+                            <img src="checklist-icon.png" alt="Test Preparation">
                         </div>
-                        <h3>Lorem Ipsum</h3>
-                        <p>Lorem ipsum dolor</p>
+                        <h3>Test Preparation</h3>
+                        <p>Comprehensive preparation for both written and practical driving tests. Mock tests and personalized feedback included.</p>
+                        <a href="#" class="read-more-btn">Read More</a>
                     </div>
                     <div class="course-item">
                         <div class="course-icon">
-                            <img src="steering_wheel_icon.png" alt="Steering Wheel Icon">
+                            <img src="steering-icon.png" alt="Refresher Course">
                         </div>
-                        <h3>Lorem Ipsum</h3>
-                        <p>Lorem ipsum dolor</p>
+                        <h3>Refresher Course</h3>
+                        <p>For experienced drivers who want to brush up on their skills or build confidence after a break from driving.</p>
+                        <a href="#" class="read-more-btn">Read More</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Reviews and Contact Section -->
-        <div class="bottom-sections">
-            <section id="reviews" class="reviews">
-                <div class="container">
-                    <h2>REVIEWS</h2>
-                    <div class="review">
-                        <blockquote>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
-                        </blockquote>
-                        <cite>—John Doe</cite>
+        <!-- Features Section -->
+        <section id="features" class="features scroll-animate">
+            <div class="container">
+                <h2>WHY CHOOSE US</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">👨‍🏫</div>
+                        <h3>Certified Instructors</h3>
+                        <p>All our instructors are fully certified and have years of experience in driver education.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚗</div>
+                        <h3>Modern Vehicles</h3>
+                        <p>Learn in well-maintained, modern vehicles equipped with dual controls for maximum safety.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📅</div>
+                        <h3>Flexible Scheduling</h3>
+                        <p>Book lessons at times that suit you, including evenings and weekends.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <h3>Competitive Pricing</h3>
+                        <p>Quality instruction at affordable rates with various package options available.</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="contact" class="contact">
-                <div class="container">
-                    <h2>CONTACT US</h2>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <span class="icon">📍</span>
-                            <span>1234 Elm St, Springfield, IL 62701</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="icon">📞</span>
-                            <span>(123) 456-2830</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="icon">✉️</span>
-                            <span>info@drivingschool.com</span>
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials scroll-animate">
+            <div class="container">
+                <h2>WHAT OUR STUDENTS SAY</h2>
+                <div class="testimonials-slider">
+                    <div class="testimonial">
+                        <blockquote>
+                            "Amazing instructors and easy scheduling! I passed my test on the first try thanks to their excellent preparation. The instructors were patient and really helped build my confidence behind the wheel."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AT</div>
+                            <div class="author-info">
+                                <h4>Alex Thompson</h4>
+                                <p>Student</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq scroll-animate">
+            <div class="container">
+                <h2>FREQUENTLY ASKED QUESTIONS</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-toggle">What vehicles do you offer training on?</button>
+                        <div class="faq-content">
+                            We offer both automatic and manual vehicles for training. Our fleet includes modern cars with dual controls for maximum safety during lessons.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle">Do you offer pick-up and drop-off services?</button>
+                        <div class="faq-content">
+                            Yes, our instructors can meet you at your home, work, or any convenient location within our service area.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle">How do I reschedule a lesson?</button>
+                        <div class="faq-content">
+                            You can reschedule your lesson by contacting us at least 24 hours before your scheduled session. We offer flexible rescheduling options.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle">What is your pass rate?</button>
+                        <div class="faq-content">
+                            We maintain a 95% first-time pass rate, which is significantly higher than the national average. Our comprehensive training ensures you're well-prepared for your test.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle">Do you offer intensive courses?</button>
+                        <div class="faq-content">
+                            Yes, we offer intensive driving courses for those who want to learn quickly. These can be completed in 1-2 weeks depending on your availability and learning pace.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact scroll-animate">
+            <div class="container">
+                <h2>GET IN TOUCH</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <h3>Phone</h3>
+                        <p>(555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p>info@drivingschool.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <h3>Address</h3>
+                        <p>123 Main Street<br>Springfield, IL 62701</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <h3>Hours</h3>
+                        <p>Mon-Fri: 8AM-8PM<br>Sat-Sun: 9AM-6PM</p>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="window.location.href='tel:+15551234567'">CALL NOW TO BOOK</button>
+            </div>
+        </section>
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Beginner Lessons</a></li>
+                        <li><a href="#">Test Preparation</a></li>
+                        <li><a href="#">Defensive Driving</a></li>
+                        <li><a href="#">Refresher Course</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Phone: (555) 123-4567</li>
+                        <li>Email: info@drivingschool.com</li>
+                        <li>Address: 123 Main Street</li>
+                        <li>Springfield, IL 62701</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Driving School. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Smooth scrolling for navigation links
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = targetSection.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
             });
+        }
 
-            // CTA Button click handler
-            const ctaButton = document.querySelector('.cta-button');
-            if (ctaButton) {
-                ctaButton.addEventListener('click', function() {
-                    const coursesSection = document.querySelector('#courses');
-                    if (coursesSection) {
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = coursesSection.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isOpen = faqItem.classList.contains('open');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('open');
                 });
-            }
-
-            // Page indicator functionality (simulating carousel)
-            let currentPage = 1;
-            const totalPages = 2;
-            const pageIndicator = document.querySelector('.page-indicator');
-            
-            if (pageIndicator) {
-                setInterval(() => {
-                    currentPage = currentPage === totalPages ? 1 : currentPage + 1;
-                    pageIndicator.textContent = `${currentPage}/${totalPages}`;
-                }, 5000);
-            }
-
-            // Add animation on scroll for course items
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Initially hide course items for animation
-            const courseItems = document.querySelectorAll('.course-item');
-            courseItems.forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-                item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-                observer.observe(item);
+                
+                // Open clicked item if it wasn't already open
+                if (!isOpen) {
+                    faqItem.classList.add('open');
+                }
             });
+        });
 
-            // Mobile menu toggle (for future enhancement)
-            const createMobileMenu = () => {
-                const nav = document.querySelector('.nav-container');
-                const menuToggle = document.createElement('button');
-                menuToggle.className = 'mobile-menu-toggle';
-                menuToggle.innerHTML = '☰';
-                menuToggle.style.display = 'none';
-                menuToggle.style.background = 'none';
-                menuToggle.style.border = 'none';
-                menuToggle.style.fontSize = '1.5rem';
-                menuToggle.style.cursor = 'pointer';
-                
-                nav.appendChild(menuToggle);
-                
-                // Show/hide mobile menu toggle based on screen size
-                const checkScreenSize = () => {
-                    if (window.innerWidth <= 768) {
-                        menuToggle.style.display = 'block';
-                    } else {
-                        menuToggle.style.display = 'none';
-                    }
-                };
-                
-                window.addEventListener('resize', checkScreenSize);
-                checkScreenSize();
-            };
-            
-            createMobileMenu();
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Add click handlers for navigation
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
         });
     </script>
 </body>
 </html>
+
