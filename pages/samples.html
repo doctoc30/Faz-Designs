@@ -124,7 +124,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(51, 115, 220, 0.9), rgba(30, 58, 138, 0.9)), url('hero-bg.jpg');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('hero-interior.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -136,45 +136,51 @@
             color: white;
             position: relative;
             margin-top: 80px;
+            overflow: hidden;
         }
 
         .hero-content {
-            animation: fadeInUp 1s ease-out;
+            animation: heroSlideIn 1.5s ease-out;
+            position: relative;
+            z-index: 3;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            background: linear-gradient(45deg, #fff, #e0e7ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            letter-spacing: 2px;
+            line-height: 1.1;
+            animation: textGlow 3s ease-in-out infinite alternate;
         }
 
         .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
-            opacity: 0.9;
+            opacity: 0.95;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            line-height: 1.6;
         }
 
         .cta-button {
-            background: linear-gradient(45deg, #3373dc, #2563eb);
+            background: linear-gradient(45deg, #1e40af, #3b82f6);
             color: white;
-            padding: 18px 40px;
+            padding: 20px 50px;
             border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(51, 115, 220, 0.4);
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
             position: relative;
             overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .cta-button::before {
@@ -184,8 +190,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
         }
 
         .cta-button:hover::before {
@@ -193,55 +199,148 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(51, 115, 220, 0.6);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(30, 64, 175, 0.6);
+            background: linear-gradient(45deg, #2563eb, #60a5fa);
         }
 
         .hero-features {
             position: absolute;
-            bottom: 50px;
+            bottom: 60px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 2rem;
-            opacity: 0.8;
+            gap: 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 2s ease-out 0.5s both;
         }
 
         .hero-feature {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
+            gap: 0.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero-feature:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
 
         .hero-feature::before {
             content: '✓';
-            color: #4ade80;
+            color: #10b981;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        /* Floating Elements */
-        .floating-element {
+        /* Animated Elements */
+        .steering-wheel-overlay {
             position: absolute;
-            animation: float 6s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rotateWheel 20s linear infinite;
+            z-index: 1;
         }
 
-        .floating-element:nth-child(1) {
+        .steering-wheel-overlay::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        .dashboard-lights {
+            position: absolute;
             top: 20%;
-            left: 10%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            z-index: 2;
+        }
+
+        .dashboard-light {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        .dashboard-light:nth-child(1) {
+            top: 10px;
+            left: 20px;
             animation-delay: 0s;
         }
 
-        .floating-element:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
+        .dashboard-light:nth-child(2) {
+            top: 30px;
+            right: 15px;
+            background: #f59e0b;
+            animation-delay: 0.5s;
         }
 
-        .floating-element:nth-child(3) {
-            bottom: 30%;
+        .dashboard-light:nth-child(3) {
+            bottom: 20px;
+            left: 30px;
+            background: #3b82f6;
+            animation-delay: 1s;
+        }
+
+        .speed-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .speed-line {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(transparent, rgba(255,255,255,0.3), transparent);
+            animation: speedLine 3s linear infinite;
+        }
+
+        .speed-line:nth-child(1) {
             left: 20%;
-            animation-delay: 4s;
+            animation-delay: 0s;
+        }
+
+        .speed-line:nth-child(2) {
+            left: 40%;
+            animation-delay: 0.5s;
+        }
+
+        .speed-line:nth-child(3) {
+            left: 60%;
+            animation-delay: 1s;
+        }
+
+        .speed-line:nth-child(4) {
+            left: 80%;
+            animation-delay: 1.5s;
         }
 
         /* About Section */
@@ -769,6 +868,64 @@
             }
         }
 
+        @keyframes heroSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            }
+            to {
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.3);
+            }
+        }
+
+        @keyframes rotateWheel {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            25% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            75% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes speedLine {
+            0% {
+                top: -100px;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
         @keyframes float {
             0%, 100% {
                 transform: translateY(0px);
@@ -884,14 +1041,24 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <div class="floating-element">🚗</div>
-            <div class="floating-element">🛣️</div>
-            <div class="floating-element">🚦</div>
+            <!-- Animated Background Elements -->
+            <div class="steering-wheel-overlay"></div>
+            <div class="speed-lines">
+                <div class="speed-line"></div>
+                <div class="speed-line"></div>
+                <div class="speed-line"></div>
+                <div class="speed-line"></div>
+            </div>
+            <div class="dashboard-lights">
+                <div class="dashboard-light"></div>
+                <div class="dashboard-light"></div>
+                <div class="dashboard-light"></div>
+            </div>
             
             <div class="hero-content">
-                <h1>LEARN TO DRIVE WITH CONFIDENCE</h1>
-                <p>Professional driving instruction with experienced instructors. Get your license faster with our comprehensive courses and personalized training programs.</p>
-                <button class="cta-button" onclick="scrollToSection('courses')">GET STARTED TODAY</button>
+                <h1>LEARN TO DRIVE</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                <button class="cta-button" onclick="scrollToSection('courses')">GET STARTED</button>
             </div>
             
             <div class="hero-features">
@@ -1198,4 +1365,3 @@
     </script>
 </body>
 </html>
-
