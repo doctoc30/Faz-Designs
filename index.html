@@ -711,9 +711,78 @@ button:hover {
 </header> 
 
 
-<!-- This stays before form -->
-<div class="color-rise"></div>
-<div id="typewriter"></div>
+
+
+
+ <!-- HERO SECTION -->
+<section id="hero" class="page-section">
+  <div class="overlay-text">
+    We build<br>
+    premium websites<br>
+    for local businesses.
+  </div>
+  <div class="hero-cta">
+    <button onclick="document.getElementById('formWrapper').scrollIntoView({behavior: 'smooth'})">
+      Get a Quote
+    </button>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section id="services" class="page-section">
+  <h2>Our Services</h2>
+  <div class="grid">
+    <div class="grid-item">
+      <h3>Website Design</h3>
+      <p>Custom designs to match your brand identity.</p>
+    </div>
+    <div class="grid-item">
+      <h3>Website Redesign</h3>
+      <p>Upgrade your current site to modern standards.</p>
+    </div>
+    <div class="grid-item">
+      <h3>Website Maintenance</h3>
+      <p>Keep your site updated and secure all year round.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN CONCEPTS SECTION -->
+<section id="concepts" class="page-section">
+  <h2>View Design Concepts</h2>
+  <div class="grid">
+    <div class="grid-item">
+      <img src="design1.jpg" alt="Design Concept 1">
+      <p>Restaurant Website</p>
+    </div>
+    <div class="grid-item">
+      <img src="design2.jpg" alt="Design Concept 2">
+      <p>Gym / Fitness Studio</p>
+    </div>
+    <div class="grid-item">
+      <img src="design3.jpg" alt="Design Concept 3">
+      <p>Dental Clinic</p>
+    </div>
+    <div class="grid-item">
+      <img src="design4.jpg" alt="Design Concept 4">
+      <p>Hair Salon</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="page-section">
+  <h2>About Us</h2>
+  <p>We are a full-service web agency specializing in creating high-quality websites for local businesses. We design, you approve, then pay.</p>
+</section>
+
+<!-- CONTACT / FORM SECTION -->
+<section id="contact" class="page-section">
+  <h2>Get a Quote</h2>
+  <button onclick="document.getElementById('formWrapper').classList.add('active'); window.scrollTo({top: 0, behavior: 'smooth'})">
+    Open Form
+  </button>
+</section>
 
 <!-- ✅ Wraps all form content now -->
 <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
