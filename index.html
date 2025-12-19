@@ -661,7 +661,29 @@ button:hover {
 .skip-link:hover {
   opacity: 0.8;
 }
- 
+
+
+
+ /* Hide sections initially */
+.page-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.page-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure typewriter and overlay-text stay on top until animation completes */
+#typewriter {
+  z-index: 10000;
+}
+
+.overlay-text {
+  z-index: 9999;
+}
 
 </style>
 
@@ -787,48 +809,51 @@ document.addEventListener("DOMContentLoaded", () => {
       : ["We build", "your", "website.", "You approve,", "then pay."];
   }
 
-  function typeChar() {
-    if (currentLine >= lines.length) {
-      cursor.remove();
-      setTimeout(() => {
-        el.style.animation = 'rocketRise 2s ease forwards';
-        setTimeout(() => {
-          const introScreen = document.getElementById('main-intro-options');
-          if (introScreen) {
-            introScreen.style.display = 'block';
-            introScreen.classList.add('active');
-          }
+ function typeChar() {
+  if (currentLine >= lines.length) {
+    cursor.remove();
+    el.style.animation = 'rocketRise 2s ease forwards';
 
-          const skipBtn = document.getElementById('skipToPackages');
-          if (skipBtn) skipBtn.style.display = 'block';
+    setTimeout(() => {
+      // Hide typewriter after rocketRise
+      el.style.display = 'none';
+      
+      // Reveal main sections immediately
+      document.querySelectorAll('.page-section').forEach(sec => {
+        sec.classList.add('visible');
+      });
 
-        }, 2000);
-      }, 1000);
-      return;
-    }
+      // Show form intro (optional, after user clicks)
+      const introScreen = document.getElementById('main-intro-options');
+      if (introScreen) introScreen.style.display = 'block';
 
-    const text = lines[currentLine];
-    if (!lineEl) {
-      lineEl = document.createElement('div');
-      lineEl.classList.add('typed-line');
-      el.appendChild(lineEl);
-      lineEl.appendChild(cursor);
-    }
+      const skipBtn = document.getElementById('skipToPackages');
+      if (skipBtn) skipBtn.style.display = 'block';
 
-    if (currentChar < text.length) {
-      const char = document.createTextNode(text[currentChar]);
-      lineEl.insertBefore(char, cursor);
-      currentChar++;
-      setTimeout(typeChar, typingSpeed);
-    } else {
-      currentLine++;
-      currentChar = 0;
-      lineEl = null;
-      setTimeout(typeChar, lineDelay);
-    }
+    }, 2000); // matches rocketRise duration
+    return;
   }
 
-  function debounce(func, wait) {
+  const text = lines[currentLine];
+  if (!lineEl) {
+    lineEl = document.createElement('div');
+    lineEl.classList.add('typed-line');
+    el.appendChild(lineEl);
+    lineEl.appendChild(cursor);
+  }
+
+  if (currentChar < text.length) {
+    lineEl.insertBefore(document.createTextNode(text[currentChar]), cursor);
+    currentChar++;
+    setTimeout(typeChar, typingSpeed);
+  } else {
+    currentLine++;
+    currentChar = 0;
+    lineEl = null;
+    setTimeout(typeChar, lineDelay);
+  }
+}
+function debounce(func, wait) {
     let timeout;
     return function(...args) {
       clearTimeout(timeout);
