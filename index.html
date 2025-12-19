@@ -1,1046 +1,1091 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Faz Designs</title>
-
-<style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #ff3131;
-    color: white;
-    overflow-x: hidden;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: #ff3131;
-    z-index: 2000;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-  }
-  .logo {
-    font-weight: 900;
-    font-size: 1.7rem;
-    letter-spacing: 2px;
-    user-select: none;
-    cursor: default;
-  }
-  .hamburger {
-    width: 28px;
-    height: 22px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 2100;
-  }
-  .hamburger span {
-    display: block;
-    height: 3.5px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.35s ease-in-out;
-  }
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-
-  nav.menu {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ff3131;
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 4rem;
-    z-index: 2050;
-  }
-  nav.menu.open {
-    transform: translateX(0);
-  }
-  nav.menu ul {
-    list-style: none;
-  }
-  nav.menu ul li {
-    margin-bottom: 2.2rem;
-    opacity: 0;
-    transform: translateX(-40px);
-    font-weight: 900;
-    font-size: 3rem;
-    letter-spacing: 0.1em;
-  }
-  nav.menu ul li a {
-    color: white;
-    text-decoration: none;
-    user-select: none;
-    display: inline-block;
-    transition: color 0.3s ease;
-  }
-  nav.menu ul li a:hover {
-    color: #222;
-  }
-  nav.menu.open ul li {
-    animation: slideInFade 0.4s forwards;
-  }
-  nav.menu.open ul li:nth-child(1) {
-    animation-delay: 0.15s;
-  }
-  nav.menu.open ul li:nth-child(2) {
-    animation-delay: 0.35s;
-  }
-  nav.menu.open ul li:nth-child(3) {
-    animation-delay: 0.55s;
-  }
-  nav.menu.open ul li:nth-child(4) {
-    animation-delay: 0.75s;
-  }
-  nav.menu.open ul li:nth-child(5) {
-    animation-delay: 0.95s;
-  }
-  @keyframes slideInFade {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Desktop view - raised breakpoint to 1024px */
-  @media (min-width: 1024px) {
-    .hamburger {
-      display: none;
-    }
-    nav.menu {
-      position: static;
-      height: auto;
-      width: auto;
-      background: transparent;
-      transform: none !important;
-      padding-left: 0;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    nav.menu ul {
-      display: flex;
-      gap: 3rem;
-    }
-    nav.menu ul li {
-      margin: 0;
-      opacity: 1 !important;
-      transform: none !important;
-      font-size: 1.25rem;
-      animation: none !important;
-    }
-    nav.menu ul li a {
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: white;
-      letter-spacing: 0.15em;
-    }
-    nav.menu ul li a:hover {
-      color: #222;
-    }
-  }
-
-<title>Splash + Form</title>
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    font-family: 'Poppins', sans-serif;
-    background: white;
-  }
-
-  .color-rise {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    animation: solidRise 8s ease-in-out forwards;
-    z-index: 0;
-  }
-
-  @keyframes solidRise {
-    0% { background-color: white; }
-    100% { background-color: #ff3131; }
-  }
-
-  .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    color: white;
-    text-shadow: 0 0 30px #b30000;
-    z-index: 1;
-    text-align: center;
-    opacity: 0;
-    font-size: clamp(3rem, 8vw, 6rem);
-    line-height: 1.2;
-    white-space: pre-line;
-  }
-
-  @keyframes rocketRise {
-    0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
-    100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
-  }
-
-  .typed-line { display: block; }
-
-  .cursor {
-    display: inline-block;
-    width: 1ch;
-    animation: blink 0.8s infinite;
-  }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-
-
-
-
-  select, input[type="text"], input[type="email"] {
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    width: 80%;
-    max-width: 400px;
-    cursor: pointer;
-    appearance: none;
-    background-color: white;
-    color: #333;
-    height: 3.5rem;
-    padding-right: 2.5rem;
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1rem;
-    font-family: inherit;
-  }
-
-  select {
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  }
-
-  input[type="text"],
-  input[type="email"] {
-    background-image: none;
-    cursor: text;
-  }
-
-.button-row {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem; /* Increased spacing */
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-button {
-    background: white;
-    color: #ff3131;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1rem;
-    box-sizing: border-box;
-    transition: background 0.3s ease;
-    min-width: 140px; /* Further ensures button sizing */
-}
-
-  button:hover {
-    background: #e60000;
-    color: white;
-  }
-
-
- 
- /* ---------- BASE STYLES ---------- */
-
-nav ul {
-  display: block;
-}
-
-nav ul li {
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li a {
-  padding: 0.5rem 1rem;
-}
-
-select,
-input[type="text"],
-input[type="email"] {
-  width: 60%;
-  margin-bottom: 2rem;
-  font-size: 1rem;
-  padding: 1rem;
-}
-
-.overlay-text {
-  font-size: calc(6vw + 0.5rem);
-}
-
-#typewriter {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  z-index: 1000;
-  font-family: 'Arial Black', Arial, sans-serif;
-  font-weight: 600;
-  text-align: center;
-  color: white;
-  opacity: 1;
-  pointer-events: none;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  max-width: 90vw;
-  line-height: 1.3;
-}
-
-#typewriter .typed-line {
-  font-size: inherit;
-  margin: 0.1em 0;
-  white-space: normal;
-}
-
-.cursor {
-  display: inline-block;
-  width: 2px;
-  background: white;
-  animation: blink 1s step-start infinite;
-  vertical-align: bottom;
-  margin-left: 2px;
-}
-
-@keyframes blink {
-  50% {
-    background: transparent;
-  }
-}
-
-/* ---------- Base Typewriter Styles ---------- */
-#typewriter {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  z-index: 1000;
-  font-family: 'Arial Black', Arial, sans-serif;
-  font-weight: 600;
-  text-align: center;
-  color: white;
-  opacity: 1;
-  pointer-events: none;
-  line-height: 1.3;
-}
-
-.typewriter-text {
-  white-space: normal;
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-  line-height: 1.4;
-}
-
-/* ---------- Mobile (Up to 599px) ---------- */
-@media screen and (max-width: 599px) {
-  #typewriter {
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    max-width: 90vw;
-  }
-
-  .typewriter-text {
-    font-size: clamp(2rem, 6vw, 3rem);
-    max-width: 90vw;
-  }
-}
-
-/* ---------- Tablet Portrait (600–1024px) ---------- */
-@media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
-  #typewriter {
-    font-size: 6rem !important;
-    max-width: 90vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 3.5rem !important;
-    max-width: 85vw !important;
-  }
-}
-
-/* ---------- Tablet Landscape (600–1024px) ---------- */
-@media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
-  #typewriter {
-    font-size: 5.5rem !important;
-    max-width: 85vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 3.2rem !important;
-    max-width: 80vw !important;
-  }
-}
-
-/* ---------- Desktop (1025px+) ---------- */
-@media screen and (min-width: 1025px) {
-  #typewriter {
-    font-size: 6.5rem !important;
-    max-width: 75vw !important;
-  }
-
-  .typewriter-text {
-    font-size: 4rem !important;
-    max-width: 60vw !important;
-  }
-}
-
- /* ---------- iPhone Landscape Final Fix ---------- */
-@media screen and (max-width: 812px) and (orientation: landscape) {
-  #typewriter {
-    top: 60% !important;
-    transform: translate(-50%, -60%) !important;
-    font-size: clamp(1.5rem, 4vw, 2.8rem) !important;
-    line-height: 1.2 !important;
-    max-width: 90vw !important;
-  }
-
-  .typewriter-text {
-    font-size: clamp(1rem, 3vw, 1.8rem) !important;
-    line-height: 1.2 !important;
-    max-width: 85vw !important;
-  }
-}
-
-/* Tablet: Ensure space between buttons */
-@media screen and (min-width: 600px) and (max-width: 1024px) {
-  .button-row {
-    gap: 3rem;         /* Increase spacing */
-    flex-wrap: wrap;   /* Allow buttons to wrap to next line if needed */
-    justify-content: center;
-  }
-
-  .button-row button {
-    min-width: 140px;  /* Prevent buttons from shrinking too much */
-    margin: 0.5rem 1rem; /* Extra spacing around each button */
-  }
-}
-
- /* --------------------------------------------
-   1. FIRST QUESTION SCREEN (#form-start-choice)
---------------------------------------------- */
-#form-start-choice {
-  position: fixed;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 500px;
-  background: #ff3131;
-  color: white;
-  padding: 2rem;
-  box-sizing: border-box;
-  text-align: center;
-  z-index: 1000;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-#form-start-choice.show {
-  display: flex;
-  opacity: 1;
-}
-
-
- 
-/* --------------------------------------------
-   2. MULTI-STEP FORM SCREENS (.form-screen)
---------------------------------------------- */
-.form-screen {
-  position: fixed;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 500px;
-  min-height: 60vh;
-  background: #ff3131;
-  color: white;
-  padding: 2rem;
-  box-sizing: border-box;
-  text-align: center;
-  z-index: 1000;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
-  border-radius: 12px;
-}
-
-.form-screen.active {
-  display: flex;
-}
-
-.form-screen h2 {
-  font-size: 1.8rem;
-  margin-bottom: 3rem;
-  max-width: 500px;
-  line-height: 1.4;
-}
-
-/* --------------------------------------------
-   3. FORM FIELDS (input, select)
---------------------------------------------- */
-select,
-input[type="text"],
-input[type="email"],
-input[type="tel"] {
-  padding: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  width: 100%;
-  max-width: 100%;
-  appearance: none;
-  background-color: white;
-  color: #333;
-  height: 3.5rem;
-  box-sizing: border-box;
-  font-family: inherit;
-}
-
-/* --------------------------------------------
-   4. CONSENT CHECKBOX SECTION
---------------------------------------------- */
-.consent-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 14px;
-  color: white;
-  margin-bottom: 2rem;
-}
-
-.consent-wrapper input[type="checkbox"] {
-  margin-right: 8px;
-}
-
-/* --------------------------------------------
-   5. BUTTONS
---------------------------------------------- */
-button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  color: #ff3131;
-  font-weight: bold;
-  margin: 0.5rem;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* Optional: group buttons side-by-side */
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 1rem;
-}
-
-/* --------------------------------------------
-   6. MOBILE HEIGHT ADJUSTMENTS
---------------------------------------------- */
-@media (max-height: 600px) {
-  #form-start-choice,
-  .form-screen {
-    top: 70%;
-    transform: translate(-50%, -55%);
-  }
-}
-
-
-
-.form-screen {
-  justify-content: flex-start;
-  padding-top: 10rem;
-  height: calc(100vh - 6rem);
-}
-
-.button-row {
-  display: flex;
-  justify-content: center;  /* Center the buttons */
-  gap: 1rem;                /* Space between buttons */
-  margin-top: 2rem;
-}
-
-.button-row button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  color: #ff3131;
-  font-weight: bold;
-  cursor: pointer;
-  width: auto;              /* Make sure buttons size to content */
-  min-width: 100px;         /* Optional: consistent width */
-}
-
-.button-row button:hover {
-  opacity: 0.9;
-}
-
-
-
-.skip-link {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: none;
-  color: #ffffff; /* Or use your brand color */
-  border: none;
-  padding: 0;
-  font-size: 16px;
-  font-weight: normal;
-  text-decoration: none;
-  z-index: 10000;
-  box-shadow: none;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-.skip-link:hover {
-  opacity: 0.8;
-}
-
-
-
- /* Hide sections initially */
-.page-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.page-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Ensure typewriter and overlay-text stay on top until animation completes */
-#typewriter {
-  z-index: 10000;
-}
-
-.overlay-text {
-  z-index: 9999;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | Premium Web Design Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00D4FF;
+            --primary-dark: #0099CC;
+            --secondary: #7B61FF;
+            --dark: #0A0A14;
+            --darker: #05050A;
+            --light: #F5F5FF;
+            --gray: #A0A0C0;
+            --success: #00FF9D;
+            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: var(--transition);
+            background: rgba(5, 5, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            background: rgba(5, 5, 10, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--darker);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 200px 0 150px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(123, 97, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(123, 97, 255, 0.05));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .service-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        /* Portfolio Section */
+        .portfolio-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+            cursor: pointer;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(5, 5, 10, 0.9));
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Process Section */
+        .process-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gray);
+            opacity: 0.3;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            width: 20%;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--dark);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .process-step p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
+
+        .contact-details {
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--gray);
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .section-header h2 {
+                font-size: 3rem;
+            }
+            
+            .process-timeline {
+                flex-direction: column;
+                gap: 60px;
+            }
+            
+            .process-timeline::before {
+                width: 2px;
+                height: 100%;
+                left: 40px;
+                top: 0;
+            }
+            
+            .process-step {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                text-align: left;
+            }
+            
+            .step-number {
+                margin: 0 30px 0 0;
+                flex-shrink: 0;
+            }
+            
+            .step-content {
+                flex-grow: 1;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid, .portfolio-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <div class="logo" aria-label="Faz Designs Logo">Faz Designs</div>
-  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
- 
-<nav class="menu" id="primary-menu" role="navigation" aria-hidden="true">
-  <ul>
-    <li><a href="/pages/home.html">Home</a></li>
-    <li><a href="/pages/about.html">About</a></li>
-    <li><a href="/pages/samples.html">Samples</a></li>
-    <li><a href="/pages/pricing.html">Pricing</a></li>
-    <li><a href="/pages/contact.html">Contact</a></li>
-  </ul>
-</nav>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">NEXUS</a>
+            
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <a href="#contact" class="cta-button">Start Project</a>
+        </div>
+    </header>
 
- 
-</header> 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <h1 class="fade-in">Crafting Digital Experiences Worth $50k+</h1>
+            <p class="fade-in">Nexus is a premium web design agency that creates futuristic, high-converting digital experiences for elite brands worldwide. We transform visions into interactive realities.</p>
+            <a href="#portfolio" class="cta-button fade-in">View Our Work</a>
+            
+            <div class="hero-stats">
+                <div class="stat fade-in">
+                    <span class="stat-value" id="projectsCount">0</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat fade-in">
+                    <span class="stat-value" id="clientSatisfaction">0%</span>
+                    <span class="stat-label">Client Satisfaction</span>
+                </div>
+                <div class="stat fade-in">
+                    <span class="stat-value" id="yearsExperience">0</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-in-left">Premium Services</h2>
+                <p class="slide-in-right">Our exclusive offerings are tailored for businesses that demand exceptional quality and results.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Enterprise Web Design</h3>
+                    <p>Fully custom, responsive websites with advanced functionality, CMS integration, and premium UI/UX design.</p>
+                    <div class="service-price">$25k - $50k+</div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App Design & Development</h3>
+                    <p>Native and progressive web applications with cutting-edge design, seamless animations, and premium user experience.</p>
+                    <div class="service-price">$30k - $70k+</div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Brand Transformation</h3>
+                    <p>Complete digital rebranding including visual identity, messaging strategy, and immersive online presence.</p>
+                    <div class="service-price">$40k - $80k+</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Portfolio Section -->
+    <section id="portfolio" style="background: var(--dark);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-in-left">Elite Portfolio</h2>
+                <p class="slide-in-right">Showcasing our premium projects for global brands and industry leaders.</p>
+            </div>
+            
+            <div class="portfolio-showcase">
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Luxury Tech Dashboard">
+                    <div class="portfolio-overlay">
+                        <h3>Quantum Finance Dashboard</h3>
+                        <p>Advanced fintech platform with real-time analytics</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Futuristic E-commerce">
+                    <div class="portfolio-overlay">
+                        <h3>Nexus Fashion Platform</h3>
+                        <p>Immersive AR shopping experience</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Analytics Dashboard">
+                    <div class="portfolio-overlay">
+                        <h3>DataSphere Analytics</h3>
+                        <p>Enterprise data visualization platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Process Section -->
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-in-left">Our Exclusive Process</h2>
+                <p class="slide-in-right">A meticulous approach that ensures flawless execution and exceptional results for every project.</p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step fade-in">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4>Discovery & Strategy</h4>
+                        <p>Deep-dive analysis, competitive research, and strategic planning.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4>Concept & Design</h4>
+                        <p>Wireframing, prototyping, and premium UI/UX design creation.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4>Development</h4>
+                        <p>Cutting-edge development with premium animations and interactions.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h4>Launch & Optimize</h4>
+                        <p>Quality assurance, deployment, and ongoing performance optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-in-left">Start Your Project</h2>
+                <p class="slide-in-right">Ready to elevate your digital presence? Contact us to discuss your premium project.</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info slide-in-left">
+                    <h3>Let's Create Something Extraordinary</h3>
+                    <p>Our team of elite designers and developers are ready to bring your vision to life with cutting-edge technology and premium design principles.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Silicon Valley, CA | New York, NY</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>contact@nexusdesign.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form slide-in-right">
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" class="form-control" placeholder="Your company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" class="form-control" required>
+                                <option value="">Select budget range</option>
+                                <option value="50k">$50,000+</option>
+                                <option value="100k">$100,000+</option>
+                                <option value="150k">$150,000+</option>
+                                <option value="200k">$200,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your project"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%;">Submit Project Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
- <!-- HERO SECTION -->
-<section id="hero" class="page-section">
-  <div class="overlay-text">
-    We build<br>
-    premium websites<br>
-    for local businesses.
-  </div>
-  <div class="hero-cta">
-    <button onclick="document.getElementById('formWrapper').scrollIntoView({behavior: 'smooth'})">
-      Get a Quote
-    </button>
-  </div>
-</section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">NEXUS</div>
+                    <p>Premium web design agency crafting exceptional digital experiences for elite brands worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <div class="footer-links">
+                        <a href="#">Web Design</a>
+                        <a href="#">App Development</a>
+                        <a href="#">Brand Strategy</a>
+                        <a href="#">UX/UI Design</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Company</h4>
+                    <div class="footer-links">
+                        <a href="#">About Us</a>
+                        <a href="#">Portfolio</a>
+                        <a href="#">Process</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Legal</h4>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Nexus Premium Web Design Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-<!-- SERVICES SECTION -->
-<section id="services" class="page-section">
-  <h2>Our Services</h2>
-  <div class="grid">
-    <div class="grid-item">
-      <h3>Website Design</h3>
-      <p>Custom designs to match your brand identity.</p>
-    </div>
-    <div class="grid-item">
-      <h3>Website Redesign</h3>
-      <p>Upgrade your current site to modern standards.</p>
-    </div>
-    <div class="grid-item">
-      <h3>Website Maintenance</h3>
-      <p>Keep your site updated and secure all year round.</p>
-    </div>
-  </div>
-</section>
+    <script>
+        // Animated counter for stats
+        function animateCounter(elementId, targetValue, suffix = '') {
+            let element = document.getElementById(elementId);
+            let currentValue = 0;
+            let increment = targetValue / 100;
+            let timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(currentValue) + suffix;
+            }, 20);
+        }
 
-<!-- DESIGN CONCEPTS SECTION -->
-<section id="concepts" class="page-section">
-  <h2>View Design Concepts</h2>
-  <div class="grid">
-    <div class="grid-item">
-      <img src="design1.jpg" alt="Design Concept 1">
-      <p>Restaurant Website</p>
-    </div>
-    <div class="grid-item">
-      <img src="design2.jpg" alt="Design Concept 2">
-      <p>Gym / Fitness Studio</p>
-    </div>
-    <div class="grid-item">
-      <img src="design3.jpg" alt="Design Concept 3">
-      <p>Dental Clinic</p>
-    </div>
-    <div class="grid-item">
-      <img src="design4.jpg" alt="Design Concept 4">
-      <p>Hair Salon</p>
-    </div>
-  </div>
-</section>
+        // Initialize counters when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                animateCounter('projectsCount', 147);
+                animateCounter('clientSatisfaction', 99, '%');
+                animateCounter('yearsExperience', 8);
+            }, 500);
 
-<!-- ABOUT SECTION -->
-<section id="about" class="page-section">
-  <h2>About Us</h2>
-  <p>We are a full-service web agency specializing in creating high-quality websites for local businesses. We design, you approve, then pay.</p>
-</section>
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
 
-<!-- CONTACT / FORM SECTION -->
-<section id="contact" class="page-section">
-  <h2>Get a Quote</h2>
-  <button onclick="document.getElementById('formWrapper').classList.add('active'); window.scrollTo({top: 0, behavior: 'smooth'})">
-    Open Form
-  </button>
-</section>
+            // Scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
 
-<!-- ✅ Wraps all form content now -->
-<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
 
-  <!-- MAIN INTRO OPTIONS -->
-  <div class="form-screen active" id="main-intro-options">
-    <h2>What do you need help with?</h2>
-    <div class="button-row">
-      <button type="button" onclick="goToDesign()">Website Design</button>
-      <button type="button">Website Redesign</button>
-      <button type="button">Website Maintenance</button>
-    </div>
-  </div>
+            // Observe elements for scroll animations
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
 
-  <!-- LAYER 1: ENTRY SCREEN -->
-  <div class="form-screen" id="form-start-choice">
-    <h2>How would you like to get started?</h2>
-    <div class="button-row">
-      <button type="button" onclick="window.location.href='https://doctoc30.github.io/Faz-Designs/pages/pricing.html'">
-        Choose a Package Deal
-      </button>
-      <button type="button" onclick="showScreen(0)">Request a Custom Quote</button>
-    </div>
-  </div>
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'var(--dark)';
+                    navLinks.style.padding = '30px';
+                    navLinks.style.gap = '20px';
+                    navLinks.style.borderTop = '1px solid var(--glass-border)';
+                    navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+                }
+            });
 
-  <!-- LAYER 2: FULL QUOTE FORM -->
-  <div class="form-screen" id="q0">
-    <h2>What type of website are you looking for?</h2>
-    <select name="Website Type" required>
-      <option>Business</option>
-      <option>eCommerce</option>
-      <option>Portfolio</option>
-      <option>Blog</option>
-      <option>Other</option>
-    </select>
-    <div class="button-row">
-      <button type="button" onclick="next()">Next</button>
-    </div>
-  </div>
+            // Form submission
+            const projectForm = document.getElementById('projectForm');
+            projectForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your premium project request! Our team will contact you within 24 hours to discuss your vision.');
+                projectForm.reset();
+            });
 
-  <!-- All other #q1 to #q11 screens remain unchanged... -->
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 900) {
+                            navLinks.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
 
-  <div class="form-screen" id="q11">
-    <h2>Almost done! Please enter your details</h2>
-
-    <label>Full Name</label>
-    <input type="text" name="Full Name" required>
-
-    <label>Email Address</label>
-    <input type="email" name="Email" required>
-
-    <label>WhatsApp Number (optional)</label>
-    <input type="text" name="WhatsApp">
-
-    <label style="margin-top: 20px;">
-      <input type="checkbox" required name="GDPR Consent">
-      I consent to having this website store my submitted information so they can respond to my inquiry.
-    </label>
-
-    <div class="button-row">
-      <button type="button" onclick="prev()">Previous</button>
-      <button type="submit">Submit</button>
-    </div>
-  </div>
-
-</form>
-
-<a href="https://doctoc30.github.io/Faz-Designs/pages/about.html" 
-   id="skipToPackages" class="skip-link" style="display: none;">
-  Skip Questions For Now →
-</a>
-  </div>
-
-
- 
- <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const el = document.getElementById('typewriter');
-  let lines = [];
-  const typingSpeed = 100;
-  const lineDelay = 500;
-  let currentLine = 0;
-  let currentChar = 0;
-  let lineEl = null;
-
-  const cursor = document.createElement('span');
-  cursor.classList.add('cursor');
-  el.appendChild(cursor);
-
-  function setLinesByOrientation() {
-    lines = window.matchMedia("(orientation: landscape)").matches
-      ? ["We build", "your website.", "You approve,", "then pay."]
-      : ["We build", "your", "website.", "You approve,", "then pay."];
-  }
-
- function typeChar() {
-  if (currentLine >= lines.length) {
-    cursor.remove();
-    el.style.animation = 'rocketRise 2s ease forwards';
-
-    setTimeout(() => {
-      // Hide typewriter after rocketRise
-      el.style.display = 'none';
-      
-      // Reveal main sections immediately
-      document.querySelectorAll('.page-section').forEach(sec => {
-        sec.classList.add('visible');
-      });
-
-      // Show form intro (optional, after user clicks)
-      const introScreen = document.getElementById('main-intro-options');
-      if (introScreen) introScreen.style.display = 'block';
-
-      const skipBtn = document.getElementById('skipToPackages');
-      if (skipBtn) skipBtn.style.display = 'block';
-
-    }, 2000); // matches rocketRise duration
-    return;
-  }
-
-  const text = lines[currentLine];
-  if (!lineEl) {
-    lineEl = document.createElement('div');
-    lineEl.classList.add('typed-line');
-    el.appendChild(lineEl);
-    lineEl.appendChild(cursor);
-  }
-
-  if (currentChar < text.length) {
-    lineEl.insertBefore(document.createTextNode(text[currentChar]), cursor);
-    currentChar++;
-    setTimeout(typeChar, typingSpeed);
-  } else {
-    currentLine++;
-    currentChar = 0;
-    lineEl = null;
-    setTimeout(typeChar, lineDelay);
-  }
-}
-function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
-
-  window.addEventListener('resize', debounce(() => {
-    currentLine = 0;
-    currentChar = 0;
-    lineEl = null;
-    el.textContent = '';
-    el.appendChild(cursor);
-    setLinesByOrientation();
-    el.style.opacity = 1;
-    typeChar();
-  }, 300));
-
-  setLinesByOrientation();
-  el.style.opacity = 1;
-  typeChar();
-
-  // ------------------ FORM FLOW --------------------
-  const screens = document.querySelectorAll(".form-screen");
-
-  function hideAllScreens() {
-    screens.forEach(screen => screen.classList.remove("active"));
-    const startChoice = document.getElementById('form-start-choice');
-    if (startChoice) startChoice.classList.remove("show");
-  }
-
-  function showStartChoice() {
-    hideAllScreens();
-    const startChoice = document.getElementById('form-start-choice');
-    if (startChoice) {
-      startChoice.classList.add('show');
-      startChoice.style.display = 'flex';
-    }
-  }
-
-  function showScreenById(id) {
-    hideAllScreens();
-    const screen = document.getElementById(id);
-    if (screen) screen.classList.add("active");
-
-    const skipBtn = document.getElementById("skipToPackages");
-    if (skipBtn) {
-      skipBtn.style.display = (id === "q11") ? "none" : "block";
-    }
-  }
-
-  window.goToDesign = function () {
-    // Hide intro question
-    const intro = document.getElementById('main-intro-options');
-    if (intro) {
-      intro.style.display = 'none';
-      intro.classList.remove('active');
-    }
-
-    // Show the "get started" screen
-    showStartChoice();
-  };
-
-  window.showScreen = function (index) {
-    showScreenById('q' + index);
-  };
-
-  window.next = function () {
-    const current = document.querySelector('.form-screen.active');
-    const allScreens = Array.from(screens);
-    const i = allScreens.indexOf(current);
-    if (i >= 0 && i < allScreens.length - 1) {
-      hideAllScreens();
-      allScreens[i + 1].classList.add('active');
-    }
-  };
-
-  window.prev = function () {
-    const current = document.querySelector('.form-screen.active');
-    const allScreens = Array.from(screens);
-    const i = allScreens.indexOf(current);
-    if (i > 0) {
-      hideAllScreens();
-      allScreens[i - 1].classList.add('active');
-    }
-  };
-
-  hideAllScreens();
-
-  // ------------------ HAMBURGER MENU ---------------------
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('nav.menu');
-
-  function toggleMenu() {
-    const isOpen = menu.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
-
-  if (hamburger && menu) {
-    hamburger.addEventListener('click', (event) => {
-      event.stopPropagation();
-      toggleMenu();
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
-        menu.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', false);
-        menu.setAttribute('aria-hidden', true);
-        document.body.style.overflow = '';
-      }
-    });
-  }
-});
-</script>
+        // Parallax effect for hero background
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrolled * 0.2}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
