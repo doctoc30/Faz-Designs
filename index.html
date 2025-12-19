@@ -878,15 +878,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function typeChar() {
     if (currentLine >= lines.length) {
       cursor.remove();
+
       // Animate typewriter upwards
       el.style.animation = 'rocketRise 2s ease forwards';
 
-      // After animation, reveal main page sections
+      // After animation, show main content
       setTimeout(() => {
+        el.style.display = 'none';
         document.querySelectorAll('#hero, #services, #concepts, #about, #contact').forEach(sec => {
           sec.classList.add('visible');
         });
-        el.style.display = 'none'; // hide typewriter
+        // Optionally show first form screen
+        document.getElementById('main-intro-options').classList.add('active');
       }, 2000); // match rocketRise duration
       return;
     }
@@ -929,10 +932,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('scroll', handleScrollAnimations);
   handleScrollAnimations();
 
-});
-
-
- 
   // ------------------ FORM REVEAL ------------------
   const formWrapper = document.getElementById('formWrapper');
   document.querySelectorAll('[onclick*="formWrapper"]').forEach(btn => {
@@ -955,13 +954,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (screen) screen.classList.add("active");
   }
 
-  window.goToDesign = function () {
-    showScreenById('main-intro-options');
-  };
-  window.showScreen = function (index) {
-    showScreenById('q' + index);
-  };
-  window.next = function () {
+  window.goToDesign = () => showScreenById('main-intro-options');
+  window.showScreen = (index) => showScreenById('q' + index);
+
+  window.next = () => {
     const current = document.querySelector('.form-screen.active');
     const allScreens = Array.from(screens);
     const i = allScreens.indexOf(current);
@@ -969,7 +965,8 @@ document.addEventListener("DOMContentLoaded", () => {
       showScreenById(allScreens[i + 1].id);
     }
   };
-  window.prev = function () {
+
+  window.prev = () => {
     const current = document.querySelector('.form-screen.active');
     const allScreens = Array.from(screens);
     const i = allScreens.indexOf(current);
@@ -978,7 +975,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  hideAllScreens();
+  // Initially hide all form screens except main-intro-options
+  screens.forEach(screen => {
+    if(screen.id !== 'main-intro-options') screen.classList.remove('active');
+  });
 
   // ------------------ HAMBURGER MENU ------------------
   const hamburger = document.querySelector('.hamburger');
