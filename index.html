@@ -690,13 +690,84 @@ button:hover {
 </header> 
 
 
-<!-- This stays before form -->
+<!-- Full-page Color Overlay / Typewriter stays -->
 <div class="color-rise"></div>
 <div id="typewriter"></div>
 
-<!-- ✅ Wraps all form content now -->
-<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
 
+
+<!-- HERO SECTION -->
+<section id="hero" class="fade-up">
+  <div class="overlay-text">
+    We build<br>
+    premium websites<br>
+    for local businesses.
+  </div>
+  <div class="hero-cta fade-up">
+    <button onclick="document.getElementById('formWrapper').scrollIntoView({behavior: 'smooth'})">
+      Get a Quote
+    </button>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section id="services" class="fade-up">
+  <h2>Our Services</h2>
+  <div class="grid">
+    <div class="grid-item fade-up">
+      <h3>Website Design</h3>
+      <p>Custom designs to match your brand identity.</p>
+    </div>
+    <div class="grid-item fade-up">
+      <h3>Website Redesign</h3>
+      <p>Upgrade your current site to modern standards.</p>
+    </div>
+    <div class="grid-item fade-up">
+      <h3>Website Maintenance</h3>
+      <p>Keep your site updated and secure all year round.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN CONCEPTS SECTION -->
+<section id="concepts" class="fade-up">
+  <h2>View Design Concepts</h2>
+  <div class="grid">
+    <div class="grid-item fade-up">
+      <img src="design1.jpg" alt="Design Concept 1">
+      <p>Restaurant Website</p>
+    </div>
+    <div class="grid-item fade-up">
+      <img src="design2.jpg" alt="Design Concept 2">
+      <p>Gym / Fitness Studio</p>
+    </div>
+    <div class="grid-item fade-up">
+      <img src="design3.jpg" alt="Design Concept 3">
+      <p>Dental Clinic</p>
+    </div>
+    <div class="grid-item fade-up">
+      <img src="design4.jpg" alt="Design Concept 4">
+      <p>Hair Salon</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="fade-up">
+  <h2>About Us</h2>
+  <p>We are a full-service web agency specializing in creating high-quality websites for local businesses. We design, you approve, then pay.</p>
+</section>
+
+<!-- CONTACT / FORM SECTION -->
+<section id="contact" class="fade-up">
+  <h2>Get a Quote</h2>
+  <button onclick="document.getElementById('formWrapper').classList.add('active'); window.scrollTo({top: 0, behavior: 'smooth'})">
+    Open Form
+  </button>
+</section>
+
+<!-- Multi-step Form -->
+<form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
   <!-- MAIN INTRO OPTIONS -->
   <div class="form-screen active" id="main-intro-options">
     <h2>What do you need help with?</h2>
@@ -707,7 +778,8 @@ button:hover {
     </div>
   </div>
 
-  <!-- LAYER 1: ENTRY SCREEN -->
+
+  <!-- ENTRY SCREEN -->
   <div class="form-screen" id="form-start-choice">
     <h2>How would you like to get started?</h2>
     <div class="button-row">
@@ -718,7 +790,7 @@ button:hover {
     </div>
   </div>
 
-  <!-- LAYER 2: FULL QUOTE FORM -->
+  <!-- FULL QUOTE FORM -->
   <div class="form-screen" id="q0">
     <h2>What type of website are you looking for?</h2>
     <select name="Website Type" required>
@@ -733,8 +805,7 @@ button:hover {
     </div>
   </div>
 
-  <!-- All other #q1 to #q11 screens remain unchanged... -->
-
+  <!-- FINAL DETAILS -->
   <div class="form-screen" id="q11">
     <h2>Almost done! Please enter your details</h2>
 
@@ -768,43 +839,24 @@ button:hover {
 
 
  
- <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ------------------ TYPEWRITER ------------------
   const el = document.getElementById('typewriter');
-  let lines = [];
-  const typingSpeed = 100;
-  const lineDelay = 500;
-  let currentLine = 0;
-  let currentChar = 0;
-  let lineEl = null;
+  let lines = ["We build", "premium websites", "for local businesses."];
+  let typingSpeed = 100, lineDelay = 500;
+  let currentLine = 0, currentChar = 0, lineEl = null;
 
   const cursor = document.createElement('span');
   cursor.classList.add('cursor');
   el.appendChild(cursor);
 
-  function setLinesByOrientation() {
-    lines = window.matchMedia("(orientation: landscape)").matches
-      ? ["We build", "your website.", "You approve,", "then pay."]
-      : ["We build", "your", "website.", "You approve,", "then pay."];
-  }
-
   function typeChar() {
     if (currentLine >= lines.length) {
       cursor.remove();
-      setTimeout(() => {
-        el.style.animation = 'rocketRise 2s ease forwards';
-        setTimeout(() => {
-          const introScreen = document.getElementById('main-intro-options');
-          if (introScreen) {
-            introScreen.style.display = 'block';
-            introScreen.classList.add('active');
-          }
-
-          const skipBtn = document.getElementById('skipToPackages');
-          if (skipBtn) skipBtn.style.display = 'block';
-
-        }, 2000);
-      }, 1000);
+      // Animate typewriter upwards
+      el.style.animation = 'rocketRise 2s ease forwards';
       return;
     }
 
@@ -817,8 +869,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (currentChar < text.length) {
-      const char = document.createTextNode(text[currentChar]);
-      lineEl.insertBefore(char, cursor);
+      lineEl.insertBefore(document.createTextNode(text[currentChar]), cursor);
       currentChar++;
       setTimeout(typeChar, typingSpeed);
     } else {
@@ -829,97 +880,72 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
-
-  window.addEventListener('resize', debounce(() => {
-    currentLine = 0;
-    currentChar = 0;
-    lineEl = null;
-    el.textContent = '';
-    el.appendChild(cursor);
-    setLinesByOrientation();
-    el.style.opacity = 1;
-    typeChar();
-  }, 300));
-
-  setLinesByOrientation();
-  el.style.opacity = 1;
   typeChar();
 
-  // ------------------ FORM FLOW --------------------
+  // ------------------ SCROLL ANIMATIONS ------------------
+  const fadeElements = document.querySelectorAll('.fade-up');
+
+  function handleScrollAnimations() {
+    const windowBottom = window.innerHeight * 0.85;
+    fadeElements.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < windowBottom) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScrollAnimations);
+  handleScrollAnimations(); // trigger on load
+
+  // ------------------ FORM REVEAL ------------------
+  const formWrapper = document.getElementById('formWrapper');
+  document.querySelectorAll('[onclick*="formWrapper"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      formWrapper.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ------------------ MULTI-STEP FORM ------------------
   const screens = document.querySelectorAll(".form-screen");
 
   function hideAllScreens() {
     screens.forEach(screen => screen.classList.remove("active"));
-    const startChoice = document.getElementById('form-start-choice');
-    if (startChoice) startChoice.classList.remove("show");
-  }
-
-  function showStartChoice() {
-    hideAllScreens();
-    const startChoice = document.getElementById('form-start-choice');
-    if (startChoice) {
-      startChoice.classList.add('show');
-      startChoice.style.display = 'flex';
-    }
   }
 
   function showScreenById(id) {
     hideAllScreens();
     const screen = document.getElementById(id);
     if (screen) screen.classList.add("active");
-
-    const skipBtn = document.getElementById("skipToPackages");
-    if (skipBtn) {
-      skipBtn.style.display = (id === "q11") ? "none" : "block";
-    }
   }
 
   window.goToDesign = function () {
-    // Hide intro question
-    const intro = document.getElementById('main-intro-options');
-    if (intro) {
-      intro.style.display = 'none';
-      intro.classList.remove('active');
-    }
-
-    // Show the "get started" screen
-    showStartChoice();
+    showScreenById('main-intro-options');
   };
-
   window.showScreen = function (index) {
     showScreenById('q' + index);
   };
-
   window.next = function () {
     const current = document.querySelector('.form-screen.active');
     const allScreens = Array.from(screens);
     const i = allScreens.indexOf(current);
     if (i >= 0 && i < allScreens.length - 1) {
-      hideAllScreens();
-      allScreens[i + 1].classList.add('active');
+      showScreenById(allScreens[i + 1].id);
     }
   };
-
   window.prev = function () {
     const current = document.querySelector('.form-screen.active');
     const allScreens = Array.from(screens);
     const i = allScreens.indexOf(current);
     if (i > 0) {
-      hideAllScreens();
-      allScreens[i - 1].classList.add('active');
+      showScreenById(allScreens[i - 1].id);
     }
   };
 
   hideAllScreens();
 
-  // ------------------ HAMBURGER MENU ---------------------
+  // ------------------ HAMBURGER MENU ------------------
   const hamburger = document.querySelector('.hamburger');
   const menu = document.querySelector('nav.menu');
 
@@ -936,7 +962,6 @@ document.addEventListener("DOMContentLoaded", () => {
       event.stopPropagation();
       toggleMenu();
     });
-
     document.addEventListener('click', (event) => {
       if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
         menu.classList.remove('open');
@@ -947,6 +972,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
 });
 </script>
 </body>
