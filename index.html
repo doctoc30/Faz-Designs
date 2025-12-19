@@ -662,10 +662,33 @@ button:hover {
 .skip-link:hover {
   opacity: 0.8;
 }
- 
+
+
+
+
+ /* Fade-up sections (hero, services, etc.) */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typewriter rocket animation */
+@keyframes rocketRise {
+  0% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
+  100% { transform: translate(-50%, -150%) translateY(-100vh); opacity: 0; }
+}
 
 </style>
 
+
+
+ 
 </head>
 <body>
 <header>
@@ -857,6 +880,14 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor.remove();
       // Animate typewriter upwards
       el.style.animation = 'rocketRise 2s ease forwards';
+
+      // After animation, reveal main page sections
+      setTimeout(() => {
+        document.querySelectorAll('#hero, #services, #concepts, #about, #contact').forEach(sec => {
+          sec.classList.add('visible');
+        });
+        el.style.display = 'none'; // hide typewriter
+      }, 2000); // match rocketRise duration
       return;
     }
 
@@ -896,8 +927,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener('scroll', handleScrollAnimations);
-  handleScrollAnimations(); // trigger on load
+  handleScrollAnimations();
 
+});
+
+
+ 
   // ------------------ FORM REVEAL ------------------
   const formWrapper = document.getElementById('formWrapper');
   document.querySelectorAll('[onclick*="formWrapper"]').forEach(btn => {
