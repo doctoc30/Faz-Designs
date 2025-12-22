@@ -3,907 +3,1203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRISM • Precision Grooming</title>
+    <title>PixelCraft | Premium Web Design Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --color-white: #FFFFFF;
-            --color-off-white: #F9FAFB;
-            --color-orange: #E36414;
-            --color-orange-light: #FF8C42;
-            --color-orange-dark: #C05621;
-            --color-charcoal: #1A1A1A;
-            --color-gray: #4B5563;
-            --color-light-gray: #9CA3AF;
-            --shadow-subtle: 0 10px 25px rgba(0, 0, 0, 0.03);
-            --shadow-medium: 0 20px 40px rgba(0, 0, 0, 0.05);
-            --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.07);
-            --border-radius: 12px;
-            --transition-smooth: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            --transition-quick: 0.3s ease;
-        }
-
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #f1f5f9;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 8px;
         }
 
         html {
-            font-size: 16px;
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-white);
-            color: var(--color-charcoal);
-            overflow-x: hidden;
+            color: var(--dark);
+            background-color: var(--light);
             line-height: 1.6;
-            font-weight: 400;
+            overflow-x: hidden;
         }
 
         .container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 20px;
         }
 
-        /* Typography */
+        section {
+            padding: 80px 0;
+        }
+
         h1, h2, h3, h4 {
-            font-weight: 600;
+            font-weight: 700;
             line-height: 1.2;
+            margin-bottom: 1rem;
         }
 
         h1 {
-            font-size: clamp(3.5rem, 5vw, 5.5rem);
-            letter-spacing: -0.02em;
+            font-size: 3.5rem;
         }
 
         h2 {
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            letter-spacing: -0.01em;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         h3 {
-            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-size: 1.8rem;
         }
 
         p {
-            font-size: clamp(1rem, 1.1vw, 1.125rem);
-            color: var(--color-gray);
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            font-size: 1.1rem;
         }
 
-        /* Navigation */
-        nav {
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .accent {
+            color: var(--primary);
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        /* Header & Navigation */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 28px 40px;
             z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            padding: 10px 0;
+        }
+
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(10px);
-            transition: all var(--transition-smooth);
+            padding: 20px 0;
         }
 
-        .nav-logo {
+        .logo {
             font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--color-charcoal);
+            font-weight: 800;
+            color: var(--primary);
             text-decoration: none;
-            position: relative;
+            display: flex;
+            align-items: center;
         }
 
-        .nav-logo span {
-            color: var(--color-orange);
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            list-style: none;
         }
 
-        .nav-link {
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
             text-decoration: none;
-            color: var(--color-charcoal);
-            font-weight: 500;
-            position: relative;
-            padding: 8px 0;
-            transition: color var(--transition-quick);
-        }
-
-        .nav-link:hover {
-            color: var(--color-orange);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-orange);
-            transition: width var(--transition-quick);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            background-color: var(--color-orange);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 100px;
-            text-decoration: none;
+            color: var(--dark);
             font-weight: 600;
-            transition: all var(--transition-quick);
-            box-shadow: 0 4px 12px rgba(227, 100, 20, 0.2);
+            transition: var(--transition);
         }
 
-        .nav-cta:hover {
-            background-color: var(--color-orange-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(227, 100, 20, 0.3);
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding-top: 150px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fef7ff 100%);
             position: relative;
             overflow: hidden;
-            background-color: var(--color-white);
-            padding-top: 80px;
         }
 
         .hero-content {
-            text-align: center;
-            max-width: 1000px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-            color: var(--color-gray);
-            margin-top: 20px;
-            margin-bottom: 50px;
-            opacity: 0;
-            animation: fadeInUp 1s 0.5s forwards;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 60px;
-            opacity: 0;
-            animation: fadeInUp 1s 0.7s forwards;
-        }
-
-        .btn-primary {
-            background-color: var(--color-orange);
-            color: white;
-            padding: 18px 36px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all var(--transition-quick);
-            box-shadow: 0 8px 20px rgba(227, 100, 20, 0.2);
-            border: 2px solid var(--color-orange);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-orange-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(227, 100, 20, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--color-charcoal);
-            padding: 18px 36px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all var(--transition-quick);
-            border: 2px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--color-orange);
-            color: var(--color-orange);
-            transform: translateY(-3px);
-        }
-
-        /* 3D Abstract Forms */
-        .abstract-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 140, 66, 0.1) 0%, rgba(255, 140, 66, 0.03) 100%);
-            filter: blur(40px);
-        }
-
-        .shape-1 {
-            width: 400px;
-            height: 400px;
-            top: 10%;
-            left: 5%;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .shape-2 {
-            width: 300px;
-            height: 300px;
-            bottom: 10%;
-            right: 10%;
-            animation: float 25s infinite ease-in-out reverse;
-        }
-
-        .shape-3 {
-            width: 200px;
-            height: 200px;
-            top: 50%;
-            right: 20%;
-            animation: float 30s infinite ease-in-out;
-        }
-
-        /* Search Bar */
-        .search-container {
-            width: 100%;
-            max-width: 700px;
-            margin: 60px auto 0;
-            opacity: 0;
-            animation: fadeInUp 1s 0.9s forwards;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 22px 30px;
-            border-radius: 100px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px);
-            font-size: 1.1rem;
-            color: var(--color-charcoal);
-            transition: all var(--transition-smooth);
-            box-shadow: var(--shadow-subtle);
-        }
-
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--color-orange);
-            box-shadow: 0 0 0 3px rgba(227, 100, 20, 0.1), var(--shadow-medium);
-            transform: scale(1.02);
-        }
-
-        .search-bar::placeholder {
-            color: var(--color-light-gray);
-        }
-
-        .search-suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            border-radius: 20px;
-            margin-top: 10px;
-            padding: 20px;
-            box-shadow: var(--shadow-large);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all var(--transition-smooth);
-        }
-
-        .search-bar:focus + .search-suggestions,
-        .search-suggestions:hover {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .suggestion-item {
-            padding: 15px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all var(--transition-quick);
             display: flex;
             align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
             gap: 15px;
         }
 
-        .suggestion-item:hover {
-            background-color: rgba(227, 100, 20, 0.05);
-            color: var(--color-orange);
-            transform: translateX(5px);
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
         }
 
-        .suggestion-icon {
-            color: var(--color-orange);
-            font-size: 1.2rem;
-        }
-
-        /* Brand Story Section */
-        .brand-story {
-            padding: 140px 0;
-            background-color: var(--color-white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-divider {
-            width: 80px;
-            height: 4px;
-            background-color: var(--color-orange);
-            margin: 30px auto;
-            border-radius: 2px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .divider-animation {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        .story-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .story-text {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease;
-        }
-
-        .story-text.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .story-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--color-orange);
-            margin-bottom: 10px;
+        .hero-image img {
+            max-width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
 
         /* Services Section */
         .services {
-            padding: 100px 0;
-            background-color: var(--color-off-white);
+            background-color: var(--light-gray);
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .service-card {
-            background-color: var(--color-white);
-            border-radius: var(--border-radius);
-            padding: 40px;
-            box-shadow: var(--shadow-subtle);
-            transition: all var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-large);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 4px;
-            background-color: var(--color-orange);
-            transition: width var(--transition-smooth);
-        }
-
-        .service-card:hover::before {
-            width: 100%;
         }
 
         .service-icon {
-            font-size: 2.5rem;
-            color: var(--color-orange);
-            margin-bottom: 25px;
-        }
-
-        .service-title {
-            margin-bottom: 15px;
-        }
-
-        /* Cursor */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            color: white;
             border-radius: 50%;
-            background-color: rgba(227, 100, 20, 0.2);
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
         }
 
-        .cursor.hover {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(227, 100, 20, 0.1);
+        /* Portfolio Section */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-            }
-            33% {
-                transform: translateY(-20px) translateX(20px);
-            }
-            66% {
-                transform: translateY(20px) translateX(-20px);
-            }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
 
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background-color: var(--light-gray);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-features li i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials */
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            display: none;
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .client-info {
+            margin-top: 20px;
+        }
+
+        .client-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--dark);
+            color: white;
+        }
+
+        .contact h2:after {
+            background: var(--accent);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: var(--radius);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
         }
 
         /* Footer */
         footer {
-            padding: 80px 0 40px;
-            background-color: var(--color-charcoal);
+            background: #0f172a;
             color: white;
+            padding: 60px 0 30px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 60px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        .footer-heading {
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            color: #94a3b8;
+        }
+
+        .footer-links h4, .footer-newsletter h4 {
+            color: white;
+            margin-bottom: 20px;
             font-size: 1.2rem;
-            margin-bottom: 25px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: var(--radius) 0 0 var(--radius);
+            background: #1e293b;
             color: white;
         }
 
-        .footer-link {
-            color: var(--color-light-gray);
+        .newsletter-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #1e293b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            display: block;
-            margin-bottom: 12px;
-            transition: color var(--transition-quick);
+            transition: var(--transition);
         }
 
-        .footer-link:hover {
-            color: var(--color-orange);
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
 
-        .footer-bottom {
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .copyright {
             text-align: center;
-            color: var(--color-light-gray);
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .story-content {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 25px;
-            }
-            
-            nav {
-                padding: 20px 25px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
+        /* Responsive Styles */
+        @media (max-width: 992px) {
             h1 {
                 font-size: 2.8rem;
             }
             
-            .hero-ctas {
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 50px;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
                 flex-direction: column;
                 align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: var(--transition);
+                z-index: 999;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
+            .nav-links.active {
+                transform: translateY(0);
             }
             
-            .footer-content {
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .portfolio-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="nav-logo">PRISM<span>.</span></a>
-        <div class="nav-links">
-            <a href="#story" class="nav-link">Story</a>
-            <a href="#services" class="nav-link">Experiences</a>
-            <a href="#booking" class="nav-link">Booking</a>
-            <a href="#contact" class="nav-link">Contact</a>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo"><i class="fas fa-paint-brush"></i> PixelCraft</a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact" class="btn btn-secondary">Get a Quote</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
-        <a href="#booking" class="nav-cta">Book Experience</a>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="abstract-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
-        
-        <div class="hero-content">
-            <h1>Precision Crafted.<br>Experience Elevated.</h1>
-            <p class="hero-subtitle">Premium grooming experiences designed for those who value detail.</p>
-            
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="What experience are you looking for?">
-                <div class="search-suggestions">
-                    <div class="suggestion-item">
-                        <i class="fas fa-cut suggestion-icon"></i>
-                        <div>
-                            <h4>Skin Fade</h4>
-                            <p>Precision fade with sharp lines</p>
-                        </div>
-                    </div>
-                    <div class="suggestion-item">
-                        <i class="fas fa-user-tie suggestion-icon"></i>
-                        <div>
-                            <h4>Executive Grooming</h4>
-                            <p>Full-service premium experience</p>
-                        </div>
-                    </div>
-                    <div class="suggestion-item">
-                        <i class="fas fa-spa suggestion-icon"></i>
-                        <div>
-                            <h4>Beard Sculpt</h4>
-                            <p>Detailed beard shaping & treatment</p>
-                        </div>
-                    </div>
-                    <div class="suggestion-item">
-                        <i class="fas fa-crown suggestion-icon"></i>
-                        <div>
-                            <h4>Luxury Package</h4>
-                            <p>Our signature full experience</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-ctas">
-                <a href="#services" class="btn-primary">Find Your Style</a>
-                <a href="#booking" class="btn-secondary">Book Experience</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Brand Story Section -->
-    <section id="story" class="brand-story">
+    <section class="hero" id="home">
         <div class="container">
-            <div class="section-header">
-                <h2>Where Craft Meets Consciousness</h2>
-                <div class="section-divider">
-                    <div class="divider-animation"></div>
-                </div>
-                <p>More than grooming — it's a ritual of refinement.</p>
-            </div>
-            
-            <div class="story-content">
-                <div class="story-text">
-                    <h3>Founded on the principle that attention to detail transforms the ordinary into the exceptional.</h3>
-                    <p>Every element of the PRISM experience is intentionally designed to create moments of quiet focus and masculine refinement. Our studio is a sanctuary from the noise — a place where time slows and precision takes precedence.</p>
-                    <p>We believe grooming is not a chore but a ritual; an opportunity to invest in oneself with intention and care.</p>
-                    
-                    <div class="story-stats">
-                        <div class="stat">
-                            <div class="stat-value">12</div>
-                            <p>Master Barbers</p>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">150+</div>
-                            <p>Distinct Styles</p>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">98%</div>
-                            <p>Client Retention</p>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">24</div>
-                            <p>Months Training</p>
-                        </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Crafting Digital Experiences Worth <span class="highlight">£100k+</span></h1>
+                    <p>We're PixelCraft, a premium web design agency that creates stunning, high-converting websites for businesses that demand excellence. Our £100k+ projects deliver exceptional ROI through strategic design and cutting-edge technology.</p>
+                    <div class="hero-btns">
+                        <a href="#portfolio" class="btn">View Our Work</a>
+                        <a href="#contact" class="btn btn-secondary">Start Your Project</a>
                     </div>
                 </div>
-                <div class="story-text">
-                    <h3>The PRISM Method: A Threefold Approach</h3>
-                    <p><strong>Consultation</strong> — We begin with understanding. Not just what you want, but why. Your facial structure, hair type, lifestyle, and personal aesthetic.</p>
-                    <p><strong>Craft</strong> — Employing techniques refined over decades, we execute with surgical precision. Every stroke, cut, and treatment is intentional.</p>
-                    <p><strong>Continuity</strong> — Your experience extends beyond the chair. We provide guidance on maintenance and products to preserve your style.</p>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Web Design Workspace">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
+    <section class="services" id="services">
         <div class="container">
-            <div class="section-header">
-                <h2>Curated Experiences</h2>
-                <div class="section-divider">
-                    <div class="divider-animation"></div>
-                </div>
-                <p>Each service is a complete sensory journey.</p>
-            </div>
-            
+            <h2>Our Premium Services</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="fas fa-cut service-icon"></i>
-                    <h3 class="service-title">The Architect</h3>
-                    <p>Precision haircut with detailed consultation, hot towel treatment, and style mapping for your facial structure.</p>
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Custom Web Design</h3>
+                    <p>Bespoke, responsive websites designed to convert visitors into customers. We focus on user experience, brand identity, and performance optimization.</p>
                 </div>
                 
                 <div class="service-card">
-                    <i class="fas fa-user-tie service-icon"></i>
-                    <h3 class="service-title">Executive Refinement</h3>
-                    <p>Full-service grooming including haircut, beard sculpt, facial treatment, and collar-length shoulder massage.</p>
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-Commerce Solutions</h3>
+                    <p>High-converting online stores with seamless checkout experiences, inventory management, and integrated payment solutions for maximum sales.</p>
                 </div>
                 
                 <div class="service-card">
-                    <i class="fas fa-spa service-icon"></i>
-                    <h3 class="service-title">Beard Alchemy</h3>
-                    <p>Detailed beard shaping, conditioning treatment, hot oil infusion, and expert maintenance guidance.</p>
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO & Digital Marketing</h3>
+                    <p>Comprehensive digital marketing strategies to increase visibility, drive qualified traffic, and generate leads through targeted campaigns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2>Our £100k+ Projects</h2>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Real Estate Website">
+                    <div class="portfolio-overlay">
+                        <h3>Luxury Real Estate Platform</h3>
+                        <p>£120k project with advanced property search and virtual tours</p>
+                    </div>
                 </div>
                 
-                <div class="service-card">
-                    <i class="fas fa-crown service-icon"></i>
-                    <h3 class="service-title">PRISM Signature</h3>
-                    <p>Our ultimate experience: 3-hour journey including all services, scalp treatment, and personal product curation.</p>
+                <div class="portfolio-item" data-category="ecommerce">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium Fashion E-commerce">
+                    <div class="portfolio-overlay">
+                        <h3>Premium Fashion E-commerce</h3>
+                        <p>£150k custom online store with AR try-on features</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="branding">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80" alt="Corporate Branding">
+                    <div class="portfolio-overlay">
+                        <h3>Corporate Branding Suite</h3>
+                        <p>£95k complete brand identity and digital presence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Investment Packages</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">£25k<span>+VAT</span></div>
+                    <p>Perfect for small businesses needing a professional online presence</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Custom Design & Development</li>
+                        <li><i class="fas fa-check"></i> 5-7 Page Website</li>
+                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
+                        <li><i class="fas fa-check"></i> Basic SEO Setup</li>
+                        <li><i class="fas fa-check"></i> 3 Months Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <h3>Enterprise</h3>
+                    <div class="price">£100k<span>+VAT</span></div>
+                    <p>Comprehensive solution for large businesses with complex needs</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Premium</li>
+                        <li><i class="fas fa-check"></i> Custom Web Application</li>
+                        <li><i class="fas fa-check"></i> Enterprise-grade Security</li>
+                        <li><i class="fas fa-check"></i> Advanced Analytics Integration</li>
+                        <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
+                        <li><i class="fas fa-check"></i> Dedicated Project Manager</li>
+                    </ul>
+                    <a href="#contact" class="btn">Start Project</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <div class="price">£50k<span>+VAT</span></div>
+                    <p>Advanced package for growing businesses with specific requirements</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Starter</li>
+                        <li><i class="fas fa-check"></i> E-commerce Functionality</li>
+                        <li><i class="fas fa-check"></i> Advanced SEO Strategy</li>
+                        <li><i class="fas fa-check"></i> CMS Integration</li>
+                        <li><i class="fas fa-check"></i> 12 Months Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>Client Success Stories</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial active" id="testimonial1">
+                    <p>"PixelCraft transformed our online presence with a £100k website that increased our conversions by 300% in just 6 months. Their attention to detail and strategic approach was worth every penny."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
+                        <h4>James Richardson</h4>
+                        <p>CEO, Luxury Estates Ltd.</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial" id="testimonial2">
+                    <p>"Working with PixelCraft on our £150k e-commerce platform was the best investment we've made. The user experience is seamless, and our sales have grown exponentially."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client">
+                        <h4>Sarah Chen</h4>
+                        <p>Founder, Vogue Collective</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial" id="testimonial3">
+                    <p>"The corporate branding and website PixelCraft delivered for our £95k project exceeded all expectations. Their team understood our vision perfectly and executed flawlessly."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Client">
+                        <h4>Michael Rodriguez</h4>
+                        <p>Managing Director, TechVantage Inc.</p>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Start Your £100k Project</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Create Something Extraordinary</h3>
+                    <p>Ready to invest in a website that delivers exceptional ROI? Contact us for a confidential consultation about your £100k+ project.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Our Office</h4>
+                                <p>123 Design Street, London, UK</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+44 20 7123 4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>hello@pixelcraft.co.uk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" class="form-control" required>
+                                <option value="">Select Budget Range</option>
+                                <option value="25-50">£25k - £50k</option>
+                                <option value="50-100">£50k - £100k</option>
+                                <option value="100+">£100k+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Submit Project Brief</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div>
-                    <h3 class="footer-heading">PRISM.</h3>
-                    <p style="color: var(--color-light-gray); margin-bottom: 20px;">Precision grooming experiences for the modern gentleman.</p>
-                    <div style="display: flex; gap: 15px;">
-                        <a href="#" class="footer-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="footer-link"><i class="fab fa-linkedin"></i></a>
+                <div class="footer-about">
+                    <a href="#" class="footer-logo"><i class="fas fa-paint-brush"></i> PixelCraft</a>
+                    <p>We craft premium digital experiences for businesses investing £100k+ in their online presence. Our strategic approach delivers exceptional ROI through innovative design and technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
                     </div>
                 </div>
                 
-                <div>
-                    <h3 class="footer-heading">Experiences</h3>
-                    <a href="#" class="footer-link">The Architect</a>
-                    <a href="#" class="footer-link">Executive Refinement</a>
-                    <a href="#" class="footer-link">Beard Alchemy</a>
-                    <a href="#" class="footer-link">PRISM Signature</a>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
                 </div>
                 
-                <div>
-                    <h3 class="footer-heading">Studio</h3>
-                    <a href="#" class="footer-link">Our Story</a>
-                    <a href="#" class="footer-link">The Barbers</a>
-                    <a href="#" class="footer-link">Products</a>
-                    <a href="#" class="footer-link">Journal</a>
-                </div>
-                
-                <div>
-                    <h3 class="footer-heading">Visit</h3>
-                    <p style="color: var(--color-light-gray); margin-bottom: 15px;">9 Grooming Lane<br>Mayfair, London W1K 4HY</p>
-                    <p style="color: var(--color-light-gray); margin-bottom: 15px;">Mon-Sat: 8am-8pm<br>Sunday: 10am-4pm</p>
-                    <a href="tel:+442045678901" class="footer-link">+44 20 4567 8901</a>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for insights on premium web design and digital strategy.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>PRISM • Precision Grooming Studio © 2023. By appointment only.</p>
+            <div class="copyright">
+                <p>&copy; 2023 PixelCraft Web Design Agency. All rights reserved. | Premium websites from £25k to £250k+</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor');
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
         
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
         
-        // Add hover effect to interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .service-card, .search-bar, .suggestion-item');
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
         
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter portfolio items
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
             });
+        });
+        
+        // Testimonial slider
+        const testimonialDots = document.querySelectorAll('.slider-dot');
+        const testimonials = document.querySelectorAll('.testimonial');
+        let currentSlide = 0;
+        
+        testimonialDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                
+                // Update active testimonial
+                testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+                testimonials[slideIndex].classList.add('active');
+                
+                // Update active dot
+                testimonialDots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                
+                currentSlide = slideIndex;
+            });
+        });
+        
+        // Auto-rotate testimonials
+        function rotateTestimonials() {
+            currentSlide = (currentSlide + 1) % testimonials.length;
             
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            testimonials[currentSlide].classList.add('active');
+            
+            testimonialDots.forEach(d => d.classList.remove('active'));
+            testimonialDots[currentSlide].classList.add('active');
+        }
+        
+        // Change testimonial every 5 seconds
+        setInterval(rotateTestimonials, 5000);
+        
+        // Form submission
+        const projectForm = document.getElementById('projectForm');
+        
+        projectForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const budget = document.getElementById('budget').value;
+            
+            // Show confirmation message
+            alert(`Thank you ${name}! We've received your £${budget}k+ project brief and will contact you within 24 hours.`);
+            
+            // Reset form
+            projectForm.reset();
         });
         
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
             });
-        }, observerOptions);
-        
-        // Observe elements for scroll animations
-        document.querySelectorAll('.story-text').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Parallax effect for hero shapes
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            
-            const shapes = document.querySelectorAll('.shape');
-            shapes.forEach((shape, index) => {
-                const speed = (index + 1) * 0.5;
-                shape.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-            });
-        });
-        
-        // Search bar focus effect
-        const searchBar = document.querySelector('.search-bar');
-        const searchContainer = document.querySelector('.search-container');
-        
-        searchBar.addEventListener('focus', () => {
-            searchContainer.style.transform = 'scale(1.02)';
-        });
-        
-        searchBar.addEventListener('blur', () => {
-            searchContainer.style.transform = 'scale(1)';
-        });
-        
-        // Service card hover effect enhancement
-        const serviceCards = document.querySelectorAll('.service-card');
-        
-        serviceCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateY = (x - centerX) / 25;
-                const rotateX = (centerY - y) / 25;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.padding = '18px 40px';
-                nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
-            } else {
-                nav.style.padding = '28px 40px';
-                nav.style.boxShadow = 'none';
-            }
         });
     </script>
 </body>
