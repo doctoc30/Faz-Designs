@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS ORB | Futuristic Web Design</title>
+    <title>PRISM • Precision Grooming</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/TextPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a0a0f;
-            --secondary: #1a1a1f;
-            --accent: #ff6b35;
-            --accent-glow: rgba(255, 107, 53, 0.7);
-            --accent-light: #ff9a76;
-            --accent-ultralight: #ffd4c2;
-            --neon-orange: #ff8c42;
-            --cyber-orange: #ff4d00;
-            --matrix: #00ff9d;
-            --text: #ffffff;
-            --text-secondary: #e0e0e0;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 107, 53, 0.2);
-            --neon-shadow: 0 0 15px var(--accent-glow), 0 0 30px rgba(255, 107, 53, 0.3);
-            --cyber-grid: linear-gradient(90deg, transparent 95%, rgba(255, 107, 53, 0.1) 100%);
+            --color-white: #FFFFFF;
+            --color-off-white: #F9FAFB;
+            --color-orange: #E36414;
+            --color-orange-light: #FF8C42;
+            --color-orange-dark: #C05621;
+            --color-charcoal: #1A1A1A;
+            --color-gray: #4B5563;
+            --color-light-gray: #9CA3AF;
+            --shadow-subtle: 0 10px 25px rgba(0, 0, 0, 0.03);
+            --shadow-medium: 0 20px 40px rgba(0, 0, 0, 0.05);
+            --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.07);
+            --border-radius: 12px;
+            --transition-smooth: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition-quick: 0.3s ease;
         }
 
         * {
@@ -37,1819 +33,877 @@
         }
 
         html {
+            font-size: 16px;
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--primary);
-            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-white);
+            color: var(--color-charcoal);
             overflow-x: hidden;
             line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(255, 154, 118, 0.03) 0%, transparent 20%);
-            min-height: 100vh;
+            font-weight: 400;
         }
 
-        h1, h2, h3, h4, .logo, .cyber-text {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
-        /* Cyber Grid Background */
-        .cyber-grid-bg {
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(3.5rem, 5vw, 5.5rem);
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+        }
+
+        p {
+            font-size: clamp(1rem, 1.1vw, 1.125rem);
+            color: var(--color-gray);
+        }
+
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 107, 53, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 107, 53, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        /* Quantum Pre-loader */
-        #quantum-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 1s ease;
-        }
-
-        .quantum-particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--accent);
-            opacity: 0;
-        }
-
-        .quantum-ring {
-            width: 200px;
-            height: 200px;
-            border: 3px solid transparent;
-            border-top: 3px solid var(--accent);
-            border-radius: 50%;
-            animation: spin 2s linear infinite;
-            position: relative;
-        }
-
-        .quantum-ring::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 2px solid transparent;
-            border-top: 2px solid var(--neon-orange);
-            border-radius: 50%;
-            animation: spinReverse 1.5s linear infinite;
-        }
-
-        .loader-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 5px;
-            margin-top: 40px;
-            background: linear-gradient(90deg, var(--accent), var(--neon-orange), var(--accent-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
-        }
-
-        .loading-quote {
-            margin-top: 20px;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            text-align: center;
-            max-width: 500px;
-            padding: 0 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes spinReverse {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
-        }
-
-        /* Holographic Navigation */
-        #hologram-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
+            padding: 28px 40px;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
         }
 
-        .nav-scrolled {
-            padding: 15px 5%;
-            box-shadow: 0 5px 30px rgba(255, 107, 53, 0.1);
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 25px var(--accent-glow);
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-charcoal);
+            text-decoration: none;
             position: relative;
-            display: flex;
-            align-items: center;
         }
 
-        .logo::after {
-            content: '✦';
-            font-size: 1rem;
-            margin-left: 10px;
-            color: var(--matrix);
-            animation: pulse 2s infinite;
+        .nav-logo span {
+            color: var(--color-orange);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        .nav-hologram {
+        .nav-links {
             display: flex;
             gap: 40px;
-            position: relative;
         }
 
-        .nav-hologram a {
-            color: var(--text);
+        .nav-link {
             text-decoration: none;
+            color: var(--color-charcoal);
             font-weight: 500;
-            letter-spacing: 1px;
             position: relative;
-            padding: 10px 0;
-            transition: all 0.3s ease;
+            padding: 8px 0;
+            transition: color var(--transition-quick);
         }
 
-        .nav-hologram a::before {
+        .nav-link:hover {
+            color: var(--color-orange);
+        }
+
+        .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--matrix));
-            transition: width 0.3s ease;
+            background-color: var(--color-orange);
+            transition: width var(--transition-quick);
         }
 
-        .nav-hologram a:hover {
-            color: var(--accent-light);
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .nav-hologram a:hover::before {
+        .nav-link:hover::after {
             width: 100%;
-        }
-
-        .nav-hologram a.active {
-            color: var(--accent);
         }
 
         .nav-cta {
-            padding: 12px 30px;
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid var(--accent);
-            color: var(--accent-light);
-            border-radius: 30px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            transition: all 0.3s ease;
+            background-color: var(--color-orange);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 100px;
             text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-quick);
+            box-shadow: 0 4px 12px rgba(227, 100, 20, 0.2);
         }
 
         .nav-cta:hover {
-            background: rgba(255, 107, 53, 0.2);
+            background-color: var(--color-orange-dark);
             transform: translateY(-2px);
-            box-shadow: var(--neon-shadow);
+            box-shadow: 0 8px 20px rgba(227, 100, 20, 0.3);
         }
 
-        /* Hero - Quantum Interface */
-        #quantum-hero {
+        /* Hero Section */
+        .hero {
             height: 100vh;
             width: 100%;
-            position: relative;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 0 5%;
+            position: relative;
             overflow: hidden;
+            background-color: var(--color-white);
+            padding-top: 80px;
         }
 
-        #hologram-canvas {
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: var(--color-gray);
+            margin-top: 20px;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInUp 1s 0.5s forwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 60px;
+            opacity: 0;
+            animation: fadeInUp 1s 0.7s forwards;
+        }
+
+        .btn-primary {
+            background-color: var(--color-orange);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all var(--transition-quick);
+            box-shadow: 0 8px 20px rgba(227, 100, 20, 0.2);
+            border: 2px solid var(--color-orange);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-orange-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(227, 100, 20, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-charcoal);
+            padding: 18px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all var(--transition-quick);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-orange);
+            color: var(--color-orange);
+            transform: translateY(-3px);
+        }
+
+        /* 3D Abstract Forms */
+        .abstract-shapes {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
             z-index: 1;
         }
 
-        .hero-orbs {
+        .shape {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.1) 0%, rgba(255, 140, 66, 0.03) 100%);
+            filter: blur(40px);
         }
 
-        .orb {
-            position: absolute;
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            left: 5%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-2 {
             width: 300px;
             height: 300px;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
+            bottom: 10%;
+            right: 10%;
+            animation: float 25s infinite ease-in-out reverse;
         }
 
-        .orb-1 {
-            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            right: 20%;
+            animation: float 30s infinite ease-in-out;
         }
 
-        .orb-2 {
-            background: radial-gradient(circle, var(--neon-orange) 0%, transparent 70%);
-            bottom: 20%;
-            right: 15%;
-            animation-delay: 2s;
+        /* Search Bar */
+        .search-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 60px auto 0;
+            opacity: 0;
+            animation: fadeInUp 1s 0.9s forwards;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.05); }
+        .search-bar {
+            width: 100%;
+            padding: 22px 30px;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            font-size: 1.1rem;
+            color: var(--color-charcoal);
+            transition: all var(--transition-smooth);
+            box-shadow: var(--shadow-subtle);
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            max-width: 800px;
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--color-orange);
+            box-shadow: 0 0 0 3px rgba(227, 100, 20, 0.1), var(--shadow-medium);
+            transform: scale(1.02);
         }
 
-        .hero-title {
-            font-size: 5.5rem;
-            line-height: 1;
-            margin-bottom: 30px;
-            background: linear-gradient(90deg, #ffffff, var(--accent-light), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 40px rgba(255, 107, 53, 0.5);
+        .search-bar::placeholder {
+            color: var(--color-light-gray);
         }
 
-        .hero-subtitle {
-            font-size: 1.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 600px;
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            margin-top: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow-large);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-smooth);
         }
 
-        .hero-subtitle .cyber-text {
-            color: var(--accent);
-            font-weight: 700;
+        .search-bar:focus + .search-suggestions,
+        .search-suggestions:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        .hero-interface {
-            display: flex;
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .interface-btn {
-            padding: 18px 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            color: var(--text);
-            border-radius: 15px;
-            font-weight: 600;
-            letter-spacing: 1px;
+        .suggestion-item {
+            padding: 15px 20px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-quick);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .suggestion-item:hover {
+            background-color: rgba(227, 100, 20, 0.05);
+            color: var(--color-orange);
+            transform: translateX(5px);
+        }
+
+        .suggestion-icon {
+            color: var(--color-orange);
+            font-size: 1.2rem;
+        }
+
+        /* Brand Story Section */
+        .brand-story {
+            padding: 140px 0;
+            background-color: var(--color-white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-orange);
+            margin: 30px auto;
+            border-radius: 2px;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
         }
 
-        .interface-btn::before {
-            content: '';
+        .divider-animation {
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.7s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: shimmer 3s infinite;
         }
 
-        .interface-btn:hover::before {
-            left: 100%;
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
 
-        .interface-btn.primary {
-            background: linear-gradient(135deg, var(--accent), var(--cyber-orange));
-            border: none;
-            box-shadow: var(--neon-shadow);
+        .story-text {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
         }
 
-        .interface-btn.primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        .story-text.in-view {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 50px;
-            margin-top: 80px;
+        .story-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
         }
 
-        .stat-item {
+        .stat {
             text-align: center;
         }
 
         .stat-value {
-            font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
+            color: var(--color-orange);
+            margin-bottom: 10px;
         }
 
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-top: 10px;
-            letter-spacing: 1px;
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--color-off-white);
         }
 
-        /* Holographic Showcase */
-        #hologram-showcase {
-            padding: 150px 5%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 100px;
-        }
-
-        .section-title {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .hologram-grid {
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
+            margin-top: 60px;
         }
 
-        .holo-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 25px;
-            padding: 50px 40px;
-            border: 1px solid var(--glass-border);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .service-card {
+            background-color: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-subtle);
+            transition: all var(--transition-smooth);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            cursor: pointer;
         }
 
-        .holo-card::before {
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
+            width: 0;
+            height: 4px;
+            background-color: var(--color-orange);
+            transition: width var(--transition-smooth);
+        }
+
+        .service-card:hover::before {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), transparent 50%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
         }
 
-        .holo-card:hover {
-            transform: translateY(-20px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: var(--neon-shadow);
-        }
-
-        .holo-card:hover::before {
-            opacity: 1;
-        }
-
-        .holo-icon {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            color: var(--accent);
-            position: relative;
-            display: inline-block;
-        }
-
-        .holo-icon::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        .holo-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-
-        .holo-desc {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        /* Neural Network Visualizer */
-        #neural-network {
-            padding: 150px 5%;
-            background: rgba(10, 10, 15, 0.9);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .neural-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .neural-visual {
-            position: relative;
-            height: 500px;
-            border-radius: 25px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-        }
-
-        #neuralCanvas {
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .neural-info {
-            padding-right: 40px;
-        }
-
-        .neural-title {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            line-height: 1.2;
-        }
-
-        .neural-features {
-            list-style: none;
-            margin-top: 40px;
-        }
-
-        .neural-features li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 35px;
-        }
-
-        .neural-features li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        /* Quantum Portfolio */
-        #quantum-portfolio {
-            padding: 150px 5%;
-            position: relative;
-        }
-
-        .portfolio-orb {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 107, 53, 0.05) 0%, transparent 70%);
-            filter: blur(100px);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
-            margin: 80px auto 0;
-        }
-
-        .portfolio-item {
-            height: 350px;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            border: 1px solid var(--glass-border);
-            transition: all 0.4s ease;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-15px) scale(1.03);
-            border-color: var(--accent);
-            box-shadow: var(--neon-shadow);
-        }
-
-        .portfolio-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .portfolio-item:hover .portfolio-img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-holo {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px;
-            background: linear-gradient(transparent, rgba(10, 10, 15, 0.95));
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .portfolio-item:hover .portfolio-holo {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .portfolio-tag {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255, 107, 53, 0.2);
-            color: var(--accent-light);
-            border-radius: 30px;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .portfolio-name {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: white;
-        }
-
-        /* Quantum Contact */
-        #quantum-contact {
-            padding: 150px 5%;
-            position: relative;
-            background: rgba(10, 10, 15, 0.9);
-        }
-
-        .contact-interface {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .contact-holo {
-            position: relative;
-            height: 600px;
-            border-radius: 25px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .contact-title {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .contact-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            max-width: 400px;
-        }
-
-        .contact-form {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 25px;
-            padding: 60px 50px;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            position: relative;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--text);
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 18px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            font-family: 'Rajdhani', sans-serif;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .submit-holo {
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--accent), var(--cyber-orange));
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-holo:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
-        }
-
-        .submit-holo::after {
-            content: '✦';
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-        }
-
-        /* Quantum Footer */
-        #quantum-footer {
-            padding: 100px 5% 50px;
-            border-top: 1px solid var(--glass-border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            max-width: 1400px;
-            margin: 0 auto 80px;
-        }
-
-        .footer-brand .logo {
+        .service-icon {
             font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: block;
+            color: var(--color-orange);
+            margin-bottom: 25px;
         }
 
-        .footer-desc {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 400px;
-        }
-
-        .footer-title {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: var(--text);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
+        .service-title {
             margin-bottom: 15px;
         }
 
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            padding-left: 0;
+        /* Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(227, 100, 20, 0.2);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
 
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 10px;
-        }
-
-        .footer-links a::before {
-            content: '▸';
-            position: absolute;
-            left: -15px;
-            opacity: 0;
-            transition: all 0.3s ease;
-            color: var(--accent);
-        }
-
-        .footer-links a:hover::before {
-            opacity: 1;
-            left: 0;
-        }
-
-        .social-holo {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .social-orb {
+        .cursor.hover {
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text);
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            border: 1px solid var(--glass-border);
+            background-color: rgba(227, 100, 20, 0.1);
         }
 
-        .social-orb:hover {
-            background: var(--accent);
-            color: var(--primary);
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: var(--neon-shadow);
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            33% {
+                transform: translateY(-20px) translateX(20px);
+            }
+            66% {
+                transform: translateY(20px) translateX(-20px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            background-color: var(--color-charcoal);
+            color: white;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-link {
+            color: var(--color-light-gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color var(--transition-quick);
+        }
+
+        .footer-link:hover {
+            color: var(--color-orange);
         }
 
         .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            padding-top: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--color-light-gray);
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .hero-title {
-                font-size: 4rem;
-            }
-            
-            .neural-container,
-            .contact-interface {
+        @media (max-width: 1024px) {
+            .story-content {
                 grid-template-columns: 1fr;
                 gap: 60px;
             }
             
-            .neural-visual {
-                height: 400px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-title {
-                font-size: 3.5rem;
-            }
-            
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-hologram {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-                background: none;
-                border: none;
-                color: var(--text);
-                font-size: 1.5rem;
-                cursor: pointer;
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .hero-title {
+            .container {
+                padding: 0 25px;
+            }
+            
+            nav {
+                padding: 20px 25px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
                 font-size: 2.8rem;
             }
             
-            .hero-stats {
+            .hero-ctas {
                 flex-direction: column;
-                gap: 30px;
+                align-items: center;
             }
             
-            .section-title {
-                font-size: 3rem;
-            }
-            
-            .holo-card {
-                padding: 40px 30px;
-            }
-            
-            .footer-grid {
+            .services-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(10, 10, 15, 0.8);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--accent), var(--cyber-orange));
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--accent-light), var(--accent));
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Cyber Grid Background -->
-    <div class="cyber-grid-bg"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
 
-    <!-- Quantum Pre-loader -->
-    <div id="quantum-loader">
-        <div class="quantum-ring"></div>
-        <div class="loader-text">NEXUS ORB</div>
-        <div class="loading-quote">Initializing quantum interface. Preparing holographic experience...</div>
-        <div id="quantumParticles"></div>
-    </div>
-
-    <!-- Holographic Navigation -->
-    <nav id="hologram-nav">
-        <div class="logo">NEXUS ORB</div>
-        <div class="nav-hologram">
-            <a href="#quantum-hero" class="active">Home</a>
-            <a href="#hologram-showcase">Showcase</a>
-            <a href="#neural-network">Network</a>
-            <a href="#quantum-portfolio">Portfolio</a>
-            <a href="#quantum-contact">Contact</a>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">PRISM<span>.</span></a>
+        <div class="nav-links">
+            <a href="#story" class="nav-link">Story</a>
+            <a href="#services" class="nav-link">Experiences</a>
+            <a href="#booking" class="nav-link">Booking</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <a href="#quantum-contact" class="nav-cta">Initiate Project</a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
+        <a href="#booking" class="nav-cta">Book Experience</a>
     </nav>
 
-    <!-- Quantum Hero Section -->
-    <section id="quantum-hero">
-        <canvas id="hologram-canvas"></canvas>
-        <div class="hero-orbs">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="abstract-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
+        
         <div class="hero-content">
-            <h1 class="hero-title">QUANTUM<br>WEB EXPERIENCE</h1>
-            <p class="hero-subtitle">We design <span class="cyber-text">futuristic interfaces</span> that merge holographic visuals with neural interaction patterns. Revolutionizing digital presence through quantum-inspired design.</p>
-            <div class="hero-interface">
-                <button class="interface-btn primary">Explore Interface</button>
-                <button class="interface-btn">View Neural Demo</button>
-            </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-value">247%</div>
-                    <div class="stat-label">Engagement Boost</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">0.3s</div>
-                    <div class="stat-label">Load Time</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">99.9%</div>
-                    <div class="stat-label">Satisfaction</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Holographic Showcase -->
-    <section id="hologram-showcase">
-        <div class="section-header">
-            <h2 class="section-title">HOLOGRAPHIC FEATURES</h2>
-            <p class="section-subtitle">Experience never-before-seen web interfaces with our quantum design system</p>
-        </div>
-        <div class="hologram-grid">
-            <div class="holo-card">
-                <div class="holo-icon">
-                    <i class="fas fa-cube"></i>
-                </div>
-                <h3 class="holo-title">3D Hologram Interface</h3>
-                <p class="holo-desc">Interactive 3D elements that respond to user input with real-time physics and lighting calculations.</p>
-            </div>
-            <div class="holo-card">
-                <div class="holo-icon">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <h3 class="holo-title">Neural Interaction</h3>
-                <p class="holo-desc">AI-powered interface that learns user patterns and adapts in real-time for personalized experiences.</p>
-            </div>
-            <div class="holo-card">
-                <div class="holo-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3 class="holo-title">Quantum Speed</h3>
-                <p class="holo-desc">Lightning-fast WebGL rendering and optimized animations at 120fps for buttery smooth interactions.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Neural Network Visualizer -->
-    <section id="neural-network">
-        <div class="neural-container">
-            <div class="neural-visual">
-                <canvas id="neuralCanvas"></canvas>
-            </div>
-            <div class="neural-info">
-                <h2 class="neural-title">NEURAL<br>INTERFACE DESIGN</h2>
-                <p>Our proprietary neural network visualization creates dynamic connections between interface elements, generating organic, living websites that evolve with user interaction.</p>
-                <ul class="neural-features">
-                    <li>Real-time neural connection mapping</li>
-                    <li>Adaptive color and layout algorithms</li>
-                    <li>Predictive user behavior modeling</li>
-                    <li>Quantum-inspired particle systems</li>
-                    <li>Self-optimizing performance engine</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quantum Portfolio -->
-    <section id="quantum-portfolio">
-        <div class="portfolio-orb"></div>
-        <div class="section-header">
-            <h2 class="section-title">QUANTUM PROJECTS</h2>
-            <p class="section-subtitle">Our portfolio showcases revolutionary interfaces that redefine digital experiences</p>
-        </div>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cyber Finance" class="portfolio-img">
-                <div class="portfolio-holo">
-                    <div class="portfolio-tag">3D FINANCE DASHBOARD</div>
-                    <h3 class="portfolio-name">Quantum Financial Interface</h3>
-                    <p>Real-time 3D data visualization with neural predictions</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Holo Healthcare" class="portfolio-img">
-                <div class="portfolio-holo">
-                    <div class="portfolio-tag">MEDICAL HOLOGRAM SYSTEM</div>
-                    <h3 class="portfolio-name">Neural Healthcare Platform</h3>
-                    <p>Interactive 3D medical visualizations with AI diagnostics</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quantum Contact -->
-    <section id="quantum-contact">
-        <div class="contact-interface">
-            <div class="contact-holo">
-                <h2 class="contact-title">INITIATE<br>QUANTUM PROJECT</h2>
-                <p class="contact-subtitle">Begin your journey into the future of web design. Our neural interface will analyze your needs and generate a custom proposal.</p>
-                <div class="social-holo">
-                    <a href="#" class="social-orb"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-orb"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-orb"><i class="fab fa-dribbble"></i></a>
-                    <a href="#" class="social-orb"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="contact-form">
-                <form id="quantumForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label">Your Name</label>
-                            <input type="text" class="form-input" placeholder="Enter neural identity" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Quantum Email</label>
-                            <input type="email" class="form-input" placeholder="user@quantum.mail" required>
-                        </div>
-                        <div class="form-group full">
-                            <label class="form-label">Project Type</label>
-                            <select class="form-input" required>
-                                <option value="">Select quantum category</option>
-                                <option value="hologram">3D Hologram Website</option>
-                                <option value="neural">Neural Interface</option>
-                                <option value="quantum">Quantum Dashboard</option>
-                                <option value="full">Full Orb Experience</option>
-                            </select>
-                        </div>
-                        <div class="form-group full">
-                            <label class="form-label">Project Vision</label>
-                            <textarea class="form-input" rows="5" placeholder="Describe your vision for the quantum interface..." required></textarea>
+            <h1>Precision Crafted.<br>Experience Elevated.</h1>
+            <p class="hero-subtitle">Premium grooming experiences designed for those who value detail.</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="What experience are you looking for?">
+                <div class="search-suggestions">
+                    <div class="suggestion-item">
+                        <i class="fas fa-cut suggestion-icon"></i>
+                        <div>
+                            <h4>Skin Fade</h4>
+                            <p>Precision fade with sharp lines</p>
                         </div>
                     </div>
-                    <button type="submit" class="submit-holo">LAUNCH QUANTUM PROPOSAL</button>
-                </form>
+                    <div class="suggestion-item">
+                        <i class="fas fa-user-tie suggestion-icon"></i>
+                        <div>
+                            <h4>Executive Grooming</h4>
+                            <p>Full-service premium experience</p>
+                        </div>
+                    </div>
+                    <div class="suggestion-item">
+                        <i class="fas fa-spa suggestion-icon"></i>
+                        <div>
+                            <h4>Beard Sculpt</h4>
+                            <p>Detailed beard shaping & treatment</p>
+                        </div>
+                    </div>
+                    <div class="suggestion-item">
+                        <i class="fas fa-crown suggestion-icon"></i>
+                        <div>
+                            <h4>Luxury Package</h4>
+                            <p>Our signature full experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-ctas">
+                <a href="#services" class="btn-primary">Find Your Style</a>
+                <a href="#booking" class="btn-secondary">Book Experience</a>
             </div>
         </div>
     </section>
 
-    <!-- Quantum Footer -->
-    <footer id="quantum-footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo">NEXUS ORB</div>
-                <p class="footer-desc">We pioneer the future of web interfaces through quantum design principles and neural interaction patterns. Redefining digital experiences since 2023.</p>
-                <div class="social-holo">
-                    <a href="#" class="social-orb"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-orb"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-orb"><i class="fab fa-dribbble"></i></a>
-                    <a href="#" class="social-orb"><i class="fab fa-github"></i></a>
+    <!-- Brand Story Section -->
+    <section id="story" class="brand-story">
+        <div class="container">
+            <div class="section-header">
+                <h2>Where Craft Meets Consciousness</h2>
+                <div class="section-divider">
+                    <div class="divider-animation"></div>
+                </div>
+                <p>More than grooming — it's a ritual of refinement.</p>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-text">
+                    <h3>Founded on the principle that attention to detail transforms the ordinary into the exceptional.</h3>
+                    <p>Every element of the PRISM experience is intentionally designed to create moments of quiet focus and masculine refinement. Our studio is a sanctuary from the noise — a place where time slows and precision takes precedence.</p>
+                    <p>We believe grooming is not a chore but a ritual; an opportunity to invest in oneself with intention and care.</p>
+                    
+                    <div class="story-stats">
+                        <div class="stat">
+                            <div class="stat-value">12</div>
+                            <p>Master Barbers</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">150+</div>
+                            <p>Distinct Styles</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">98%</div>
+                            <p>Client Retention</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">24</div>
+                            <p>Months Training</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-text">
+                    <h3>The PRISM Method: A Threefold Approach</h3>
+                    <p><strong>Consultation</strong> — We begin with understanding. Not just what you want, but why. Your facial structure, hair type, lifestyle, and personal aesthetic.</p>
+                    <p><strong>Craft</strong> — Employing techniques refined over decades, we execute with surgical precision. Every stroke, cut, and treatment is intentional.</p>
+                    <p><strong>Continuity</strong> — Your experience extends beyond the chair. We provide guidance on maintenance and products to preserve your style.</p>
                 </div>
             </div>
-            <div>
-                <h3 class="footer-title">Quantum Tools</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Neural Designer</a></li>
-                    <li><a href="#">Hologram SDK</a></li>
-                    <li><a href="#">Quantum Animator</a></li>
-                    <li><a href="#">Orb Framework</a></li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Curated Experiences</h2>
+                <div class="section-divider">
+                    <div class="divider-animation"></div>
+                </div>
+                <p>Each service is a complete sensory journey.</p>
             </div>
-            <div>
-                <h3 class="footer-title">Resources</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Quantum Blog</a></li>
-                    <li><a href="#">Neural Patterns</a></li>
-                    <li><a href="#">Hologram Gallery</a></li>
-                    <li><a href="#">Research Papers</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="footer-title">Contact Orb</h3>
-                <ul class="footer-links">
-                    <li><a href="#">hello@nexusorb.io</a></li>
-                    <li><a href="#">+44 20 7123 4567</a></li>
-                    <li><a href="#">London Quantum Lab</a></li>
-                    <li><a href="#">Career Portal</a></li>
-                </ul>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-cut service-icon"></i>
+                    <h3 class="service-title">The Architect</h3>
+                    <p>Precision haircut with detailed consultation, hot towel treatment, and style mapping for your facial structure.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-user-tie service-icon"></i>
+                    <h3 class="service-title">Executive Refinement</h3>
+                    <p>Full-service grooming including haircut, beard sculpt, facial treatment, and collar-length shoulder massage.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-spa service-icon"></i>
+                    <h3 class="service-title">Beard Alchemy</h3>
+                    <p>Detailed beard shaping, conditioning treatment, hot oil infusion, and expert maintenance guidance.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-crown service-icon"></i>
+                    <h3 class="service-title">PRISM Signature</h3>
+                    <p>Our ultimate experience: 3-hour journey including all services, scalp treatment, and personal product curation.</p>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 NEXUS ORB. All quantum rights reserved. | Designed in the future, built for today.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 class="footer-heading">PRISM.</h3>
+                    <p style="color: var(--color-light-gray); margin-bottom: 20px;">Precision grooming experiences for the modern gentleman.</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" class="footer-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="footer-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Experiences</h3>
+                    <a href="#" class="footer-link">The Architect</a>
+                    <a href="#" class="footer-link">Executive Refinement</a>
+                    <a href="#" class="footer-link">Beard Alchemy</a>
+                    <a href="#" class="footer-link">PRISM Signature</a>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Studio</h3>
+                    <a href="#" class="footer-link">Our Story</a>
+                    <a href="#" class="footer-link">The Barbers</a>
+                    <a href="#" class="footer-link">Products</a>
+                    <a href="#" class="footer-link">Journal</a>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Visit</h3>
+                    <p style="color: var(--color-light-gray); margin-bottom: 15px;">9 Grooming Lane<br>Mayfair, London W1K 4HY</p>
+                    <p style="color: var(--color-light-gray); margin-bottom: 15px;">Mon-Sat: 8am-8pm<br>Sunday: 10am-4pm</p>
+                    <a href="tel:+442045678901" class="footer-link">+44 20 4567 8901</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>PRISM • Precision Grooming Studio © 2023. By appointment only.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Quantum Pre-loader
-        document.addEventListener('DOMContentLoaded', function() {
-            const quantumLoader = document.getElementById('quantum-loader');
-            const quantumParticles = document.getElementById('quantumParticles');
-            
-            // Create quantum particles
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('quantum-particle');
-                
-                // Random position
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                
-                particle.style.left = `${x}vw`;
-                particle.style.top = `${y}vh`;
-                particle.style.animationDelay = `${Math.random() * 2}s`;
-                particle.style.animationDuration = `${1 + Math.random() * 2}s`;
-                
-                quantumParticles.appendChild(particle);
-                
-                // Animate particles
-                gsap.to(particle, {
-                    opacity: 0.7,
-                    duration: 0.5,
-                    delay: i * 0.02,
-                    repeat: -1,
-                    yoyo: true
-                });
-            }
-            
-            // Simulate loading
-            setTimeout(() => {
-                quantumLoader.style.opacity = '0';
-                setTimeout(() => {
-                    quantumLoader.style.display = 'none';
-                    initQuantumExperience();
-                }, 1000);
-            }, 3000);
-        });
-
-        // Quantum Experience Initialization
-        function initQuantumExperience() {
-            initHologram3D();
-            initNeuralNetwork();
-            initAnimations();
-            initInteractions();
-        }
-
-        // Hologram 3D Scene
-        function initHologram3D() {
-            const canvas = document.getElementById('hologram-canvas');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ 
-                canvas: canvas,
-                alpha: true,
-                antialias: true 
-            });
-            
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            
-            // Create quantum core
-            const coreGeometry = new THREE.IcosahedronGeometry(2, 2);
-            const coreMaterial = new THREE.MeshStandardMaterial({ 
-                color: 0xff6b35,
-                metalness: 0.8,
-                roughness: 0.1,
-                emissive: 0xff6b35,
-                emissiveIntensity: 0.3,
-                wireframe: true
-            });
-            
-            const quantumCore = new THREE.Mesh(coreGeometry, coreMaterial);
-            scene.add(quantumCore);
-            
-            // Create orbiting particles
-            const particles = [];
-            const particleCount = 30;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particleGeometry = new THREE.SphereGeometry(0.1, 8, 8);
-                const particleMaterial = new THREE.MeshBasicMaterial({ 
-                    color: 0xff9a76,
-                    transparent: true,
-                    opacity: 0.8
-                });
-                
-                const particle = new THREE.Mesh(particleGeometry, particleMaterial);
-                
-                // Position in spherical coordinates
-                const phi = Math.acos(-1 + (2 * i) / particleCount);
-                const theta = Math.sqrt(particleCount * Math.PI) * phi;
-                
-                particle.position.x = 4 * Math.cos(theta) * Math.sin(phi);
-                particle.position.y = 4 * Math.sin(theta) * Math.sin(phi);
-                particle.position.z = 4 * Math.cos(phi);
-                
-                scene.add(particle);
-                particles.push({
-                    mesh: particle,
-                    phi: phi,
-                    theta: theta,
-                    speed: 0.5 + Math.random() * 0.5
-                });
-            }
-            
-            // Add holographic lines
-            const lineMaterial = new THREE.LineBasicMaterial({ 
-                color: 0xff6b35,
-                transparent: true,
-                opacity: 0.3
-            });
-            
-            for (let i = 0; i < 20; i++) {
-                const points = [];
-                for (let j = 0; j < 10; j++) {
-                    points.push(new THREE.Vector3(
-                        Math.sin(j * 0.5) * 3,
-                        Math.cos(j * 0.8) * 3,
-                        Math.sin(j * 0.3) * 3
-                    ));
-                }
-                
-                const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
-                const line = new THREE.Line(lineGeometry, lineMaterial);
-                scene.add(line);
-            }
-            
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
-            scene.add(ambientLight);
-            
-            const pointLight = new THREE.PointLight(0xff6b35, 1, 100);
-            pointLight.position.set(5, 5, 5);
-            scene.add(pointLight);
-            
-            camera.position.z = 10;
-            
-            // Mouse interaction
-            let mouseX = 0;
-            let mouseY = 0;
-            
-            document.addEventListener('mousemove', (event) => {
-                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-            });
-            
-            // Animation
-            function animate() {
-                requestAnimationFrame(animate);
-                
-                // Rotate core
-                quantumCore.rotation.x += 0.005;
-                quantumCore.rotation.y += 0.008;
-                
-                // Mouse interaction
-                quantumCore.rotation.y += mouseX * 0.01;
-                quantumCore.rotation.x += mouseY * 0.01;
-                
-                // Animate particles
-                particles.forEach((particle, i) => {
-                    particle.phi += 0.01 * particle.speed;
-                    particle.theta += 0.02 * particle.speed;
-                    
-                    particle.mesh.position.x = 4 * Math.cos(particle.theta) * Math.sin(particle.phi);
-                    particle.mesh.position.y = 4 * Math.sin(particle.theta) * Math.sin(particle.phi);
-                    particle.mesh.position.z = 4 * Math.cos(particle.phi);
-                    
-                    // Pulsing effect
-                    const scale = 1 + 0.3 * Math.sin(Date.now() * 0.001 + i);
-                    particle.mesh.scale.setScalar(scale);
-                });
-                
-                renderer.render(scene, camera);
-            }
-            
-            // Handle resize
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-            
-            animate();
-        }
-
-        // Neural Network Visualizer
-        function initNeuralNetwork() {
-            const canvas = document.getElementById('neuralCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            
-            const nodes = [];
-            const connections = [];
-            const nodeCount = 15;
-            
-            // Create nodes
-            for (let i = 0; i < nodeCount; i++) {
-                nodes.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: 5 + Math.random() * 8,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    color: `rgba(255, ${107 + Math.random() * 50}, ${53 + Math.random() * 50}, 0.8)`
-                });
-            }
-            
-            // Create connections
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    if (Math.random() > 0.7) {
-                        connections.push({
-                            node1: i,
-                            node2: j,
-                            strength: Math.random()
-                        });
-                    }
-                }
-            }
-            
-            // Animation loop
-            function animateNeural() {
-                requestAnimationFrame(animateNeural);
-                
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Update nodes
-                nodes.forEach(node => {
-                    node.x += node.vx;
-                    node.y += node.vy;
-                    
-                    // Bounce off walls
-                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
-                    
-                    // Draw node
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = node.color;
-                    ctx.fill();
-                    
-                    // Glow effect
-                    const gradient = ctx.createRadialGradient(
-                        node.x, node.y, 0,
-                        node.x, node.y, node.radius * 3
-                    );
-                    gradient.addColorStop(0, node.color.replace('0.8', '0.3'));
-                    gradient.addColorStop(1, 'transparent');
-                    
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
-                    ctx.fillStyle = gradient;
-                    ctx.fill();
-                });
-                
-                // Draw connections
-                connections.forEach(conn => {
-                    const node1 = nodes[conn.node1];
-                    const node2 = nodes[conn.node2];
-                    
-                    const dx = node1.x - node2.x;
-                    const dy = node1.y - node2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(node1.x, node1.y);
-                        ctx.lineTo(node2.x, node2.y);
-                        ctx.strokeStyle = `rgba(255, 107, 53, ${0.1 + conn.strength * 0.3})`;
-                        ctx.lineWidth = 0.5 + conn.strength * 1.5;
-                        ctx.stroke();
-                        
-                        // Animate connection strength
-                        conn.strength = 0.5 + 0.5 * Math.sin(Date.now() * 0.001 + conn.node1 + conn.node2);
-                    }
-                });
-            }
-            
-            animateNeural();
-            
-            // Handle resize
-            window.addEventListener('resize', () => {
-                canvas.width = canvas.offsetWidth;
-                canvas.height = canvas.offsetHeight;
-            });
-        }
-
-        // GSAP Animations
-        function initAnimations() {
-            gsap.registerPlugin(ScrollTrigger, TextPlugin);
-            
-            // Animate hero text
-            gsap.from('.hero-title', {
-                duration: 1.5,
-                y: 100,
-                opacity: 0,
-                ease: 'power3.out',
-                stagger: 0.2
-            });
-            
-            gsap.from('.hero-subtitle', {
-                duration: 1.5,
-                y: 50,
-                opacity: 0,
-                delay: 0.5,
-                ease: 'power3.out'
-            });
-            
-            gsap.from('.hero-interface', {
-                duration: 1,
-                y: 30,
-                opacity: 0,
-                delay: 1,
-                ease: 'power3.out'
-            });
-            
-            // Animate hologram cards
-            gsap.from('.holo-card', {
-                scrollTrigger: {
-                    trigger: '#hologram-showcase',
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                },
-                y: 60,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.2,
-                ease: 'power3.out'
-            });
-            
-            // Animate neural section
-            gsap.from('.neural-info', {
-                scrollTrigger: {
-                    trigger: '#neural-network',
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                },
-                x: -100,
-                opacity: 0,
-                duration: 1.2,
-                ease: 'power3.out'
-            });
-            
-            // Animate portfolio
-            gsap.from('.portfolio-item', {
-                scrollTrigger: {
-                    trigger: '#quantum-portfolio',
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                },
-                y: 80,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.3,
-                ease: 'power3.out'
-            });
-        }
-
-        // Interactive Elements
-        function initInteractions() {
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('hologram-nav');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('nav-scrolled');
-                } else {
-                    navbar.classList.remove('nav-scrolled');
-                }
-            });
-            
-            // Interface buttons
-            document.querySelectorAll('.interface-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const text = this.textContent;
-                    
-                    // Create ripple effect
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = event.clientX - rect.left - size / 2;
-                    const y = event.clientY - rect.top - size / 2;
-                    
-                    ripple.style.cssText = `
-                        position: absolute;
-                        border-radius: 50%;
-                        background: rgba(255, 255, 255, 0.5);
-                        transform: scale(0);
-                        animation: ripple 0.6s linear;
-                        width: ${size}px;
-                        height: ${size}px;
-                        top: ${y}px;
-                        left: ${x}px;
-                    `;
-                    
-                    this.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 600);
-                    
-                    // Animate button
-                    gsap.to(this, {
-                        scale: 0.95,
-                        duration: 0.1,
-                        yoyo: true,
-                        repeat: 1
-                    });
-                    
-                    if (text === 'Explore Interface') {
-                        // Scroll to showcase
-                        gsap.to(window, {
-                            duration: 1.5,
-                            scrollTo: '#hologram-showcase',
-                            ease: 'power3.inOut'
-                        });
-                    } else if (text === 'View Neural Demo') {
-                        // Show neural network animation
-                        const neuralCanvas = document.getElementById('neuralCanvas');
-                        gsap.from(neuralCanvas, {
-                            duration: 1,
-                            scale: 0.8,
-                            opacity: 0,
-                            ease: 'power3.out'
-                        });
-                    }
-                });
-            });
-            
-            // Form submission
-            document.getElementById('quantumForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const submitBtn = this.querySelector('.submit-holo');
-                const originalText = submitBtn.textContent;
-                
-                // Quantum loading animation
-                submitBtn.textContent = 'PROCESSING QUANTUM DATA...';
-                submitBtn.disabled = true;
-                
-                // Simulate quantum processing
-                const dots = ['.', '..', '...'];
-                let dotCount = 0;
-                const dotInterval = setInterval(() => {
-                    submitBtn.textContent = `PROCESSING QUANTUM DATA${dots[dotCount % dots.length]}`;
-                    dotCount++;
-                }, 300);
-                
-                setTimeout(() => {
-                    clearInterval(dotInterval);
-                    submitBtn.textContent = 'QUANTUM PROPOSAL GENERATED!';
-                    submitBtn.style.background = 'linear-gradient(135deg, #00ff9d, #00cc7a)';
-                    
-                    // Create success effect
-                    const successParticles = [];
-                    for (let i = 0; i < 20; i++) {
-                        const particle = document.createElement('div');
-                        particle.style.cssText = `
-                            position: absolute;
-                            width: 6px;
-                            height: 6px;
-                            background: #00ff9d;
-                            border-radius: 50%;
-                            pointer-events: none;
-                            top: 50%;
-                            left: 50%;
-                        `;
-                        
-                        document.body.appendChild(particle);
-                        successParticles.push(particle);
-                        
-                        gsap.to(particle, {
-                            x: (Math.random() - 0.5) * 200,
-                            y: (Math.random() - 0.5) * 200,
-                            opacity: 0,
-                            duration: 1,
-                            ease: 'power3.out',
-                            onComplete: () => particle.remove()
-                        });
-                    }
-                    
-                    // Reset form
-                    setTimeout(() => {
-                        this.reset();
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.style.background = 'linear-gradient(135deg, var(--accent), var(--cyber-orange))';
-                    }, 3000);
-                }, 2500);
-            });
-            
-            // Portfolio hover effects
-            document.querySelectorAll('.portfolio-item').forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    const img = this.querySelector('.portfolio-img');
-                    gsap.to(img, {
-                        duration: 0.6,
-                        scale: 1.1,
-                        ease: 'power2.out'
-                    });
-                    
-                    // Create particle effect
-                    const rect = this.getBoundingClientRect();
-                    for (let i = 0; i < 10; i++) {
-                        const particle = document.createElement('div');
-                        particle.style.cssText = `
-                            position: absolute;
-                            width: 3px;
-                            height: 3px;
-                            background: var(--accent);
-                            border-radius: 50%;
-                            pointer-events: none;
-                            top: ${Math.random() * rect.height}px;
-                            left: ${Math.random() * rect.width}px;
-                        `;
-                        
-                        this.appendChild(partlier);
-                        
-                        gsap.to(particle, {
-                            x: (Math.random() - 0.5) * 100,
-                            y: (Math.random() - 0.5) * 100,
-                            opacity: 0,
-                            duration: 1,
-                            ease: 'power2.out',
-                            onComplete: () => particle.remove()
-                        });
-                    }
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    const img = this.querySelector('.portfolio-img');
-                    gsap.to(img, {
-                        duration: 0.6,
-                        scale: 1,
-                        ease: 'power2.out'
-                    });
-                });
-            });
-            
-            // Mobile menu
-            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                const navHologram = document.querySelector('.nav-hologram');
-                const isVisible = navHologram.style.display === 'flex';
-                
-                if (isVisible) {
-                    gsap.to(navHologram, {
-                        opacity: 0,
-                        y: -20,
-                        duration: 0.3,
-                        onComplete: () => {
-                            navHologram.style.display = 'none';
-                        }
-                    });
-                } else {
-                    navHologram.style.display = 'flex';
-                    navHologram.style.flexDirection = 'column';
-                    navHologram.style.position = 'absolute';
-                    navHologram.style.top = '100%';
-                    navHologram.style.left = '0';
-                    navHologram.style.width = '100%';
-                    navHologram.style.background = 'rgba(10, 10, 15, 0.95)';
-                    navHologram.style.backdropFilter = 'blur(15px)';
-                    navHologram.style.padding = '20px';
-                    navHologram.style.gap = '20px';
-                    navHologram.style.opacity = '0';
-                    
-                    gsap.to(navHologram, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.3
-                    });
-                }
-            });
-            
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        gsap.to(window, {
-                            duration: 1.5,
-                            scrollTo: {
-                                y: targetElement,
-                                offsetY: 80
-                            },
-                            ease: 'power3.inOut'
-                        });
-                    }
-                });
-            });
-            
-            // Add CSS for ripple effect
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(4);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
         
-        // Parallax effect for hero orbs
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const orbs = document.querySelectorAll('.orb');
-            
-            orbs.forEach((orb, index) => {
-                const speed = index === 0 ? 0.5 : 0.3;
-                orb.style.transform = `translateY(${scrollY * speed}px) scale(${1 - scrollY * 0.0001})`;
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        // Add hover effect to interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .service-card, .search-bar, .suggestion-item');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
             });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for scroll animations
+        document.querySelectorAll('.story-text').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Parallax effect for hero shapes
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                shape.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+            });
+        });
+        
+        // Search bar focus effect
+        const searchBar = document.querySelector('.search-bar');
+        const searchContainer = document.querySelector('.search-container');
+        
+        searchBar.addEventListener('focus', () => {
+            searchContainer.style.transform = 'scale(1.02)';
+        });
+        
+        searchBar.addEventListener('blur', () => {
+            searchContainer.style.transform = 'scale(1)';
+        });
+        
+        // Service card hover effect enhancement
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        serviceCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (x - centerX) / 25;
+                const rotateX = (centerY - y) / 25;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.padding = '18px 40px';
+                nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+            } else {
+                nav.style.padding = '28px 40px';
+                nav.style.boxShadow = 'none';
+            }
         });
     </script>
 </body>
