@@ -3,252 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventus | Premium UX/UI Design Agency</title>
+    <title>PrestigeWeb | Premium Web Design Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E8C1;
+            --gold-dark: #A8852E;
+            --orange: #FF8C42;
+            --orange-light: #FFE0C7;
+            --orange-dark: #E67A3A;
+            --neutral-dark: #1A1A1A;
+            --neutral-medium: #3A3A3A;
+            --neutral-light: #F8F8F8;
+            --white: #FFFFFF;
+            --transition: all 0.3s ease;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-        
-        :root {
-            --primary: #1a365d;
-            --secondary: #e6f0ff;
-            --accent: #3b82f6;
-            --accent-light: #60a5fa;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --light-gray: #e2e8f0;
-            --transition: all 0.3s ease;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
         body {
-            color: var(--dark);
-            background-color: var(--light);
+            font-family: 'Inter', sans-serif;
+            color: var(--neutral-medium);
+            line-height: 1.6;
             overflow-x: hidden;
+            background-color: var(--neutral-light);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            color: var(--neutral-dark);
+            font-weight: 600;
         }
         
         .container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 20px;
         }
         
-        /* Header & Navigation */
+        /* Header Styles */
         header {
+            background-color: var(--white);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            padding: 20px 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 0;
         }
         
         .logo {
+            font-family: 'Playfair Display', serif;
             font-size: 28px;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--neutral-dark);
             text-decoration: none;
-            display: flex;
-            align-items: center;
         }
         
         .logo span {
-            color: var(--accent);
+            color: var(--gold);
         }
         
-        .logo i {
-            margin-right: 10px;
-            font-size: 24px;
-        }
-        
-        nav ul {
+        .nav-links {
             display: flex;
             list-style: none;
         }
         
-        nav li {
-            margin-left: 40px;
+        .nav-links li {
+            margin-left: 30px;
         }
         
-        nav a {
-            color: var(--dark);
+        .nav-links a {
             text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        nav a:hover {
-            color: var(--accent);
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent);
+            color: var(--neutral-medium);
+            font-weight: 500;
             transition: var(--transition);
         }
         
-        nav a:hover::after {
-            width: 100%;
+        .nav-links a:hover {
+            color: var(--orange);
         }
         
         .cta-button {
-            background: linear-gradient(to right, var(--accent), var(--accent-light));
-            color: white;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
+            color: var(--white);
+            border: none;
             padding: 12px 28px;
             border-radius: 50px;
             font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-block;
-            border: none;
             cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.2);
         }
         
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: var(--shadow-heavy);
+            box-shadow: 0 8px 20px rgba(255, 140, 66, 0.3);
         }
         
         /* Hero Section */
         .hero {
-            padding: 180px 0 120px;
-            background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, rgba(255, 226, 199, 0.3) 0%, rgba(244, 232, 193, 0.3) 100%);
             position: relative;
             overflow: hidden;
         }
         
         .hero-content {
-            max-width: 700px;
-            position: relative;
-            z-index: 2;
+            max-width: 650px;
         }
         
         .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            line-height: 1.1;
+            font-size: 48px;
+            line-height: 1.2;
             margin-bottom: 20px;
-            color: var(--primary);
         }
         
         .hero h1 span {
-            color: var(--accent);
+            color: var(--gold);
+            position: relative;
+        }
+        
+        .hero h1 span:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--orange-light);
+            z-index: -1;
         }
         
         .hero p {
-            font-size: 20px;
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 600px;
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: var(--neutral-medium);
         }
         
-        .hero-btns {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .hero-btns .cta-button.secondary {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-        }
-        
-        .hero-btns .cta-button.secondary:hover {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .hero-visual {
-            position: absolute;
-            right: 0;
-            top: 100px;
-            width: 50%;
-            height: 600px;
-            background: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
-            background-size: cover;
-            border-radius: 20px 0 0 20px;
-            box-shadow: var(--shadow-heavy);
-        }
-        
-        /* Stats Section */
         .stats {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .stats-container {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
+            margin-top: 40px;
         }
         
         .stat-item {
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
+            margin-right: 40px;
         }
         
         .stat-number {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gold);
         }
         
         .stat-label {
-            font-size: 18px;
-            color: var(--gray);
-            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--neutral-medium);
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 100px;
+            width: 45%;
+            border-radius: 20px 0 0 20px;
+            overflow: hidden;
+            box-shadow: -20px 20px 40px rgba(0, 0, 0, 0.1);
         }
         
         /* Services Section */
-        .services {
+        .section {
             padding: 100px 0;
-            background-color: var(--secondary);
-        }
-        
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
         }
         
         .section-title {
-            font-size: 42px;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 60px;
         }
         
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--gray);
-            line-height: 1.6;
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--neutral-medium);
         }
         
         .services-grid {
@@ -258,23 +216,25 @@
         }
         
         .service-card {
-            background-color: white;
-            padding: 40px;
+            background-color: var(--white);
             border-radius: 15px;
-            box-shadow: var(--shadow);
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
         .service-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            border-radius: 15px;
+            background: linear-gradient(135deg, var(--orange-light) 0%, var(--gold-light) 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -283,32 +243,32 @@
         
         .service-icon i {
             font-size: 28px;
-            color: white;
+            color: var(--gold);
         }
         
-        .service-title {
-            font-size: 24px;
-            font-weight: 700;
+        .service-card h3 {
+            font-size: 22px;
             margin-bottom: 15px;
-            color: var(--primary);
         }
         
-        .service-desc {
-            color: var(--gray);
-            line-height: 1.6;
+        .service-card p {
             margin-bottom: 20px;
+            color: var(--neutral-medium);
         }
         
-        .service-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--accent);
+        .price-tag {
+            display: inline-block;
+            background-color: var(--orange-light);
+            color: var(--orange-dark);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
         }
         
         /* Portfolio Section */
         .portfolio {
-            padding: 100px 0;
-            background-color: white;
+            background-color: var(--white);
         }
         
         .portfolio-grid {
@@ -320,9 +280,9 @@
         .portfolio-item {
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: var(--shadow);
             position: relative;
             height: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
         
         .portfolio-item img {
@@ -341,8 +301,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.9), transparent);
+            color: var(--white);
             padding: 30px;
             transform: translateY(20px);
             opacity: 0;
@@ -354,49 +314,104 @@
             opacity: 1;
         }
         
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--primary), #2d3748);
-            color: white;
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, rgba(255, 226, 199, 0.3) 0%, rgba(244, 232, 193, 0.3) 100%);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
         
-        .cta-section .section-title {
-            color: white;
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: var(--neutral-medium);
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: var(--orange-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--orange-dark);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
+            color: var(--white);
+        }
+        
+        .cta-section h2 {
+            color: var(--white);
+            font-size: 36px;
             margin-bottom: 20px;
         }
         
-        .cta-section .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 700px;
-            margin: 0 auto 40px;
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+        }
+        
+        .cta-button.inverted {
+            background: var(--white);
+            color: var(--orange);
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 80px 0 40px;
+            background-color: var(--neutral-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
         }
         
-        .footer-container {
+        .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
+            gap: 40px;
             margin-bottom: 50px;
         }
         
         .footer-column h3 {
-            font-size: 22px;
+            color: var(--white);
+            font-size: 20px;
             margin-bottom: 25px;
-            color: white;
+            position: relative;
         }
         
-        .footer-column p {
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--gold);
         }
         
         .footer-links {
@@ -408,267 +423,212 @@
         }
         
         .footer-links a {
-            color: #94a3b8;
+            color: #aaa;
             text-decoration: none;
             transition: var(--transition);
         }
         
         .footer-links a:hover {
-            color: white;
+            color: var(--orange-light);
             padding-left: 5px;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-icons a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .social-icons a:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
+            color: #aaa;
             font-size: 14px;
         }
         
         /* Responsive Styles */
-        @media (max-width: 1100px) {
-            .hero-visual {
-                width: 45%;
+        @media (max-width: 992px) {
+            .hero-image {
+                position: relative;
+                width: 100%;
+                margin-top: 50px;
+                border-radius: 20px;
             }
             
-            .hero h1 {
-                font-size: 48px;
-            }
-        }
-        
-        @media (max-width: 900px) {
             .hero {
-                padding: 150px 0 100px;
+                padding: 140px 0 60px;
+                text-align: center;
             }
             
             .hero-content {
                 max-width: 100%;
             }
             
-            .hero-visual {
-                position: relative;
-                width: 100%;
-                height: 400px;
-                margin-top: 50px;
-                border-radius: 20px;
+            .stats {
+                justify-content: center;
             }
-            
-            .hero h1 {
-                font-size: 42px;
-            }
-            
-            .section-title {
-                font-size: 36px;
-            }
-            
-            nav ul {
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
                 display: none;
             }
             
-            .mobile-menu-btn {
-                display: block;
-                font-size: 24px;
-                background: none;
-                border: none;
-                color: var(--primary);
-                cursor: pointer;
-            }
-        }
-        
-        @media (max-width: 600px) {
             .hero h1 {
                 font-size: 36px;
             }
             
-            .hero p {
-                font-size: 18px;
+            .section-title h2 {
+                font-size: 30px;
             }
             
-            .hero-btns {
-                flex-direction: column;
-                align-items: flex-start;
+            .stats {
+                flex-wrap: wrap;
             }
             
-            .section-title {
-                font-size: 32px;
+            .stat-item {
+                margin-right: 20px;
+                margin-bottom: 20px;
             }
-            
-            .service-card {
-                padding: 30px;
-            }
-        }
-        
-        /* Animation classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">
-                <i class="fas fa-crown"></i>Ventus<span>.</span>
-            </a>
-            
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#clients">Clients</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            
-            <a href="#contact" class="cta-button">Start a Project</a>
-            
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
+            <a href="#" class="logo">Prestige<span>Web</span></a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="cta-button">Start Your Project</button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
         <div class="container">
-            <div class="hero-content fade-in">
-                <h1>Crafting Digital Excellence Worth <span>£1 Million+</span></h1>
-                <p>Ventus is a premium UX/UI design agency creating transformative digital experiences for elite brands. Our meticulous approach to design yields exceptional ROI and lasting impact.</p>
-                <div class="hero-btns">
-                    <a href="#portfolio" class="cta-button">View Our Work</a>
-                    <a href="#contact" class="cta-button secondary">Book a Consultation</a>
+            <div class="hero-content">
+                <h1>Crafting Digital Experiences <span>Worth £100K+</span></h1>
+                <p>We design and develop premium websites and digital solutions for businesses that demand excellence. Our gold-standard approach ensures every project delivers exceptional value and ROI.</p>
+                <button class="cta-button">Book a Strategy Call</button>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">£3.2M+</div>
+                        <div class="stat-label">Client Revenue Generated</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Premium Projects</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="hero-visual"></div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container stats-container">
-            <div class="stat-item fade-in">
-                <div class="stat-number">£1M+</div>
-                <div class="stat-label">Design Value Created</div>
-            </div>
-            <div class="stat-item fade-in">
-                <div class="stat-number">42%</div>
-                <div class="stat-label">Average Client ROI</div>
-            </div>
-            <div class="stat-item fade-in">
-                <div class="stat-number">98%</div>
-                <div class="stat-label">Client Satisfaction</div>
-            </div>
-            <div class="stat-item fade-in">
-                <div class="stat-number">24</div>
-                <div class="stat-label">Global Awards</div>
+            
+            <div class="hero-image">
+                <!-- This would be an image in a real implementation -->
+                <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
+                    Premium Web Design Showcase
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
+    <section id="services" class="section">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Premium Design Services</h2>
-                <p class="section-subtitle">Our exclusive offerings are tailored for businesses seeking transformative digital experiences with measurable impact.</p>
+            <div class="section-title">
+                <h2>Gold-Standard Services</h2>
+                <p>We offer a comprehensive suite of premium web services designed to deliver exceptional value for ambitious businesses.</p>
             </div>
             
             <div class="services-grid">
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-pencil-ruler"></i>
+                        <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h3 class="service-title">Elite UX/UI Design</h3>
-                    <p class="service-desc">Comprehensive user experience and interface design that drives engagement, conversions, and brand loyalty.</p>
-                    <div class="service-price">From £75,000</div>
+                    <h3>Enterprise Web Development</h3>
+                    <p>Custom-built websites with advanced functionality, scalable architecture, and premium performance optimization.</p>
+                    <div class="price-tag">From £25,000</div>
                 </div>
                 
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-palette"></i>
                     </div>
-                    <h3 class="service-title">Premium App Design</h3>
-                    <p class="service-desc">Award-winning mobile application design that delivers exceptional user experiences across all platforms.</p>
-                    <div class="service-price">From £120,000</div>
+                    <h3>UX/UI Design Excellence</h3>
+                    <p>User-centered design that combines aesthetics with functionality to create exceptional digital experiences.</p>
+                    <div class="price-tag">From £15,000</div>
                 </div>
                 
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-bullseye"></i>
+                        <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <h3 class="service-title">Brand Experience Design</h3>
-                    <p class="service-desc">End-to-end brand experience design that establishes emotional connections and drives business growth.</p>
-                    <div class="service-price">From £150,000</div>
+                    <h3>E-Commerce Solutions</h3>
+                    <p>High-conversion online stores with custom features, seamless payment integration, and premium support.</p>
+                    <div class="price-tag">From £30,000</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
+    <section id="portfolio" class="section portfolio">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Exceptional Case Studies</h2>
-                <p class="section-subtitle">Our portfolio showcases transformative designs that have delivered substantial value to our clients.</p>
+            <div class="section-title">
+                <h2>Portfolio of Excellence</h2>
+                <p>A selection of our recent high-value projects that demonstrate our commitment to quality and results.</p>
             </div>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Financial Dashboard Design">
+                <div class="portfolio-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);"></div>
                     <div class="portfolio-overlay">
-                        <h3>Fintech Dashboard</h3>
-                        <p>Increased user engagement by 300%</p>
+                        <h3>Luxury Fashion E-Commerce</h3>
+                        <p>Increased online sales by 240%</p>
                     </div>
                 </div>
                 
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury E-commerce Platform">
+                <div class="portfolio-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
                     <div class="portfolio-overlay">
-                        <h3>Luxury E-commerce</h3>
-                        <p>Boosted conversions by 42%</p>
+                        <h3>FinTech Platform</h3>
+                        <p>User growth of 150% in 6 months</p>
                     </div>
                 </div>
                 
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Healthcare Application">
+                <div class="portfolio-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
                     <div class="portfolio-overlay">
-                        <h3>Healthcare Platform</h3>
-                        <p>Improved user retention by 65%</p>
+                        <h3>Healthcare Portal</h3>
+                        <p>Improved patient engagement by 300%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Success Stories</h2>
+                <p>Don't just take our word for it. Here's what our clients say about working with us.</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"PrestigeWeb delivered a website that exceeded our £100k investment expectations. Our conversion rate increased by 180% and the quality of leads improved dramatically."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">JS</div>
+                        <div>
+                            <h4>James Sullivan</h4>
+                            <p>CEO, Sterling Financial</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -676,136 +636,72 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section" id="contact">
+    <section class="cta-section">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Ready to Transform Your Digital Presence?</h2>
-                <p class="section-subtitle">Partner with Ventus for design that delivers exceptional value and measurable results. Our minimum project engagement starts at £50,000.</p>
-                <a href="#contact" class="cta-button">Schedule a Strategy Call</a>
-            </div>
+            <h2>Ready to Invest in Your Digital Future?</h2>
+            <p>Book a complimentary strategy session with our lead consultant to explore how we can build a £100k+ value digital solution for your business.</p>
+            <button class="cta-button inverted">Schedule Your Free Consultation</button>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-container">
+            <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Ventus Design</h3>
-                    <p>A premium UX/UI design agency crafting digital experiences worth £1 million+ for elite brands worldwide.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
+                    <h3>PrestigeWeb</h3>
+                    <p>Creating digital experiences of exceptional value for ambitious businesses worldwide.</p>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Services</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Premium UX/UI Design</a></li>
-                        <li><a href="#">Mobile App Design</a></li>
-                        <li><a href="#">Brand Experience</a></li>
-                        <li><a href="#">Design Systems</a></li>
-                        <li><a href="#">UX Research & Strategy</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">UX/UI Design</a></li>
+                        <li><a href="#">E-Commerce</a></li>
+                        <li><a href="#">Digital Strategy</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul class="footer-links">
-                        <li><a href="#">hello@ventusdesign.com</a></li>
-                        <li><a href="#">+44 (0)20 7123 4567</a></li>
-                        <li><a href="#">Mayfair, London W1</a></li>
-                        <li><a href="#">Book a Consultation</a></li>
+                        <li><a href="#">hello@prestigeweb.co.uk</a></li>
+                        <li><a href="#">+44 (0)20 1234 5678</a></li>
+                        <li><a href="#">London, UK</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Ventus Design Agency. All rights reserved. | Premium UX/UI Design Worth £1 Million+</p>
+                <p>&copy; 2023 PrestigeWeb. All rights reserved. Premium web design and development.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple scroll animation
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const nav = document.querySelector('nav ul');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-                nav.style.flexDirection = 'column';
-                nav.style.position = 'absolute';
-                nav.style.top = '70px';
-                nav.style.right = '30px';
-                nav.style.backgroundColor = 'white';
-                nav.style.padding = '20px';
-                nav.style.borderRadius = '10px';
-                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-                nav.style.width = '200px';
+        // Simple smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
                 
-                if (nav.style.display === 'flex') {
-                    nav.querySelectorAll('li').forEach(item => {
-                        item.style.margin = '10px 0';
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
                     });
                 }
             });
-            
-            // Scroll animation for elements
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const checkVisibility = () => {
-                fadeElements.forEach(element => {
-                    const rect = element.getBoundingClientRect();
-                    const isVisible = rect.top <= window.innerHeight - 100;
-                    
-                    if (isVisible) {
-                        element.classList.add('visible');
-                    }
-                });
-            };
-            
-            // Check on load and scroll
-            window.addEventListener('scroll', checkVisibility);
-            window.addEventListener('load', checkVisibility);
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Close mobile menu if open
-                        if (window.innerWidth <= 900) {
-                            nav.style.display = 'none';
-                        }
-                    }
-                });
-            });
-            
-            // Header scroll effect
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                if (window.scrollY > 100) {
-                    header.style.padding = '10px 0';
-                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-                } else {
-                    header.style.padding = '20px 0';
-                    header.style.boxShadow = 'var(--shadow)';
-                }
+        });
+        
+        // CTA button interactions
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                alert("Thank you for your interest! Our team will contact you shortly to schedule your consultation.");
             });
         });
     </script>
