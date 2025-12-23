@@ -3,850 +3,599 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXA | Premium 3D Web Design Agency</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <title>Ventus | Premium UX/UI Design Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
-
+        
         :root {
-            --neon-blue: #00f3ff;
-            --neon-pink: #ff00ff;
-            --neon-green: #00ff9d;
-            --dark-bg: #0a0a0f;
-            --card-bg: rgba(20, 20, 30, 0.8);
-            --glass: rgba(255, 255, 255, 0.05);
-            --text-light: #f0f0f0;
-            --text-glow: rgba(0, 243, 255, 0.7);
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 8rem;
-            --radius: 12px;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --primary: #1a365d;
+            --secondary: #e6f0ff;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-light);
-            background-color: var(--dark-bg);
+            color: var(--dark);
+            background-color: var(--light);
             overflow-x: hidden;
-            min-height: 100vh;
-            perspective: 1000px;
         }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-
+        
         .container {
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 var(--spacing-md);
+            padding: 0 30px;
         }
-
-        section {
-            position: relative;
-            padding: var(--spacing-xl) 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Custom Cursor */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--neon-blue);
-            mix-blend-mode: difference;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.2s ease;
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--neon-blue);
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.4s ease;
-        }
-
-        /* Header */
+        
+        /* Header & Navigation */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            z-index: 100;
-            padding: var(--spacing-sm) 0;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
-
-        .navbar {
+        
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
-            font-size: 2rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-            position: relative;
-        }
-
-        .logo::after {
-            content: '£100k+';
-            position: absolute;
-            top: -8px;
-            right: -45px;
-            font-size: 0.7rem;
-            background: var(--neon-green);
-            color: var(--dark-bg);
-            padding: 2px 8px;
-            border-radius: 10px;
+            font-size: 28px;
             font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
-
-        .nav-links {
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        nav ul {
             display: flex;
             list-style: none;
-            gap: var(--spacing-md);
         }
-
-        .nav-links a {
-            color: var(--text-light);
+        
+        nav li {
+            margin-left: 40px;
+        }
+        
+        nav a {
+            color: var(--dark);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 8px 16px;
-            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
             transition: var(--transition);
             position: relative;
-            overflow: hidden;
         }
-
-        .nav-links a::before {
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
-            transition: left 0.7s;
         }
-
-        .nav-links a:hover::before {
-            left: 100%;
-        }
-
-        .nav-links a:hover {
-            background: rgba(0, 243, 255, 0.1);
-            color: var(--neon-blue);
-        }
-
-        .nav-cta {
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
-            color: var(--dark-bg);
-            font-weight: 700;
-            padding: 10px 24px;
-            border-radius: 30px;
+        
+        .cta-button {
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
+            display: inline-block;
             border: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
             cursor: pointer;
         }
-
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            padding: 180px 0 120px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
             position: relative;
             overflow: hidden;
         }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
+        
         .hero-content {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-            z-index: 10;
-        }
-
-        .hero-title {
-            font-size: 6rem;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: var(--spacing-md);
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
-            animation: textGlow 3s infinite alternate;
-        }
-
-        @keyframes textGlow {
-            0% { text-shadow: 0 0 30px rgba(0, 243, 255, 0.3); }
-            100% { text-shadow: 0 0 50px rgba(255, 0, 255, 0.5); }
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: var(--spacing-lg);
-            max-width: 600px;
-            opacity: 0.9;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-value {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.7;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: var(--spacing-sm);
-        }
-
-        .btn {
-            padding: 16px 32px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            max-width: 700px;
             position: relative;
-            overflow: hidden;
-            z-index: 1;
+            z-index: 2;
         }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
-            color: var(--dark-bg);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--primary);
         }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 50px rgba(0, 243, 255, 0.6);
+        
+        .hero h1 span {
+            color: var(--accent);
         }
-
-        .btn-secondary {
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .hero-btns .cta-button.secondary {
             background: transparent;
-            color: var(--text-light);
-            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: var(--accent);
+            border: 2px solid var(--accent);
         }
-
-        .btn-secondary:hover {
-            background: rgba(0, 243, 255, 0.1);
-            border-color: var(--neon-blue);
-            transform: translateY(-5px);
+        
+        .hero-btns .cta-button.secondary:hover {
+            background: var(--accent);
+            color: white;
         }
-
+        
+        .hero-visual {
+            position: absolute;
+            right: 0;
+            top: 100px;
+            width: 50%;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
+            background-size: cover;
+            border-radius: 20px 0 0 20px;
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: var(--gray);
+            font-weight: 600;
+        }
+        
         /* Services Section */
         .services {
-            position: relative;
-            overflow: hidden;
+            padding: 100px 0;
+            background-color: var(--secondary);
         }
-
-        .services::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .section-title {
-            font-size: 4rem;
+        
+        .section-header {
             text-align: center;
-            margin-bottom: var(--spacing-xl);
-            position: relative;
+            max-width: 700px;
+            margin: 0 auto 60px;
         }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
-            border-radius: 2px;
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
         }
-
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-xl);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-
+        
         .service-card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: var(--spacing-lg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 243, 255, 0.1);
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0, 243, 255, 0.03), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-
-        .service-card:hover::before {
-            transform: translateX(100%);
-        }
-
+        
         .service-card:hover {
-            transform: translateY(-15px) rotateX(5deg);
-            border-color: var(--neon-blue);
-            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.1);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
         }
-
+        
         .service-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
-            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: 25px;
         }
-
+        
+        .service-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        
         .service-title {
-            font-size: 1.8rem;
-            margin-bottom: var(--spacing-sm);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
         }
-
+        
         .service-desc {
-            opacity: 0.8;
+            color: var(--gray);
             line-height: 1.6;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: 20px;
         }
-
+        
         .service-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-top: auto;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
         }
-
+        
         /* Portfolio Section */
         .portfolio {
-            position: relative;
+            padding: 100px 0;
+            background-color: white;
         }
-
+        
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-xl);
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
         }
-
+        
         .portfolio-item {
-            height: 400px;
-            border-radius: var(--radius);
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: var(--shadow);
             position: relative;
-            transition: var(--transition);
+            height: 300px;
         }
-
-        .portfolio-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.2);
-        }
-
+        
         .portfolio-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s;
+            transition: var(--transition);
         }
-
+        
         .portfolio-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
-
+        
         .portfolio-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%;
-            padding: var(--spacing-lg);
-            background: linear-gradient(transparent, rgba(10, 10, 15, 0.9));
-            transform: translateY(30px);
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 30px;
+            transform: translateY(20px);
             opacity: 0;
             transition: var(--transition);
         }
-
+        
         .portfolio-item:hover .portfolio-overlay {
             transform: translateY(0);
             opacity: 1;
         }
-
-        .portfolio-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: var(--neon-blue);
-            color: var(--dark-bg);
-            font-size: 0.8rem;
-            font-weight: 700;
-            border-radius: 20px;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        /* 3D Showcase */
-        .showcase-3d {
-            height: 80vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        #showcase-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .showcase-content {
-            position: relative;
-            z-index: 10;
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary), #2d3748);
+            color: white;
             text-align: center;
-            max-width: 800px;
-            padding: var(--spacing-lg);
-            background: rgba(10, 10, 15, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: var(--radius);
-            border: 1px solid rgba(0, 243, 255, 0.2);
         }
-
-        /* Process Section */
-        .process {
-            position: relative;
+        
+        .cta-section .section-title {
+            color: white;
+            margin-bottom: 20px;
         }
-
-        .process-timeline {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin-top: var(--spacing-xl);
+        
+        .cta-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            margin: 0 auto 40px;
         }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-green));
-            z-index: -1;
-        }
-
-        .process-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 20%;
-            position: relative;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--dark-bg);
-            border: 2px solid var(--neon-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--neon-blue);
-            margin-bottom: var(--spacing-md);
-            transition: var(--transition);
-        }
-
-        .process-step:hover .step-number {
-            background: var(--neon-blue);
-            color: var(--dark-bg);
-            transform: scale(1.1);
-        }
-
-        /* Contact Section */
-        .contact {
-            position: relative;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xl);
-            align-items: center;
-        }
-
-        .contact-form {
-            background: var(--card-bg);
-            padding: var(--spacing-xl);
-            border-radius: var(--radius);
-            border: 1px solid rgba(0, 243, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--neon-blue);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: var(--radius);
-            color: var(--text-light);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-        }
-
-        .budget-slider {
-            width: 100%;
-            margin: var(--spacing-md) 0;
-        }
-
-        .budget-value {
-            font-size: 2rem;
-            font-weight: 900;
-            text-align: center;
-            margin: var(--spacing-md) 0;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
+        
         /* Footer */
         footer {
-            background: rgba(5, 5, 10, 0.95);
-            padding: var(--spacing-xl) 0 var(--spacing-md);
-            border-top: 1px solid rgba(0, 243, 255, 0.1);
-            position: relative;
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
         }
-
-        .footer-content {
+        
+        .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
+            gap: 50px;
+            margin-bottom: 50px;
         }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: var(--spacing-sm);
+        
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: white;
         }
-
-        .social-links {
-            display: flex;
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-md);
+        
+        .footer-column p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(0, 243, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
             text-decoration: none;
             transition: var(--transition);
         }
-
-        .social-link:hover {
-            background: var(--neon-blue);
-            color: var(--dark-bg);
-            transform: translateY(-5px);
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
         }
-
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
         .copyright {
             text-align: center;
-            padding-top: var(--spacing-md);
+            padding-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
+            color: #94a3b8;
+            font-size: 14px;
         }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .hero-visual {
+                width: 45%;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
         }
-
-        .float {
-            animation: float 5s ease-in-out infinite;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 4.5rem;
+        
+        @media (max-width: 900px) {
+            .hero {
+                padding: 150px 0 100px;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .hero-visual {
+                position: relative;
+                width: 100%;
+                height: 400px;
+                margin-top: 50px;
+                border-radius: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
             }
             
             .section-title {
-                font-size: 3rem;
+                font-size: 36px;
             }
             
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
+            nav ul {
                 display: none;
             }
             
             .mobile-menu-btn {
                 display: block;
-            }
-            
-            .hero-title {
-                font-size: 3.5rem;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: var(--spacing-md);
-            }
-            
-            .process-timeline {
-                flex-direction: column;
-                gap: var(--spacing-xl);
-            }
-            
-            .process-timeline::before {
-                display: none;
-            }
-            
-            .process-step {
-                width: 100%;
+                font-size: 24px;
+                background: none;
+                border: none;
+                color: var(--primary);
+                cursor: pointer;
             }
         }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.8rem;
+        
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: flex-start;
             }
             
             .section-title {
-                font-size: 2.5rem;
+                font-size: 32px;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
+            .service-card {
+                padding: 30px;
             }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <!-- Header -->
+    <!-- Header & Navigation -->
     <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">NEXA</a>
-                
-                <ul class="nav-links">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-crown"></i>Ventus<span>.</span>
+            </a>
+            
+            <nav>
+                <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#process">Process</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                
-                <a href="#contact" class="nav-cta">Start £100k Project</a>
-                
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
             </nav>
+            
+            <a href="#contact" class="cta-button">Start a Project</a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Hero Section with 3D Background -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg" id="hero-canvas"></div>
-        
-        <div class="hero-content">
-            <h1 class="hero-title">CRAFTING DIGITAL MASTERPIECES</h1>
-            <p class="hero-subtitle">We design and develop extraordinary web experiences for elite brands investing £100k+ in their digital presence. Where innovation meets exclusivity.</p>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-value">£250k+</div>
-                    <div class="stat-label">Largest Project</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">97%</div>
-                    <div class="stat-label">Client ROI</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">42</div>
-                    <div class="stat-label">Global Awards</div>
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Crafting Digital Excellence Worth <span>£1 Million+</span></h1>
+                <p>Ventus is a premium UX/UI design agency creating transformative digital experiences for elite brands. Our meticulous approach to design yields exceptional ROI and lasting impact.</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="cta-button">View Our Work</a>
+                    <a href="#contact" class="cta-button secondary">Book a Consultation</a>
                 </div>
             </div>
-            
-            <div class="hero-cta">
-                <a href="#portfolio" class="btn btn-primary">
-                    <i class="fas fa-play-circle"></i> View Showcase
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-comment-dollar"></i> Request Proposal
-                </a>
+        </div>
+        <div class="hero-visual"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container stats-container">
+            <div class="stat-item fade-in">
+                <div class="stat-number">£1M+</div>
+                <div class="stat-label">Design Value Created</div>
+            </div>
+            <div class="stat-item fade-in">
+                <div class="stat-number">42%</div>
+                <div class="stat-label">Average Client ROI</div>
+            </div>
+            <div class="stat-item fade-in">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+            <div class="stat-item fade-in">
+                <div class="stat-number">24</div>
+                <div class="stat-label">Global Awards</div>
             </div>
         </div>
     </section>
@@ -854,55 +603,38 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">ELITE TIER SERVICES</h2>
+            <div class="section-header fade-in">
+                <h2 class="section-title">Premium Design Services</h2>
+                <p class="section-subtitle">Our exclusive offerings are tailored for businesses seeking transformative digital experiences with measurable impact.</p>
+            </div>
             
             <div class="services-grid">
-                <div class="service-card float">
-                    <div>
-                        <div class="service-icon">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <h3 class="service-title">3D Immersive Experiences</h3>
-                        <p class="service-desc">Full 3D interactive websites with WebGL, Three.js, and real-time rendering. Create unforgettable digital environments.</p>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-ruler"></i>
                     </div>
-                    <div class="service-price">From £75k</div>
+                    <h3 class="service-title">Elite UX/UI Design</h3>
+                    <p class="service-desc">Comprehensive user experience and interface design that drives engagement, conversions, and brand loyalty.</p>
+                    <div class="service-price">From £75,000</div>
                 </div>
                 
-                <div class="service-card float" style="animation-delay: 0.2s;">
-                    <div>
-                        <div class="service-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 class="service-title">AI-Powered Platforms</h3>
-                        <p class="service-desc">Custom AI integration, machine learning interfaces, and predictive analytics for next-generation web applications.</p>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <div class="service-price">From £120k</div>
+                    <h3 class="service-title">Premium App Design</h3>
+                    <p class="service-desc">Award-winning mobile application design that delivers exceptional user experiences across all platforms.</p>
+                    <div class="service-price">From £120,000</div>
                 </div>
                 
-                <div class="service-card float" style="animation-delay: 0.4s;">
-                    <div>
-                        <div class="service-icon">
-                            <i class="fas fa-vr-cardboard"></i>
-                        </div>
-                        <h3 class="service-title">VR/AR Web Integration</h3>
-                        <p class="service-desc">Virtual and augmented reality experiences accessible directly through web browsers without plugins.</p>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-bullseye"></i>
                     </div>
-                    <div class="service-price">From £150k</div>
+                    <h3 class="service-title">Brand Experience Design</h3>
+                    <p class="service-desc">End-to-end brand experience design that establishes emotional connections and drives business growth.</p>
+                    <div class="service-price">From £150,000</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3D Showcase Section -->
-    <section class="showcase-3d">
-        <canvas id="showcase-canvas"></canvas>
-        
-        <div class="showcase-content">
-            <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">INTERACTIVE 3D SHOWCASE</h3>
-            <p>Drag to rotate • Scroll to zoom • Experience our £180k luxury automotive configurator</p>
-            <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-                <button id="change-color" class="btn btn-secondary" style="padding: 10px 20px;">Change Color</button>
-                <button id="toggle-animation" class="btn btn-secondary" style="padding: 10px 20px;">Toggle Animation</button>
             </div>
         </div>
     </section>
@@ -910,144 +642,46 @@
     <!-- Portfolio Section -->
     <section class="portfolio" id="portfolio">
         <div class="container">
-            <h2 class="section-title">£100k+ PORTFOLIO</h2>
+            <div class="section-header fade-in">
+                <h2 class="section-title">Exceptional Case Studies</h2>
+                <p class="section-subtitle">Our portfolio showcases transformative designs that have delivered substantial value to our clients.</p>
+            </div>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Fashion Platform">
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Financial Dashboard Design">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-tag">£220k Project</div>
-                        <h3>LUXE MODE</h3>
-                        <p>3D virtual fashion showroom with AR try-on</p>
+                        <h3>Fintech Dashboard</h3>
+                        <p>Increased user engagement by 300%</p>
                     </div>
                 </div>
                 
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="FinTech Dashboard">
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury E-commerce Platform">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-tag">£180k Project</div>
-                        <h3>QUANTUM FINANCE</h3>
-                        <p>AI-powered financial dashboard with real-time 3D data viz</p>
+                        <h3>Luxury E-commerce</h3>
+                        <p>Boosted conversions by 42%</p>
                     </div>
                 </div>
                 
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Automotive Configurator">
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Healthcare Application">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-tag">£250k Project</div>
-                        <h3>AURORA MOTORS</h3>
-                        <p>Fully interactive 3D car configurator with real-time rendering</p>
+                        <h3>Healthcare Platform</h3>
+                        <p>Improved user retention by 65%</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section class="process" id="process">
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
         <div class="container">
-            <h2 class="section-title">ELITE PROCESS</h2>
-            
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="step-number">01</div>
-                    <h3>Discovery</h3>
-                    <p>£10k Strategy Phase</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">02</div>
-                    <h3>Conception</h3>
-                    <p>3D Prototyping & AI Planning</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">03</div>
-                    <h3>Creation</h3>
-                    <p>Immersive Development</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">04</div>
-                    <h3>Refinement</h3>
-                    <p>Performance Optimization</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">05</div>
-                    <h3>Delivery</h3>
-                    <p>Launch & ROI Tracking</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">INITIATE £100k PROJECT</h2>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3 style="font-size: 2.5rem; margin-bottom: 1.5rem;">EXCLUSIVE PARTNERSHIP</h3>
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">We accept only 8 elite projects annually. Each receives dedicated senior team with 15+ years experience.</p>
-                    
-                    <div style="margin-top: 3rem;">
-                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-                            <div style="width: 50px; height: 50px; background: var(--neon-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                            <div>
-                                <h4>Dedicated Team</h4>
-                                <p style="opacity: 0.8;">Senior Designer, Developer, 3D Artist & AI Specialist</p>
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-                            <div style="width: 50px; height: 50px; background: var(--neon-pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div>
-                                <h4>Guaranteed ROI</h4>
-                                <p style="opacity: 0.8;">Minimum 300% ROI within 12 months or partial refund</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="projectForm">
-                        <div class="form-group">
-                            <label class="form-label">Project Budget</label>
-                            <input type="range" class="budget-slider" id="budgetSlider" min="100" max="500" step="50" value="150">
-                            <div class="budget-value">£150k</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" placeholder="CEO / Founder / Director" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Company</label>
-                            <input type="text" class="form-control" placeholder="Global Brand / Enterprise" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" placeholder="executive@company.com" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Project Vision</label>
-                            <textarea class="form-control" rows="4" placeholder="Describe your £100k+ vision..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
-                            <i class="fas fa-paper-plane"></i> SUBMIT FOR EXECUTIVE REVIEW
-                        </button>
-                    </form>
-                </div>
+            <div class="section-header fade-in">
+                <h2 class="section-title">Ready to Transform Your Digital Presence?</h2>
+                <p class="section-subtitle">Partner with Ventus for design that delivers exceptional value and measurable results. Our minimum project engagement starts at £50,000.</p>
+                <a href="#contact" class="cta-button">Schedule a Strategy Call</a>
             </div>
         </div>
     </section>
@@ -1055,345 +689,124 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div>
-                    <a href="#" class="footer-logo">NEXA</a>
-                    <p style="opacity: 0.8; margin: 1rem 0; max-width: 300px;">Creating digital masterpieces for the world's most ambitious brands since 2012.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Ventus Design</h3>
+                    <p>A premium UX/UI design agency crafting digital experiences worth £1 million+ for elite brands worldwide.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
-                <div>
-                    <h4 style="margin-bottom: 1.5rem;">LONDON HQ</h4>
-                    <p style="opacity: 0.8;">Mayfair District</p>
-                    <p style="opacity: 0.8;">London W1K 4PG</p>
-                    <p style="opacity: 0.8; margin-top: 1rem;">+44 20 7123 4567</p>
-                    <p style="opacity: 0.8;">executive@nexa.design</p>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Premium UX/UI Design</a></li>
+                        <li><a href="#">Mobile App Design</a></li>
+                        <li><a href="#">Brand Experience</a></li>
+                        <li><a href="#">Design Systems</a></li>
+                        <li><a href="#">UX Research & Strategy</a></li>
+                    </ul>
                 </div>
                 
-                <div>
-                    <h4 style="margin-bottom: 1.5rem;">ELITE PROJECTS ONLY</h4>
-                    <p style="opacity: 0.8;">Minimum project budget: £100k</p>
-                    <p style="opacity: 0.8;">Average timeline: 4-6 months</p>
-                    <p style="opacity: 0.8;">Team size: 4-6 senior specialists</p>
-                    <p style="opacity: 0.8;">Availability: 2 slots for 2024</p>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">hello@ventusdesign.com</a></li>
+                        <li><a href="#">+44 (0)20 7123 4567</a></li>
+                        <li><a href="#">Mayfair, London W1</a></li>
+                        <li><a href="#">Book a Consultation</a></li>
+                    </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>© 2024 NEXA | Elite Web Design Agency | Projects Starting at £100k</p>
+                <p>&copy; 2023 Ventus Design Agency. All rights reserved. | Premium UX/UI Design Worth £1 Million+</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        // Simple scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav ul');
             
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
-        });
-        
-        // Interactive elements effect
-        document.querySelectorAll('a, button, .service-card, .portfolio-item').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-                cursorFollower.style.transform = 'scale(1.5)';
-            });
-            
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursorFollower.style.transform = 'scale(1)';
-            });
-        });
-
-        // Budget Slider
-        const budgetSlider = document.getElementById('budgetSlider');
-        const budgetValue = document.querySelector('.budget-value');
-        
-        budgetSlider.addEventListener('input', () => {
-            const value = budgetSlider.value;
-            budgetValue.textContent = `£${value}k`;
-            
-            // Dynamic color based on budget
-            if (value >= 300) {
-                budgetValue.style.background = 'linear-gradient(45deg, #ff00ff, #ff9d00)';
-                budgetValue.style.webkitBackgroundClip = 'text';
-                budgetValue.style.backgroundClip = 'text';
-            } else if (value >= 200) {
-                budgetValue.style.background = 'linear-gradient(45deg, #00f3ff, #ff00ff)';
-                budgetValue.style.webkitBackgroundClip = 'text';
-                budgetValue.style.backgroundClip = 'text';
-            }
-        });
-
-        // Form Submission
-        const projectForm = document.getElementById('projectForm');
-        projectForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const budget = budgetSlider.value;
-            
-            // Confirmation with budget
-            const modal = document.createElement('div');
-            modal.style.position = 'fixed';
-            modal.style.top = '0';
-            modal.style.left = '0';
-            modal.style.width = '100%';
-            modal.style.height = '100%';
-            modal.style.background = 'rgba(10, 10, 15, 0.95)';
-            modal.style.display = 'flex';
-            modal.style.alignItems = 'center';
-            modal.style.justifyContent = 'center';
-            modal.style.zIndex = '99999';
-            modal.style.backdropFilter = 'blur(20px)';
-            
-            modal.innerHTML = `
-                <div style="background: var(--card-bg); padding: 3rem; border-radius: var(--radius); border: 1px solid var(--neon-blue); max-width: 500px; text-align: center;">
-                    <div style="font-size: 5rem; margin-bottom: 1rem;">🚀</div>
-                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">PROPOSAL INITIATED</h3>
-                    <p style="opacity: 0.9; margin-bottom: 2rem;">Your £${budget}k project brief has been submitted for executive review. Our founding partner will contact you within 24 hours.</p>
-                    <button id="closeModal" class="btn btn-primary" style="padding: 12px 30px;">CONTINUE</button>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            document.getElementById('closeModal').addEventListener('click', () => {
-                document.body.removeChild(modal);
-                projectForm.reset();
-                budgetValue.textContent = '£150k';
-            });
-        });
-
-        // Mobile Menu
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.background = 'rgba(10, 10, 15, 0.95)';
-            navLinks.style.backdropFilter = 'blur(20px)';
-            navLinks.style.padding = '2rem';
-            navLinks.style.gap = '1.5rem';
-            navLinks.style.borderTop = '1px solid rgba(0, 243, 255, 0.1)';
-        });
-
-        // Smooth Scrolling with Lenis
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            smoothTouch: false,
-            touchMultiplier: 2,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // Three.js Scene for Hero Background
-        const heroCanvas = document.getElementById('hero-canvas');
-        let heroScene, heroCamera, heroRenderer, heroParticles;
-        
-        function initHeroScene() {
-            // Scene
-            heroScene = new THREE.Scene();
-            
-            // Camera
-            heroCamera = new THREE.PerspectiveCamera(75, heroCanvas.clientWidth / heroCanvas.clientHeight, 0.1, 1000);
-            heroCamera.position.z = 5;
-            
-            // Renderer
-            heroRenderer = new THREE.WebGLRenderer({ 
-                alpha: true, 
-                antialias: true 
-            });
-            heroRenderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
-            heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            heroCanvas.appendChild(heroRenderer.domElement);
-            
-            // Particles
-            const particleGeometry = new THREE.BufferGeometry();
-            const particleCount = 2000;
-            const posArray = new Float32Array(particleCount * 3);
-            
-            for(let i = 0; i < particleCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 20;
-            }
-            
-            particleGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            
-            const particleMaterial = new THREE.PointsMaterial({
-                size: 0.02,
-                color: new THREE.Color(0x00f3ff),
-                transparent: true,
-                opacity: 0.8
-            });
-            
-            heroParticles = new THREE.Points(particleGeometry, particleMaterial);
-            heroScene.add(heroParticles);
-            
-            // Animation
-            function animate() {
-                requestAnimationFrame(animate);
-                heroParticles.rotation.x += 0.001;
-                heroParticles.rotation.y += 0.001;
-                heroRenderer.render(heroScene, heroCamera);
-            }
-            animate();
-            
-            // Handle resize
-            window.addEventListener('resize', () => {
-                heroCamera.aspect = heroCanvas.clientWidth / heroCanvas.clientHeight;
-                heroCamera.updateProjectionMatrix();
-                heroRenderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
-            });
-        }
-        
-        // Three.js Interactive Showcase
-        const showcaseCanvas = document.getElementById('showcase-canvas');
-        let showcaseScene, showcaseCamera, showcaseRenderer, showcaseControls, showcaseObject;
-        let animationId = null;
-        
-        function initShowcaseScene() {
-            // Scene
-            showcaseScene = new THREE.Scene();
-            showcaseScene.background = new THREE.Color(0x0a0a0f);
-            
-            // Camera
-            showcaseCamera = new THREE.PerspectiveCamera(75, showcaseCanvas.clientWidth / showcaseCanvas.clientHeight, 0.1, 1000);
-            showcaseCamera.position.z = 5;
-            
-            // Renderer
-            showcaseRenderer = new THREE.WebGLRenderer({ 
-                canvas: showcaseCanvas,
-                antialias: true,
-                alpha: true
-            });
-            showcaseRenderer.setSize(showcaseCanvas.clientWidth, showcaseCanvas.clientHeight);
-            showcaseRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            
-            // Lights
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-            showcaseScene.add(ambientLight);
-            
-            const directionalLight = new THREE.DirectionalLight(0x00f3ff, 1);
-            directionalLight.position.set(5, 5, 5);
-            showcaseScene.add(directionalLight);
-            
-            const directionalLight2 = new THREE.DirectionalLight(0xff00ff, 0.5);
-            directionalLight2.position.set(-5, -5, -5);
-            showcaseScene.add(directionalLight2);
-            
-            // Geometry - Create an abstract 3D object
-            const geometry = new THREE.IcosahedronGeometry(2, 2);
-            const material = new THREE.MeshStandardMaterial({ 
-                color: 0x00f3ff,
-                metalness: 0.8,
-                roughness: 0.2,
-                wireframe: false
-            });
-            
-            showcaseObject = new THREE.Mesh(geometry, material);
-            showcaseScene.add(showcaseObject);
-            
-            // Wireframe overlay
-            const wireframeGeometry = new THREE.IcosahedronGeometry(2.05, 2);
-            const wireframeMaterial = new THREE.MeshBasicMaterial({ 
-                color: 0xffffff,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.3
-            });
-            
-            const wireframe = new THREE.Mesh(wireframeGeometry, wireframeMaterial);
-            showcaseScene.add(wireframe);
-            
-            // Controls
-            showcaseControls = new THREE.OrbitControls(showcaseCamera, showcaseRenderer.domElement);
-            showcaseControls.enableDamping = true;
-            showcaseControls.dampingFactor = 0.05;
-            
-            // Animation
-            function animate() {
-                animationId = requestAnimationFrame(animate);
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '70px';
+                nav.style.right = '30px';
+                nav.style.backgroundColor = 'white';
+                nav.style.padding = '20px';
+                nav.style.borderRadius = '10px';
+                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                nav.style.width = '200px';
                 
-                if (showcaseObject) {
-                    showcaseObject.rotation.x += 0.005;
-                    showcaseObject.rotation.y += 0.005;
-                    wireframe.rotation.x = showcaseObject.rotation.x;
-                    wireframe.rotation.y = showcaseObject.rotation.y;
+                if (nav.style.display === 'flex') {
+                    nav.querySelectorAll('li').forEach(item => {
+                        item.style.margin = '10px 0';
+                    });
                 }
-                
-                showcaseControls.update();
-                showcaseRenderer.render(showcaseScene, showcaseCamera);
-            }
-            animate();
-            
-            // Interactive buttons
-            document.getElementById('change-color').addEventListener('click', () => {
-                const colors = [0x00f3ff, 0xff00ff, 0x00ff9d, 0xff9d00];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                showcaseObject.material.color.setHex(randomColor);
             });
             
-            let isAnimating = true;
-            document.getElementById('toggle-animation').addEventListener('click', () => {
-                isAnimating = !isAnimating;
-                if (isAnimating) {
-                    animate();
+            // Scroll animation for elements
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const checkVisibility = () => {
+                fadeElements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    const isVisible = rect.top <= window.innerHeight - 100;
+                    
+                    if (isVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Check on load and scroll
+            window.addEventListener('scroll', checkVisibility);
+            window.addEventListener('load', checkVisibility);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 900) {
+                            nav.style.display = 'none';
+                        }
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.padding = '10px 0';
+                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
                 } else {
-                    cancelAnimationFrame(animationId);
+                    header.style.padding = '20px 0';
+                    header.style.boxShadow = 'var(--shadow)';
                 }
             });
-            
-            // Handle resize
-            window.addEventListener('resize', () => {
-                showcaseCamera.aspect = showcaseCanvas.clientWidth / showcaseCanvas.clientHeight;
-                showcaseCamera.updateProjectionMatrix();
-                showcaseRenderer.setSize(showcaseCanvas.clientWidth, showcaseCanvas.clientHeight);
-            });
-        }
-        
-        // Initialize scenes when page loads
-        window.addEventListener('load', () => {
-            initHeroScene();
-            initShowcaseScene();
-        });
-        
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroTitle = document.querySelector('.hero-title');
-            const heroSubtitle = document.querySelector('.hero-subtitle');
-            
-            if (heroTitle) {
-                heroTitle.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-            
-            if (heroSubtitle) {
-                heroSubtitle.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
         });
     </script>
 </body>
