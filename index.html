@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura & Axis | Narrative Digital Design</title>
+    <title>LUMEN | Premium Web Design Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000000;
-            --text-color: #f5f5f7;
-            --accent-color: #0071e3;
-            --secondary-text: #86868b;
-            --glass: rgba(22, 22, 23, 0.8);
+            --white: #ffffff;
+            --orange-primary: #FF6B35;
+            --orange-light: #FF9E7A;
+            --orange-dark: #E55A2B;
+            --gray-light: #f8f9fa;
+            --gray-mid: #e9ecef;
+            --gray-text: #495057;
+            --gray-dark: #212529;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-subtle: 0 8px 30px rgba(0, 0, 0, 0.04);
+            --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --transition-smooth: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+            --transition-micro: all 0.2s ease-out;
         }
 
         * {
@@ -22,222 +32,913 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.5;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
 
-        /* --- Navigation --- */
-        nav {
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--gray-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--white);
+        }
+
+        .hero-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .abstract-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.15;
+            background: linear-gradient(135deg, var(--orange-primary), transparent 70%);
+            transform-style: preserve-3d;
+            transition: var(--transition-smooth);
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            left: 5%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 15%;
+            right: 8%;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            left: 70%;
+            animation: float 18s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .agency-name {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            color: var(--gray-text);
+        }
+
+        .hero-headline {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-headline .highlight {
+            color: var(--orange-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-headline .highlight::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background-color: var(--orange-light);
+            opacity: 0.3;
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
+        }
+
+        .hero-subheadline {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        /* Hero Input */
+        .hero-input-container {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .hero-input-label {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: block;
+            color: var(--gray-dark);
+        }
+
+        .hero-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .hero-input {
+            width: 100%;
+            padding: 1.8rem 2rem;
+            border: 1px solid var(--gray-mid);
+            border-radius: 16px;
+            font-size: 1.2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            color: var(--gray-dark);
+        }
+
+        .hero-input:focus {
+            outline: none;
+            border-color: var(--orange-light);
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+        }
+
+        .hero-input-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--orange-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .hero-input-btn:hover {
+            background-color: var(--orange-dark);
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* CTA Buttons */
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .cta-primary {
+            background-color: var(--orange-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .cta-primary:hover {
+            background-color: var(--orange-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .cta-secondary {
+            background-color: transparent;
+            color: var(--gray-dark);
+            border: 1px solid var(--gray-mid);
+            border-radius: 12px;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--orange-light);
+            color: var(--orange-primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        /* Navigation */
+        .nav-container {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 48px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 1000;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            background-color: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
             display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 0.5px solid rgba(255,255,255,0.1);
-        }
-
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 12px;
-            margin: 0 20px;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            letter-spacing: 0.5px;
-        }
-
-        nav a:hover { opacity: 1; }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 80px);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 10px;
-            background: linear-gradient(180deg, #fff 0%, #888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: clamp(18px, 3vw, 24px);
-            color: var(--secondary-text);
-            max-width: 600px;
-        }
-
-        /* --- Grid Section --- */
-        .grid-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-            display: grid;
-            grid-template-columns: repeat(12, 1-fr);
-            gap: 20px;
-        }
-
-        .card {
-            background: #161617;
-            border-radius: 28px;
-            padding: 40px;
-            grid-column: span 6;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--orange-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition-micro);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--orange-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--orange-primary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Glassmorphism Cards */
+        .section {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition-smooth);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) perspective(1000px) rotateX(5deg);
+            box-shadow: var(--shadow-elevated);
+            border-color: var(--orange-light);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: var(--orange-primary);
+            font-size: 1.8rem;
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-description {
+            color: var(--gray-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: var(--orange-primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-micro);
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+
+        /* Work Showcase */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .work-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            position: relative;
+            background-color: var(--white);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .work-image {
+            height: 250px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-text);
+            font-size: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-image::after {
+            content: 'VIEW CASE STUDY →';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 107, 53, 0.9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-smooth);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .work-card:hover .work-image::after {
+            opacity: 1;
+        }
+
+        .work-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-category {
+            color: var(--orange-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .work-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .work-description {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--gray-light);
+            border-radius: 30px;
+            margin: 5rem auto;
+            padding: 5rem;
+            max-width: 1200px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--orange-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--gray-light);
+            padding: 5rem 3rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--gray-dark);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 1rem;
+        }
+
+        .footer-link a {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: var(--transition-micro);
+        }
+
+        .footer-link a:hover {
+            color: var(--orange-primary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-mid);
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-headline {
+                font-size: 3.5rem;
+            }
+            
+            .section {
+                padding: 6rem 2rem;
+            }
+            
+            .nav-container {
+                padding: 1.5rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-headline {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subheadline {
+                font-size: 1.2rem;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Scroll Animation Classes */
+        .fade-in {
             opacity: 0;
             transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .card.reveal {
+        .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .card.large { grid-column: span 12; }
-
-        .card h3 { font-size: 32px; margin-bottom: 10px; }
-        .card p { color: var(--secondary-text); font-size: 18px; }
-
-        .tag {
-            font-size: 12px;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 10px;
-            display: block;
+        .delay-1 {
+            transition-delay: 0.1s;
         }
 
-        /* --- CTA --- */
-        .cta-section {
-            padding: 150px 20px;
-            text-align: center;
+        .delay-2 {
+            transition-delay: 0.2s;
         }
 
-        .btn {
-            background: var(--accent-color);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 980px;
-            text-decoration: none;
-            font-weight: 400;
-            font-size: 17px;
-            display: inline-block;
-            transition: background 0.3s;
-        }
-
-        .btn:hover { background: #0077ed; }
-
-        footer {
-            padding: 50px 20px;
-            border-top: 0.5px solid #333;
-            font-size: 12px;
-            color: var(--secondary-text);
-            text-align: center;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .card { grid-column: span 12; }
+        .delay-3 {
+            transition-delay: 0.3s;
         }
     </style>
 </head>
 <body>
-
-    <nav>
-        <a href="#">Studio</a>
-        <a href="#">Work</a>
-        <a href="#">Process</a>
-        <a href="#">Contact</a>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <a href="#" class="nav-logo">LUMEN<span>.</span></a>
+        <div class="nav-links">
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#work" class="nav-link">Work</a>
+            <a href="#process" class="nav-link">Process</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <span class="tag">Established 2025</span>
-        <h1>Design for the <br>next epoch.</h1>
-        <p>We build digital experiences that feel as natural as breathing.</p>
+        <div class="hero-background">
+            <div class="abstract-shape shape-1" data-depth="0.2"></div>
+            <div class="abstract-shape shape-2" data-depth="0.4"></div>
+            <div class="abstract-shape shape-3" data-depth="0.6"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="agency-name fade-in">LUMEN DIGITAL</div>
+            <h1 class="hero-headline fade-in delay-1">
+                We craft <span class="highlight">digital experiences</span> for brands that demand excellence
+            </h1>
+            <p class="hero-subheadline fade-in delay-2">
+                A select studio partnering with ambitious leaders to build transformative digital products that drive measurable impact.
+            </p>
+            
+            <div class="hero-input-container fade-in delay-2">
+                <label for="project-input" class="hero-input-label">What are you building?</label>
+                <div class="hero-input-wrapper">
+                    <input type="text" id="project-input" class="hero-input" placeholder="Describe your project, product, or vision...">
+                    <button class="hero-input-btn">Explore Possibilities →</button>
+                </div>
+            </div>
+            
+            <div class="cta-container fade-in delay-3">
+                <button class="cta-primary">
+                    <i class="fas fa-calendar-check"></i> Schedule a Consultation
+                </button>
+                <button class="cta-secondary">
+                    <i class="fas fa-play-circle"></i> View Our Showreel
+                </button>
+            </div>
+        </div>
     </section>
 
-    <div class="grid-container">
-        <div class="card large">
-            <div>
-                <span class="tag">Featured Project</span>
-                <h3>Lumina OS</h3>
-                <p>A spatial interface for the modern web.</p>
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <h2 class="section-title fade-in">Crafting Digital Excellence</h2>
+        <p class="section-subtitle fade-in delay-1">
+            We deliver bespoke solutions that balance aesthetic precision with technical mastery, ensuring your digital presence commands attention and delivers results.
+        </p>
+        
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <i class="fas fa-pencil-ruler"></i>
+                </div>
+                <h3 class="service-title">Premium Web Design</h3>
+                <p class="service-description">
+                    Award-winning, custom designs that capture your brand essence while delivering seamless user experiences that convert.
+                </p>
+                <a href="#" class="service-link">
+                    Explore our design process <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="service-card fade-in delay-1">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="service-title">Development Excellence</h3>
+                <p class="service-description">
+                    Cutting-edge development with flawless execution, using the latest technologies to build fast, secure, and scalable solutions.
+                </p>
+                <a href="#" class="service-link">
+                    View technology stack <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="service-card fade-in delay-2">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="service-title">Digital Strategy</h3>
+                <p class="service-description">
+                    Data-driven strategies that align digital initiatives with business objectives to drive growth, engagement, and market leadership.
+                </p>
+                <a href="#" class="service-link">
+                    See case studies <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
+    </section>
 
-        <div class="card">
-            <div>
-                <span class="tag">Strategy</span>
-                <h3>Atomic Clarity.</h3>
-                <p>Removing the noise until only the essence remains.</p>
+    <!-- Stats Section -->
+    <div class="stats-section fade-in">
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">47+</div>
+                <div class="stat-label">Awards Won</div>
             </div>
-        </div>
-
-        <div class="card">
-            <div>
-                <span class="tag">Motion</span>
-                <h3>Kinetic Soul.</h3>
-                <p>Interaction that responds to human intent.</p>
+            <div class="stat">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Client Retention</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">£2.1B+</div>
+                <div class="stat-label">Client Revenue Generated</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3.2x</div>
+                <div class="stat-label">Average ROI</div>
             </div>
         </div>
     </div>
 
-    <section class="cta-section">
-        <h2>Ready to redefine your presence?</h2>
-        <br>
-        <a href="#" class="btn">Start a Conversation</a>
+    <!-- Work Section -->
+    <section class="section" id="work">
+        <h2 class="section-title fade-in">Selected Work</h2>
+        <p class="section-subtitle fade-in delay-1">
+            A curated selection of projects that demonstrate our commitment to excellence, innovation, and measurable results.
+        </p>
+        
+        <div class="work-grid">
+            <div class="work-card fade-in">
+                <div class="work-image">
+                    Fintech Dashboard
+                </div>
+                <div class="work-content">
+                    <div class="work-category">Fintech • SaaS</div>
+                    <h3 class="work-title">Nexus Banking Platform</h3>
+                    <p class="work-description">A complete redesign of a financial dashboard serving over 500,000 users globally.</p>
+                </div>
+            </div>
+            
+            <div class="work-card fade-in delay-1">
+                <div class="work-image">
+                    Luxury E-commerce
+                </div>
+                <div class="work-content">
+                    <div class="work-category">Luxury Retail</div>
+                    <h3 class="work-title">Atelier & Mayfair</h3>
+                    <p class="work-description">An immersive digital flagship store for a heritage luxury fashion house.</p>
+                </div>
+            </div>
+            
+            <div class="work-card fade-in delay-2">
+                <div class="work-image">
+                    Health Tech Platform
+                </div>
+                <div class="work-content">
+                    <div class="work-category">Health Technology</div>
+                    <h3 class="work-title">Vitalis Health Systems</h3>
+                    <p class="work-description">A patient management platform used by over 200 clinics across Europe.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Aura & Axis. All rights reserved. Designed in London.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3 class="footer-heading">LUMEN<span style="color: var(--orange-primary);">.</span></h3>
+                <p>Creating digital experiences that redefine what's possible for ambitious brands worldwide.</p>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">Services</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Web Design</a></li>
+                    <li class="footer-link"><a href="#">Development</a></li>
+                    <li class="footer-link"><a href="#">Digital Strategy</a></li>
+                    <li class="footer-link"><a href="#">Brand Identity</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">Connect</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">LinkedIn</a></li>
+                    <li class="footer-link"><a href="#">Instagram</a></li>
+                    <li class="footer-link"><a href="#">Twitter</a></li>
+                    <li class="footer-link"><a href="#">Dribbble</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-heading">Contact</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">hello@lumen.design</a></li>
+                    <li class="footer-link"><a href="#">+44 (0)20 7123 4567</a></li>
+                    <li class="footer-link"><a href="#">London • New York • Singapore</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 LUMEN Digital. All rights reserved. Crafted with precision in London.
+        </div>
     </footer>
 
     <script>
-        // Intersection Observer for the Apple-style scroll reveal
-        const observerOptions = {
-            threshold: 0.1
-        };
+        // Parallax effect for abstract shapes
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.abstract-shape');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const depth = shape.getAttribute('data-depth') || 0.2;
+                const moveX = (mouseX - 0.5) * 40 * depth;
+                const moveY = (mouseY - 0.5) * 40 * depth;
+                
+                shape.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
 
+        // Scroll-triggered animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
+                    entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.card').forEach(card => {
-            observer.observe(card);
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
         });
 
-        // Smooth parallax for hero
+        // Glassmorphism navigation effect on scroll
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroText = document.querySelector('.hero h1');
-            heroText.style.transform = `translateY(${scrolled * 0.3}px)`;
-            heroText.style.opacity = 1 - (scrolled / 600);
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                nav.style.backdropFilter = 'blur(15px)';
+                nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+            } else {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+                nav.style.backdropFilter = 'blur(10px)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // 3D hover effect for service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        serviceCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (x - centerX) / 25;
+                const rotateX = (centerY - y) / 25;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // Hero input interaction
+        const heroInput = document.getElementById('project-input');
+        const heroInputBtn = document.querySelector('.hero-input-btn');
+        
+        heroInputBtn.addEventListener('click', () => {
+            if (heroInput.value.trim() !== '') {
+                alert(`Thank you for sharing your project: "${heroInput.value}". Our team will review your inquiry and respond within 24 hours.`);
+                heroInput.value = '';
+            } else {
+                heroInput.focus();
+            }
+        });
+        
+        heroInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                heroInputBtn.click();
+            }
         });
     </script>
 </body>
