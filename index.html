@@ -3,706 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrestigeWeb | Premium Web Design Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Aura & Axis | Narrative Digital Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #D4AF37;
-            --gold-light: #F4E8C1;
-            --gold-dark: #A8852E;
-            --orange: #FF8C42;
-            --orange-light: #FFE0C7;
-            --orange-dark: #E67A3A;
-            --neutral-dark: #1A1A1A;
-            --neutral-medium: #3A3A3A;
-            --neutral-light: #F8F8F8;
-            --white: #FFFFFF;
-            --transition: all 0.3s ease;
+            --bg-color: #000000;
+            --text-color: #f5f5f7;
+            --accent-color: #0071e3;
+            --secondary-text: #86868b;
+            --glass: rgba(22, 22, 23, 0.8);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--neutral-medium);
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
             overflow-x: hidden;
-            background-color: var(--neutral-light);
+            -webkit-font-smoothing: antialiased;
         }
-        
-        h1, h2, h3, h4, h5 {
-            font-family: 'Playfair Display', serif;
-            color: var(--neutral-dark);
-            font-weight: 600;
-        }
-        
-        .container {
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
             width: 100%;
+            height: 48px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 0.5px solid rgba(255,255,255,0.1);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 20px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover { opacity: 1; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--secondary-text);
+            max-width: 600px;
+        }
+
+        /* --- Grid Section --- */
+        .grid-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--neutral-dark);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--gold);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--neutral-medium);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover {
-            color: var(--orange);
-        }
-        
-        .cta-button {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
-            color: var(--white);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 140, 66, 0.3);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 160px 0 100px;
-            background: linear-gradient(135deg, rgba(255, 226, 199, 0.3) 0%, rgba(244, 232, 193, 0.3) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            max-width: 650px;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-        
-        .hero h1 span {
-            color: var(--gold);
-            position: relative;
-        }
-        
-        .hero h1 span:after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background-color: var(--orange-light);
-            z-index: -1;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: var(--neutral-medium);
-        }
-        
-        .stats {
-            display: flex;
-            margin-top: 40px;
-        }
-        
-        .stat-item {
-            margin-right: 40px;
-        }
-        
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--gold);
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--neutral-medium);
-        }
-        
-        .hero-image {
-            position: absolute;
-            right: 0;
-            top: 100px;
-            width: 45%;
-            border-radius: 20px 0 0 20px;
-            overflow: hidden;
-            box-shadow: -20px 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Services Section */
-        .section {
-            padding: 100px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            max-width: 600px;
-            margin: 0 auto;
-            color: var(--neutral-medium);
-        }
-        
-        .services-grid {
+            padding: 80px 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(12, 1-fr);
+            gap: 20px;
         }
-        
-        .service-card {
-            background-color: var(--white);
-            border-radius: 15px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--orange-light) 0%, var(--gold-light) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-        
-        .service-icon i {
-            font-size: 28px;
-            color: var(--gold);
-        }
-        
-        .service-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-        
-        .service-card p {
-            margin-bottom: 20px;
-            color: var(--neutral-medium);
-        }
-        
-        .price-tag {
-            display: inline-block;
-            background-color: var(--orange-light);
-            color: var(--orange-dark);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        /* Portfolio Section */
-        .portfolio {
-            background-color: var(--white);
-        }
-        
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .portfolio-item {
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            height: 300px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-        
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(26, 26, 26, 0.9), transparent);
-            color: var(--white);
-            padding: 30px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            background: linear-gradient(135deg, rgba(255, 226, 199, 0.3) 0%, rgba(244, 232, 193, 0.3) 100%);
-        }
-        
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .testimonial-card {
-            background-color: var(--white);
-            border-radius: 15px;
+
+        .card {
+            background: #161617;
+            border-radius: 28px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-        
-        .testimonial-text {
-            font-size: 18px;
-            font-style: italic;
-            margin-bottom: 30px;
-            color: var(--neutral-medium);
-        }
-        
-        .client-info {
+            grid-column: span 6;
+            min-height: 400px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            transform: translateY(30px);
         }
-        
-        .client-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 15px;
-            background-color: var(--orange-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--orange-dark);
+
+        .card.reveal {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        /* CTA Section */
+
+        .card.large { grid-column: span 12; }
+
+        .card h3 { font-size: 32px; margin-bottom: 10px; }
+        .card p { color: var(--secondary-text); font-size: 18px; }
+
+        .tag {
+            font-size: 12px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* --- CTA --- */
         .cta-section {
+            padding: 150px 20px;
             text-align: center;
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
-            color: var(--white);
         }
-        
-        .cta-section h2 {
-            color: var(--white);
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .cta-section p {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            font-size: 18px;
-        }
-        
-        .cta-button.inverted {
-            background: var(--white);
-            color: var(--orange);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--neutral-dark);
-            color: var(--white);
-            padding: 80px 0 30px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-column h3 {
-            color: var(--white);
-            font-size: 20px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--gold);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: #aaa;
+
+        .btn {
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 980px;
             text-decoration: none;
-            transition: var(--transition);
+            font-weight: 400;
+            font-size: 17px;
+            display: inline-block;
+            transition: background 0.3s;
         }
-        
-        .footer-links a:hover {
-            color: var(--orange-light);
-            padding-left: 5px;
-        }
-        
-        .copyright {
+
+        .btn:hover { background: #0077ed; }
+
+        footer {
+            padding: 50px 20px;
+            border-top: 0.5px solid #333;
+            font-size: 12px;
+            color: var(--secondary-text);
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 14px;
         }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero-image {
-                position: relative;
-                width: 100%;
-                margin-top: 50px;
-                border-radius: 20px;
-            }
-            
-            .hero {
-                padding: 140px 0 60px;
-                text-align: center;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-            }
-            
-            .stats {
-                justify-content: center;
-            }
-        }
-        
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .section-title h2 {
-                font-size: 30px;
-            }
-            
-            .stats {
-                flex-wrap: wrap;
-            }
-            
-            .stat-item {
-                margin-right: 20px;
-                margin-bottom: 20px;
-            }
+            .card { grid-column: span 12; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Prestige<span>Web</span></a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="cta-button">Start Your Project</button>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
+    <nav>
+        <a href="#">Studio</a>
+        <a href="#">Work</a>
+        <a href="#">Process</a>
+        <a href="#">Contact</a>
+    </nav>
+
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Crafting Digital Experiences <span>Worth £100K+</span></h1>
-                <p>We design and develop premium websites and digital solutions for businesses that demand excellence. Our gold-standard approach ensures every project delivers exceptional value and ROI.</p>
-                <button class="cta-button">Book a Strategy Call</button>
-                
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">£3.2M+</div>
-                        <div class="stat-label">Client Revenue Generated</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Client Satisfaction</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">150+</div>
-                        <div class="stat-label">Premium Projects</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-image">
-                <!-- This would be an image in a real implementation -->
-                <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
-                    Premium Web Design Showcase
-                </div>
-            </div>
-        </div>
+        <span class="tag">Established 2025</span>
+        <h1>Design for the <br>next epoch.</h1>
+        <p>We build digital experiences that feel as natural as breathing.</p>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Gold-Standard Services</h2>
-                <p>We offer a comprehensive suite of premium web services designed to deliver exceptional value for ambitious businesses.</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Enterprise Web Development</h3>
-                    <p>Custom-built websites with advanced functionality, scalable architecture, and premium performance optimization.</p>
-                    <div class="price-tag">From £25,000</div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>UX/UI Design Excellence</h3>
-                    <p>User-centered design that combines aesthetics with functionality to create exceptional digital experiences.</p>
-                    <div class="price-tag">From £15,000</div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-Commerce Solutions</h3>
-                    <p>High-conversion online stores with custom features, seamless payment integration, and premium support.</p>
-                    <div class="price-tag">From £30,000</div>
-                </div>
+    <div class="grid-container">
+        <div class="card large">
+            <div>
+                <span class="tag">Featured Project</span>
+                <h3>Lumina OS</h3>
+                <p>A spatial interface for the modern web.</p>
             </div>
         </div>
-    </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2>Portfolio of Excellence</h2>
-                <p>A selection of our recent high-value projects that demonstrate our commitment to quality and results.</p>
-            </div>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);"></div>
-                    <div class="portfolio-overlay">
-                        <h3>Luxury Fashion E-Commerce</h3>
-                        <p>Increased online sales by 240%</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-                    <div class="portfolio-overlay">
-                        <h3>FinTech Platform</h3>
-                        <p>User growth of 150% in 6 months</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-                    <div class="portfolio-overlay">
-                        <h3>Healthcare Portal</h3>
-                        <p>Improved patient engagement by 300%</p>
-                    </div>
-                </div>
+        <div class="card">
+            <div>
+                <span class="tag">Strategy</span>
+                <h3>Atomic Clarity.</h3>
+                <p>Removing the noise until only the essence remains.</p>
             </div>
         </div>
-    </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="section testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Client Success Stories</h2>
-                <p>Don't just take our word for it. Here's what our clients say about working with us.</p>
-            </div>
-            
-            <div class="testimonial-slider">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"PrestigeWeb delivered a website that exceeded our £100k investment expectations. Our conversion rate increased by 180% and the quality of leads improved dramatically."</p>
-                    <div class="client-info">
-                        <div class="client-avatar">JS</div>
-                        <div>
-                            <h4>James Sullivan</h4>
-                            <p>CEO, Sterling Financial</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="card">
+            <div>
+                <span class="tag">Motion</span>
+                <h3>Kinetic Soul.</h3>
+                <p>Interaction that responds to human intent.</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- CTA Section -->
     <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Invest in Your Digital Future?</h2>
-            <p>Book a complimentary strategy session with our lead consultant to explore how we can build a £100k+ value digital solution for your business.</p>
-            <button class="cta-button inverted">Schedule Your Free Consultation</button>
-        </div>
+        <h2>Ready to redefine your presence?</h2>
+        <br>
+        <a href="#" class="btn">Start a Conversation</a>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>PrestigeWeb</h3>
-                    <p>Creating digital experiences of exceptional value for ambitious businesses worldwide.</p>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">UX/UI Design</a></li>
-                        <li><a href="#">E-Commerce</a></li>
-                        <li><a href="#">Digital Strategy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">hello@prestigeweb.co.uk</a></li>
-                        <li><a href="#">+44 (0)20 1234 5678</a></li>
-                        <li><a href="#">London, UK</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 PrestigeWeb. All rights reserved. Premium web design and development.</p>
-            </div>
-        </div>
+        <p>&copy; 2025 Aura & Axis. All rights reserved. Designed in London.</p>
     </footer>
 
     <script>
-        // Simple smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        // Intersection Observer for the Apple-style scroll reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
                 }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
         });
-        
-        // CTA button interactions
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function() {
-                alert("Thank you for your interest! Our team will contact you shortly to schedule your consultation.");
-            });
+
+        // Smooth parallax for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroText = document.querySelector('.hero h1');
+            heroText.style.transform = `translateY(${scrolled * 0.3}px)`;
+            heroText.style.opacity = 1 - (scrolled / 600);
         });
     </script>
 </body>
