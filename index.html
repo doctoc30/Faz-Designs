@@ -3,677 +3,633 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AussieSchool | Driving Lessons - Get Started Today</title>
+    <title>AURORA COLLECTIVE | Strategic Partner for Visionary Brands</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #0066CC;
-            --secondary-blue: #0052A3;
-            --accent-yellow: #FFD200;
-            --accent-orange: #FF6B35;
-            --light-gray: #F8F9FA;
-            --medium-gray: #E9ECEF;
-            --dark-gray: #343A40;
-            --text-dark: #212529;
-            --text-light: #6C757D;
-            --white: #FFFFFF;
-            --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
-            --border-radius: 12px;
-            --transition: all 0.3s ease;
+            --deep-charcoal: #0a0a0a;
+            --rich-gold: #d4af37;
+            --warm-orange: #c8701e;
+            --soft-gold: rgba(212, 175, 55, 0.15);
+            --light-charcoal: #1a1a1a;
+            --medium-charcoal: #2a2a2a;
+            --light-text: rgba(255, 255, 255, 0.85);
+            --medium-text: rgba(255, 255, 255, 0.65);
+            --border-radius: 8px;
+            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --transition-fast: all 0.2s ease;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
         body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--deep-charcoal);
+            color: var(--light-text);
             line-height: 1.6;
             overflow-x: hidden;
-            background-color: var(--white);
+            position: relative;
         }
-
-        h1, h2, h3, h4, h5 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(200, 112, 30, 0.03) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
         }
-
+        
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
-
-        /* Header & Navigation */
-        .header {
-            background-color: var(--white);
-            box-shadow: var(--shadow-subtle);
+        
+        /* Typography */
+        h1, h2, h3, h4, .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--rich-gold), var(--warm-orange));
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            color: var(--medium-text);
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+        
+        .large-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        /* App Navigation */
+        .app-nav {
             position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 0;
+            background-color: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition-fast);
         }
-
+        
+        .app-nav.scrolled {
+            padding: 1rem 2rem;
+            background-color: rgba(10, 10, 10, 0.95);
+        }
+        
         .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary-blue);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            color: var(--white);
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .logo-text {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-blue);
+            font-weight: 600;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
         }
-
+        
+        .logo span {
+            color: var(--rich-gold);
+            margin-left: 0.25rem;
+        }
+        
         .nav-links {
             display: flex;
-            list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
         }
-
+        
         .nav-link {
+            color: var(--medium-text);
             text-decoration: none;
-            color: var(--text-dark);
             font-weight: 500;
-            font-size: 1rem;
-            transition: var(--transition);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
             position: relative;
+            padding: 0.5rem 0;
         }
-
-        .nav-link:hover {
-            color: var(--primary-blue);
-        }
-
+        
         .nav-link::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-blue);
-            bottom: -5px;
+            bottom: 0;
             left: 0;
-            transition: var(--transition);
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--rich-gold), var(--warm-orange));
+            transition: var(--transition-fast);
         }
-
+        
+        .nav-link:hover {
+            color: var(--light-text);
+        }
+        
         .nav-link:hover::after {
             width: 100%;
         }
-
-        .nav-contact {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .nav-contact:hover {
-            background-color: var(--secondary-blue);
-            transform: translateY(-2px);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary-blue);
+        
+        .nav-cta {
+            background: transparent;
+            color: var(--warm-orange);
+            border: 1px solid rgba(200, 112, 30, 0.4);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
             cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-left: 1rem;
         }
-
+        
+        .nav-cta:hover {
+            background: rgba(200, 112, 30, 0.1);
+            border-color: var(--warm-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
         /* Hero Section */
         .hero {
-            padding: 180px 0 100px;
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(255, 214, 0, 0.05) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 5rem;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(200, 112, 30, 0.08) 0%, transparent 50%);
+            z-index: -1;
+            animation: gradientShift 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                transform: translateX(-5%) translateY(5%);
+            }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-statement {
+            margin-bottom: 3rem;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(200, 112, 30, 0.1));
+            color: var(--warm-orange);
+            border: 1px solid rgba(200, 112, 30, 0.3);
+            padding: 1.2rem 2.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(200, 112, 30, 0.2));
+            border-color: var(--warm-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--medium-text);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.2rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--light-text);
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .stat-card {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition-smooth);
             position: relative;
             overflow: hidden;
         }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-        }
-
-        .hero-text {
-            flex: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background-color: var(--accent-yellow);
-            color: var(--text-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-
-        .hero-title span {
-            color: var(--primary-blue);
-            position: relative;
-        }
-
-        .hero-title span::after {
+        
+        .stat-card::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 8px;
-            background-color: var(--accent-yellow);
-            bottom: 5px;
+            top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0;
+            transition: var(--transition-smooth);
         }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-        }
-
-        .booking-form {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: 2.5rem;
-            box-shadow: var(--shadow-medium);
-            flex: 1;
-            max-width: 500px;
-        }
-
-        .form-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 1px solid var(--medium-gray);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-        }
-
-        .location-input-container {
-            position: relative;
-        }
-
-        .location-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-        }
-
-        .location-input {
-            padding-left: 3rem;
-        }
-
-        .form-submit {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            border-radius: 8px;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            width: 100%;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .form-submit:hover {
-            background-color: var(--secondary-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.2);
-        }
-
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-car {
-            width: 100%;
-            max-width: 500px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 5rem 0;
-            background-color: var(--light-gray);
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-subtle);
-            transition: var(--transition);
-        }
-
+        
         .stat-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-medium);
+            border-color: rgba(212, 175, 55, 0.2);
         }
-
-        .stat-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(0, 102, 204, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--primary-blue);
-            font-size: 1.8rem;
+        
+        .stat-card:hover::before {
+            opacity: 1;
         }
-
+        
         .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-blue);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--rich-gold);
+            line-height: 1;
             margin-bottom: 0.5rem;
         }
-
-        .stat-text {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            font-weight: 500;
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--medium-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        /* About Section */
-        .about {
+        
+        /* Case Studies */
+        .case-studies {
             padding: 6rem 0;
         }
-
-        .about-container {
+        
+        .section-header {
             display: flex;
-            align-items: center;
-            gap: 4rem;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
         }
-
-        .about-image {
-            flex: 1;
+        
+        .section-subtitle {
+            color: var(--medium-text);
+            font-size: 1.1rem;
+            max-width: 500px;
         }
-
-        .about-img {
-            width: 100%;
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .case-card {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            position: relative;
         }
-
-        .about-content {
-            flex: 1;
+        
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(10, 10, 10, 0.95) 90%);
+            z-index: 1;
         }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
+        
+        .case-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-
-        .section-title span {
-            color: var(--primary-blue);
+        
+        .case-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
         }
-
-        .about-text {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
+        
+        .case-card:hover .case-image {
+            transform: scale(1.05);
         }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 2rem;
+        
+        .case-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            z-index: 2;
         }
-
-        .feature-item {
+        
+        .case-tag {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--rich-gold);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .locked-case {
+            position: relative;
+        }
+        
+        .locked-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.85);
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+        
+        .locked-case:hover .locked-overlay {
+            opacity: 1;
+        }
+        
+        .lock-icon {
+            font-size: 2rem;
+            color: var(--rich-gold);
+            margin-bottom: 1rem;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 6rem 0;
+            background: rgba(26, 26, 26, 0.3);
+            position: relative;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 3rem;
             align-items: flex-start;
-            margin-bottom: 1.2rem;
+            position: relative;
         }
-
-        .feature-icon {
-            color: var(--accent-yellow);
-            margin-right: 1rem;
-            font-size: 1.2rem;
-            margin-top: 0.2rem;
-        }
-
-        .feature-text {
-            font-size: 1rem;
-            color: var(--text-dark);
-        }
-
-        .about-btn {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            border-radius: 8px;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
+        
+        .step-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
             font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
+            color: rgba(212, 175, 55, 0.2);
+            line-height: 1;
+            min-width: 100px;
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: 1rem;
+        }
+        
+        .step-line {
+            position: absolute;
+            left: 45px;
+            top: 80px;
+            width: 2px;
+            height: calc(100% + 4rem);
+            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.2), rgba(200, 112, 30, 0.2));
+            z-index: -1;
+        }
+        
+        .process-step:last-child .step-line {
+            display: none;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .cta-card {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: var(--border-radius);
+            padding: 5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.05), transparent 50%);
+            z-index: -1;
+        }
+        
+        .exclusivity-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
-        }
-
-        .about-btn:hover {
-            background-color: var(--secondary-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.2);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 0;
-            background-color: var(--light-gray);
-        }
-
-        .services-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: 2.5rem;
-            box-shadow: var(--shadow-subtle);
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(0, 102, 204, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary-blue);
-            font-size: 1.8rem;
-        }
-
-        .service-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .service-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-link {
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
             gap: 0.5rem;
-            transition: var(--transition);
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--rich-gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
-
-        .service-link:hover {
-            gap: 1rem;
-        }
-
+        
         /* Footer */
-        .footer {
-            background-color: var(--dark-gray);
-            color: var(--white);
-            padding: 4rem 0 2rem;
+        .app-footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
         }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
+        
+        .footer-content {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
         }
-
-        .footer-logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--accent-yellow);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            color: var(--text-dark);
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .footer-logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .footer-text {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-heading {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--white);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-link {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-link a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-link a:hover {
-            color: var(--accent-yellow);
-            padding-left: 5px;
-        }
-
-        .footer-contact {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer-contact i {
-            color: var(--accent-yellow);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
+        
+        .copyright {
+            color: var(--medium-text);
             font-size: 0.9rem;
         }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .booking-form {
-                max-width: 100%;
-            }
-            
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .about-container {
-                flex-direction: column;
-            }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
         }
-
-        @media (max-width: 768px) {
-            .nav-links, .nav-contact {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 150px 0 80px;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .mobile-menu {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: var(--white);
-                box-shadow: var(--shadow-medium);
-                padding: 2rem;
-                display: none;
-                flex-direction: column;
-                gap: 1.5rem;
-                z-index: 999;
-            }
-            
-            .mobile-menu.active {
-                display: flex;
-            }
+        
+        .footer-link {
+            color: var(--medium-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
         }
-
-        /* Animation */
+        
+        .footer-link:hover {
+            color: var(--light-text);
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background-color: var(--rich-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+        
+        /* Interactive Elements */
+        .hover-glow:hover {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -684,347 +640,416 @@
                 transform: translateY(0);
             }
         }
-
+        
         .fade-in {
             animation: fadeInUp 0.8s ease-out forwards;
         }
-
-        .delay-1 {
-            animation-delay: 0.2s;
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
         }
-
-        .delay-2 {
-            animation-delay: 0.4s;
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-ctas {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .process-step {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .step-line {
+                left: 25px;
+            }
+            
+            .cta-card {
+                padding: 3rem 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav-container">
-                <a href="#" class="logo">
-                    <div class="logo-icon">A</div>
-                    <div class="logo-text">AussieSchool</div>
-                </a>
-                
-                <ul class="nav-links">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About Us</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                
-                <a href="#booking" class="nav-contact">Book a Lesson</a>
-                
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
-            
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About Us</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#pricing" class="nav-link">Pricing</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="#booking" class="nav-contact">Book a Lesson</a>
-            </div>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- App Navigation -->
+    <nav class="app-nav" id="appNav">
+        <div class="logo">AURORA<span>.</span></div>
+        <div class="nav-links">
+            <a href="#work" class="nav-link">Private Work</a>
+            <a href="#process" class="nav-link">Our Method</a>
+            <a href="#clients" class="nav-link">Clients</a>
+            <a href="#insights" class="nav-link">Insights</a>
+            <button class="nav-cta hover-glow">Request Access</button>
         </div>
-    </header>
-
+    </nav>
+    
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
+        <div class="hero-background"></div>
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text fade-in">
-                    <div class="hero-badge">Australia's #1 Driving School</div>
-                    <h1 class="hero-title">Get started on the road to <span>driving today</span></h1>
-                    <p class="hero-subtitle">Professional driving lessons with certified instructors. Book your first lesson and start your journey to becoming a confident driver.</p>
-                    
-                    <div class="booking-form fade-in delay-1">
-                        <h2 class="form-title">Book a Lesson</h2>
-                        <form id="bookingForm">
-                            <div class="form-group">
-                                <label for="fullName" class="form-label">Full Name</label>
-                                <input type="text" id="fullName" class="form-input" placeholder="Enter your full name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="location" class="form-label">Enter your location</label>
-                                <div class="location-input-container">
-                                    <i class="fas fa-map-marker-alt location-icon"></i>
-                                    <input type="text" id="location" class="form-input location-input" placeholder="Search for your suburb or postcode" required>
-                                </div>
-                            </div>
-                            
-                            <button type="submit" class="form-submit">
-                                <i class="fas fa-car"></i> Book Your First Lesson
-                            </button>
-                        </form>
-                    </div>
+            <div class="hero-content fade-in">
+                <div class="hero-statement">
+                    <h1>Strategic partnership for brands that shape the future.</h1>
+                    <p class="large-text">We collaborate with a select portfolio of visionary leaders to architect transformative digital experiences that deliver exceptional ROI and market dominance.</p>
                 </div>
-                
-                <div class="hero-image fade-in delay-2">
-                    <div class="hero-car">
-                        <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="50" y="150" width="400" height="80" rx="10" fill="#0066CC"/>
-                            <rect x="80" y="100" width="340" height="60" rx="10" fill="#0052A3"/>
-                            <circle cx="130" cy="230" r="30" fill="#333"/>
-                            <circle cx="370" cy="230" r="30" fill="#333"/>
-                            <circle cx="130" cy="230" r="15" fill="#FFF"/>
-                            <circle cx="370" cy="230" r="15" fill="#FFF"/>
-                            <rect x="120" y="120" width="60" height="40" rx="5" fill="#FFD200"/>
-                            <rect x="320" y="120" width="60" height="40" rx="5" fill="#FFD200"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-container">
-                <div class="stat-card fade-in">
-                    <div class="stat-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <div class="stat-number">15,000+</div>
-                    <div class="stat-text">Students Taught</div>
-                </div>
-                
-                <div class="stat-card fade-in delay-1">
-                    <div class="stat-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="stat-number">98%</div>
-                    <div class="stat-text">First-Time Pass Rate</div>
-                </div>
-                
-                <div class="stat-card fade-in delay-1">
-                    <div class="stat-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="stat-number">50+</div>
-                    <div class="stat-text">Locations Across Australia</div>
-                </div>
-                
-                <div class="stat-card fade-in delay-2">
-                    <div class="stat-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="stat-number">4.9</div>
-                    <div class="stat-text">Average Rating</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-container">
-                <div class="about-image fade-in">
-                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Driving instructor teaching student" class="about-img">
-                </div>
-                
-                <div class="about-content fade-in delay-1">
-                    <h2 class="section-title">About <span>AussieSchool</span></h2>
-                    <p class="about-text">
-                        At AussieSchool, we're committed to providing the highest quality driving education across Australia. Our mission is to create confident, skilled, and safe drivers through professional instruction and personalized learning experiences.
-                    </p>
-                    
-                    <p class="about-text">
-                        With over 20 years of experience, our certified instructors use proven teaching methods to help learners of all ages and skill levels achieve their driving goals.
-                    </p>
-                    
-                    <ul class="features-list">
-                        <li class="feature-item">
-                            <i class="fas fa-check-circle feature-icon"></i>
-                            <span class="feature-text">Certified and experienced driving instructors</span>
-                        </li>
-                        <li class="feature-item">
-                            <i class="fas fa-check-circle feature-icon"></i>
-                            <span class="feature-text">Modern, dual-controlled vehicles for safety</span>
-                        </li>
-                        <li class="feature-item">
-                            <i class="fas fa-check-circle feature-icon"></i>
-                            <span class="feature-text">Flexible scheduling to fit your busy life</span>
-                        </li>
-                        <li class="feature-item">
-                            <i class="fas fa-check-circle feature-icon"></i>
-                            <span class="feature-text">Personalized lesson plans for every student</span>
-                        </li>
-                    </ul>
-                    
-                    <button class="about-btn">
-                        <i class="fas fa-book-open"></i> Learn More About Us
+                <div class="hero-ctas">
+                    <button class="btn-primary hover-glow" id="requestAccessBtn">
+                        <i class="fas fa-lock"></i> Request Private Access
                     </button>
+                    <button class="btn-secondary">View Our Approach</button>
+                </div>
+                <div style="margin-top: 5rem; display: flex; align-items: center; gap: 2rem;">
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 8px; height: 8px; background-color: var(--warm-orange); border-radius: 50%; margin-right: 10px;"></div>
+                        <span style="font-size: 0.9rem; color: var(--medium-text);">Currently accepting 3 new projects</span>
+                    </div>
+                    <div style="height: 20px; width: 1px; background-color: rgba(255,255,255,0.1);"></div>
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 8px; height: 8px; background-color: var(--rich-gold); border-radius: 50%; margin-right: 10px;"></div>
+                        <span style="font-size: 0.9rem; color: var(--medium-text);">Average project value: £250k+</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
+    
+    <!-- Stats Section -->
+    <section class="stats" id="work">
         <div class="container">
-            <div class="services-header fade-in">
-                <h2 class="section-title">Our Driving <span>Programs</span></h2>
-                <p class="about-text">We offer a range of driving programs tailored to meet your specific needs and goals.</p>
+            <h2 class="fade-in">Measurable impact for elite partners</h2>
+            <p class="section-subtitle fade-in">We deliver quantifiable results, not just creative concepts. Our work is measured by its market performance.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-number">£2.4B</div>
+                    <div class="stat-label">Collective revenue increase for clients</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Client retention rate</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Active partnerships worldwide</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">1.8M</div>
+                    <div class="stat-label">Average monthly user growth</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="fade-in">Select case studies</h2>
+                    <p class="section-subtitle fade-in">A glimpse into our private portfolio. Full case studies available upon verification.</p>
+                </div>
+                <div>
+                    <button class="btn-secondary">View All Dossiers</button>
+                </div>
             </div>
             
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-user"></i>
+            <div class="case-grid">
+                <div class="case-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Luxury fintech platform" class="case-image">
+                    <div class="case-content">
+                        <span class="case-tag">Fintech</span>
+                        <h3>Nova Wealth Platform</h3>
+                        <p>Redesigned digital experience for high-net-worth wealth management, increasing AUM by 240%.</p>
                     </div>
-                    <h3 class="service-title">Beginner Lessons</h3>
-                    <p class="service-description">Perfect for first-time drivers. Learn the basics of vehicle control, road rules, and safe driving practices from our patient instructors.</p>
-                    <a href="#" class="service-link">
-                        Get Started <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
                 
-                <div class="service-card fade-in delay-1">
-                    <div class="service-icon">
-                        <i class="fas fa-tachometer-alt"></i>
+                <div class="case-card locked-case fade-in">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Healthcare technology" class="case-image">
+                    <div class="case-content">
+                        <span class="case-tag">Health Tech</span>
+                        <h3>VitaCore Systems</h3>
+                        <p>Enterprise platform redesign for global healthcare provider (confidential results).</p>
                     </div>
-                    <h3 class="service-title">Refresher Courses</h3>
-                    <p class="service-description">Boost your confidence if you haven't driven in a while or need to brush up on your skills before a driving test.</p>
-                    <a href="#" class="service-link">
-                        Refresh Skills <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card fade-in delay-2">
-                    <div class="service-icon">
-                        <i class="fas fa-road"></i>
+                    <div class="locked-overlay">
+                        <div class="lock-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <p>Full case study available to verified partners</p>
+                        <button class="btn-secondary" style="margin-top: 1rem;">Request Access</button>
                     </div>
-                    <h3 class="service-title">Test Preparation</h3>
-                    <p class="service-description">Comprehensive training to ensure you're fully prepared for your driving test, including mock tests and test route practice.</p>
-                    <a href="#" class="service-link">
-                        Prepare for Test <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
-
+    
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="fade-in">Our selective methodology</h2>
+            <p class="section-subtitle fade-in">A rigorous, phase-based approach designed to eliminate risk and maximize returns for visionary brands.</p>
+            
+            <div class="process-steps">
+                <div class="process-step fade-in">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Discovery & Assessment</h3>
+                        <p>We begin with an intensive discovery phase to deeply understand your business, market position, and strategic objectives. This phase determines mutual fit and establishes success metrics.</p>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Strategic Architecture</h3>
+                        <p>Our team architects a comprehensive digital strategy aligned with your business goals. We map user journeys, define technical requirements, and establish a roadmap for execution.</p>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Elite Execution</h3>
+                        <p>With strategy defined, our senior specialists execute with precision. We maintain continuous alignment through weekly strategy sessions and transparent progress tracking.</p>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Performance Optimization</h3>
+                        <p>Post-launch, we focus on iterative optimization based on real-world data. We measure against established KPIs and continuously refine to maximize ROI.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card fade-in">
+                <div class="exclusivity-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Exclusive Partnership</span>
+                </div>
+                <h2>Ready to elevate your digital presence?</h2>
+                <p class="large-text" style="max-width: 600px; margin: 0 auto 3rem;">Our partnership begins with a conversation about your vision, challenges, and objectives. If we identify mutual strategic alignment, we'll invite you to our private onboarding process.</p>
+                <button class="btn-primary hover-glow" id="finalCtaBtn" style="padding: 1.5rem 3rem; font-size: 1.1rem;">
+                    <i class="fas fa-handshake"></i> Begin Partnership Discussion
+                </button>
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--medium-text);">Response within 24 hours for qualified inquiries</p>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
-    <footer class="footer" id="contact">
+    <footer class="app-footer">
         <div class="container">
-            <div class="footer-container">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <div class="footer-logo-icon">A</div>
-                        <div class="footer-logo-text">AussieSchool</div>
-                    </div>
-                    <p class="footer-text">
-                        Australia's premier driving school, dedicated to creating confident and safe drivers through professional instruction and personalized learning experiences.
-                    </p>
-                    <div class="footer-contact">
-                        <i class="fas fa-phone"></i>
-                        <span>1300 123 456</span>
-                    </div>
-                    <div class="footer-contact">
-                        <i class="fas fa-envelope"></i>
-                        <span>contact@aussieschool.com</span>
-                    </div>
+            <div class="footer-content">
+                <div class="logo">AURORA<span>.</span></div>
+                <div class="copyright">© 2023 Aurora Collective. All rights reserved. For qualified partners only.</div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy Protocol</a>
+                    <a href="#" class="footer-link">Terms of Engagement</a>
                 </div>
-                
-                <div class="footer-links-section">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li class="footer-link"><a href="#home">Home</a></li>
-                        <li class="footer-link"><a href="#about">About Us</a></li>
-                        <li class="footer-link"><a href="#services">Services</a></li>
-                        <li class="footer-link"><a href="#pricing">Pricing</a></li>
-                        <li class="footer-link"><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-services">
-                    <h3 class="footer-heading">Our Services</h3>
-                    <ul class="footer-links">
-                        <li class="footer-link"><a href="#">Beginner Driving Lessons</a></li>
-                        <li class="footer-link"><a href="#">Refresher Courses</a></li>
-                        <li class="footer-link"><a href="#">Test Preparation</a></li>
-                        <li class="footer-link"><a href="#">Defensive Driving</a></li>
-                        <li class="footer-link"><a href="#">Corporate Fleet Training</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact-info">
-                    <h3 class="footer-heading">Contact Info</h3>
-                    <div class="footer-contact">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>123 Driving Street, Sydney NSW 2000</span>
-                    </div>
-                    <div class="footer-contact">
-                        <i class="fas fa-clock"></i>
-                        <span>Mon-Fri: 8am-8pm<br>Sat-Sun: 8am-6pm</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 AussieSchool.com. All rights reserved. | <a href="#" style="color: #FFD200; text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: #FFD200; text-decoration: none;">Terms of Service</a></p>
-                <p style="margin-top: 10px; font-size: 0.8rem;">17 July 20:41</p>
             </div>
         </div>
     </footer>
-
+    
+    <!-- Request Access Modal -->
+    <div class="modal" id="accessModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 10, 10, 0.95); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: rgba(26, 26, 26, 0.95); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--border-radius); width: 90%; max-width: 600px; padding: 3rem; position: relative;">
+            <button id="closeModal" style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; color: var(--medium-text); font-size: 1.5rem; cursor: pointer;">×</button>
+            <h2 style="margin-bottom: 0.5rem;">Request Private Access</h2>
+            <p style="margin-bottom: 2rem;">Complete this brief application to begin the verification process.</p>
+            
+            <form id="accessForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--medium-text);">Full Name</label>
+                    <input type="text" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); color: var(--light-text); font-family: 'Inter', sans-serif;" required>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--medium-text);">Company</label>
+                    <input type="text" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); color: var(--light-text); font-family: 'Inter', sans-serif;" required>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--medium-text);">Email Address</label>
+                    <input type="email" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); color: var(--light-text); font-family: 'Inter', sans-serif;" required>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--medium-text);">Project Budget Range</label>
+                    <select style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); color: var(--light-text); font-family: 'Inter', sans-serif;" required>
+                        <option value="" disabled selected>Select range</option>
+                        <option value="100-250">£100k - £250k</option>
+                        <option value="250-500">£250k - £500k</option>
+                        <option value="500+">£500k+</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--medium-text);">Brief Project Overview</label>
+                    <textarea rows="4" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); color: var(--light-text); font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary hover-glow" style="width: 100%; margin-top: 1rem;">Submit Application</button>
+            </form>
+        </div>
+    </div>
+    
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
+        // Custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
         });
         
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('button, .nav-link, .case-card, .stat-card');
+        
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.borderColor = 'rgba(212, 175, 55, 0.7)';
+                cursorDot.style.backgroundColor = 'var(--warm-orange)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
+                cursor.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+                cursorDot.style.backgroundColor = 'var(--rich-gold)';
+            });
+        });
+        
+        // Nav scroll effect
+        const appNav = document.getElementById('appNav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                appNav.classList.add('scrolled');
+            } else {
+                appNav.classList.remove('scrolled');
             }
         });
         
-        // Booking form submission
-        const bookingForm = document.getElementById('bookingForm');
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
         
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('fullName').value;
-            const location = document.getElementById('location').value;
-            
-            // Show success message
-            alert(`Thank you ${name}! Your driving lesson request for ${location} has been received. Our team will contact you within 24 hours to confirm your booking.`);
-            
-            // Reset form
-            bookingForm.reset();
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for fade elements
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         });
         
-        // Smooth scrolling for anchor links
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+        
+        // Modal functionality
+        const requestAccessBtn = document.getElementById('requestAccessBtn');
+        const finalCtaBtn = document.getElementById('finalCtaBtn');
+        const accessModal = document.getElementById('accessModal');
+        const closeModal = document.getElementById('closeModal');
+        const accessForm = document.getElementById('accessForm');
+        
+        const openModal = () => {
+            accessModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        };
+        
+        const closeModalFunc = () => {
+            accessModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+        
+        requestAccessBtn.addEventListener('click', openModal);
+        finalCtaBtn.addEventListener('click', openModal);
+        closeModal.addEventListener('click', closeModalFunc);
+        
+        // Close modal when clicking outside
+        accessModal.addEventListener('click', (e) => {
+            if (e.target === accessModal) {
+                closeModalFunc();
+            }
+        });
+        
+        // Form submission
+        accessForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real implementation, this would submit to a server
+            // For this demo, we'll just show a success message
+            alert('Application submitted. Our team will review your request and respond within 24 hours if there is strategic alignment.');
+            closeModalFunc();
+        });
+        
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1034,37 +1059,37 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Close mobile menu if open
-                    mobileMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
             });
         });
         
-        // Add fade-in animation on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, {
-            threshold: 0.1
+        // Inertia-like scroll effect
+        let isScrolling;
+        window.addEventListener('scroll', () => {
+            clearTimeout(isScrolling);
+            
+            // Add a class during scroll for potential styling
+            document.body.classList.add('is-scrolling');
+            
+            isScrolling = setTimeout(() => {
+                document.body.classList.remove('is-scrolling');
+            }, 100);
         });
         
-        fadeElements.forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px)';
-            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            fadeObserver.observe(element);
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            // Trigger initial fade in
+            fadeInOnScroll();
+            
+            // Add a subtle animation to the hero background
+            const heroBackground = document.querySelector('.hero-background');
+            setInterval(() => {
+                heroBackground.style.transform = `translateX(${Math.random() * 10 - 5}%) translateY(${Math.random() * 10 - 5}%)`;
+            }, 20000);
         });
     </script>
 </body>
