@@ -775,6 +775,43 @@
         font-size: 1rem;
     }
 }
+
+
+
+
+
+        /* Funnel positioning fix */
+.funnel-section {
+    min-height: 100vh;
+    padding-top: 120px; /* offset fixed header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Center each step */
+.form-screen {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Mobile tweak */
+@media (max-width: 768px) {
+    .funnel-section {
+        padding-top: 100px;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    .button-row button {
+        width: 100%;
+        max-width: 320px;
+    }
+}
         
     </style>
 
