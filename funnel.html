@@ -729,6 +729,52 @@
                 padding: 0 20px;
             }
         }
+
+
+        /* Ensure funnel is fully visible below fixed header */
+.funnel-section {
+    padding-top: 120px; /* same as header height + spacing */
+    padding-bottom: 60px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+    .funnel-section {
+        padding-top: 100px; /* adjust based on header height on mobile */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .form-screen h2 {
+        font-size: 1.8rem;
+    }
+
+    .button-row button {
+        font-size: 0.95rem;
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .funnel-section {
+        padding-top: 90px;
+    }
+
+    .form-screen h2 {
+        font-size: 1.6rem;
+    }
+
+    .button-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .button-row button {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 1rem;
+    }
+}
         
     </style>
 
