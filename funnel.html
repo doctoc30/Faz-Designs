@@ -820,71 +820,7 @@
 
 
 
-        /* Matches your existing funnel typography and layout */
-.funnel-heading {
-  font-size: 28px;
-  font-weight: 600;
-  color: #111; /* your brand heading color */
-  margin-bottom: 15px;
-}
-
-.funnel-subtext {
-  font-size: 16px;
-  color: #555; /* your brand subtext color */
-  margin-bottom: 25px;
-}
-
-.input-row {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.funnel-input {
-  flex: 1;
-  padding: 12px 15px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.btn {
-  padding: 12px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.2s ease;
-}
-
-/* Primary action button */
-.primary-btn {
-  background-color: #111; /* your brand primary color */
-  color: #fff;
-  border: none;
-}
-
-.primary-btn:hover {
-  background-color: #333; /* hover effect */
-}
-
-/* Secondary quick-select buttons */
-.secondary-btn {
-  background-color: #fff;
-  color: #111; /* brand color */
-  border: 1px solid #111;
-}
-
-.secondary-btn:hover {
-  background-color: #111;
-  color: #fff;
-}
-
-.quick-select {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
+  
 
 
     </style>
@@ -916,27 +852,25 @@
     <input type="hidden" id="hiddenFeatures" name="Selected Features">
     <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
 
-    <!-- ===== FIRST SCREEN: WELCOME + BUSINESS SEARCH ===== -->
-    <div class="form-screen active" id="first-screen" style="text-align:center; max-width:500px; margin:0 auto;">
-      <h1>Welcome!</h1>
-      <p style="font-size:18px; margin-bottom:20px;">Let's get started. What type of business do you run?</p>
-      
-      <!-- Search Input -->
-      <input type="text" id="businessInput" placeholder="e.g. Barber, Plumber, Dentist" 
-             style="width:100%; padding:12px 15px; font-size:16px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px;" />
-      <button type="button" onclick="handleSearch()" 
-              style="padding:12px 25px; font-size:16px; border:none; background:#007BFF; color:#fff; border-radius:6px; cursor:pointer;">
-        Go
-      </button>
-      
-      <!-- Optional quick select examples -->
-      <div style="margin-top:20px;">
-        <p>Or choose one:</p>
-        <button type="button" onclick="selectExample('barber')" class="example-btn">Barber</button>
-        <button type="button" onclick="selectExample('plumber')" class="example-btn">Plumber</button>
-        <button type="button" onclick="selectExample('dentist')" class="example-btn">Dentist</button>
-      </div>
-    </div>
+ 
+      <!-- ===== FIRST SCREEN: WELCOME + BUSINESS SEARCH ===== -->
+<div class="form-screen active" id="first-screen">
+  <h2>Welcome!</h2>
+  <p>What type of business do you run? Type below or pick one:</p>
+
+  <!-- Search input + Go button -->
+  <div class="button-row">
+    <input type="text" id="businessInput" class="form-control" placeholder="e.g. Barber, Plumber, Dentist" />
+    <button type="button" class="btn" onclick="handleSearch()">Go</button>
+  </div>
+
+  <!-- Quick-select category buttons -->
+  <div class="button-row" style="margin-top: 20px;">
+    <button type="button" class="btn" onclick="selectExample('barber')">Barber</button>
+    <button type="button" class="btn" onclick="selectExample('plumber')">Plumber</button>
+    <button type="button" class="btn" onclick="selectExample('dentist')">Dentist</button>
+  </div>
+</div>
 
     <!-- ===== MAIN INTRO OPTIONS ===== -->
     <div class="form-screen" id="main-intro-options">
@@ -1215,6 +1149,47 @@ function prev() {
   if (currentIndex > 0) {
     showScreen(screens[currentIndex - 1].id);
   }
+}
+
+
+    🔥
+    let businessType = '';
+
+function handleSearch() {
+  const input = document.getElementById('businessInput').value.toLowerCase().trim();
+  setBusinessType(input);
+  showScreen('main-intro-options');
+}
+
+function selectExample(example) {
+  setBusinessType(example);
+  showScreen('main-intro-options');
+}
+
+function setBusinessType(input) {
+  const nicheMap = {
+    barber: ['barber', 'barbers', 'hair salon', 'hairdresser', 'salon', 'hairdressers'],
+    plumber: ['plumber', 'plumbers', 'plumbing'],
+    dentist: ['dentist', 'dentists', 'dental clinic'],
+    driving: ['driving instructor', 'driving school', 'driver'],
+    trades: ['builder', 'electrician', 'roofer', 'handyman'],
+    cafe: ['cafe', 'coffee shop', 'coffee', 'restaurant']
+  };
+
+  businessType = '';
+  for (let niche in nicheMap) {
+    if (nicheMap[niche].some(keyword => input.includes(keyword))) {
+      businessType = niche;
+      break;
+    }
+  }
+
+  if (!businessType) businessType = 'general'; // fallback for unknown
+}
+
+function showScreen(screenId) {
+  document.querySelectorAll('.form-screen').forEach(screen => screen.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
 }
 </script>
 
