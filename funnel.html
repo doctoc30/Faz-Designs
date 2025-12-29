@@ -906,36 +906,46 @@
 
 
 
+/* Ensure search-row buttons/input stay full width on mobile */
+@media (max-width: 600px) {
+  .search-row {
+    flex-direction: column;
+    gap: 10px;
+  }
 
+  .search-row input,
+  .search-row .btn {
+    width: 100%;
+    max-width: 100%;
+  }
 
-        /* Categories row */
-.categories-row {
+  /* Categories buttons: 4 per row */
+  .categories-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start; /* allows wrapping correctly */
+    gap: 10px;
+  }
+
+  .categories-row button {
+    flex: 1 1 calc(25% - 10px); /* 4 per row */
+    max-width: calc(25% - 10px);
+    margin-bottom: 10px;
+  }
+
+  /* General funnel buttons (other steps) stack full width */
+  .form-screen:not(#first-screen) .button-row {
+    flex-direction: column;
     gap: 15px;
-    margin-top: 20px; /* separate from Go button */
+  }
+
+  .form-screen:not(#first-screen) .button-row button {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
-.categories-row button {
-    flex: 1 1 auto;
-    min-width: 120px; /* ensures they don’t shrink too small on desktop */
-    max-width: 200px;
-}
-
-/* Mobile portrait: 4 per row */
-@media (max-width: 600px) {
-    .categories-row {
-        justify-content: flex-start; /* allow flex items to wrap correctly */
-    }
-
-    .categories-row button {
-        flex: 1 1 calc(25% - 15px); /* 4 per row with gap */
-        max-width: calc(25% - 15px);
-        margin-bottom: 15px;
-    }
-}
-
+  
 
     </style>
 
