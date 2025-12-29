@@ -903,28 +903,36 @@
     min-width: 200px;
 }
 
-/* Categories row */
+
+
+
+
+
+        /* Categories row */
 .categories-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
+    margin-top: 20px; /* separate from Go button */
+}
+
+.categories-row button {
+    flex: 1 1 auto;
+    min-width: 120px; /* ensures they don’t shrink too small on desktop */
+    max-width: 200px;
 }
 
 /* Mobile portrait: 4 per row */
 @media (max-width: 600px) {
+    .categories-row {
+        justify-content: flex-start; /* allow flex items to wrap correctly */
+    }
+
     .categories-row button {
-        flex: 1 1 calc(25% - 10px); /* 4 per row */
-        max-width: calc(25% - 10px);
-    }
-
-    .search-row {
-        flex-direction: column;
-    }
-
-    .search-row input, .search-row .btn {
-        width: 100%;
-        max-width: 100%;
+        flex: 1 1 calc(25% - 15px); /* 4 per row with gap */
+        max-width: calc(25% - 15px);
+        margin-bottom: 15px;
     }
 }
 
