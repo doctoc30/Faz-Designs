@@ -906,7 +906,7 @@
 
 
 
-/* Ensure search-row buttons/input stay full width on mobile */
+/* ---- SEARCH ROW ---- */
 @media (max-width: 600px) {
   .search-row {
     flex-direction: column;
@@ -918,25 +918,30 @@
     width: 100%;
     max-width: 100%;
   }
+}
 
-  /* Categories buttons: 4 per row */
+/* ---- CATEGORIES ROW ---- */
+@media (max-width: 600px) {
   .categories-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* allows wrapping correctly */
+    justify-content: flex-start; /* important for wrapping */
     gap: 10px;
   }
 
   .categories-row button {
-    flex: 1 1 calc(25% - 10px); /* 4 per row */
+    flex: 1 1 calc(25% - 10px); /* 4 buttons per row */
     max-width: calc(25% - 10px);
     margin-bottom: 10px;
   }
+}
 
-  /* General funnel buttons (other steps) stack full width */
+/* ---- GENERAL BUTTON ROWS (other steps) ---- */
+@media (max-width: 600px) {
   .form-screen:not(#first-screen) .button-row {
     flex-direction: column;
     gap: 15px;
+    align-items: center; /* center buttons horizontally */
   }
 
   .form-screen:not(#first-screen) .button-row button {
@@ -944,6 +949,8 @@
     max-width: 320px;
   }
 }
+
+ 
 
   
 
