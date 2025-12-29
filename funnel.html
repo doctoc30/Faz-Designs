@@ -889,26 +889,33 @@
     <input type="hidden" id="hiddenFeatures" name="Selected Features">
     <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
 
- 
+
       <!-- ===== FIRST SCREEN: WELCOME + BUSINESS SEARCH ===== -->
 <div class="form-screen active" id="first-screen">
   <h2>Welcome!</h2>
   <p>What type of business do you run? Type below or pick one:</p>
 
   <!-- Search input + Go button -->
-  <div class="button-row">
+  <div class="search-row button-row">
     <input type="text" id="businessInput" class="form-control" placeholder="e.g. Barber, Plumber, Dentist" />
     <button type="button" class="btn" onclick="handleSearch()">Go</button>
   </div>
 
   <!-- Quick-select category buttons -->
-  <div class="button-row" style="margin-top: 20px;">
+  <div class="categories-row button-row">
     <button type="button" class="btn" onclick="selectExample('barber')">Barber</button>
     <button type="button" class="btn" onclick="selectExample('plumber')">Plumber</button>
     <button type="button" class="btn" onclick="selectExample('dentist')">Dentist</button>
+    <button type="button" class="btn" onclick="selectExample('cafe')">Cafe</button>
+    <button type="button" class="btn" onclick="selectExample('trades')">Trades</button>
+    <button type="button" class="btn" onclick="selectExample('driving')">Driving</button>
+    <button type="button" class="btn" onclick="selectExample('other')">Other</button>
   </div>
 </div>
 
+
+ 
+ 
     <!-- ===== MAIN INTRO OPTIONS ===== -->
     <div class="form-screen" id="main-intro-options">
       <h2>Welcome! What do you need help with today?</h2>
