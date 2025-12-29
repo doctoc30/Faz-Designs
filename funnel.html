@@ -820,7 +820,23 @@
     align-items: center;
     text-align: center;
 }
-        
+
+
+
+        .example-btn {
+  padding:8px 15px; 
+  margin:5px; 
+  border:1px solid #007BFF; 
+  background:#fff; 
+  color:#007BFF; 
+  border-radius:5px; 
+  cursor:pointer;
+  font-size:14px;
+}
+.example-btn:hover {
+  background:#007BFF; 
+  color:#fff;
+}
     </style>
 
     
@@ -844,16 +860,36 @@
     </div>
 </header>
 
-<!-- Funnel Section — move this OUTSIDE the header -->
 <section class="container funnel-section">
-    <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
-        <input type="hidden" id="hiddenPlan" name="Selected Plan">
-        <input type="hidden" id="hiddenFeatures" name="Selected Features">
-        <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
+  <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+    <input type="hidden" id="hiddenPlan" name="Selected Plan">
+    <input type="hidden" id="hiddenFeatures" name="Selected Features">
+    <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
 
+    <!-- ===== FIRST SCREEN: WELCOME + BUSINESS SEARCH ===== -->
+    <div class="form-screen active" id="first-screen" style="text-align:center; max-width:500px; margin:0 auto;">
+      <h1>Welcome!</h1>
+      <p style="font-size:18px; margin-bottom:20px;">Let's get started. What type of business do you run?</p>
+      
+      <!-- Search Input -->
+      <input type="text" id="businessInput" placeholder="e.g. Barber, Plumber, Dentist" 
+             style="width:100%; padding:12px 15px; font-size:16px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px;" />
+      <button type="button" onclick="handleSearch()" 
+              style="padding:12px 25px; font-size:16px; border:none; background:#007BFF; color:#fff; border-radius:6px; cursor:pointer;">
+        Go
+      </button>
+      
+      <!-- Optional quick select examples -->
+      <div style="margin-top:20px;">
+        <p>Or choose one:</p>
+        <button type="button" onclick="selectExample('barber')" class="example-btn">Barber</button>
+        <button type="button" onclick="selectExample('plumber')" class="example-btn">Plumber</button>
+        <button type="button" onclick="selectExample('dentist')" class="example-btn">Dentist</button>
+      </div>
+    </div>
 
     <!-- ===== MAIN INTRO OPTIONS ===== -->
-    <div class="form-screen active" id="main-intro-options">
+    <div class="form-screen" id="main-intro-options">
       <h2>Welcome! What do you need help with today?</h2>
       <div class="button-row">
         <button type="button" onclick="setPath('new'); next()">New Website</button>
@@ -915,10 +951,6 @@
       </div>
     </div>
 
-    <!-- ===== BASIC, PRO & PREMIUM PLAN FEATURES ===== -->
-    <!-- Copy-paste all 42+ screens as shown in your driving school form -->
-    <!-- For brevity, I’m skipping them here; they are the same as the HTML you provided -->
-
     <!-- ===== FINAL CHOICE & PLAN SCREEN ===== -->
     <div class="form-screen" id="final-choice">
       <h2>What would you like to do next?</h2>
@@ -942,18 +974,11 @@
       <h2>Your Recommended Plan</h2>
       <div class="pricing-container">
         <!-- Pricing cards for Basic, Pro, Premium -->
-        <!-- Keep your PayPal SDK container for each card -->
       </div>
     </div>
 
   </form>
 </section>
-
-<!-- PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=ATmv-MljFpeoVfNrMzhSdgvVJapAEGtxE3Ri6DnKhL8if-04au6Om5JluaIIBhNcbmBvOaujd6FCEz4f&currency=GBP"></script>
-
-
-
     
 <script>
   // === GLOBAL VARIABLES ===
@@ -1083,6 +1108,64 @@
   document.querySelectorAll('.own-outright, .monthly-support').forEach(btn => {
     btn.addEventListener('click', calculatePlan);
   });
+
+
+
+
+    let businessType = '';
+
+function handleSearch() {
+  const input = document.getElementById('businessInput').value.toLowerCase().trim();
+  setBusinessType(input);
+  showScreen('main-intro-options');
+}
+
+function selectExample(example) {
+  setBusinessType(example);
+  showScreen('main-intro-options');
+}
+
+function setBusinessType(input) {
+  const nicheMap = {
+    barber: ['barber', 'barbers', 'hair salon', 'hairdresser', 'salon', 'hairdressers'],
+    plumber: ['plumber', 'plumbers', 'plumbing'],
+    dentist: ['dentist', 'dentists', 'dental clinic'],
+    driving: ['driving instructor', 'driving school', 'driver'],
+    trades: ['builder', 'electrician', 'roofer', 'handyman'],
+    cafe: ['cafe', 'coffee shop', 'coffee', 'restaurant']
+  };
+
+  businessType = '';
+  for (let niche in nicheMap) {
+    if (nicheMap[niche].some(keyword => input.includes(keyword))) {
+      businessType = niche;
+      break;
+    }
+  }
+
+  if (!businessType) businessType = 'general';
+}
+
+function showScreen(screenId) {
+  document.querySelectorAll('.form-screen').forEach(screen => screen.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+}
+
+function next() {
+  const screens = Array.from(document.querySelectorAll('.form-screen'));
+  const currentIndex = screens.findIndex(s => s.classList.contains('active'));
+  if (currentIndex >= 0 && currentIndex < screens.length - 1) {
+    showScreen(screens[currentIndex + 1].id);
+  }
+}
+
+function prev() {
+  const screens = Array.from(document.querySelectorAll('.form-screen'));
+  const currentIndex = screens.findIndex(s => s.classList.contains('active'));
+  if (currentIndex > 0) {
+    showScreen(screens[currentIndex - 1].id);
+  }
+}
 </script>
 
         
