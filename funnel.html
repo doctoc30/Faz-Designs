@@ -820,7 +820,44 @@
 
 
 
-  
+  /* Search row */
+.search-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.search-row input {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Categories row */
+.categories-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Mobile portrait: 4 per row */
+@media (max-width: 600px) {
+    .categories-row button {
+        flex: 1 1 calc(25% - 10px); /* 4 per row */
+        max-width: calc(25% - 10px);
+    }
+
+    .search-row {
+        flex-direction: column;
+    }
+
+    .search-row input, .search-row .btn {
+        width: 100%;
+        max-width: 100%;
+    }
+}
 
 
     </style>
@@ -1152,13 +1189,18 @@ function prev() {
 }
 
 
-    🔥
+    
     let businessType = '';
 
 function handleSearch() {
   const input = document.getElementById('businessInput').value.toLowerCase().trim();
   setBusinessType(input);
-  showScreen('main-intro-options');
+
+  if(businessType !== 'general') {
+    showScreen('main-intro-options');
+  } else {
+    alert("Sorry, we couldn't find a match. Try again.");
+  }
 }
 
 function selectExample(example) {
@@ -1184,7 +1226,7 @@ function setBusinessType(input) {
     }
   }
 
-  if (!businessType) businessType = 'general'; // fallback for unknown
+  if (!businessType) businessType = 'general';
 }
 
 function showScreen(screenId) {
