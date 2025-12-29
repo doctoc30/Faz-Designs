@@ -906,54 +906,33 @@
 
 
 
-/* ---- SEARCH ROW ---- */
-@media (max-width: 600px) {
-  .search-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .search-row input,
-  .search-row .btn {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-
-        /* Categories row - mobile: 4 per row */
-@media (max-width: 600px) {
-  .categories-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start; /* or center if you like */
-    gap: 10px;
-  }
-
-  .categories-row button {
-    flex: 1 1 calc(25% - 10px); /* 4 buttons per row */
-    max-width: calc(25% - 10px);
-    margin-bottom: 10px;
-  }
-}
-
-/* ---- GENERAL BUTTON ROWS (other steps) ---- */
-@media (max-width: 600px) {
-  .form-screen:not(#first-screen) .button-row {
-    flex-direction: column;
-    gap: 15px;
-    align-items: center; /* center buttons horizontally */
-  }
-
-  .form-screen:not(#first-screen) .button-row button {
-    width: 100%;
-    max-width: 320px;
-  }
-}
-
  
 
+  /* Categories row: always flex-wrap, 4 per row */
+.categories-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center; /* or flex-start if you prefer left alignment */
+}
+
+.categories-row button {
+  flex: 0 0 23%; /* roughly 1/4 of the row minus gap */
+  max-width: 23%;
+  margin-bottom: 10px;
+}
+
+/* Remove any conflicting media query rules that force column */
+@media (max-width: 600px) {
+  .categories-row {
+    flex-direction: row !important; /* force row layout */
+  }
   
+  .categories-row button {
+    flex: 0 0 23% !important;
+    max-width: 23% !important;
+  }
+}
 
     </style>
 
