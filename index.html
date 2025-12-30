@@ -1,205 +1,123 @@
 <!DOCTYPE html>
-<html lang="en" class="noise-bg">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBZ NEXUS | 2030 Digital Revolution</title>
+    <title>VIBZ | Minimalist Digital Excellence</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/FilmPass.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ===== CSS RESET & GLOBAL VARIABLES ===== */
-        :root {
-            /* NEON ORANGE FUTURE PALETTE */
-            --primary-neon: #FF6B35;
-            --primary-light: #FF8E53;
-            --primary-dark: #E55A2B;
-            --primary-glow: rgba(255, 107, 53, 0.4);
-            --secondary-neon: #00F3FF;
-            --tertiary-neon: #FF00FF;
-            --cyber-glow: rgba(0, 243, 255, 0.6);
-            --matrix-glow: rgba(255, 0, 255, 0.5);
-            
-            /* DARK CYBER BACKGROUNDS */
-            --cyber-black: #0A0A0F;
-            --cyber-dark: #111118;
-            --cyber-card: rgba(20, 20, 30, 0.7);
-            --cyber-border: rgba(255, 107, 53, 0.2);
-            --cyber-grid: rgba(255, 107, 53, 0.1);
-            
-            /* TEXT COLORS */
-            --text-primary: #FFFFFF;
-            --text-secondary: #CCCCFF;
-            --text-muted: #8888AA;
-            --text-glow: rgba(255, 255, 255, 0.9);
-            
-            /* SHADOWS & GLOWS */
-            --shadow-cyber: 0 0 30px rgba(255, 107, 53, 0.3);
-            --shadow-heavy: 0 10px 50px rgba(255, 107, 53, 0.5);
-            --shadow-neon: 0 0 40px rgba(255, 107, 53, 0.7);
-            --shadow-cyan: 0 0 30px rgba(0, 243, 255, 0.5);
-            --shadow-magenta: 0 0 30px rgba(255, 0, 255, 0.5);
-            
-            /* BORDER RADIUS */
-            --radius-sm: 4px;
-            --radius-md: 8px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --radius-full: 50px;
-            
-            /* TRANSITIONS */
-            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-med: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-ultra: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* GRADIENTS */
-            --gradient-orange: linear-gradient(135deg, var(--primary-neon), var(--primary-light));
-            --gradient-cyber: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
-            --gradient-matrix: linear-gradient(135deg, var(--secondary-neon), var(--tertiary-neon));
-            --gradient-dark: linear-gradient(135deg, var(--cyber-black), var(--cyber-dark));
-        }
-
+        /* ===== CSS RESET ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
             overflow-x: hidden;
-            background: var(--cyber-black);
         }
 
         body {
-            font-family: 'Exo 2', sans-serif;
-            background: var(--cyber-black);
-            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            background: #FAFAFA;
+            color: #1A1A1A;
             overflow-x: hidden;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            position: relative;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0, 243, 255, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(255, 0, 255, 0.02) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary: #FF8A65;
+            --primary-light: #FFAB91;
+            --primary-dark: #F57C00;
+            --primary-soft: rgba(255, 138, 101, 0.1);
+            --secondary: #4FC3F7;
+            --light-bg: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-light: #888888;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 40px rgba(255, 138, 101, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-full: 999px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* ===== TYPOGRAPHY ===== */
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 800;
+            font-weight: 700;
             line-height: 1.1;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
+            color: var(--text-primary);
         }
 
-        .cyber-title {
+        .display-1 {
             font-size: 5.5rem;
-            background: var(--gradient-cyber);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .display-2 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 50px var(--primary-glow);
-            position: relative;
-            display: inline-block;
         }
 
-        .cyber-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-cyber);
-            border-radius: 2px;
+        .text-muted {
+            color: var(--text-secondary);
         }
 
-        .neon-text {
-            color: var(--primary-neon);
-            text-shadow: 0 0 10px var(--primary-glow);
-        }
-
-        .glitch-text {
-            position: relative;
-            animation: glitch 3s infinite;
-        }
-
-        .matrix-text {
-            color: var(--secondary-neon);
-            text-shadow: 0 0 15px var(--cyber-glow);
-        }
-
-        /* ===== LAYOUT & CONTAINERS ===== */
+        /* ===== LAYOUT ===== */
         .container {
             width: 100%;
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
+        }
+
+        .section {
+            padding: 160px 0;
             position: relative;
         }
 
-        .grid-system {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 30px;
-            position: relative;
-        }
-
-        .cyber-grid-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--cyber-grid) 1px, transparent 1px),
-                linear-gradient(90deg, var(--cyber-grid) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* ===== CYBERPUNK NAVIGATION ===== */
-        .cyber-nav {
+        /* ===== NAVIGATION ===== */
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 9999;
-            padding: 25px 0;
-            background: rgba(10, 10, 15, 0.85);
+            z-index: 1000;
+            padding: 28px 0;
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--cyber-border);
-            transition: var(--transition-med);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
         }
 
-        .cyber-nav.scrolled {
-            padding: 15px 0;
-            background: rgba(10, 10, 15, 0.95);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        .nav.scrolled {
+            padding: 20px 0;
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-container {
@@ -209,163 +127,110 @@
         }
 
         .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            position: relative;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-cyber);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse-glow 3s infinite;
-        }
-
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 900;
-            background: var(--gradient-cyber);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-        }
-
-        .nav-hologram {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .hologram-link {
-            position: relative;
-            color: var(--text-secondary);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 0;
-            transition: var(--transition-fast);
-        }
-
-        .hologram-link::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-cyber);
-            transition: var(--transition-med);
-        }
-
-        .hologram-link:hover {
-            color: var(--text-primary);
-        }
-
-        .hologram-link:hover::before {
-            width: 100%;
-        }
-
-        .nav-indicator {
-            position: absolute;
-            bottom: -1px;
-            height: 3px;
-            background: var(--gradient-cyber);
-            transition: var(--transition-med);
-            border-radius: 2px;
-        }
-
-        /* ===== CYBER BUTTONS ===== */
-        .cyber-button {
-            position: relative;
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--primary-neon);
-            padding: 18px 45px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            overflow: hidden;
-            transition: var(--transition-med);
-            text-decoration: none;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            justify-content: center;
             gap: 12px;
         }
 
-        .cyber-button::before {
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-orange);
-            transition: var(--transition-med);
-            z-index: -1;
-        }
-
-        .cyber-button:hover {
-            color: var(--cyber-black);
-            box-shadow: var(--shadow-neon);
-            transform: translateY(-3px);
-        }
-
-        .cyber-button:hover::before {
+            bottom: -4px;
             left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
         }
 
-        .cyber-button.glow {
-            animation: button-glow 2s infinite;
+        .nav-link:hover {
+            color: var(--primary);
         }
 
-        .terminal-button {
-            background: var(--cyber-dark);
-            border: 2px solid var(--secondary-neon);
-            color: var(--secondary-neon);
-            font-family: 'Space Grotesk', monospace;
-            padding: 15px 35px;
-            position: relative;
-            overflow: hidden;
+        .nav-link:hover::after {
+            width: 100%;
         }
 
-        .terminal-button::after {
-            content: '>';
-            position: absolute;
-            right: 15px;
-            animation: blink 1s infinite;
+        .nav-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* ===== MAIN HERO SECTION - FUTURE 3D DEVICES ===== */
-        .cyber-hero {
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 200px 0 120px;
             position: relative;
             min-height: 100vh;
-            padding: 180px 0 100px;
             display: flex;
             align-items: center;
             overflow: hidden;
         }
 
-        #cyber-canvas {
+        .hero-bg {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: 0;
+            width: 60%;
             height: 100%;
-            z-index: 1;
+            background: linear-gradient(135deg, var(--primary-soft), transparent);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            z-index: 0;
         }
 
         .hero-grid {
@@ -375,269 +240,57 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(90deg, transparent 49.9%, var(--cyber-grid) 50%, transparent 50.1%),
-                linear-gradient(transparent 49.9%, var(--cyber-grid) 50%, transparent 50.1%);
-            background-size: 100px 100px;
-            opacity: 0.3;
-            animation: grid-move 20s linear infinite;
+                linear-gradient(90deg, transparent 99.5%, rgba(0,0,0,0.02) 100%),
+                linear-gradient(transparent 99.5%, rgba(0,0,0,0.02) 100%);
+            background-size: 60px 60px;
+            z-index: 0;
         }
 
         .hero-content {
             position: relative;
-            z-index: 10;
+            z-index: 1;
             max-width: 700px;
         }
 
         .hero-title {
-            font-size: 6rem;
-            margin-bottom: 30px;
-            line-height: 1;
+            margin-bottom: 32px;
         }
 
         .hero-subtitle {
             font-size: 1.4rem;
             color: var(--text-secondary);
-            margin-bottom: 50px;
+            margin-bottom: 48px;
+            max-width: 600px;
             line-height: 1.8;
-            position: relative;
-            padding-left: 20px;
         }
 
-        .hero-subtitle::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: var(--gradient-cyber);
-        }
-
-        /* ===== 3D DEVICE SHOWCASE ===== */
+        /* ===== DEVICE SHOWCASE ===== */
         .device-showcase {
             position: absolute;
             right: 5%;
             top: 50%;
             transform: translateY(-50%);
-            width: 800px;
-            height: 600px;
-            z-index: 5;
-            perspective: 2000px;
+            width: 700px;
+            height: 500px;
+            z-index: 2;
         }
 
-        .holo-device {
+        .device {
             position: absolute;
-            transform-style: preserve-3d;
-            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.8));
-        }
-
-        .holo-pc {
-            width: 500px;
-            height: 320px;
-            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9), rgba(20, 20, 30, 0.9));
-            border-radius: 20px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotateY(25deg) rotateX(10deg);
-            animation: holo-float 8s ease-in-out infinite;
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            box-shadow: 
-                inset 0 0 50px rgba(255, 107, 53, 0.1),
-                0 0 80px rgba(255, 107, 53, 0.2);
-        }
-
-        .holo-pc::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--gradient-cyber);
-            border-radius: 22px;
-            z-index: -1;
-            filter: blur(20px);
-            opacity: 0.5;
-        }
-
-        .pc-holo-screen {
-            position: absolute;
-            width: 94%;
-            height: 84%;
-            top: 8%;
-            left: 3%;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 12px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 1px solid var(--border-color);
         }
 
-        .screen-matrix {
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(transparent 90%, rgba(0, 243, 255, 0.1) 100%),
-                linear-gradient(90deg, transparent 90%, rgba(255, 107, 53, 0.1) 100%);
-            animation: matrix-flow 20s linear infinite;
-            position: relative;
-        }
-
-        .matrix-code {
-            position: absolute;
-            color: var(--secondary-neon);
-            font-family: 'Space Grotesk', monospace;
-            font-size: 14px;
-            white-space: nowrap;
-            animation: code-fall 10s linear infinite;
-        }
-
-        .holo-tablet {
-            width: 250px;
-            height: 350px;
-            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9), rgba(20, 20, 30, 0.9));
-            border-radius: 30px;
-            top: 30%;
-            right: 10%;
-            transform: rotateY(-20deg) rotateX(10deg) rotateZ(-10deg);
-            animation: holo-float 7s ease-in-out infinite 0.5s;
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            box-shadow: 
-                inset 0 0 40px rgba(255, 107, 53, 0.1),
-                0 0 60px rgba(255, 107, 53, 0.2);
-        }
-
-        .holo-mobile {
-            width: 130px;
-            height: 260px;
-            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9), rgba(20, 20, 30, 0.9));
-            border-radius: 35px;
-            bottom: 25%;
-            right: 25%;
-            transform: rotateY(15deg) rotateX(5deg) rotateZ(10deg);
-            animation: holo-float 6s ease-in-out infinite 1s;
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            box-shadow: 
-                inset 0 0 30px rgba(255, 107, 53, 0.1),
-                0 0 50px rgba(255, 107, 53, 0.2);
-        }
-
-        .device-stand {
-            position: absolute;
-            width: 150px;
-            height: 80px;
-            background: rgba(20, 20, 30, 0.8);
-            border-radius: 10px;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-top: 2px solid var(--primary-neon);
-        }
-
-        /* ===== CYBER STATS ===== */
-        .cyber-stats {
-            display: flex;
-            gap: 100px;
-            margin-top: 100px;
-            flex-wrap: wrap;
-        }
-
-        .stat-holo {
-            position: relative;
-            min-width: 200px;
-        }
-
-        .stat-value {
-            font-size: 4.5rem;
-            font-weight: 900;
-            background: var(--gradient-cyber);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            line-height: 1;
-            margin-bottom: 15px;
-            text-shadow: 0 0 30px var(--primary-glow);
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-        }
-
-        .stat-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-            filter: blur(40px);
-            opacity: 0.3;
-            z-index: -1;
-        }
-
-        /* ===== SERVICES SECTION - HOLOGRAMS ===== */
-        .cyber-services {
-            padding: 200px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            perspective: 1000px;
-        }
-
-        .holo-card {
-            background: var(--cyber-card);
-            border-radius: var(--radius-xl);
-            padding: 60px 40px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--cyber-border);
-            backdrop-filter: blur(10px);
-            transform-style: preserve-3d;
-            transform: translateZ(0);
-            opacity: 0;
-            transition: var(--transition-slow);
-        }
-
-        .holo-card.animate {
-            opacity: 1;
-            transform: translateZ(20px);
-        }
-
-        .holo-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
-            transition: var(--transition-med);
-        }
-
-        .holo-card:hover::before {
-            left: 100%;
-        }
-
-        .holo-card::after {
+        .device::before {
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: var(--radius-xl);
-            padding: 2px;
-            background: var(--gradient-cyber);
+            border-radius: 24px;
+            padding: 1px;
+            background: linear-gradient(135deg, transparent, var(--primary), transparent);
             -webkit-mask: 
                 linear-gradient(#fff 0 0) content-box, 
                 linear-gradient(#fff 0 0);
@@ -646,438 +299,564 @@
                 linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
-            pointer-events: none;
         }
 
-        .card-icon {
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 107, 53, 0.1);
-            border-radius: 25px;
+        .device-screen {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            background: #F5F5F5;
+            border-radius: 16px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 40px;
+        }
+
+        .screen-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screen-demo {
+            width: 90%;
+            height: 80%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
         }
 
-        .card-icon i {
-            font-size: 3rem;
-            background: var(--gradient-cyber);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
+        .demo-header {
+            height: 60px;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
         }
 
-        .card-icon::before {
+        .demo-content {
+            padding: 32px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .demo-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .demo-item {
+            flex: 1;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-soft), var(--border-color));
+            border-radius: 4px;
+        }
+
+        /* PC Device */
+        .device-pc {
+            width: 450px;
+            height: 280px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(20deg) rotateX(5deg);
+            animation: float-pc 8s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        .pc-stand {
+            position: absolute;
+            width: 120px;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Tablet Device */
+        .device-tablet {
+            width: 220px;
+            height: 320px;
+            top: 30%;
+            right: 10%;
+            transform: rotateY(-15deg) rotateX(5deg) rotateZ(-5deg);
+            animation: float-tablet 7s ease-in-out infinite 0.5s;
+            z-index: 2;
+        }
+
+        /* Mobile Device */
+        .device-mobile {
+            width: 110px;
+            height: 220px;
+            bottom: 25%;
+            right: 25%;
+            transform: rotateY(10deg) rotateX(3deg) rotateZ(5deg);
+            animation: float-mobile 6s ease-in-out infinite 1s;
+            z-index: 1;
+        }
+
+        /* Device Animations */
+        @keyframes float-pc {
+            0%, 100% { transform: translate(-50%, -50%) rotateY(20deg) rotateX(5deg) translateY(0); }
+            50% { transform: translate(-50%, -50%) rotateY(25deg) rotateX(7deg) translateY(-20px); }
+        }
+
+        @keyframes float-tablet {
+            0%, 100% { transform: rotateY(-15deg) rotateX(5deg) rotateZ(-5deg) translateY(0); }
+            50% { transform: rotateY(-20deg) rotateX(8deg) rotateZ(-8deg) translateY(-15px); }
+        }
+
+        @keyframes float-mobile {
+            0%, 100% { transform: rotateY(10deg) rotateX(3deg) rotateZ(5deg) translateY(0); }
+            50% { transform: rotateY(15deg) rotateX(6deg) rotateZ(8deg) translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: flex;
+            gap: 80px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            margin-top: 80px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: var(--gradient-cyber);
-            opacity: 0;
-            transition: var(--transition-med);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
         }
 
-        .holo-card:hover .card-icon::before {
-            opacity: 0.1;
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-soft);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .service-description {
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            line-height: 1.8;
         }
 
         .service-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: var(--gradient-cyber);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-            margin-top: 30px;
-            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
-        /* ===== PORTFOLIO - MATRIX GRID ===== */
-        .cyber-portfolio {
-            padding: 200px 0;
-            position: relative;
-        }
-
-        .matrix-grid {
+        /* ===== PORTFOLIO ===== */
+        .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            position: relative;
+            gap: 32px;
+            margin-top: 80px;
         }
 
-        .matrix-item {
+        .portfolio-item {
             position: relative;
-            height: 400px;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-xl);
             overflow: hidden;
+            height: 400px;
             cursor: pointer;
-            transform-style: preserve-3d;
+            transition: var(--transition-slow);
             opacity: 0;
-            transform: scale(0.8) rotateY(15deg);
+            transform: translateY(30px);
+        }
+
+        .portfolio-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: var(--transition-slow);
         }
 
-        .matrix-item.animate {
-            opacity: 1;
-            transform: scale(1) rotateY(0);
-        }
-
-        .matrix-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--gradient-cyber);
-            opacity: 0;
-            transition: var(--transition-med);
-            z-index: 2;
-            mix-blend-mode: overlay;
-        }
-
-        .matrix-item:hover::before {
-            opacity: 0.3;
-        }
-
-        .matrix-overlay {
+        .portfolio-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             padding: 40px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             transform: translateY(100%);
-            transition: var(--transition-med);
-            z-index: 3;
+            transition: var(--transition);
         }
 
-        .matrix-item:hover .matrix-overlay {
+        .portfolio-item:hover .portfolio-overlay {
             transform: translateY(0);
         }
 
-        .tech-tags {
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+
+        .portfolio-tech {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 16px;
             flex-wrap: wrap;
         }
 
         .tech-tag {
-            background: rgba(255, 107, 53, 0.2);
-            color: var(--primary-neon);
-            padding: 5px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 16px;
             border-radius: var(--radius-full);
             font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid rgba(255, 107, 53, 0.3);
+            font-weight: 500;
+            backdrop-filter: blur(10px);
         }
 
-        /* ===== PROCESS TIMELINE - NEON CIRCUIT ===== */
-        .cyber-process {
-            padding: 200px 0;
+        /* ===== PROCESS ===== */
+        .process-timeline {
+            display: flex;
+            justify-content: space-between;
             position: relative;
+            margin-top: 120px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .circuit-timeline {
-            position: relative;
-            height: 600px;
-            margin: 100px 0;
-        }
-
-        .circuit-line {
+        .process-timeline::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 10%;
-            width: 80%;
-            height: 4px;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
             background: linear-gradient(90deg, 
                 transparent, 
-                var(--primary-neon), 
-                var(--secondary-neon), 
-                var(--tertiary-neon), 
-                transparent);
-            transform: translateY(-50%);
-            animation: circuit-pulse 3s infinite;
+                var(--primary), 
+                var(--primary), 
+                var(--primary), 
+                transparent
+            );
+            opacity: 0.2;
         }
 
-        .circuit-node {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 120px;
-            height: 120px;
-            background: var(--cyber-card);
+        .process-step {
+            text-align: center;
+            position: relative;
+            width: 20%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-slow);
+        }
+
+        .process-step.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 2px solid var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid var(--primary-neon);
-            box-shadow: 0 0 40px var(--primary-glow);
-            cursor: pointer;
-            transition: var(--transition-med);
-            opacity: 0;
-            transform: translateY(-50%) scale(0) rotateY(90deg);
-            z-index: 2;
-        }
-
-        .circuit-node.animate {
-            opacity: 1;
-            transform: translateY(-50%) scale(1) rotateY(0);
-        }
-
-        .circuit-node:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .circuit-node:nth-child(2) { left: 30%; animation-delay: 0.2s; }
-        .circuit-node:nth-child(3) { left: 50%; animation-delay: 0.4s; }
-        .circuit-node:nth-child(4) { left: 70%; animation-delay: 0.6s; }
-        .circuit-node:nth-child(5) { left: 90%; animation-delay: 0.8s; }
-
-        .circuit-node:hover {
-            transform: translateY(-50%) scale(1.2);
-            box-shadow: 0 0 80px var(--primary-glow);
-            border-color: var(--secondary-neon);
-        }
-
-        .node-glow {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: var(--primary-glow);
-            filter: blur(20px);
-            opacity: 0.5;
-            animation: node-pulse 2s infinite;
-        }
-
-        /* ===== AI CONTACT FORM ===== */
-        .cyber-contact {
-            padding: 200px 0;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0 auto 32px;
             position: relative;
+            z-index: 1;
+            box-shadow: var(--shadow-md);
         }
 
-        .ai-form-container {
-            background: var(--cyber-card);
+        .step-title {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info {
+            padding-right: 40px;
+        }
+
+        .contact-details {
+            margin-top: 48px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary-soft);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: white;
             border-radius: var(--radius-xl);
-            padding: 80px;
-            border: 1px solid var(--cyber-border);
-            backdrop-filter: blur(20px);
-            position: relative;
-            overflow: hidden;
+            padding: 64px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
             transform: translateX(50px);
             opacity: 0;
             transition: var(--transition-slow);
         }
 
-        .ai-form-container.animate {
+        .contact-form.animate {
             transform: translateX(0);
             opacity: 1;
         }
 
-        .ai-form-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-cyber);
+        .form-group {
+            margin-bottom: 28px;
         }
 
-        .form-field {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .field-label {
+        .form-label {
             display: block;
-            color: var(--text-secondary);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
             font-weight: 600;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 1rem;
         }
 
-        .cyber-input {
+        .form-input {
             width: 100%;
-            padding: 20px 25px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 18px 24px;
+            background: white;
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             color: var(--text-primary);
-            font-size: 1.2rem;
-            font-family: 'Exo 2', sans-serif;
-            transition: var(--transition-fast);
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
         }
 
-        .cyber-input:focus {
+        .form-input:focus {
             outline: none;
-            border-color: var(--primary-neon);
-            box-shadow: 0 0 30px var(--primary-glow);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 138, 101, 0.1);
         }
 
-        .input-glow {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-cyber);
-            transition: var(--transition-med);
-        }
-
-        .cyber-input:focus + .input-glow {
-            width: 100%;
-        }
-
-        /* ===== CYBER FOOTER ===== */
-        .cyber-footer {
-            background: rgba(5, 5, 10, 0.95);
-            padding: 150px 0 80px;
-            border-top: 1px solid var(--cyber-border);
-            position: relative;
-            overflow: hidden;
+        /* ===== FOOTER ===== */
+        .footer {
+            background: white;
+            padding: 100px 0 60px;
+            border-top: 1px solid var(--border-color);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 100px;
+            gap: 80px;
             margin-bottom: 80px;
         }
 
-        .footer-hologram {
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-description {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-sections {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 60px;
+            gap: 48px;
         }
 
         .footer-section h4 {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
+            font-size: 1.1rem;
+            margin-bottom: 28px;
             color: var(--text-primary);
-            position: relative;
-            padding-bottom: 15px;
+            font-weight: 700;
         }
 
-        .footer-section h4::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient-cyber);
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .footer-links a {
-            display: block;
-            color: var(--text-muted);
-            margin-bottom: 15px;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: var(--transition-fast);
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .footer-links a::before {
-            content: '>';
-            position: absolute;
-            left: 0;
-            color: var(--primary-neon);
-            transition: var(--transition-fast);
+            transition: var(--transition);
+            font-weight: 500;
         }
 
         .footer-links a:hover {
-            color: var(--text-primary);
-            transform: translateX(10px);
-        }
-
-        .footer-links a:hover::before {
-            color: var(--secondary-neon);
+            color: var(--primary);
+            transform: translateX(4px);
         }
 
         .copyright {
             text-align: center;
             padding-top: 60px;
-            border-top: 1px solid rgba(255, 107, 53, 0.1);
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes holo-float {
-            0%, 100% { transform: translate(-50%, -50%) rotateY(25deg) rotateX(10deg) translateY(0); }
-            50% { transform: translate(-50%, -50%) rotateY(30deg) rotateX(15deg) translateY(-30px); }
-        }
-
-        @keyframes matrix-flow {
-            0% { background-position: 0 0; }
-            100% { background-position: 100px 100px; }
-        }
-
-        @keyframes code-fall {
-            0% { transform: translateY(-100%); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px var(--primary-glow); }
-            50% { box-shadow: 0 0 40px var(--primary-glow); }
-        }
-
-        @keyframes circuit-pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes node-pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0.8; }
-        }
-
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(100px, 100px); }
-        }
-
-        @keyframes button-glow {
-            0%, 100% { box-shadow: 0 0 20px var(--primary-glow); }
-            50% { box-shadow: 0 0 40px var(--primary-glow); }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 1600px) {
+        @media (max-width: 1400px) {
             .device-showcase {
-                width: 700px;
-                right: 2%;
+                width: 600px;
             }
             
-            .holo-pc {
-                width: 450px;
-                height: 280px;
+            .device-pc {
+                width: 400px;
+                height: 250px;
+            }
+            
+            .display-1 {
+                font-size: 4.5rem;
+            }
+            
+            .display-2 {
+                font-size: 3.5rem;
             }
         }
 
-        @media (max-width: 1400px) {
+        @media (max-width: 1200px) {
             .device-showcase {
                 display: none;
             }
@@ -1087,18 +866,50 @@
                 text-align: center;
             }
             
-            .hero-subtitle::before {
-                display: none;
+            .stats {
+                justify-content: center;
             }
             
-            .cyber-stats {
-                justify-content: center;
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .contact-form {
+                transform: translateX(0);
             }
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-timeline {
+                flex-direction: column;
+                gap: 60px;
+                align-items: center;
+            }
+            
+            .process-timeline::before {
+                display: none;
+            }
+            
+            .process-step {
+                width: 100%;
+                max-width: 400px;
             }
             
             .footer-grid {
@@ -1106,381 +917,341 @@
                 gap: 60px;
             }
             
-            .matrix-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 992px) {
-            .nav-hologram {
-                display: none;
-            }
-            
-            .hero-title {
-                font-size: 4rem;
-            }
-            
-            .cyber-title {
-                font-size: 3.5rem;
-            }
-            
-            .services-grid {
+            .footer-sections {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
             
-            .matrix-grid {
-                grid-template-columns: 1fr;
+            .section {
+                padding: 120px 0;
             }
             
-            .footer-hologram {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .ai-form-container {
-                padding: 40px;
+            .container {
+                padding: 0 32px;
             }
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .cyber-stats {
-                flex-direction: column;
-                gap: 50px;
-                align-items: center;
-            }
-            
-            .stat-holo {
-                min-width: 150px;
-            }
-            
-            .stat-value {
+            .display-1 {
                 font-size: 3.5rem;
             }
             
-            .footer-hologram {
-                grid-template-columns: 1fr;
+            .display-2 {
+                font-size: 2.8rem;
             }
             
-            .circuit-timeline {
-                height: auto;
-                display: flex;
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .stats {
                 flex-direction: column;
-                gap: 60px;
+                gap: 48px;
+                align-items: center;
             }
             
-            .circuit-line {
-                display: none;
+            .stat-number {
+                font-size: 3rem;
             }
             
-            .circuit-node {
-                position: relative;
-                left: auto !important;
-                top: auto;
-                transform: none;
-                margin: 0 auto;
+            .contact-form {
+                padding: 48px 32px;
+            }
+            
+            .container {
+                padding: 0 24px;
             }
         }
 
-        /* ===== UTILITY CLASSES ===== */
-        .glitch-effect {
-            position: relative;
+        @media (max-width: 480px) {
+            .display-1 {
+                font-size: 2.8rem;
+            }
+            
+            .display-2 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .nav-button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            
+            .service-card {
+                padding: 40px 32px;
+            }
         }
 
-        .glitch-effect::before,
-        .glitch-effect::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        /* ===== ANIMATION UTILITIES ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-slow);
         }
 
-        .glitch-effect::before {
-            animation: glitch 0.3s infinite;
-            color: var(--secondary-neon);
-            z-index: -1;
-        }
-
-        .glitch-effect::after {
-            animation: glitch 0.3s infinite reverse;
-            color: var(--tertiary-neon);
-            z-index: -2;
-        }
-
-        .scan-line {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scan-line::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gradient-cyber);
-            animation: scan 3s linear infinite;
-            z-index: 10;
-        }
-
-        .noise-bg::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: -1;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ===== CUSTOM SCROLLBAR ===== */
         ::-webkit-scrollbar {
-            width: 10px;
-            background: var(--cyber-dark);
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(255, 107, 53, 0.1);
-            border-radius: var(--radius-full);
+            background: #F5F5F5;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--gradient-cyber);
-            border-radius: var(--radius-full);
-            border: 2px solid var(--cyber-dark);
+            background: var(--primary);
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--gradient-orange);
+            background: var(--primary-dark);
         }
     </style>
 </head>
-<body class="noise-bg">
-    <!-- CYBER NAVIGATION -->
-    <nav class="cyber-nav" id="cyberNav">
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
         <div class="container nav-container">
-            <div class="nav-logo">
-                <div class="logo-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <span class="logo-text">VIBZ NEXUS</span>
+            <a href="#" class="nav-logo">
+                <span>VIBZ</span>
+                <div class="logo-dot"></div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#portfolio" class="nav-link">Work</a>
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
             
-            <div class="nav-hologram">
-                <a href="#hero" class="hologram-link" data-section="hero">HOME</a>
-                <a href="#services" class="hologram-link" data-section="services">SERVICES</a>
-                <a href="#portfolio" class="hologram-link" data-section="portfolio">WORK</a>
-                <a href="#process" class="hologram-link" data-section="process">PROCESS</a>
-                <a href="#contact" class="hologram-link" data-section="contact">CONTACT</a>
-            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
             
-            <div class="nav-cta">
-                <a href="#contact" class="cyber-button glow">
-                    <i class="fas fa-terminal"></i>
-                    <span>ACCESS PORTAL</span>
-                </a>
-            </div>
+            <a href="#contact" class="nav-button">
+                <i class="fas fa-paper-plane"></i>
+                Start Project
+            </a>
         </div>
-        <div class="nav-indicator" id="navIndicator"></div>
     </nav>
 
-    <!-- MAIN HERO SECTION -->
-    <section class="cyber-hero" id="hero">
-        <canvas id="cyber-canvas"></canvas>
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="hero-grid"></div>
+        <div class="hero-bg"></div>
         
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title glitch-effect" data-text="2030 DIGITAL REVOLUTION">
-                    <span class="cyber-title">2030 DIGITAL REVOLUTION</span>
+                <h1 class="hero-title display-1">
+                    <span class="text-gradient">Digital Excellence</span>
+                    <br>Redefined
                 </h1>
                 
                 <p class="hero-subtitle">
-                    VIBZ NEXUS creates never-before-seen digital experiences for Fortune 500 companies and tech unicorns. We pioneer the future of web technology with quantum-inspired designs and AI-powered interfaces.
+                    VIBZ creates minimalist, high-performance digital experiences for forward-thinking brands. We combine elegant design with cutting-edge technology to deliver exceptional results.
                 </p>
                 
                 <div class="hero-cta">
-                    <a href="#contact" class="cyber-button" style="margin-right: 20px;">
+                    <a href="#contact" class="nav-button" style="margin-right: 20px;">
                         <i class="fas fa-rocket"></i>
-                        <span>LAUNCH PROJECT</span>
+                        Start Project
                     </a>
-                    <a href="#portfolio" class="terminal-button">
-                        <span>VIEW MATRIX</span>
+                    <a href="#portfolio" class="nav-link" style="font-size: 1.1rem;">
+                        View Our Work →
                     </a>
                 </div>
                 
-                <div class="cyber-stats">
-                    <div class="stat-holo">
-                        <div class="stat-glow"></div>
-                        <span class="stat-value" id="quantumProjects">0</span>
-                        <span class="stat-label">Quantum Projects</span>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="projectsCount">0</span>
+                        <span class="stat-label">Projects Delivered</span>
                     </div>
                     
-                    <div class="stat-holo">
-                        <div class="stat-glow"></div>
-                        <span class="stat-value" id="aiIntegrations">0</span>
-                        <span class="stat-label">AI Integrations</span>
+                    <div class="stat-item">
+                        <span class="stat-number" id="clientSatisfaction">0%</span>
+                        <span class="stat-label">Client Satisfaction</span>
                     </div>
                     
-                    <div class="stat-holo">
-                        <div class="stat-glow"></div>
-                        <span class="stat-value" id="revenueImpact">$0M</span>
+                    <div class="stat-item">
+                        <span class="stat-number" id="revenueImpact">$0M</span>
                         <span class="stat-label">Revenue Impact</span>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- 3D HOLOGRAPHIC DEVICES -->
+        <!-- 3D Device Showcase -->
         <div class="device-showcase">
-            <div class="holo-device holo-pc">
-                <div class="pc-holo-screen">
-                    <div class="screen-matrix">
-                        <!-- Matrix code will be generated by JS -->
+            <div class="device device-pc">
+                <div class="device-screen">
+                    <div class="screen-content">
+                        <div class="screen-demo">
+                            <div class="demo-header">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 8px; height: 8px; background: #FF5252; border-radius: 50%;"></div>
+                                    <div style="width: 8px; height: 8px; background: #FFC107; border-radius: 50%;"></div>
+                                    <div style="width: 8px; height: 8px; background: #4CAF50; border-radius: 50%;"></div>
+                                </div>
+                            </div>
+                            <div class="demo-content">
+                                <div class="demo-row">
+                                    <div class="demo-item"></div>
+                                    <div class="demo-item"></div>
+                                    <div class="demo-item"></div>
+                                </div>
+                                <div class="demo-row">
+                                    <div class="demo-item" style="height: 24px;"></div>
+                                </div>
+                                <div class="demo-row">
+                                    <div class="demo-item" style="height: 16px;"></div>
+                                    <div class="demo-item" style="height: 16px;"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="device-stand"></div>
+                <div class="pc-stand"></div>
             </div>
             
-            <div class="holo-device holo-tablet">
-                <div class="pc-holo-screen">
-                    <div class="screen-matrix"></div>
+            <div class="device device-tablet">
+                <div class="device-screen">
+                    <div class="screen-content">
+                        <div class="screen-demo">
+                            <div class="demo-content">
+                                <div class="demo-row">
+                                    <div class="demo-item"></div>
+                                    <div class="demo-item"></div>
+                                </div>
+                                <div class="demo-row">
+                                    <div class="demo-item" style="height: 24px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="holo-device holo-mobile">
-                <div class="pc-holo-screen">
-                    <div class="screen-matrix"></div>
+            <div class="device device-mobile">
+                <div class="device-screen">
+                    <div class="screen-content">
+                        <div class="screen-demo">
+                            <div class="demo-content">
+                                <div class="demo-row">
+                                    <div class="demo-item"></div>
+                                </div>
+                                <div class="demo-row">
+                                    <div class="demo-item" style="height: 16px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- CYBER PARTICLES -->
-        <div id="cyber-particles"></div>
     </section>
 
-    <!-- QUANTUM SERVICES -->
-    <section class="cyber-services" id="services">
-        <div class="cyber-grid-bg"></div>
+    <!-- Services Section -->
+    <section class="section" id="services">
         <div class="container">
             <div class="section-header">
-                <h2 class="cyber-title scan-line" data-text="QUANTUM SERVICES">QUANTUM SERVICES</h2>
-                <p class="section-subtitle matrix-text">Pioneering the future of digital experiences with cutting-edge technology and quantum-inspired design principles.</p>
+                <h2 class="display-2">Premium Services</h2>
+                <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: 24px auto 0;">
+                    Expert solutions for brands that value quality and innovation
+                </p>
             </div>
             
             <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="holo-card">
-                    <div class="card-icon">
-                        <i class="fas fa-atom"></i>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-desktop"></i>
                     </div>
-                    <h3 class="neon-text">Quantum Web Design</h3>
-                    <p class="text-muted">Parallel-rendered websites with quantum computing principles. Experience loading times measured in nanoseconds.</p>
-                    <div class="service-features">
-                        <div class="tech-tags">
-                            <span class="tech-tag">WebGL 3.0</span>
-                            <span class="tech-tag">Quantum CSS</span>
-                            <span class="tech-tag">Neural Networks</span>
-                        </div>
-                    </div>
-                    <span class="service-price">$250k+</span>
+                    <h3 class="service-title">Web Design & Development</h3>
+                    <p class="service-description">
+                        Custom websites built with modern frameworks, optimized for performance and user experience across all devices.
+                    </p>
+                    <div class="service-price">$25,000+</div>
                 </div>
                 
-                <!-- Service 2 -->
-                <div class="holo-card">
-                    <div class="card-icon">
-                        <i class="fas fa-brain"></i>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3 class="neon-text">AI Integration Suite</h3>
-                    <p class="text-muted">Self-learning interfaces that adapt to user behavior in real-time. Predictive analytics with 99.8% accuracy.</p>
-                    <div class="service-features">
-                        <div class="tech-tags">
-                            <span class="tech-tag">GPT-5</span>
-                            <span class="tech-tag">Neural Rendering</span>
-                            <span class="tech-tag">Predictive UI</span>
-                        </div>
-                    </div>
-                    <span class="service-price">$500k+</span>
+                    <h3 class="service-title">App Development</h3>
+                    <p class="service-description">
+                        Native and cross-platform applications with elegant interfaces and seamless user experiences.
+                    </p>
+                    <div class="service-price">$50,000+</div>
                 </div>
                 
-                <!-- Service 3 -->
-                <div class="holo-card">
-                    <div class="card-icon">
-                        <i class="fas fa-vr-cardboard"></i>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="neon-text">Metaverse Development</h3>
-                    <p class="text-muted">Full-scale virtual environments with photorealistic graphics and real-time multiplayer interactions.</p>
-                    <div class="service-features">
-                        <div class="tech-tags">
-                            <span class="tech-tag">Unreal Engine 6</span>
-                            <span class="tech-tag">Blockchain</span>
-                            <span class="tech-tag">Spatial Computing</span>
-                        </div>
-                    </div>
-                    <span class="service-price">$1M+</span>
+                    <h3 class="service-title">Digital Strategy</h3>
+                    <p class="service-description">
+                        Comprehensive digital transformation strategies to grow your business and maximize ROI.
+                    </p>
+                    <div class="service-price">$40,000+</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MATRIX PORTFOLIO -->
-    <section class="cyber-portfolio" id="portfolio">
+    <!-- Portfolio Section -->
+    <section class="section" id="portfolio" style="background: #F8F8F8;">
         <div class="container">
             <div class="section-header">
-                <h2 class="cyber-title" data-text="THE MATRIX">THE MATRIX</h2>
-                <p class="section-subtitle matrix-text">Elite projects for tech giants and industry disruptors. Each project pushes the boundaries of what's possible.</p>
+                <h2 class="display-2">Selected Work</h2>
+                <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: 24px auto 0;">
+                    A showcase of our premium projects for industry-leading brands
+                </p>
             </div>
             
-            <div class="matrix-grid">
-                <!-- Project 1 -->
-                <div class="matrix-item">
-                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Quantum Dashboard">
-                    <div class="matrix-overlay">
-                        <h3 class="neon-text">Neo Financial AI</h3>
-                        <p class="text-secondary">Real-time quantum trading platform with predictive market analysis</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Quantum Computing</span>
-                            <span class="tech-tag">Real-time AI</span>
-                            <span class="tech-tag">WebGL 3D</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="matrix-item">
-                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="VR Interface">
-                    <div class="matrix-overlay">
-                        <h3 class="neon-text">MetaVerse Pro</h3>
-                        <p class="text-secondary">Enterprise virtual reality platform with neural interface support</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">VR/AR</span>
-                            <span class="tech-tag">Neural Interface</span>
-                            <span class="tech-tag">Blockchain</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="matrix-item">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Data Visualization">
-                    <div class="matrix-overlay">
-                        <h3 class="neon-text">DataSphere 3.0</h3>
-                        <p class="text-secondary">Interactive 3D data visualization platform for enterprise analytics</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Three.js</span>
+            <div class="portfolio-grid">
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Finance Dashboard" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 style="color: white; margin-bottom: 12px;">Quantum Financial</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Real-time analytics dashboard for investment firm</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">React</span>
                             <span class="tech-tag">D3.js</span>
-                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">WebGL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="E-commerce Platform" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 style="color: white; margin-bottom: 12px;">Nova Retail</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Premium e-commerce platform with AR integration</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Three.js</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Analytics Platform" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 style="color: white; margin-bottom: 12px;">DataSphere</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Enterprise data visualization platform</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">MongoDB</span>
                         </div>
                     </div>
                 </div>
@@ -1488,421 +1259,245 @@
         </div>
     </section>
 
-    <!-- QUANTUM PROCESS -->
-    <section class="cyber-process" id="process">
+    <!-- Process Section -->
+    <section class="section" id="process">
         <div class="container">
             <div class="section-header">
-                <h2 class="cyber-title" data-text="QUANTUM PROCESS">QUANTUM PROCESS</h2>
-                <p class="section-subtitle matrix-text">Our 5-phase quantum development process ensures flawless execution and maximum impact.</p>
+                <h2 class="display-2">Our Process</h2>
+                <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: 24px auto 0;">
+                    A structured approach to delivering exceptional results
+                </p>
             </div>
             
-            <div class="circuit-timeline">
-                <div class="circuit-line"></div>
-                
-                <div class="circuit-node">
-                    <div class="node-glow"></div>
-                    <span class="step-number neon-text">01</span>
-                    <div class="step-tooltip">
-                        <h4>Quantum Discovery</h4>
-                        <p>Parallel reality simulations</p>
+            <div class="process-timeline">
+                <div class="process-step fade-in">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Discovery</h3>
+                        <p class="step-description">Research and analysis to understand your business goals and user needs.</p>
                     </div>
                 </div>
                 
-                <div class="circuit-node">
-                    <div class="node-glow"></div>
-                    <span class="step-number neon-text">02</span>
-                    <div class="step-tooltip">
-                        <h4>Neural Design</h4>
-                        <p>AI-generated interfaces</p>
+                <div class="process-step fade-in">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Strategy</h3>
+                        <p class="step-description">Planning the architecture and user experience for optimal results.</p>
                     </div>
                 </div>
                 
-                <div class="circuit-node">
-                    <div class="node-glow"></div>
-                    <span class="step-number neon-text">03</span>
-                    <div class="step-tooltip">
-                        <h4>Quantum Development</h4>
-                        <p>Parallel processing</p>
+                <div class="process-step fade-in">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Design</h3>
+                        <p class="step-description">Creating elegant, user-centered interfaces with attention to detail.</p>
                     </div>
                 </div>
                 
-                <div class="circuit-node">
-                    <div class="node-glow"></div>
-                    <span class="step-number neon-text">04</span>
-                    <div class="step-tooltip">
-                        <h4>AI Integration</h4>
-                        <p>Neural network training</p>
+                <div class="process-step fade-in">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Development</h3>
+                        <p class="step-description">Building robust, scalable solutions with modern technologies.</p>
                     </div>
                 </div>
                 
-                <div class="circuit-node">
-                    <div class="node-glow"></div>
-                    <span class="step-number neon-text">05</span>
-                    <div class="step-tooltip">
-                        <h4>Quantum Launch</h4>
-                        <p>Multi-reality deployment</p>
+                <div class="process-step fade-in">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Launch</h3>
+                        <p class="step-description">Deployment, testing, and ongoing optimization for success.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AI CONTACT FORM -->
-    <section class="cyber-contact" id="contact">
+    <!-- Contact Section -->
+    <section class="section" id="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="cyber-title" data-text="INITIATE PROJECT">INITIATE PROJECT</h2>
-                <p class="section-subtitle matrix-text">Ready to pioneer the future? Submit your project brief for quantum analysis.</p>
+                <h2 class="display-2">Start Your Project</h2>
+                <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: 24px auto 0;">
+                    Ready to create something exceptional? Let's discuss your vision.
+                </p>
             </div>
             
-            <div class="ai-form-container">
-                <form id="quantumForm">
-                    <div class="grid-system">
-                        <div class="form-field" style="grid-column: span 6;">
-                            <label class="field-label">Quantum Entity Name</label>
-                            <input type="text" class="cyber-input" placeholder="Enter corporate entity" required>
-                            <div class="input-glow"></div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 style="font-size: 2rem; margin-bottom: 24px;">Why Choose VIBZ</h3>
+                    <p class="text-muted" style="margin-bottom: 32px; line-height: 1.8;">
+                        We combine strategic thinking with technical excellence to deliver digital experiences that drive results. Our team of experts will guide you through every step of the process.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 4px;">London Office</h4>
+                                <p class="text-muted">Mayfair, London</p>
+                            </div>
                         </div>
                         
-                        <div class="form-field" style="grid-column: span 6;">
-                            <label class="field-label">Temporal Communication</label>
-                            <input type="email" class="cyber-input" placeholder="Enter quantum email" required>
-                            <div class="input-glow"></div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 4px;">Phone</h4>
+                                <p class="text-muted">+44 7706 345874</p>
+                            </div>
                         </div>
                         
-                        <div class="form-field" style="grid-column: span 12;">
-                            <label class="field-label">Project Quantum Budget</label>
-                            <select class="cyber-input" required>
-                                <option value="">Select quantum allocation</option>
-                                <option value="250k">$250,000 - $500,000</option>
-                                <option value="500k">$500,000 - $1,000,000</option>
-                                <option value="1m">$1,000,000 - $5,000,000</option>
-                                <option value="5m">$5,000,000+</option>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 4px;">Email</h4>
+                                <p class="text-muted">hello@vibz.design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-input" placeholder="Your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="Your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Company</label>
+                            <input type="text" class="form-input" placeholder="Your company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Project Budget</label>
+                            <select class="form-input" required>
+                                <option value="">Select budget range</option>
+                                <option value="25k">$25,000 - $50,000</option>
+                                <option value="50k">$50,000 - $100,000</option>
+                                <option value="100k">$100,000 - $250,000</option>
+                                <option value="250k">$250,000+</option>
                             </select>
-                            <div class="input-glow"></div>
                         </div>
                         
-                        <div class="form-field" style="grid-column: span 12;">
-                            <label class="field-label">Project Singularity</label>
-                            <textarea class="cyber-input" rows="6" placeholder="Describe your vision for the digital future..."></textarea>
-                            <div class="input-glow"></div>
+                        <div class="form-group">
+                            <label class="form-label">Project Details</label>
+                            <textarea class="form-input" rows="5" placeholder="Tell us about your project"></textarea>
                         </div>
                         
-                        <div class="form-field" style="grid-column: span 12;">
-                            <button type="submit" class="cyber-button" style="width: 100%; margin-top: 20px;">
-                                <i class="fas fa-paper-plane"></i>
-                                <span>TRANSMIT TO QUANTUM NETWORK</span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                        <button type="submit" class="nav-button" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Project Request
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CYBER FOOTER -->
-    <footer class="cyber-footer">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="logo-icon" style="width: 70px; height: 70px;">
-                        <i class="fas fa-bolt"></i>
+                <div>
+                    <div class="footer-logo">
+                        <span>VIBZ</span>
+                        <div class="logo-dot"></div>
                     </div>
-                    <h3 class="logo-text" style="margin-top: 20px;">VIBZ NEXUS</h3>
-                    <p class="text-muted" style="margin-top: 20px;">Pioneering the digital frontier since 2023. Based in London's Tech Nexus.</p>
-                    
-                    <div class="footer-social" style="margin-top: 40px;">
-                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-dribbble"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <p class="footer-description">
+                        Creating exceptional digital experiences for forward-thinking brands. Based in London, serving clients worldwide.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
-                <div class="footer-hologram">
+                <div class="footer-sections">
                     <div class="footer-section">
-                        <h4>Quantum Services</h4>
+                        <h4>Services</h4>
                         <div class="footer-links">
-                            <a href="#">Web 4.0 Development</a>
-                            <a href="#">AI Integration</a>
-                            <a href="#">Metaverse Creation</a>
-                            <a href="#">Quantum Computing</a>
-                            <a href="#">Neural Interfaces</a>
+                            <a href="#">Web Design</a>
+                            <a href="#">App Development</a>
+                            <a href="#">Digital Strategy</a>
+                            <a href="#">Brand Identity</a>
+                            <a href="#">UX/UI Design</a>
                         </div>
                     </div>
                     
                     <div class="footer-section">
-                        <h4>The Nexus</h4>
+                        <h4>Company</h4>
                         <div class="footer-links">
-                            <a href="#">About Quantum</a>
-                            <a href="#">Elite Portfolio</a>
-                            <a href="#">Process Matrix</a>
-                            <a href="#">Quantum Team</a>
-                            <a href="#">Nexus Lab</a>
+                            <a href="#">About</a>
+                            <a href="#">Work</a>
+                            <a href="#">Process</a>
+                            <a href="#">Careers</a>
+                            <a href="#">Contact</a>
                         </div>
                     </div>
                     
                     <div class="footer-section">
-                        <h4>Connect</h4>
+                        <h4>Legal</h4>
                         <div class="footer-links">
-                            <a href="#">Quantum Portal</a>
-                            <a href="#">Neural Network</a>
-                            <a href="#">Temporal Comms</a>
-                            <a href="#">London HQ</a>
-                            <a href="#">Quantum Careers</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Cookie Policy</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p class="matrix-text">© 2030 VIBZ NEXUS QUANTUM DIGITAL AGENCY. ALL RIGHTS RESERVED ACROSS ALL REALITIES.</p>
-                <p class="text-muted" style="margin-top: 10px;">77 06 34 58 74 | vibznexus@quantum.net | London Tech Nexus</p>
+                <p>&copy; 2024 VIBZ Digital Agency. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- MAIN JAVASCRIPT -->
+    <!-- JavaScript -->
     <script>
-        // ===== THREE.JS QUANTUM SCENE =====
-        let scene, camera, renderer, composer;
-        let particles = [];
-        let mouseX = 0, mouseY = 0;
-        let windowHalfX = window.innerWidth / 2;
-        let windowHalfY = window.innerHeight / 2;
-        
-        function initQuantumScene() {
-            // Scene setup
-            scene = new THREE.Scene();
-            scene.fog = new THREE.Fog(0x0a0a0f, 1, 1000);
-            
-            // Camera setup
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 50;
-            camera.position.y = 10;
-            
-            // WebGL Renderer
-            renderer = new THREE.WebGLRenderer({ 
-                canvas: document.getElementById('cyber-canvas'),
-                alpha: true,
-                antialias: true,
-                powerPreference: "high-performance"
-            });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.outputEncoding = THREE.sRGBEncoding;
-            
-            // Post-processing
-            composer = new THREE.EffectComposer(renderer);
-            const renderPass = new THREE.RenderPass(scene, camera);
-            composer.addPass(renderPass);
-            
-            // Bloom effect
-            const bloomPass = new THREE.UnrealBloomPass(
-                new THREE.Vector2(window.innerWidth, window.innerHeight),
-                1.5, 0.4, 0.85
-            );
-            composer.addPass(bloomPass);
-            
-            // Film effect for cyberpunk look
-            const filmPass = new THREE.FilmPass(0.35, 0.95, 2048, false);
-            composer.addPass(filmPass);
-            
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xff6b35, 0.1);
-            scene.add(ambientLight);
-            
-            const directionalLight = new THREE.DirectionalLight(0xff6b35, 0.5);
-            directionalLight.position.set(10, 10, 10);
-            scene.add(directionalLight);
-            
-            const pointLight = new THREE.PointLight(0x00f3ff, 0.5, 100);
-            pointLight.position.set(-10, -10, 10);
-            scene.add(pointLight);
-            
-            // Create quantum particles
-            createQuantumParticles();
-            
-            // Create geometric structures
-            createQuantumGeometry();
-            
-            // Event listeners
-            document.addEventListener('mousemove', onDocumentMouseMove);
-            window.addEventListener('resize', onWindowResize);
-            
-            // Start animation
-            animateQuantumScene();
-        }
-        
-        function createQuantumParticles() {
-            const geometry = new THREE.BufferGeometry();
-            const vertices = [];
-            const colors = [];
-            
-            for (let i = 0; i < 5000; i++) {
-                // Random position
-                const x = (Math.random() - 0.5) * 200;
-                const y = (Math.random() - 0.5) * 200;
-                const z = (Math.random() - 0.5) * 200;
-                vertices.push(x, y, z);
-                
-                // Quantum colors (orange, cyan, magenta)
-                const color = new THREE.Color();
-                const rand = Math.random();
-                if (rand < 0.33) color.setHex(0xff6b35);
-                else if (rand < 0.66) color.setHex(0x00f3ff);
-                else color.setHex(0xff00ff);
-                
-                colors.push(color.r, color.g, color.b);
-            }
-            
-            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-            
-            const material = new THREE.PointsMaterial({
-                size: 0.5,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.6,
-                blending: THREE.AdditiveBlending
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation scroll effect
+            const nav = document.getElementById('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
             });
             
-            const particles = new THREE.Points(geometry, material);
-            scene.add(particles);
-        }
-        
-        function createQuantumGeometry() {
-            // Create torus knot for quantum effect
-            const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
-            const material = new THREE.MeshPhongMaterial({
-                color: 0xff6b35,
-                emissive: 0xff6b35,
-                emissiveIntensity: 0.2,
-                shininess: 100,
-                transparent: true,
-                opacity: 0.3,
-                wireframe: true
-            });
+            // Animated counters
+            let countersAnimated = false;
             
-            const knot = new THREE.Mesh(geometry, material);
-            knot.position.y = 5;
-            scene.add(knot);
-            
-            // Create floating cubes
-            const cubeGeometry = new THREE.BoxGeometry(2, 2, 2);
-            const cubeMaterial = new THREE.MeshPhongMaterial({
-                color: 0x00f3ff,
-                emissive: 0x00f3ff,
-                emissiveIntensity: 0.3,
-                transparent: true,
-                opacity: 0.4
-            });
-            
-            for (let i = 0; i < 20; i++) {
-                const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-                cube.position.x = (Math.random() - 0.5) * 100;
-                cube.position.y = (Math.random() - 0.5) * 100;
-                cube.position.z = (Math.random() - 0.5) * 100;
-                
-                cube.userData = {
-                    speed: Math.random() * 0.02 + 0.01,
-                    rotationSpeed: {
-                        x: Math.random() * 0.02,
-                        y: Math.random() * 0.02,
-                        z: Math.random() * 0.02
+            function animateCounter(elementId, targetValue, suffix = '') {
+                const element = document.getElementById(elementId);
+                let currentValue = 0;
+                const increment = targetValue / 100;
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= targetValue) {
+                        currentValue = targetValue;
+                        clearInterval(timer);
                     }
-                };
-                
-                scene.add(cube);
+                    element.textContent = currentValue.toFixed(suffix === '%' ? 0 : 1) + suffix;
+                }, 20);
             }
-        }
-        
-        function onDocumentMouseMove(event) {
-            mouseX = (event.clientX - windowHalfX) * 0.001;
-            mouseY = (event.clientY - windowHalfY) * 0.001;
-        }
-        
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            composer.setSize(window.innerWidth, window.innerHeight);
-        }
-        
-        function animateQuantumScene() {
-            requestAnimationFrame(animateQuantumScene);
             
-            // Rotate camera based on mouse
-            camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 10 - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
-            
-            // Animate objects
-            scene.traverse((object) => {
-                if (object.userData.speed) {
-                    object.rotation.x += object.userData.rotationSpeed.x;
-                    object.rotation.y += object.userData.rotationSpeed.y;
-                    object.rotation.z += object.userData.rotationSpeed.z;
-                    
-                    // Float up and down
-                    object.position.y += Math.sin(Date.now() * object.userData.speed) * 0.01;
-                }
-            });
-            
-            composer.render();
-        }
-        
-        // ===== MATRIX CODE RAIN =====
-        function initMatrixRain() {
-            const screens = document.querySelectorAll('.screen-matrix');
-            screens.forEach(screen => {
-                for (let i = 0; i < 50; i++) {
-                    const code = document.createElement('div');
-                    code.className = 'matrix-code';
-                    code.style.left = `${Math.random() * 100}%`;
-                    code.style.animationDelay = `${Math.random() * 10}s`;
-                    code.textContent = generateMatrixCode();
-                    screen.appendChild(code);
-                }
-            });
-        }
-        
-        function generateMatrixCode() {
-            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-            let code = '';
-            for (let i = 0; i < 20; i++) {
-                code += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return code;
-        }
-        
-        // ===== CYBER STATS ANIMATION =====
-        function animateStats() {
-            const stats = [
-                { id: 'quantumProjects', target: 147, suffix: '' },
-                { id: 'aiIntegrations', target: 89, suffix: '' },
-                { id: 'revenueImpact', target: 256.7, suffix: 'M' }
-            ];
-            
-            stats.forEach(stat => {
-                const element = document.getElementById(stat.id);
-                if (element) {
-                    let current = 0;
-                    const increment = stat.target / 100;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= stat.target) {
-                            current = stat.target;
-                            clearInterval(timer);
-                        }
-                        element.textContent = current.toFixed(stat.suffix === 'M' ? 1 : 0) + stat.suffix;
-                    }, 20);
-                }
-            });
-        }
-        
-        // ===== SCROLL ANIMATIONS =====
-        function initScrollAnimations() {
+            // Scroll animations
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -1912,42 +1507,48 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Hero section
-                        if (entry.target.id === 'hero') {
-                            setTimeout(animateStats, 500);
+                        // Hero section counters
+                        if (entry.target.id === 'hero' && !countersAnimated) {
+                            setTimeout(() => {
+                                animateCounter('projectsCount', 147);
+                                animateCounter('clientSatisfaction', 99, '%');
+                                animateCounter('revenueImpact', 42.5, 'M');
+                            }, 300);
+                            countersAnimated = true;
                         }
                         
-                        // Service cards
-                        if (entry.target.id === 'services') {
-                            document.querySelectorAll('.holo-card').forEach((card, index) => {
-                                setTimeout(() => {
-                                    card.classList.add('animate');
-                                }, index * 300);
-                            });
-                        }
+                        // Fade in animations
+                        const fadeElements = entry.target.querySelectorAll('.fade-in');
+                        fadeElements.forEach((element, index) => {
+                            setTimeout(() => {
+                                element.classList.add('visible');
+                            }, index * 200);
+                        });
                         
-                        // Portfolio items
+                        // Portfolio animations
                         if (entry.target.id === 'portfolio') {
-                            document.querySelectorAll('.matrix-item').forEach((item, index) => {
+                            const portfolioItems = document.querySelectorAll('.portfolio-item');
+                            portfolioItems.forEach((item, index) => {
                                 setTimeout(() => {
                                     item.classList.add('animate');
+                                }, index * 200);
+                            });
+                        }
+                        
+                        // Process animations
+                        if (entry.target.id === 'process') {
+                            const processSteps = document.querySelectorAll('.process-step');
+                            processSteps.forEach((step, index) => {
+                                setTimeout(() => {
+                                    step.classList.add('animate');
                                 }, index * 300);
                             });
                         }
                         
-                        // Process nodes
-                        if (entry.target.id === 'process') {
-                            document.querySelectorAll('.circuit-node').forEach((node, index) => {
-                                setTimeout(() => {
-                                    node.classList.add('animate');
-                                }, index * 400);
-                            });
-                        }
-                        
-                        // Contact form
+                        // Contact form animation
                         if (entry.target.id === 'contact') {
                             setTimeout(() => {
-                                document.querySelector('.ai-form-container').classList.add('animate');
+                                document.querySelector('.contact-form').classList.add('animate');
                             }, 300);
                         }
                     }
@@ -1958,156 +1559,70 @@
             document.querySelectorAll('section').forEach(section => {
                 observer.observe(section);
             });
-        }
-        
-        // ===== NAVIGATION INDICATOR =====
-        function initNavigation() {
-            const nav = document.getElementById('cyberNav');
-            const indicator = document.getElementById('navIndicator');
-            const links = document.querySelectorAll('.hologram-link');
             
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
                 } else {
-                    nav.classList.remove('scrolled');
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.padding = '32px';
+                    navLinks.style.gap = '24px';
+                    navLinks.style.borderTop = '1px solid var(--border-color)';
+                    navLinks.style.boxShadow = 'var(--shadow-md)';
+                    navLinks.style.zIndex = '1000';
                 }
             });
             
-            // Active link indicator
-            const sections = Array.from(document.querySelectorAll('section'));
-            const sectionIds = sections.map(section => section.id);
-            
-            function updateActiveLink() {
-                const scrollPosition = window.scrollY + 100;
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                for (let i = sections.length - 1; i >= 0; i--) {
-                    const section = sections[i];
-                    if (scrollPosition >= section.offsetTop) {
-                        const activeLink = document.querySelector(`.hologram-link[href="#${section.id}"]`);
-                        if (activeLink) {
-                            const linkRect = activeLink.getBoundingClientRect();
-                            const navRect = nav.getBoundingClientRect();
-                            
-                            indicator.style.width = `${linkRect.width}px`;
-                            indicator.style.left = `${linkRect.left - navRect.left}px`;
-                        }
-                        break;
-                    }
-                }
-            }
-            
-            window.addEventListener('scroll', updateActiveLink);
-            window.addEventListener('resize', updateActiveLink);
-            updateActiveLink();
-        }
-        
-        // ===== FORM HANDLING =====
-        function initForm() {
-            const form = document.getElementById('quantumForm');
-            if (form) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
+                // Show success message
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    const successMessage = document.createElement('div');
+                    successMessage.style.cssText = `
+                        background: rgba(255, 138, 101, 0.1);
+                        border: 1px solid var(--primary);
+                        border-radius: var(--radius-md);
+                        padding: 20px;
+                        margin-top: 20px;
+                        text-align: center;
+                        color: var(--primary);
+                    `;
+                    successMessage.innerHTML = `
+                        <h4 style="margin-bottom: 8px;">Thank You!</h4>
+                        <p>Your project request has been received. We'll contact you within 24 hours.</p>
+                    `;
                     
-                    // Create cyber effect
-                    const submitBtn = form.querySelector('button[type="submit"]');
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>TRANSMITTING TO QUANTUM NETWORK...</span>';
-                    submitBtn.disabled = true;
+                    contactForm.appendChild(successMessage);
                     
-                    // Simulate quantum transmission
+                    // Reset form
                     setTimeout(() => {
-                        // Show success message with cyber effect
-                        const successMsg = document.createElement('div');
-                        successMsg.className = 'matrix-text';
-                        successMsg.style.cssText = `
-                            text-align: center;
-                            padding: 20px;
-                            margin-top: 20px;
-                            border: 1px solid var(--cyber-border);
-                            border-radius: var(--radius-md);
-                            background: rgba(0, 243, 255, 0.1);
-                            animation: pulse-glow 2s infinite;
-                        `;
-                        successMsg.innerHTML = `
-                            <h4 class="neon-text">QUANTUM TRANSMISSION SUCCESSFUL</h4>
-                            <p>Your project brief has been received by the VIBZ NEXUS quantum network. Our AI will analyze your requirements within 24 hours.</p>
-                        `;
-                        
-                        form.appendChild(successMsg);
-                        
-                        // Reset form
-                        setTimeout(() => {
-                            form.reset();
-                            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span>TRANSMIT TO QUANTUM NETWORK</span>';
-                            submitBtn.disabled = false;
-                            successMsg.remove();
-                        }, 5000);
-                    }, 2000);
-                });
-            }
-        }
-        
-        // ===== MOBILE MENU =====
-        function initMobileMenu() {
-            const menuBtn = document.createElement('button');
-            menuBtn.className = 'mobile-menu-btn';
-            menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            document.querySelector('.nav-container').appendChild(menuBtn);
-            
-            const navHologram = document.querySelector('.nav-hologram');
-            
-            menuBtn.addEventListener('click', () => {
-                if (navHologram.style.display === 'flex') {
-                    navHologram.style.display = 'none';
-                } else {
-                    navHologram.style.display = 'flex';
-                    navHologram.style.flexDirection = 'column';
-                    navHologram.style.position = 'absolute';
-                    navHologram.style.top = '100%';
-                    navHologram.style.left = '0';
-                    navHologram.style.width = '100%';
-                    navHologram.style.background = 'rgba(10, 10, 15, 0.95)';
-                    navHologram.style.backdropFilter = 'blur(20px)';
-                    navHologram.style.padding = '30px';
-                    navHologram.style.gap = '25px';
-                    navHologram.style.borderTop = '1px solid var(--cyber-border)';
-                    navHologram.style.boxShadow = '0 10px 50px rgba(0, 0, 0, 0.5)';
-                    navHologram.style.zIndex = '9999';
-                }
+                        contactForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        successMessage.remove();
+                    }, 5000);
+                }, 1500);
             });
-            
-            // Close menu on link click
-            document.querySelectorAll('.hologram-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth <= 992) {
-                        navHologram.style.display = 'none';
-                    }
-                });
-            });
-        }
-        
-        // ===== INITIALIZE EVERYTHING =====
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Three.js scene
-            initQuantumScene();
-            
-            // Initialize matrix rain
-            initMatrixRain();
-            
-            // Initialize scroll animations
-            initScrollAnimations();
-            
-            // Initialize navigation
-            initNavigation();
-            
-            // Initialize form
-            initForm();
-            
-            // Initialize mobile menu
-            if (window.innerWidth <= 992) {
-                initMobileMenu();
-            }
             
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2122,53 +1637,66 @@
                             top: targetElement.offsetTop - 100,
                             behavior: 'smooth'
                         });
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 992) {
+                            navLinks.style.display = 'none';
+                        }
                     }
                 });
             });
             
-            // Create cyber particles for hero
-            function createCyberParticles() {
-                const container = document.getElementById('cyber-particles');
-                for (let i = 0; i < 100; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'cyber-particle';
-                    particle.style.cssText = `
-                        position: absolute;
-                        width: ${Math.random() * 3 + 1}px;
-                        height: ${Math.random() * 3 + 1}px;
-                        background: ${Math.random() < 0.33 ? 'var(--primary-neon)' : 
-                                    Math.random() < 0.66 ? 'var(--secondary-neon)' : 'var(--tertiary-neon)'};
-                        border-radius: 50%;
-                        filter: blur(1px);
-                        left: ${Math.random() * 100}%;
-                        top: ${Math.random() * 100}%;
-                        animation: floatParticle ${Math.random() * 10 + 10}s linear infinite;
-                        animation-delay: ${Math.random() * 10}s;
-                        opacity: ${Math.random() * 0.5 + 0.1};
-                    `;
-                    container.appendChild(particle);
-                }
-                
-                // Add CSS for particle animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes floatParticle {
-                        0% { transform: translateY(0) translateX(0); opacity: 0; }
-                        10% { opacity: 1; }
-                        90% { opacity: 1; }
-                        100% { transform: translateY(-100vh) translateX(${Math.random() * 200 - 100}px); opacity: 0; }
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 992) {
+                    if (!event.target.closest('.nav-links') && !event.target.closest('#mobileMenuBtn')) {
+                        navLinks.style.display = 'none';
                     }
-                `;
-                document.head.appendChild(style);
+                }
+            });
+            
+            // Initialize device animations
+            function initDeviceAnimations() {
+                const devices = document.querySelectorAll('.device');
+                devices.forEach(device => {
+                    device.style.transition = 'transform 0.3s ease';
+                });
+                
+                // Add hover effect
+                document.addEventListener('mousemove', function(e) {
+                    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                    
+                    const pc = document.querySelector('.device-pc');
+                    const tablet = document.querySelector('.device-tablet');
+                    const mobile = document.querySelector('.device-mobile');
+                    
+                    if (pc) {
+                        pc.style.transform = `translate(-50%, -50%) rotateY(${20 + x * 0.5}deg) rotateX(${5 - y * 0.5}deg)`;
+                    }
+                    
+                    if (tablet) {
+                        tablet.style.transform = `rotateY(${-15 - x * 0.3}deg) rotateX(${5 + y * 0.3}deg) rotateZ(-5deg)`;
+                    }
+                    
+                    if (mobile) {
+                        mobile.style.transform = `rotateY(${10 + x * 0.2}deg) rotateX(${3 - y * 0.2}deg) rotateZ(5deg)`;
+                    }
+                });
             }
             
-            createCyberParticles();
+            if (window.innerWidth > 1200) {
+                initDeviceAnimations();
+            }
         });
         
-        // ===== WINDOW RESIZE HANDLER =====
-        window.addEventListener('resize', () => {
-            if (window.innerWidth <= 992) {
-                initMobileMenu();
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if (window.innerWidth > 992) {
+                navLinks.style.display = 'flex';
+            } else {
+                navLinks.style.display = 'none';
             }
         });
     </script>
