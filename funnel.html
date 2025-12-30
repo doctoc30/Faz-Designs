@@ -1035,7 +1035,7 @@
 // ========================
 // === GLOBAL VARIABLES ===
 // ========================
-const formScreens = document.querySelectorAll('.form-screen');
+let formScreens = document.querySelectorAll('.form-screen'); // changed to let
 let currentScreenIndex = 0;
 
 let selectedFeatures = [];
@@ -1063,7 +1063,6 @@ const nicheMap = {
 // === NICHE QUESTIONS HTML TEMPLATES ===
 const nicheQuestionHTML = {
   barber: `
-    <!-- ===== BARBER QUESTIONS ===== -->
     <div class="form-screen" id="barber-q1">
       <h2>Do you currently have a barber website?</h2>
       <div class="button-row">
@@ -1077,7 +1076,7 @@ const nicheQuestionHTML = {
       <h2>Do you have a design concept in mind?</h2>
       <p>You can enter a code, choose from templates, or request custom design.</p>
       <div class="button-row">
-        <button type="button" onclick="showScreen('design-code')">Yes, I have a code</button>
+        <button type="button" onclick="showScreen('barber-design-code')">Yes, I have a code</button>
         <button type="button" onclick="showConcepts()">Show me concepts</button>
         <button type="button" onclick="next()">Custom design</button>
         <button type="button" class="back-button" onclick="prev()">Back</button>
@@ -1125,7 +1124,7 @@ const nicheQuestionHTML = {
 };
 
 // ========================
-// === HELPERS: SHOW / HIDE SCREENS ===
+// === SHOW / HIDE SCREENS ===
 function showScreen(screenId) {
   formScreens.forEach(screen => screen.classList.remove('active'));
   const screen = document.getElementById(screenId);
@@ -1136,16 +1135,13 @@ function showScreen(screenId) {
 function next() {
   const screens = Array.from(formScreens);
   let nextIndex = currentScreenIndex + 1;
-
   while (nextIndex < screens.length) {
     const screen = screens[nextIndex];
     const niches = screen.dataset.niche ? screen.dataset.niche.split(',') : null;
-
     if (!niches || niches.includes(selectedBusiness)) {
       showScreen(screen.id);
       return;
     }
-
     nextIndex++;
   }
 }
@@ -1153,16 +1149,13 @@ function next() {
 function prev() {
   const screens = Array.from(formScreens);
   let prevIndex = currentScreenIndex - 1;
-
   while (prevIndex >= 0) {
     const screen = screens[prevIndex];
     const niches = screen.dataset.niche ? screen.dataset.niche.split(',') : null;
-
     if (!niches || niches.includes(selectedBusiness)) {
       showScreen(screen.id);
       return;
     }
-
     prevIndex--;
   }
 }
@@ -1196,10 +1189,9 @@ function updateHiddenInputs() {
 function handleSearch() {
   const input = document.getElementById('businessInput').value.toLowerCase().trim();
   setBusinessType(input);
-
   if (selectedBusiness !== 'general') {
     injectNicheQuestions();
-    next(); // move to main intro options
+    next();
   } else {
     alert("Sorry, we couldn't find a match. Try again.");
   }
@@ -1225,16 +1217,19 @@ function setBusinessType(input) {
 // ========================
 // === INJECT NICHE QUESTIONS ===
 function injectNicheQuestions() {
-  const container = document.getElementById('niche-questions');
-  container.innerHTML = '';
+  let container = document.getElementById('niche-questions');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'niche-questions';
+    document.querySelector('form#formWrapper').appendChild(container);
+  }
 
+  container.innerHTML = '';
   if (nicheQuestionHTML[selectedBusiness]) {
     container.innerHTML = nicheQuestionHTML[selectedBusiness];
-
-    // Re-query formScreens to include new screens
-    const updatedScreens = document.querySelectorAll('.form-screen');
-    formScreens.forEach(screen => screen.classList.remove('active')); // hide all
-    formScreens = updatedScreens;
+    // Update formScreens
+    formScreens = document.querySelectorAll('.form-screen');
+    formScreens.forEach(screen => screen.classList.remove('active'));
   }
 }
 
@@ -1252,18 +1247,17 @@ function goToConcept() {
 
 function showConcepts() {
   const urlMap = {
-    barber: '/barber/',
-    dentist: '/dentist/',
-    estateAgent: '/estate-agent/',
-    cafe: '/cafe/',
-    bakery: '/bakery/',
-    phoneRepair: '/phone-repair/',
-    accountant: '/accountant/',
-    flowerShop: '/flower-shop/',
-    dryCleaning: '/dry-cleaning/',
-    pfcShop: '/pfc-shop/'
+    barber: 'https://www.vibz.co.uk/barber/',
+    dentist: 'https://www.vibz.co.uk/dentist/',
+    estateAgent: 'https://www.vibz.co.uk/estate-agent/',
+    cafe: 'https://www.vibz.co.uk/cafe/',
+    bakery: 'https://www.vibz.co.uk/bakery/',
+    phoneRepair: 'https://www.vibz.co.uk/phone-repair/',
+    accountant: 'https://www.vibz.co.uk/accountant/',
+    flowerShop: 'https://www.vibz.co.uk/flower-shop/',
+    dryCleaning: 'https://www.vibz.co.uk/dry-cleaning/',
+    pfcShop: 'https://www.vibz.co.uk/pfc-shop/'
   };
-
   const targetUrl = urlMap[selectedBusiness] || '/general-concepts/';
   window.location.href = targetUrl;
 }
@@ -1272,7 +1266,6 @@ function showConcepts() {
 // === PLAN CALCULATION ===
 function calculatePlan() {
   const totalFeatures = selectedFeatures.length;
-
   if (totalFeatures <= 15){
     selectedPlan = 'Basic';
     paymentLink = 'https://paypal.me/basic-plan-link';
@@ -1283,7 +1276,6 @@ function calculatePlan() {
     selectedPlan = 'Premium';
     paymentLink = 'https://paypal.me/premium-plan-link';
   }
-
   updateHiddenInputs();
   showScreen('recommended-plan-screen');
   renderPayPalButtons();
@@ -1296,8 +1288,6 @@ function renderPayPalButtons() {
   cards.forEach(card => {
     const container = card.querySelector('.pay-now-container');
     container.innerHTML = '';
-    const plan = card.dataset.plan;
-
     paypal.Buttons({
       style: { color: 'blue', shape: 'pill', label: 'pay' },
       createOrder: function(data, actions) {
