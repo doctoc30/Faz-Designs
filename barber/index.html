@@ -1,183 +1,1525 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barber Concepts | VIBZ</title>
+    <title>Vibz | Premium Digital Experiences</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00D4FF;
-            --secondary: #7B61FF;
-            --dark: #0A0A14;
-            --darker: #05050A;
-            --light: #F5F5FF;
-            --gray: #A0A0C0;
-            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #2E7D32;
+            --primary-light: #4CAF50;
+            --primary-dark: #1B5E20;
+            --primary-glow: rgba(76, 175, 80, 0.2);
+            --app-bg: #F8FDF8;
+            --card-bg: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #FFFFFF;
+            --text-gray: #666666;
+            --border-light: rgba(255, 255, 255, 0.2);
+            --border-dark: rgba(0, 0, 0, 0.05);
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 15px 40px rgba(46, 125, 50, 0.12);
+            --radius-small: 12px;
+            --radius-medium: 18px;
+            --radius-large: 24px;
+            --radius-round: 50px;
+            --transition-fast: all 0.3s ease;
+            --transition-medium: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --transition-slow: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--darker); color: var(--light); line-height: 1.6; }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--app-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* App-like Header */
         header {
-            position: fixed; top: 0; left: 0; width: 100%; padding: 25px 0;
-            background: rgba(5, 5, 10, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-border); z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition-fast);
+            background: var(--primary);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; text-decoration: none; }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { color: var(--light); text-decoration: none; font-weight: 500; position: relative; }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: var(--transition); }
-        .nav-links a:hover::after { width: 100%; }
-        .mobile-menu-btn { display: none; background: none; border: none; color: var(--light); font-size: 24px; cursor: pointer; }
 
-        footer { background: var(--dark); padding: 80px 0 40px; border-top: 1px solid var(--glass-border); }
-        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 50px; max-width: 1400px; margin: 0 auto 60px; padding: 0 30px; }
-        .footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; }
-        .footer-about p, .footer-links a, .copyright { color: var(--gray); }
-        .footer-links a { display: block; margin-bottom: 15px; text-decoration: none; }
-        .footer-links a:hover { color: var(--primary); transform: translateX(5px); }
-        .social-links { display: flex; gap: 15px; margin-top: 20px; }
-        .social-links a { width: 45px; height: 45px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--light); text-decoration: none; transition: var(--transition); }
-        .social-links a:hover { background: var(--primary); transform: translateY(-3px); }
+        header.scrolled {
+            padding: 15px 0;
+            background: rgba(46, 125, 50, 0.98);
+        }
 
-        main { padding-top: 120px; min-height: 80vh; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
-        .concept-card { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px; }
-        .concept-card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-        .buttons { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .buttons button { padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; background: linear-gradient(90deg, var(--primary), var(--secondary)); color: #05050A; font-weight: 600; }
-        .buttons span { color: var(--gray); font-weight: 500; }
-        @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .nav-links { display: none; } .mobile-menu-btn { display: block; } .footer-content { grid-template-columns: 1fr 1fr; } }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition-fast);
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--text-light);
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .app-button {
+            background: var(--text-light);
+            color: var(--primary);
+            padding: 16px 36px;
+            border-radius: var(--radius-round);
+            font-weight: 800;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-soft);
+            letter-spacing: 0.5px;
+        }
+
+        .app-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .app-button-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--border-light);
+        }
+
+        .app-button-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 24px;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section with 3D Devices */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(76, 175, 80, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(76, 175, 80, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            margin-bottom: 25px;
+            line-height: 1;
+            letter-spacing: -1.5px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        /* 3D Device Container */
+        .device-container {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 600px;
+            height: 500px;
+            perspective: 1500px;
+            z-index: 1;
+        }
+
+        /* PC Screen Device */
+        .pc-device {
+            position: absolute;
+            width: 400px;
+            height: 250px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(20deg) rotateX(10deg);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            animation: floatPC 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+            z-index: 3;
+        }
+
+        .pc-screen {
+            position: absolute;
+            width: 92%;
+            height: 82%;
+            top: 4%;
+            left: 4%;
+            background: #0a0a0a;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .pc-screen-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0a 25%, #111 25%, #111 50%, #0a0a0a 50%, #0a0a0a 75%, #111 75%);
+            background-size: 40px 40px;
+            animation: screenScroll 10s linear infinite;
+        }
+
+        .pc-stand {
+            position: absolute;
+            width: 120px;
+            height: 60px;
+            background: #1a1a1a;
+            border-radius: 6px;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tablet Device */
+        .tablet-device {
+            position: absolute;
+            width: 180px;
+            height: 240px;
+            background: #1a1a1a;
+            border-radius: 16px;
+            top: 30%;
+            right: 15%;
+            transform: rotateY(-15deg) rotateX(5deg) rotateZ(-5deg);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            animation: floatTablet 6s ease-in-out infinite 0.5s;
+            transform-style: preserve-3d;
+            z-index: 2;
+        }
+
+        .tablet-screen {
+            position: absolute;
+            width: 90%;
+            height: 86%;
+            top: 7%;
+            left: 5%;
+            background: #0a0a0a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .tablet-screen-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0a 25%, #111 25%, #111 50%, #0a0a0a 50%, #0a0a0a 75%, #111 75%);
+            background-size: 20px 20px;
+            animation: screenScroll 8s linear infinite reverse;
+        }
+
+        /* Mobile Device */
+        .mobile-device {
+            position: absolute;
+            width: 90px;
+            height: 170px;
+            background: #1a1a1a;
+            border-radius: 18px;
+            bottom: 25%;
+            right: 30%;
+            transform: rotateY(10deg) rotateX(5deg) rotateZ(5deg);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            animation: floatMobile 7s ease-in-out infinite 1s;
+            transform-style: preserve-3d;
+            z-index: 1;
+        }
+
+        .mobile-screen {
+            position: absolute;
+            width: 86%;
+            height: 82%;
+            top: 9%;
+            left: 7%;
+            background: #0a0a0a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .mobile-screen-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0a 25%, #111 25%, #111 50%, #0a0a0a 50%, #0a0a0a 75%, #111 75%);
+            background-size: 10px 10px;
+            animation: screenScroll 6s linear infinite;
+        }
+
+        /* Device Animations */
+        @keyframes floatPC {
+            0%, 100% { transform: translate(-50%, -50%) rotateY(20deg) rotateX(10deg) translateY(0); }
+            50% { transform: translate(-50%, -50%) rotateY(25deg) rotateX(12deg) translateY(-15px); }
+        }
+
+        @keyframes floatTablet {
+            0%, 100% { transform: rotateY(-15deg) rotateX(5deg) rotateZ(-5deg) translateY(0); }
+            50% { transform: rotateY(-20deg) rotateX(7deg) rotateZ(-7deg) translateY(-10px); }
+        }
+
+        @keyframes floatMobile {
+            0%, 100% { transform: rotateY(10deg) rotateX(5deg) rotateZ(5deg) translateY(0); }
+            50% { transform: rotateY(15deg) rotateX(7deg) rotateZ(7deg) translateY(-8px); }
+        }
+
+        @keyframes screenScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: flex;
+            gap: 70px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--text-light);
+            display: block;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 24px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* App Sections */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services - App Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-large);
+            padding: 50px 40px;
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-dark);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-strong);
+            border-color: var(--primary-light);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        .service-price {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        /* Portfolio - App Gallery */
+        .portfolio-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: var(--transition-slow);
+        }
+
+        .portfolio-item.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-medium);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(transparent, rgba(46, 125, 50, 0.95));
+            color: var(--text-light);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition-medium);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Process - App Steps */
+        .process-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-light);
+            opacity: 0.2;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            width: 22%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-slow);
+        }
+
+        .process-step.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-light);
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .process-step h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .process-step p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Contact - App Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: var(--transition-slow);
+        }
+
+        .contact-info.animate h3 {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-details {
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: var(--transition-slow);
+        }
+
+        .contact-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: var(--radius-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border-radius: var(--radius-large);
+            padding: 50px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-dark);
+            opacity: 0;
+            transform: translateX(50px);
+            transition: var(--transition-slow);
+        }
+
+        .contact-form.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px 20px;
+            background: var(--app-bg);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-small);
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: var(--transition-fast);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        /* Footer - App Style */
+        footer {
+            background: var(--primary);
+            padding: 100px 0 50px;
+            color: var(--text-light);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+
+        .footer-links a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* App Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--app-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .device-container {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                width: 100%;
+                height: 400px;
+                margin: 60px auto 0;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .process-timeline {
+                flex-direction: column;
+                gap: 60px;
+            }
+            
+            .process-timeline::before {
+                width: 2px;
+                height: 100%;
+                left: 40px;
+                top: 0;
+            }
+            
+            .process-step {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                text-align: left;
+            }
+            
+            .step-number {
+                margin: 0 30px 0 0;
+                flex-shrink: 0;
+            }
+            
+            .step-content {
+                flex-grow: 1;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+                min-height: auto;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .pc-device {
+                width: 320px;
+                height: 200px;
+            }
+            
+            .tablet-device {
+                width: 150px;
+                height: 200px;
+            }
+            
+            .mobile-device {
+                width: 75px;
+                height: 140px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .services-grid, .portfolio-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .contact-form {
+                padding: 30px;
+            }
+            
+            .service-card, .contact-form {
+                padding: 30px;
+            }
+            
+            .device-container {
+                height: 300px;
+            }
+            
+            .pc-device {
+                width: 250px;
+                height: 160px;
+            }
+            
+            .tablet-device {
+                width: 120px;
+                height: 160px;
+                right: 10%;
+            }
+            
+            .mobile-device {
+                width: 60px;
+                height: 110px;
+                right: 25%;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- App Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">VIBZ</a>
+            
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
 
-<header>
-    <div class="nav-container">
-        <a href="/" class="logo">VIBZ</a>
-        <nav class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-    </div>
-</header>
+            <a href="funnel.html" class="app-button">Start Project</a>
+        </div>
+    </header>
 
-<main class="concepts-grid">
-    <h1>Barber Design Concepts</h1>
-    <p>Choose a concept and continue with your website setup.</p>
-    <div class="grid">
-        <!-- 6 Default Barber Concepts -->
-        <div class="concept-card">
-            <img src="/mnt/data/A_digital_photograph_showcases_a_webpage_titled_&quot;B.png" alt="Barber 1">
-            <div class="buttons">
-                <button onclick="viewLive('https://live.barber1.com')">View Live Version</button>
-                <span>Code: BARBER-1</span>
-                <button onclick="selectConcept('BARBER-1')">I Want This Concept</button>
+    <!-- Hero Section with 3D Devices -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Crafting Digital Experiences That Convert</h1>
+                <p class="hero-subtitle">Vibz creates premium, high-performance digital solutions for forward-thinking brands. We transform ideas into immersive experiences across all devices.</p>
+                
+                <div class="hero-buttons">
+                    <a href="funnel.html" class="app-button" style="margin-right: 15px;">Start Project</a>
+                    <a href="#portfolio" class="app-button app-button-outline">View Portfolio</a>
+                </div>
+               
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="projectsCount">0</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="clientSatisfaction">0%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="yearsExperience">0</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="device-container">
+                <!-- PC Screen -->
+                <div class="pc-device">
+                    <div class="pc-screen">
+                        <div class="pc-screen-content"></div>
+                    </div>
+                    <div class="pc-stand"></div>
+                </div>
+                
+                <!-- Tablet -->
+                <div class="tablet-device">
+                    <div class="tablet-screen">
+                        <div class="tablet-screen-content"></div>
+                    </div>
+                </div>
+                
+                <!-- Mobile -->
+                <div class="mobile-device">
+                    <div class="mobile-screen">
+                        <div class="mobile-screen-content"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
         </div>
-        <div class="concept-card">
-            <img src="/mnt/data/A_digital_photograph_showcases_a_webpage_titled_&quot;B.png" alt="Barber 2">
-            <div class="buttons">
-                <button onclick="viewLive('https://live.barber2.com')">View Live Version</button>
-                <span>Code: BARBER-2</span>
-                <button onclick="selectConcept('BARBER-2')">I Want This Concept</button>
-            </div>
-        </div>
-        <div class="concept-card">
-            <img src="/mnt/data/A_digital_photograph_showcases_a_webpage_titled_&quot;B.png" alt="Barber 3">
-            <div class="buttons">
-                <button onclick="viewLive('https://live.barber3.com')">View Live Version</button>
-                <span>Code: BARBER-3</span>
-                <button onclick="selectConcept('BARBER-3')">I Want This Concept</button>
-            </div>
-        </div>
-        <div class="concept-card">
-            <img src="/mnt/data/A_digital_photograph_showcases_a_webpage_titled_&quot;B.png" alt="Barber 4">
-            <div class="buttons">
-                <button onclick="viewLive('https://live.barber4.com')">View Live Version</button>
-                <span>Code: BARBER-4</span>
-                <button onclick="selectConcept('BARBER-4')">I Want This Concept</button>
-            </div>
-        </div>
-        <div class="concept-card">
-            <img src="/mnt/data/A_digital_photograph_showcases_a_webpage_titled_&quot;B.png" alt="Barber 5">
-            <div class="buttons">
-                <button onclick="viewLive('https://live.barber5.com')">View Live Version</button>
-                <span>Code: BARBER-5</span>
-                <button onclick="selectConcept('BARBER-5')">I Want This Concept</button>
-            </div>
-        </div>
-        <div class="concept-card">
-            <img src="/mnt/data/A_digital_photograph_showcases_a_webpage_titled_&quot;B.png" alt="Barber 6">
-            <div class="buttons">
-                <button onclick="viewLive('https://live.barber6.com')">View Live Version</button>
-                <span>Code: BARBER-6</span>
-                <button onclick="selectConcept('BARBER-6')">I Want This Concept</button>
-            </div>
-        </div>
-    </div>
-</main>
+    </section>
 
-<footer>
-    <div class="footer-content">
-        <div>
-            <span class="footer-logo">VIBZ</span>
-            <p>Premium Web Design Agency creating beautiful websites for your business.</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Premium Services</h2>
+                <p class="section-subtitle">Our exclusive offerings are tailored for businesses that demand exceptional quality and results.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Enterprise Web Design</h3>
+                    <p>Fully custom, responsive websites with advanced functionality, CMS integration, and premium UI/UX design.</p>
+                    <div class="service-price">$25k - $50k+</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App Design & Development</h3>
+                    <p>Native and progressive web applications with cutting-edge design, seamless animations, and premium user experience.</p>
+                    <div class="service-price">£30k - £70k+</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Brand Transformation</h3>
+                    <p>Complete digital rebranding including visual identity, messaging strategy, and immersive online presence.</p>
+                    <div class="service-price">$40k - $80k+</div>
+                </div>
             </div>
         </div>
-        <div class="footer-links">
-            <h4 class="footer-heading">Quick Links</h4>
-            <a href="#">Services</a>
-            <a href="#">Portfolio</a>
-            <a href="#">Process</a>
-            <a href="#">Contact</a>
-        </div>
-        <div class="footer-links">
-            <h4 class="footer-heading">Resources</h4>
-            <a href="#">Blog</a>
-            <a href="#">FAQs</a>
-            <a href="#">Support</a>
-            <a href="#">Terms</a>
-        </div>
-        <div class="footer-links">
-            <h4 class="footer-heading">Contact</h4>
-            <a href="mailto:info@vibz.co.uk">info@vibz.co.uk</a>
-            <a href="tel:+440000000000">+44 000 0000 000</a>
-        </div>
-    </div>
-    <div class="copyright">&copy; 2025 VIBZ. All rights reserved.</div>
-</footer>
+    </section>
 
-<script>
-    function viewLive(url) {
-        window.open(url, '_blank');
-    }
-    function selectConcept(code) {
-        // Redirect to barber funnel with design code
-        window.location.href = `/barber/?design=${code}`;
-    }
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Elite Portfolio</h2>
+                <p class="section-subtitle">Showcasing our premium projects for global brands and industry leaders.</p>
+            </div>
+            
+            <div class="portfolio-showcase">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Luxury Tech Dashboard">
+                    <div class="portfolio-overlay">
+                        <h3>Quantum Finance Dashboard</h3>
+                        <p>Advanced fintech platform with real-time analytics</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Futuristic E-commerce">
+                    <div class="portfolio-overlay">
+                        <h3>Vibz Fashion Platform</h3>
+                        <p>Immersive AR shopping experience</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Analytics Dashboard">
+                    <div class="portfolio-overlay">
+                        <h3>DataSphere Analytics</h3>
+                        <p>Enterprise data visualization platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Auto-fill funnel if code exists in URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const designCode = urlParams.get('design');
-    if (designCode) {
-        const input = document.getElementById('designInput'); // your funnel hidden input
-        if(input) input.value = designCode;
-        // skip "Do you have a design code?" question and move to next
-        if(typeof next === 'function') next();
-    }
-</script>
+    <!-- Process Section -->
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Process</h2>
+                <p class="section-subtitle">A meticulous approach that ensures flawless execution and exceptional results.</p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4>Discovery & Strategy</h4>
+                        <p>Deep-dive analysis, competitive research, and strategic planning.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4>Concept & Design</h4>
+                        <p>Wireframing, prototyping, and premium UI/UX design creation.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4>Development</h4>
+                        <p>Cutting-edge development with premium animations and interactions.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h4>Launch & Optimize</h4>
+                        <p>Quality assurance, deployment, and ongoing performance optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Start Your Project</h2>
+                <p class="section-subtitle">Ready to elevate your digital presence? Contact us to discuss your premium project.</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Create With Us</h3>
+                    <p>Our team of elite designers and developers are ready to bring your vision to life with cutting-edge technology and premium design principles.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>London, England</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>07706345874</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>vibzcouk@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" class="form-control" placeholder="Your company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" class="form-control" required>
+                                <option value="">Select budget range</option>
+                                <option value="50k">$50,000+</option>
+                                <option value="100k">$100,000+</option>
+                                <option value="150k">$150,000+</option>
+                                <option value="200k">$200,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your project"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="app-button" style="width: 100%;">Submit Project Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">VIBZ</div>
+                    <p>Premium digital agency crafting exceptional experiences for forward-thinking brands worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <div class="footer-links">
+                        <a href="#">Web Design</a>
+                        <a href="#">App Development</a>
+                        <a href="#">Brand Strategy</a>
+                        <a href="#">UX/UI Design</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Company</h4>
+                    <div class="footer-links">
+                        <a href="#">About Us</a>
+                        <a href="#">Portfolio</a>
+                        <a href="#">Process</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Legal</h4>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Vibz Premium Digital Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animated counter for stats
+        function animateCounter(elementId, targetValue, suffix = '') {
+            let element = document.getElementById(elementId);
+            let currentValue = 0;
+            let increment = targetValue / 100;
+            let timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(currentValue) + suffix;
+            }, 20);
+        }
+
+        // Initialize counters when hero section is in view
+        let countersAnimated = false;
+        
+        // Scroll animation observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Hero section counters
+                    if (entry.target.id === 'hero' && !countersAnimated) {
+                        setTimeout(() => {
+                            animateCounter('projectsCount', 147);
+                            animateCounter('clientSatisfaction', 99, '%');
+                            animateCounter('yearsExperience', 8);
+                        }, 300);
+                        countersAnimated = true;
+                    }
+                    
+                    // Service cards animation
+                    if (entry.target.id === 'services') {
+                        document.querySelectorAll('.service-card').forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animate');
+                            }, index * 200);
+                        });
+                    }
+                    
+                    // Portfolio items animation
+                    if (entry.target.id === 'portfolio') {
+                        document.querySelectorAll('.portfolio-item').forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animate');
+                            }, index * 200);
+                        });
+                    }
+                    
+                    // Process steps animation
+                    if (entry.target.id === 'process') {
+                        document.querySelectorAll('.process-step').forEach((step, index) => {
+                            setTimeout(() => {
+                                step.classList.add('animate');
+                            }, index * 300);
+                        });
+                    }
+                    
+                    // Contact section animation
+                    if (entry.target.id === 'contact') {
+                        document.querySelector('.contact-info').classList.add('animate');
+                        document.querySelector('.contact-form').classList.add('animate');
+                        
+                        document.querySelectorAll('.contact-item').forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animate');
+                            }, index * 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Observe sections for animations
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'var(--primary)';
+                    navLinks.style.padding = '30px';
+                    navLinks.style.gap = '20px';
+                    navLinks.style.borderTop = '1px solid var(--border-light)';
+                    navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+                }
+            });
+
+            // Form submission
+            const projectForm = document.getElementById('projectForm');
+            projectForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your premium project request! Our team will contact you within 24 hours to discuss your vision.');
+                projectForm.reset();
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 900) {
+                            navLinks.style.display = 'none';
+                        }
+                    }
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 900) {
+                    if (!event.target.closest('.nav-links') && !event.target.closest('#mobileMenuBtn')) {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Parallax effect for 3D devices on scroll
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const heroSection = document.getElementById('hero');
+                const heroHeight = heroSection.offsetHeight;
+                
+                if (scrolled < heroHeight) {
+                    const pcDevice = document.querySelector('.pc-device');
+                    const tabletDevice = document.querySelector('.tablet-device');
+                    const mobileDevice = document.querySelector('.mobile-device');
+                    
+                    if (pcDevice && tabletDevice && mobileDevice) {
+                        const rotateY = scrolled * 0.05;
+                        const rotateX = scrolled * 0.02;
+                        
+                        pcDevice.style.transform = `translate(-50%, -50%) rotateY(${20 + rotateY}deg) rotateX(${10 + rotateX}deg)`;
+                        tabletDevice.style.transform = `rotateY(${-15 - rotateY * 0.7}deg) rotateX(${5 + rotateX * 0.5}deg) rotateZ(-5deg)`;
+                        mobileDevice.style.transform = `rotateY(${10 + rotateY * 0.5}deg) rotateX(${5 + rotateX * 0.3}deg) rotateZ(5deg)`;
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
