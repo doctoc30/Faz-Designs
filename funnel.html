@@ -963,33 +963,29 @@
     <input type="hidden" id="hiddenFeatures" name="Selected Features">
     <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
 
+    <!-- ===== FIRST SCREEN: WELCOME + BUSINESS SEARCH ===== -->
+    <div class="form-screen active" id="first-screen">
+      <h2>Welcome!</h2>
+      <p>What type of business do you run? Type below or pick one:</p>
 
-      <!-- ===== FIRST SCREEN: WELCOME + BUSINESS SEARCH ===== -->
-<div class="form-screen active" id="first-screen">
-  <h2>Welcome!</h2>
-  <p>What type of business do you run? Type below or pick one:</p>
+      <!-- Search input + Go button -->
+      <div class="search-row button-row">
+        <input type="text" id="businessInput" class="form-control" placeholder="e.g. Barber, Plumber, Dentist" />
+        <button type="button" class="btn" onclick="handleSearch()">Go</button>
+      </div>
 
-  <!-- Search input + Go button -->
-  <div class="search-row button-row">
-    <input type="text" id="businessInput" class="form-control" placeholder="e.g. Barber, Plumber, Dentist" />
-    <button type="button" class="btn" onclick="handleSearch()">Go</button>
-  </div>
+      <!-- Quick-select category buttons -->
+      <div class="categories-row button-row">
+        <button type="button" class="btn" onclick="selectExample('barber')">Barber</button>
+        <button type="button" class="btn" onclick="selectExample('plumber')">Plumber</button>
+        <button type="button" class="btn" onclick="selectExample('dentist')">Dentist</button>
+        <button type="button" class="btn" onclick="selectExample('cafe')">Cafe</button>
+        <button type="button" class="btn" onclick="selectExample('trades')">Trades</button>
+        <button type="button" class="btn" onclick="selectExample('driving')">Driving</button>
+        <button type="button" class="btn" onclick="selectExample('other')">Other</button>
+      </div>
+    </div>
 
-  <!-- Quick-select category buttons -->
-  <div class="categories-row button-row">
-    <button type="button" class="btn" onclick="selectExample('barber')">Barber</button>
-    <button type="button" class="btn" onclick="selectExample('plumber')">Plumber</button>
-    <button type="button" class="btn" onclick="selectExample('dentist')">Dentist</button>
-    <button type="button" class="btn" onclick="selectExample('cafe')">Cafe</button>
-    <button type="button" class="btn" onclick="selectExample('trades')">Trades</button>
-    <button type="button" class="btn" onclick="selectExample('driving')">Driving</button>
-    <button type="button" class="btn" onclick="selectExample('other')">Other</button>
-  </div>
-</div>
-
-
- 
- 
     <!-- ===== MAIN INTRO OPTIONS ===== -->
     <div class="form-screen" id="main-intro-options">
       <h2>Welcome! What do you need help with today?</h2>
@@ -1000,74 +996,9 @@
       </div>
     </div>
 
-    <!-- ===== EXISTING WEBSITE ===== -->
-    <div class="form-screen" id="instructor-q1">
-      <h2>Do you currently have a website?</h2>
-      <div class="button-row">
-        <button type="button" onclick="recordFeature('existing_site'); next()">Yes</button>
-        <button type="button" onclick="recordNoFeature('existing_site'); next()">No</button>
-        <button type="button" class="back-button" onclick="prev()">Back</button>
-      </div>
-    </div>
-
-    <!-- ===== DESIGN CONCEPT ===== -->
-
-<div class="form-screen" id="instructor-q2">
-  <h2>Do you have a design concept in mind?</h2>
-  <p>You can enter a code, choose from templates, or request custom design.</p>
-
-  <div class="button-row">
-    <button type="button" onclick="showScreen('design-code')">
-      Yes, I have a code
-    </button>
-
-    <button type="button" onclick="showConcepts()">
-      Show me concepts
-    </button>
-
-    <button type="button" onclick="next()">
-      Custom design
-    </button>
-
-    <button type="button" class="back-button" onclick="prev()">
-      Back
-    </button>
-  </div>
-</div>
-
-
-      
-
-    <div class="form-screen" id="design-code">
-      <h2>Enter your chosen design code</h2>
-      <input type="text" id="designInput" name="Design Code" placeholder="e.g. SDI-5" required>
-      <div class="button-row">
-        <button type="button" onclick="goToConcept()">Continue</button>
-        <button type="button" onclick="next()">Skip</button>
-        <button type="button" class="back-button" onclick="showScreen('instructor-q2')">Back</button>
-      </div>
-    </div>
-
-    <!-- ===== SOLO OR SCHOOL ===== -->
-    <div class="form-screen" id="instructor-q4">
-      <h2>Are you a solo driving instructor or a driving school?</h2>
-      <div class="button-row">
-        <button type="button" onclick="recordFeature('solo'); showScreen('lesson-type')">Solo Instructor</button>
-        <button type="button" onclick="recordFeature('school'); next()">Driving School</button>
-        <button type="button" class="back-button" onclick="prev()">Back</button>
-      </div>
-    </div>
-
-    <!-- ===== LESSON TYPE ===== -->
-    <div class="form-screen" id="lesson-type">
-      <h2>Do you offer Manual lessons, Automatic lessons, or both?</h2>
-      <div class="button-row">
-        <button type="button" onclick="recordFeature('manual_lessons'); next()">Manual Lessons</button>
-        <button type="button" onclick="recordFeature('automatic_lessons'); next()">Automatic Lessons</button>
-        <button type="button" onclick="recordFeature('both_lessons'); next()">Both</button>
-        <button type="button" class="back-button" onclick="showScreen('instructor-q4')">Back</button>
-      </div>
-    </div>
+    <!-- ===== NICHE-SPECIFIC QUESTIONS PLACEHOLDER ===== -->
+    <div id="niche-questions"></div>
+    <!-- JS will dynamically populate barber questions here -->
 
     <!-- ===== FINAL CHOICE & PLAN SCREEN ===== -->
     <div class="form-screen" id="final-choice">
@@ -1094,12 +1025,16 @@
         <!-- Pricing cards for Basic, Pro, Premium -->
       </div>
     </div>
-
   </form>
 </section>
+
+
+
     
 <script>
+// ========================
 // === GLOBAL VARIABLES ===
+// ========================
 const formScreens = document.querySelectorAll('.form-screen');
 let currentScreenIndex = 0;
 
@@ -1107,13 +1042,90 @@ let selectedFeatures = [];
 let selectedPath = '';
 let selectedPlan = '';
 let paymentLink = '';
-
 let selectedBusiness = ''; // single source of truth
 
+// ========================
+// === NICHE MAPPING ===
+const nicheMap = {
+  barber: ['barber', 'barbers', 'hair salon', 'hairdresser', 'salon', 'hairdressers'],
+  dentist: ['dentist', 'dentists', 'dental clinic'],
+  estateAgent: ['estate agent', 'real estate', 'property agent'],
+  cafe: ['cafe', 'coffee shop', 'coffee', 'restaurant'],
+  bakery: ['bakery', 'bread', 'cakes'],
+  phoneRepair: ['phone repair', 'mobile repair', 'smartphone'],
+  accountant: ['accountant', 'accountancy', 'bookkeeping'],
+  flowerShop: ['flower shop', 'florist'],
+  dryCleaning: ['dry cleaning', 'laundry'],
+  pfcShop: ['pfc', 'pawn', 'cash']
+};
 
-    
+// ========================
+// === NICHE QUESTIONS HTML TEMPLATES ===
+const nicheQuestionHTML = {
+  barber: `
+    <!-- ===== BARBER QUESTIONS ===== -->
+    <div class="form-screen" id="barber-q1">
+      <h2>Do you currently have a barber website?</h2>
+      <div class="button-row">
+        <button type="button" onclick="recordFeature('existing_site'); next()">Yes</button>
+        <button type="button" onclick="recordNoFeature('existing_site'); next()">No</button>
+        <button type="button" class="back-button" onclick="prev()">Back</button>
+      </div>
+    </div>
 
-// === HELPER FUNCTIONS ===
+    <div class="form-screen" id="barber-q2">
+      <h2>Do you have a design concept in mind?</h2>
+      <p>You can enter a code, choose from templates, or request custom design.</p>
+      <div class="button-row">
+        <button type="button" onclick="showScreen('design-code')">Yes, I have a code</button>
+        <button type="button" onclick="showConcepts()">Show me concepts</button>
+        <button type="button" onclick="next()">Custom design</button>
+        <button type="button" class="back-button" onclick="prev()">Back</button>
+      </div>
+    </div>
+
+    <div class="form-screen" id="barber-design-code">
+      <h2>Enter your chosen design code</h2>
+      <input type="text" id="designInput" name="Design Code" placeholder="e.g. BAR-1" required>
+      <div class="button-row">
+        <button type="button" onclick="goToConcept()">Continue</button>
+        <button type="button" onclick="next()">Skip</button>
+        <button type="button" class="back-button" onclick="showScreen('barber-q2')">Back</button>
+      </div>
+    </div>
+
+    <div class="form-screen" id="barber-q3">
+      <h2>Do you offer haircuts, styling, or both?</h2>
+      <div class="button-row">
+        <button type="button" onclick="recordFeature('haircuts'); next()">Haircuts</button>
+        <button type="button" onclick="recordFeature('styling'); next()">Styling</button>
+        <button type="button" onclick="recordFeature('both_services'); next()">Both</button>
+        <button type="button" class="back-button" onclick="prev()">Back</button>
+      </div>
+    </div>
+
+    <div class="form-screen" id="barber-q4">
+      <h2>Do you want to offer booking online?</h2>
+      <div class="button-row">
+        <button type="button" onclick="recordFeature('online_booking'); next()">Yes</button>
+        <button type="button" onclick="recordNoFeature('online_booking'); next()">No</button>
+        <button type="button" class="back-button" onclick="prev()">Back</button>
+      </div>
+    </div>
+
+    <div class="form-screen" id="barber-q5">
+      <h2>Do you want social media integration?</h2>
+      <div class="button-row">
+        <button type="button" onclick="recordFeature('social_media'); next()">Yes</button>
+        <button type="button" onclick="recordNoFeature('social_media'); next()">No</button>
+        <button type="button" class="back-button" onclick="prev()">Back</button>
+      </div>
+    </div>
+  `
+};
+
+// ========================
+// === HELPERS: SHOW / HIDE SCREENS ===
 function showScreen(screenId) {
   formScreens.forEach(screen => screen.classList.remove('active'));
   const screen = document.getElementById(screenId);
@@ -1123,18 +1135,40 @@ function showScreen(screenId) {
 
 function next() {
   const screens = Array.from(formScreens);
-  if (currentScreenIndex >= 0 && currentScreenIndex < screens.length - 1) {
-    showScreen(screens[currentScreenIndex + 1].id);
+  let nextIndex = currentScreenIndex + 1;
+
+  while (nextIndex < screens.length) {
+    const screen = screens[nextIndex];
+    const niches = screen.dataset.niche ? screen.dataset.niche.split(',') : null;
+
+    if (!niches || niches.includes(selectedBusiness)) {
+      showScreen(screen.id);
+      return;
+    }
+
+    nextIndex++;
   }
 }
 
 function prev() {
   const screens = Array.from(formScreens);
-  if (currentScreenIndex > 0) {
-    showScreen(screens[currentScreenIndex - 1].id);
+  let prevIndex = currentScreenIndex - 1;
+
+  while (prevIndex >= 0) {
+    const screen = screens[prevIndex];
+    const niches = screen.dataset.niche ? screen.dataset.niche.split(',') : null;
+
+    if (!niches || niches.includes(selectedBusiness)) {
+      showScreen(screen.id);
+      return;
+    }
+
+    prevIndex--;
   }
 }
 
+// ========================
+// === FEATURE & PATH TRACKING ===
 function recordFeature(feature) {
   if (!selectedFeatures.includes(feature)) selectedFeatures.push(feature);
   updateHiddenInputs();
@@ -1157,9 +1191,58 @@ function updateHiddenInputs() {
   document.getElementById('hiddenPaymentLink').value = paymentLink;
 }
 
+// ========================
+// === BUSINESS SEARCH & CATEGORY LOGIC ===
+function handleSearch() {
+  const input = document.getElementById('businessInput').value.toLowerCase().trim();
+  setBusinessType(input);
+
+  if (selectedBusiness !== 'general') {
+    injectNicheQuestions();
+    next(); // move to main intro options
+  } else {
+    alert("Sorry, we couldn't find a match. Try again.");
+  }
+}
+
+function selectExample(example) {
+  setBusinessType(example);
+  injectNicheQuestions();
+  next();
+}
+
+function setBusinessType(input) {
+  selectedBusiness = '';
+  for (let niche in nicheMap) {
+    if (nicheMap[niche].some(keyword => input.includes(keyword))) {
+      selectedBusiness = niche;
+      break;
+    }
+  }
+  if (!selectedBusiness) selectedBusiness = 'general';
+}
+
+// ========================
+// === INJECT NICHE QUESTIONS ===
+function injectNicheQuestions() {
+  const container = document.getElementById('niche-questions');
+  container.innerHTML = '';
+
+  if (nicheQuestionHTML[selectedBusiness]) {
+    container.innerHTML = nicheQuestionHTML[selectedBusiness];
+
+    // Re-query formScreens to include new screens
+    const updatedScreens = document.querySelectorAll('.form-screen');
+    formScreens.forEach(screen => screen.classList.remove('active')); // hide all
+    formScreens = updatedScreens;
+  }
+}
+
+// ========================
+// === DESIGN CONCEPT LOGIC ===
 function goToConcept() {
   const code = document.getElementById('designInput').value.trim();
-  if(code) {
+  if (code) {
     recordFeature(`design_code:${code}`);
     next();
   } else {
@@ -1167,20 +1250,33 @@ function goToConcept() {
   }
 }
 
+function showConcepts() {
+  const urlMap = {
+    barber: '/barber/',
+    dentist: '/dentist/',
+    estateAgent: '/estate-agent/',
+    cafe: '/cafe/',
+    bakery: '/bakery/',
+    phoneRepair: '/phone-repair/',
+    accountant: '/accountant/',
+    flowerShop: '/flower-shop/',
+    dryCleaning: '/dry-cleaning/',
+    pfcShop: '/pfc-shop/'
+  };
 
-
-    function showConcepts() {
-  // redirect based on selected business
+  const targetUrl = urlMap[selectedBusiness] || '/general-concepts/';
+  window.location.href = targetUrl;
 }
-    
+
+// ========================
 // === PLAN CALCULATION ===
 function calculatePlan() {
   const totalFeatures = selectedFeatures.length;
 
-  if(totalFeatures <= 15){
+  if (totalFeatures <= 15){
     selectedPlan = 'Basic';
     paymentLink = 'https://paypal.me/basic-plan-link';
-  } else if(totalFeatures <= 30){
+  } else if (totalFeatures <= 30){
     selectedPlan = 'Pro';
     paymentLink = 'https://paypal.me/pro-plan-link';
   } else {
@@ -1193,6 +1289,7 @@ function calculatePlan() {
   renderPayPalButtons();
 }
 
+// ========================
 // === PAYPAL BUTTONS ===
 function renderPayPalButtons() {
   const cards = document.querySelectorAll('.pricing-card');
@@ -1218,51 +1315,10 @@ function renderPayPalButtons() {
   });
 }
 
-// Trigger plan calculation
+// Trigger plan calculation on ownership choice
 document.querySelectorAll('.own-outright, .monthly-support').forEach(btn => {
   btn.addEventListener('click', calculatePlan);
 });
-
-// === BUSINESS SEARCH & CATEGORY LOGIC ===
-const nicheMap = {
-  barber: ['barber', 'barbers', 'hair salon', 'hairdresser', 'salon', 'hairdressers'],
-  plumber: ['plumber', 'plumbers', 'plumbing'],
-  dentist: ['dentist', 'dentists', 'dental clinic'],
-  driving: ['driving instructor', 'driving school', 'driver'],
-  trades: ['builder', 'electrician', 'roofer', 'handyman'],
-  cafe: ['cafe', 'coffee shop', 'coffee', 'restaurant']
-};
-
-// Search input
-function handleSearch() {
-  const input = document.getElementById('businessInput').value.toLowerCase().trim();
-  setBusinessType(input);
-
-  if(businessType !== 'general') {
-    next(); // move to main intro options
-  } else {
-    alert("Sorry, we couldn't find a match. Try again.");
-  }
-}
-
-// Category buttons
-function selectExample(example) {
-  setBusinessType(example);
-  next(); // move to main intro options
-}
-
-// Map input to niche
-function setBusinessType(input) {
-  businessType = '';
-  for (let niche in nicheMap) {
-    if (nicheMap[niche].some(keyword => input.includes(keyword))) {
-      businessType = niche;
-      break;
-    }
-  }
-
-  if (!businessType) businessType = 'general';
-}
 </script>
 
         
