@@ -1,300 +1,1178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VIBZ App</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-/* --- Reset --- */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-body, html { width: 100%; height: 100%; overflow: hidden; background: linear-gradient(160deg, #ff9a9e 0%, #fad0c4 100%); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibz | Premium Digital Experiences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-light: #4CAF50;
+            --primary-dark: #1B5E20;
+            --primary-glow: rgba(76, 175, 80, 0.15);
+            --app-bg: #F8FDF8;
+            --card-bg: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #FFFFFF;
+            --text-gray: #666666;
+            --border-light: rgba(255, 255, 255, 0.2);
+            --border-dark: rgba(0, 0, 0, 0.05);
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 15px 40px rgba(46, 125, 50, 0.12);
+            --radius-small: 12px;
+            --radius-medium: 18px;
+            --radius-large: 24px;
+            --radius-round: 50px;
+            --transition-fast: all 0.3s ease;
+            --transition-medium: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --app-height: 100vh;
+        }
 
-/* --- App wrapper --- */
-.app { position: relative; width: 100%; height: 100%; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* --- Screens --- */
-.app-screen {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  padding: 20px;
-  background: transparent;
-  transition: left 0.4s ease;
-}
-.app-screen.active { left: 0; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* --- Headers --- */
-.app-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.app-logo { font-weight: bold; font-size: 1.5rem; color: #ff5a5f; }
-.menu-btn { font-size: 1.5rem; background: none; border: none; cursor: pointer; color: #fff; }
-.menu-btn i { transition: transform 0.4s ease; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--app-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-/* --- Cards --- */
-.app-card {
-  background: rgba(255,255,255,0.95);
-  padding: 18px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.5s, transform 0.5s;
-}
-.app-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
 
-/* --- Buttons --- */
-.app-btn {
-  background: #ff5a5f;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  padding: 14px 0;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.app-btn:active { transform: scale(0.95); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-.app-btn.secondary {
-  background: #fff;
-  color: #ff5a5f;
-  border: 2px solid #ff5a5f;
-}
-.app-btn.secondary:active { transform: scale(0.95); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-/* --- Menu overlay --- */
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  z-index: 900;
-}
-.menu-overlay.active { opacity: 1; pointer-events: auto; }
+        /* App-like Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition-fast);
+            background: var(--primary);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-/* --- Fullscreen menu --- */
-.app-menu {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: #111;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: left 0.5s ease;
-  z-index: 1000;
-}
-.app-menu ul { list-style: none; text-align: center; }
-.app-menu li {
-  font-size: 2rem;
-  margin: 20px 0;
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: all 0.4s ease;
-  cursor: pointer;
-}
-.app-menu.active li { opacity: 1; transform: translateX(0); transition-delay: calc(var(--i) * 0.1s); }
+        header.scrolled {
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+            background: rgba(46, 125, 50, 0.95);
+        }
 
-/* --- Content animation --- */
-.app-screen h1, h2, h3, p, .app-card, .app-btn {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.5s ease;
-}
-.app-screen.active h1, .app-screen.active h2, .app-screen.active h3,
-.app-screen.active p, .app-screen.active .app-card, .app-screen.active .app-btn {
-  opacity: 1;
-  transform: translateY(0);
-}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* --- Swipe hint --- */
-.swipe-hint {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.7);
-  animation: bounce 1.2s infinite;
-}
-@keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,-8px); } }
-</style>
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition-fast);
+            opacity: 0.9;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+
+        .app-button {
+            background: var(--text-light);
+            color: var(--primary);
+            padding: 14px 32px;
+            border-radius: var(--radius-round);
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .app-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .app-button-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--border-light);
+        }
+
+        .app-button-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 24px;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section - App Style */
+        .hero {
+            padding: 180px 0 100px;
+            background: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            display: block;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* App Sections */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services - App Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-large);
+            padding: 40px;
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-dark);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-strong);
+            border-color: var(--primary-light);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--text-light);
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            margin-bottom: 25px;
+        }
+
+        .service-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Portfolio - App Gallery */
+        .portfolio-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-medium);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(transparent, rgba(46, 125, 50, 0.9));
+            color: var(--text-light);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition-medium);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Process - App Steps */
+        .process-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-light);
+            opacity: 0.2;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            width: 22%;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .process-step h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .process-step p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Contact - App Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .contact-details {
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: var(--radius-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border-radius: var(--radius-large);
+            padding: 50px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-dark);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px 20px;
+            background: var(--app-bg);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-small);
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: var(--transition-fast);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        /* Footer - App Style */
+        footer {
+            background: var(--primary);
+            padding: 80px 0 40px;
+            color: var(--text-light);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+
+        .footer-links a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* App Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* App Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--app-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .process-timeline {
+                flex-direction: column;
+                gap: 60px;
+            }
+            
+            .process-timeline::before {
+                width: 2px;
+                height: 100%;
+                left: 40px;
+                top: 0;
+            }
+            
+            .process-step {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                text-align: left;
+            }
+            
+            .step-number {
+                margin: 0 30px 0 0;
+                flex-shrink: 0;
+            }
+            
+            .step-content {
+                flex-grow: 1;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .services-grid, .portfolio-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .contact-form {
+                padding: 30px;
+            }
+            
+            .service-card, .contact-form {
+                padding: 30px;
+            }
+        }
+
+        /* Global Responsive Fixes */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
+    <!-- App Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">VIBZ</a>
+            
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
 
-<main class="app">
-
-  <!-- SCREEN 1: HOME -->
-  <section class="app-screen active" data-screen="home">
-    <header class="app-header">
-      <div class="app-logo">VIBZ</div>
-      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <a href="funnel.html" class="app-button">Start Project</a>
+        </div>
     </header>
-    <div class="app-card" style="margin-top:40px;">
-      <h1>Build your<br>next digital product</h1>
-      <p>Premium web & app design for modern brands.</p>
-    </div>
-    <div style="margin-top:30px; display:flex; flex-direction:column; gap:14px;">
-      <button class="app-btn" data-go="services">Web Design</button>
-      <button class="app-btn secondary" data-go="services">App Design</button>
-    </div>
-    <div style="margin-top:30px; font-size:0.9rem; text-align:center;">
-      ⭐⭐⭐⭐⭐ <br> Trusted by ambitious founders
-    </div>
-    <div class="swipe-hint">Swipe ← →</div>
-  </section>
 
-  <!-- SCREEN 2: SERVICES -->
-  <section class="app-screen" data-screen="services">
-    <header class="app-header">
-      <button class="menu-btn" data-back><i class="fas fa-arrow-left"></i></button>
-      <div></div>
-    </header>
-    <h2 style="margin-top:20px;">How can we help?</h2>
-    <div style="margin-top:25px; display:flex; flex-direction:column; gap:18px;">
-      <div class="app-card" data-go="contact"><h3>Web Design</h3><p>High-converting, mobile-first websites</p></div>
-      <div class="app-card" data-go="contact"><h3>App Design</h3><p>Modern UI/UX for web & mobile apps</p></div>
-      <div class="app-card" data-go="contact"><h3>Branding</h3><p>Visual identity & digital presence</p></div>
-    </div>
-    <div class="swipe-hint">Swipe ← →</div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="fade-in">Premium Digital Experiences</h1>
+            <p class="fade-in">Vibz creates exceptional digital products with premium design, seamless interactions, and outstanding performance for forward-thinking brands.</p>
+            
+            <div class="hero-buttons fade-in">
+                <a href="funnel.html" class="app-button" style="margin-right: 15px;">Start Project</a>
+                <a href="#portfolio" class="app-button app-button-outline">View Portfolio</a>
+            </div>
+           
+            <div class="hero-stats">
+                <div class="stat fade-in">
+                    <span class="stat-value" id="projectsCount">0</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat fade-in">
+                    <span class="stat-value" id="clientSatisfaction">0%</span>
+                    <span class="stat-label">Client Satisfaction</span>
+                </div>
+                <div class="stat fade-in">
+                    <span class="stat-value" id="yearsExperience">0</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- SCREEN 3: TRUST -->
-  <section class="app-screen" data-screen="trust">
-    <header class="app-header">
-      <button class="menu-btn" data-back><i class="fas fa-arrow-left"></i></button>
-      <div></div>
-    </header>
-    <div class="app-card" style="margin-top:40px;">
-      <h3>Why Vibz?</h3>
-      <p>• 150+ projects delivered<br>• 99% client satisfaction<br>• London-based team</p>
-    </div>
-    <button class="app-btn" style="margin-top:auto;" data-go="contact">Start your project</button>
-    <div class="swipe-hint">Swipe ← →</div>
-  </section>
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-in-left">Premium Services</h2>
+                <p class="slide-in-right">Our exclusive offerings are tailored for businesses that demand exceptional quality and results.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Enterprise Web Design</h3>
+                    <p>Fully custom, responsive websites with advanced functionality, CMS integration, and premium UI/UX design.</p>
+                    <div class="service-price">$25k - $50k+</div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App Design & Development</h3>
+                    <p>Native and progressive web applications with cutting-edge design, seamless animations, and premium user experience.</p>
+                    <div class="service-price">£30k - £70k+</div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Brand Transformation</h3>
+                    <p>Complete digital rebranding including visual identity, messaging strategy, and immersive online presence.</p>
+                    <div class="service-price">$40k - $80k+</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- SCREEN 4: CONTACT -->
-  <section class="app-screen" data-screen="contact">
-    <header class="app-header">
-      <button class="menu-btn" data-back><i class="fas fa-arrow-left"></i></button>
-      <div></div>
-    </header>
-    <h2 style="margin-top:20px;">Let’s get started</h2>
-    <form id="projectForm" style="margin-top:20px; display:flex; flex-direction:column; gap:14px;">
-      <input class="app-card" type="text" placeholder="Full name" required>
-      <input class="app-card" type="email" placeholder="Email address" required>
-      <input class="app-card" type="text" placeholder="Company (optional)">
-      <button class="app-btn" type="submit">Submit request</button>
-    </form>
-    <div class="swipe-hint">Swipe ← →</div>
-  </section>
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-in-left">Elite Portfolio</h2>
+                <p class="slide-in-right">Showcasing our premium projects for global brands and industry leaders.</p>
+            </div>
+            
+            <div class="portfolio-showcase">
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Luxury Tech Dashboard">
+                    <div class="portfolio-overlay">
+                        <h3>Quantum Finance Dashboard</h3>
+                        <p>Advanced fintech platform with real-time analytics</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Futuristic E-commerce">
+                    <div class="portfolio-overlay">
+                        <h3>Vibz Fashion Platform</h3>
+                        <p>Immersive AR shopping experience</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Analytics Dashboard">
+                    <div class="portfolio-overlay">
+                        <h3>DataSphere Analytics</h3>
+                        <p>Enterprise data visualization platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- FULLSCREEN MENU -->
-  <nav class="app-menu" id="appMenu">
-    <ul>
-      <li data-go="home">Home</li>
-      <li data-go="services">Services</li>
-      <li data-go="trust">Why Vibz</li>
-      <li data-go="contact">Contact</li>
-    </ul>
-  </nav>
+    <!-- Process Section -->
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-in-left">Our Process</h2>
+                <p class="slide-in-right">A meticulous approach that ensures flawless execution and exceptional results.</p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step fade-in">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4>Discovery & Strategy</h4>
+                        <p>Deep-dive analysis, competitive research, and strategic planning.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4>Concept & Design</h4>
+                        <p>Wireframing, prototyping, and premium UI/UX design creation.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4>Development</h4>
+                        <p>Cutting-edge development with premium animations and interactions.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h4>Launch & Optimize</h4>
+                        <p>Quality assurance, deployment, and ongoing performance optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- MENU OVERLAY -->
-  <div class="menu-overlay" id="menuOverlay"></div>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-in-left">Start Your Project</h2>
+                <p class="slide-in-right">Ready to elevate your digital presence? Contact us to discuss your premium project.</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info slide-in-left">
+                    <h3>Create With Us</h3>
+                    <p>Our team of elite designers and developers are ready to bring your vision to life with cutting-edge technology and premium design principles.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>London, England</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>07706345874</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>vibzcouk@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form slide-in-right">
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" class="form-control" placeholder="Your company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" class="form-control" required>
+                                <option value="">Select budget range</option>
+                                <option value="50k">$50,000+</option>
+                                <option value="100k">$100,000+</option>
+                                <option value="150k">$150,000+</option>
+                                <option value="200k">$200,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your project"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="app-button" style="width: 100%;">Submit Project Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</main>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">VIBZ</div>
+                    <p>Premium digital agency crafting exceptional experiences for forward-thinking brands worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <div class="footer-links">
+                        <a href="#">Web Design</a>
+                        <a href="#">App Development</a>
+                        <a href="#">Brand Strategy</a>
+                        <a href="#">UX/UI Design</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Company</h4>
+                    <div class="footer-links">
+                        <a href="#">About Us</a>
+                        <a href="#">Portfolio</a>
+                        <a href="#">Process</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Legal</h4>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Vibz Premium Digital Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-<script>
-// --- Navigation ---
-const screens = document.querySelectorAll('.app-screen');
-const goButtons = document.querySelectorAll('[data-go]');
-const backButtons = document.querySelectorAll('[data-back]');
-const menuBtn = document.getElementById('menuBtn');
-const appMenu = document.getElementById('appMenu');
-const menuOverlay = document.getElementById('menuOverlay');
-const menuItems = appMenu.querySelectorAll('li');
-let screenHistory = ['home'];
+    <script>
+        // Animated counter for stats
+        function animateCounter(elementId, targetValue, suffix = '') {
+            let element = document.getElementById(elementId);
+            let currentValue = 0;
+            let increment = targetValue / 100;
+            let timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(currentValue) + suffix;
+            }, 20);
+        }
 
-// Screen switching
-function switchScreen(screenName, direction) {
-  const current = document.querySelector('.app-screen.active');
-  const targetScreen = document.querySelector(`.app-screen[data-screen="${screenName}"]`);
-  if (!targetScreen || current === targetScreen) return;
+        // Initialize counters when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                animateCounter('projectsCount', 147);
+                animateCounter('clientSatisfaction', 99, '%');
+                animateCounter('yearsExperience', 8);
+            }, 500);
 
-  current.style.transition='left 0.4s ease';
-  current.style.left=direction==='forward'?'-100%':'100%';
-  current.classList.remove('active');
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
 
-  targetScreen.style.transition='left 0.4s ease';
-  targetScreen.style.left=direction==='forward'?'100%':'-100%';
+            // Scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
 
-  const contents=targetScreen.querySelectorAll('h1,h2,h3,p,.app-card,.app-btn');
-  contents.forEach(el=>{el.style.opacity=0; el.style.transform='translateY(30px)';});
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
 
-  targetScreen.classList.add('active');
+            // Observe elements for scroll animations
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
 
-  setTimeout(()=>{
-    targetScreen.style.left='0';
-    contents.forEach((el,i)=>setTimeout(()=>{el.style.opacity=1; el.style.transform='translateY(0)';}, i*100));
-  },10);
-}
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'var(--primary)';
+                    navLinks.style.padding = '30px';
+                    navLinks.style.gap = '20px';
+                    navLinks.style.borderTop = '1px solid var(--border-light)';
+                    navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+                }
+            });
 
-// Go buttons
-goButtons.forEach(btn=>{btn.addEventListener('click',()=>{const target=btn.getAttribute('data-go'); switchScreen(target,'forward'); screenHistory.push(target);});});
+            // Form submission
+            const projectForm = document.getElementById('projectForm');
+            projectForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your premium project request! Our team will contact you within 24 hours to discuss your vision.');
+                projectForm.reset();
+            });
 
-// Back buttons
-backButtons.forEach(btn=>{btn.addEventListener('click',()=>{if(screenHistory.length>1){screenHistory.pop(); const prev=screenHistory[screenHistory.length-1]; switchScreen(prev,'backward');}});});
-
-// --- Menu ---
-function openMenu(){appMenu.classList.add('active'); menuOverlay.classList.add('active'); menuItems.forEach((item,i)=>{item.style.setProperty('--i',i);}); menuBtn.querySelector('i').style.transform='rotate(90deg)';}
-function closeMenu(){appMenu.classList.remove('active'); menuOverlay.classList.remove('active'); menuBtn.querySelector('i').style.transform='rotate(0deg)';}
-menuBtn.addEventListener('click',()=>{appMenu.classList.contains('active')?closeMenu():openMenu();});
-menuOverlay.addEventListener('click', closeMenu);
-menuItems.forEach(item=>{item.addEventListener('click',()=>{const target=item.getAttribute('data-go'); switchScreen(target,'forward'); screenHistory.push(target); closeMenu();});});
-
-// --- Form ---
-const form = document.getElementById('projectForm');
-form.addEventListener('submit', e=>{
-  e.preventDefault();
-  alert('Thanks! Your request has been sent.');
-  form.reset();
-  switchScreen('home','backward');
-  screenHistory=['home'];
-});
-
-// --- Card tap effect ---
-const cards=document.querySelectorAll('.app-card');
-cards.forEach(card=>{card.addEventListener('mousedown',()=>{card.style.transform='scale(0.97)';}); card.addEventListener('mouseup',()=>{card.style.transform='';});});
-
-// --- Swipe gestures ---
-let touchStartX=0; let touchEndX=0;
-function handleGesture(){
-  const currentIndex=screenHistory.length-1;
-  const screensArray=Array.from(screens);
-  if(touchEndX<touchStartX-50){ // swipe left
-    const nextScreen=screensArray[currentIndex+1];
-    if(nextScreen){const target=nextScreen.getAttribute('data-screen'); switchScreen(target,'forward'); screenHistory.push(target);}
-  }
-  if(touchEndX>touchStartX+50){ // swipe right
-    if(screenHistory.length>1){screenHistory.pop(); const prev=screenHistory[screenHistory.length-1]; switchScreen(prev,'backward');}
-  }
-}
-screens.forEach(screen=>{screen.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;}); screen.addEventListener('touchend',e=>{touchEndX=e.changedTouches[0].screenX; handleGesture();});});
-</script>
-
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 900) {
+                            navLinks.style.display = 'none';
+                        }
+                    }
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 900) {
+                    if (!event.target.closest('.nav-links') && !event.target.closest('#mobileMenuBtn')) {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
