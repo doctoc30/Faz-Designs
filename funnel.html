@@ -1011,16 +1011,32 @@
     </div>
 
     <!-- ===== DESIGN CONCEPT ===== -->
-    <div class="form-screen" id="instructor-q2">
-      <h2>Do you have a design concept in mind?</h2>
-      <p>You can enter a code, choose from templates, or request custom design.</p>
-      <div class="button-row">
-        <button type="button" onclick="showScreen('design-code')">Yes, I have a code</button>
-        <button type="button" onclick="window.location.href='https://doctoc30.github.io/Driving-School-Web-Design-/pages/concepts.html?fromFunnel=1'">Show me concepts</button>
-        <button type="button" onclick="next()">Custom design</button>
-        <button type="button" class="back-button" onclick="prev()">Back</button>
-      </div>
-    </div>
+
+<div class="form-screen" id="instructor-q2">
+  <h2>Do you have a design concept in mind?</h2>
+  <p>You can enter a code, choose from templates, or request custom design.</p>
+
+  <div class="button-row">
+    <button type="button" onclick="showScreen('design-code')">
+      Yes, I have a code
+    </button>
+
+    <button type="button" onclick="showConcepts()">
+      Show me concepts
+    </button>
+
+    <button type="button" onclick="next()">
+      Custom design
+    </button>
+
+    <button type="button" class="back-button" onclick="prev()">
+      Back
+    </button>
+  </div>
+</div>
+
+
+      
 
     <div class="form-screen" id="design-code">
       <h2>Enter your chosen design code</h2>
@@ -1086,11 +1102,16 @@
 // === GLOBAL VARIABLES ===
 const formScreens = document.querySelectorAll('.form-screen');
 let currentScreenIndex = 0;
+
 let selectedFeatures = [];
 let selectedPath = '';
 let selectedPlan = '';
 let paymentLink = '';
-let businessType = '';
+
+let selectedBusiness = ''; // single source of truth
+
+
+    
 
 // === HELPER FUNCTIONS ===
 function showScreen(screenId) {
@@ -1146,6 +1167,8 @@ function goToConcept() {
   }
 }
 
+
+    
 // === PLAN CALCULATION ===
 function calculatePlan() {
   const totalFeatures = selectedFeatures.length;
