@@ -2,411 +2,227 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIBZ | Elite Digital Atelier</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXELUX | Premium Design Agency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
     <style>
         :root {
-            --bg: #080808;
-            --surface: #111111;
-            --accent: #FF5C00;
-            --accent-gradient: linear-gradient(135deg, #FF5C00 0%, #FF2E00 100%);
-            --text-main: #FFFFFF;
-            --text-dim: rgba(255, 255, 255, 0.5);
-            --border: rgba(255, 255, 255, 0.08);
-            --glass: rgba(255, 255, 255, 0.03);
-            --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --bg: #ffffff;
+            --bg-alt: #f8f9fa;
+            --primary: #0f172a; /* Deep Charcoal */
+            --accent: #2563eb;  /* Elite Blue */
+            --text-muted: #64748b;
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text-main);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--primary);
+            line-height: 1.6;
             overflow-x: hidden;
-            line-height: 1.5;
         }
 
-        /* 2D NEURAL CANVAS BACKGROUND */
-        #neural-canvas {
+        /* --- NAVIGATION --- */
+        nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        /* APP-LIKE NAVIGATION */
-        .app-nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 95%;
-            max-width: 1200px;
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            padding: 12px 24px;
-            border-radius: 100px;
+            top: 0; width: 100%;
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 20px;
-            letter-spacing: -1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
+        .nav-links { display: none; } /* Hidden on mobile */
 
-        .logo-orb {
-            width: 10px;
-            height: 10px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--accent);
-        }
-
-        .cta-mini {
-            background: var(--accent-gradient);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        /* HERO SECTION - FULL SCREEN */
+        /* --- HERO SECTION (Portrait Mobile) --- */
         .hero {
-            height: 100vh;
+            height: 100vh; /* Full portrait */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            perspective: 1000px;
+            padding: 0 8%;
+            position: relative;
+            background: radial-gradient(circle at 90% 10%, #eff6ff 0%, #ffffff 50%);
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 10vw, 8rem);
+            font-size: clamp(2.8rem, 10vw, 5rem);
             font-weight: 800;
-            line-height: 0.85;
-            letter-spacing: -5px;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: scale(0.8) translateZ(-100px);
-            animation: appAppear 1s var(--spring) forwards;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
         }
 
-        .hero h1 span {
-            display: block;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero h1 span { color: var(--accent); }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
         }
 
-        /* PROCESS SECTION - 1-4 CARDS */
-        .section-label {
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 12px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            display: block;
+        /* --- BUTTONS --- */
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
         }
 
-        .process-container {
-            padding: 100px 5%;
+        .btn-dark { background: var(--primary); color: white; }
+        .btn-outline { border: 1px solid #e2e8f0; color: var(--primary); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+        /* --- SERVICES SECTION --- */
+        .section { padding: 100px 8%; }
+        .section-tag { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+        
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .process-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 32px;
-            position: relative;
-            overflow: hidden;
-            transition: 0.5s var(--spring);
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .process-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .process-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        .step-num {
-            font-size: 60px;
-            font-weight: 800;
-            opacity: 0.1;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-        }
-
-        /* ELITE UX GALLERY */
-        .gallery-track {
-            display: flex;
-            gap: 30px;
-            padding: 50px 0;
-            width: 200%;
-            animation: scrollTrack 40s linear infinite;
-        }
-
-        .gallery-item {
-            width: 400px;
-            height: 500px;
-            background: var(--surface);
+        .card {
+            padding: 3rem 2rem;
+            background: var(--bg-alt);
             border-radius: 24px;
-            border: 1px solid var(--border);
-            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid transparent;
         }
 
-        /* FAQ - ACCORDION APP STYLE */
-        .faq-section {
-            max-width: 800px;
-            margin: 100px auto;
-            padding: 0 20px;
-        }
+        .card:hover { background: white; border-color: #e2e8f0; }
+        .card i { font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; }
 
-        .faq-item {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            margin-bottom: 12px;
+        /* --- PORTFOLIO --- */
+        .portfolio-item {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: #eee;
             border-radius: 20px;
             overflow: hidden;
-            transition: 0.3s;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
-        .faq-header {
-            padding: 24px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .portfolio-img {
+            width: 100%; height: 100%;
+            background: linear-gradient(45deg, #f1f5f9, #dfe7ef);
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .faq-content {
-            padding: 0 24px 24px;
-            color: var(--text-dim);
-            display: none;
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero { text-align: center; align-items: center; }
+            .btn-group { justify-content: center; width: 100%; }
+            .btn { width: 100%; }
         }
 
-        /* ANIMATIONS */
-        @keyframes appAppear {
-            to { opacity: 1; transform: scale(1) translateZ(0); }
+        /* Floating Graphic Elements */
+        .shape {
+            position: absolute;
+            z-index: -1;
+            filter: blur(80px);
+            border-radius: 50%;
         }
-
-        @keyframes scrollTrack {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
     </style>
 </head>
 <body>
 
-    <canvas id="neural-canvas"></canvas>
-
-    <nav class="app-nav">
-        <div class="logo"><div class="logo-orb"></div> VIBZ</div>
-        <div style="display: flex; gap: 30px; font-size: 14px; font-weight: 600;">
-            <a href="#process" style="color: white; text-decoration: none;">Process</a>
-            <a href="#faq" style="color: white; text-decoration: none;">FAQ</a>
-        </div>
-        <a href="#" class="cta-mini">Get Started</a>
+    <nav>
+        <div class="logo">PIXELUX.</div>
+        <div class="menu-trigger"><i class="fa-solid fa-bars-staggered"></i></div>
     </nav>
 
     <section class="hero">
-        <span class="section-label">Premier Design Studio</span>
-        <h1>ELITE<span>INTERFACES</span></h1>
-        <p style="color: var(--text-dim); max-width: 600px; margin-top: 20px; font-size: 18px;">
-            We don't build websites. We engineer high-performance digital ecosystems for the world's most ambitious brands.
-        </p>
-    </section>
-
-    <div id="process" class="process-container">
-        <div class="process-card scroll-reveal">
-            <div class="step-num">01</div>
-            <i class="fas fa-microchip" style="font-size: 30px; color: var(--accent); margin-bottom: 20px;"></i>
-            <h3>Discovery & Strategy</h3>
-            <p style="color: var(--text-dim); margin-top: 15px;">Deep diving into your brand's DNA to create a high-conversion roadmap.</p>
-        </div>
-        <div class="process-card scroll-reveal">
-            <div class="step-num">02</div>
-            <i class="fas fa-bezier-curve" style="font-size: 30px; color: var(--accent); margin-bottom: 20px;"></i>
-            <h3>Elite UX/UI Design</h3>
-            <p style="color: var(--text-dim); margin-top: 15px;">Pixel-perfect wireframes designed with elite aesthetics and mental models.</p>
-        </div>
-        <div class="process-card scroll-reveal">
-            <div class="step-num">03</div>
-            <i class="fas fa-code" style="font-size: 30px; color: var(--accent); margin-bottom: 20px;"></i>
-            <h3>Next-Gen Dev</h3>
-            <p style="color: var(--text-dim); margin-top: 15px;">Blazing fast code optimized for SEO, speed, and 100% lighthouse scores.</p>
-        </div>
-        <div class="process-card scroll-reveal">
-            <div class="step-num">04</div>
-            <i class="fas fa-rocket" style="font-size: 30px; color: var(--accent); margin-bottom: 20px;"></i>
-            <h3>Launch & Scale</h3>
-            <p style="color: var(--text-dim); margin-top: 15px;">Continuous optimization and growth scaling to ensure long-term ROI.</p>
-        </div>
-    </div>
-
-    <section class="scroll-reveal" style="padding: 100px 0; text-align: center;">
-        <span class="section-label">The Portfolio</span>
-        <h2 style="font-size: 3rem; font-weight: 800;">Moving Experiences</h2>
-        <div class="gallery-track">
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover;"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover;"></div>
-        </div>
-    </section>
-
-    <div id="faq" class="faq-section scroll-reveal">
-        <span class="section-label">Questions</span>
-        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">Common Enquiries</h2>
+        <div class="shape" style="width: 300px; height: 300px; background: #dbeafe; top: 10%; right: -5%;"></div>
         
-        <div class="faq-item">
-            <div class="faq-header"><h4>How long does a project take?</h4><i class="fas fa-plus"></i></div>
-            <div class="faq-content">Most elite projects are delivered within 6-10 weeks depending on complexity.</div>
+        <h1 data-aos="fade-up">Elite Design <br><span>For Growth.</span></h1>
+        <p data-aos="fade-up" data-aos-delay="100">
+            We build high-performance digital products for brands that refuse to settle for the ordinary.
+        </p>
+        
+        <div class="btn-group" data-aos="fade-up" data-aos-delay="200">
+            <a href="#work" class="btn btn-dark">View Portfolio</a>
+            <a href="#contact" class="btn btn-outline">Let's Talk</a>
         </div>
-        <div class="faq-item">
-            <div class="faq-header"><h4>Do you offer maintenance?</h4><i class="fas fa-plus"></i></div>
-            <div class="faq-content">Yes, we provide VIBZ Care packages to keep your platform running at peak performance.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-header"><h4>What is the typical investment?</h4><i class="fas fa-plus"></i></div>
-            <div class="faq-content">Our bespoke solutions typically start from £15k for full-service transformation.</div>
-        </div>
-    </div>
+    </section>
 
-    <footer style="padding: 100px 5%; border-top: 1px solid var(--border); text-align: center;">
-        <h2 style="font-size: 4vw; margin-bottom: 40px;">Ready to create?</h2>
-        <a href="mailto:hello@vibz.agency" class="cta-mini" style="padding: 20px 60px; font-size: 18px;">Start Project</a>
-        <p style="margin-top: 60px; color: var(--text-dim); font-size: 12px;">&copy; 2025 VIBZ STUDIO. ALL RIGHTS RESERVED.</p>
+    <section class="section">
+        <span class="section-tag">Expertise</span>
+        <h2 style="font-size: 2.5rem; font-weight: 800;">How we help you scale</h2>
+        
+        <div class="grid">
+            <div class="card" data-aos="fade-up">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <h3>UI/UX Design</h3>
+                <p>User-centric interfaces designed to convert visitors into loyal customers.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-code"></i>
+                <h3>Web Development</h3>
+                <p>Clean, fast, and scalable code built with the latest modern frameworks.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-rocket"></i>
+                <h3>Brand Strategy</h3>
+                <p>Positioning your business as a leader in your specific market niche.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="section" style="background: var(--bg-alt);">
+        <span class="section-tag">Case Studies</span>
+        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem;">Featured Works</h2>
+        
+        <div class="portfolio-item" data-aos="zoom-in-up">
+            <div class="portfolio-img">
+                <span style="color: #94a3b8; font-weight: 700;">PROJECT_O1 / FINTECH APP</span>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="zoom-in-up">
+            <div class="portfolio-img">
+                <span style="color: #94a3b8; font-weight: 700;">PROJECT_O2 / LUXURY E-COM</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="section" style="text-align: center;">
+        <h2 style="font-size: 3rem; margin-bottom: 2rem;">Ready to start?</h2>
+        <a href="mailto:hello@pixelux.com" class="btn btn-dark" style="display: inline-block;">Get In Touch</a>
+        <p style="margin-top: 4rem; font-size: 0.9rem; color: var(--text-muted);">© 2025 PIXELUX Agency. All rights reserved.</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // 2D NEURAL NETWORK BACKGROUND SCRIPT
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-        }
-
-        function init() {
-            resize();
-            for(let i=0; i<80; i++) particles.push(new Particle());
-            animate();
-        }
-
-        function animate() {
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.strokeStyle = 'rgba(255, 92, 0, 0.2)';
-            ctx.lineWidth = 0.5;
-
-            particles.forEach(p => {
-                p.update();
-                particles.forEach(p2 => {
-                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if(dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                });
-            });
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        window.onresize = resize;
-
-        // SCROLL REVEAL LOGIC
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-
-        // FAQ ACCORDION LOGIC
-        document.querySelectorAll('.faq-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                const isOpen = content.style.display === 'block';
-                
-                document.querySelectorAll('.faq-content').forEach(c => c.style.display = 'none');
-                document.querySelectorAll('.faq-header i').forEach(i => i.className = 'fas fa-plus');
-
-                if(!isOpen) {
-                    content.style.display = 'block';
-                    header.querySelector('i').className = 'fas fa-minus';
-                }
-            });
+        // Parallax effect for the background shape
+        window.addEventListener('scroll', () => {
+            const shape = document.querySelector('.shape');
+            let value = window.scrollY;
+            shape.style.transform = `translateY(${value * 0.5}px)`;
         });
     </script>
 </body>
