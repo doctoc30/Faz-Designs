@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBZ | Elite Digital Collective</title>
+    <title>VIBZ | Elite Design Agency</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -12,182 +12,194 @@
         :root {
             --bg: #ffffff;
             --accent: #FF6B00;
-            --dark: #080808;
-            --text-gray: #555;
-            --light-gray: #f8f8f8;
-            --border: #e5e5e5;
+            --dark: #121212;
+            --text-gray: #4a4a4a;
+            --light-gray: #f9f9f9;
+            --border: #eeeeee;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; }
 
         /* --- NAVIGATION --- */
-        nav { position: fixed; width: 100%; padding: 1.5rem 6%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(255,255,255,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-        .logo { font-weight: 900; font-size: 1.6rem; letter-spacing: -1px; }
-        .logo span { color: var(--accent); }
+        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 6%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        .logo { font-weight: 900; font-size: 1.8rem; color: var(--accent); letter-spacing: -1px; }
 
-        /* --- HERO (Massive Fonts & Typewriter) --- */
+        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 0 6%;
-            background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+            position: relative;
+            background: radial-gradient(circle at top right, #fff5ee, #ffffff);
         }
 
         .hero h1 {
-            font-size: clamp(4.2rem, 16vw, 10rem); 
+            font-size: clamp(3.5rem, 12vw, 8rem); 
             font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -6px;
+            line-height: 0.9;
+            letter-spacing: -4px;
             margin-bottom: 2rem;
+            text-transform: capitalize;
         }
 
-        .typewriter-text { color: var(--accent); border-right: 12px solid var(--accent); padding-right: 10px; }
+        /* Typewriter Cursor Effect */
+        .typewriter-container { color: var(--accent); border-right: 8px solid var(--accent); padding-right: 10px; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .hero p { font-size: 1.25rem; color: var(--text-gray); max-width: 550px; margin-bottom: 3rem; line-height: 1.5; }
+
+        /* --- BUTTONS --- */
+        .btn-group { display: flex; gap: 15px; }
+        .btn { padding: 1.2rem 2.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 1.1rem; }
+        .btn-fill { background: var(--accent); color: white; border: 2px solid var(--accent); }
+        .btn-outline { border: 2px solid var(--accent); color: var(--accent); }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2); }
 
         /* --- PROCESS SECTION --- */
-        .process-section { padding: 120px 6%; }
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 60px; }
-        .step { position: relative; padding: 3rem 2rem; background: var(--light-gray); border-radius: 24px; overflow: hidden; }
-        .step-count { position: absolute; top: -10px; right: 10px; font-size: 8rem; font-weight: 900; color: rgba(0,0,0,0.03); }
-        .step i { font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; display: block; }
+        section { padding: 120px 6%; }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .process-step { padding: 2.5rem; background: var(--light-gray); border-radius: 24px; position: relative; overflow: hidden; }
+        .step-num { position: absolute; top: -10px; right: 10px; font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.03); }
 
-        /* --- FAQ SECTION --- */
-        .faq-section { padding: 100px 6%; background: var(--bg); }
-        .faq-item { border-bottom: 1px solid var(--border); margin-bottom: 10px; }
-        .faq-trigger { width: 100%; padding: 2rem 0; background: none; border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 1.4rem; font-weight: 700; text-align: left; }
-        .faq-content { max-height: 0; overflow: hidden; transition: 0.5s ease; color: var(--text-gray); font-size: 1.1rem; line-height: 1.6; }
-        .faq-item.active .faq-content { max-height: 200px; padding-bottom: 2rem; }
+        /* --- FAQ TOGGLE --- */
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-btn { width: 100%; padding: 2rem 0; background: none; border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 1.4rem; font-weight: 700; text-align: left; }
+        .faq-content { max-height: 0; overflow: hidden; transition: 0.4s ease; color: var(--text-gray); }
 
-        /* --- ENQUIRY FORM FOOTER --- */
-        .contact-footer { background: var(--dark); color: white; padding: 100px 6% 40px; border-radius: 60px 60px 0 0; }
-        .form-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-        .form-left h2 { font-size: 5rem; line-height: 0.9; margin-bottom: 2rem; }
-        
-        .elite-form input, .elite-form textarea { width: 100%; background: #151515; border: 1px solid #333; padding: 1.5rem; color: white; border-radius: 15px; margin-bottom: 1.2rem; font-size: 1rem; }
-        .elite-form button { background: var(--accent); color: white; border: none; padding: 1.5rem 3rem; border-radius: 15px; font-weight: 800; cursor: pointer; width: 100%; transition: 0.3s; }
-        .elite-form button:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4); }
+        /* --- LARGE ENQUIRY FORM --- */
+        .footer-form { background: var(--dark); color: white; border-radius: 60px 60px 0 0; padding: 100px 6%; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .form-grid input, .form-grid textarea { width: 100%; padding: 1.5rem; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 12px; margin-bottom: 1.5rem; font-size: 1rem; }
+        .submit-btn { background: var(--accent); color: white; border: none; padding: 1.5rem 3rem; border-radius: 12px; font-weight: 900; cursor: pointer; width: 100%; }
 
-        @media (max-width: 900px) {
-            .form-container { grid-template-columns: 1fr; gap: 40px; }
-            .hero h1 { font-size: 4.8rem; letter-spacing: -3px; }
-            .form-left h2 { font-size: 3.5rem; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 4rem; letter-spacing: -2px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">VIBZ<span>.</span></div>
-        <div style="font-weight: 700;">MENU <i class="fa-solid fa-bars-staggered ml-2"></i></div>
+        <div class="logo">VIBZ</div>
+        <div style="font-size: 1.5rem;"><i class="fa-solid fa-bars-staggered"></i></div>
     </nav>
 
     <section class="hero">
-        <h1 data-aos="fade-up">Websites<br>That Build<br><span id="typewriter" class="typewriter-text"></span></h1>
-        <p style="font-size: 1.4rem; color: var(--text-gray); max-width: 600px; margin-bottom: 2.5rem;">
-            A performance-first design agency creating high-impact digital experiences for local services and elite brands.
+        <h1 data-aos="fade-right">Websites <br>That Bring <br><span id="typewriter" class="typewriter-container"></span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">
+            We design fast, modern websites for elite brands, dentists, trades, and local services ready to scale.
         </p>
-        <a href="#enquiry" class="btn" style="text-decoration:none; color: var(--dark); font-weight: 900; font-size: 1.2rem;">
-            GET A PROPOSAL <i class="fa-solid fa-arrow-right-long" style="margin-left: 10px; color: var(--accent);"></i>
-        </a>
+        <div class="btn-group" data-aos="fade-up" data-aos-delay="400">
+            <a href="#work" class="btn btn-fill">View Examples</a>
+            <a href="#contact" class="btn btn-outline">Get a Website</a>
+        </div>
     </section>
 
-    <section class="process-section">
-        <h2 style="font-size: 3rem; font-weight: 900;">The Elite Process</h2>
+    <section id="process">
+        <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem;">Our Process</h2>
         <div class="process-grid">
-            <div class="step" data-aos="fade-up">
-                <span class="step-count">01</span>
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <h3>Deep Audit</h3>
-                <p>We analyze your competitors and current metrics to find your unfair advantage.</p>
+            <div class="process-step" data-aos="fade-up">
+                <span class="step-num">01</span>
+                <h3>Discovery</h3>
+                <p>We audit your market to find your unfair competitive advantage.</p>
             </div>
-            <div class="step" data-aos="fade-up" data-aos-delay="100">
-                <span class="step-count">02</span>
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                <h3>Design Phase</h3>
-                <p>Crafting high-fidelity UI that aligns perfectly with your brand's elite status.</p>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                <span class="step-num">02</span>
+                <h3>Strategy</h3>
+                <p>Developing a conversion-led blueprint for your digital growth.</p>
             </div>
-            <div class="step" data-aos="fade-up" data-aos-delay="200">
-                <span class="step-count">03</span>
-                <i class="fa-solid fa-code-branch"></i>
-                <h3>Smart Dev</h3>
-                <p>Building with lightning-fast code for 100/100 Google PageSpeed scores.</p>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                <span class="step-num">03</span>
+                <h3>Design</h3>
+                <p>Bespoke high-end UI designed to command authority in your niche.</p>
             </div>
-            <div class="step" data-aos="fade-up" data-aos-delay="300">
-                <span class="step-count">04</span>
-                <i class="fa-solid fa-rocket"></i>
-                <h3>Evolution</h3>
-                <p>Continuous optimization and scaling to ensure long-term market dominance.</p>
+            <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                <span class="step-num">04</span>
+                <h3>Launch</h3>
+                <p>Deploying a lightning-fast asset that works for you 24/7.</p>
             </div>
         </div>
     </section>
 
-    <section class="faq-section">
-        <h2 style="font-size: 3rem; margin-bottom: 4rem;">Questions?</h2>
+    <section id="faq">
+        <h2 style="font-size: 3rem; margin-bottom: 3rem;">Common Questions</h2>
         <div class="faq-item">
-            <button class="faq-trigger">What is the investment? <i class="fa-solid fa-plus"></i></button>
-            <div class="faq-content"><p>Projects typically start at $2.5k. We provide tailored quotes based on your specific growth goals and technical requirements.</p></div>
+            <button class="faq-btn" onclick="toggleFaq(this)">How long does it take? <i class="fa-solid fa-plus"></i></button>
+            <div class="faq-content"><p style="padding-bottom: 2rem;">Typically 14-21 days for a full elite conversion website.</p></div>
         </div>
         <div class="faq-item">
-            <button class="faq-trigger">Do you work with local trades? <i class="fa-solid fa-plus"></i></button>
-            <div class="faq-content"><p>Yes. We specialize in transforming local services (Barbers, Trades, Dentists) into premium market leaders.</p></div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-trigger">How long is the turnaround? <i class="fa-solid fa-plus"></i></button>
-            <div class="faq-content"><p>Expect a fully optimized, high-end website in 14-21 business days from kickoff.</p></div>
+            <button class="faq-btn" onclick="toggleFaq(this)">Do you offer SEO? <i class="fa-solid fa-plus"></i></button>
+            <div class="faq-content"><p style="padding-bottom: 2rem;">Every site is built with technical SEO excellence as standard.</p></div>
         </div>
     </section>
 
-    <footer class="contact-footer" id="enquiry">
-        <div class="form-container">
-            <div class="form-left">
-                <h2>Let's build <br><span style="color: var(--accent);">your legacy.</span></h2>
-                <p style="color: #888; margin-top: 2rem; font-size: 1.2rem;">Fill out the form and our head of strategy will contact you within 24 hours.</p>
+    <footer class="footer-form" id="contact">
+        <div class="form-grid">
+            <div>
+                <h2 style="font-size: 4rem; margin-bottom: 2rem;">Let's build <br><span style="color: var(--accent);">your legacy.</span></h2>
+                <p style="color: #888;">Complete the form and our head of strategy will contact you within 24 hours.</p>
             </div>
-            <div class="elite-form">
-                <form>
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email Address" required>
-                    <input type="text" placeholder="Business Type (e.g. Barber, Dentist)">
-                    <textarea rows="4" placeholder="How can we help you scale?"></textarea>
-                    <button type="submit">SEND ENQUIRY</button>
-                </form>
-            </div>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea rows="4" placeholder="Tell us about your project..."></textarea>
+                <button type="submit" class="submit-btn">SEND ENQUIRY</button>
+            </form>
         </div>
-        <div style="text-align: center; margin-top: 60px; color: #444; font-size: 0.9rem;">
+        <div style="text-align: center; margin-top: 80px; color: #444; border-top: 1px solid #222; padding-top: 40px;">
             © 2025 VIBZ COLLECTIVE. ALL RIGHTS RESERVED.
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true });
 
-        // Typewriter Engine
-        const words = ["Dominance.", "Revenue.", "Authority.", "Leaders."];
-        let i = 0, j = 0, isDeleting = false;
+        // Typewriter Logic
+        const words = ["Customers.", "Growth.", "Revenue.", "Results."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const target = document.getElementById("typewriter");
+
         function type() {
-            const currentWord = words[i];
-            const display = document.getElementById("typewriter");
-            display.textContent = isDeleting ? currentWord.substring(0, j--) : currentWord.substring(0, j++);
-            
-            let speed = isDeleting ? 100 : 200;
-            if (!isDeleting && j === currentWord.length + 1) { speed = 2000; isDeleting = true; }
-            if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % words.length; speed = 500; }
-            setTimeout(type, speed);
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                target.textContent = currentWord.substring(0, charIndex--);
+            } else {
+                target.textContent = currentWord.substring(0, charIndex++);
+            }
+
+            if (!isDeleting && charIndex === currentWord.length + 1) {
+                isDeleting = true;
+                setTimeout(type, 2000); // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 100 : 200);
+            }
         }
         type();
 
-        // FAQ Toggles
-        document.querySelectorAll('.faq-trigger').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const item = btn.parentElement;
-                item.classList.toggle('active');
-                btn.querySelector('i').classList.toggle('fa-plus');
-                btn.querySelector('i').classList.toggle('fa-minus');
-            });
-        });
+        // FAQ Logic
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.className = "fa-solid fa-plus";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.className = "fa-solid fa-minus";
+            }
+        }
     </script>
 </body>
 </html>
