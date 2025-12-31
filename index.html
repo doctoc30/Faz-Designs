@@ -1,1409 +1,948 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VIBZ | Elite Web Experiences for Premium Brands</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<style>
-:root {
-    --bg: #0a0a0a;
-    --surface: #111111;
-    --surface-elevated: #1a1a1a;
-    --accent: #FF5C00;
-    --accent-glow: rgba(255,92,0,0.25);
-    --accent-secondary: #00D4FF;
-    --text-main: #ffffff;
-    --text-dim: #8a8a8a;
-    --text-muted: #555555;
-    --glass: rgba(255,255,255,0.03);
-    --border: rgba(255,255,255,0.08);
-    --radius: 24px;
-    --radius-sm: 12px;
-    --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    --transition-fast: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    --shadow: 0 20px 60px rgba(0,0,0,0.3);
-    --shadow-glow: 0 20px 60px var(--accent-glow);
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-body { 
-    font-family:'Inter','Plus Jakarta Sans',sans-serif; 
-    background:var(--bg); 
-    color:var(--text-main); 
-    overflow-x:hidden; 
-    scroll-behavior: smooth;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--surface); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: #ff7a33; }
-
-/* Header */
-header {
-    position: fixed; 
-    top:0; 
-    left:0; 
-    width:100%; 
-    padding:20px 40px;
-    background: rgba(10,10,10,0.85); 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border);
-    z-index:1000; 
-    display:flex; 
-    justify-content:space-between; 
-    align-items:center;
-    transition: var(--transition);
-}
-
-header.scrolled {
-    padding: 15px 40px;
-    background: rgba(10,10,10,0.95);
-}
-
-.logo { 
-    font-weight:800; 
-    font-size:28px; 
-    background: linear-gradient(90deg, var(--accent), #FF9900); 
-    -webkit-background-clip:text; 
-    color:transparent; 
-    text-decoration:none; 
-    letter-spacing: -0.5px;
-}
-
-.nav-links { 
-    display:flex; 
-    gap:40px; 
-}
-
-.nav-links a { 
-    color:var(--text-main); 
-    text-decoration:none; 
-    font-weight:500; 
-    position:relative; 
-    font-size: 15px;
-    letter-spacing: 0.2px;
-}
-
-.nav-links a::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--accent);
-    transition: var(--transition);
-}
-
-.nav-links a:hover::before {
-    width: 100%;
-}
-
-.nav-links a.active {
-    color: var(--accent);
-}
-
-.cta-nav {
-    padding: 10px 24px;
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.cta-nav:hover {
-    background: var(--accent);
-    color: white;
-    box-shadow: 0 0 20px var(--accent-glow);
-}
-
-.mobile-menu-btn { 
-    display:none; 
-    background:none; 
-    border:none; 
-    color:var(--text-main); 
-    font-size:24px; 
-    cursor:pointer; 
-    z-index: 1001;
-}
-
-/* Full Menu */
-.full-menu { 
-    position:fixed; 
-    top:0; 
-    left:-100%; 
-    width:100%; 
-    height:100%; 
-    background:var(--surface); 
-    z-index:9999; 
-    display:flex; 
-    flex-direction:column; 
-    align-items:center; 
-    justify-content:center; 
-    gap:30px; 
-    transition: var(--transition);
-    padding: 40px;
-}
-
-.full-menu.show { left:0; }
-.full-menu a { 
-    font-size:2.5rem; 
-    color:var(--text-main); 
-    text-decoration:none; 
-    font-weight: 600;
-    opacity: 0.8;
-    transition: var(--transition);
-}
-.full-menu a:hover {
-    opacity: 1;
-    color: var(--accent);
-    transform: translateX(10px);
-}
-
-/* Hero Section */
-.hero { 
-    min-height:100vh; 
-    display:flex; 
-    flex-direction:column; 
-    justify-content:center; 
-    align-items:flex-start;
-    padding: 120px 40px 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: -200px;
-    right: -200px;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-    opacity: 0.3;
-    z-index: -1;
-}
-
-.hero h1 { 
-    font-size:clamp(3rem, 6vw, 5.5rem); 
-    font-weight:800; 
-    margin-bottom:30px; 
-    line-height: 1.1;
-    max-width: 900px;
-}
-.hero span { 
-    background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); 
-    -webkit-background-clip:text; 
-    color:transparent;
-    position: relative;
-}
-.hero p { 
-    max-width:600px; 
-    font-size:1.2rem; 
-    color:var(--text-dim); 
-    margin-bottom:40px; 
-    line-height: 1.6;
-}
-.hero .cta { 
-    display:flex; 
-    gap:20px; 
-    flex-wrap:wrap; 
-}
-.hero .cta button { 
-    padding:18px 36px; 
-    border:none; 
-    border-radius:50px; 
-    font-size:1rem; 
-    cursor:pointer; 
-    transition:var(--transition); 
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
-.hero .cta .primary { 
-    background:var(--accent); 
-    color:white; 
-    box-shadow: 0 10px 30px rgba(255,92,0,0.2);
-}
-.hero .cta .primary:hover { 
-    box-shadow:var(--shadow-glow); 
-    transform:translateY(-5px); 
-}
-.hero .cta .secondary { 
-    background:transparent; 
-    border:2px solid var(--border); 
-    color:var(--text-main); 
-}
-.hero .cta .secondary:hover { 
-    background:var(--glass); 
-    border-color: var(--accent);
-    transform:translateY(-5px); 
-}
-
-/* Stats */
-.stats {
-    display: flex;
-    gap: 60px;
-    margin-top: 60px;
-    flex-wrap: wrap;
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.stat-number {
-    font-size: 3.5rem;
-    font-weight: 800;
-    background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); 
-    -webkit-background-clip:text; 
-    color:transparent;
-    line-height: 1;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: 5px;
-}
-
-/* Services Section */
-.section-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.section-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin: 0 auto 60px;
-    text-align: center;
-    line-height: 1.6;
-}
-
-.services {
-    padding: 120px 40px;
-    background: var(--surface);
-    position: relative;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.service-card {
-    background: var(--surface-elevated);
-    border-radius: var(--radius);
-    padding: 40px;
-    transition: var(--transition);
-    border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent);
-    box-shadow: var(--shadow-glow);
-}
-
-.service-icon {
-    font-size: 2.5rem;
-    margin-bottom: 25px;
-    color: var(--accent);
-}
-
-.service-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.service-card p {
-    color: var(--text-dim);
-    margin-bottom: 25px;
-    line-height: 1.6;
-    flex-grow: 1;
-}
-
-.service-features {
-    list-style: none;
-    margin-top: 20px;
-}
-
-.service-features li {
-    color: var(--text-dim);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-}
-
-.service-features li:before {
-    content: '✓';
-    color: var(--accent);
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-/* Concepts Grid */
-.concepts { 
-    padding:120px 40px; 
-    max-width:1600px; 
-    margin:0 auto; 
-}
-
-.concepts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
-}
-
-.concept-card { 
-    background:var(--surface-elevated); 
-    border:1px solid var(--border); 
-    border-radius:var(--radius); 
-    overflow:hidden; 
-    transition:var(--transition); 
-    position: relative;
-}
-.concept-card:hover { 
-    transform:translateY(-15px); 
-    box-shadow:var(--shadow-glow);
-    border-color: var(--accent);
-}
-
-.concept-image {
-    width:100%; 
-    height:250px; 
-    object-fit:cover;
-    transition: var(--transition);
-}
-
-.concept-card:hover .concept-image {
-    transform: scale(1.05);
-}
-
-.concept-info {
-    padding: 25px;
-}
-
-.concept-info h3 { 
-    font-size:1.4rem; 
-    font-weight:700; 
-    margin-bottom: 10px;
-}
-
-.concept-category {
-    display: inline-block;
-    padding: 5px 12px;
-    background: var(--glass);
-    border-radius: 50px;
-    font-size: 0.8rem;
-    color: var(--accent);
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.concept-description {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.concept-buttons { 
-    display:flex; 
-    justify-content:space-between; 
-    gap:10px; 
-}
-.concept-buttons button { 
-    flex:1; 
-    padding:12px; 
-    border:none; 
-    border-radius:var(--radius-sm); 
-    font-weight:600; 
-    cursor:pointer; 
-    transition:var(--transition); 
-    font-size: 0.9rem;
-}
-.concept-buttons .live { 
-    background:transparent; 
-    border:1px solid var(--border); 
-    color:var(--text-main); 
-}
-.concept-buttons .live:hover { 
-    background:var(--glass); 
-    border-color: var(--accent);
-}
-.concept-buttons .code { 
-    background:var(--accent); 
-    color:white; 
-}
-.concept-buttons .code:hover { 
-    background:#ff7a33; 
-    box-shadow: 0 10px 20px var(--accent-glow);
-}
-.concept-buttons .select { 
-    background:transparent; 
-    border:2px solid var(--accent); 
-    color:var(--accent); 
-}
-.concept-buttons .select:hover { 
-    background:var(--accent); 
-    color:white; 
-}
-
-/* Process Section */
-.process {
-    padding: 120px 40px;
-    background: var(--surface);
-}
-
-.process-steps {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 60px auto 0;
-    position: relative;
-}
-
-.process-steps::before {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 50px;
-    right: 50px;
-    height: 2px;
-    background: var(--border);
-    z-index: 1;
-}
-
-.process-step {
-    flex: 1;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-}
-
-.step-number {
-    width: 80px;
-    height: 80px;
-    background: var(--surface-elevated);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--accent);
-    margin: 0 auto 25px;
-    border: 2px solid var(--border);
-    transition: var(--transition);
-}
-
-.process-step:hover .step-number {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-    transform: scale(1.1);
-}
-
-.step-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-.step-description {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    max-width: 250px;
-    margin: 0 auto;
-}
-
-/* Testimonials */
-.testimonials {
-    padding: 120px 40px;
-    position: relative;
-}
-
-.testimonial-slider {
-    max-width: 1000px;
-    margin: 60px auto 0;
-}
-
-.testimonial-card {
-    background: var(--surface-elevated);
-    border-radius: var(--radius);
-    padding: 40px;
-    border: 1px solid var(--border);
-    margin: 20px;
-}
-
-.testimonial-text {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: var(--text-main);
-    margin-bottom: 30px;
-    font-style: italic;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-}
-
-.author-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 20px;
-    object-fit: cover;
-    border: 2px solid var(--accent);
-}
-
-.author-info h4 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.author-info p {
-    color: var(--text-dim);
-    font-size: 0.9rem;
-}
-
-/* Contact Section */
-.contact {
-    padding: 120px 40px;
-    background: var(--surface);
-}
-
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    max-width: 1200px;
-    margin: 60px auto 0;
-    align-items: center;
-}
-
-.contact-info h3 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
-
-.contact-details {
-    margin-top: 40px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.contact-icon {
-    width: 50px;
-    height: 50px;
-    background: var(--surface-elevated);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-    color: var(--accent);
-    font-size: 1.2rem;
-}
-
-.contact-form {
-    background: var(--surface-elevated);
-    padding: 50px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-}
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-    color: var(--text-dim);
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 15px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    transition: var(--transition-fast);
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-glow);
-}
-
-.form-group textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 18px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.submit-btn:hover {
-    background: #ff7a33;
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-3px);
-}
-
-/* Footer */
-footer {
-    background: var(--surface);
-    padding: 80px 40px 40px;
-    border-top: 1px solid var(--border);
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.footer-logo {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-}
-
-.footer-about {
-    color: var(--text-dim);
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.footer-links h4 {
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-}
-
-.footer-links ul {
-    list-style: none;
-}
-
-.footer-links li {
-    margin-bottom: 12px;
-}
-
-.footer-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: var(--transition-fast);
-}
-
-.footer-links a:hover {
-    color: var(--accent);
-    padding-left: 5px;
-}
-
-.copyright {
-    text-align: center;
-    padding-top: 40px;
-    margin-top: 40px;
-    border-top: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 0.9rem;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(10px);
-    z-index: 10000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal-content {
-    background: var(--surface-elevated);
-    border-radius: var(--radius);
-    max-width: 800px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    border: 1px solid var(--border);
-    position: relative;
-}
-
-.modal-close {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    background: none;
-    border: none;
-    color: var(--text-main);
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.modal-header {
-    padding: 40px 40px 20px;
-    border-bottom: 1px solid var(--border);
-}
-
-.modal-header h3 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.modal-body {
-    padding: 30px 40px 40px;
-}
-
-/* Responsive */
-@media(max-width: 1100px) {
-    .process-steps {
-        flex-direction: column;
-        gap: 50px;
-    }
-    
-    .process-steps::before {
-        display: none;
-    }
-    
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-}
-
-@media(max-width: 900px){
-    .nav-links{display:none;} 
-    .mobile-menu-btn{display:block;}
-    .stats {
-        gap: 30px;
-    }
-    .stat-number {
-        font-size: 2.8rem;
-    }
-}
-
-@media(max-width: 768px){ 
-    .concepts-grid { 
-        grid-template-columns:1fr; 
-    } 
-    .hero h1{font-size:3.2rem;}
-    .section-title {
-        font-size: 2.8rem;
-    }
-    .hero, .services, .concepts, .process, .testimonials, .contact {
-        padding: 80px 20px;
-    }
-    header, header.scrolled {
-        padding: 20px;
-    }
-    .concept-buttons {
-        flex-direction: column;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBZ | Elite Web Design for Local Businesses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #554FD8;
+            --secondary: #FF6584;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --success: #36D399;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 101, 132, 0.05) 100%);
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .hero-visual {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            max-width: 700px;
+        }
+        
+        .code-screen {
+            background-color: var(--dark);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow-lg);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+        
+        .code-screen:hover {
+            transform: perspective(1000px) rotateY(-5deg);
+        }
+        
+        .screen-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .screen-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red { background-color: #FF5F56; }
+        .dot-yellow { background-color: #FFBD2E; }
+        .dot-green { background-color: #27CA3F; }
+        
+        .code-content {
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .code-line {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .line-number {
+            color: #6C757D;
+            min-width: 30px;
+            text-align: right;
+            margin-right: 15px;
+        }
+        
+        .code-tag { color: #FF79C6; }
+        .code-attr { color: #8BE9FD; }
+        .code-value { color: #F1FA8C; }
+        .code-text { color: #F8F8F2; }
+        
+        /* Sections Common */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .process-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background-color: white;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .faq-question h3 {
+            font-size: 1.2rem;
+        }
+        
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .faq-answer-content {
+            padding: 0 20px 20px;
+            color: var(--gray);
+        }
+        
+        .faq-item.active .faq-question {
+            background-color: rgba(108, 99, 255, 0.05);
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-visual {
+                position: relative;
+                width: 100%;
+                max-width: 100%;
+                transform: none;
+                margin-top: 50px;
+            }
+            
+            .code-screen {
+                transform: none;
+            }
+            
+            .hero {
+                padding-top: 150px;
+                text-align: center;
+            }
+            
+            .hero-bg {
+                display: none;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<header id="mainHeader">
-    <a href="#" class="logo">VIBZ</a>
-    <nav class="nav-links">
-        <a href="#hero" class="active">Home</a>
-        <a href="#services">Services</a>
-        <a href="#concepts">Portfolio</a>
-        <a href="#process">Process</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-        <a href="#" class="cta-nav">Get Proposal</a>
-    </nav>
-    <button class="mobile-menu-btn" id="hamburger"><i class="fas fa-bars"></i></button>
-</header>
-
-<div class="full-menu" id="fullMenu">
-    <a href="#hero">Home</a>
-    <a href="#services">Services</a>
-    <a href="#concepts">Portfolio</a>
-    <a href="#process">Process</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#contact">Contact</a>
-    <a href="#" class="cta-nav">Get Proposal</a>
-</div>
-
-<!-- Hero Section -->
-<section class="hero" id="hero">
-    <h1>Crafting Digital Excellence for <span>Elite Brands</span></h1>
-    <p>We design premium web experiences that drive growth, establish authority, and create lasting impressions for discerning businesses worldwide.</p>
-    <div class="cta">
-        <button class="primary" onclick="scrollToSection('concepts')">View Our Work</button>
-        <button class="secondary" onclick="openModal('consultationModal')">Schedule Consultation</button>
-    </div>
-    
-    <div class="stats">
-        <div class="stat-item">
-            <div class="stat-number">150+</div>
-            <div class="stat-label">Premium Clients</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">99.2%</div>
-            <div class="stat-label">Client Satisfaction</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">Priority Support</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">48h</div>
-            <div class="stat-label">Avg. Launch Time</div>
-        </div>
-    </div>
-</section>
-
-<!-- Services Section -->
-<section class="services" id="services">
-    <h2 class="section-title">Elite Services</h2>
-    <p class="section-subtitle">Comprehensive digital solutions tailored for premium brands seeking market leadership and exceptional user experiences.</p>
-    
-    <div class="services-grid">
-        <div class="service-card">
-            <div class="service-icon"><i class="fas fa-crown"></i></div>
-            <h3>Premium Web Design</h3>
-            <p>Bespoke website designs that reflect your brand's exclusivity and drive conversions through exceptional user experience.</p>
-            <ul class="service-features">
-                <li>Custom UI/UX Design</li>
-                <li>Advanced Animations</li>
-                <li>Premium Figma Prototypes</li>
-                <li>Exclusive Design Systems</li>
-                <li>Brand Integration</li>
-            </ul>
-        </div>
-        
-        <div class="service-card">
-            <div class="service-icon"><i class="fas fa-rocket"></i></div>
-            <h3>Webflow Development</h3>
-            <p>High-performance Webflow websites with custom interactions, CMS integration, and seamless backend functionality.</p>
-            <ul class="service-features">
-                <li>Custom Webflow Development</li>
-                <li>Advanced Interactions</li>
-                <li>CMS & E-commerce</li>
-                <li>SEO Optimization</li>
-                <li>Performance Optimization</li>
-            </ul>
-        </div>
-        
-        <div class="service-card">
-            <div class="service-icon"><i class="fas fa-chart-line"></i></div>
-            <h3>Growth & Strategy</h3>
-            <p>Data-driven strategies to amplify your digital presence, increase conversions, and establish market authority.</p>
-            <ul class="service-features">
-                <li>Conversion Rate Optimization</li>
-                <li>SEO Strategy & Implementation</li>
-                <li>Performance Analytics</li>
-                <li>Competitive Analysis</li>
-                <li>Digital Roadmapping</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<!-- Portfolio Section -->
-<section class="concepts" id="concepts">
-    <h2 class="section-title">Elite Portfolio</h2>
-    <p class="section-subtitle">A curated selection of premium website designs crafted for industry leaders and visionary brands.</p>
-    
-    <div class="concepts-grid">
-        <!-- Premium Templates -->
-        <div class="concept-card">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Brand Concept" class="concept-image">
-            <div class="concept-info">
-                <div class="concept-category">Luxury Brand</div>
-                <h3>Elysian Collective</h3>
-                <p class="concept-description">Minimalist luxury brand website with immersive scrolling and product storytelling.</p>
-                <div class="concept-buttons">
-                    <button class="live" onclick="window.open('https://example.com/luxury1','_blank')">View Live</button>
-                    <button class="select" onclick="selectConcept('Elysian Collective')">Request This</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="concept-card">
-            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tech Startup" class="concept-image">
-            <div class="concept-info">
-                <div class="concept-category">Tech Startup</div>
-                <h3>Nexus Dynamics</h3>
-                <p class="concept-description">Dynamic SaaS platform with interactive demos and customer success metrics.</p>
-                <div class="concept-buttons">
-                    <button class="live" onclick="window.open('https://example.com/tech1','_blank')">View Live</button>
-                    <button class="select" onclick="selectConcept('Nexus Dynamics')">Request This</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="concept-card">
-            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Consulting Firm" class="concept-image">
-            <div class="concept-info">
-                <div class="concept-category">Consulting</div>
-                <h3>Pinnacle Advisory</h3>
-                <p class="concept-description">Executive consulting firm website with case studies and team expertise showcase.</p>
-                <div class="concept-buttons">
-                    <button class="live" onclick="window.open('https://example.com/consulting1','_blank')">View Live</button>
-                    <button class="select" onclick="selectConcept('Pinnacle Advisory')">Request This</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="concept-card">
-            <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Healthcare" class="concept-image">
-            <div class="concept-info">
-                <div class="concept-category">Healthcare</div>
-                <h3>Ascend Medical</h3>
-                <p class="concept-description">Premium medical practice website with appointment booking and telehealth integration.</p>
-                <div class="concept-buttons">
-                    <button class="live" onclick="window.open('https://example.com/healthcare1','_blank')">View Live</button>
-                    <button class="select" onclick="selectConcept('Ascend Medical')">Request This</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="concept-card">
-            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Legal Firm" class="concept-image">
-            <div class="concept-info">
-                <div class="concept-category">Legal</div>
-                <h3>Legacy Law Partners</h3>
-                <p class="concept-description">Prestigious law firm website with case results and attorney profiles.</p>
-                <div class="concept-buttons">
-                    <button class="live" onclick="window.open('https://example.com/legal1','_blank')">View Live</button>
-                    <button class="select" onclick="selectConcept('Legacy Law Partners')">Request This</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="concept-card">
-            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Real Estate" class="concept-image">
-            <div class="concept-info">
-                <div class="concept-category">Real Estate</div>
-                <h3>Monarch Properties</h3>
-                <p class="concept-description">Luxury real estate platform with property showcases and virtual tours.</p>
-                <div class="concept-buttons">
-                    <button class="live" onclick="window.open('https://example.com/realestate1','_blank')">View Live</button>
-                    <button class="select" onclick="selectConcept('Monarch Properties')">Request This</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Process Section -->
-<section class="process" id="process">
-    <h2 class="section-title">The Elite Process</h2>
-    <p class="section-subtitle">A meticulously crafted workflow designed to deliver exceptional results with precision and exclusivity.</p>
-    
-    <div class="process-steps">
-        <div class="process-step">
-            <div class="step-number">01</div>
-            <h3 class="step-title">Discovery</h3>
-            <p class="step-description">Deep-dive strategy sessions to understand your vision, goals, and competitive landscape.</p>
-        </div>
-        
-        <div class="process-step">
-            <div class="step-number">02</div>
-            <h3 class="step-title">Strategy</h3>
-            <p class="step-description">Comprehensive planning including user journeys, information architecture, and technical specifications.</p>
-        </div>
-        
-        <div class="process-step">
-            <div class="step-number">03</div>
-            <h3 class="step-title">Design</h3>
-            <p class="step-description">Creation of premium UI/UX designs with interactive prototypes and brand integration.</p>
-        </div>
-        
-        <div class="process-step">
-            <div class="step-number">04</div>
-            <h3 class="step-title">Develop</h3>
-            <p class="step-description">Pixel-perfect development with custom animations, integrations, and performance optimization.</p>
-        </div>
-        
-        <div class="process-step">
-            <div class="step-number">05</div>
-            <h3 class="step-title">Deliver</h3>
-            <p class="step-description">Launch with comprehensive testing, training, and ongoing support for exceptional results.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials -->
-<section class="testimonials" id="testimonials">
-    <h2 class="section-title">Client Success Stories</h2>
-    <p class="section-subtitle">Hear from industry leaders who have experienced transformative results through our partnership.</p>
-    
-    <div class="testimonial-slider">
-        <div class="testimonial-card">
-            <div class="testimonial-text">
-                "VIBZ transformed our digital presence completely. The website they delivered increased our lead generation by 240% in the first quarter. Their attention to detail and strategic approach is unmatched."
-            </div>
-            <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Alex Morgan" class="author-avatar">
-                <div class="author-info">
-                    <h4>Alex Morgan</h4>
-                    <p>CEO, Sterling Financial Group</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="testimonial-card">
-            <div class="testimonial-text">
-                "Working with VIBZ was a game-changer for our brand. They understood our vision for luxury and translated it into a digital experience that our clients rave about. The investment has paid for itself multiple times over."
-            </div>
-            <div class="testimonial-author">
-                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sarah Chen" class="author-avatar">
-                <div class="author-info">
-                    <h4>Sarah Chen</h4>
-                    <p>Founder, Lumière Cosmetics</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section class="contact" id="contact">
-    <h2 class="section-title">Begin Your Transformation</h2>
-    <p class="section-subtitle">Ready to elevate your digital presence? Let's discuss how we can transform your vision into reality.</p>
-    
-    <div class="contact-container">
-        <div class="contact-info">
-            <h3>Let's Create Something Extraordinary</h3>
-            <p>Our team of elite designers and strategists is ready to bring your vision to life. We work with a limited number of clients each quarter to ensure exceptional quality and attention to detail.</p>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-cube"></i> VIBZ
+            </a>
             
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <h4>Email</h4>
-                        <p>contact@vibz.design</p>
-                    </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#process">Process</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
                 </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                    <div>
-                        <h4>Phone</h4>
-                        <p>+1 (555) 123-4567</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
-                    <div>
-                        <h4>Response Time</h4>
-                        <p>Within 2 hours during business hours</p>
-                    </div>
+            </nav>
+            
+            <a href="#contact" class="cta-button">Start Your Site</a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content animate-on-scroll">
+                <h1>Elite Web Design for Local Businesses</h1>
+                <p>Modern websites that win customers. Fast, conversion-focused sites tailored for barbers, dentists, trades, salons, cafes, and more local services.</p>
+                <div class="hero-buttons">
+                    <a href="#process" class="cta-button">Explore Concepts</a>
+                    <a href="#contact" class="secondary-button">Start Your Site</a>
                 </div>
             </div>
         </div>
         
-        <div class="contact-form">
-            <form id="eliteContactForm">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="company">Company *</label>
-                    <input type="text" id="company" name="company" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="service">Service Interest *</label>
-                    <select id="service" name="service" required>
-                        <option value="">Select a service</option>
-                        <option value="premium-design">Premium Web Design</option>
-                        <option value="webflow">Webflow Development</option>
-                        <option value="strategy">Growth Strategy</option>
-                        <option value="full-package">Full Package</option>
-                        <option value="custom">Custom Project</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="budget">Project Budget *</label>
-                    <select id="budget" name="budget" required>
-                        <option value="">Select budget range</option>
-                        <option value="10-25k">$10,000 - $25,000</option>
-                        <option value="25-50k">$25,000 - $50,000</option>
-                        <option value="50-100k">$50,000 - $100,000</option>
-                        <option value="100k+">$100,000+</option>
-                        <option value="discuss">Prefer to discuss</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Project Details *</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your vision, goals, and timeline..." required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Request Elite Proposal</button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-about">
-            <div class="footer-logo">VIBZ</div>
-            <p class="footer-about">Crafting exceptional digital experiences for elite brands worldwide. We combine strategic insight with design excellence to deliver transformative results.</p>
-        </div>
+        <div class="hero-bg"></div>
         
-        <div class="footer-links">
-            <h4>Services</h4>
-            <ul>
-                <li><a href="#services">Premium Web Design</a></li>
-                <li><a href="#services">Webflow Development</a></li>
-                <li><a href="#services">Growth Strategy</a></li>
-                <li><a href="#services">Brand Identity</a></li>
-                <li><a href="#services">Ongoing Support</a></li>
-            </ul>
-        </div>
-        
-        <div class="footer-links">
-            <h4>Company</h4>
-            <ul>
-                <li><a href="#process">Our Process</a></li>
-                <li><a href="#concepts">Portfolio</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#" onclick="openModal('careersModal')">Careers</a></li>
-            </ul>
-        </div>
-        
-        <div class="footer-links">
-            <h4>Connect</h4>
-            <ul>
-                <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-                <li><a href="https://dribbble.com" target="_blank">Dribbble</a></li>
-                <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-                <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-                <li><a href="https://clutch.co" target="_blank">Clutch</a></li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="copyright">
-        <p>&copy; 2024 VIBZ Elite Web Design. All rights reserved. | <a href="#" style="color: var(--accent);">Privacy Policy</a> | <a href="#" style="color: var(--accent);">Terms of Service</a></p>
-    </div>
-</footer>
-
-<!-- Consultation Modal -->
-<div class="modal" id="consultationModal">
-    <div class="modal-content">
-        <button class="modal-close" onclick="closeModal('consultationModal')"><i class="fas fa-times"></i></button>
-        <div class="modal-header">
-            <h3>Schedule Elite Consultation</h3>
-            <p>Select a time for your exclusive 45-minute strategy session</p>
-        </div>
-        <div class="modal-body">
-            <div style="text-align: center; padding: 40px 0;">
-                <h4 style="margin-bottom: 30px; color: var(--accent);">Calendar Integration Coming Soon</h4>
-                <p style="color: var(--text-dim); margin-bottom: 30px;">Our elite scheduling system is being upgraded. For immediate consultation, please contact us directly.</p>
-                <button class="primary" onclick="closeModal('consultationModal'); scrollToSection('contact')">Contact Now</button>
+        <div class="hero-visual animate-on-scroll">
+            <div class="code-screen">
+                <div class="screen-header">
+                    <div class="screen-dot dot-red"></div>
+                    <div class="screen-dot dot-yellow"></div>
+                    <div class="screen-dot dot-green"></div>
+                </div>
+                <div class="code-content">
+                    <div class="code-line"><span class="line-number">1</span> <span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-value">"vibz-website"</span><span class="code-tag">&gt;</span></div>
+                    <div class="code-line"><span class="line-number">2</span>   <span class="code-tag">&lt;section</span> <span class="code-attr">id</span>=<span class="code-value">"hero"</span><span class="code-tag">&gt;</span></div>
+                    <div class="code-line"><span class="line-number">3</span>     <span class="code-tag">&lt;h1&gt;</span><span class="code-text">Modern Web Design</span><span class="code-tag">&lt;/h1&gt;</span></div>
+                    <div class="code-line"><span class="line-number">4</span>     <span class="code-tag">&lt;p&gt;</span><span class="code-text">Convert visitors into customers</span><span class="code-tag">&lt;/p&gt;</span></div>
+                    <div class="code-line"><span class="line-number">5</span>     <span class="code-tag">&lt;button</span> <span class="code-attr">class</span>=<span class="code-value">"cta-button"</span><span class="code-tag">&gt;</span></div>
+                    <div class="code-line"><span class="line-number">6</span>       <span class="code-text">Get Started</span></div>
+                    <div class="code-line"><span class="line-number">7</span>     <span class="code-tag">&lt;/button&gt;</span></div>
+                    <div class="code-line"><span class="line-number">8</span>   <span class="code-tag">&lt;/section&gt;</span></div>
+                    <div class="code-line"><span class="line-number">9</span>   <span class="code-tag">&lt;section</span> <span class="code-attr">class</span>=<span class="code-value">"services"</span><span class="code-tag">&gt;</span></div>
+                    <div class="code-line"><span class="line-number">10</span>     <span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-value">"service-card"</span><span class="code-tag">&gt;</span></div>
+                    <div class="code-line"><span class="line-number">11</span>       <span class="code-tag">&lt;h3&gt;</span><span class="code-text">Responsive Design</span><span class="code-tag">&lt;/h3&gt;</span></div>
+                    <div class="code-line"><span class="line-number">12</span>     <span class="code-tag">&lt;/div&gt;</span></div>
+                    <div class="code-line"><span class="line-number">13</span>   <span class="code-tag">&lt;/section&gt;</span></div>
+                    <div class="code-line"><span class="line-number">14</span> <span class="code-tag">&lt;/div&gt;</span></div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- Careers Modal -->
-<div class="modal" id="careersModal">
-    <div class="modal-content">
-        <button class="modal-close" onclick="closeModal('careersModal')"><i class="fas fa-times"></i></button>
-        <div class="modal-header">
-            <h3>Join Our Elite Team</h3>
-            <p>We're always looking for exceptional talent</p>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Premium Web Design Services</h2>
+                <p>We create high-converting websites that help local businesses stand out and attract more customers.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Custom Web Design</h3>
+                    <p>Bespoke designs that reflect your brand and appeal to your target audience. No templates, just unique creations.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile-First Development</h3>
+                    <p>Websites that look and perform flawlessly on all devices, with mobile users as our primary focus.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast Loading Sites</h3>
+                    <p>Optimized for speed and performance, ensuring your visitors don't wait and Google ranks you higher.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce Solutions</h3>
+                    <p>Full online store setups with secure payment processing, inventory management, and customer accounts.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>SEO Optimization</h3>
+                    <p>Built-in search engine optimization to help local customers find your business when they search online.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Ongoing Support</h3>
+                    <p>Regular updates, security patches, and technical support to keep your website running smoothly.</p>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <p style="color: var(--text-dim); margin-bottom: 30px;">At VIBZ, we believe in cultivating excellence. While we're not currently hiring, we're always interested in connecting with top-tier designers, developers, and strategists.</p>
-            <p style="color: var(--text-dim);">Send your portfolio and resume to <strong style="color: var(--accent);">careers@vibz.design</strong></p>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Our 5-Step Process</h2>
+                <p>We follow a proven methodology to deliver exceptional results for every client.</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>We learn about your business, goals, and target audience to create a tailored strategy.</p>
+                </div>
+                
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3>Design</h3>
+                    <p>Our designers create mockups of your website, focusing on user experience and conversion.</p>
+                </div>
+                
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3>Development</h3>
+                    <p>We code your website with clean, optimized code that loads fast and works perfectly.</p>
+                </div>
+                
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <h3>Testing</h3>
+                    <p>Rigorous testing on all devices and browsers to ensure flawless performance.</p>
+                </div>
+                
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">5</div>
+                    <h3>Launch & Support</h3>
+                    <p>We launch your site and provide ongoing support to ensure continued success.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-// Header scroll effect
-window.addEventListener('scroll', () => {
-    const header = document.getElementById('mainHeader');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our web design process and services.</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>How long does it take to build a website?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Our typical timeline is 4-6 weeks from project kickoff to launch. This includes design, development, content integration, and testing. More complex projects with e-commerce functionality may take 8-10 weeks.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>How much does a website cost?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Our custom websites start at £2,500 for basic brochure sites and go up to £10,000+ for complex e-commerce platforms. We provide detailed quotes after understanding your specific requirements.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>Do you work with businesses outside the UK?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Yes! While we specialize in UK local businesses, we work with clients worldwide. Our process is designed to work remotely, and we've successfully delivered projects for clients in Europe, North America, and Australia.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>Will my website be mobile-friendly?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Absolutely! All our websites are built with a mobile-first approach. They're fully responsive and optimized for all screen sizes, from smartphones to desktop computers.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>Do you provide hosting and maintenance?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Yes, we offer comprehensive hosting and maintenance packages starting at £50/month. This includes hosting, security updates, regular backups, and minor content updates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// Hamburger Menu
-const hamburger = document.getElementById('hamburger');
-const fullMenu = document.getElementById('fullMenu');
-hamburger.addEventListener('click', () => {
-    fullMenu.classList.toggle('show');
-    hamburger.innerHTML = fullMenu.classList.contains('show') 
-        ? '<i class="fas fa-times"></i>' 
-        : '<i class="fas fa-bars"></i>';
-});
+    <!-- Contact CTA -->
+    <section id="contact" class="contact-cta">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Ready to Transform Your Online Presence?</h2>
+                <p>Let's build a website that attracts customers and grows your business.</p>
+                <a href="#contact" class="cta-button" style="margin-top: 30px; font-size: 1.2rem; padding: 15px 40px;">Start Your Site Today</a>
+            </div>
+        </div>
+    </section>
 
-// Close full menu when clicking a link
-document.querySelectorAll('.full-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        fullMenu.classList.remove('show');
-        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-    });
-});
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>VIBZ</h3>
+                    <p>Elite web design for local businesses. Creating modern websites that win customers and drive growth.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Custom Web Design</a></li>
+                        <li><a href="#">E-commerce Development</a></li>
+                        <li><a href="#">Website Maintenance</a></li>
+                        <li><a href="#">SEO Optimization</a></li>
+                        <li><a href="#">Brand Identity</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Industries</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Barbers & Salons</a></li>
+                        <li><a href="#">Dentists & Doctors</a></li>
+                        <li><a href="#">Restaurants & Cafes</a></li>
+                        <li><a href="#">Trades & Services</a></li>
+                        <li><a href="#">Retail Stores</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> London, UK</li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> +44 20 1234 5678</li>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> hello@vibzdesign.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 VIBZ Web Design. All rights reserved. Valuing businesses at over £1,000,000 in client results.</p>
+            </div>
+        </div>
+    </footer>
 
-// Smooth Scroll
-function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-
-// Modal functions
-function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Close modal when clicking outside
-window.onclick = function(event) {
-    if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// Concept selection
-function selectConcept(name){
-    openModal('consultationModal');
-    // In a real implementation, this would pre-fill the form
-    console.log(`Selected concept: ${name}`);
-}
-
-// Form submission
-document.getElementById('eliteContactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
-    
-    // In a real implementation, this would send to a server
-    console.log('Form submitted:', data);
-    
-    // Show success message
-    alert('Thank you for your elite inquiry. Our team will contact you within 2 hours.');
-    
-    // Reset form
-    this.reset();
-    
-    // Close any open modals
-    closeModal('consultationModal');
-});
-
-// Initialize testimonial slider
-document.addEventListener('DOMContentLoaded', function() {
-    // This would initialize a Swiper slider in a real implementation
-    // For now, we'll use a simple placeholder
-    console.log('Testimonial slider ready for implementation');
-});
-
-// Add active class to nav links on scroll
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
+    <script>
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animated');
+                }
+            });
         }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+        
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        
+        // Animate on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('.nav-links').style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // Code animation effect
+        const codeScreen = document.querySelector('.code-screen');
+        if (codeScreen) {
+            codeScreen.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = codeScreen.getBoundingClientRect();
+                const x = (e.clientX - left) / width - 0.5;
+                const y = (e.clientY - top) / height - 0.5;
+                
+                codeScreen.style.transform = `perspective(1000px) rotateY(${-10 + x * 10}deg) rotateX(${y * 5}deg)`;
+            });
+            
+            codeScreen.addEventListener('mouseleave', () => {
+                codeScreen.style.transform = 'perspective(1000px) rotateY(-10deg)';
+            });
         }
-    });
-});
-</script>
-
+    </script>
 </body>
 </html>
