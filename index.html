@@ -2,634 +2,308 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE NOIR | Elite Digital Creation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIBZ OS | High-Performance Design</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --charcoal: #0a0a0f;
-            --deep-charcoal: #050508;
-            --navy-dark: #0d1117;
-            --platinum: #e6e6e6;
-            --electric-blue: #00f3ff;
-            --electric-violet: #9d4edd;
-            --accent: var(--electric-blue);
+            --bg: #050505;
+            --surface: #121212;
+            --accent: #FF5C00;
+            --accent-glow: rgba(255, 92, 0, 0.4);
+            --text-main: #FFFFFF;
+            --text-dim: #A0A0A0;
             --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --border: rgba(255, 255, 255, 0.08);
+            --radius-app: 32px;
+            --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
-            font-family: 'Satoshi', sans-serif;
-            background-color: var(--charcoal);
-            color: var(--platinum);
-            overflow-x: hidden;
-            line-height: 1.6;
-            font-weight: 300;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 30px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            background: rgba(10, 10, 15, 0.7);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--platinum);
-            text-decoration: none;
-            position: relative;
-        }
-
-        .logo-accent {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-link {
-            color: var(--platinum);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .contact-btn {
-            padding: 12px 28px;
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .contact-btn:hover {
-            background: var(--accent);
-            color: var(--charcoal);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            overflow: hidden; /* App feel: no browser scrollbar */
             height: 100vh;
+            width: 100vw;
+        }
+
+        /* ===== CUSTOM CURSOR ===== */
+        #cursor {
+            width: 20px; height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        /* ===== APP FRAME ===== */
+        .app-container {
+            height: 100vh;
+            overflow-y: overlay;
+            scroll-snap-type: y proximity;
+            perspective: 1000px;
+            padding: 20px;
+        }
+
+        .app-shell {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-app);
+            height: calc(100vh - 40px);
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        /* ===== TAB BAR (App Navigation) ===== */
+        .tab-bar {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .tab-item {
+            padding: 12px 24px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 12px;
+            transition: all 0.3s var(--spring);
+        }
+
+        .tab-item.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+
+        /* ===== SECTION STYLING ===== */
+        section {
+            min-height: 100%;
+            padding: 80px 60px;
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--deep-charcoal) 0%, var(--navy-dark) 100%);
-            z-index: -2;
+        section.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
-        .hero-glow {
-            position: absolute;
-            width: 70%;
-            height: 70%;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 243, 255, 0.1) 0%, rgba(10, 10, 15, 0) 70%);
-            top: 15%;
-            right: 15%;
-            z-index: -1;
-            filter: blur(40px);
-            animation: pulse 8s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 0.7; transform: scale(1.1); }
-        }
-
-        .hero-content {
-            max-width: 900px;
+        /* ===== HERO SECTION ===== */
+        .hero {
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 70%);
         }
 
         .hero h1 {
-            font-size: 5.5rem;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 30px;
-            letter-spacing: -0.03em;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -4px;
+            margin-bottom: 20px;
         }
 
-        .hero-subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: #aaa;
-            max-width: 600px;
-            margin-bottom: 50px;
-            line-height: 1.6;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            padding: 18px 42px;
-            background: transparent;
-            border: 1px solid var(--accent);
+        .hero span {
             color: var(--accent);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+            display: block;
         }
 
-        .hero-cta:hover {
-            background: var(--accent);
-            color: var(--charcoal);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Work Section */
-        .section-title {
-            font-size: 3.5rem;
-            margin-bottom: 80px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        .work {
-            padding: 120px 0;
-        }
-
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
-
-        .work-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            height: 500px;
-            position: relative;
-        }
-
-        .work-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 243, 255, 0.2);
-            box-shadow: var(--shadow), 0 0 40px rgba(0, 243, 255, 0.1);
-        }
-
-        .work-img {
-            height: 60%;
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1) 0%, rgba(157, 78, 221, 0.1) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .work-img::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 60%, var(--charcoal) 100%);
-        }
-
-        .work-content {
-            padding: 30px;
-            height: 40%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .work-title {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .work-category {
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .work-link {
-            color: var(--platinum);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .work-link:hover {
-            color: var(--accent);
-            gap: 12px;
-        }
-
-        /* Approach Section */
-        .approach {
-            padding: 120px 0;
-        }
-
-        .approach-grid {
+        /* ===== WORK GRID (ADVANCED WIREFRAME) ===== */
+        .app-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 80px;
+            gap: 30px;
+            width: 100%;
         }
 
-        .approach-card {
-            padding: 40px 30px;
+        .app-card {
             background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 4px;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s var(--spring);
         }
 
-        .approach-card:hover {
-            border-color: rgba(0, 243, 255, 0.2);
-            transform: translateY(-5px);
+        .app-card:hover {
+            background: var(--border);
+            transform: translateY(-10px) rotateX(5deg);
         }
 
-        .approach-number {
-            font-size: 1rem;
-            font-weight: 600;
+        .app-card i {
+            font-size: 40px;
             color: var(--accent);
             margin-bottom: 20px;
-            display: inline-block;
-            padding: 8px 16px;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 30px;
         }
 
-        .approach-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+        /* ===== FLOATING DOCK ELEMENTS ===== */
+        .notification-pill {
+            position: fixed;
+            top: 40px;
+            right: 60px;
+            background: white;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 12px;
+            animation: float 3s ease-in-out infinite;
+            z-index: 1001;
         }
 
-        /* Footer */
-        .footer {
-            padding: 100px 0 50px;
-            border-top: 1px solid var(--glass-border);
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 60px;
-        }
-
-        .footer-heading {
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-
-        .footer-text {
-            color: #aaa;
-            max-width: 400px;
-            line-height: 1.7;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .footer-link {
-            color: var(--platinum);
-            text-decoration: none;
-            font-weight: 400;
-            transition: var(--transition);
-            letter-spacing: 0.5px;
-        }
-
-        .footer-link:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            padding-top: 30px;
-            border-top: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 1100px) {
-            .hero h1 {
-                font-size: 4.5rem;
-            }
-            
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .approach-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 25px;
-            }
-            
-            .navbar {
-                padding: 20px 25px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .section-title {
-                font-size: 2.8rem;
-            }
-            
-            .approach-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 40px;
-            }
+            .app-shell { height: calc(100vh - 20px); border-radius: 20px; }
+            section { padding: 40px 20px; }
+            .app-grid { grid-template-columns: 1fr; }
+            .tab-bar { width: 90%; justify-content: space-around; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <a href="#" class="logo">LUXE<span class="logo-accent">NOIR</span></a>
-        <div class="nav-links">
-            <a href="#work" class="nav-link">Work</a>
-            <a href="#approach" class="nav-link">Approach</a>
-            <a href="#clients" class="nav-link">Clients</a>
-            <a href="#insights" class="nav-link">Insights</a>
-        </div>
-        <button class="contact-btn">Inquire</button>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background"></div>
-        <div class="hero-glow"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1>Digital Architecture<br>for Visionaries</h1>
-                <p class="hero-subtitle">
-                    We design and engineer premium digital experiences for established industry leaders. 
-                    No mass production, no templates—only bespoke solutions for the few who demand excellence.
+    <div id="cursor"></div>
+    <div class="notification-pill">VIBZ v2.0 LIVE</div>
+
+    <div class="app-container">
+        <main class="app-shell" id="app">
+            
+            <section id="home" class="hero visible">
+                <h1>DESIGNING <span>FUTURE</span> APPS</h1>
+                <p style="color: var(--text-dim); max-width: 500px; font-size: 1.2rem;">
+                    VIBZ is the digital atelier for high-end interfaces.
                 </p>
-                <a href="#work" class="hero-cta">View Our Work</a>
-            </div>
-        </div>
-    </section>
+                <div style="margin-top: 40px;" class="app-card">
+                    Explore OS Ecosystem →
+                </div>
+            </section>
 
-    <!-- Work Section -->
-    <section id="work" class="work">
-        <div class="container">
-            <h2 class="section-title">Selected Engagements</h2>
-            <div class="work-grid">
-                <div class="work-card">
-                    <div class="work-img"></div>
-                    <div class="work-content">
-                        <div>
-                            <div class="work-category">Luxury Automotive</div>
-                            <h3 class="work-title">Aether Motors</h3>
-                            <p>Complete digital ecosystem for a hypercar manufacturer, resulting in 300% increase in qualified leads.</p>
-                        </div>
-                        <a href="#" class="work-link">Explore Case Study <i class="fas fa-arrow-right"></i></a>
+            <section id="services">
+                <div class="app-grid">
+                    <div class="app-card">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Architecture</h3>
+                        <p>Scalable app structures built for £1M+ ventures.</p>
+                    </div>
+                    <div class="app-card" style="margin-top: 40px;">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Velocity</h3>
+                        <p>0.4s load times. Performance isn't an option, it's a right.</p>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-fingerprint"></i>
+                        <h3>Security</h3>
+                        <p>Biometric-grade digital encryption for every UI.</p>
                     </div>
                 </div>
-                <div class="work-card">
-                    <div class="work-img"></div>
-                    <div class="work-content">
-                        <div>
-                            <div class="work-category">Private Banking</div>
-                            <h3 class="work-title">Monarch Capital</h3>
-                            <p>Secure client portal and investment platform for ultra-high-net-worth individuals.</p>
-                        </div>
-                        <a href="#" class="work-link">Explore Case Study <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Approach Section -->
-    <section id="approach" class="approach">
-        <div class="container">
-            <h2 class="section-title">Our Methodology</h2>
-            <div class="approach-grid">
-                <div class="approach-card">
-                    <div class="approach-number">01</div>
-                    <h3 class="approach-title">Strategic Discovery</h3>
-                    <p>We immerse ourselves in your business to understand objectives, audience, and market position before any design begins.</p>
-                </div>
-                <div class="approach-card">
-                    <div class="approach-number">02</div>
-                    <h3 class="approach-title">Architectural Design</h3>
-                    <p>We create foundational systems that balance aesthetics with performance, scalability, and user experience.</p>
-                </div>
-                <div class="approach-card">
-                    <div class="approach-number">03</div>
-                    <h3 class="approach-title">Precision Engineering</h3>
-                    <p>Our development team implements with cutting-edge technology, ensuring flawless execution and future-proof solutions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <h3 class="footer-heading">Begin a Conversation</h3>
-                    <p class="footer-text">
-                        If your enterprise requires a digital partner capable of executing at the highest level, we invite you to contact our studio.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="footer-heading">Connect</h3>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Studio Inquiry</a>
-                        <a href="#" class="footer-link">LinkedIn</a>
-                        <a href="#" class="footer-link">Instagram</a>
-                        <a href="#" class="footer-link">Twitter</a>
+            <section id="work">
+               <div style="width: 100%; text-align: center;">
+                    <h2 style="font-size: 3rem; margin-bottom: 40px;">Selected Interfaces</h2>
+                    <div style="height: 400px; background: linear-gradient(45deg, #111, #222); border-radius: 40px; border: 8px solid #333; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?auto=format&fit=crop&q=80&w=1000" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">
+                        <h3 style="position: absolute;">GENESIS PROTOCOL</h3>
                     </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div>© LUXE NOIR 2023</div>
-                <div>Exclusively for enterprise clients</div>
-            </div>
-        </div>
-    </footer>
+               </div>
+            </section>
+
+        </main>
+
+        <nav class="tab-bar">
+            <a href="#home" class="tab-item active" onclick="navTo(event, 'home')">Home</a>
+            <a href="#services" class="tab-item" onclick="navTo(event, 'services')">Services</a>
+            <a href="#work" class="tab-item" onclick="navTo(event, 'work')">Work</a>
+            <a href="#contact" class="tab-item" onclick="navTo(event, 'contact')">Contact</a>
+        </nav>
+    </div>
 
     <script>
-        // Simple micro-interactions
-        document.addEventListener('DOMContentLoaded', function() {
-            // Navbar scroll effect
-            const navbar = document.querySelector('.navbar');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    navbar.style.background = 'rgba(10, 10, 15, 0.95)';
-                    navbar.style.padding = '20px 40px';
-                } else {
-                    navbar.style.background = 'rgba(10, 10, 15, 0.7)';
-                    navbar.style.padding = '30px 40px';
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // App Navigation Logic
+        function navTo(e, id) {
+            e.preventDefault();
+            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            const target = document.getElementById(id);
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Scroll Animation Logic (The "Pop Up" effect)
+        const observerOptions = {
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Update tab bar active state on scroll
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.tab-item').forEach(t => {
+                        t.classList.toggle('active', t.getAttribute('href') === `#${id}`);
+                    });
                 }
             });
+        }, observerOptions);
 
-            // Card hover enhancements
-            const cards = document.querySelectorAll('.work-card, .approach-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = this.classList.contains('work-card') 
-                        ? 'translateY(-10px)' 
-                        : 'translateY(-5px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Tilt effect for cards
+        document.querySelectorAll('.app-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                const dx = x - xc;
+                const dy = y - yc;
+                card.style.transform = `perspective(1000px) rotateX(${-dy/10}deg) rotateY(${dx/10}deg) translateY(-10px)`;
             });
-
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    
-                    if (href === '#') return;
-                    
-                    e.preventDefault();
-                    const targetElement = document.querySelector(href);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Contact button interaction
-            const contactBtn = document.querySelector('.contact-btn');
-            contactBtn.addEventListener('click', function() {
-                this.innerHTML = 'Contacting...';
-                this.style.background = 'var(--accent)';
-                this.style.color = 'var(--charcoal)';
-                
-                setTimeout(() => {
-                    this.innerHTML = 'Inquiry Sent';
-                }, 1000);
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) translateY(0)`;
             });
         });
     </script>
