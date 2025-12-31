@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBZ | Minimalist Digital Excellence</title>
+    <title>VIBZ | Premium 3D Digital Experiences</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
     <style>
-        /* ===== CSS RESET ===== */
+        /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -21,8 +24,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #FAFAFA;
-            color: #1A1A1A;
+            background: #0A0A14;
+            color: #FFFFFF;
             overflow-x: hidden;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -31,27 +34,28 @@
 
         /* ===== VARIABLES ===== */
         :root {
-            --primary: #FF8A65;
-            --primary-light: #FFAB91;
-            --primary-dark: #F57C00;
-            --primary-soft: rgba(255, 138, 101, 0.1);
-            --secondary: #4FC3F7;
-            --light-bg: #FFFFFF;
-            --card-bg: #FFFFFF;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --text-primary: #1A1A1A;
-            --text-secondary: #666666;
-            --text-light: #888888;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 8px 40px rgba(255, 138, 101, 0.12);
+            --primary: #FF7043;
+            --primary-light: #FF8A65;
+            --primary-dark: #F4511E;
+            --primary-glow: rgba(255, 112, 67, 0.3);
+            --secondary: #29B6F6;
+            --tertiary: #66BB6A;
+            --bg-dark: #0A0A14;
+            --bg-card: rgba(20, 20, 30, 0.7);
+            --border-color: rgba(255, 112, 67, 0.2);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0BEC5;
+            --text-muted: #78909C;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 40px rgba(255, 112, 67, 0.2);
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 20px;
             --radius-xl: 28px;
             --radius-full: 999px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* ===== TYPOGRAPHY ===== */
@@ -62,21 +66,21 @@
         }
 
         .display-1 {
-            font-size: 5.5rem;
+            font-size: 5rem;
             font-weight: 800;
             letter-spacing: -0.02em;
             line-height: 1;
         }
 
         .display-2 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             letter-spacing: -0.01em;
             line-height: 1.1;
         }
 
         .text-gradient {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -108,7 +112,7 @@
             width: 100%;
             z-index: 1000;
             padding: 28px 0;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(10, 10, 20, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
@@ -117,7 +121,8 @@
 
         .nav.scrolled {
             padding: 20px 0;
-            box-shadow: var(--shadow-sm);
+            background: rgba(10, 10, 20, 0.95);
+            box-shadow: var(--shadow-md);
         }
 
         .nav-container {
@@ -150,7 +155,7 @@
         }
 
         .nav-link {
-            color: var(--text-primary);
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 600;
             font-size: 16px;
@@ -170,7 +175,7 @@
         }
 
         .nav-link:hover {
-            color: var(--primary);
+            color: var(--text-primary);
         }
 
         .nav-link:hover::after {
@@ -196,6 +201,7 @@
         .nav-button:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
+            background: var(--primary-light);
         }
 
         .mobile-menu-btn {
@@ -210,26 +216,26 @@
             border-radius: var(--radius-md);
             align-items: center;
             justify-content: center;
+            background: rgba(255, 112, 67, 0.1);
+            border: 1px solid var(--border-color);
         }
 
-        /* ===== HERO SECTION ===== */
-        .hero {
-            padding: 200px 0 120px;
+        /* ===== HERO SECTION - 3D CANVAS ===== */
+        .hero-section {
             position: relative;
             min-height: 100vh;
+            width: 100%;
             display: flex;
             align-items: center;
             overflow: hidden;
         }
 
-        .hero-bg {
+        #hero-canvas {
             position: absolute;
             top: 0;
-            right: 0;
-            width: 60%;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-soft), transparent);
-            clip-path: polygon(100% 0, 100% 100%, 0 100%);
             z-index: 0;
         }
 
@@ -240,20 +246,25 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(90deg, transparent 99.5%, rgba(0,0,0,0.02) 100%),
-                linear-gradient(transparent 99.5%, rgba(0,0,0,0.02) 100%);
-            background-size: 60px 60px;
-            z-index: 0;
+                linear-gradient(90deg, transparent 99.5%, rgba(255, 112, 67, 0.02) 100%),
+                linear-gradient(transparent 99.5%, rgba(255, 112, 67, 0.02) 100%);
+            background-size: 80px 80px;
+            z-index: 1;
+            opacity: 0.3;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 10;
             max-width: 700px;
+            padding: 0 40px;
         }
 
         .hero-title {
             margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
         }
 
         .hero-subtitle {
@@ -262,169 +273,21 @@
             margin-bottom: 48px;
             max-width: 600px;
             line-height: 1.8;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards 0.7s;
         }
 
-        /* ===== DEVICE SHOWCASE ===== */
-        .device-showcase {
+        /* ===== 3D DEVICES CONTAINER ===== */
+        .devices-3d {
             position: absolute;
-            right: 5%;
             top: 50%;
-            transform: translateY(-50%);
-            width: 700px;
-            height: 500px;
-            z-index: 2;
-        }
-
-        .device {
-            position: absolute;
-            background: white;
-            border-radius: 24px;
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
-        .device::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 24px;
-            padding: 1px;
-            background: linear-gradient(135deg, transparent, var(--primary), transparent);
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-        }
-
-        .device-screen {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            background: #F5F5F5;
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .screen-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .screen-demo {
-            width: 90%;
-            height: 80%;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .demo-header {
-            height: 60px;
-            background: white;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            padding: 0 24px;
-        }
-
-        .demo-content {
-            padding: 32px;
-            display: grid;
-            gap: 24px;
-        }
-
-        .demo-row {
-            display: flex;
-            gap: 16px;
-        }
-
-        .demo-item {
-            flex: 1;
-            height: 8px;
-            background: linear-gradient(90deg, var(--primary-soft), var(--border-color));
-            border-radius: 4px;
-        }
-
-        /* PC Device */
-        .device-pc {
-            width: 450px;
-            height: 280px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotateY(20deg) rotateX(5deg);
-            animation: float-pc 8s ease-in-out infinite;
-            z-index: 3;
-        }
-
-        .pc-stand {
-            position: absolute;
-            width: 120px;
-            height: 60px;
-            background: white;
-            border-radius: 8px;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-        }
-
-        /* Tablet Device */
-        .device-tablet {
-            width: 220px;
-            height: 320px;
-            top: 30%;
             right: 10%;
-            transform: rotateY(-15deg) rotateX(5deg) rotateZ(-5deg);
-            animation: float-tablet 7s ease-in-out infinite 0.5s;
-            z-index: 2;
-        }
-
-        /* Mobile Device */
-        .device-mobile {
-            width: 110px;
-            height: 220px;
-            bottom: 25%;
-            right: 25%;
-            transform: rotateY(10deg) rotateX(3deg) rotateZ(5deg);
-            animation: float-mobile 6s ease-in-out infinite 1s;
-            z-index: 1;
-        }
-
-        /* Device Animations */
-        @keyframes float-pc {
-            0%, 100% { transform: translate(-50%, -50%) rotateY(20deg) rotateX(5deg) translateY(0); }
-            50% { transform: translate(-50%, -50%) rotateY(25deg) rotateX(7deg) translateY(-20px); }
-        }
-
-        @keyframes float-tablet {
-            0%, 100% { transform: rotateY(-15deg) rotateX(5deg) rotateZ(-5deg) translateY(0); }
-            50% { transform: rotateY(-20deg) rotateX(8deg) rotateZ(-8deg) translateY(-15px); }
-        }
-
-        @keyframes float-mobile {
-            0%, 100% { transform: rotateY(10deg) rotateX(3deg) rotateZ(5deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(6deg) rotateZ(8deg) translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.1); }
+            transform: translateY(-50%);
+            width: 800px;
+            height: 600px;
+            z-index: 5;
+            perspective: 2000px;
         }
 
         /* ===== STATS ===== */
@@ -433,6 +296,9 @@
             gap: 80px;
             margin-top: 80px;
             flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards 1s;
         }
 
         .stat-item {
@@ -442,7 +308,11 @@
         .stat-number {
             font-size: 3.5rem;
             font-weight: 800;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
             display: block;
             line-height: 1;
             margin-bottom: 12px;
@@ -456,7 +326,12 @@
             font-weight: 600;
         }
 
-        /* ===== SERVICES ===== */
+        /* ===== SERVICES SECTION ===== */
+        .services-section {
+            position: relative;
+            background: var(--bg-dark);
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -465,13 +340,21 @@
         }
 
         .service-card {
-            background: var(--card-bg);
+            background: var(--bg-card);
             border-radius: var(--radius-xl);
             padding: 48px 40px;
             border: 1px solid var(--border-color);
             transition: var(--transition-slow);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .service-card::before {
@@ -481,11 +364,11 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), transparent);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
             border-color: var(--primary);
         }
@@ -493,7 +376,7 @@
         .service-icon {
             width: 64px;
             height: 64px;
-            background: var(--primary-soft);
+            background: rgba(255, 112, 67, 0.1);
             border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
@@ -501,6 +384,7 @@
             margin-bottom: 32px;
             color: var(--primary);
             font-size: 1.8rem;
+            border: 1px solid rgba(255, 112, 67, 0.2);
         }
 
         .service-title {
@@ -521,7 +405,12 @@
             color: var(--primary);
         }
 
-        /* ===== PORTFOLIO ===== */
+        /* ===== PORTFOLIO SECTION ===== */
+        .portfolio-section {
+            background: rgba(15, 15, 25, 0.8);
+            position: relative;
+        }
+
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -537,12 +426,12 @@
             cursor: pointer;
             transition: var(--transition-slow);
             opacity: 0;
-            transform: translateY(30px);
+            transform: scale(0.9);
         }
 
         .portfolio-item.animate {
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1);
         }
 
         .portfolio-image {
@@ -558,7 +447,7 @@
             left: 0;
             width: 100%;
             padding: 40px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            background: linear-gradient(transparent, rgba(255, 112, 67, 0.9));
             transform: translateY(100%);
             transition: var(--transition);
         }
@@ -571,24 +460,7 @@
             transform: scale(1.05);
         }
 
-        .portfolio-tech {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-
-        .tech-tag {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 6px 16px;
-            border-radius: var(--radius-full);
-            font-size: 0.9rem;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
-        }
-
-        /* ===== PROCESS ===== */
+        /* ===== PROCESS TIMELINE ===== */
         .process-timeline {
             display: flex;
             justify-content: space-between;
@@ -609,11 +481,11 @@
             background: linear-gradient(90deg, 
                 transparent, 
                 var(--primary), 
-                var(--primary), 
+                var(--secondary), 
                 var(--primary), 
                 transparent
             );
-            opacity: 0.2;
+            opacity: 0.3;
         }
 
         .process-step {
@@ -621,7 +493,7 @@
             position: relative;
             width: 20%;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             transition: var(--transition-slow);
         }
 
@@ -633,7 +505,7 @@
         .step-number {
             width: 80px;
             height: 80px;
-            background: white;
+            background: var(--bg-card);
             border: 2px solid var(--primary);
             border-radius: 50%;
             display: flex;
@@ -648,19 +520,11 @@
             box-shadow: var(--shadow-md);
         }
 
-        .step-title {
-            font-size: 1.4rem;
-            margin-bottom: 16px;
-            color: var(--text-primary);
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            position: relative;
         }
 
-        .step-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* ===== CONTACT ===== */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
@@ -668,39 +532,12 @@
             align-items: start;
         }
 
-        .contact-info {
-            padding-right: 40px;
-        }
-
-        .contact-details {
-            margin-top: 48px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-
-        .contact-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--primary-soft);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
         .contact-form {
-            background: white;
+            background: var(--bg-card);
             border-radius: var(--radius-xl);
             padding: 64px;
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(10px);
             transform: translateX(50px);
             opacity: 0;
             transition: var(--transition-slow);
@@ -726,7 +563,7 @@
         .form-input {
             width: 100%;
             padding: 18px 24px;
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             color: var(--text-primary);
@@ -738,14 +575,16 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 138, 101, 0.1);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         /* ===== FOOTER ===== */
         .footer {
-            background: white;
+            background: rgba(5, 5, 10, 0.95);
             padding: 100px 0 60px;
             border-top: 1px solid var(--border-color);
+            position: relative;
         }
 
         .footer-grid {
@@ -765,99 +604,67 @@
             gap: 12px;
         }
 
-        .footer-description {
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            line-height: 1.8;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 16px;
-        }
-
-        .social-link {
-            width: 48px;
-            height: 48px;
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .footer-sections {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
-        }
-
-        .footer-section h4 {
-            font-size: 1.1rem;
-            margin-bottom: 28px;
-            color: var(--text-primary);
-            font-weight: 700;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-            font-weight: 500;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(4px);
-        }
-
         .copyright {
             text-align: center;
             padding-top: 60px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 112, 67, 0.1);
+            color: var(--text-muted);
             font-size: 0.95rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
 
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1400px) {
-            .device-showcase {
+            .devices-3d {
                 width: 600px;
-            }
-            
-            .device-pc {
-                width: 400px;
-                height: 250px;
-            }
-            
-            .display-1 {
-                font-size: 4.5rem;
-            }
-            
-            .display-2 {
-                font-size: 3.5rem;
+                right: 5%;
             }
         }
 
         @media (max-width: 1200px) {
-            .device-showcase {
+            .devices-3d {
                 display: none;
             }
             
@@ -873,10 +680,6 @@
             .contact-container {
                 grid-template-columns: 1fr;
                 gap: 60px;
-            }
-            
-            .contact-form {
-                transform: translateX(0);
             }
         }
 
@@ -916,19 +719,6 @@
                 grid-template-columns: 1fr;
                 gap: 60px;
             }
-            
-            .footer-sections {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .section {
-                padding: 120px 0;
-            }
-            
-            .container {
-                padding: 0 32px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -963,57 +753,23 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .display-1 {
-                font-size: 2.8rem;
-            }
-            
-            .display-2 {
-                font-size: 2.2rem;
-            }
-            
-            .section {
-                padding: 80px 0;
-            }
-            
-            .nav-button {
-                padding: 12px 24px;
-                font-size: 14px;
-            }
-            
-            .service-card {
-                padding: 40px 32px;
-            }
-        }
-
-        /* ===== ANIMATION UTILITIES ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: var(--transition-slow);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* ===== CUSTOM SCROLLBAR ===== */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #F5F5F5;
+            background: rgba(255, 112, 67, 0.1);
+            border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
         }
     </style>
 </head>
@@ -1028,7 +784,7 @@
             
             <div class="nav-links">
                 <a href="#services" class="nav-link">Services</a>
-                <a href="#portfolio" class="nav-link">Work</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
                 <a href="#process" class="nav-link">Process</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
@@ -1044,41 +800,42 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section with 3D Canvas -->
+    <section class="hero-section" id="hero">
+        <canvas id="hero-canvas"></canvas>
         <div class="hero-grid"></div>
-        <div class="hero-bg"></div>
         
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title display-1">
                     <span class="text-gradient">Digital Excellence</span>
-                    <br>Redefined
+                    <br>in 3D Motion
                 </h1>
                 
                 <p class="hero-subtitle">
-                    VIBZ creates minimalist, high-performance digital experiences for forward-thinking brands. We combine elegant design with cutting-edge technology to deliver exceptional results.
+                    VIBZ creates immersive digital experiences with cutting-edge 3D animations and premium design. Watch our designer craft your vision in real-time.
                 </p>
                 
                 <div class="hero-cta">
                     <a href="#contact" class="nav-button" style="margin-right: 20px;">
                         <i class="fas fa-rocket"></i>
-                        Start Project
+                        Launch Project
                     </a>
-                    <a href="#portfolio" class="nav-link" style="font-size: 1.1rem;">
-                        View Our Work →
+                    <a href="#portfolio" class="nav-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
+                        <i class="fas fa-eye"></i>
+                        View Work
                     </a>
                 </div>
                 
                 <div class="stats">
                     <div class="stat-item">
                         <span class="stat-number" id="projectsCount">0</span>
-                        <span class="stat-label">Projects Delivered</span>
+                        <span class="stat-label">3D Projects</span>
                     </div>
                     
                     <div class="stat-item">
                         <span class="stat-number" id="clientSatisfaction">0%</span>
-                        <span class="stat-label">Client Satisfaction</span>
+                        <span class="stat-label">Satisfaction</span>
                     </div>
                     
                     <div class="stat-item">
@@ -1089,169 +846,106 @@
             </div>
         </div>
         
-        <!-- 3D Device Showcase -->
-        <div class="device-showcase">
-            <div class="device device-pc">
-                <div class="device-screen">
-                    <div class="screen-content">
-                        <div class="screen-demo">
-                            <div class="demo-header">
-                                <div style="display: flex; align-items: center; gap: 8px;">
-                                    <div style="width: 8px; height: 8px; background: #FF5252; border-radius: 50%;"></div>
-                                    <div style="width: 8px; height: 8px; background: #FFC107; border-radius: 50%;"></div>
-                                    <div style="width: 8px; height: 8px; background: #4CAF50; border-radius: 50%;"></div>
-                                </div>
-                            </div>
-                            <div class="demo-content">
-                                <div class="demo-row">
-                                    <div class="demo-item"></div>
-                                    <div class="demo-item"></div>
-                                    <div class="demo-item"></div>
-                                </div>
-                                <div class="demo-row">
-                                    <div class="demo-item" style="height: 24px;"></div>
-                                </div>
-                                <div class="demo-row">
-                                    <div class="demo-item" style="height: 16px;"></div>
-                                    <div class="demo-item" style="height: 16px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pc-stand"></div>
-            </div>
-            
-            <div class="device device-tablet">
-                <div class="device-screen">
-                    <div class="screen-content">
-                        <div class="screen-demo">
-                            <div class="demo-content">
-                                <div class="demo-row">
-                                    <div class="demo-item"></div>
-                                    <div class="demo-item"></div>
-                                </div>
-                                <div class="demo-row">
-                                    <div class="demo-item" style="height: 24px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="device device-mobile">
-                <div class="device-screen">
-                    <div class="screen-content">
-                        <div class="screen-demo">
-                            <div class="demo-content">
-                                <div class="demo-row">
-                                    <div class="demo-item"></div>
-                                </div>
-                                <div class="demo-row">
-                                    <div class="demo-item" style="height: 16px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 3D Devices Container -->
+        <div class="devices-3d"></div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="section" id="services">
+    <section class="section services-section" id="services">
         <div class="container">
             <div class="section-header">
                 <h2 class="display-2">Premium Services</h2>
                 <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: 24px auto 0;">
-                    Expert solutions for brands that value quality and innovation
+                    Cutting-edge solutions with 3D animations and interactive experiences
                 </p>
             </div>
             
             <div class="services-grid">
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-desktop"></i>
+                        <i class="fas fa-cube"></i>
                     </div>
-                    <h3 class="service-title">Web Design & Development</h3>
+                    <h3 class="service-title">3D Web Design</h3>
                     <p class="service-description">
-                        Custom websites built with modern frameworks, optimized for performance and user experience across all devices.
+                        Immersive websites with Three.js animations, interactive 3D elements, and smooth transitions.
                     </p>
-                    <div class="service-price">$25,000+</div>
+                    <div class="service-price">$75,000+</div>
                 </div>
                 
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3 class="service-title">App Development</h3>
                     <p class="service-description">
-                        Native and cross-platform applications with elegant interfaces and seamless user experiences.
+                        Native apps with 3D interfaces, AR features, and premium animations for exceptional UX.
                     </p>
-                    <div class="service-price">$50,000+</div>
+                    <div class="service-price">$120,000+</div>
                 </div>
                 
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-vr-cardboard"></i>
                     </div>
-                    <h3 class="service-title">Digital Strategy</h3>
+                    <h3 class="service-title">VR/AR Experiences</h3>
                     <p class="service-description">
-                        Comprehensive digital transformation strategies to grow your business and maximize ROI.
+                        Virtual and augmented reality solutions for immersive brand experiences.
                     </p>
-                    <div class="service-price">$40,000+</div>
+                    <div class="service-price">$250,000+</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section class="section" id="portfolio" style="background: #F8F8F8;">
+    <section class="section portfolio-section" id="portfolio">
         <div class="container">
             <div class="section-header">
-                <h2 class="display-2">Selected Work</h2>
+                <h2 class="display-2">3D Portfolio</h2>
                 <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: 24px auto 0;">
-                    A showcase of our premium projects for industry-leading brands
+                    Showcasing our premium 3D projects for global brands
                 </p>
             </div>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Finance Dashboard" class="portfolio-image">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="3D Dashboard" class="portfolio-image">
                     <div class="portfolio-overlay">
-                        <h3 style="color: white; margin-bottom: 12px;">Quantum Financial</h3>
-                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Real-time analytics dashboard for investment firm</p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">D3.js</span>
-                            <span class="tech-tag">WebGL</span>
+                        <h3 style="color: white; margin-bottom: 12px;">Quantum Finance 3D</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Interactive 3D financial dashboard</p>
+                        <div style="display: flex; gap: 8px; margin-top: 16px;">
+                            <span style="background: rgba(255,255,255,0.2); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem;">Three.js</span>
+                            <span style="background: rgba(255,255,255,0.2); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem;">WebGL</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="E-commerce Platform" class="portfolio-image">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="AR Interface" class="portfolio-image">
                     <div class="portfolio-overlay">
-                        <h3 style="color: white; margin-bottom: 12px;">Nova Retail</h3>
-                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Premium e-commerce platform with AR integration</p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">Three.js</span>
-                            <span class="tech-tag">Stripe</span>
+                        <h3 style="color: white; margin-bottom: 12px;">AR Shopping</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Augmented reality retail experience</p>
+                        <div style="display: flex; gap: 8px; margin-top: 16px;">
+                            <span style="background: rgba(255,255,255,0.2); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem;">AR.js</span>
+                            <span style="background: rgba(255,255,255,0.2); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem;">WebXR</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Analytics Platform" class="portfolio-image">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="3D Visualization" class="portfolio-image">
                     <div class="portfolio-overlay">
-                        <h3 style="color: white; margin-bottom: 12px;">DataSphere</h3>
-                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Enterprise data visualization platform</p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">MongoDB</span>
+                        <h3 style="color: white; margin-bottom: 12px;">Data Visualization 3D</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 16px;">Interactive 3D data analytics</p>
+                        <div style="display: flex; gap: 8px; margin-top: 16px;">
+                            <span style="background: rgba(255,255,255,0.2); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem;">D3.js</span>
+                            <span style="background: rgba(255,255,255,0.2); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem;">Three.js</span>
                         </div>
                     </div>
                 </div>
@@ -1263,50 +957,50 @@
     <section class="section" id="process">
         <div class="container">
             <div class="section-header">
-                <h2 class="display-2">Our Process</h2>
+                <h2 class="display-2">Our 3D Process</h2>
                 <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: 24px auto 0;">
-                    A structured approach to delivering exceptional results
+                    From concept to immersive 3D execution
                 </p>
             </div>
             
             <div class="process-timeline">
-                <div class="process-step fade-in">
+                <div class="process-step">
                     <div class="step-number">01</div>
                     <div class="step-content">
-                        <h3 class="step-title">Discovery</h3>
-                        <p class="step-description">Research and analysis to understand your business goals and user needs.</p>
+                        <h3 class="step-title">3D Concept</h3>
+                        <p class="step-description">Brainstorming and 3D wireframing</p>
                     </div>
                 </div>
                 
-                <div class="process-step fade-in">
+                <div class="process-step">
                     <div class="step-number">02</div>
                     <div class="step-content">
-                        <h3 class="step-title">Strategy</h3>
-                        <p class="step-description">Planning the architecture and user experience for optimal results.</p>
+                        <h3 class="step-title">Modeling</h3>
+                        <p class="step-description">Creating 3D assets and animations</p>
                     </div>
                 </div>
                 
-                <div class="process-step fade-in">
+                <div class="process-step">
                     <div class="step-number">03</div>
                     <div class="step-content">
-                        <h3 class="step-title">Design</h3>
-                        <p class="step-description">Creating elegant, user-centered interfaces with attention to detail.</p>
+                        <h3 class="step-title">Development</h3>
+                        <p class="step-description">Three.js integration and optimization</p>
                     </div>
                 </div>
                 
-                <div class="process-step fade-in">
+                <div class="process-step">
                     <div class="step-number">04</div>
                     <div class="step-content">
-                        <h3 class="step-title">Development</h3>
-                        <p class="step-description">Building robust, scalable solutions with modern technologies.</p>
+                        <h3 class="step-title">Animation</h3>
+                        <p class="step-description">Motion design and interactions</p>
                     </div>
                 </div>
                 
-                <div class="process-step fade-in">
+                <div class="process-step">
                     <div class="step-number">05</div>
                     <div class="step-content">
                         <h3 class="step-title">Launch</h3>
-                        <p class="step-description">Deployment, testing, and ongoing optimization for success.</p>
+                        <p class="step-description">Performance optimization and deployment</p>
                     </div>
                 </div>
             </div>
@@ -1314,56 +1008,46 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section" id="contact">
+    <section class="section contact-section" id="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="display-2">Start Your Project</h2>
+                <h2 class="display-2">Start Your 3D Project</h2>
                 <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: 24px auto 0;">
-                    Ready to create something exceptional? Let's discuss your vision.
+                    Ready to create something extraordinary in 3D?
                 </p>
             </div>
             
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3 style="font-size: 2rem; margin-bottom: 24px;">Why Choose VIBZ</h3>
+                    <h3 style="font-size: 2rem; margin-bottom: 24px; color: var(--text-primary);">3D Excellence</h3>
                     <p class="text-muted" style="margin-bottom: 32px; line-height: 1.8;">
-                        We combine strategic thinking with technical excellence to deliver digital experiences that drive results. Our team of experts will guide you through every step of the process.
+                        We specialize in creating immersive 3D experiences that captivate audiences and drive results. Let's bring your vision to life with cutting-edge technology.
                     </p>
                     
                     <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
+                        <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                            <div style="width: 56px; height: 56px; background: rgba(255, 112, 67, 0.1); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-right: 20px; color: var(--primary);">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h4 style="margin-bottom: 4px;">London Office</h4>
-                                <p class="text-muted">Mayfair, London</p>
+                                <h4 style="color: var(--text-primary); margin-bottom: 4px;">London Studio</h4>
+                                <p class="text-muted">3D Design Lab, London</p>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
-                            <div class="contact-icon">
+                        <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                            <div style="width: 56px; height: 56px; background: rgba(255, 112, 67, 0.1); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-right: 20px; color: var(--primary);">
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div>
-                                <h4 style="margin-bottom: 4px;">Phone</h4>
+                                <h4 style="color: var(--text-primary); margin-bottom: 4px;">Contact</h4>
                                 <p class="text-muted">+44 7706 345874</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 style="margin-bottom: 4px;">Email</h4>
-                                <p class="text-muted">hello@vibz.design</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-form fade-in">
+                <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
                             <label class="form-label">Full Name</label>
@@ -1376,29 +1060,35 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">Company</label>
-                            <input type="text" class="form-input" placeholder="Your company">
+                            <label class="form-label">Project Type</label>
+                            <select class="form-input" required>
+                                <option value="">Select 3D project type</option>
+                                <option value="website">3D Website</option>
+                                <option value="app">3D App</option>
+                                <option value="vr">VR Experience</option>
+                                <option value="ar">AR Solution</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">Project Budget</label>
                             <select class="form-input" required>
                                 <option value="">Select budget range</option>
-                                <option value="25k">$25,000 - $50,000</option>
                                 <option value="50k">$50,000 - $100,000</option>
                                 <option value="100k">$100,000 - $250,000</option>
-                                <option value="250k">$250,000+</option>
+                                <option value="250k">$250,000 - $500,000</option>
+                                <option value="500k">$500,000+</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">Project Details</label>
-                            <textarea class="form-input" rows="5" placeholder="Tell us about your project"></textarea>
+                            <label class="form-label">Project Vision</label>
+                            <textarea class="form-input" rows="5" placeholder="Describe your 3D vision..."></textarea>
                         </div>
                         
                         <button type="submit" class="nav-button" style="width: 100%; margin-top: 20px;">
                             <i class="fas fa-paper-plane"></i>
-                            Submit Project Request
+                            Submit 3D Project Brief
                         </button>
                     </form>
                 </div>
@@ -1415,60 +1105,437 @@
                         <span>VIBZ</span>
                         <div class="logo-dot"></div>
                     </div>
-                    <p class="footer-description">
-                        Creating exceptional digital experiences for forward-thinking brands. Based in London, serving clients worldwide.
+                    <p class="text-muted" style="margin-bottom: 32px; line-height: 1.8;">
+                        Creating exceptional 3D digital experiences for forward-thinking brands. Specializing in immersive web and app development.
                     </p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <div style="display: flex; gap: 16px;">
+                        <a href="#" style="width: 48px; height: 48px; background: rgba(255, 112, 67, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; transition: var(--transition);">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                        <a href="#" style="width: 48px; height: 48px; background: rgba(255, 112, 67, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; transition: var(--transition);">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                        <a href="#" style="width: 48px; height: 48px; background: rgba(255, 112, 67, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; transition: var(--transition);">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" style="width: 48px; height: 48px; background: rgba(255, 112, 67, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; transition: var(--transition);">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="footer-sections">
-                    <div class="footer-section">
-                        <h4>Services</h4>
-                        <div class="footer-links">
-                            <a href="#">Web Design</a>
-                            <a href="#">App Development</a>
-                            <a href="#">Digital Strategy</a>
-                            <a href="#">Brand Identity</a>
-                            <a href="#">UX/UI Design</a>
+                <div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px;">
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 28px; font-size: 1.1rem;">3D Services</h4>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">3D Web Design</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">AR/VR Development</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Motion Design</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Interactive 3D</a>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Company</h4>
-                        <div class="footer-links">
-                            <a href="#">About</a>
-                            <a href="#">Work</a>
-                            <a href="#">Process</a>
-                            <a href="#">Careers</a>
-                            <a href="#">Contact</a>
+                        
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 28px; font-size: 1.1rem;">Company</h4>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">About</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Portfolio</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Process</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Careers</a>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Legal</h4>
-                        <div class="footer-links">
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Terms of Service</a>
-                            <a href="#">Cookie Policy</a>
+                        
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 28px; font-size: 1.1rem;">Resources</h4>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Blog</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Case Studies</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Contact</a>
+                                <a href="#" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);">Privacy</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2024 VIBZ Digital Agency. All rights reserved.</p>
+                <p>&copy; 2024 VIBZ 3D Digital Agency. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- THREE.JS 3D ANIMATION -->
     <script>
-        // Initialize when page loads
+        // Initialize Three.js Scene
+        let scene, camera, renderer, controls;
+        let laptop, tablet, mobile, designer;
+        let mouseX = 0, mouseY = 0;
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+
+        function init3DScene() {
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0a0a14);
+            scene.fog = new THREE.Fog(0x0a0a14, 10, 100);
+
+            // Create camera
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 2, 10);
+
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: document.getElementById('hero-canvas'),
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance"
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+            // Add orbit controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableZoom = false;
+            controls.enablePan = false;
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.rotateSpeed = 0.5;
+            controls.minDistance = 5;
+            controls.maxDistance = 15;
+            controls.maxPolarAngle = Math.PI / 2.5;
+
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0xff7043, 0.2);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 7);
+            directionalLight.castShadow = true;
+            directionalLight.shadow.mapSize.width = 2048;
+            directionalLight.shadow.mapSize.height = 2048;
+            scene.add(directionalLight);
+
+            const backLight = new THREE.DirectionalLight(0x29b6f6, 0.4);
+            backLight.position.set(-5, 3, -5);
+            scene.add(backLight);
+
+            // Add point lights for device glow
+            const pointLight1 = new THREE.PointLight(0xff7043, 0.5, 20);
+            pointLight1.position.set(2, 3, 2);
+            scene.add(pointLight1);
+
+            const pointLight2 = new THREE.PointLight(0x29b6f6, 0.3, 20);
+            pointLight2.position.set(-2, 2, -2);
+            scene.add(pointLight2);
+
+            // Create devices
+            createDevices();
+            createDesigner();
+
+            // Create floating particles
+            createParticles();
+
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize);
+
+            // Handle mouse movement
+            document.addEventListener('mousemove', onDocumentMouseMove);
+
+            // Start animation
+            animate();
+        }
+
+        function createDevices() {
+            const geometry = new THREE.BoxGeometry(2, 1.2, 0.1);
+            const material = new THREE.MeshPhongMaterial({ 
+                color: 0xffffff,
+                emissive: 0xff7043,
+                emissiveIntensity: 0.1,
+                shininess: 100
+            });
+
+            // Laptop
+            laptop = new THREE.Mesh(geometry, material);
+            laptop.position.set(-3, 1, 0);
+            laptop.rotation.y = Math.PI / 6;
+            laptop.castShadow = true;
+            scene.add(laptop);
+
+            // Create laptop screen
+            const screenGeometry = new THREE.PlaneGeometry(1.8, 1);
+            const screenMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0x000000,
+                emissive: 0x29b6f6,
+                emissiveIntensity: 0.3
+            });
+            const screen = new THREE.Mesh(screenGeometry, screenMaterial);
+            screen.position.set(0, 0, 0.06);
+            laptop.add(screen);
+
+            // Tablet
+            const tabletGeometry = new THREE.BoxGeometry(1.2, 1.6, 0.05);
+            tablet = new THREE.Mesh(tabletGeometry, material);
+            tablet.position.set(0, 2, -1);
+            tablet.rotation.x = -Math.PI / 6;
+            tablet.rotation.y = -Math.PI / 8;
+            tablet.castShadow = true;
+            scene.add(tablet);
+
+            // Tablet screen
+            const tabletScreen = new THREE.Mesh(
+                new THREE.PlaneGeometry(1.1, 1.5),
+                screenMaterial
+            );
+            tabletScreen.position.set(0, 0, 0.03);
+            tablet.add(tabletScreen);
+
+            // Mobile (portrait mode)
+            const mobileGeometry = new THREE.BoxGeometry(0.6, 1.2, 0.03);
+            mobile = new THREE.Mesh(mobileGeometry, material);
+            mobile.position.set(3, 1.5, -0.5);
+            mobile.rotation.y = -Math.PI / 4;
+            mobile.rotation.x = -Math.PI / 12;
+            mobile.castShadow = true;
+            scene.add(mobile);
+
+            // Mobile screen
+            const mobileScreen = new THREE.Mesh(
+                new THREE.PlaneGeometry(0.55, 1.1),
+                screenMaterial
+            );
+            mobileScreen.position.set(0, 0, 0.02);
+            mobile.add(mobileScreen);
+
+            // Add device stands
+            createDeviceStands();
+        }
+
+        function createDeviceStands() {
+            const standGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.5);
+            const standMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+
+            // Laptop stand
+            const laptopStand = new THREE.Mesh(standGeometry, standMaterial);
+            laptopStand.position.set(-3, 0.5, 0);
+            laptopStand.castShadow = true;
+            scene.add(laptopStand);
+
+            // Tablet stand
+            const tabletStand = new THREE.Mesh(standGeometry, standMaterial);
+            tabletStand.position.set(0, 1.2, -1);
+            tabletStand.rotation.x = Math.PI / 6;
+            tabletStand.castShadow = true;
+            scene.add(tabletStand);
+
+            // Mobile stand
+            const mobileStand = new THREE.Mesh(standGeometry, standMaterial);
+            mobileStand.position.set(3, 1, -0.5);
+            mobileStand.rotation.x = Math.PI / 12;
+            mobileStand.castShadow = true;
+            scene.add(mobileStand);
+        }
+
+        function createDesigner() {
+            // Create designer character
+            const group = new THREE.Group();
+            group.position.set(0, 0, 2);
+
+            // Body
+            const bodyGeometry = new THREE.BoxGeometry(0.8, 1.5, 0.4);
+            const bodyMaterial = new THREE.MeshPhongMaterial({ color: 0x4a4a8c });
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.position.y = 0.8;
+            body.castShadow = true;
+            group.add(body);
+
+            // Head
+            const headGeometry = new THREE.SphereGeometry(0.3, 32, 32);
+            const headMaterial = new THREE.MeshPhongMaterial({ color: 0xffcc99 });
+            const head = new THREE.Mesh(headGeometry, headMaterial);
+            head.position.y = 1.8;
+            head.castShadow = true;
+            group.add(head);
+
+            // Arms
+            const armGeometry = new THREE.BoxGeometry(0.2, 0.8, 0.2);
+            const leftArm = new THREE.Mesh(armGeometry, bodyMaterial);
+            leftArm.position.set(-0.5, 1.2, 0);
+            leftArm.rotation.z = Math.PI / 6;
+            leftArm.castShadow = true;
+            group.add(leftArm);
+
+            const rightArm = new THREE.Mesh(armGeometry, bodyMaterial);
+            rightArm.position.set(0.5, 1.2, 0);
+            rightArm.rotation.z = -Math.PI / 6;
+            rightArm.castShadow = true;
+            group.add(rightArm);
+
+            // Create coding animation
+            const codeTextures = createCodeTextures();
+            
+            // Code screen in front of designer
+            const codeScreenGeometry = new THREE.PlaneGeometry(1.5, 1);
+            const codeScreenMaterial = new THREE.MeshBasicMaterial({ 
+                map: codeTextures[0],
+                transparent: true,
+                opacity: 0.8
+            });
+            const codeScreen = new THREE.Mesh(codeScreenGeometry, codeScreenMaterial);
+            codeScreen.position.set(0, 1.5, 0.3);
+            codeScreen.rotation.y = Math.PI;
+            group.add(codeScreen);
+
+            // Animate code screen
+            let codeFrame = 0;
+            function animateCodeScreen() {
+                codeFrame = (codeFrame + 1) % codeTextures.length;
+                codeScreen.material.map = codeTextures[codeFrame];
+                requestAnimationFrame(animateCodeScreen);
+            }
+            animateCodeScreen();
+
+            // Add keyboard
+            const keyboardGeometry = new THREE.BoxGeometry(1.2, 0.1, 0.4);
+            const keyboardMaterial = new THREE.MeshPhongMaterial({ color: 0x222222 });
+            const keyboard = new THREE.Mesh(keyboardGeometry, keyboardMaterial);
+            keyboard.position.set(0, 0.2, 0.5);
+            keyboard.castShadow = true;
+            group.add(keyboard);
+
+            scene.add(group);
+            designer = group;
+        }
+
+        function createCodeTextures() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            
+            const textures = [];
+            const codeLines = [
+                'function createWebsite() {',
+                '  const design = new Design();',
+                '  const code = new Code();',
+                '  const animation = new Animation();',
+                '  return design + code + animation;',
+                '}',
+                '',
+                'const project = createWebsite();',
+                'project.launch();'
+            ];
+
+            for (let frame = 0; frame < 4; frame++) {
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#00ff00';
+                ctx.font = '12px monospace';
+                
+                codeLines.forEach((line, i) => {
+                    const y = 30 + i * 25;
+                    // Add typing animation effect
+                    const chars = frame > 2 ? line.length : Math.min(line.length, (i + 1) * 10 * frame);
+                    ctx.fillText(line.substring(0, chars), 20, y);
+                });
+
+                // Add cursor
+                if (frame % 2 === 0) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(20 + codeLines[4].length * 7.5, 30 + 4 * 25, 8, 15);
+                }
+
+                const texture = new THREE.CanvasTexture(canvas);
+                textures.push(texture);
+            }
+
+            return textures;
+        }
+
+        function createParticles() {
+            const particleCount = 1000;
+            const particles = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount; i++) {
+                // Position
+                positions[i * 3] = (Math.random() - 0.5) * 50;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 50;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+
+                // Color (orange/blue mix)
+                colors[i * 3] = Math.random() > 0.5 ? 1 : 0.8; // R
+                colors[i * 3 + 1] = Math.random() > 0.5 ? 0.4 : 0.6; // G
+                colors[i * 3 + 2] = Math.random() > 0.5 ? 0.2 : 1; // B
+            }
+
+            particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.1,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.6,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particleSystem = new THREE.Points(particles, particleMaterial);
+            scene.add(particleSystem);
+        }
+
+        function onDocumentMouseMove(event) {
+            mouseX = (event.clientX - windowHalfX) * 0.001;
+            mouseY = (event.clientY - windowHalfY) * 0.001;
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Animate devices
+            if (laptop) {
+                laptop.rotation.y += 0.001;
+                laptop.position.y = 1 + Math.sin(Date.now() * 0.001) * 0.1;
+            }
+
+            if (tablet) {
+                tablet.rotation.x = -Math.PI / 6 + Math.sin(Date.now() * 0.0008) * 0.1;
+                tablet.rotation.y = -Math.PI / 8 + Math.cos(Date.now() * 0.0006) * 0.1;
+            }
+
+            if (mobile) {
+                mobile.rotation.y = -Math.PI / 4 + Math.sin(Date.now() * 0.0007) * 0.2;
+                mobile.position.y = 1.5 + Math.cos(Date.now() * 0.001) * 0.15;
+            }
+
+            // Animate designer
+            if (designer) {
+                designer.rotation.y += 0.002;
+                designer.position.y = Math.sin(Date.now() * 0.001) * 0.1;
+            }
+
+            // Update controls with mouse movement
+            controls.target.x += (mouseX - controls.target.x) * 0.05;
+            controls.target.y += (-mouseY - controls.target.y) * 0.05;
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        // Initialize 3D scene when page loads
+        window.addEventListener('load', init3DScene);
+
+        // JavaScript for interactions and animations
         document.addEventListener('DOMContentLoaded', function() {
             // Navigation scroll effect
             const nav = document.getElementById('nav');
@@ -1479,7 +1546,7 @@
                     nav.classList.remove('scrolled');
                 }
             });
-            
+
             // Animated counters
             let countersAnimated = false;
             
@@ -1496,14 +1563,14 @@
                     element.textContent = currentValue.toFixed(suffix === '%' ? 0 : 1) + suffix;
                 }, 20);
             }
-            
+
             // Scroll animations
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
                 threshold: 0.1
             };
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1516,36 +1583,35 @@
                             }, 300);
                             countersAnimated = true;
                         }
-                        
-                        // Fade in animations
-                        const fadeElements = entry.target.querySelectorAll('.fade-in');
-                        fadeElements.forEach((element, index) => {
-                            setTimeout(() => {
-                                element.classList.add('visible');
-                            }, index * 200);
-                        });
-                        
-                        // Portfolio animations
-                        if (entry.target.id === 'portfolio') {
-                            const portfolioItems = document.querySelectorAll('.portfolio-item');
-                            portfolioItems.forEach((item, index) => {
+
+                        // Service cards
+                        if (entry.target.id === 'services') {
+                            document.querySelectorAll('.service-card').forEach((card, index) => {
                                 setTimeout(() => {
-                                    item.classList.add('animate');
-                                }, index * 200);
-                            });
-                        }
-                        
-                        // Process animations
-                        if (entry.target.id === 'process') {
-                            const processSteps = document.querySelectorAll('.process-step');
-                            processSteps.forEach((step, index) => {
-                                setTimeout(() => {
-                                    step.classList.add('animate');
+                                    card.classList.add('animate');
                                 }, index * 300);
                             });
                         }
-                        
-                        // Contact form animation
+
+                        // Portfolio items
+                        if (entry.target.id === 'portfolio') {
+                            document.querySelectorAll('.portfolio-item').forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('animate');
+                                }, index * 300);
+                            });
+                        }
+
+                        // Process steps
+                        if (entry.target.id === 'process') {
+                            document.querySelectorAll('.process-step').forEach((step, index) => {
+                                setTimeout(() => {
+                                    step.classList.add('animate');
+                                }, index * 400);
+                            });
+                        }
+
+                        // Contact form
                         if (entry.target.id === 'contact') {
                             setTimeout(() => {
                                 document.querySelector('.contact-form').classList.add('animate');
@@ -1554,12 +1620,12 @@
                     }
                 });
             }, observerOptions);
-            
+
             // Observe all sections
             document.querySelectorAll('section').forEach(section => {
                 observer.observe(section);
             });
-            
+
             // Mobile menu
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navLinks = document.querySelector('.nav-links');
@@ -1574,32 +1640,30 @@
                     navLinks.style.top = '100%';
                     navLinks.style.left = '0';
                     navLinks.style.width = '100%';
-                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.backgroundColor = 'rgba(10, 10, 20, 0.95)';
+                    navLinks.style.backdropFilter = 'blur(20px)';
                     navLinks.style.padding = '32px';
                     navLinks.style.gap = '24px';
                     navLinks.style.borderTop = '1px solid var(--border-color)';
-                    navLinks.style.boxShadow = 'var(--shadow-md)';
                     navLinks.style.zIndex = '1000';
                 }
             });
-            
+
             // Form submission
             const contactForm = document.getElementById('contactForm');
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Show success message
                 const submitBtn = contactForm.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
                 submitBtn.disabled = true;
                 
-                // Simulate API call
                 setTimeout(() => {
                     const successMessage = document.createElement('div');
                     successMessage.style.cssText = `
-                        background: rgba(255, 138, 101, 0.1);
+                        background: rgba(255, 112, 67, 0.1);
                         border: 1px solid var(--primary);
                         border-radius: var(--radius-md);
                         padding: 20px;
@@ -1608,13 +1672,12 @@
                         color: var(--primary);
                     `;
                     successMessage.innerHTML = `
-                        <h4 style="margin-bottom: 8px;">Thank You!</h4>
-                        <p>Your project request has been received. We'll contact you within 24 hours.</p>
+                        <h4 style="margin-bottom: 8px;">Project Brief Received!</h4>
+                        <p>Our 3D design team will review your vision and contact you within 24 hours.</p>
                     `;
                     
                     contactForm.appendChild(successMessage);
                     
-                    // Reset form
                     setTimeout(() => {
                         contactForm.reset();
                         submitBtn.innerHTML = originalText;
@@ -1623,7 +1686,7 @@
                     }, 5000);
                 }, 1500);
             });
-            
+
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -1638,66 +1701,12 @@
                             behavior: 'smooth'
                         });
                         
-                        // Close mobile menu if open
                         if (window.innerWidth <= 992) {
                             navLinks.style.display = 'none';
                         }
                     }
                 });
             });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (window.innerWidth <= 992) {
-                    if (!event.target.closest('.nav-links') && !event.target.closest('#mobileMenuBtn')) {
-                        navLinks.style.display = 'none';
-                    }
-                }
-            });
-            
-            // Initialize device animations
-            function initDeviceAnimations() {
-                const devices = document.querySelectorAll('.device');
-                devices.forEach(device => {
-                    device.style.transition = 'transform 0.3s ease';
-                });
-                
-                // Add hover effect
-                document.addEventListener('mousemove', function(e) {
-                    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-                    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-                    
-                    const pc = document.querySelector('.device-pc');
-                    const tablet = document.querySelector('.device-tablet');
-                    const mobile = document.querySelector('.device-mobile');
-                    
-                    if (pc) {
-                        pc.style.transform = `translate(-50%, -50%) rotateY(${20 + x * 0.5}deg) rotateX(${5 - y * 0.5}deg)`;
-                    }
-                    
-                    if (tablet) {
-                        tablet.style.transform = `rotateY(${-15 - x * 0.3}deg) rotateX(${5 + y * 0.3}deg) rotateZ(-5deg)`;
-                    }
-                    
-                    if (mobile) {
-                        mobile.style.transform = `rotateY(${10 + x * 0.2}deg) rotateX(${3 - y * 0.2}deg) rotateZ(5deg)`;
-                    }
-                });
-            }
-            
-            if (window.innerWidth > 1200) {
-                initDeviceAnimations();
-            }
-        });
-        
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            const navLinks = document.querySelector('.nav-links');
-            if (window.innerWidth > 992) {
-                navLinks.style.display = 'flex';
-            } else {
-                navLinks.style.display = 'none';
-            }
         });
     </script>
 </body>
