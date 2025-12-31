@@ -3,1829 +3,808 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA | £5M Elite Digital Transformation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>VIBZ 2.0 | Digital Atelier for High-End Interfaces</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Clash+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #8B5CF6;
-            --primary-dark: #7C3AED;
-            --secondary: #EC4899;
-            --accent: #06D6A0;
-            --accent-dark: #059669;
-            --dark: #0A0A14;
-            --darker: #050510;
-            --light: #F8FAFC;
-            --gray: #94A3B8;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glow: 0 0 50px rgba(139, 92, 246, 0.3);
-            --glow-accent: 0 0 30px rgba(6, 214, 160, 0.3);
-            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary-orange: #FF9500;
+            --light-orange: #FFE5C2;
+            --dark-orange: #E68600;
+            --accent-orange: #FFAA33;
+            --black: #111111;
+            --dark-gray: #222222;
+            --light-gray: #F8F8F8;
+            --white: #FFFFFF;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         html {
             scroll-behavior: smooth;
-            background-color: var(--darker);
         }
-
+        
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
             overflow-x: hidden;
-            line-height: 1.7;
-            position: relative;
+            line-height: 1.6;
         }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(6, 214, 160, 0.08) 0%, transparent 50%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        h1, h2, h3, h4, h5 {
-            font-family: 'Clash Display', sans-serif;
+        
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 800;
             line-height: 1.1;
-            letter-spacing: -0.02em;
         }
-
+        
         .container {
             width: 100%;
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
         }
-
-        /* Premium Navigation */
-        .premium-nav {
+        
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 10000;
-            padding: 25px 0;
+            z-index: 1000;
+            padding: 24px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 149, 0, 0.1);
             transition: var(--transition);
-            background: rgba(10, 10, 20, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .premium-nav.scrolled {
-            padding: 18px 0;
-            background: rgba(5, 5, 16, 0.95);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-            box-shadow: var(--glow);
+        
+        header.scrolled {
+            padding: 16px 0;
+            box-shadow: 0 10px 30px rgba(255, 149, 0, 0.08);
         }
-
-        .nav-container {
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .agency-logo {
-            font-family: 'Clash Display', sans-serif;
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
             font-weight: 900;
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--black);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
-            position: relative;
-            padding: 5px 0;
         }
-
-        .agency-logo::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            transform: scaleX(0);
-            transition: var(--transition);
-            transform-origin: right;
+        
+        .logo span {
+            color: var(--primary-orange);
         }
-
-        .agency-logo:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
+        
+        .logo .version {
+            font-size: 12px;
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 12px;
+            margin-left: 8px;
+            font-weight: 700;
         }
-
-        .logo-badge {
-            font-size: 0.7rem;
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
             font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 20px;
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            margin-left: 10px;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 16px;
             transition: var(--transition);
             position: relative;
-            padding: 8px 0;
         }
-
-        .nav-link::before {
+        
+        .nav-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            background-color: var(--primary-orange);
             transition: var(--transition);
         }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .nav-link:hover::before {
+        
+        .nav-links a:hover::after {
             width: 100%;
         }
-
-        .premium-cta {
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+        
+        .cta-button {
+            background-color: var(--primary-orange);
             color: white;
             border: none;
-            padding: 16px 36px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: var(--glow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .premium-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: var(--transition);
-        }
-
-        .premium-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.5);
-        }
-
-        .premium-cta:hover::before {
-            left: 100%;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 8px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-        }
-
-        /* £5M Hero Section */
-        .hero-section {
-            min-height: 110vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 120px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 800px;
-        }
-
-        .valuation-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            padding: 14px 28px;
-            border-radius: 12px;
+            padding: 14px 32px;
+            font-size: 16px;
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            box-shadow: var(--glow);
-            animation: pulseGlow 2s infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: var(--glow); }
-            50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.5); }
-        }
-
-        .hero-title {
-            font-size: 5.5rem;
-            line-height: 1;
-            margin-bottom: 30px;
-            background: linear-gradient(90deg, var(--light) 0%, var(--primary) 30%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.03em;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--gray);
-            margin-bottom: 50px;
-            max-width: 700px;
-            line-height: 1.6;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 60px;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 900;
-            font-size: 3.5rem;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-
-        .secondary-action {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 16px 36px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
+            font-family: 'Space Grotesk', sans-serif;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
+            display: inline-block;
         }
-
-        .secondary-action:hover {
-            border-color: var(--primary);
-            background: rgba(139, 92, 246, 0.1);
+        
+        .cta-button:hover {
+            background-color: var(--dark-orange);
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 149, 0, 0.2);
         }
-
-        /* Interactive Code Visualization */
-        .code-visualization {
-            position: absolute;
-            right: -5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60%;
-            max-width: 900px;
-            perspective: 2000px;
-        }
-
-        .quantum-terminal {
-            background: linear-gradient(145deg, rgba(20, 20, 30, 0.9) 0%, rgba(10, 10, 20, 0.95) 100%);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 
-                var(--shadow),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            transform-style: preserve-3d;
-            transition: var(--transition);
-            overflow: hidden;
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
             position: relative;
+            overflow: hidden;
+            padding-top: 100px;
         }
-
-        .quantum-terminal::before {
-            content: '';
+        
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--light-orange) 0%, rgba(255, 229, 194, 0.4) 100%);
+        }
+        
+        .hero-content {
+            width: 100%;
             z-index: 2;
         }
-
-        .terminal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .terminal-title {
-            font-family: 'Clash Display', sans-serif;
+        
+        .hero-tagline {
+            font-size: 18px;
             font-weight: 700;
-            font-size: 1.5rem;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--primary-orange);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
         }
-
-        .terminal-controls {
-            display: flex;
-            gap: 12px;
+        
+        .hero-headline {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            line-height: 1;
+            margin-bottom: 30px;
+            color: var(--black);
         }
-
-        .control-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            transition: var(--transition-fast);
+        
+        .hero-headline span {
+            color: var(--primary-orange);
         }
-
-        .dot-red { background: linear-gradient(135deg, #FF5F57 0%, #FF3B30 100%); }
-        .dot-yellow { background: linear-gradient(135deg, #FFBD2E 0%, #FF9500 100%); }
-        .dot-green { background: linear-gradient(135deg, #28CA42 0%, #00C853 100%); }
-
-        .control-dot:hover {
-            transform: scale(1.2);
+        
+        .hero-subtitle {
+            font-size: 22px;
+            font-weight: 500;
+            max-width: 700px;
+            margin-bottom: 50px;
+            color: var(--dark-gray);
         }
-
-        .code-editor-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .code-line {
-            display: flex;
-            padding: 12px 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            line-height: 1.8;
-            opacity: 0;
-            transform: translateX(-30px);
-            animation: slideInCode 0.8s forwards;
-            border-left: 3px solid transparent;
-            transition: var(--transition-fast);
-        }
-
-        .code-line:hover {
-            background: rgba(139, 92, 246, 0.05);
-            border-left-color: var(--primary);
-        }
-
-        @keyframes slideInCode {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .code-line:nth-child(1) { animation-delay: 0.1s; }
-        .code-line:nth-child(2) { animation-delay: 0.2s; }
-        .code-line:nth-child(3) { animation-delay: 0.3s; }
-        .code-line:nth-child(4) { animation-delay: 0.4s; }
-        .code-line:nth-child(5) { animation-delay: 0.5s; }
-        .code-line:nth-child(6) { animation-delay: 0.6s; }
-        .code-line:nth-child(7) { animation-delay: 0.7s; }
-        .code-line:nth-child(8) { animation-delay: 0.8s; }
-        .code-line:nth-child(9) { animation-delay: 0.9s; }
-        .code-line:nth-child(10) { animation-delay: 1.0s; }
-        .code-line:nth-child(11) { animation-delay: 1.1s; }
-        .code-line:nth-child(12) { animation-delay: 1.2s; }
-
-        .line-number {
-            color: var(--gray);
-            min-width: 50px;
-            text-align: right;
-            margin-right: 25px;
-            user-select: none;
-            opacity: 0.7;
-        }
-
-        .code-tag { color: #FF79C6; }
-        .code-attr { color: #8BE9FD; }
-        .code-value { color: #F1FA8C; }
-        .code-text { color: #F8F8F2; }
-        .code-comment { color: #6272A4; font-style: italic; }
-        .code-class { color: #50FA7B; }
-        .code-function { color: #FFB86C; }
-        .code-variable { color: #BD93F9; }
-
-        .code-highlight {
-            background: rgba(139, 92, 246, 0.3);
-            padding: 2px 6px;
-            border-radius: 4px;
-            position: relative;
-            animation: pulseText 2s infinite;
-        }
-
-        @keyframes pulseText {
-            0%, 100% { background: rgba(139, 92, 246, 0.3); }
-            50% { background: rgba(139, 92, 246, 0.5); }
-        }
-
-        .floating-elements {
+        
+        /* Moving Graphics */
+        .moving-graphics {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            pointer-events: none;
             z-index: 1;
+            pointer-events: none;
         }
-
-        .floating-element {
+        
+        .graphic-element {
             position: absolute;
+            border-radius: 10px;
+            opacity: 0.7;
+            animation: float 20s infinite linear;
+        }
+        
+        .graphic-1 {
+            width: 120px;
+            height: 120px;
+            background-color: var(--primary-orange);
+            top: 20%;
+            left: 5%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+        
+        .graphic-2 {
             width: 80px;
             height: 80px;
-            border-radius: 20px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--light);
-            font-size: 2rem;
-            animation: floatQuantum 8s ease-in-out infinite;
-            box-shadow: var(--glow);
+            background-color: var(--accent-orange);
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+            animation-duration: 20s;
         }
-
-        @keyframes floatQuantum {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            25% { 
-                transform: translate(20px, -20px) rotate(5deg) scale(1.05);
-            }
-            50% { 
-                transform: translate(-15px, 15px) rotate(-5deg) scale(0.95);
-            }
-            75% { 
-                transform: translate(10px, 10px) rotate(3deg) scale(1.02);
-            }
+        
+        .graphic-3 {
+            width: 150px;
+            height: 150px;
+            border: 5px solid var(--primary-orange);
+            top: 30%;
+            right: 15%;
+            animation-delay: -10s;
         }
-
-        .floating-element:nth-child(1) {
-            top: 15%;
-            left: -5%;
-            background: rgba(139, 92, 246, 0.2);
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            top: 65%;
-            right: -3%;
-            background: rgba(236, 72, 153, 0.2);
-            animation-delay: 1s;
-        }
-
-        .floating-element:nth-child(3) {
+        
+        .graphic-4 {
+            width: 100px;
+            height: 100px;
+            background-color: var(--light-orange);
             bottom: 20%;
-            left: 5%;
-            background: rgba(6, 214, 160, 0.2);
-            animation-delay: 2s;
+            left: 15%;
+            animation-delay: -15s;
+            animation-duration: 30s;
+        }
+        
+        .graphic-5 {
             width: 60px;
             height: 60px;
-            font-size: 1.5rem;
+            background-color: var(--dark-orange);
+            top: 15%;
+            right: 25%;
+            animation-delay: -7s;
         }
-
-        /* £5M Value Proposition */
-        .value-section {
-            padding: 150px 0;
-            position: relative;
-            overflow: hidden;
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, 100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-50px, 50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
         }
-
-        .section-label {
-            display: inline-block;
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 40px;
-        }
-
-        .section-label::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 30px;
-            height: 2px;
-            background: var(--accent);
-            transform: translateY(-50%);
-        }
-
+        
+        /* Services Section */
         .section-title {
-            font-size: 4.5rem;
-            margin-bottom: 40px;
-            color: var(--light);
-            max-width: 900px;
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--black);
         }
-
+        
         .section-subtitle {
-            font-size: 1.4rem;
-            color: var(--gray);
+            text-align: center;
+            font-size: 18px;
+            color: var(--dark-gray);
             max-width: 700px;
-            margin-bottom: 80px;
+            margin: 0 auto 60px;
         }
-
-        .value-grid {
+        
+        .services {
+            padding: 120px 0;
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
-            margin-bottom: 100px;
+            margin-top: 60px;
         }
-
-        .value-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 50px 40px;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .value-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: var(--glow);
-        }
-
-        .value-card:hover::before {
-            opacity: 1;
-        }
-
-        .value-icon {
-            width: 80px;
-            height: 80px;
+        
+        .service-card {
+            background-color: var(--white);
             border-radius: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            box-shadow: var(--glow);
-        }
-
-        .value-card h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--light);
-        }
-
-        .value-card p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Quantum Process Timeline */
-        .quantum-process {
-            padding: 150px 0;
-            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
-        }
-
-        .process-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .process-timeline {
-            position: relative;
-        }
-
-        .process-line {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary) 0%, var(--accent) 100%);
-            opacity: 0.2;
-        }
-
-        .process-step {
-            display: flex;
-            margin-bottom: 120px;
-            position: relative;
-            opacity: 0;
-            transform: translateY(60px);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
+            border: 1px solid rgba(255, 149, 0, 0.1);
         }
-
-        .process-step.animated {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 149, 0, 0.1);
+            border-color: var(--primary-orange);
         }
-
-        .process-step:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .process-step:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .step-content {
-            flex: 1;
-            padding: 50px 40px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 2;
-        }
-
-        .process-step:nth-child(odd) .step-content {
-            margin-right: 80px;
-        }
-
-        .process-step:nth-child(even) .step-content {
-            margin-left: 80px;
-        }
-
-        .step-marker {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--light-orange);
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 900;
-            font-size: 2.2rem;
-            color: var(--light);
-            z-index: 3;
-            box-shadow: var(--glow);
-            border: 4px solid var(--dark);
+            margin-bottom: 30px;
+            color: var(--primary-orange);
+            font-size: 28px;
         }
-
-        .step-number {
-            color: var(--light);
+        
+        .service-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--black);
         }
-
-        .step-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--light);
+        
+        .service-desc {
+            color: var(--dark-gray);
+            margin-bottom: 25px;
         }
-
-        .step-description {
-            color: var(--gray);
-            font-size: 1.2rem;
-            line-height: 1.7;
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 120px 0;
+            background-color: var(--light-gray);
         }
-
-        /* £5M Portfolio Showcase */
-        .portfolio-section {
-            padding: 150px 0;
-        }
-
+        
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 40px;
-            margin-top: 80px;
+            margin-top: 60px;
         }
-
+        
         .portfolio-item {
-            position: relative;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            transition: var(--transition);
-            height: 500px;
+            position: relative;
+            height: 400px;
+            cursor: pointer;
         }
-
-        .portfolio-item:hover {
-            transform: translateY(-20px);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: var(--glow);
-        }
-
-        .portfolio-image {
+        
+        .portfolio-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
-
+        
         .portfolio-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(5, 5, 16, 0.9));
-            padding: 40px;
-            transform: translateY(100px);
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(17, 17, 17, 0.9), transparent);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
             transition: var(--transition);
         }
-
+        
         .portfolio-item:hover .portfolio-overlay {
             transform: translateY(0);
-        }
-
-        .portfolio-value {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .portfolio-title {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-
-        .portfolio-description {
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-
-        /* Premium FAQ */
-        .premium-faq {
-            padding: 150px 0;
-            background: radial-gradient(ellipse at center, rgba(6, 214, 160, 0.05) 0%, transparent 70%);
-        }
-
-        .faq-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .faq-item.animated {
             opacity: 1;
-            transform: translateY(0);
         }
-
-        .faq-item:hover {
-            border-color: rgba(139, 92, 246, 0.3);
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
         }
-
-        .faq-question {
-            padding: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: var(--transition);
+        
+        /* OS Ecosystem Section */
+        .ecosystem {
+            padding: 120px 0;
+            background-color: var(--white);
         }
-
-        .faq-question h3 {
-            font-size: 1.5rem;
-            color: var(--light);
-        }
-
-        .faq-toggle {
-            font-size: 1.5rem;
-            color: var(--accent);
-            transition: var(--transition);
-            min-width: 40px;
-            height: 40px;
+        
+        .ecosystem-content {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(6, 214, 160, 0.1);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-answer-content {
-            padding: 0 30px 30px;
-            color: var(--gray);
-            font-size: 1.2rem;
-            line-height: 1.7;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-            background: rgba(6, 214, 160, 0.2);
-        }
-
-        /* £5M Call to Action */
-        .premium-cta-section {
-            padding: 200px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            padding: 18px 36px;
-            border-radius: 15px;
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 800;
-            font-size: 2rem;
-            margin-bottom: 50px;
-            box-shadow: var(--glow);
-            animation: pulseGlow 2s infinite;
-        }
-
-        .cta-title {
-            font-size: 4.5rem;
-            margin-bottom: 40px;
-            background: linear-gradient(90deg, var(--light) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .cta-subtitle {
-            font-size: 1.5rem;
-            color: var(--gray);
-            margin-bottom: 60px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Premium Footer */
-        .premium-footer {
-            padding: 100px 0 50px;
-            background: linear-gradient(180deg, rgba(5, 5, 16, 0) 0%, rgba(5, 5, 16, 1) 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 80px;
-            margin-bottom: 80px;
         }
-
-        .footer-brand {
-            max-width: 500px;
+        
+        .ecosystem-text {
+            flex: 1;
         }
-
-        .footer-logo {
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 900;
-            font-size: 3rem;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 30px;
-            display: block;
+        
+        .ecosystem-visual {
+            flex: 1;
+            position: relative;
+            height: 500px;
         }
-
-        .footer-tagline {
-            color: var(--gray);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-
-        .social-grid {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
+        
+        .os-circle {
+            position: absolute;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light);
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-icon:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .footer-heading {
-            font-size: 1.4rem;
-            color: var(--light);
-            margin-bottom: 40px;
-            font-family: 'Clash Display', sans-serif;
+            background-color: var(--white);
+            box-shadow: 0 15px 40px rgba(255, 149, 0, 0.15);
+            border: 2px solid var(--light-orange);
+            color: var(--primary-orange);
             font-weight: 700;
+            font-size: 20px;
+            transition: var(--transition);
+            cursor: pointer;
         }
-
-        .footer-links {
-            list-style: none;
+        
+        .os-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 50px rgba(255, 149, 0, 0.25);
+            border-color: var(--primary-orange);
         }
-
-        .footer-links li {
+        
+        .os-1 {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 10%;
+        }
+        
+        .os-2 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+        }
+        
+        .os-3 {
+            width: 180px;
+            height: 180px;
+            top: 20%;
+            right: 10%;
+        }
+        
+        .os-4 {
+            width: 130px;
+            height: 130px;
+            bottom: 10%;
+            right: 20%;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: white;
             margin-bottom: 20px;
         }
-
+        
+        .footer-logo span {
+            color: var(--primary-orange);
+        }
+        
+        .footer-desc {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
         .footer-links a {
-            color: var(--gray);
+            display: block;
+            color: #aaa;
             text-decoration: none;
+            margin-bottom: 12px;
             transition: var(--transition);
-            font-size: 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
         }
-
+        
         .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 10px;
+            color: var(--primary-orange);
+            padding-left: 5px;
         }
-
-        .footer-bottom {
+        
+        .copyright {
             text-align: center;
-            padding-top: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--gray);
-            font-size: 1.1rem;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 14px;
         }
-
-        .valuation-display {
-            font-family: 'Clash Display', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-top: 20px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1400px) {
-            .hero-title {
-                font-size: 4.5rem;
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 30px;
             }
             
-            .code-visualization {
-                position: relative;
-                right: 0;
-                top: 0;
-                transform: none;
-                width: 100%;
-                max-width: 100%;
-                margin-top: 80px;
+            .hero-headline {
+                font-size: clamp(3rem, 7vw, 5rem);
             }
             
-            .hero-section {
+            .services-grid, .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .ecosystem-content {
                 flex-direction: column;
-                padding-bottom: 100px;
-            }
-            
-            .section-title {
-                font-size: 3.5rem;
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
                 gap: 60px;
             }
             
-            .process-step:nth-child(odd) .step-content,
-            .process-step:nth-child(even) .step-content {
-                margin: 0 0 0 100px;
-            }
-            
-            .process-line {
-                left: 80px;
-            }
-            
-            .step-marker {
-                left: 80px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-title {
-                font-size: 3.5rem;
-            }
-            
-            .section-title {
-                font-size: 3rem;
-            }
-            
-            .nav-menu {
-                display: none;
-                position: fixed;
-                top: 100px;
-                left: 0;
+            .ecosystem-visual {
                 width: 100%;
-                background: rgba(5, 5, 16, 0.98);
-                padding: 40px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 30px;
-                border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-                backdrop-filter: blur(20px);
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .value-grid {
-                grid-template-columns: 1fr;
             }
         }
-
+        
         @media (max-width: 768px) {
             .container {
                 padding: 0 20px;
             }
             
-            .hero-title {
-                font-size: 2.8rem;
+            .nav-links {
+                display: none;
             }
             
-            .cta-title {
-                font-size: 3rem;
+            .hero-headline {
+                font-size: clamp(2.5rem, 6vw, 4rem);
             }
             
             .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-stats {
-                gap: 30px;
-            }
-            
-            .stat-value {
                 font-size: 2.8rem;
             }
             
-            .hero-actions {
-                flex-direction: column;
-            }
-            
-            .footer-grid {
+            .services-grid, .portfolio-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .graphic-element {
+                display: none;
+            }
         }
-
-        @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2.3rem;
+        
+        @media (max-width: 480px) {
+            .hero-headline {
+                font-size: clamp(2rem, 5vw, 3rem);
             }
             
-            .cta-title {
-                font-size: 2.5rem;
+            .section-title {
+                font-size: 2.2rem;
             }
             
-            .valuation-badge {
-                font-size: 0.9rem;
-                padding: 12px 24px;
-            }
-            
-            .cta-badge {
-                font-size: 1.5rem;
-                padding: 15px 25px;
+            .service-card {
+                padding: 30px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Premium Navigation -->
-    <nav class="premium-nav" id="premiumNav">
-        <div class="container nav-container">
-            <a href="#" class="agency-logo">
-                <i class="fas fa-infinity"></i>
-                NOVA
-                <span class="logo-badge">£5M+</span>
-            </a>
-            
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#value" class="nav-link">Value</a>
-                <a href="#process" class="nav-link">Process</a>
-                <a href="#portfolio" class="nav-link">Portfolio</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#contact" class="premium-cta">
-                    <i class="fas fa-gem"></i>
-                    Start Project
-                </a>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">VIBZ<span>.</span><span class="version">v2.0</span></a>
+                <nav class="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#ecosystem">Ecosystem</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <a href="#contact" class="cta-button">Start a Project</a>
             </div>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
-    </nav>
+    </header>
 
-    <!-- £5M Hero Section -->
-    <section class="hero-section" id="home">
-        <div class="floating-elements">
-            <div class="floating-element"><i class="fas fa-bolt"></i></div>
-            <div class="floating-element"><i class="fas fa-crown"></i></div>
-            <div class="floating-element"><i class="fas fa-rocket"></i></div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="moving-graphics">
+            <div class="graphic-element graphic-1"></div>
+            <div class="graphic-element graphic-2"></div>
+            <div class="graphic-element graphic-3"></div>
+            <div class="graphic-element graphic-4"></div>
+            <div class="graphic-element graphic-5"></div>
         </div>
-        
         <div class="container">
             <div class="hero-content">
-                <div class="valuation-badge">
-                    <i class="fas fa-trophy"></i>
-                    VALUED AT £5,000,000+ IN CLIENT RESULTS
-                </div>
-                
-                <h1 class="hero-title">DIGITAL TRANSFORMATION AT £5M SCALE</h1>
-                
-                <p class="hero-subtitle">
-                    We architect digital experiences that increase enterprise valuation by 300-500%. For businesses that demand exponential growth, not incremental improvement.
-                </p>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">£5M+</div>
-                        <div class="stat-label">Average Value Created</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">412%</div>
-                        <div class="stat-label">Average ROI</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">7.3x</div>
-                        <div class="stat-label">Growth Multiplier</div>
-                    </div>
-                </div>
-                
-                <div class="hero-actions">
-                    <a href="#contact" class="premium-cta">
-                        <i class="fas fa-gem"></i>
-                        Book £5M Consultation
-                    </a>
-                    <a href="#portfolio" class="secondary-action">
-                        <i class="fas fa-eye"></i>
-                        View £5M Portfolio
-                    </a>
-                </div>
+                <div class="hero-tagline">VIBZ v2.0 LIVE</div>
+                <h1 class="hero-headline">DESIGNING<br><span>FUTURE</span><br>APPS</h1>
+                <p class="hero-subtitle">VIBZ is the digital atelier for high-end interfaces. We craft premium digital experiences for visionary brands, combining cutting-edge technology with unparalleled design aesthetics.</p>
+                <a href="#ecosystem" class="cta-button">Explore OS Ecosystem →</a>
             </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Design Expertise</h2>
+            <p class="section-subtitle">We provide end-to-end digital design solutions that transform user experiences and drive business growth.</p>
             
-            <div class="code-visualization">
-                <div class="quantum-terminal" id="quantumTerminal">
-                    <div class="terminal-header">
-                        <div class="terminal-title">NOVA_£5M_ENGINE.js</div>
-                        <div class="terminal-controls">
-                            <div class="control-dot dot-red"></div>
-                            <div class="control-dot dot-yellow"></div>
-                            <div class="control-dot dot-green"></div>
-                        </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
                     </div>
-                    
-                    <div class="code-editor-container">
-                        <div class="code-line">
-                            <span class="line-number">1</span>
-                            <span class="code-keyword">class</span> <span class="code-class">NovaDigitalTransformation</span> <span class="code-brace">{</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">2</span>
-                            <span class="code-text">  </span><span class="code-keyword">constructor</span><span class="code-brace">()</span> <span class="code-brace">{</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">3</span>
-                            <span class="code-text">    </span><span class="code-keyword">this</span><span class="code-dot">.</span><span class="code-variable">valuation</span> <span class="code-operator">=</span> <span class="code-string">"£5,000,000+"</span><span class="code-semicolon">;</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">4</span>
-                            <span class="code-text">    </span><span class="code-keyword">this</span><span class="code-dot">.</span><span class="code-variable">roiMultiplier</span> <span class="code-operator">=</span> <span class="code-number">7.3</span><span class="code-semicolon">;</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">5</span>
-                            <span class="code-text">    </span><span class="code-keyword">this</span><span class="code-dot">.</span><span class="code-variable">premiumTechStack</span> <span class="code-operator">=</span> <span class="code-brace">[</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">6</span>
-                            <span class="code-text">      </span><span class="code-string">"Next.js 14"</span><span class="code-semicolon">,</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">7</span>
-                            <span class="code-text">      </span><span class="code-string">"Three.js/WebGL"</span><span class="code-semicolon">,</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">8</span>
-                            <span class="code-text">      </span><span class="code-string">"AI Integration"</span><span class="code-semicolon">,</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">9</span>
-                            <span class="code-text">      </span><span class="code-string">"Quantum Design Systems"</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">10</span>
-                            <span class="code-text">    </span><span class="code-brace">]</span><span class="code-semicolon">;</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">11</span>
-                            <span class="code-text">  </span><span class="code-brace">}</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">12</span>
-                            <span class="code-text">  </span><span class="code-comment">// Transform business valuation exponentially</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">13</span>
-                            <span class="code-text">  </span><span class="code-function">transformBusiness</span><span class="code-brace">(</span><span class="code-variable">business</span><span class="code-brace">)</span> <span class="code-brace">{</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">14</span>
-                            <span class="code-text">    </span><span class="code-keyword">return</span> <span class="code-variable">business</span> <span class="code-operator">*</span> <span class="code-keyword">this</span><span class="code-dot">.</span><span class="code-variable">roiMultiplier</span><span class="code-semicolon">;</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">15</span>
-                            <span class="code-text">  </span><span class="code-brace">}</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">16</span>
-                            <span class="code-text"></span><span class="code-brace">}</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">17</span>
-                            <span class="code-text"></span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">18</span>
-                            <span class="code-comment">// Initialize £5M+ transformation engine</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">19</span>
-                            <span class="code-text"></span><span class="code-keyword">const</span> <span class="code-variable">novaEngine</span> <span class="code-operator">=</span> <span class="code-keyword">new</span> <span class="code-class">NovaDigitalTransformation</span><span class="code-brace">()</span><span class="code-semicolon">;</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">20</span>
-                            <span class="code-text"></span><span class="code-variable">console</span><span class="code-dot">.</span><span class="code-function">log</span><span class="code-brace">(</span><span class="code-string code-highlight">"£5M Digital Transformation Ready"</span><span class="code-brace">)</span><span class="code-semicolon">;</span>
-                        </div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-desc">Creating intuitive, beautiful interfaces that engage users and deliver exceptional experiences across all platforms.</p>
+                    <a href="#" class="cta-button" style="padding: 12px 28px; font-size: 14px;">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
+                    <h3 class="service-title">App Development</h3>
+                    <p class="service-desc">Building high-performance mobile and web applications with cutting-edge technologies and flawless execution.</p>
+                    <a href="#" class="cta-button" style="padding: 12px 28px; font-size: 14px;">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="service-title">Digital Strategy</h3>
+                    <p class="service-desc">Developing comprehensive digital roadmaps that align with business objectives and drive measurable results.</p>
+                    <a href="#" class="cta-button" style="padding: 12px 28px; font-size: 14px;">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- £5M Value Proposition -->
-    <section class="value-section" id="value">
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
         <div class="container">
-            <div class="section-label">WHY NOVA COMMANDS £5M+</div>
-            <h2 class="section-title">We Don't Build Websites. We Engineer Digital Assets That 10X Valuation.</h2>
-            <p class="section-subtitle">Our methodology has generated over £250M in combined client valuation increase through strategic digital transformation.</p>
-            
-            <div class="value-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Valuation Architecture</h3>
-                    <p>We design digital platforms that directly contribute to business valuation multiples. Every element is engineered to increase enterprise worth, from conversion architecture to scalable infrastructure.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>AI-Powered Intelligence</h3>
-                    <p>Proprietary AI systems analyze user behavior to optimize conversion paths in real-time. Machine learning models predict customer value and personalize experiences at enterprise scale.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Enterprise Security</h3>
-                    <p>Bank-level security protocols, SOC2 compliance, and penetration testing ensure your digital assets are protected. We build fortresses, not just websites.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-infinity"></i>
-                    </div>
-                    <h3>Quantum Scalability</h3>
-                    <p>Infrastructure designed to handle 1000x traffic spikes without performance degradation. Microservices architecture ensures seamless growth as your valuation increases.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quantum Process -->
-    <section class="quantum-process" id="process">
-        <div class="container">
-            <div class="section-label">QUANTUM PROCESS</div>
-            <h2 class="section-title">The £5M Transformation Methodology</h2>
-            <p class="section-subtitle">A proprietary 5-phase approach refined through £250M+ in client success.</p>
-            
-            <div class="process-container">
-                <div class="process-line"></div>
-                
-                <div class="process-timeline">
-                    <div class="process-step">
-                        <div class="step-content">
-                            <h3 class="step-title">Valuation Discovery</h3>
-                            <p class="step-description">Deep analysis of your business model, market positioning, and growth levers. We identify digital transformation opportunities that can 10X valuation within 12-24 months.</p>
-                        </div>
-                        <div class="step-marker">
-                            <span class="step-number">1</span>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step">
-                        <div class="step-content">
-                            <h3 class="step-title">Strategic Architecture</h3>
-                            <p class="step-description">Design of scalable digital infrastructure with built-in growth mechanisms. We architect systems that support exponential scaling without technical debt.</p>
-                        </div>
-                        <div class="step-marker">
-                            <span class="step-number">2</span>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step">
-                        <div class="step-content">
-                            <h3 class="step-title">Quantum Development</h3>
-                            <p class="step-description">Enterprise-grade development with cutting-edge technologies: WebGL, AI integration, real-time analytics, and proprietary optimization algorithms.</p>
-                        </div>
-                        <div class="step-marker">
-                            <span class="step-number">3</span>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step">
-                        <div class="step-content">
-                            <h3 class="step-title">Performance Launch</h3>
-                            <p class="step-description">Strategic deployment with automated scaling, security hardening, and conversion tracking. We ensure maximum impact from day one.</p>
-                        </div>
-                        <div class="step-marker">
-                            <span class="step-number">4</span>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step">
-                        <div class="step-content">
-                            <h3 class="step-title">Growth Amplification</h3>
-                            <p class="step-description">Ongoing optimization, AI-driven insights, and strategic scaling. We don't just launch—we amplify results continuously for 24 months.</p>
-                        </div>
-                        <div class="step-marker">
-                            <span class="step-number">5</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- £5M Portfolio -->
-    <section class="portfolio-section" id="portfolio">
-        <div class="container">
-            <div class="section-label">£5M PORTFOLIO</div>
-            <h2 class="section-title">Digital Transformations That Multiplied Valuation</h2>
-            <p class="section-subtitle">Case studies demonstrating 300-800% valuation increases within 18 months.</p>
+            <h2 class="section-title">Premium Projects</h2>
+            <p class="section-subtitle">A curated selection of our high-end digital creations for global brands and innovative startups.</p>
             
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="FinTech Platform" class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Finance App Design" class="portfolio-img">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-value">
-                            <i class="fas fa-pound-sign"></i>
-                            £8.2M Valuation Increase
-                        </div>
-                        <h3 class="portfolio-title">Quantum FinTech Platform</h3>
-                        <p class="portfolio-description">Transformed traditional finance institution into digital-first platform, resulting in 620% valuation increase and Series B funding.</p>
+                        <h3>Nexus Finance App</h3>
+                        <p>Complete UI/UX redesign for a global financial services platform</p>
                     </div>
                 </div>
                 
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1551836026-d5c2c5af78e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="HealthTech Solution" class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Fitness App Design" class="portfolio-img">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-value">
-                            <i class="fas fa-pound-sign"></i>
-                            £5.7M Valuation Increase
-                        </div>
-                        <h3 class="portfolio-title">HealthTech Enterprise Solution</h3>
-                        <p class="portfolio-description">AI-powered platform that increased patient acquisition by 340% and enabled £12M acquisition within 24 months.</p>
+                        <h3>Vitality Fitness OS</h3>
+                        <p>Comprehensive health and fitness ecosystem with wearable integration</p>
                     </div>
                 </div>
                 
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-commerce Platform" class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="E-commerce Platform" class="portfolio-img">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-value">
-                            <i class="fas fa-pound-sign"></i>
-                            £12.4M Valuation Increase
-                        </div>
-                        <h3 class="portfolio-title">Luxury E-commerce Ecosystem</h3>
-                        <p class="portfolio-description">Complete digital transformation resulting in 720% revenue growth and positioning for £50M+ exit.</p>
+                        <h3>Aura Luxury Retail</h3>
+                        <p>Immersive e-commerce experience for high-end fashion brand</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Premium FAQ -->
-    <section class="premium-faq" id="faq">
+    <!-- OS Ecosystem Section -->
+    <section class="ecosystem" id="ecosystem">
         <div class="container">
-            <div class="section-label">ELITE FAQ</div>
-            <h2 class="section-title">£5M Digital Transformation Questions</h2>
-            <p class="section-subtitle">Understanding enterprise-level digital architecture and valuation engineering.</p>
+            <h2 class="section-title">Explore OS Ecosystem</h2>
+            <p class="section-subtitle">Our proprietary operating system for digital experiences that seamlessly integrates across platforms and devices.</p>
             
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How do you justify £5M+ in client value creation?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Our methodology focuses on digital assets that directly impact business valuation multiples. We've engineered platforms that enabled clients to raise funding at 5-10X higher valuations, achieve acquisition multiples 3-4X industry standard, and increase enterprise value through scalable digital infrastructure. The £5M figure represents average value created across our portfolio.</p>
-                        </div>
-                    </div>
+            <div class="ecosystem-content">
+                <div class="ecosystem-text">
+                    <h3 style="font-size: 2.5rem; margin-bottom: 30px;">The Future of Digital Interaction</h3>
+                    <p style="margin-bottom: 20px; font-size: 18px;">VIBZ OS is our groundbreaking framework that powers next-generation digital products. It combines design intelligence, adaptive interfaces, and predictive user behavior modeling.</p>
+                    <p style="margin-bottom: 30px; font-size: 18px;">With modules for analytics, personalization, and cross-platform synchronization, VIBZ OS reduces development time by 40% while increasing user engagement metrics by over 60%.</p>
+                    <a href="#" class="cta-button">Request OS Demo →</a>
                 </div>
                 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What's included in your £5M transformation package?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Complete enterprise solution: valuation analysis, strategic architecture, quantum development, AI integration, security hardening, performance optimization, 24-month growth amplification, and ongoing optimization. We also provide investor-ready documentation and valuation support materials.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How long does £5M transformation take?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Phase 1 (3 months): Discovery & Architecture. Phase 2 (4 months): Development & Testing. Phase 3 (2 months): Launch & Optimization. Total timeline: 9 months to launch with 24 months of growth amplification. First measurable valuation impact typically within 6 months.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you work with pre-revenue startups?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>We specialize in pre-revenue to Series B companies where digital transformation can have maximum impact on valuation. Our minimum engagement is £250,000 for startups with clear path to £5M+ valuation increase within 18-24 months.</p>
-                        </div>
-                    </div>
+                <div class="ecosystem-visual">
+                    <div class="os-circle os-1">UI Kit</div>
+                    <div class="os-circle os-2">Analytics</div>
+                    <div class="os-circle os-3">VIBZ OS Core</div>
+                    <div class="os-circle os-4">Sync Engine</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- £5M Call to Action -->
-    <section class="premium-cta-section" id="contact">
+    <!-- Footer -->
+    <footer id="contact">
         <div class="container">
-            <div class="cta-content">
-                <div class="cta-badge">
-                    <i class="fas fa-crown"></i>
-                    READY FOR £5M TRANSFORMATION?
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">VIBZ<span>.</span></div>
+                    <p class="footer-desc">VIBZ is the digital atelier for high-end interfaces. We design and build premium digital experiences for the world's most visionary brands.</p>
+                    <a href="#" class="cta-button">Start a Project</a>
                 </div>
                 
-                <h2 class="cta-title">Let's Engineer Your Digital Valuation Multiplier</h2>
-                
-                <p class="cta-subtitle">
-                    Schedule a confidential consultation with our valuation architects. Discover how digital transformation can 5-10X your enterprise worth within 24 months.
-                </p>
-                
-                <a href="#contact" class="premium-cta" style="font-size: 1.4rem; padding: 22px 50px;">
-                    <i class="fas fa-gem"></i>
-                    Book £5M Strategy Session
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Premium Footer -->
-    <footer class="premium-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="footer-logo">NOVA</a>
-                    <p class="footer-tagline">
-                        Elite digital transformation for businesses demanding exponential growth. We engineer digital assets that increase enterprise valuation by 300-500% through strategic architecture, quantum development, and AI-powered optimization.
-                    </p>
-                    <div class="social-grid">
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-dribbble"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-behance"></i></a>
+                <div class="footer-services">
+                    <h4 class="footer-heading">Services</h4>
+                    <div class="footer-links">
+                        <a href="#">UI/UX Design</a>
+                        <a href="#">App Development</a>
+                        <a href="#">Digital Strategy</a>
+                        <a href="#">Brand Identity</a>
+                        <a href="#">Product Design</a>
                     </div>
                 </div>
                 
-                <div class="footer-column">
-                    <h3 class="footer-heading">Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> £5M Valuation Engineering</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Quantum Development</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> AI Integration</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Growth Amplification</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Investor Readiness</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3 class="footer-heading">Industries</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> FinTech & Banking</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> HealthTech</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Enterprise SaaS</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> E-commerce</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Luxury Brands</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3 class="footer-heading">Contact</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> valuation@novadigital.com</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> +44 20 7946 0958</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Mayfair, London</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Schedule Consultation</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Download Prospectus</a></li>
-                    </ul>
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Contact</h4>
+                    <div class="footer-links">
+                        <a href="mailto:hello@vibz.design">hello@vibz.design</a>
+                        <a href="tel:+441234567890">+44 123 456 7890</a>
+                        <a href="#">London Studio</a>
+                        <a href="#">New York Office</a>
+                        <a href="#">Tokyo Partner</a>
+                    </div>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>© 2023 NOVA Digital Transformation. All Rights Reserved. Enterprise-level digital architecture.</p>
-                <div class="valuation-display">
-                    VALUING BUSINESSES AT £5,000,000+ THROUGH DIGITAL EXCELLENCE
-                </div>
+            <div class="copyright">
+                <p>&copy; 2023 VIBZ Digital Atelier. All rights reserved. | Valuing at £5,000,000+ in design function</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Premium Navigation Scroll Effect
+        // Header scroll effect
         window.addEventListener('scroll', function() {
-            const nav = document.getElementById('premiumNav');
+            const header = document.getElementById('header');
             if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
+                header.classList.add('scrolled');
             } else {
-                nav.classList.remove('scrolled');
+                header.classList.remove('scrolled');
             }
         });
-
-        // Mobile Navigation Toggle
-        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
-        });
-
-        // Scroll Animations
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.process-step, .faq-item, .value-card, .portfolio-item');
+        
+        // Moving graphics interaction
+        document.addEventListener('mousemove', function(e) {
+            const graphics = document.querySelectorAll('.graphic-element');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
             
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
+            graphics.forEach((graphic, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const x = (mouseX * speed * 100) - 50;
+                const y = (mouseY * speed * 100) - 50;
                 
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('animated');
-                }
-            });
-        }
-
-        // Initialize animations
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
-
-        // FAQ Toggle Functionality
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                item.classList.toggle('active');
+                graphic.style.transform = `translate(${x}px, ${y}px) rotate(${mouseX * 360}deg)`;
             });
         });
-
-        // Quantum Terminal 3D Effect
-        const quantumTerminal = document.getElementById('quantumTerminal');
-        if (quantumTerminal) {
-            quantumTerminal.addEventListener('mousemove', (e) => {
-                const { left, top, width, height } = quantumTerminal.getBoundingClientRect();
-                const x = (e.clientX - left) / width - 0.5;
-                const y = (e.clientY - top) / height - 0.5;
-                
-                quantumTerminal.style.transform = `perspective(2000px) rotateY(${x * 15}deg) rotateX(${-y * 10}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            
-            quantumTerminal.addEventListener('mouseleave', () => {
-                quantumTerminal.style.transform = 'perspective(2000px) rotateY(0) rotateX(0) scale3d(1, 1, 1)';
-            });
-        }
-
-        // Animated Counter for Stats
-        function animateCounter(element, target, suffix = '') {
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target + suffix;
-                    clearInterval(timer);
-                } else {
-                    if (suffix === '%' || suffix === 'x') {
-                        element.textContent = current.toFixed(1) + suffix;
-                    } else {
-                        element.textContent = Math.floor(current) + suffix;
-                    }
-                }
-            }, 30);
-        }
-
-        // Initialize counters when in view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statValues = document.querySelectorAll('.stat-value');
-                    statValues.forEach(stat => {
-                        let target, suffix = '';
-                        const text = stat.textContent;
-                        
-                        if (text.includes('£')) {
-                            target = 5000000;
-                            suffix = '+';
-                        } else if (text.includes('%')) {
-                            target = 412;
-                            suffix = '%';
-                        } else if (text.includes('x')) {
-                            target = 7.3;
-                            suffix = 'x';
-                        }
-                        
-                        animateCounter(stat, target, suffix);
-                    });
-                    
-                    observer.disconnect();
-                }
-            });
-        }, { threshold: 0.5 });
-
-        observer.observe(document.querySelector('.hero-stats'));
-
-        // Floating Elements Animation Enhancement
-        document.querySelectorAll('.floating-element').forEach((element, index) => {
-            element.style.animationDelay = `${index * 0.5}s`;
-        });
-
-        // Smooth Scrolling for Navigation Links
+        
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1836,28 +815,42 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    if (window.innerWidth <= 992) {
-                        document.getElementById('navMenu').classList.remove('active');
-                    }
                 }
             });
         });
-
-        // Code Line Animation on Hover
-        document.querySelectorAll('.code-line').forEach(line => {
-            line.addEventListener('mouseenter', () => {
-                line.style.transform = 'translateX(10px)';
-                line.style.transition = 'transform 0.3s ease';
+        
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
-            
-            line.addEventListener('mouseleave', () => {
-                line.style.transform = 'translateX(0)';
-            });
+        }, observerOptions);
+        
+        // Observe service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // Observe portfolio items
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
         });
     </script>
 </body>
