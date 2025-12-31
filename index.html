@@ -3,53 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBZ | Elite Web Design for Local Businesses</title>
+    <title>VIBZ | £1M+ Elite Web Design</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #7C3AED;
+            --primary-dark: #6D28D9;
+            --secondary: #EC4899;
+            --accent: #06B6D4;
+            --dark: #0F172A;
+            --darker: #020617;
+            --light: #F8FAFC;
+            --gray: #64748B;
+            --success: #10B981;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        :root {
-            --primary: #6C63FF;
-            --primary-dark: #554FD8;
-            --secondary: #FF6584;
-            --dark: #1A1A2E;
-            --light: #F8F9FA;
-            --gray: #6C757D;
-            --success: #36D399;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+
+        html {
+            scroll-behavior: smooth;
         }
-        
+
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark);
-            background-color: var(--light);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
             overflow-x: hidden;
             line-height: 1.6;
         }
-        
+
         h1, h2, h3, h4, h5 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            line-height: 1.1;
         }
-        
+
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
-        
-        /* Header & Navigation */
-        header {
+
+        /* App-like Navigation */
+        .app-nav {
             position: fixed;
             top: 0;
             left: 0;
@@ -57,738 +65,1173 @@
             z-index: 1000;
             padding: 20px 0;
             transition: var(--transition);
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid var(--glass-border);
         }
-        
-        header.scrolled {
+
+        .app-nav.scrolled {
             padding: 15px 0;
+            background: rgba(2, 6, 23, 0.95);
             box-shadow: var(--shadow);
         }
-        
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
-        .logo {
-            font-family: 'Montserrat', sans-serif;
+
+        .app-logo {
+            font-family: 'Outfit', sans-serif;
             font-weight: 900;
-            font-size: 2rem;
-            color: var(--primary);
+            font-size: 2.2rem;
+            color: var(--light);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-        
-        .logo i {
-            font-size: 1.8rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-        
-        .cta-button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
-        }
-        
-        .cta-button:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark);
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 100px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 101, 132, 0.05) 100%);
-            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
-            z-index: -1;
-        }
-        
-        .hero-content {
-            max-width: 600px;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
+            gap: 12px;
             background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 40px;
-        }
-        
-        .hero-buttons {
+
+        .nav-items {
             display: flex;
-            gap: 20px;
+            gap: 40px;
+            align-items: center;
         }
-        
-        .secondary-button {
-            background-color: transparent;
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
             color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px 28px;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .app-cta {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+        }
+
+        .app-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.4);
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* App-like Hero Section */
+        .app-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            background: radial-gradient(ellipse at top, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge i {
+            color: var(--success);
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            line-height: 1;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--light) 0%, var(--primary) 30%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--gray);
+            margin-bottom: 50px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .secondary-cta {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--glass-border);
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
             display: inline-block;
         }
-        
-        .secondary-button:hover {
-            background-color: rgba(108, 99, 255, 0.1);
+
+        .secondary-cta:hover {
+            border-color: var(--primary);
+            background: rgba(124, 58, 237, 0.1);
             transform: translateY(-3px);
         }
-        
-        .hero-visual {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50%;
-            max-width: 700px;
+
+        /* HTML Code Editor Visualization */
+        .code-visualization {
+            position: relative;
+            perspective: 1000px;
         }
-        
-        .code-screen {
-            background-color: var(--dark);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: var(--shadow-lg);
-            transform: perspective(1000px) rotateY(-10deg);
+
+        .code-terminal {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
             transition: var(--transition);
             overflow: hidden;
+            position: relative;
         }
-        
-        .code-screen:hover {
-            transform: perspective(1000px) rotateY(-5deg);
+
+        .code-terminal:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9) 0%, transparent 100%);
+            z-index: 2;
+            pointer-events: none;
         }
-        
-        .screen-header {
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .terminal-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--light);
+        }
+
+        .terminal-controls {
             display: flex;
             gap: 10px;
-            margin-bottom: 20px;
         }
-        
-        .screen-dot {
-            width: 12px;
-            height: 12px;
+
+        .control-dot {
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
         }
-        
-        .dot-red { background-color: #FF5F56; }
+
+        .dot-red { background-color: #FF5F57; }
         .dot-yellow { background-color: #FFBD2E; }
-        .dot-green { background-color: #27CA3F; }
-        
-        .code-content {
+        .dot-green { background-color: #28CA42; }
+
+        .code-editor {
             font-family: 'Courier New', monospace;
-            color: #fff;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            overflow-x: auto;
         }
-        
+
         .code-line {
-            margin-bottom: 8px;
             display: flex;
+            margin-bottom: 5px;
             align-items: flex-start;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInCode 0.8s forwards;
         }
-        
+
+        .code-line:nth-child(1) { animation-delay: 0.2s; }
+        .code-line:nth-child(2) { animation-delay: 0.4s; }
+        .code-line:nth-child(3) { animation-delay: 0.6s; }
+        .code-line:nth-child(4) { animation-delay: 0.8s; }
+        .code-line:nth-child(5) { animation-delay: 1.0s; }
+        .code-line:nth-child(6) { animation-delay: 1.2s; }
+        .code-line:nth-child(7) { animation-delay: 1.4s; }
+        .code-line:nth-child(8) { animation-delay: 1.6s; }
+        .code-line:nth-child(9) { animation-delay: 1.8s; }
+        .code-line:nth-child(10) { animation-delay: 2.0s; }
+
+        @keyframes slideInCode {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .line-number {
-            color: #6C757D;
-            min-width: 30px;
+            color: var(--gray);
+            min-width: 40px;
             text-align: right;
-            margin-right: 15px;
+            margin-right: 20px;
+            user-select: none;
         }
-        
+
         .code-tag { color: #FF79C6; }
         .code-attr { color: #8BE9FD; }
         .code-value { color: #F1FA8C; }
         .code-text { color: #F8F8F2; }
-        
-        /* Sections Common */
-        section {
-            padding: 100px 0;
+        .code-comment { color: #6272A4; }
+        .code-class { color: #50FA7B; }
+        .code-function { color: #FFB86C; }
+
+        .code-highlight {
+            background: rgba(124, 58, 237, 0.2);
+            padding: 2px 5px;
+            border-radius: 4px;
+            animation: pulseHighlight 2s infinite;
         }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
+
+        @keyframes pulseHighlight {
+            0%, 100% { background: rgba(124, 58, 237, 0.2); }
+            50% { background: rgba(124, 58, 237, 0.4); }
         }
-        
-        .section-title h2 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            max-width: 600px;
-            margin: 0 auto;
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-        
-        /* Process Section */
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-            position: relative;
-        }
-        
-        .process-step {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            padding: 30px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
             z-index: 1;
         }
-        
-        .process-step:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+
+        .floating-element {
+            position: absolute;
+            border-radius: 10px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.5rem;
+            animation: float 6s ease-in-out infinite;
         }
-        
-        .step-number {
+
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: -5%;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0 auto 20px;
+            animation-delay: 0s;
+            background: rgba(124, 58, 237, 0.2);
         }
-        
-        .process-step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        /* FAQ Section */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            margin-bottom: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            background-color: white;
-        }
-        
-        .faq-question {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .faq-question h3 {
-            font-size: 1.2rem;
-        }
-        
-        .faq-toggle {
-            font-size: 1.2rem;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-        
-        .faq-answer-content {
-            padding: 0 20px 20px;
-            color: var(--gray);
-        }
-        
-        .faq-item.active .faq-question {
-            background-color: rgba(108, 99, 255, 0.05);
-        }
-        
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-        
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: 15px;
-            padding: 40px 30px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .service-icon {
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: -3%;
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 50%;
+            animation-delay: 1s;
+            background: rgba(236, 72, 153, 0.2);
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 5%;
+            width: 50px;
+            height: 50px;
+            animation-delay: 2s;
+            background: rgba(6, 182, 212, 0.2);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* App-like Process Section */
+        .app-process {
+            padding: 150px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: var(--light);
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .process-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary) 0%, var(--secondary) 100%);
+            opacity: 0.3;
+        }
+
+        .process-step {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2rem;
-            color: white;
-        }
-        
-        /* Animations */
-        .animate-on-scroll {
+            margin-bottom: 100px;
+            position: relative;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(50px);
+            transition: var(--transition);
         }
-        
-        .animate-on-scroll.animated {
+
+        .process-step.animated {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 80px 0 30px;
+
+        .process-step:nth-child(odd) {
+            flex-direction: row;
         }
-        
-        .footer-content {
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .step-content {
+            flex: 1;
+            padding: 40px;
+            background: var(--glass);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step:nth-child(odd) .step-content {
+            margin-right: 60px;
+        }
+
+        .process-step:nth-child(even) .step-content {
+            margin-left: 60px;
+        }
+
+        .step-marker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--light);
+            z-index: 3;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .step-number {
+            color: var(--light);
+        }
+
+        .step-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .step-description {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* App-like FAQ Section */
+        .app-faq {
+            padding: 150px 0;
+            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+        }
+
+        .faq-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        .footer-column h3 {
+
+        .faq-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .faq-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .faq-question h3 {
             font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: white;
+            color: var(--light);
         }
-        
-        .footer-links {
-            list-style: none;
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: var(--transition);
         }
-        
-        .footer-links li {
-            margin-bottom: 12px;
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .footer-links a {
-            color: #aaa;
+
+        .faq-answer-content {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            padding-top: 10px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Value Proposition */
+        .value-proposition {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--darker) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .value-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.4);
+        }
+
+        .value-badge i {
+            font-size: 2rem;
+        }
+
+        .value-statement {
+            font-size: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            line-height: 1.3;
+        }
+
+        .value-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            color: var(--gray);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* App Footer */
+        .app-footer {
+            padding: 80px 0 40px;
+            background: var(--dark);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            max-width: 400px;
+        }
+
+        .footer-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-tagline {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
             text-decoration: none;
             transition: var(--transition);
         }
-        
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            color: var(--light);
+            margin-bottom: 30px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
         .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
+            color: var(--primary);
+            padding-left: 10px;
         }
-        
-        .copyright {
+
+        .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 0.9rem;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--gray);
+            font-size: 1rem;
         }
-        
+
+        .footer-bottom strong {
+            color: var(--primary);
+        }
+
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .section-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero-grid {
+                gap: 40px;
+            }
+        }
+
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .hero-visual {
-                position: relative;
-                width: 100%;
-                max-width: 100%;
-                transform: none;
-                margin-top: 50px;
-            }
-            
-            .code-screen {
-                transform: none;
-            }
-            
-            .hero {
-                padding-top: 150px;
+            .hero-grid {
+                grid-template-columns: 1fr;
                 text-align: center;
             }
             
-            .hero-bg {
-                display: none;
+            .code-visualization {
+                order: -1;
+                max-width: 800px;
+                margin: 0 auto;
             }
             
-            .hero-buttons {
-                justify-content: center;
+            .faq-grid {
+                grid-template-columns: 1fr;
             }
             
-            .process-steps {
-                flex-direction: column;
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .process-timeline:before {
+                left: 30px;
+            }
+            
+            .process-step {
+                flex-direction: row !important;
+            }
+            
+            .process-step:nth-child(odd) .step-content,
+            .process-step:nth-child(even) .step-content {
+                margin-left: 80px;
+                margin-right: 0;
+            }
+            
+            .step-marker {
+                left: 30px;
             }
         }
-        
+
         @media (max-width: 768px) {
-            .nav-links {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .nav-items {
                 display: none;
             }
             
-            .mobile-menu-btn {
+            .mobile-nav-toggle {
                 display: block;
             }
             
-            .hero h1 {
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .value-metrics {
+                gap: 40px;
+            }
+            
+            .metric-value {
+                font-size: 2.8rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
                 font-size: 2.5rem;
             }
             
-            .section-title h2 {
+            .section-title {
                 font-size: 2.2rem;
             }
             
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .value-statement {
+                font-size: 1.8rem;
+            }
+            
+            .value-badge {
+                font-size: 1.4rem;
+                padding: 12px 24px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
+    <!-- App Navigation -->
+    <nav class="app-nav" id="appNav">
         <div class="container nav-container">
-            <a href="#" class="logo">
+            <a href="#" class="app-logo">
                 <i class="fas fa-cube"></i> VIBZ
             </a>
             
-            <nav>
-                <div class="nav-links">
-                    <a href="#home">Home</a>
-                    <a href="#services">Services</a>
-                    <a href="#process">Process</a>
-                    <a href="#faq">FAQ</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </nav>
+            <div class="nav-items" id="navItems">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#value" class="nav-link">Value</a>
+                <a href="#contact" class="app-cta">Start Project</a>
+            </div>
             
-            <a href="#contact" class="cta-button">Start Your Site</a>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-nav-toggle" id="mobileNavToggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content animate-on-scroll">
-                <h1>Elite Web Design for Local Businesses</h1>
-                <p>Modern websites that win customers. Fast, conversion-focused sites tailored for barbers, dentists, trades, salons, cafes, and more local services.</p>
-                <div class="hero-buttons">
-                    <a href="#process" class="cta-button">Explore Concepts</a>
-                    <a href="#contact" class="secondary-button">Start Your Site</a>
-                </div>
-            </div>
+    <!-- App Hero Section -->
+    <section class="app-hero" id="home">
+        <div class="floating-elements">
+            <div class="floating-element"><i class="fas fa-code"></i></div>
+            <div class="floating-element"><i class="fas fa-palette"></i></div>
+            <div class="floating-element"><i class="fas fa-rocket"></i></div>
         </div>
         
-        <div class="hero-bg"></div>
-        
-        <div class="hero-visual animate-on-scroll">
-            <div class="code-screen">
-                <div class="screen-header">
-                    <div class="screen-dot dot-red"></div>
-                    <div class="screen-dot dot-yellow"></div>
-                    <div class="screen-dot dot-green"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fas fa-crown"></i>
+                        <span>VALUED AT £1M+ IN CLIENT RESULTS</span>
+                    </div>
+                    
+                    <h1 class="hero-title">ELITE WEB DESIGN FOR BUSINESSES THAT WIN</h1>
+                    
+                    <p class="hero-subtitle">
+                        Modern, conversion-focused websites engineered for barbers, dentists, trades, salons, cafes, and premium local services. We don't just build websites—we build £1M+ digital assets.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="#process" class="app-cta">Explore Concepts</a>
+                        <a href="#contact" class="secondary-cta">Start Your £1M Site</a>
+                    </div>
                 </div>
-                <div class="code-content">
-                    <div class="code-line"><span class="line-number">1</span> <span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-value">"vibz-website"</span><span class="code-tag">&gt;</span></div>
-                    <div class="code-line"><span class="line-number">2</span>   <span class="code-tag">&lt;section</span> <span class="code-attr">id</span>=<span class="code-value">"hero"</span><span class="code-tag">&gt;</span></div>
-                    <div class="code-line"><span class="line-number">3</span>     <span class="code-tag">&lt;h1&gt;</span><span class="code-text">Modern Web Design</span><span class="code-tag">&lt;/h1&gt;</span></div>
-                    <div class="code-line"><span class="line-number">4</span>     <span class="code-tag">&lt;p&gt;</span><span class="code-text">Convert visitors into customers</span><span class="code-tag">&lt;/p&gt;</span></div>
-                    <div class="code-line"><span class="line-number">5</span>     <span class="code-tag">&lt;button</span> <span class="code-attr">class</span>=<span class="code-value">"cta-button"</span><span class="code-tag">&gt;</span></div>
-                    <div class="code-line"><span class="line-number">6</span>       <span class="code-text">Get Started</span></div>
-                    <div class="code-line"><span class="line-number">7</span>     <span class="code-tag">&lt;/button&gt;</span></div>
-                    <div class="code-line"><span class="line-number">8</span>   <span class="code-tag">&lt;/section&gt;</span></div>
-                    <div class="code-line"><span class="line-number">9</span>   <span class="code-tag">&lt;section</span> <span class="code-attr">class</span>=<span class="code-value">"services"</span><span class="code-tag">&gt;</span></div>
-                    <div class="code-line"><span class="line-number">10</span>     <span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-value">"service-card"</span><span class="code-tag">&gt;</span></div>
-                    <div class="code-line"><span class="line-number">11</span>       <span class="code-tag">&lt;h3&gt;</span><span class="code-text">Responsive Design</span><span class="code-tag">&lt;/h3&gt;</span></div>
-                    <div class="code-line"><span class="line-number">12</span>     <span class="code-tag">&lt;/div&gt;</span></div>
-                    <div class="code-line"><span class="line-number">13</span>   <span class="code-tag">&lt;/section&gt;</span></div>
-                    <div class="code-line"><span class="line-number">14</span> <span class="code-tag">&lt;/div&gt;</span></div>
+                
+                <div class="code-visualization">
+                    <div class="code-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-title">vibz-website.html</div>
+                            <div class="terminal-controls">
+                                <div class="control-dot dot-red"></div>
+                                <div class="control-dot dot-yellow"></div>
+                                <div class="control-dot dot-green"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="code-editor">
+                            <div class="code-line">
+                                <span class="line-number">1</span>
+                                <span class="code-tag">&lt;!DOCTYPE html&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">2</span>
+                                <span class="code-tag">&lt;html</span> <span class="code-attr">lang</span>=<span class="code-value">"en"</span><span class="code-tag">&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">3</span>
+                                <span class="code-tag">&lt;head&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">4</span>
+                                <span class="code-text">  </span><span class="code-tag">&lt;meta</span> <span class="code-attr">charset</span>=<span class="code-value">"UTF-8"</span><span class="code-tag">&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">5</span>
+                                <span class="code-text">  </span><span class="code-tag">&lt;title&gt;</span><span class="code-text">VIBZ | £1M+ Web Design</span><span class="code-tag">&lt;/title&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">6</span>
+                                <span class="code-tag">&lt;/head&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">7</span>
+                                <span class="code-tag">&lt;body</span> <span class="code-attr">class</span>=<span class="code-value">"app-like"</span><span class="code-tag">&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">8</span>
+                                <span class="code-text">  </span><span class="code-tag">&lt;section</span> <span class="code-attr">id</span>=<span class="code-value">"hero"</span><span class="code-tag">&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">9</span>
+                                <span class="code-text">    </span><span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-value">"container"</span><span class="code-tag">&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">10</span>
+                                <span class="code-text">      </span><span class="code-tag">&lt;h1&gt;</span><span class="code-text code-highlight">£1M+ Web Design Excellence</span><span class="code-tag">&lt;/h1&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">11</span>
+                                <span class="code-text">      </span><span class="code-tag">&lt;p&gt;</span><span class="code-text">Convert visitors into high-value customers</span><span class="code-tag">&lt;/p&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">12</span>
+                                <span class="code-text">      </span><span class="code-tag">&lt;button</span> <span class="code-attr">class</span>=<span class="code-value">"app-cta"</span><span class="code-tag">&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">13</span>
+                                <span class="code-text">        Start £1M Project</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">14</span>
+                                <span class="code-text">      </span><span class="code-tag">&lt;/button&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">15</span>
+                                <span class="code-text">    </span><span class="code-tag">&lt;/div&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">16</span>
+                                <span class="code-text">  </span><span class="code-tag">&lt;/section&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">17</span>
+                                <span class="code-text">  </span><span class="code-comment">&lt;!-- Process, FAQ, Value Sections --&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">18</span>
+                                <span class="code-tag">&lt;/body&gt;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">19</span>
+                                <span class="code-tag">&lt;/html&gt;</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <!-- App Process Section -->
+    <section class="app-process" id="process">
         <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Premium Web Design Services</h2>
-                <p>We create high-converting websites that help local businesses stand out and attract more customers.</p>
+            <div class="section-header">
+                <div class="section-label">OUR PROCESS</div>
+                <h2 class="section-title">How We Build £1M+ Websites</h2>
+                <p class="section-subtitle">A proven 5-step methodology that transforms local businesses into digital powerhouses</p>
             </div>
             
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-content">
+                        <h3 class="step-title">Discovery & Strategy</h3>
+                        <p class="step-description">We conduct in-depth analysis of your business, competitors, and target audience to create a data-driven strategy. This phase includes market research, user persona development, and conversion funnel mapping.</p>
                     </div>
-                    <h3>Custom Web Design</h3>
-                    <p>Bespoke designs that reflect your brand and appeal to your target audience. No templates, just unique creations.</p>
+                    <div class="step-marker">
+                        <span class="step-number">1</span>
+                    </div>
                 </div>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                <div class="process-step">
+                    <div class="step-content">
+                        <h3 class="step-title">Premium UI/UX Design</h3>
+                        <p class="step-description">Our award-winning designers create pixel-perfect interfaces with focus on user experience and conversion optimization. We deliver custom designs, not templates, with attention to every detail.</p>
                     </div>
-                    <h3>Mobile-First Development</h3>
-                    <p>Websites that look and perform flawlessly on all devices, with mobile users as our primary focus.</p>
+                    <div class="step-marker">
+                        <span class="step-number">2</span>
+                    </div>
                 </div>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-bolt"></i>
+                <div class="process-step">
+                    <div class="step-content">
+                        <h3 class="step-title">Elite Development</h3>
+                        <p class="step-description">We build with cutting-edge technologies: React, Vue.js, and custom backend solutions. Every line of code is optimized for performance, security, and scalability to handle business growth.</p>
                     </div>
-                    <h3>Fast Loading Sites</h3>
-                    <p>Optimized for speed and performance, ensuring your visitors don't wait and Google ranks you higher.</p>
+                    <div class="step-marker">
+                        <span class="step-number">3</span>
+                    </div>
                 </div>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
+                <div class="process-step">
+                    <div class="step-content">
+                        <h3 class="step-title">Rigorous Testing</h3>
+                        <p class="step-description">Comprehensive testing across devices, browsers, and user scenarios. We ensure flawless performance, accessibility compliance, and security hardening before launch.</p>
                     </div>
-                    <h3>E-commerce Solutions</h3>
-                    <p>Full online store setups with secure payment processing, inventory management, and customer accounts.</p>
+                    <div class="step-marker">
+                        <span class="step-number">4</span>
+                    </div>
                 </div>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
+                <div class="process-step">
+                    <div class="step-content">
+                        <h3 class="step-title">Launch & Growth</h3>
+                        <p class="step-description">Strategic launch with SEO optimization, analytics implementation, and conversion tracking. We provide ongoing support, performance monitoring, and growth strategies.</p>
                     </div>
-                    <h3>SEO Optimization</h3>
-                    <p>Built-in search engine optimization to help local customers find your business when they search online.</p>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
+                    <div class="step-marker">
+                        <span class="step-number">5</span>
                     </div>
-                    <h3>Ongoing Support</h3>
-                    <p>Regular updates, security patches, and technical support to keep your website running smoothly.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section id="process" class="process">
+    <!-- Value Proposition -->
+    <section class="value-proposition" id="value">
         <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Our 5-Step Process</h2>
-                <p>We follow a proven methodology to deliver exceptional results for every client.</p>
+            <div class="value-badge">
+                <i class="fas fa-trophy"></i>
+                <span>VALUED AT OVER £1,000,000</span>
             </div>
             
-            <div class="process-steps">
-                <div class="process-step animate-on-scroll">
-                    <div class="step-number">1</div>
-                    <h3>Discovery</h3>
-                    <p>We learn about your business, goals, and target audience to create a tailored strategy.</p>
+            <h2 class="value-statement">We don't build websites. We build digital assets that increase business valuation.</h2>
+            
+            <div class="value-metrics">
+                <div class="metric">
+                    <div class="metric-value">£1M+</div>
+                    <div class="metric-label">Client Value Created</div>
                 </div>
-                
-                <div class="process-step animate-on-scroll">
-                    <div class="step-number">2</div>
-                    <h3>Design</h3>
-                    <p>Our designers create mockups of your website, focusing on user experience and conversion.</p>
+                <div class="metric">
+                    <div class="metric-value">247%</div>
+                    <div class="metric-label">Avg. ROI Increase</div>
                 </div>
-                
-                <div class="process-step animate-on-scroll">
-                    <div class="step-number">3</div>
-                    <h3>Development</h3>
-                    <p>We code your website with clean, optimized code that loads fast and works perfectly.</p>
+                <div class="metric">
+                    <div class="metric-value">5.2x</div>
+                    <div class="metric-label">Conversion Lift</div>
                 </div>
-                
-                <div class="process-step animate-on-scroll">
-                    <div class="step-number">4</div>
-                    <h3>Testing</h3>
-                    <p>Rigorous testing on all devices and browsers to ensure flawless performance.</p>
-                </div>
-                
-                <div class="process-step animate-on-scroll">
-                    <div class="step-number">5</div>
-                    <h3>Launch & Support</h3>
-                    <p>We launch your site and provide ongoing support to ensure continued success.</p>
+                <div class="metric">
+                    <div class="metric-value">98%</div>
+                    <div class="metric-label">Client Retention</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
+    <!-- App FAQ Section -->
+    <section class="app-faq" id="faq">
         <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about our web design process and services.</p>
+            <div class="section-header">
+                <div class="section-label">QUESTIONS</div>
+                <h2 class="section-title">Premium Service FAQ</h2>
+                <p class="section-subtitle">Everything you need to know about our £1M+ web design service</p>
             </div>
             
-            <div class="faq-container">
-                <div class="faq-item animate-on-scroll">
+            <div class="faq-grid">
+                <div class="faq-item">
                     <div class="faq-question">
-                        <h3>How long does it take to build a website?</h3>
+                        <h3>What justifies the £1M+ valuation?</h3>
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            <p>Our typical timeline is 4-6 weeks from project kickoff to launch. This includes design, development, content integration, and testing. More complex projects with e-commerce functionality may take 8-10 weeks.</p>
+                            <p>Our websites consistently increase client revenue by 200-400%, with several clients reaching £1M+ annual revenue directly attributed to our digital platforms. We focus on conversion architecture, premium user experience, and scalable infrastructure that supports significant business growth.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="faq-item animate-on-scroll">
+                <div class="faq-item">
                     <div class="faq-question">
-                        <h3>How much does a website cost?</h3>
+                        <h3>How long does the process take?</h3>
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            <p>Our custom websites start at £2,500 for basic brochure sites and go up to £10,000+ for complex e-commerce platforms. We provide detailed quotes after understanding your specific requirements.</p>
+                            <p>Our premium timeline is 6-8 weeks from strategy to launch. We move faster than agencies charging less because we have dedicated teams (not freelancers) and established processes refined over £1M+ in client projects.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="faq-item animate-on-scroll">
+                <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Do you work with businesses outside the UK?</h3>
+                        <h3>What's included in your packages?</h3>
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            <p>Yes! While we specialize in UK local businesses, we work with clients worldwide. Our process is designed to work remotely, and we've successfully delivered projects for clients in Europe, North America, and Australia.</p>
+                            <p>Complete solution: custom design, development, SEO optimization, analytics setup, conversion tracking, hosting, security, 12-month support, and performance monitoring. We also provide conversion rate optimization guidance for 6 months post-launch.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="faq-item animate-on-scroll">
+                <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Will my website be mobile-friendly?</h3>
+                        <h3>Do you work with international clients?</h3>
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            <p>Absolutely! All our websites are built with a mobile-first approach. They're fully responsive and optimized for all screen sizes, from smartphones to desktop computers.</p>
+                            <p>Yes, 40% of our clients are international. We've delivered projects for businesses in the US, Canada, Australia, UAE, and across Europe. Our process is designed for remote collaboration with weekly progress reviews.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="faq-item animate-on-scroll">
+                <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Do you provide hosting and maintenance?</h3>
+                        <h3>What makes your design "premium"?</h3>
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            <p>Yes, we offer comprehensive hosting and maintenance packages starting at £50/month. This includes hosting, security updates, regular backups, and minor content updates.</p>
+                            <p>Beyond aesthetics: psychology-driven design, conversion-focused layouts, micro-interactions, app-like experiences, performance optimization (90+ PageSpeed scores), accessibility compliance, and brand alignment that commands premium pricing.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What ongoing support do you provide?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>12-month comprehensive support including security updates, performance monitoring, backup management, and content updates. We also provide quarterly performance reviews and conversion optimization recommendations.</p>
                         </div>
                     </div>
                 </div>
@@ -797,73 +1240,89 @@
     </section>
 
     <!-- Contact CTA -->
-    <section id="contact" class="contact-cta">
+    <section class="value-proposition" id="contact" style="padding: 120px 0;">
         <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Ready to Transform Your Online Presence?</h2>
-                <p>Let's build a website that attracts customers and grows your business.</p>
-                <a href="#contact" class="cta-button" style="margin-top: 30px; font-size: 1.2rem; padding: 15px 40px;">Start Your Site Today</a>
-            </div>
+            <h2 class="value-statement" style="margin-bottom: 60px;">Ready to build your £1M+ digital asset?</h2>
+            <a href="#contact" class="app-cta" style="font-size: 1.4rem; padding: 20px 50px;">
+                <i class="fas fa-rocket" style="margin-right: 10px;"></i> Start Your Premium Project
+            </a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- App Footer -->
+    <footer class="app-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>VIBZ</h3>
-                    <p>Elite web design for local businesses. Creating modern websites that win customers and drive growth.</p>
-                    <div style="margin-top: 20px; display: flex; gap: 15px;">
-                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
-                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">VIBZ</a>
+                    <p class="footer-tagline">Elite web design for businesses that demand excellence. We build digital assets valued at £1M+ through superior design, technology, and strategy.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Services</h3>
+                    <h3 class="footer-heading">Services</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Custom Web Design</a></li>
-                        <li><a href="#">E-commerce Development</a></li>
-                        <li><a href="#">Website Maintenance</a></li>
-                        <li><a href="#">SEO Optimization</a></li>
+                        <li><a href="#">£1M+ Web Design</a></li>
+                        <li><a href="#">E-commerce Solutions</a></li>
                         <li><a href="#">Brand Identity</a></li>
+                        <li><a href="#">SEO & Growth</a></li>
+                        <li><a href="#">Ongoing Support</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Industries</h3>
+                    <h3 class="footer-heading">Industries</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Barbers & Salons</a></li>
-                        <li><a href="#">Dentists & Doctors</a></li>
-                        <li><a href="#">Restaurants & Cafes</a></li>
-                        <li><a href="#">Trades & Services</a></li>
-                        <li><a href="#">Retail Stores</a></li>
+                        <li><a href="#">Premium Services</a></li>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Hospitality</a></li>
+                        <li><a href="#">Professional Services</a></li>
+                        <li><a href="#">Retail & E-commerce</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Contact</h3>
+                    <h3 class="footer-heading">Contact</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> London, UK</li>
-                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> +44 20 1234 5678</li>
-                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> hello@vibzdesign.com</li>
+                        <li><a href="mailto:premium@vibzdesign.com">premium@vibzdesign.com</a></li>
+                        <li><a href="tel:+442012345678">+44 20 1234 5678</a></li>
+                        <li><a href="#">London, UK</a></li>
+                        <li><a href="#">Book Consultation</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>&copy; 2023 VIBZ Web Design. All rights reserved. Valuing businesses at over £1,000,000 in client results.</p>
+            <div class="footer-bottom">
+                <p>© 2023 VIBZ Web Design. All rights reserved. <strong>Valuing client businesses at £1,000,000+ through digital excellence.</strong></p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Scroll animations
+        // App-like Navigation Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('appNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Navigation Toggle
+        document.getElementById('mobileNavToggle').addEventListener('click', function() {
+            const navItems = document.getElementById('navItems');
+            navItems.style.display = navItems.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Scroll Animations
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
+            const elements = document.querySelectorAll('.process-step, .faq-item');
             
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -874,38 +1333,19 @@
                 }
             });
         }
-        
-        // Initialize animations on load
+
+        // Initialize animations
         window.addEventListener('load', animateOnScroll);
-        
-        // Animate on scroll
         window.addEventListener('scroll', animateOnScroll);
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // FAQ toggle functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                faqItem.classList.toggle('active');
+
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
             });
         });
-        
-        // Mobile menu toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-        
-        // Smooth scrolling for anchor links
+
+        // Smooth Scrolling for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -916,33 +1356,73 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
                     
                     // Close mobile menu if open
                     if (window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').style.display = 'none';
+                        document.getElementById('navItems').style.display = 'none';
                     }
                 }
             });
         });
-        
-        // Code animation effect
-        const codeScreen = document.querySelector('.code-screen');
-        if (codeScreen) {
-            codeScreen.addEventListener('mousemove', (e) => {
-                const { left, top, width, height } = codeScreen.getBoundingClientRect();
+
+        // Code Terminal 3D Effect
+        const codeTerminal = document.querySelector('.code-terminal');
+        if (codeTerminal) {
+            codeTerminal.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = codeTerminal.getBoundingClientRect();
                 const x = (e.clientX - left) / width - 0.5;
                 const y = (e.clientY - top) / height - 0.5;
                 
-                codeScreen.style.transform = `perspective(1000px) rotateY(${-10 + x * 10}deg) rotateX(${y * 5}deg)`;
+                codeTerminal.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 5}deg)`;
             });
             
-            codeScreen.addEventListener('mouseleave', () => {
-                codeScreen.style.transform = 'perspective(1000px) rotateY(-10deg)';
+            codeTerminal.addEventListener('mouseleave', () => {
+                codeTerminal.style.transform = 'perspective(1000px) rotateY(0) rotateX(0)';
             });
         }
+
+        // Animated Counter for Value Metrics
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (element.textContent.includes('%') ? '%' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : '');
+                }
+            }, 20);
+        }
+
+        // Initialize counters when value section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.metric-value').forEach(metric => {
+                        let target = 0;
+                        if (metric.textContent.includes('£')) {
+                            target = 1000000;
+                        } else if (metric.textContent.includes('%')) {
+                            target = parseInt(metric.textContent.replace('%', ''));
+                        } else if (metric.textContent.includes('x')) {
+                            target = parseFloat(metric.textContent.replace('x', ''));
+                        } else {
+                            target = parseInt(metric.textContent.replace('%', ''));
+                        }
+                        
+                        animateCounter(metric, target);
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('.value-proposition'));
     </script>
 </body>
 </html>
