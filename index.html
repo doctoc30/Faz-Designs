@@ -369,6 +369,33 @@ section {
         font-size: 3rem;
     }
 }
+
+
+html, body {
+    overflow-x: hidden;
+}
+
+.hero, section {
+    width: 100%;
+    max-width: 100vw;
+}
+
+.hero h1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.step-num {
+    font-size: 6rem; /* default */
+}
+
+@media (max-width: 768px) {
+    .step-num {
+        font-size: 4rem;
+        right: 10px;
+    }
+}
+        
            </style>
 </head>
 <body>
