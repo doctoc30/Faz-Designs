@@ -3,184 +3,369 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VIBZ | Elite Local Business Web Design</title>
+<title>VIBZ | Elite Web Design Agency</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-    --bg: #0f1115;
-    --surface: #181a1f;
-    --accent: #FF5C00;
-    --accent-glow: rgba(255,92,0,0.3);
-    --text-main: #ffffff;
-    --text-dim: #a0a0a0;
-    --glass: rgba(255,255,255,0.05);
-    --border: rgba(255,255,255,0.08);
-    --radius: 24px;
-    --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+/* =========================
+   ROOT VARIABLES & BASE
+========================= */
+:root{
+  --bg:#0B0B0F;
+  --surface:#121214;
+  --accent:#FF5C00;
+  --accent-glow:rgba(255,92,0,0.3);
+  --text-main:#FFFFFF;
+  --text-dim:#A0A0A0;
+  --glass:rgba(255,255,255,0.02);
+  --border:rgba(255,255,255,0.08);
+  --radius:32px;
+  --transition:.5s cubic-bezier(.175,.885,.32,1.275);
+  --spring:cubic-bezier(.175,.885,.32,1.275);
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text-main); overflow-x:hidden; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text-main);overflow-x:hidden;}
 
-header {
-    position: fixed; top:0; left:0; width:100%; padding:20px 30px;
-    background: rgba(20,20,20,0.9); backdrop-filter: blur(10px);
-    z-index:1000; display:flex; justify-content:space-between; align-items:center;
+/* =========================
+   CUSTOM CURSOR
+========================= */
+#cursor{
+  width:20px;height:20px;border-radius:50%;
+  position:fixed;pointer-events:none;
+  background:var(--accent);
+  mix-blend-mode:difference;
+  transform:translate(-50%, -50%);
+  z-index:9999;
+  transition: transform .1s ease;
 }
-.logo { font-weight:800; font-size:28px; background: linear-gradient(90deg, var(--accent), #FF9900); -webkit-background-clip:text; color:transparent; text-decoration:none; }
-.nav-links { display:flex; gap:30px; }
-.nav-links a { color:var(--text-main); text-decoration:none; font-weight:500; position:relative; }
-.nav-links a:hover { color:var(--accent); }
-.nav-links a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--accent); transition:var(--transition);}
-.nav-links a:hover::after { width:100%; }
-.mobile-menu-btn { display:none; background:none; border:none; color:var(--text-main); font-size:24px; cursor:pointer; }
 
-/* Hamburger full menu */
-.full-menu { position:fixed; top:0; left:-100%; width:100%; height:100%; background:var(--surface); z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:40px; transition: all 0.5s ease; }
-.full-menu.show { left:0; }
-.full-menu a { font-size:2rem; color:var(--text-main); text-decoration:none; }
+/* =========================
+   APP CONTAINER
+========================= */
+.app-container{
+  width:100vw;height:100vh;
+  overflow-y:overlay;
+  scroll-snap-type:y proximity;
+  perspective:1000px;
+  padding:20px;
+}
+.app-shell{
+  max-width:1600px;
+  margin:0 auto;
+  background:var(--surface);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  height:calc(100vh - 40px);
+  position:relative;
+  overflow-y:auto;
+  overflow-x:hidden;
+  box-shadow:0 50px 100px rgba(0,0,0,0.5);
+  scroll-behavior:smooth;
+}
 
-/* Hero */
-.hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 20px; }
-.hero h1 { font-size:clamp(3rem,8vw,6rem); font-weight:800; margin-bottom:20px; }
-.hero span { color:var(--accent); }
-.hero p { max-width:500px; font-size:1.2rem; color:var(--text-dim); margin-bottom:30px; }
-.hero .cta { display:flex; gap:20px; flex-wrap:wrap; }
-.hero .cta button { padding:15px 30px; border:none; border-radius:12px; font-size:1rem; cursor:pointer; transition:var(--transition); }
-.hero .cta .primary { background:var(--accent); color:white; }
-.hero .cta .primary:hover { box-shadow:0 0 20px var(--accent-glow); transform:translateY(-3px); }
-.hero .cta .secondary { background:transparent; border:2px solid var(--accent); color:var(--accent); }
-.hero .cta .secondary:hover { background:var(--accent); color:white; }
+/* =========================
+   TAB BAR
+========================= */
+.tab-bar{
+  position:fixed;bottom:30px;left:50%;
+  transform:translateX(-50%);
+  background:rgba(20,20,20,0.8);
+  backdrop-filter:blur(20px);
+  padding:8px 16px;border-radius:20px;border:1px solid var(--border);
+  display:flex;gap:12px;z-index:100;
+}
+.tab-item{
+  padding:12px 24px;color:var(--text-dim);
+  text-decoration:none;font-weight:600;font-size:14px;
+  border-radius:12px;
+  transition:all .3s var(--spring);
+}
+.tab-item.active{background:var(--accent);color:white;box-shadow:0 10px 20px var(--accent-glow);}
 
-/* Concepts Grid */
-.concepts { padding:80px 30px; max-width:1400px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
-.concept-card { background:var(--glass); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; padding:20px; display:flex; flex-direction:column; gap:15px; transition:var(--transition); }
-.concept-card:hover { transform:translateY(-10px); box-shadow:0 10px 20px var(--accent-glow);}
-.concept-card img { width:100%; height:200px; object-fit:cover; border-radius:var(--radius);}
-.concept-card h3 { font-size:1.2rem; font-weight:700; }
-.concept-card .buttons { display:flex; justify-content:space-between; gap:10px; margin-top:auto; }
-.concept-card .buttons button { flex:1; padding:8px; border:none; border-radius:10px; font-weight:600; cursor:pointer; transition:var(--transition); }
-.concept-card .buttons .live { background:#0a0a0a; color:white; }
-.concept-card .buttons .code { background:var(--accent); color:white; }
-.concept-card .buttons .select { background:transparent; border:2px solid var(--accent); color:var(--accent); }
+/* =========================
+   SECTIONS
+========================= */
+section{
+  min-height:100%;
+  padding:80px 60px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  opacity:0;
+  transform:translateY(50px) scale(0.95);
+  transition:all .8s cubic-bezier(.22,1,.36,1);
+}
+section.visible{opacity:1;transform:translateY(0) scale(1);}
 
-/* Mobile Adjustments */
-@media(max-width:900px){ .nav-links{display:none;} .mobile-menu-btn{display:block;} }
-@media(max-width:768px){ .concepts { grid-template-columns:1fr; } .hero h1{font-size:4rem;} }
+/* =========================
+   HERO
+========================= */
+.hero{
+  text-align:center;
+  justify-content:center;
+  gap:20px;
+  display:flex;
+  flex-direction:column;
+}
+.hero h1{
+  font-size:clamp(3rem,8vw,7rem);
+  font-weight:800;line-height:0.9;
+}
+.hero span{color:var(--accent);display:block;}
+.hero p{color:var(--text-dim);max-width:500px;font-size:1.2rem;margin-top:20px;}
+
+/* =========================
+   SERVICES GRID
+========================= */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+  width:100%;
+  margin-top:40px;
+}
+.service-card{
+  background:var(--glass);
+  border-radius:24px;
+  border:1px solid var(--border);
+  padding:40px;
+  position:relative;
+  overflow:hidden;
+  transition:all .5s var(--spring);
+}
+.service-card:hover{
+  background:var(--border);
+  transform:translateY(-10px) rotateX(5deg);
+}
+.service-card i{
+  font-size:40px;color:var(--accent);
+  margin-bottom:20px;
+}
+.service-card h3{font-size:1.5rem;margin-bottom:10px;}
+.service-card p{color:var(--text-dim);font-size:1rem;line-height:1.5;}
+
+/* =========================
+   PROCESS STEPS
+========================= */
+.process-steps{
+  display:flex;
+  gap:40px;
+  justify-content:space-between;
+  margin-top:60px;
+  flex-wrap:wrap;
+}
+.step{
+  background:var(--glass);
+  border-radius:24px;
+  padding:30px;
+  text-align:center;
+  flex:1 1 30%;
+  min-width:250px;
+  transition:all .5s var(--spring);
+}
+.step i{font-size:32px;margin-bottom:15px;color:var(--accent);}
+.step h4{margin-bottom:10px;}
+.step p{color:var(--text-dim);font-size:0.95rem;}
+
+/* =========================
+   CONCEPTS SECTION
+========================= */
+.concepts{
+  display:grid;
+  gap:30px;
+  margin-top:40px;
+  width:100%;
+  grid-template-columns:repeat(3,1fr);
+}
+.concept-card{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:24px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:all .5s var(--spring);
+}
+.concept-card img{width:100%;height:auto;display:block;}
+.concept-buttons{
+  display:flex;
+  justify-content:space-around;
+  padding:15px;
+  background:var(--surface);
+}
+.concept-buttons button{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .3s var(--spring);
+}
+.concept-buttons button.view{background:var(--accent);color:white;}
+.concept-buttons button.code{background:#222;color:white;}
+.concept-buttons button.choose{background:#555;color:white;}
+.concept-buttons button:hover{opacity:.8;}
+
+/* =========================
+   FAQ TOGGLE (placeholder)
+========================= */
+.faq-item{
+  background:var(--glass);
+  padding:20px;
+  border-radius:16px;
+  margin-bottom:15px;
+  cursor:pointer;
+}
+.faq-item p{display:none;color:var(--text-dim);}
+.faq-item.active p{display:block;}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:1024px){.services-grid{grid-template-columns:1fr 1fr;}.concepts{grid-template-columns:1fr 1fr;}.process-steps{flex-direction:column;}}
+@media(max-width:768px){.services-grid,.concepts{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<header>
-    <a href="#" class="logo">VIBZ</a>
-    <nav class="nav-links">
-        <a href="#hero">Home</a>
-        <a href="#concepts">Concepts</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <button class="mobile-menu-btn" id="hamburger"><i class="fas fa-bars"></i></button>
-</header>
+<div id="cursor"></div>
 
-<div class="full-menu" id="fullMenu">
-    <a href="#hero">Home</a>
-    <a href="#concepts">Concepts</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+<div class="app-container">
+<main class="app-shell">
+
+<!-- HERO -->
+<section id="home" class="hero visible">
+<h1>DESIGNING <span>FUTURE</span> WEBSITES</h1>
+<p>VIBZ is a premium web design agency creating elite digital experiences.</p>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+<h2 style="text-align:center;margin-bottom:40px;">Our Services</h2>
+<div class="services-grid">
+<div class="service-card"><i class="fas fa-layer-group"></i><h3>Architecture</h3><p>Scalable and elite web architectures built for high-end clients.</p></div>
+<div class="service-card"><i class="fas fa-bolt"></i><h3>Performance</h3><p>Lightning-fast websites with cutting-edge load optimization.</p></div>
+<div class="service-card"><i class="fas fa-fingerprint"></i><h3>Security</h3><p>Enterprise-grade security for peace of mind.</p></div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+<h2 style="text-align:center;margin-bottom:40px;">Our Process</h2>
+<div class="process-steps">
+<div class="step"><i class="fas fa-search"></i><h4>Discovery</h4><p>Understanding client goals and brand identity.</p></div>
+<div class="step"><i class="fas fa-pencil-alt"></i><h4>Design</h4><p>High-fidelity designs crafted with precision and UX in mind.</p></div>
+<div class="step"><i class="fas fa-code"></i><h4>Development</h4><p>Pixel-perfect coding with modern frameworks.</p></div>
+<div class="step"><i class="fas fa-rocket"></i><h4>Launch</h4><p>Seamless deployment and performance tuning.</p></div>
+<div class="step"><i class="fas fa-chart-line"></i><h4>Growth</h4><p>Analytics and optimization for maximum ROI.</p></div>
+</div>
+</section>
+
+<!-- CONCEPTS -->
+<section id="concepts">
+<h2 style="text-align:center;margin-bottom:40px;">Concepts</h2>
+<div class="concepts">
+<div class="concept-card">
+<img src="https://picsum.photos/500/300?random=1" alt="Concept 1">
+<div class="concept-buttons">
+<button class="view">View Live</button>
+<button class="code">Code: Barber1</button>
+<button class="choose">I Want This</button>
+</div>
+</div>
+<div class="concept-card">
+<img src="https://picsum.photos/500/300?random=2" alt="Concept 2">
+<div class="concept-buttons">
+<button class="view">View Live</button>
+<button class="code">Code: Barber2</button>
+<button class="choose">I Want This</button>
+</div>
+</div>
+<div class="concept-card">
+<img src="https://picsum.photos/500/300?random=3" alt="Concept 3">
+<div class="concept-buttons">
+<button class="view">View Live</button>
+<button class="code">Code: Barber3</button>
+<button class="choose">I Want This</button>
+</div>
+</div>
+<div class="concept-card">
+<img src="https://picsum.photos/500/300?random=4" alt="Concept 4">
+<div class="concept-buttons">
+<button class="view">View Live</button>
+<button class="code">Code: Barber4</button>
+<button class="choose">I Want This</button>
+</div>
+</div>
+<div class="concept-card">
+<img src="https://picsum.photos/500/300?random=5" alt="Concept 5">
+<div class="concept-buttons">
+<button class="view">View Live</button>
+<button class="code">Code: Barber5</button>
+<button class="choose">I Want This</button>
+</div>
+</div>
+<div class="concept-card">
+<img src="https://picsum.photos/500/300?random=6" alt="Concept 6">
+<div class="concept-buttons">
+<button class="view">View Live</button>
+<button class="code">Code: Barber6</button>
+<button class="choose">I Want This</button>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- TAB BAR -->
+<nav class="tab-bar">
+<a href="#home" class="tab-item active" onclick="navTo(event,'home')">Home</a>
+<a href="#services" class="tab-item" onclick="navTo(event,'services')">Services</a>
+<a href="#process" class="tab-item" onclick="navTo(event,'process')">Process</a>
+<a href="#concepts" class="tab-item" onclick="navTo(event,'concepts')">Concepts</a>
+</nav>
 </div>
 
-<section class="hero" id="hero">
-    <h1>Websites That Bring You <span>More Customers</span></h1>
-    <p>We design fast, modern websites for barbers, dentists, trades, and local services.</p>
-    <div class="cta">
-        <button class="primary" onclick="scrollToSection('concepts')">View Examples</button>
-        <button class="secondary" onclick="scrollToSection('contact')">Get a Website</button>
-    </div>
-</section>
-
-<section class="concepts" id="concepts">
-    <!-- 6 Default Barber Templates -->
-    <div class="concept-card">
-        <img src="https://picsum.photos/400/300?random=1" alt="Barber 1">
-        <h3>Barber Concept 1</h3>
-        <div class="buttons">
-            <button class="live" onclick="window.open('https://example.com/barber1','_blank')">View Live</button>
-            <button class="code" onclick="fillCode('Barber1')">Code: Barber1</button>
-            <button class="select" onclick="selectConcept('Barber Concept 1')">I Want This</button>
-        </div>
-    </div>
-    <div class="concept-card">
-        <img src="https://picsum.photos/400/300?random=2" alt="Barber 2">
-        <h3>Barber Concept 2</h3>
-        <div class="buttons">
-            <button class="live" onclick="window.open('https://example.com/barber2','_blank')">View Live</button>
-            <button class="code" onclick="fillCode('Barber2')">Code: Barber2</button>
-            <button class="select" onclick="selectConcept('Barber Concept 2')">I Want This</button>
-        </div>
-    </div>
-    <div class="concept-card">
-        <img src="https://picsum.photos/400/300?random=3" alt="Barber 3">
-        <h3>Barber Concept 3</h3>
-        <div class="buttons">
-            <button class="live" onclick="window.open('https://example.com/barber3','_blank')">View Live</button>
-            <button class="code" onclick="fillCode('Barber3')">Code: Barber3</button>
-            <button class="select" onclick="selectConcept('Barber Concept 3')">I Want This</button>
-        </div>
-    </div>
-    <div class="concept-card">
-        <img src="https://picsum.photos/400/300?random=4" alt="Barber 4">
-        <h3>Barber Concept 4</h3>
-        <div class="buttons">
-            <button class="live" onclick="window.open('https://example.com/barber4','_blank')">View Live</button>
-            <button class="code" onclick="fillCode('Barber4')">Code: Barber4</button>
-            <button class="select" onclick="selectConcept('Barber Concept 4')">I Want This</button>
-        </div>
-    </div>
-    <div class="concept-card">
-        <img src="https://picsum.photos/400/300?random=5" alt="Barber 5">
-        <h3>Barber Concept 5</h3>
-        <div class="buttons">
-            <button class="live" onclick="window.open('https://example.com/barber5','_blank')">View Live</button>
-            <button class="code" onclick="fillCode('Barber5')">Code: Barber5</button>
-            <button class="select" onclick="selectConcept('Barber Concept 5')">I Want This</button>
-        </div>
-    </div>
-    <div class="concept-card">
-        <img src="https://picsum.photos/400/300?random=6" alt="Barber 6">
-        <h3>Barber Concept 6</h3>
-        <div class="buttons">
-            <button class="live" onclick="window.open('https://example.com/barber6','_blank')">View Live</button>
-            <button class="code" onclick="fillCode('Barber6')">Code: Barber6</button>
-            <button class="select" onclick="selectConcept('Barber Concept 6')">I Want This</button>
-        </div>
-    </div>
-</section>
-
 <script>
-// Hamburger Menu
-const hamburger = document.getElementById('hamburger');
-const fullMenu = document.getElementById('fullMenu');
-hamburger.addEventListener('click', ()=> fullMenu.classList.toggle('show'));
+// Custom cursor
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
 
-// Smooth Scroll
-function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({behavior:'smooth'});
+// Tab navigation
+function navTo(e,id){
+  e.preventDefault();
+  document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-// Concept Code / Funnel Logic
-function fillCode(code){
-    alert(`Design code ${code} copied! Enter in funnel.`);
-    // Example: store code in localStorage or funnel field
-    localStorage.setItem('designCode', code);
-}
+// Scroll animations
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      const id=entry.target.getAttribute('id');
+      document.querySelectorAll('.tab-item').forEach(t=>{
+        t.classList.toggle('active',t.getAttribute('href')==`#${id}`);
+      });
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('section').forEach(section=>observer.observe(section));
 
-function selectConcept(name){
-    alert(`${name} selected! Moving to next funnel question.`);
-    localStorage.setItem('selectedConcept', name);
-    // Redirect to next funnel page
-    window.location.href = '/barber/funnel.html';
-}
+// Tilt effect for cards
+document.querySelectorAll('.service-card, .concept-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const rect=card.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+    const y=e.clientY-rect.top;
+    const xc=rect.width/2,yc=rect.height/2;
+    const dx=x-xc,dy=y-yc;
+    card.style.transform=`perspective(1000px) rotateX(${-dy/10}deg) rotateY(${dx/10}deg) translateY(-10px)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='perspective(1000px) rotateX(0) rotateY(0) translateY(0)';});
+});
 </script>
-
 </body>
 </html>
