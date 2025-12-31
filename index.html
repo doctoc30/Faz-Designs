@@ -398,10 +398,13 @@ html, body {
 
 
 
+
+
+/* Slider Frame - Default (desktop) */
 .slider-frame {
     position: relative;
     width: 100%;
-    max-width: 900px;
+    max-width: 900px; /* desktop width */
     height: 450px;
     margin: 2rem auto 0;
     border: 4px solid var(--accent);
@@ -413,39 +416,23 @@ html, body {
     justify-content: center;
 }
 
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    font-size: 3rem;
-    font-weight: 900;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+/* Mobile Portrait Adjustment */
+@media (max-width: 768px) {
+    .slider-frame {
+        max-width: 90%;  /* slightly smaller so it doesn’t touch edges */
+        height: 350px;   /* optional: slightly smaller height */
+        margin: 2rem auto;
+    }
+
+    .slide-content h2 {
+        font-size: 2.2rem; /* smaller font for mobile */
+    }
+
+    .slide-content .btn {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.5rem;
+    }
 }
-
-.slide.active {
-    opacity: 1;
-}
-
-.slide-content h2 {
-    margin-bottom: 1.5rem;
-    font-size: 3rem;
-}
-
-.slide-content .btn {
-    font-size: 1rem;
-    padding: 0.8rem 2rem;
-}
-
-
-
         
         
            </style>
