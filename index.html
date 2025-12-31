@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIXELUX | Premium Design Agency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <title>VIBZ | Elite Design Agency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     
     <style>
         :root {
             --bg: #ffffff;
-            --bg-alt: #f8f9fa;
-            --primary: #0f172a; /* Deep Charcoal */
-            --accent: #2563eb;  /* Elite Blue */
-            --text-muted: #64748b;
-            --glass: rgba(255, 255, 255, 0.8);
+            --accent: #FF6B00; /* Using the high-impact orange from your image */
+            --dark: #121212;
+            --text-gray: #4a4a4a;
+            --light-gray: #f9f9f9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,206 +22,188 @@
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: var(--bg); 
-            color: var(--primary);
-            line-height: 1.6;
+            color: var(--dark);
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* --- NAVIGATION --- */
         nav {
             position: fixed;
             top: 0; width: 100%;
-            padding: 1.5rem 5%;
+            padding: 1.5rem 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: var(--glass);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
-        .nav-links { display: none; } /* Hidden on mobile */
+        .logo { font-weight: 900; font-size: 1.8rem; color: var(--accent); letter-spacing: -1px; }
 
-        /* --- HERO SECTION (Portrait Mobile) --- */
+        /* --- HERO SECTION (Portrait Focus) --- */
         .hero {
-            height: 100vh; /* Full portrait */
+            height: 100vh; /* Full portrait height */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 8%;
+            padding: 0 6%;
             position: relative;
-            background: radial-gradient(circle at 90% 10%, #eff6ff 0%, #ffffff 50%);
+            background: radial-gradient(circle at top right, #fff5ee, #ffffff);
         }
 
         .hero h1 {
-            font-size: clamp(2.8rem, 10vw, 5rem);
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
+            /* Massive typography mimicking your attached image */
+            font-size: clamp(3.5rem, 12vw, 7rem); 
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            margin-bottom: 2rem;
+            text-transform: capitalize;
         }
 
         .hero h1 span { color: var(--accent); }
 
         .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 500px;
-            margin-bottom: 2.5rem;
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            max-width: 550px;
+            margin-bottom: 3rem;
+            line-height: 1.5;
         }
 
         /* --- BUTTONS --- */
-        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-group { display: flex; gap: 15px; }
         
         .btn {
             padding: 1.2rem 2.5rem;
-            border-radius: 50px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
+            font-weight: 700;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.1rem;
         }
 
-        .btn-dark { background: var(--primary); color: white; }
-        .btn-outline { border: 1px solid #e2e8f0; color: var(--primary); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-
-        /* --- SERVICES SECTION --- */
-        .section { padding: 100px 8%; }
-        .section-tag { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+        .btn-fill { background: var(--accent); color: white; border: 2px solid var(--accent); }
+        .btn-outline { border: 2px solid var(--accent); color: var(--accent); }
         
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2); }
 
-        .card {
-            padding: 3rem 2rem;
-            background: var(--bg-alt);
-            border-radius: 24px;
-            transition: 0.3s;
-            border: 1px solid transparent;
-        }
+        /* --- SECTIONS --- */
+        section { padding: 120px 6%; }
+        .section-label { font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 1rem; }
+        h2 { font-size: 3.5rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1; margin-bottom: 4rem; }
 
-        .card:hover { background: white; border-color: #e2e8f0; }
-        .card i { font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; }
+        /* Services Grid */
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { padding: 3rem; border-radius: 30px; background: var(--light-gray); transition: 0.3s; }
+        .service-card:hover { background: var(--dark); color: white; }
+        .service-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
 
-        /* --- PORTFOLIO --- */
-        .portfolio-item {
-            width: 100%;
-            aspect-ratio: 16/10;
-            background: #eee;
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            position: relative;
+        /* Portfolio */
+        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .project-box { 
+            height: 500px; 
+            background: #eee; 
+            border-radius: 24px; 
+            overflow: hidden; 
+            position: relative; 
+            background-size: cover;
+            background-position: center;
         }
-
-        .portfolio-img {
-            width: 100%; height: 100%;
-            background: linear-gradient(45deg, #f1f5f9, #dfe7ef);
-            display: flex; align-items: center; justify-content: center;
+        .project-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 2rem; background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white; opacity: 0; transition: 0.3s;
         }
+        .project-box:hover .project-overlay { opacity: 1; }
 
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero { text-align: center; align-items: center; }
-            .btn-group { justify-content: center; width: 100%; }
-            .btn { width: 100%; }
-        }
-
-        /* Floating Graphic Elements */
-        .shape {
-            position: absolute;
-            z-index: -1;
-            filter: blur(80px);
-            border-radius: 50%;
+            .hero { text-align: left; padding-top: 80px; }
+            .hero h1 { font-size: 4rem; }
+            .btn-group { flex-direction: column; width: 100%; }
+            .btn { text-align: center; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">PIXELUX.</div>
-        <div class="menu-trigger"><i class="fa-solid fa-bars-staggered"></i></div>
+        <div class="logo">VIBZ</div>
+        <div style="font-size: 1.5rem;"><i class="fa-solid fa-bars"></i></div>
     </nav>
 
     <section class="hero">
-        <div class="shape" style="width: 300px; height: 300px; background: #dbeafe; top: 10%; right: -5%;"></div>
-        
-        <h1 data-aos="fade-up">Elite Design <br><span>For Growth.</span></h1>
-        <p data-aos="fade-up" data-aos-delay="100">
-            We build high-performance digital products for brands that refuse to settle for the ordinary.
+        <h1 data-aos="fade-right">Websites <br>That Bring <br>You <span>More.</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">
+            We design fast, modern websites for elite brands, dentists, trades, and local services ready to scale.
         </p>
-        
-        <div class="btn-group" data-aos="fade-up" data-aos-delay="200">
-            <a href="#work" class="btn btn-dark">View Portfolio</a>
-            <a href="#contact" class="btn btn-outline">Let's Talk</a>
+        <div class="btn-group" data-aos="fade-up" data-aos-delay="400">
+            <a href="#work" class="btn btn-fill">View Examples</a>
+            <a href="#contact" class="btn btn-outline">Get a Website</a>
         </div>
     </section>
 
-    <section class="section">
-        <span class="section-tag">Expertise</span>
-        <h2 style="font-size: 2.5rem; font-weight: 800;">How we help you scale</h2>
-        
-        <div class="grid">
-            <div class="card" data-aos="fade-up">
-                <i class="fa-solid fa-compass-drafting"></i>
+    <section id="services">
+        <span class="section-label">Expertise</span>
+        <h2>Our Core Capabilities</h2>
+        <div class="services">
+            <div class="service-card" data-aos="fade-up">
+                <i class="fa-solid fa-pen-nib"></i>
                 <h3>UI/UX Design</h3>
-                <p>User-centric interfaces designed to convert visitors into loyal customers.</p>
+                <p>High-converting interfaces that turn visitors into loyal clients.</p>
             </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <i class="fa-solid fa-code"></i>
-                <h3>Web Development</h3>
-                <p>Clean, fast, and scalable code built with the latest modern frameworks.</p>
+                <h3>Development</h3>
+                <p>Lightning fast performance and clean code architecture.</p>
             </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fa-solid fa-rocket"></i>
-                <h3>Brand Strategy</h3>
-                <p>Positioning your business as a leader in your specific market niche.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="work" class="section" style="background: var(--bg-alt);">
-        <span class="section-tag">Case Studies</span>
-        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem;">Featured Works</h2>
-        
-        <div class="portfolio-item" data-aos="zoom-in-up">
-            <div class="portfolio-img">
-                <span style="color: #94a3b8; font-weight: 700;">PROJECT_O1 / FINTECH APP</span>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="zoom-in-up">
-            <div class="portfolio-img">
-                <span style="color: #94a3b8; font-weight: 700;">PROJECT_O2 / LUXURY E-COM</span>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>SEO & Growth</h3>
+                <p>Strategy designed to rank you at the top of search results.</p>
             </div>
         </div>
     </section>
 
-    <footer class="section" style="text-align: center;">
-        <h2 style="font-size: 3rem; margin-bottom: 2rem;">Ready to start?</h2>
-        <a href="mailto:hello@pixelux.com" class="btn btn-dark" style="display: inline-block;">Get In Touch</a>
-        <p style="margin-top: 4rem; font-size: 0.9rem; color: var(--text-muted);">© 2025 PIXELUX Agency. All rights reserved.</p>
+    <section id="work" style="background: var(--light-gray);">
+        <span class="section-label">Showcase</span>
+        <h2>Featured Work</h2>
+        <div class="portfolio-grid">
+            <div class="project-box" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800')" data-aos="zoom-in">
+                <div class="project-overlay"><h3>Luxury Real Estate</h3><p>Web Design & Branding</p></div>
+            </div>
+            <div class="project-box" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800')" data-aos="zoom-in" data-aos-delay="100">
+                <div class="project-overlay"><h3>HealthTech Platform</h3><p>UI/UX System</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="text-align: center;">
+        <h2 style="margin-bottom: 1rem;">Let's build something <br><span>Elite.</span></h2>
+        <p style="margin-bottom: 3rem;">Average response time: 2 hours.</p>
+        <a href="mailto:hello@vibz.agency" class="btn btn-fill" style="padding: 1.5rem 4rem;">Start Your Project</a>
+    </section>
+
+    <footer style="padding: 4rem 6%; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div class="logo">VIBZ</div>
+        <div style="color: var(--text-gray);">© 2025 Elite Design Agency. London, UK.</div>
+        <div class="btn-group">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({
-            duration: 1000,
-            once: true,
-            easing: 'ease-out-cubic'
-        });
-
-        // Parallax effect for the background shape
-        window.addEventListener('scroll', () => {
-            const shape = document.querySelector('.shape');
-            let value = window.scrollY;
-            shape.style.transform = `translateY(${value * 0.5}px)`;
+            duration: 800,
+            offset: 100,
+            once: true
         });
     </script>
 </body>
