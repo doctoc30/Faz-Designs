@@ -4,202 +4,237 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIBZ | Elite Design Agency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     
     <style>
         :root {
             --bg: #ffffff;
-            --accent: #FF6B00;
-            --dark: #121212;
-            --text-gray: #4a4a4a;
-            --light-gray: #f9f9f9;
-            --border: #eeeeee;
+            --accent: #FF6B00; /* Signature Inspiration Orange */
+            --navy: #0A192F;   /* Premium Contrast Navy */
+            --text: #1a1a1a;
+            --gray-light: #F8F9FA;
+            --border-radius: 30px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; }
 
         /* --- NAVIGATION --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 6%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-        .logo { font-weight: 900; font-size: 1.8rem; color: var(--accent); letter-spacing: -1px; }
+        nav { 
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 6%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            z-index: 1000; background: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(15px); border-bottom: 1px solid #f1f1f1;
+        }
+        .logo { font-weight: 900; font-size: 1.6rem; color: var(--navy); letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 6%;
-            position: relative;
-            background: radial-gradient(circle at top right, #fff5ee, #ffffff);
+            height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            padding: 0 6%; position: relative; background: radial-gradient(circle at 80% 20%, #fff5ee 0%, #ffffff 60%);
         }
-
         .hero h1 {
-            font-size: clamp(3.5rem, 12vw, 8rem); 
-            font-weight: 900;
-            line-height: 0.9;
-            letter-spacing: -4px;
-            margin-bottom: 2rem;
-            text-transform: capitalize;
+            font-size: clamp(3.8rem, 14vw, 8.5rem); font-weight: 900; line-height: 0.85;
+            letter-spacing: -4px; margin-bottom: 2rem;
         }
-
-        /* Typewriter Cursor Effect */
-        .typewriter-container { color: var(--accent); border-right: 8px solid var(--accent); padding-right: 10px; animation: blink 0.7s infinite; }
+        #typewriter { color: var(--accent); border-right: 10px solid var(--accent); padding-right: 8px; animation: blink 0.8s infinite; }
         @keyframes blink { 50% { border-color: transparent; } }
 
-        .hero p { font-size: 1.25rem; color: var(--text-gray); max-width: 550px; margin-bottom: 3rem; line-height: 1.5; }
+        /* --- SECTION STYLING --- */
+        section { padding: 100px 6%; }
+        .label { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem; display: block; }
+        h2 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; letter-spacing: -2px; line-height: 1; margin-bottom: 3rem; }
 
-        /* --- BUTTONS --- */
-        .btn-group { display: flex; gap: 15px; }
-        .btn { padding: 1.2rem 2.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 1.1rem; }
-        .btn-fill { background: var(--accent); color: white; border: 2px solid var(--accent); }
-        .btn-outline { border: 2px solid var(--accent); color: var(--accent); }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2); }
+        /* --- OUR PROCESS (1-4) --- */
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .process-card { 
+            padding: 3.5rem 2rem; background: var(--gray-light); border-radius: var(--border-radius);
+            position: relative; transition: 0.4s; border: 1px solid transparent;
+        }
+        .process-card:hover { transform: translateY(-10px); background: #fff; border-color: var(--accent); box-shadow: 0 20px 40px rgba(255,107,0,0.1); }
+        .process-card i { font-size: 2.5rem; color: var(--navy); margin-bottom: 1.5rem; }
+        .step-tag { position: absolute; top: 20px; right: 30px; font-size: 5rem; font-weight: 900; color: rgba(0,0,0,0.03); }
 
-        /* --- PROCESS SECTION --- */
-        section { padding: 120px 6%; }
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .process-step { padding: 2.5rem; background: var(--light-gray); border-radius: 24px; position: relative; overflow: hidden; }
-        .step-num { position: absolute; top: -10px; right: 10px; font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.03); }
+        /* --- PORTFOLIO GALLERY --- */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
+        .project-item { 
+            height: 500px; background: var(--navy); border-radius: var(--border-radius); 
+            overflow: hidden; position: relative; cursor: pointer;
+        }
+        .project-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 25, 47, 0.9), transparent);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem;
+            opacity: 0; transition: 0.4s;
+        }
+        .project-item:hover .project-overlay { opacity: 1; }
+        .project-overlay h3 { color: #fff; font-size: 2rem; margin-bottom: 0.5rem; }
+        .project-overlay span { color: var(--accent); font-weight: 700; }
 
-        /* --- FAQ TOGGLE --- */
-        .faq-item { border-bottom: 1px solid var(--border); }
-        .faq-btn { width: 100%; padding: 2rem 0; background: none; border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 1.4rem; font-weight: 700; text-align: left; }
-        .faq-content { max-height: 0; overflow: hidden; transition: 0.4s ease; color: var(--text-gray); }
+        /* --- FAQ SECTION --- */
+        .faq-box { max-width: 900px; margin: 0 auto; }
+        .faq-item { background: var(--gray-light); margin-bottom: 15px; border-radius: 20px; overflow: hidden; }
+        .faq-trigger { 
+            width: 100%; padding: 2rem; background: none; border: none; 
+            display: flex; justify-content: space-between; align-items: center; 
+            font-size: 1.3rem; font-weight: 700; cursor: pointer; color: var(--navy);
+        }
+        .faq-content { max-height: 0; overflow: hidden; transition: 0.4s ease; padding: 0 2rem; color: #555; }
+        .faq-item.active .faq-content { max-height: 200px; padding-bottom: 2rem; }
+        .faq-item.active .faq-trigger { color: var(--accent); }
 
-        /* --- LARGE ENQUIRY FORM --- */
-        .footer-form { background: var(--dark); color: white; border-radius: 60px 60px 0 0; padding: 100px 6%; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .form-grid input, .form-grid textarea { width: 100%; padding: 1.5rem; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 12px; margin-bottom: 1.5rem; font-size: 1rem; }
-        .submit-btn { background: var(--accent); color: white; border: none; padding: 1.5rem 3rem; border-radius: 12px; font-weight: 900; cursor: pointer; width: 100%; }
+        /* --- ENQUIRY FOOTER --- */
+        .footer-cta { 
+            background: var(--navy); color: #fff; border-radius: 60px 60px 0 0; 
+            padding: 120px 6% 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+        }
+        .form-input { 
+            width: 100%; padding: 1.5rem; background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; 
+            color: #fff; margin-bottom: 1rem; outline: none; transition: 0.3s;
+        }
+        .form-input:focus { border-color: var(--accent); background: rgba(255,255,255,0.1); }
+        .submit-btn { 
+            width: 100%; padding: 1.5rem; background: var(--accent); border: none; 
+            border-radius: 15px; color: #fff; font-weight: 900; cursor: pointer; font-size: 1.1rem;
+        }
 
+        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 4rem; letter-spacing: -2px; }
-            .form-grid { grid-template-columns: 1fr; }
-            .btn-group { flex-direction: column; }
+            .hero h1 { font-size: 4.2rem; letter-spacing: -2px; }
+            .footer-cta { grid-template-columns: 1fr; padding-top: 80px; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            section { padding: 80px 6%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">VIBZ</div>
-        <div style="font-size: 1.5rem;"><i class="fa-solid fa-bars-staggered"></i></div>
+        <div class="logo">VIBZ<span>.</span></div>
+        <div style="font-weight: 700; font-size: 0.9rem; letter-spacing: 1px;">WORK WITH US <i class="fa-solid fa-arrow-right-long" style="margin-left: 10px; color: var(--accent);"></i></div>
     </nav>
 
     <section class="hero">
-        <h1 data-aos="fade-right">Websites <br>That Bring <br><span id="typewriter" class="typewriter-container"></span></h1>
-        <p data-aos="fade-up" data-aos-delay="200">
-            We design fast, modern websites for elite brands, dentists, trades, and local services ready to scale.
+        <h1 data-aos="fade-right">Elite Sites<br>That Generate<br><span id="typewriter"></span></h1>
+        <p style="font-size: 1.3rem; color: var(--text); max-width: 500px; line-height: 1.6; margin-bottom: 3rem;">
+            The digital destination for brands that demand perfection. We blend psychology with high-end design to scale your business.
         </p>
-        <div class="btn-group" data-aos="fade-up" data-aos-delay="400">
-            <a href="#work" class="btn btn-fill">View Examples</a>
-            <a href="#contact" class="btn btn-outline">Get a Website</a>
+        <div style="display: flex; gap: 20px;">
+            <a href="#contact" style="padding: 1.5rem 3rem; background: var(--navy); color: #fff; text-decoration: none; border-radius: 50px; font-weight: 900;">Start Project</a>
         </div>
     </section>
 
-    <section id="process">
-        <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem;">Our Process</h2>
+    <section>
+        <span class="label">Our Protocol</span>
+        <h2>How we win</h2>
         <div class="process-grid">
-            <div class="process-step" data-aos="fade-up">
-                <span class="step-num">01</span>
-                <h3>Discovery</h3>
-                <p>We audit your market to find your unfair competitive advantage.</p>
+            <div class="process-card" data-aos="fade-up">
+                <span class="step-tag">01</span>
+                <i class="fa-solid fa-fingerprint"></i>
+                <h3>Identity</h3>
+                <p>We extract the core DNA of your brand to create an unmatched digital presence.</p>
             </div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="100">
-                <span class="step-num">02</span>
-                <h3>Strategy</h3>
-                <p>Developing a conversion-led blueprint for your digital growth.</p>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                <span class="step-tag">02</span>
+                <i class="fa-solid fa-bezier-curve"></i>
+                <h3>Architecture</h3>
+                <p>High-fidelity wireframes focused on the science of user conversion.</p>
             </div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="200">
-                <span class="step-num">03</span>
-                <h3>Design</h3>
-                <p>Bespoke high-end UI designed to command authority in your niche.</p>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                <span class="step-tag">03</span>
+                <h3>Execution</h3>
+                <i class="fa-solid fa-bolt"></i>
+                <p>Pixel-perfect development with lightning-fast load times as standard.</p>
             </div>
-            <div class="process-step" data-aos="fade-up" data-aos-delay="300">
-                <span class="step-num">04</span>
-                <h3>Launch</h3>
-                <p>Deploying a lightning-fast asset that works for you 24/7.</p>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+                <span class="step-tag">04</span>
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Scaling</h3>
+                <p>Post-launch optimization to ensure you stay at the top of your market.</p>
             </div>
         </div>
     </section>
 
-    <section id="faq">
-        <h2 style="font-size: 3rem; margin-bottom: 3rem;">Common Questions</h2>
-        <div class="faq-item">
-            <button class="faq-btn" onclick="toggleFaq(this)">How long does it take? <i class="fa-solid fa-plus"></i></button>
-            <div class="faq-content"><p style="padding-bottom: 2rem;">Typically 14-21 days for a full elite conversion website.</p></div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-btn" onclick="toggleFaq(this)">Do you offer SEO? <i class="fa-solid fa-plus"></i></button>
-            <div class="faq-content"><p style="padding-bottom: 2rem;">Every site is built with technical SEO excellence as standard.</p></div>
+    <section style="background-color: var(--gray-light);">
+        <span class="label">Featured Work</span>
+        <h2>The Collective</h2>
+        <div class="portfolio-grid">
+            <div class="project-item" style="background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800') center/cover;" data-aos="zoom-in">
+                <div class="project-overlay">
+                    <span>REAL ESTATE</span>
+                    <h3>The Azure Penthouse</h3>
+                </div>
+            </div>
+            <div class="project-item" style="background: url('https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=800') center/cover;" data-aos="zoom-in" data-aos-delay="100">
+                <div class="project-overlay">
+                    <span>FINTECH</span>
+                    <h3>Neocredit Platform</h3>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="footer-form" id="contact">
-        <div class="form-grid">
-            <div>
-                <h2 style="font-size: 4rem; margin-bottom: 2rem;">Let's build <br><span style="color: var(--accent);">your legacy.</span></h2>
-                <p style="color: #888;">Complete the form and our head of strategy will contact you within 24 hours.</p>
+    <section>
+        <h2 style="text-align: center;">Intelligence</h2>
+        <div class="faq-box">
+            <div class="faq-item">
+                <button class="faq-trigger">What is the investment? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-content"><p>Elite projects start from $3,500. Every build is a custom asset designed for ROI.</p></div>
             </div>
+            <div class="faq-item">
+                <button class="faq-trigger">Who do you work with? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-content"><p>We partner with high-end service providers, luxury brands, and local leaders looking to dominate.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-cta" id="contact">
+        <div data-aos="fade-right">
+            <h2 style="color: #fff;">Ready to <br><span style="color: var(--accent);">Evolve?</span></h2>
+            <p style="color: #888; font-size: 1.2rem; margin-top: 2rem;">Secure your spot in our development cycle. We only take 2 clients per month to ensure elite quality.</p>
+        </div>
+        <div class="form-area" data-aos="fade-left">
             <form>
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <textarea rows="4" placeholder="Tell us about your project..."></textarea>
-                <button type="submit" class="submit-btn">SEND ENQUIRY</button>
+                <input type="text" placeholder="Name" class="form-input">
+                <input type="email" placeholder="Email" class="form-input">
+                <textarea placeholder="Tell us about your goals" class="form-input" rows="4"></textarea>
+                <button type="submit" class="submit-btn">SEND REQUEST</button>
             </form>
         </div>
-        <div style="text-align: center; margin-top: 80px; color: #444; border-top: 1px solid #222; padding-top: 40px;">
-            © 2025 VIBZ COLLECTIVE. ALL RIGHTS RESERVED.
+        <div style="grid-column: 1 / -1; text-align: center; margin-top: 60px; color: #444; font-size: 0.8rem; letter-spacing: 2px;">
+            © 2025 VIBZ DESIGN COLLECTIVE. ALL RIGHTS RESERVED.
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        AOS.init({ duration: 1000, once: true });
 
-        // Typewriter Logic
-        const words = ["Customers.", "Growth.", "Revenue.", "Results."];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const target = document.getElementById("typewriter");
-
+        // Typewriter Effect
+        const phrases = ["Growth.", "Revenue.", "Prestige.", "Impact."];
+        let i = 0, j = 0, isDeleting = false;
         function type() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) {
-                target.textContent = currentWord.substring(0, charIndex--);
-            } else {
-                target.textContent = currentWord.substring(0, charIndex++);
-            }
-
-            if (!isDeleting && charIndex === currentWord.length + 1) {
-                isDeleting = true;
-                setTimeout(type, 2000); // Pause at end
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                setTimeout(type, 500);
-            } else {
-                setTimeout(type, isDeleting ? 100 : 200);
-            }
+            const current = phrases[i];
+            const display = document.getElementById("typewriter");
+            display.textContent = isDeleting ? current.substring(0, j--) : current.substring(0, j++);
+            let speed = isDeleting ? 70 : 150;
+            if (!isDeleting && j === current.length + 1) { speed = 2500; isDeleting = true; }
+            if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % phrases.length; speed = 500; }
+            setTimeout(type, speed);
         }
         type();
 
-        // FAQ Logic
-        function toggleFaq(btn) {
-            const content = btn.nextElementSibling;
-            const icon = btn.querySelector('i');
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-                icon.className = "fa-solid fa-plus";
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                icon.className = "fa-solid fa-minus";
-            }
-        }
+        // FAQ Toggle
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const parent = trigger.parentElement;
+                parent.classList.toggle('active');
+                trigger.querySelector('i').classList.toggle('fa-chevron-up');
+            });
+        });
     </script>
 </body>
 </html>
