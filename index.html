@@ -395,6 +395,52 @@ html, body {
         right: 10px;
     }
 }
+
+
+
+
+        .concept-slider {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-title {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  color: white;
+  font-size: 3rem;
+  font-weight: 900;
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
+}
         
            </style>
 </head>
@@ -424,6 +470,29 @@ html, body {
     <a href="https://www.vibz.co.uk/funnel.html" class="btn btn-outline">Get a Website</a>
 </div>
     </section>
+
+
+
+<section class="concept-slider">
+  <div class="slides">
+    <div class="slide active">
+      <img src="https://via.placeholder.com/1200x600?text=Plumber+Concept" alt="Plumber Concept">
+      <div class="slide-title">Plumber</div>
+    </div>
+    <div class="slide">
+      <img src="https://via.placeholder.com/1200x600?text=Dentist+Concept" alt="Dentist Concept">
+      <div class="slide-title">Dentist</div>
+    </div>
+    <div class="slide">
+      <img src="https://via.placeholder.com/1200x600?text=Trades+Concept" alt="Trades Concept">
+      <div class="slide-title">Trades</div>
+    </div>
+  </div>
+</section>
+
+
+
+
 
     <section id="process">
         <span class="section-label" data-aos="fade-up">Protocol</span>
@@ -538,6 +607,28 @@ html, body {
                 icon.className = "fa-solid fa-minus";
             }
         }
+
+
+
+
+        
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if(i === index) slide.classList.add('active');
+  });
+}
+
+function nextSlide() {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}
+
+// Auto-slide every 4 seconds
+setInterval(nextSlide, 4000);
     </script>
 </body>
 </html>
