@@ -1052,7 +1052,6 @@
         }
 
         /* ================= ADDED: BRANDED GRAPHICS & LEAD CAPTURE STYLES ================= */
-        /* These styles remain but are now unused since sections removed */
         .branded-section {
             padding: 100px 6%;
             background: var(--light-gray);
@@ -1102,14 +1101,6 @@
             .graphics-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        .trust-badges {
-            background: white;
-            padding: 3rem 6%;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
         }
 
         .widget-badge {
@@ -1184,9 +1175,153 @@
         </div>
     </section>
 
-    <!-- Removed: Branded Graphics & Lead Capture Section (id="conversion") -->
+    <!-- ================= ADDED: BRANDED GRAPHICS & LEAD CAPTURE ================= -->
+    <section class="branded-section" id="conversion">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <!-- Branded Header -->
+            <div style="text-align: center; margin-bottom: 60px;" data-aos="fade-up">
+                <span class="section-label">Premium Conversion</span>
+                <h2 style="font-size: 3.5rem; font-weight: 900; margin: 1rem 0 2rem; letter-spacing: -2px;">
+                    Elite Tools That <span style="color: var(--accent);">Convert Visitors</span> Into Revenue
+                </h2>
+                <p style="font-size: 1.2rem; color: var(--text-gray); max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                    We engineer high-converting interfaces with advanced widgets that capture leads 24/7
+                </p>
+            </div>
 
-    <!-- Removed: Trust Badges Section -->
+            <!-- Branded Graphics Grid -->
+            <div class="graphics-grid">
+                <div class="graphic-card" data-aos="fade-up">
+                    <div style="width: 60px; height: 60px; background: rgba(255, 107, 0, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-chart-bar" style="font-size: 1.8rem; color: var(--accent);"></i>
+                    </div>
+                    <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 1rem;">Conversion Analytics</h3>
+                    <p style="color: var(--text-gray); line-height: 1.6;">Real-time tracking of every visitor interaction with heatmaps and session recordings</p>
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,107,0,0.1) 0%, rgba(255,107,0,0) 70%); border-radius: 50%;"></div>
+                </div>
+
+                <div class="graphic-card" data-aos="fade-up" data-aos-delay="100">
+                    <div style="width: 60px; height: 60px; background: rgba(255, 107, 0, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-bolt" style="font-size: 1.8rem; color: var(--accent);"></i>
+                    </div>
+                    <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 1rem;">Smart Popups</h3>
+                    <p style="color: var(--text-gray); line-height: 1.6;">AI-triggered lead capture forms that appear at the perfect moment in the user journey</p>
+                    <div style="position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, rgba(255,107,0,0) 70%); border-radius: 50%;"></div>
+                </div>
+
+                <div class="graphic-card" data-aos="fade-up" data-aos-delay="200">
+                    <div style="width: 60px; height: 60px; background: rgba(255, 107, 0, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-robot" style="font-size: 1.8rem; color: var(--accent);"></i>
+                    </div>
+                    <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 1rem;">AI Chat Widgets</h3>
+                    <p style="color: var(--text-gray); line-height: 1.6;">24/7 automated lead qualification that books meetings and captures contact details</p>
+                    <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, rgba(255,107,0,0) 70%); border-radius: 50%;"></div>
+                </div>
+            </div>
+
+            <!-- High-Converting Lead Capture Section -->
+            <div class="lead-capture-container" data-aos="fade-up">
+                <!-- Left Column: Value Proposition -->
+                <div>
+                    <h3 style="font-size: 2.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px;">
+                        Get Your <span style="color: var(--accent);">Free</span> Website Audit
+                    </h3>
+                    <p style="color: var(--text-gray); margin-bottom: 2rem; line-height: 1.6;">
+                        Discover exactly how to increase your conversion rate by 300% with our proprietary audit tool. Used by 500+ elite brands.
+                    </p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-check" style="color: white; font-size: 0.8rem;"></i>
+                            </div>
+                            <div>
+                                <strong style="display: block; margin-bottom: 5px;">PageSpeed Analysis</strong>
+                                <span style="color: var(--text-gray); font-size: 0.9rem;">Identify bottlenecks slowing down your conversions</span>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-check" style="color: white; font-size: 0.8rem;"></i>
+                            </div>
+                            <div>
+                                <strong style="display: block; margin-bottom: 5px;">Conversion Heatmap</strong>
+                                <span style="color: var(--text-gray); font-size: 0.9rem;">See where visitors click, scroll, and drop off</span>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-check" style="color: white; font-size: 0.8rem;"></i>
+                            </div>
+                            <div>
+                                <strong style="display: block; margin-bottom: 5px;">Competitor Breakdown</strong>
+                                <span style="color: var(--text-gray); font-size: 0.9rem;">Get actionable insights on your top 3 competitors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Lead Capture Form -->
+                <div style="background: var(--light-gray); padding: 3rem; border-radius: 24px; border: 1px solid var(--border);">
+                    <h4 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 1.5rem;">Request Your Free Audit</h4>
+                    
+                    <form id="leadCaptureForm" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="position: relative;">
+                            <input type="text" placeholder="Your Website URL" required style="width: 100%; padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1rem; outline: none; transition: 0.3s;">
+                            <div style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--accent);">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                        </div>
+                        
+                        <input type="email" placeholder="Work Email" required style="padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1rem; outline: none; transition: 0.3s;">
+                        
+                        <input type="tel" placeholder="Phone Number (Optional)" style="padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1rem; outline: none; transition: 0.3s;">
+                        
+                        <select style="padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; font-size: 1rem; outline: none; background: white; color: var(--dark); cursor: pointer; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 20px;">
+                            <option value="" disabled selected>Monthly Marketing Budget</option>
+                            <option value="1k-5k">$1,000 - $5,000</option>
+                            <option value="5k-10k">$5,000 - $10,000</option>
+                            <option value="10k-20k">$10,000 - $20,000</option>
+                            <option value="20k+">$20,000+</option>
+                        </select>
+                        
+                        <button type="submit" style="background: var(--accent); color: white; border: none; padding: 1.2rem; border-radius: 12px; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 1rem;">
+                            GET FREE AUDIT <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                        </button>
+                        
+                        <p style="font-size: 0.8rem; color: var(--text-gray); text-align: center; margin-top: 1rem;">
+                            By submitting, you agree to our <a href="#" style="color: var(--accent); text-decoration: none;">Privacy Policy</a>. Audit delivered in 24 hours.
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Advanced Widgets Showcase -->
+            <div style="margin-top: 80px; text-align: center;">
+                <h3 style="font-size: 2rem; font-weight: 900; margin-bottom: 2rem;">Advanced Conversion Widgets</h3>
+                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                    <div class="widget-badge">
+                        <i class="fas fa-calendar-check" style="color: var(--accent);"></i>
+                        <span>Booking Widgets</span>
+                    </div>
+                    <div class="widget-badge">
+                        <i class="fas fa-calculator" style="color: var(--accent);"></i>
+                        <span>ROI Calculators</span>
+                    </div>
+                    <div class="widget-badge">
+                        <i class="fas fa-video" style="color: var(--accent);"></i>
+                        <span>Video Testimonials</span>
+                    </div>
+                    <div class="widget-badge">
+                        <i class="fas fa-chart-pie" style="color: var(--accent);"></i>
+                        <span>Live Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Stats Section -->
     <section class="stats-section" id="services" data-aos="fade-up">
@@ -1451,9 +1586,76 @@
             }
         });
 
-        // REMOVED: Lead Capture Form Enhancement (only for removed section)
-        // REMOVED: Add hover effects to graphic cards (only for removed section)
-        // REMOVED: Add hover effects to widget badges (only for removed section)
+        // REINSTATED: Lead Capture Form Enhancement
+        const leadCaptureForm = document.getElementById('leadCaptureForm');
+        if (leadCaptureForm) {
+            leadCaptureForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Show success
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> AUDIT REQUESTED!';
+                    submitBtn.style.background = '#4CAF50';
+                    
+                    // Create success message
+                    const successMsg = document.createElement('div');
+                    successMsg.style.cssText = 'background: rgba(76, 175, 80, 0.1); border: 1px solid #4CAF50; color: #2E7D32; padding: 1.5rem; border-radius: 12px; margin-top: 1rem; text-align: center;';
+                    successMsg.innerHTML = `
+                        <h4 style="margin-bottom: 0.5rem; color: #2E7D32;"><i class="fas fa-check-circle"></i> Success!</h4>
+                        <p>Your free audit request has been received. You'll receive your personalized report within 24 hours.</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Check your email for confirmation.</p>
+                    `;
+                    
+                    this.parentNode.insertBefore(successMsg, this.nextSibling);
+                    
+                    // Reset form after 5 seconds
+                    setTimeout(() => {
+                        this.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                        successMsg.remove();
+                    }, 5000);
+                }, 1500);
+            });
+        }
+
+        // REINSTATED: Add hover effects to graphic cards
+        document.querySelectorAll('.graphic-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 30px 60px rgba(255, 107, 0, 0.1)';
+                card.style.borderColor = 'var(--accent)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '';
+                card.style.borderColor = 'var(--border)';
+            });
+        });
+
+        // REINSTATED: Add hover effects to widget badges
+        document.querySelectorAll('.widget-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', () => {
+                badge.style.transform = 'translateY(-3px)';
+                badge.style.boxShadow = '0 10px 20px rgba(255, 107, 0, 0.1)';
+                badge.style.borderColor = 'var(--accent)';
+            });
+            
+            badge.addEventListener('mouseleave', () => {
+                badge.style.transform = 'translateY(0)';
+                badge.style.boxShadow = '';
+                badge.style.borderColor = 'var(--border)';
+            });
+        });
     </script>
 </body>
 </html>
