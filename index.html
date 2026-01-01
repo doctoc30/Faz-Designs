@@ -838,7 +838,36 @@
             color: var(--text-gray);
             opacity: 0.7;
         }
+
+
+        /* ================= MOBILE HAMBURGER MENU ITEMS ANIMATION ================= */
+.mobile-menu a {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    color: var(--dark);
+    text-decoration: none;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.mobile-menu.open a {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Stagger effect */
+.mobile-menu.open a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.open a:nth-child(2) { transition-delay: 0.2s; }
+.mobile-menu.open a:nth-child(3) { transition-delay: 0.3s; }
+.mobile-menu.open a:nth-child(4) { transition-delay: 0.4s; }
+.mobile-menu.open a:nth-child(5) { transition-delay: 0.5s; }
+.mobile-menu.open a:nth-child(6) { transition-delay: 0.6s; }
     </style>
+
+
+    
 </head>
 <body>
     <!-- Navigation (EXACTLY AS WAS) -->
@@ -850,7 +879,21 @@
         <div class="nav-right" style="font-size: 1.5rem;">
             <i class="fa-solid fa-bars-staggered"></i>
         </div>
+
+
+        <div class="menu-overlay"></div>
+<div class="mobile-menu">
+    <a href="#process">Process</a>
+    <a href="#features">Features</a>
+    <a href="#clients">Clients</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+</div>
     </nav>
+
+
+    
 
     <!-- Hero Section (EXACTLY AS WAS) -->
     <section class="hero">
@@ -1217,6 +1260,25 @@
         // Initialize slider
         showSlide(currentSlide);
         startSlider();
+
+
+        // Hamburger Menu Logic
+const hamburger = document.querySelector('.nav-right i');
+const mobileMenu = document.querySelector('.mobile-menu');
+const overlay = document.querySelector('.menu-overlay');
+
+function toggleMenu() {
+    mobileMenu.classList.toggle('open');
+    overlay.classList.toggle('active');
+}
+
+hamburger.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', toggleMenu);
+
+// Optional: close menu on link click
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', toggleMenu);
+});
     </script>
 </body>
 </html>
