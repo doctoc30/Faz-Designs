@@ -1331,7 +1331,18 @@
         </div>
     </section>
 
-    
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+        <p style="color: var(--text-gray); margin-bottom: 1.5rem; font-weight: 700;">TRUSTED BY INDUSTRY LEADERS</p>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark);">Google</div>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark); opacity: 0.8;">Shopify</div>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark); opacity: 0.8;">Webflow</div>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark); opacity: 0.8;">Figma</div>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark);">Adobe</div>
+        </div>
+    </div>
+
     <!-- Stats Section -->
     <section class="stats-section" id="services" data-aos="fade-up">
         <span class="section-label">Impact</span>
@@ -1424,7 +1435,25 @@
         </div>
     </section>
 
- 
+    <!-- Clients Section -->
+    <section class="clients-section">
+        <span class="section-label" data-aos="fade-up">Trusted By</span>
+        <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;" data-aos="fade-up">Elite Brands</h2>
+        <div class="clients-grid">
+            <div class="client-logo" data-aos="fade-up">
+                <i class="fas fa-tooth"></i>
+            </div>
+            <div class="client-logo" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-hard-hat"></i>
+            </div>
+            <div class="client-logo" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-stethoscope"></i>
+            </div>
+            <div class="client-logo" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-gem"></i>
+            </div>
+        </div>
+    </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials-section">
@@ -1543,94 +1572,6 @@
             }
         }
 
-        // Enhanced Slider Logic (NEW)
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        const prevBtn = document.querySelector('.slider-arrow.prev');
-        const nextBtn = document.querySelector('.slider-arrow.next');
-        let currentSlide = 0;
-        let slideInterval;
-
-        function showSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function startSlider() {
-            slideInterval = setInterval(nextSlide, 4000);
-        }
-
-        function resetSlider() {
-            clearInterval(slideInterval);
-            startSlider();
-        }
-
-        // Event Listeners for slider
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetSlider();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            resetSlider();
-        });
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const slideIndex = parseInt(dot.getAttribute('data-slide'));
-                showSlide(slideIndex);
-                resetSlider();
-            });
-        });
-
-        // Form Submission Enhancement (NEW)
-        document.querySelector('.footer-form form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            const originalBg = submitBtn.style.background;
-            
-            // Show loading state
-            submitBtn.textContent = 'SENDING...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(() => {
-                // Show success state
-                submitBtn.textContent = 'ENQUIRY SENT!';
-                submitBtn.style.background = '#4CAF50';
-                
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = originalBg;
-                    this.reset();
-                }, 2000);
-            }, 1500);
-        });
-
-        // Floating CTA Animation (NEW)
-        const floatingCta = document.querySelector('.floating-cta');
-        setInterval(() => {
-            floatingCta.classList.toggle('floating');
-        }, 3000);
-
         // Menu Functionality
         const menuOverlay = document.getElementById('menuOverlay');
         const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -1735,10 +1676,6 @@
                 badge.style.borderColor = 'var(--border)';
             });
         });
-
-        // Initialize slider
-        showSlide(currentSlide);
-        startSlider();
     </script>
 </body>
 </html>
