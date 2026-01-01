@@ -1053,48 +1053,69 @@
 
 
 
-        .logo-animation-section {
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= JIGSAW LOGO ANIMATION ================= */
+
+/* Section wrapper */
+.logo-animation-section {
   width: 100%;
-  padding: 60px 0; /* adjust spacing to taste */
+  padding: 60px 0;
   display: flex;
   justify-content: center;
-  background: #ffffff; /* or match your brand background */
+  background: #ffffff;
+  min-height: 350px; /* ensures Safari/iPhone doesn't collapse height */
 }
 
+/* Desktop container — MUST match logo aspect ratio (1184 × 864 = 1.37) */
+.logo-scene {
+  width: 420px;
+  height: 306px; /* 420 / 1.37 */
+  perspective: 1200px;
+  position: relative;
+  overflow: visible;
+}
 
-
+/* Mobile container — same ratio */
 @media (max-width: 600px) {
   .logo-scene {
     width: 280px;
-    height: 130px;
+    height: 204px; /* 280 / 1.37 */
   }
 }
 
-
-
-
-/* JIGSAW ANIMATION CORE STYLES */
+/* Jigsaw container */
 .logo-jigsaw {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  display: block; /* Safari fix */
 }
 
-
-
-        .logo-piece {
+/* Each puzzle piece */
+.logo-piece {
   position: absolute;
   background-image: url("images/IMG_9688.png");
-  background-size: 1184px 864px;
+  background-size: 1184px 864px; /* MUST match actual image resolution */
   background-repeat: no-repeat;
   will-change: transform, opacity;
   transform-origin: center;
   opacity: 0;
 }
 
-
-/* Optional hover effect after animation completes */
+/* Hover effect after animation completes */
 .logo-jigsaw.completed .logo-piece {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -1103,25 +1124,6 @@
   transform: translateZ(20px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
-
-
-#logoJigsaw {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-
-
-
-.logo-scene {
-  width: 420px;
-  height: 306px; /* corrected height */
-  perspective: 1200px;
-  position: relative;
-  overflow: visible;
-}
-
 
      
     </style>
