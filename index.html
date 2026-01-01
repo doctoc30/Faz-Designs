@@ -1050,6 +1050,30 @@
             color: var(--text-gray);
             opacity: 0.7;
         }
+
+
+
+        .logo-animation-section {
+  width: 100%;
+  padding: 60px 0; /* adjust spacing to taste */
+  display: flex;
+  justify-content: center;
+  background: #ffffff; /* or match your brand background */
+}
+
+.logo-scene {
+  width: 420px;   /* slightly smaller for below-hero */
+  height: 200px;
+  perspective: 1200px;
+}
+
+@media (max-width: 600px) {
+  .logo-scene {
+    width: 280px;
+    height: 130px;
+  }
+}
+
     </style>
 </head>
 <body>
@@ -1105,6 +1129,22 @@
             <a href="https://www.vibz.co.uk/funnel.html" class="btn btn-outline">Get a Website</a>
         </div>
     </section>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <!-- Your hero content here -->
+</section>
+
+<!-- LOGO ANIMATION SECTION -->
+<section class="logo-animation-section">
+  <div class="logo-scene">
+    <div class="logo-jigsaw" id="logoJigsaw"></div>
+  </div>
+</section>
+
+
+    
 
     <!-- Slider Section -->
     <section style="padding-top: 60px; padding-bottom: 120px;" id="portfolio">
@@ -1493,6 +1533,110 @@
         // Initialize slider
         showSlide(currentSlide);
         startSlider();
+
+
+        // CONFIG
+const ROWS = 4;
+const COLS = 8;
+const ANIM_DURATION = 1500;
+const ANIM_DELAY_MAX = 900;
+
+const container = document.getElementById("logoJigsaw");
+let animationStarted = false;
+
+function createPieces() {
+  const rect = container.getBoundingClientRect();
+  const pieceWidth = rect.width / COLS;
+  const pieceHeight = rect.height / ROWS;
+
+  for (let row = 0; row < ROWS; row++) {
+    for (let col = 0; col < COLS; col++) {
+      const piece = document.createElement("div");
+      piece.classList.add("logo-piece");
+
+      piece.style.width = `${pieceWidth}px`;
+      piece.style.height = `${pieceHeight}px`;
+
+      const finalX = col * pieceWidth;
+      const finalY = row * pieceHeight;
+
+      piece.dataset.finalX = finalX;
+      piece.dataset.finalY = finalY;
+
+      piece.style.left = `${finalX}px`;
+      piece.style.top = `${finalY}px`;
+
+      const bgPosX = -col * pieceWidth;
+      const bgPosY = -row * pieceHeight;
+      piece.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+
+      container.appendChild(piece);
+    }
+  }
+}
+
+function animatePieces() {
+  const pieces = Array.from(document.querySelectorAll(".logo-piece"));
+
+  pieces.forEach((piece) => {
+    const finalX = parseFloat(piece.dataset.finalX);
+    const finalY = parseFloat(piece.dataset.finalY);
+
+    const startX = finalX + (Math.random() - 0.5) * 800;
+    const startY = finalY + (Math.random() - 0.5) * 600;
+    const startZ = (Math.random() - 0.5) * 1000;
+
+    const rotX = (Math.random() - 0.5) * 720;
+    const rotY = (Math.random() - 0.5) * 720;
+    const rotZ = (Math.random() - 0.5) * 720;
+
+    const delay = Math.random() * ANIM_DELAY_MAX;
+    const duration = ANIM_DURATION + Math.random() * 600;
+
+    piece.style.transform = `
+      translate3d(${startX}px, ${startY}px, ${startZ}px)
+      rotateX(${rotX}deg)
+      rotateY(${rotY}deg)
+      rotateZ(${rotZ}deg)
+    `;
+    piece.style.opacity = "0";
+
+    setTimeout(() => {
+      piece.style.transition = `
+        transform ${duration}ms cubic-bezier(0.2, 0.8, 0.1, 1.0),
+        opacity ${duration}ms ease-out
+      `;
+      piece.style.transform = `
+        translate3d(${finalX}px, ${finalY}px, 0)
+        rotateX(0deg)
+        rotateY(0deg)
+        rotateZ(0deg)
+      `;
+      piece.style.opacity = "1";
+    }, 50 + delay);
+  });
+
+  setTimeout(() => {
+    container.classList.add("completed");
+  }, ANIM_DURATION + ANIM_DELAY_MAX + 800);
+}
+
+// Intersection Observer to trigger animation on scroll
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !animationStarted) {
+        animationStarted = true;
+        createPieces();
+        setTimeout(animatePieces, 200);
+      }
+    });
+  },
+  { threshold: 0.4 }
+);
+
+observer.observe(document.querySelector(".logo-animation-section"));
+
     </script>
 </body>
 </html>
