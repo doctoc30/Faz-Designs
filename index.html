@@ -392,39 +392,7 @@
             }
         }
 
-        /* Slider Frame - Default (desktop) */
-        .slider-frame {
-            position: relative;
-            width: 100%;
-            max-width: 900px; /* desktop width */
-            height: 450px;
-            margin: 2rem auto 0;
-            border: 4px solid var(--accent);
-            border-radius: 24px;
-            overflow: hidden;
-            background: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Mobile Portrait Adjustment */
-        @media (max-width: 768px) {
-            .slider-frame {
-                max-width: 90%;  /* slightly smaller so it doesn't touch edges */
-                height: 350px;   /* optional: slightly smaller height */
-                margin: 2rem auto;
-            }
-
-            .slide-content h2 {
-                font-size: 2.2rem; /* smaller font for mobile */
-            }
-
-            .slide-content .btn {
-                font-size: 0.9rem;
-                padding: 0.7rem 1.5rem;
-            }
-        }
+      
 
         /* ==== NEWLY ADDED FEATURES ONLY - ALL LIGHT THEME ==== */
         
@@ -526,6 +494,31 @@
             letter-spacing: -2px;
         }
 
+
+
+
+        .slider-frame {
+    position: relative;
+    width: 95%;        /* slightly less than full width for desktop */
+    max-width: 1200px; /* increased max width */
+    height: 600px;      /* extra height */
+    margin: 2rem auto 0;
+    border: 4px solid var(--accent);
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile portrait adjustment */
+@media (max-width: 768px) {
+    .slider-frame {
+        width: 90%;      /* reduce width so it doesn’t touch edges */
+        height: 400px;   /* slightly smaller height for mobile */
+    }
+}
         /* ================= PREMIUM FEATURES SECTION ================= */
         .features-section {
             background: white;
