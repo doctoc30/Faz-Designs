@@ -1396,182 +1396,179 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+
         // Initialize AOS (EXISTING)
-        AOS.init({ duration: 800, once: true });
+AOS.init({ duration: 800, once: true });
 
-        // Typewriter Logic (EXISTING)
-        const words = ["Customers.", "Growth.", "Revenue.", "Results."];
-        let wordIndex = 0; 
-        let charIndex = 0; 
-        let isDeleting = false;
-        const target = document.getElementById("typewriter");
+// Typewriter Logic (EXISTING)
+const words = ["Customers.", "Growth.", "Revenue.", "Results."];
+let wordIndex = 0; 
+let charIndex = 0; 
+let isDeleting = false;
+const target = document.getElementById("typewriter");
 
-        function type() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) { 
-                target.textContent = currentWord.substring(0, charIndex--); 
-            } else { 
-                target.textContent = currentWord.substring(0, charIndex++); 
-            }
+function type() {
+    const currentWord = words[wordIndex];
+    if (isDeleting) { 
+        target.textContent = currentWord.substring(0, charIndex--); 
+    } else { 
+        target.textContent = currentWord.substring(0, charIndex++); 
+    }
 
-            if (!isDeleting && charIndex === currentWord.length + 1) {
-                isDeleting = true; 
-                setTimeout(type, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false; 
-                wordIndex = (wordIndex + 1) % words.length; 
-                setTimeout(type, 500);
-            } else {
-                setTimeout(type, isDeleting ? 100 : 200);
-            }
-        }
-        type();
+    if (!isDeleting && charIndex === currentWord.length + 1) {
+        isDeleting = true; 
+        setTimeout(type, 2000);
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false; 
+        wordIndex = (wordIndex + 1) % words.length; 
+        setTimeout(type, 500);
+    } else {
+        setTimeout(type, isDeleting ? 100 : 200);
+    }
+}
+type();
 
-        // FAQ Logic (EXISTING)
-        function toggleFaq(btn) {
-            const item = btn.parentElement;
-            const content = btn.nextElementSibling;
-            const icon = btn.querySelector('i');
-            
-            if (item.classList.contains('active')) {
-                content.style.maxHeight = null;
-                item.classList.remove('active');
-                icon.className = "fa-solid fa-plus";
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                item.classList.add('active');
-                icon.className = "fa-solid fa-minus";
-            }
-        }
+// FAQ Logic (EXISTING)
+function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('i');
+    
+    if (item.classList.contains('active')) {
+        content.style.maxHeight = null;
+        item.classList.remove('active');
+        icon.className = "fa-solid fa-plus";
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        item.classList.add('active');
+        icon.className = "fa-solid fa-minus";
+    }
+}
 
-        // Enhanced Slider Logic (NEW)
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        const prevBtn = document.querySelector('.slider-arrow.prev');
-        const nextBtn = document.querySelector('.slider-arrow.next');
-        let currentSlide = 0;
-        let slideInterval;
+// Enhanced Slider Logic (NEW)
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.slider-dot');
+const prevBtn = document.querySelector('.slider-arrow.prev');
+const nextBtn = document.querySelector('.slider-arrow.next');
+let currentSlide = 0;
+let slideInterval;
 
-        function showSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
+function showSlide(index) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentSlide = index;
+}
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
 
-        function startSlider() {
-            slideInterval = setInterval(nextSlide, 4000);
-        }
+function startSlider() {
+    slideInterval = setInterval(nextSlide, 4000);
+}
 
-        function resetSlider() {
-            clearInterval(slideInterval);
-            startSlider();
-        }
+function resetSlider() {
+    clearInterval(slideInterval);
+    startSlider();
+}
 
-        // Event Listeners for slider
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetSlider();
-        });
+// Event Listeners for slider
+nextBtn.addEventListener('click', () => {
+    nextSlide();
+    resetSlider();
+});
 
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            resetSlider();
-        });
+prevBtn.addEventListener('click', () => {
+    prevSlide();
+    resetSlider();
+});
 
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const slideIndex = parseInt(dot.getAttribute('data-slide'));
-                showSlide(slideIndex);
-                resetSlider();
-            });
-        });
+dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        const slideIndex = parseInt(dot.getAttribute('data-slide'));
+        showSlide(slideIndex);
+        resetSlider();
+    });
+});
 
-        // Form Submission Enhancement (NEW)
-        document.querySelector('.footer-form form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            const originalBg = submitBtn.style.background;
-            
-            // Show loading state
-            submitBtn.textContent = 'SENDING...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(() => {
-                // Show success state
-                submitBtn.textContent = 'ENQUIRY SENT!';
-                submitBtn.style.background = '#4CAF50';
-                
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = originalBg;
-                    this.reset();
-                }, 2000);
-            }, 1500);
-        });
+// Form Submission Enhancement (NEW)
+document.querySelector('.footer-form form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = this.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    const originalBg = submitBtn.style.background;
+    
+    submitBtn.textContent = 'SENDING...';
+    submitBtn.disabled = true;
+    
+    setTimeout(() => {
+        submitBtn.textContent = 'ENQUIRY SENT!';
+        submitBtn.style.background = '#4CAF50';
+        
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.background = originalBg;
+            this.reset();
+        }, 2000);
+    }, 1500);
+});
 
-        // Floating CTA Animation (NEW)
-        const floatingCta = document.querySelector('.floating-cta');
-        setInterval(() => {
-            floatingCta.classList.toggle('floating');
-        }, 3000);
+// Floating CTA Animation (NEW)
+const floatingCta = document.querySelector('.floating-cta');
+setInterval(() => {
+    floatingCta.classList.toggle('floating');
+}, 3000);
 
-        // Menu Functionality
-        const menuOverlay = document.getElementById('menuOverlay');
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const closeMenuBtn = document.getElementById('closeMenu');
-        const body = document.body;
-        const menuLinks = document.querySelectorAll('.menu-link');
+// Menu Functionality
+const menuOverlay = document.getElementById('menuOverlay');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeMenuBtn = document.getElementById('closeMenu');
+const body = document.body;
+const menuLinks = document.querySelectorAll('.menu-link');
 
-        function openMenu() {
-            menuOverlay.classList.add('active');
-            body.classList.add('menu-open');
-            body.style.overflow = 'hidden';
-        }
+function openMenu() {
+    menuOverlay.classList.add('active');
+    body.classList.add('menu-open');
+    body.style.overflow = 'hidden';
+}
 
-        function closeMenu() {
-            menuOverlay.classList.remove('active');
-            body.classList.remove('menu-open');
-            body.style.overflow = '';
-        }
+function closeMenu() {
+    menuOverlay.classList.remove('active');
+    body.classList.remove('menu-open');
+    body.style.overflow = '';
+}
 
-        hamburgerBtn.addEventListener('click', openMenu);
-        closeMenuBtn.addEventListener('click', closeMenu);
+hamburgerBtn.addEventListener('click', openMenu);
+closeMenuBtn.addEventListener('click', closeMenu);
 
-        // Close menu when clicking on a link
-        menuLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
+menuLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
 
-        // Close menu with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeMenu();
-            }
-        });
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeMenu();
+    }
+});
 
-        // Initialize slider
-        showSlide(currentSlide);
-        startSlider();
+// Initialize slider
+showSlide(currentSlide);
+startSlider();
 
+/* ===========================
+   JIGSAW ANIMATION (FIXED)
+   =========================== */
 
-        // CONFIG
 const ROWS = 4;
 const COLS = 8;
 const ANIM_DURATION = 1500;
@@ -1581,97 +1578,92 @@ const container = document.getElementById("logoJigsaw");
 let animationStarted = false;
 
 function createPieces() {
-  const rect = container.getBoundingClientRect();
-  const pieceWidth = rect.width / COLS;
-  const pieceHeight = rect.height / ROWS;
+    const rect = container.getBoundingClientRect();
+    const pieceWidth = rect.width / COLS;
+    const pieceHeight = rect.height / ROWS;
 
-  for (let row = 0; row < ROWS; row++) {
-    for (let col = 0; col < COLS; col++) {
-      const piece = document.createElement("div");
-      piece.classList.add("logo-piece");
+    for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLS; col++) {
+            const piece = document.createElement("div");
+            piece.classList.add("logo-piece");
 
-      piece.style.width = `${pieceWidth}px`;
-      piece.style.height = `${pieceHeight}px`;
+            piece.style.width = `${pieceWidth}px`;
+            piece.style.height = `${pieceHeight}px`;
 
-      const finalX = col * pieceWidth;
-      const finalY = row * pieceHeight;
+            const finalX = col * pieceWidth;
+            const finalY = row * pieceHeight;
 
-      piece.dataset.finalX = finalX;
-      piece.dataset.finalY = finalY;
+            piece.dataset.finalX = finalX;
+            piece.dataset.finalY = finalY;
 
-      piece.style.left = `${finalX}px`;
-      piece.style.top = `${finalY}px`;
+            piece.style.left = `${finalX}px`;
+            piece.style.top = `${finalY}px`;
 
-      const bgPosX = -col * pieceWidth;
-      const bgPosY = -row * pieceHeight;
-      piece.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+            const bgPosX = -col * pieceWidth;
+            const bgPosY = -row * pieceHeight;
+            piece.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
 
-      container.appendChild(piece);
+            container.appendChild(piece);
+        }
     }
-  }
 }
 
 function animatePieces() {
-  const pieces = Array.from(document.querySelectorAll(".logo-piece"));
+    const pieces = Array.from(document.querySelectorAll(".logo-piece"));
 
-  pieces.forEach((piece) => {
-    const finalX = parseFloat(piece.dataset.finalX);
-    const finalY = parseFloat(piece.dataset.finalY);
+    pieces.forEach((piece) => {
+        const finalX = parseFloat(piece.dataset.finalX);
+        const finalY = parseFloat(piece.dataset.finalY);
 
-    const startX = finalX + (Math.random() - 0.5) * 800;
-    const startY = finalY + (Math.random() - 0.5) * 600;
-    const startZ = (Math.random() - 0.5) * 1000;
+        const startX = finalX + (Math.random() - 0.5) * 800;
+        const startY = finalY + (Math.random() - 0.5) * 600;
+        const startZ = (Math.random() - 0.5) * 1000;
 
-    const rotX = (Math.random() - 0.5) * 720;
-    const rotY = (Math.random() - 0.5) * 720;
-    const rotZ = (Math.random() - 0.5) * 720;
+        const rotX = (Math.random() - 0.5) * 720;
+        const rotY = (Math.random() - 0.5) * 720;
+        const rotZ = (Math.random() - 0.5) * 720;
 
-    const delay = Math.random() * ANIM_DELAY_MAX;
-    const duration = ANIM_DURATION + Math.random() * 600;
+        const delay = Math.random() * ANIM_DELAY_MAX;
+        const duration = ANIM_DURATION + Math.random() * 600;
 
-    piece.style.transform = `
-      translate3d(${startX}px, ${startY}px, ${startZ}px)
-      rotateX(${rotX}deg)
-      rotateY(${rotY}deg)
-      rotateZ(${rotZ}deg)
-    `;
-    piece.style.opacity = "0";
+        piece.style.transform = `
+            translate3d(${startX}px, ${startY}px, ${startZ}px)
+            rotateX(${rotX}deg)
+            rotateY(${rotY}deg)
+            rotateZ(${rotZ}deg)
+        `;
+        piece.style.opacity = "0";
+
+        setTimeout(() => {
+            piece.style.transition = `
+                transform ${duration}ms cubic-bezier(0.2, 0.8, 0.1, 1.0),
+                opacity ${duration}ms ease-out
+            `;
+            piece.style.transform = `
+                translate3d(${finalX}px, ${finalY}px, 0)
+                rotateX(0deg)
+                rotateY(0deg)
+                rotateZ(0deg)
+            `;
+            piece.style.opacity = "1";
+        }, 50 + delay);
+    });
 
     setTimeout(() => {
-      piece.style.transition = `
-        transform ${duration}ms cubic-bezier(0.2, 0.8, 0.1, 1.0),
-        opacity ${duration}ms ease-out
-      `;
-      piece.style.transform = `
-        translate3d(${finalX}px, ${finalY}px, 0)
-        rotateX(0deg)
-        rotateY(0deg)
-        rotateZ(0deg)
-      `;
-      piece.style.opacity = "1";
-    }, 50 + delay);
-  });
-
-  setTimeout(() => {
-    container.classList.add("completed");
-  }, ANIM_DURATION + ANIM_DELAY_MAX + 800);
+        container.classList.add("completed");
+    }, ANIM_DURATION + ANIM_DELAY_MAX + 800);
 }
 
-// Intersection Observer to trigger animation on scroll
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !animationStarted) {
-        animationStarted = true;
-        createPieces();
-        setTimeout(animatePieces, 200);
-      }
-    });
-  },
-  { threshold: 0.4 }
-);
-
-observer.observe(document.querySelector(".logo-animation-section"));
+// ⭐ MOBILE-SAFE TRIGGER — replaces IntersectionObserver
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        if (!animationStarted) {
+            animationStarted = true;
+            createPieces();
+            setTimeout(animatePieces, 200);
+        }
+    }, 600);
+});
 
     </script>
 </body>
