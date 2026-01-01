@@ -1074,6 +1074,35 @@
   }
 }
 
+
+
+        /* JIGSAW ANIMATION CORE STYLES */
+.logo-jigsaw {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.logo-piece {
+  position: absolute;
+  background-image: url("vibz-logo.png"); /* update if needed */
+  background-size: 100% 100%;
+  will-change: transform, opacity;
+  transform-origin: center;
+  opacity: 0;
+}
+
+/* Optional hover effect after animation completes */
+.logo-jigsaw.completed .logo-piece {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.logo-jigsaw.completed .logo-piece:hover {
+  transform: translateZ(20px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
     </style>
 </head>
 <body>
