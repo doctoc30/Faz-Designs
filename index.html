@@ -32,6 +32,11 @@
             color: var(--dark);
             overflow-x: hidden;
             scroll-behavior: smooth;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.menu-open {
+            overflow: hidden;
         }
 
         /* ================= NAVIGATION ================= */
@@ -95,6 +100,186 @@
             box-shadow: 0 10px 25px rgba(255, 107, 0, 0.25);
         }
 
+        /* Hamburger Menu Button */
+        .hamburger-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--dark);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--accent);
+        }
+
+        /* Full Page Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-100%);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        /* Menu Content */
+        .menu-content {
+            position: relative;
+            height: 100%;
+            padding: 120px 6%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Menu Header */
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .menu-logo {
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--accent);
+            letter-spacing: -1px;
+        }
+
+        .menu-logo::after {
+            content: ".";
+            color: #000;
+            margin-left: 2px;
+            font-weight: 900;
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-menu:hover {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        /* Menu Links - Hero Style Fonts */
+        .menu-links {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .menu-link {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            color: var(--dark);
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .menu-overlay.active .menu-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-overlay.active .menu-link:nth-child(1) { transition-delay: 0.1s; }
+        .menu-overlay.active .menu-link:nth-child(2) { transition-delay: 0.15s; }
+        .menu-overlay.active .menu-link:nth-child(3) { transition-delay: 0.2s; }
+        .menu-overlay.active .menu-link:nth-child(4) { transition-delay: 0.25s; }
+        .menu-overlay.active .menu-link:nth-child(5) { transition-delay: 0.3s; }
+
+        .menu-link:hover {
+            color: var(--accent);
+            transform: translateX(20px);
+        }
+
+        .menu-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .menu-link:hover::after {
+            width: 100px;
+        }
+
+        /* Menu CTA Section */
+        .menu-cta {
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.35s;
+        }
+
+        .menu-overlay.active .menu-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-cta h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .menu-cta-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         /* Mobile scaling (NOT hiding) */
         @media (max-width: 768px) {
             nav {
@@ -109,6 +294,38 @@
 
             .logo {
                 font-size: 1.6rem;
+            }
+
+            .menu-content {
+                padding: 100px 5% 40px;
+            }
+
+            .menu-link {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+                letter-spacing: -2px;
+                margin-bottom: 1rem;
+            }
+
+            .menu-cta-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .close-menu {
+                font-size: 2rem;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-link {
+                font-size: clamp(2rem, 8vw, 3rem);
+                letter-spacing: -1px;
+            }
+
+            .menu-cta h3 {
+                font-size: 1.2rem;
             }
         }
 
@@ -392,8 +609,6 @@
             }
         }
 
-      
-
         /* ==== NEWLY ADDED FEATURES ONLY - ALL LIGHT THEME ==== */
         
         /* ================= ENHANCED SLIDER CONTROLS ================= */
@@ -494,31 +709,28 @@
             letter-spacing: -2px;
         }
 
-
-
-
         .slider-frame {
-    position: relative;
-    width: 95%;        /* slightly less than full width for desktop */
-    max-width: 1200px; /* increased max width */
-    height: 600px;      /* extra height */
-    margin: 2rem auto 0;
-    border: 4px solid var(--accent);
-    border-radius: 24px;
-    overflow: hidden;
-    background: var(--light-gray);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+            position: relative;
+            width: 95%;        /* slightly less than full width for desktop */
+            max-width: 1200px; /* increased max width */
+            height: 600px;      /* extra height */
+            margin: 2rem auto 0;
+            border: 4px solid var(--accent);
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* Mobile portrait adjustment */
-@media (max-width: 768px) {
-    .slider-frame {
-        width: 90%;      /* reduce width so it doesn’t touch edges */
-        height: 400px;   /* slightly smaller height for mobile */
-    }
-}
+        /* Mobile portrait adjustment */
+        @media (max-width: 768px) {
+            .slider-frame {
+                width: 90%;      /* reduce width so it doesn't touch edges */
+                height: 400px;   /* slightly smaller height for mobile */
+            }
+        }
         /* ================= PREMIUM FEATURES SECTION ================= */
         .features-section {
             background: white;
@@ -841,19 +1053,49 @@
     </style>
 </head>
 <body>
-    <!-- Navigation (EXACTLY AS WAS) -->
+    <!-- Full Page Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-content">
+            <div class="menu-header">
+                <div class="menu-logo">VIBZ</div>
+                <button class="close-menu" id="closeMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="menu-links">
+                <a href="#home" class="menu-link" onclick="closeMenu()">Home</a>
+                <a href="#portfolio" class="menu-link" onclick="closeMenu()">Portfolio</a>
+                <a href="#process" class="menu-link" onclick="closeMenu()">Process</a>
+                <a href="#services" class="menu-link" onclick="closeMenu()">Services</a>
+                <a href="#contact" class="menu-link" onclick="closeMenu()">Contact</a>
+            </div>
+            
+            <div class="menu-cta">
+                <h3>Ready to Start Your Project?</h3>
+                <div class="menu-cta-buttons">
+                    <a href="https://www.vibz.co.uk/funnel.html" class="btn btn-fill">Get a Website</a>
+                    <a href="mailto:info@vibz.co.uk" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
     <nav>
         <div class="nav-left logo">VIBZ</div>
         <div class="nav-center">
             <a href="https://www.vibz.co.uk/funnel.html" class="nav-btn">Get a Website</a>
         </div>
-        <div class="nav-right" style="font-size: 1.5rem;">
-            <i class="fa-solid fa-bars-staggered"></i>
+        <div class="nav-right">
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section (EXACTLY AS WAS) -->
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
         <h1 data-aos="fade-right">Websites <br>That Bring <br><span id="typewriter" class="typewriter-container"></span></h1>
         <p data-aos="fade-up" data-aos-delay="200">
             We design fast, modern websites for elite brands, dentists, trades, and local services ready to scale.
@@ -864,8 +1106,8 @@
         </div>
     </section>
 
-    <!-- Slider Section (ENHANCED WITH CONTROLS) -->
-    <section style="padding-top: 60px; padding-bottom: 120px;">
+    <!-- Slider Section -->
+    <section style="padding-top: 60px; padding-bottom: 120px;" id="portfolio">
         <span class="section-label" data-aos="fade-up">Portfolio</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;" data-aos="fade-up">Our Elite Work</h2>
         <div class="slider-frame">
@@ -897,8 +1139,8 @@
         </div>
     </section>
 
-    <!-- Stats Section (NEW - LIGHT THEME) -->
-    <section class="stats-section" data-aos="fade-up">
+    <!-- Stats Section -->
+    <section class="stats-section" id="services" data-aos="fade-up">
         <span class="section-label">Impact</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">By The Numbers</h2>
         <div class="stats-grid">
@@ -921,7 +1163,7 @@
         </div>
     </section>
 
-    <!-- Process Section (EXACTLY AS WAS) -->
+    <!-- Process Section -->
     <section id="process">
         <span class="section-label" data-aos="fade-up">Protocol</span>
         <h2 style="font-size: 4rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">The Evolution Process</h2>
@@ -953,7 +1195,7 @@
         </div>
     </section>
 
-    <!-- Features Section (NEW) -->
+    <!-- Features Section -->
     <section class="features-section">
         <span class="section-label" data-aos="fade-up">Excellence</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;" data-aos="fade-up">Premium Features</h2>
@@ -989,7 +1231,7 @@
         </div>
     </section>
 
-    <!-- Clients Section (NEW) -->
+    <!-- Clients Section -->
     <section class="clients-section">
         <span class="section-label" data-aos="fade-up">Trusted By</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;" data-aos="fade-up">Elite Brands</h2>
@@ -1009,7 +1251,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section (NEW) -->
+    <!-- Testimonials Section -->
     <section class="testimonials-section">
         <span class="section-label" data-aos="fade-up">Testimonials</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;" data-aos="fade-up">Client Success Stories</h2>
@@ -1027,7 +1269,7 @@
         </div>
     </section>
 
-    <!-- FAQ Section (EXACTLY AS WAS) -->
+    <!-- FAQ Section -->
     <section id="faq" style="background: white;">
         <span class="section-label" data-aos="fade-up">Intelligence</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; letter-spacing: -2px;">Common Questions</h2>
@@ -1047,7 +1289,7 @@
         </div>
     </section>
 
-    <!-- Footer Form (UPDATED TO MATCH HERO GRADIENT) -->
+    <!-- Footer Form -->
     <footer class="footer-form" id="contact">
         <div class="form-grid">
             <div data-aos="fade-right">
@@ -1071,7 +1313,7 @@
         </div>
     </footer>
 
-    <!-- Floating CTA (NEW) -->
+    <!-- Floating CTA -->
     <a href="#contact" class="floating-cta floating" data-aos="fade-up" data-aos-delay="400">
         <i class="fas fa-paper-plane"></i>
     </a>
@@ -1213,6 +1455,40 @@
         setInterval(() => {
             floatingCta.classList.toggle('floating');
         }, 3000);
+
+        // Menu Functionality
+        const menuOverlay = document.getElementById('menuOverlay');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        const body = document.body;
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() {
+            menuOverlay.classList.add('active');
+            body.classList.add('menu-open');
+            body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            menuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+            body.style.overflow = '';
+        }
+
+        hamburgerBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+
+        // Close menu when clicking on a link
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
 
         // Initialize slider
         showSlide(currentSlide);
