@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIBZ | Premium Web Design Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         /* ===================== */
         /* Root & General Styles */
         /* ===================== */
         :root {
-            --primary: #FF5A1F; /* VIBZ orange */
-            --dark: #0A0A14;
-            --darker: #05050A;
-            --light: #F5F5FF;
-            --gray: #A0A0C0;
-            --success: #00FF9D;
-            --transition: all 0.3s ease;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #FF6B00; /* VIBZ orange - consistent with main site */
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #4a4a4a;
+            --light-gray: #f9f9f9;
+            --border: #eeeeee;
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         * {
@@ -30,37 +28,39 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--darker);
-            color: var(--light);
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         h1,h2,h3,h4,h5 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            line-height: 1.2;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1px;
         }
 
         .container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 30px;
         }
 
-        /* Header */
+        /* Header - Simplified to match VIBZ style */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 25px 0;
+            padding: 20px 0;
             transition: var(--transition);
-            background: rgba(5,5,10,0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-container {
@@ -70,11 +70,19 @@
         }
 
         .logo {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 28px;
-            font-weight: 700;
+            font-weight: 900;
             color: var(--primary);
             text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo::after {
+            content: ".";
+            color: #000;
+            margin-left: 2px;
+            font-weight: 900;
         }
 
         .nav-links {
@@ -83,9 +91,9 @@
         }
 
         .nav-links a {
-            color: var(--light);
+            color: var(--dark);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 16px;
             transition: var(--transition);
             position: relative;
@@ -95,75 +103,111 @@
             color: var(--primary);
         }
 
-        .cta-button {
-            background-color: var(--primary);
-            color: #fff;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
+        .mobile-menu-btn { 
+            display: none; 
+            background: none; 
+            border: none; 
+            color: var(--dark); 
+            font-size: 24px; 
+            cursor: pointer; 
         }
 
-        .mobile-menu-btn { display: none; background: none; border: none; color: var(--light); font-size: 24px; cursor: pointer; }
-
         /* ===================== */
-        /* Funnel Section Styles */
+        /* Funnel Section Styles - Clean VIBZ Design */
         /* ===================== */
         .funnel-section {
             min-height: 100vh;
-            padding-top: 120px;
+            padding-top: 150px;
             padding-bottom: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+            background: radial-gradient(circle at top right, #fff5ee, #ffffff);
         }
 
         .form-screen {
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             display: none;
             opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.5s ease;
         }
 
-        .form-screen.active { display: block; opacity: 1; transform: translateY(0); }
+        .form-screen.active { 
+            display: block; 
+            opacity: 1; 
+        }
 
-        .form-screen h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .form-screen h2 { 
+            font-size: 3.5rem; 
+            margin-bottom: 1.5rem; 
+            letter-spacing: -2px;
+            font-weight: 900;
+        }
+
+        .form-screen p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
 
         /* ========== VIBZ Buttons ========== */
-        .button-row button,
-        .categories-row button,
-        .search-row button,
-        .own-outright,
-        .monthly-support {
-            background-color: var(--primary);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            padding: 15px 25px;
-            font-size: 1rem;
+        .vibz-btn {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            font-weight: 700;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+            min-width: 200px;
         }
 
-        .button-row button:hover,
-        .categories-row button:hover,
-        .search-row button:hover,
-        .own-outright:hover,
-        .monthly-support:hover {
+        .vibz-btn:hover {
+            background: var(--primary);
+            color: white;
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255,90,31,0.4);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2);
+        }
+
+        .vibz-btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .vibz-btn-primary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .vibz-btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
         .back-button {
-            background-color: var(--dark);
-            color: var(--primary);
-            border: 1px solid var(--primary);
+            background-color: var(--light-gray);
+            color: var(--gray);
+            border: 2px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .back-button:hover {
+            background-color: var(--border);
+            color: var(--dark);
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         /* Search row */
@@ -172,136 +216,527 @@
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 30px;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .search-row input {
             flex: 1;
             min-width: 200px;
-            padding: 12px 20px;
-            border-radius: 50px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255,255,255,0.05);
-            color: #fff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            background: white;
+            color: var(--dark);
+            font-size: 1rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .search-row input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
         }
 
         /* Categories row */
         .categories-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
             justify-content: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
         }
 
-        .categories-row button {
-            flex: 0 0 23%;
-            max-width: 23%;
-            margin-bottom: 10px;
+        /* Step indicator */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 3rem;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .button-row button,
-            .categories-row button,
-            .search-row button,
-            .own-outright,
-            .monthly-support {
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: var(--transition);
+        }
+
+        .step-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Pricing cards */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            padding: 3rem 2.5rem;
+            background: var(--light-gray);
+            border-radius: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .pricing-card:hover {
+            background: white;
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: normal;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            margin-bottom: 1rem;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Success message */
+        .success-message {
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 32px;
+            margin-top: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .success-message h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* ===================== */
+        /* Responsive Design */
+        /* ===================== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .form-screen h2 {
+                font-size: 2.5rem;
+            }
+
+            .form-screen p {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+
+            .search-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-row input {
                 width: 100%;
-                max-width: 320px;
+                max-width: 300px;
+            }
+
+            .categories-row {
+                gap: 10px;
+            }
+
+            .vibz-btn {
+                min-width: 180px;
+                padding: 1rem 1.5rem;
+            }
+
+            .pricing-container {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 600px) {
-            .button-row button { padding: 14px 0; font-size: 1rem; }
-            .categories-row button { flex: 0 0 23%; max-width: 23%; }
+        @media (max-width: 480px) {
+            .form-screen h2 {
+                font-size: 2rem;
+            }
+
+            .vibz-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .categories-row button {
+                flex: 0 0 45%;
+                max-width: 45%;
+            }
+        }
+
+        /* Animation for form screens */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-screen.active {
+            animation: fadeIn 0.5s ease forwards;
         }
     </style>
 </head>
 <body>
-  <!-- Header -->
-<header id="header">
-    <div class="container nav-container">
-        <a href="#" class="logo">VIBZ</a>
-        <nav class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-    </div>
-</header>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">VIBZ</a>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
 
-<section class="container funnel-section">
-  <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
-    <input type="hidden" id="hiddenPlan" name="Selected Plan">
-    <input type="hidden" id="hiddenFeatures" name="Selected Features">
-    <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
+    <section class="funnel-section">
+        <div class="container">
+            <!-- Step indicator -->
+            <div class="step-indicator">
+                <div class="step-dot active" data-step="1"></div>
+                <div class="step-dot" data-step="2"></div>
+                <div class="step-dot" data-step="3"></div>
+                <div class="step-dot" data-step="4"></div>
+                <div class="step-dot" data-step="5"></div>
+            </div>
 
-    <!-- ===== FIRST SCREEN: BUSINESS SEARCH ===== -->
-    <div class="form-screen active" id="first-screen">
-      <h2>Welcome!</h2>
-      <p>What type of business do you run? Type below or pick one:</p>
-      <div class="search-row button-row">
-        <input type="text" id="businessInput" class="form-control" placeholder="e.g. Barber, Plumber, Dentist" />
-        <button type="button" class="btn" onclick="handleSearch()">Go</button>
-      </div>
-      <div class="categories-row button-row">
-        <button type="button" class="btn" onclick="selectExample('barber')">Barber</button>
-        <button type="button" class="btn" onclick="selectExample('plumber')">Plumber</button>
-        <button type="button" class="btn" onclick="selectExample('dentist')">Dentist</button>
-        <button type="button" class="btn" onclick="selectExample('cafe')">Cafe</button>
-        <button type="button" class="btn" onclick="selectExample('trades')">Trades</button>
-        <button type="button" class="btn" onclick="selectExample('driving')">Driving</button>
-        <button type="button" class="btn" onclick="selectExample('other')">Other</button>
-      </div>
-    </div>
+            <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+                <input type="hidden" id="hiddenPlan" name="Selected Plan">
+                <input type="hidden" id="hiddenFeatures" name="Selected Features">
+                <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
 
-    <!-- ===== MAIN INTRO OPTIONS ===== -->
-    <div class="form-screen" id="main-intro-options">
-      <h2>What do you need help with today?</h2>
-      <div class="button-row">
-        <button type="button" onclick="setPath('new'); next()">New Website</button>
-        <button type="button" onclick="setPath('redesign'); next()">Redesign Existing Website</button>
-        <button type="button" onclick="setPath('maintenance'); next()">Maintenance / Updates</button>
-      </div>
-    </div>
+                <!-- ===== FIRST SCREEN: BUSINESS SEARCH ===== -->
+                <div class="form-screen active" id="first-screen">
+                    <h2>What's Your Business?</h2>
+                    <p>Tell us what you do and we'll create the perfect website for your needs.</p>
+                    
+                    <div class="search-row">
+                        <input type="text" id="businessInput" placeholder="e.g. Barber, Plumber, Dentist" />
+                        <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleSearch()">Find My Solution</button>
+                    </div>
+                    
+                    <p style="margin-bottom: 1.5rem; color: var(--gray);">Or select from popular categories:</p>
+                    
+                    <div class="categories-row">
+                        <button type="button" class="vibz-btn" onclick="selectExample('barber')">Barber</button>
+                        <button type="button" class="vibz-btn" onclick="selectExample('plumber')">Plumber</button>
+                        <button type="button" class="vibz-btn" onclick="selectExample('dentist')">Dentist</button>
+                        <button type="button" class="vibz-btn" onclick="selectExample('cafe')">Cafe</button>
+                        <button type="button" class="vibz-btn" onclick="selectExample('trades')">Trades</button>
+                        <button type="button" class="vibz-btn" onclick="selectExample('driving')">Driving</button>
+                        <button type="button" class="vibz-btn" onclick="selectExample('consultant')">Consultant</button>
+                        <button type="button" class="vibz-btn" onclick="selectExample('other')">Other</button>
+                    </div>
+                </div>
 
-    <!-- ===== NICHE QUESTIONS ===== -->
-    <div id="niche-questions"></div>
+                <!-- ===== MAIN INTRO OPTIONS ===== -->
+                <div class="form-screen" id="main-intro-options">
+                    <h2>How Can We Help?</h2>
+                    <p>Select what you need help with today:</p>
+                    <div style="margin: 3rem 0;">
+                        <button type="button" class="vibz-btn vibz-btn-primary" onclick="setPath('new'); next()">New Website</button>
+                        <button type="button" class="vibz-btn" onclick="setPath('redesign'); next()">Redesign Existing</button>
+                        <button type="button" class="vibz-btn" onclick="setPath('maintenance'); next()">Maintenance</button>
+                    </div>
+                    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+                </div>
 
-    <!-- ===== FINAL & OWNERSHIP CHOICE ===== -->
-    <div class="form-screen" id="final-choice">
-      <h2>What would you like to do next?</h2>
-      <div class="button-row">
-        <button type="button" onclick="showScreen('ownership-choice')">I want to start my website ASAP</button>
-        <button type="button" onclick="window.location.href='https://yourwebsite.com/contact'">I need more info</button>
-        <button type="button" class="back-button" onclick="prev()">Back</button>
-      </div>
-    </div>
+                <!-- ===== NICHE QUESTIONS ===== -->
+                <div class="form-screen" id="niche-questions">
+                    <h2>Tell Us More</h2>
+                    <p>Help us understand your specific needs:</p>
+                    <div style="margin: 3rem 0;">
+                        <button type="button" class="vibz-btn" onclick="selectFeature('booking')">Booking System</button>
+                        <button type="button" class="vibz-btn" onclick="selectFeature('ecommerce')">Online Store</button>
+                        <button type="button" class="vibz-btn" onclick="selectFeature('seo')">SEO Optimization</button>
+                        <button type="button" class="vibz-btn" onclick="selectFeature('speed')">Speed Optimization</button>
+                        <button type="button" class="vibz-btn" onclick="selectFeature('mobile')">Mobile App</button>
+                        <button type="button" class="vibz-btn" onclick="selectFeature('branding')">Full Branding</button>
+                    </div>
+                    <button type="button" class="vibz-btn vibz-btn-primary" onclick="next()">Continue</button>
+                    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+                </div>
 
-    <div class="form-screen" id="ownership-choice">
-      <h2>Do you want to own the website outright or prefer monthly support including hosting and maintenance?</h2>
-      <div class="button-row">
-        <button type="button" class="own-outright">Own Outright</button>
-        <button type="button" class="monthly-support">Monthly Support</button>
-        <button type="button" class="back-button" onclick="prev()">Back</button>
-      </div>
-    </div>
+                <!-- ===== FINAL & OWNERSHIP CHOICE ===== -->
+                <div class="form-screen" id="final-choice">
+                    <h2>Ready to Start?</h2>
+                    <p>What would you like to do next?</p>
+                    <div style="margin: 3rem 0;">
+                        <button type="button" class="vibz-btn vibz-btn-primary" onclick="showScreen('ownership-choice')">Start My Website ASAP</button>
+                        <button type="button" class="vibz-btn" onclick="window.location.href='mailto:info@vibz.co.uk'">Need More Info</button>
+                    </div>
+                    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+                </div>
 
-    <div class="form-screen" id="recommended-plan-screen">
-      <h2>Your Recommended Plan</h2>
-      <div class="pricing-container">
-        <!-- Pricing cards will be rendered here -->
-      </div>
-    </div>
-  </form>
-</section>
+                <div class="form-screen" id="ownership-choice">
+                    <h2>Choose Your Plan</h2>
+                    <p>Select the option that works best for your business:</p>
+                    <div style="margin: 3rem 0;">
+                        <button type="button" class="vibz-btn vibz-btn-primary" onclick="selectPlan('own-outright')">Own Outright</button>
+                        <button type="button" class="vibz-btn" onclick="selectPlan('monthly-support')">Monthly Support</button>
+                    </div>
+                    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+                </div>
 
-<script>
-/* === Keep all your existing JS logic === */
-/* Paste the JS from your original funnel here without changes */
-</script>
+                <!-- ===== RECOMMENDED PLAN ===== -->
+                <div class="form-screen" id="recommended-plan-screen">
+                    <h2>Your Recommended Plan</h2>
+                    <p>Based on your selections, here's what we recommend:</p>
+                    
+                    <div class="pricing-container" id="pricingCards">
+                        <!-- Dynamic pricing cards will be inserted here -->
+                    </div>
+                    
+                    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+                </div>
 
+                <!-- ===== SUCCESS SCREEN ===== -->
+                <div class="form-screen" id="success-screen">
+                    <div class="success-message">
+                        <h3>🎉 Perfect! We've Got Your Details</h3>
+                        <p>Our team will contact you within 24 hours to discuss your project.</p>
+                        <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                            Check your email for confirmation and next steps.
+                        </p>
+                    </div>
+                    <button type="button" class="vibz-btn vibz-btn-primary" onclick="window.location.href='/'">← Back to Home</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Form state management
+        let currentStep = 1;
+        const formData = {
+            businessType: '',
+            projectType: '',
+            features: [],
+            planType: ''
+        };
+
+        // DOM elements
+        const screens = document.querySelectorAll('.form-screen');
+        const stepDots = document.querySelectorAll('.step-dot');
+        const businessInput = document.getElementById('businessInput');
+        const formWrapper = document.getElementById('formWrapper');
+
+        // Form navigation
+        function showScreen(screenId) {
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function next() {
+            if (currentStep < 5) {
+                currentStep++;
+                updateStepIndicator();
+            }
+        }
+
+        function prev() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepIndicator();
+            }
+        }
+
+        function updateStepIndicator() {
+            stepDots.forEach((dot, index) => {
+                if (index < currentStep) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Business selection
+        function selectExample(business) {
+            formData.businessType = business;
+            showScreen('main-intro-options');
+            next();
+        }
+
+        function handleSearch() {
+            const value = businessInput.value.trim();
+            if (value) {
+                formData.businessType = value.toLowerCase();
+                showScreen('main-intro-options');
+                next();
+            } else {
+                alert('Please enter your business type or select from the options.');
+            }
+        }
+
+        // Project type selection
+        function setPath(type) {
+            formData.projectType = type;
+            showScreen('niche-questions');
+            next();
+        }
+
+        // Feature selection
+        function selectFeature(feature) {
+            const index = formData.features.indexOf(feature);
+            if (index === -1) {
+                formData.features.push(feature);
+                event.target.classList.add('vibz-btn-primary');
+            } else {
+                formData.features.splice(index, 1);
+                event.target.classList.remove('vibz-btn-primary');
+            }
+        }
+
+        // Plan selection
+        function selectPlan(plan) {
+            formData.planType = plan;
+            showRecommendedPlan();
+            showScreen('recommended-plan-screen');
+            next();
+        }
+
+        // Show recommended plan
+        function showRecommendedPlan() {
+            const pricingContainer = document.getElementById('pricingCards');
+            let plan;
+            
+            if (formData.planType === 'own-outright') {
+                plan = {
+                    name: 'Elite Package',
+                    price: '£2,499',
+                    period: 'one-time',
+                    features: [
+                        'Custom Website Design',
+                        'Mobile Responsive',
+                        'SEO Optimization',
+                        'Google Analytics Setup',
+                        'Contact Form Integration',
+                        formData.features.includes('booking') ? 'Booking System' : null,
+                        formData.features.includes('ecommerce') ? 'E-commerce Setup' : null,
+                        formData.features.includes('branding') ? 'Full Brand Identity' : null,
+                        '3 Months Support',
+                        'PageSpeed Optimization'
+                    ].filter(Boolean)
+                };
+            } else {
+                plan = {
+                    name: 'Premium Monthly',
+                    price: '£199',
+                    period: 'per month',
+                    features: [
+                        'Everything in Elite Package',
+                        'Monthly Hosting',
+                        'Weekly Backups',
+                        'Security Monitoring',
+                        'Content Updates',
+                        'Performance Optimization',
+                        '24/7 Support',
+                        'Unlimited Edits',
+                        'SEO Maintenance',
+                        'Analytics Reporting'
+                    ]
+                };
+            }
+
+            const featuresHtml = plan.features.map(feature => 
+                `<li>${feature}</li>`
+            ).join('');
+
+            pricingContainer.innerHTML = `
+                <div class="pricing-card">
+                    <h3>${plan.name}</h3>
+                    <div class="price">${plan.price}<span class="price-period">/${plan.period}</span></div>
+                    <ul class="pricing-features">
+                        ${featuresHtml}
+                    </ul>
+                    <button type="button" class="vibz-btn vibz-btn-primary" onclick="submitForm('${plan.name}')">
+                        Start This Plan
+                    </button>
+                </div>
+            `;
+        }
+
+        // Form submission
+        function submitForm(planName) {
+            // Set hidden fields
+            document.getElementById('hiddenPlan').value = planName;
+            document.getElementById('hiddenFeatures').value = formData.features.join(', ');
+            
+            // Generate payment link based on plan
+            let paymentLink = formData.planType === 'own-outright' 
+                ? 'https://buy.stripe.com/test_00g9CBeBea4X6Gg28b' 
+                : 'https://buy.stripe.com/test_28odSBdBCgVn7Z2fZ1';
+            
+            document.getElementById('hiddenPaymentLink').value = paymentLink;
+            
+            // Submit form
+            formWrapper.submit();
+            
+            // Show success screen
+            showScreen('success-screen');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStepIndicator();
+            
+            // Mobile menu toggle
+            document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        });
+    </script>
 </body>
 </html>
