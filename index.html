@@ -1397,10 +1397,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
 
-        // Initialize AOS (EXISTING)
+  // =============== AOS (EXISTING) ===============
 AOS.init({ duration: 800, once: true });
 
-// Typewriter Logic (EXISTING)
+
+// =============== TYPEWRITER (EXISTING) ===============
 const words = ["Customers.", "Growth.", "Revenue.", "Results."];
 let wordIndex = 0; 
 let charIndex = 0; 
@@ -1408,6 +1409,8 @@ let isDeleting = false;
 const target = document.getElementById("typewriter");
 
 function type() {
+    if (!target) return; // safety
+
     const currentWord = words[wordIndex];
     if (isDeleting) { 
         target.textContent = currentWord.substring(0, charIndex--); 
@@ -1428,7 +1431,8 @@ function type() {
 }
 type();
 
-// FAQ Logic (EXISTING)
+
+// =============== FAQ (EXISTING) ===============
 function toggleFaq(btn) {
     const item = btn.parentElement;
     const content = btn.nextElementSibling;
@@ -1445,15 +1449,18 @@ function toggleFaq(btn) {
     }
 }
 
-// Enhanced Slider Logic (NEW)
+
+// =============== SLIDER (EXISTING) ===============
 const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.slider-dot');
+const dots   = document.querySelectorAll('.slider-dot');
 const prevBtn = document.querySelector('.slider-arrow.prev');
 const nextBtn = document.querySelector('.slider-arrow.next');
 let currentSlide = 0;
 let slideInterval;
 
 function showSlide(index) {
+    if (!slides.length || !dots.length) return;
+
     slides.forEach(s => s.classList.remove('active'));
     dots.forEach(d => d.classList.remove('active'));
     
@@ -1463,73 +1470,92 @@ function showSlide(index) {
 }
 
 function nextSlide() {
+    if (!slides.length) return;
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
 }
 
 function prevSlide() {
+    if (!slides.length) return;
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     showSlide(currentSlide);
 }
 
 function startSlider() {
+    if (!slides.length) return;
     slideInterval = setInterval(nextSlide, 4000);
 }
 
 function resetSlider() {
+    if (!slides.length) return;
     clearInterval(slideInterval);
     startSlider();
 }
 
-// Event Listeners for slider
-nextBtn.addEventListener('click', () => {
-    nextSlide();
-    resetSlider();
-});
-
-prevBtn.addEventListener('click', () => {
-    prevSlide();
-    resetSlider();
-});
-
-dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-        const slideIndex = parseInt(dot.getAttribute('data-slide'));
-        showSlide(slideIndex);
+// Attach slider events only if elements exist
+if (nextBtn && prevBtn && slides.length && dots.length) {
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
         resetSlider();
     });
-});
 
-// Form Submission Enhancement (NEW)
-document.querySelector('.footer-form form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const submitBtn = this.querySelector('.submit-btn');
-    const originalText = submitBtn.textContent;
-    const originalBg = submitBtn.style.background;
-    
-    submitBtn.textContent = 'SENDING...';
-    submitBtn.disabled = true;
-    
-    setTimeout(() => {
-        submitBtn.textContent = 'ENQUIRY SENT!';
-        submitBtn.style.background = '#4CAF50';
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetSlider();
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const slideIndex = parseInt(dot.getAttribute('data-slide'));
+            showSlide(slideIndex);
+            resetSlider();
+        });
+    });
+
+    showSlide(currentSlide);
+    startSlider();
+}
+
+
+// =============== FORM SUBMISSION (EXISTING) ===============
+const footerForm = document.querySelector('.footer-form form');
+if (footerForm) {
+    footerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector('.submit-btn');
+        if (!submitBtn) return;
+
+        const originalText = submitBtn.textContent;
+        const originalBg = submitBtn.style.background;
+        
+        submitBtn.textContent = 'SENDING...';
+        submitBtn.disabled = true;
         
         setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            submitBtn.style.background = originalBg;
-            this.reset();
-        }, 2000);
-    }, 1500);
-});
+            submitBtn.textContent = 'ENQUIRY SENT!';
+            submitBtn.style.background = '#4CAF50';
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.background = originalBg;
+                this.reset();
+            }, 2000);
+        }, 1500);
+    });
+}
 
-// Floating CTA Animation (NEW)
+
+// =============== FLOATING CTA (EXISTING) ===============
 const floatingCta = document.querySelector('.floating-cta');
-setInterval(() => {
-    floatingCta.classList.toggle('floating');
-}, 3000);
+if (floatingCta) {
+    setInterval(() => {
+        floatingCta.classList.toggle('floating');
+    }, 3000);
+}
 
-// Menu Functionality
+
+// =============== MENU (EXISTING) ===============
 const menuOverlay = document.getElementById('menuOverlay');
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const closeMenuBtn = document.getElementById('closeMenu');
@@ -1537,19 +1563,25 @@ const body = document.body;
 const menuLinks = document.querySelectorAll('.menu-link');
 
 function openMenu() {
+    if (!menuOverlay) return;
     menuOverlay.classList.add('active');
     body.classList.add('menu-open');
     body.style.overflow = 'hidden';
 }
 
 function closeMenu() {
+    if (!menuOverlay) return;
     menuOverlay.classList.remove('active');
     body.classList.remove('menu-open');
     body.style.overflow = '';
 }
 
-hamburgerBtn.addEventListener('click', openMenu);
-closeMenuBtn.addEventListener('click', closeMenu);
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', openMenu);
+}
+if (closeMenuBtn) {
+    closeMenuBtn.addEventListener('click', closeMenu);
+}
 
 menuLinks.forEach(link => {
     link.addEventListener('click', closeMenu);
@@ -1561,14 +1593,8 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Initialize slider
-showSlide(currentSlide);
-startSlider();
 
-/* ===========================
-   JIGSAW ANIMATION (FIXED)
-   =========================== */
-
+// =============== JIGSAW ANIMATION (FIXED, MOBILE-SAFE) ===============
 const ROWS = 4;
 const COLS = 8;
 const ANIM_DURATION = 1500;
@@ -1578,9 +1604,13 @@ const container = document.getElementById("logoJigsaw");
 let animationStarted = false;
 
 function createPieces() {
+    if (!container) return;
+
     const rect = container.getBoundingClientRect();
     const pieceWidth = rect.width / COLS;
     const pieceHeight = rect.height / ROWS;
+
+    if (!pieceWidth || !pieceHeight) return;
 
     for (let row = 0; row < ROWS; row++) {
         for (let col = 0; col < COLS; col++) {
@@ -1610,6 +1640,7 @@ function createPieces() {
 
 function animatePieces() {
     const pieces = Array.from(document.querySelectorAll(".logo-piece"));
+    if (!pieces.length) return;
 
     pieces.forEach((piece) => {
         const finalX = parseFloat(piece.dataset.finalX);
@@ -1654,8 +1685,10 @@ function animatePieces() {
     }, ANIM_DURATION + ANIM_DELAY_MAX + 800);
 }
 
-// ⭐ MOBILE-SAFE TRIGGER — replaces IntersectionObserver
+// Run jigsaw once window is fully loaded (mobile-safe, no observer)
 window.addEventListener("load", () => {
+    if (!container) return;
+
     setTimeout(() => {
         if (!animationStarted) {
             animationStarted = true;
@@ -1664,6 +1697,7 @@ window.addEventListener("load", () => {
         }
     }, 600);
 });
+
 
     </script>
 </body>
