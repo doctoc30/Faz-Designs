@@ -841,16 +841,187 @@
     </style>
 </head>
 <body>
-    <!-- Navigation (EXACTLY AS WAS) -->
-    <nav>
-        <div class="nav-left logo">VIBZ</div>
-        <div class="nav-center">
-            <a href="https://www.vibz.co.uk/funnel.html" class="nav-btn">Get a Website</a>
-        </div>
-        <div class="nav-right" style="font-size: 1.5rem;">
-            <i class="fa-solid fa-bars-staggered"></i>
-        </div>
-    </nav>
+
+
+    <!-- Mobile Menu Overlay -->
+<div id="mobileMenuOverlay">
+  <button id="closeMobileMenu">&times;</button>
+  <nav class="mobile-nav-links">
+    <a href="#services" onclick="closeMobileMenu()">Services</a>
+    <a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a>
+    <a href="#process" onclick="closeMobileMenu()">Process</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  </nav>
+</div>
+
+<style>
+  /* Mobile menu overlay */
+  #mobileMenuOverlay {
+    position: fixed;
+    top: 0;
+    left: -100%; /* start hidden offscreen */
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.5s ease;
+  }
+
+  #mobileMenuOverlay.open {
+    left: 0; /* slide in */
+  }
+
+  /* Close button */
+  #closeMobileMenu {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    z-index: 2100;
+  }
+
+  /* Links container */
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  /* Menu links */
+  .mobile-nav-links a {
+    font-size: 2.5rem;
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 600;
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+
+  /* Animate links when menu opens */
+  #mobileMenuOverlay.open .mobile-nav-links a {
+    animation: slideIn 0.6s forwards;
+  }
+
+  /* Add delay for cascading effect */
+  #mobileMenuOverlay.open .mobile-nav-links a:nth-child(1) { animation-delay: 0.1s; }
+  #mobileMenuOverlay.open .mobile-nav-links a:nth-child(2) { animation-delay: 0.2s; }
+  #mobileMenuOverlay.open .mobile-nav-links a:nth-child(3) { animation-delay: 0.3s; }
+  #mobileMenuOverlay.open .mobile-nav-links a:nth-child(4) { animation-delay: 0.4s; }
+
+  /* Slide-in keyframes */
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Hide menu on desktop */
+  @media (min-width: 901px) {
+    #mobileMenuOverlay { display: none; }
+  }
+
+
+
+  /* Mobile menu overlay */
+  #mobileMenuOverlay {
+    position: fixed;
+    top: 0;
+    left: -100%; /* start hidden offscreen */
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.5s ease;
+  }
+
+  #mobileMenuOverlay.open {
+    left: 0; /* slide in */
+  }
+
+  /* Close button */
+  #closeMobileMenu {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    z-index: 2100;
+  }
+
+  /* Links container */
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  /* Menu links */
+  .mobile-nav-links a {
+    font-size: 2.5rem;
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 600;
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+
+  /* Animate links when menu opens */
+  #mobileMenuOverlay.open .mobile-nav-links a {
+    animation: slideIn 0.6s forwards;
+  }
+
+  /* Add delay for cascading effect */
+  #mobileMenuOverlay.open .mobile-nav-links a:nth-child(1) { animation-delay: 0.1s; }
+  #mobileMenuOverlay.open .mobile-nav-links a:nth-child(2) { animation-delay: 0.2s; }
+  #mobileMenuOverlay.open .mobile-nav-links a:nth-child(3) { animation-delay: 0.3s; }
+  #mobileMenuOverlay.open .mobile-nav-links a:nth-child(4) { animation-delay: 0.4s; }
+
+  /* Slide-in keyframes */
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Hide menu on desktop */
+  @media (min-width: 901px) {
+    #mobileMenuOverlay { display: none; }
+  }
+
+</style>
+
+    <!-- Mobile Menu Overlay -->
+<div id="mobileMenuOverlay">
+  <button id="closeMobileMenu">&times;</button>
+  <nav class="mobile-nav-links">
+    <a href="#services" onclick="closeMobileMenu()">Services</a>
+    <a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a>
+    <a href="#process" onclick="closeMobileMenu()">Process</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  </nav>
+</div>
+
+
+
 
     <!-- Hero Section (EXACTLY AS WAS) -->
     <section class="hero">
@@ -1217,6 +1388,23 @@
         // Initialize slider
         showSlide(currentSlide);
         startSlider();
+
+
+         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuOverlay.classList.add('open');
+  });
+
+  closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+
+  function closeMobileMenu() {
+    // Remove open class to slide overlay out
+    mobileMenuOverlay.classList.remove('open');
+  }
+
     </script>
 </body>
 </html>
