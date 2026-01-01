@@ -950,182 +950,169 @@
             font-weight: 700;
         }
 
-        /* ================= FLOATING CTA ================= */
-        .floating-cta {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
 
-        .floating-cta:hover {
-            transform: scale(1.1) rotate(45deg);
-            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.4);
-        }
+/* ================= FLOATING CTA ================= */
+.floating-cta {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
 
-        /* ================= RESPONSIVE ADJUSTMENTS FOR NEW SECTIONS ================= */
-        @media (max-width: 768px) {
-            .slider-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
+.floating-cta:hover {
+    transform: scale(1.1) rotate(45deg);
+    box-shadow: 0 15px 40px rgba(255, 107, 0, 0.4);
+}
 
-            .slider-arrow.prev {
-                left: 15px;
-            }
+/* ================= RESPONSIVE ADJUSTMENTS FOR NEW SECTIONS ================= */
+@media (max-width: 768px) {
+    .slider-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
 
-            .slider-arrow.next {
-                right: 15px;
-            }
+    .slider-arrow.prev {
+        left: 15px;
+    }
 
-            .slide-content h2 {
-                font-size: 2.5rem;
-            }
+    .slider-arrow.next {
+        right: 15px;
+    }
 
-            .features-grid,
-            .clients-grid,
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+    .slide-content h2 {
+        font-size: 2.5rem;
+    }
 
-            .feature-card,
-            .testimonial-card {
-                padding: 2rem;
-            }
+    .features-grid,
+    .clients-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
-            .stat-number {
-                font-size: 3rem;
-            }
+    .feature-card,
+    .testimonial-card {
+        padding: 2rem;
+    }
 
-            .floating-cta {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-                bottom: 20px;
-                right: 20px;
-            }
+    .stat-number {
+        font-size: 3rem;
+    }
 
-            .testimonial-content {
-                font-size: 1.2rem;
-            }
+    .floating-cta {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        bottom: 20px;
+        right: 20px;
+    }
 
-            .testimonial-content:before {
-                font-size: 3rem;
-                left: -15px;
-                top: -10px;
-            }
-        }
+    .testimonial-content {
+        font-size: 1.2rem;
+    }
 
-        /* ================= ANIMATIONS ================= */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+    .testimonial-content:before {
+        font-size: 3rem;
+        left: -15px;
+        top: -10px;
+    }
+}
 
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
+/* ================= ANIMATIONS ================= */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
 
-        /* Lightened the form placeholders */
-        .form-grid input::placeholder,
-        .form-grid textarea::placeholder {
-            color: var(--text-gray);
-            opacity: 0.7;
-        }
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Lightened the form placeholders */
+.form-grid input::placeholder,
+.form-grid textarea::placeholder {
+    color: var(--text-gray);
+    opacity: 0.7;
+}
 
 /* ================= JIGSAW LOGO ANIMATION ================= */
 
 /* Section wrapper */
 .logo-animation-section {
-  width: 100%;
-  padding: 60px 0;
-  display: flex;
-  justify-content: center;
-  background: #ffffff;
-  min-height: 350px; /* ensures Safari/iPhone doesn't collapse height */
+    width: 100%;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    background: #ffffff;
+    min-height: 350px; /* prevents Safari/iPhone collapse */
 }
 
 /* Desktop container — MUST match logo aspect ratio (1184 × 864 = 1.37) */
 .logo-scene {
-  width: 420px;
-  height: 306px; /* 420 / 1.37 */
-  perspective: 1200px;
-  position: relative;
-  overflow: visible;
+    width: 420px;
+    height: 306px; /* 420 / 1.37 */
+    perspective: 1200px;
+    position: relative;
+    overflow: visible;
 }
 
 /* Mobile container — same ratio */
 @media (max-width: 600px) {
-  .logo-scene {
-    width: 280px;
-    height: 204px; /* 280 / 1.37 */
-  }
+    .logo-scene {
+        width: 280px;
+        height: 204px; /* 280 / 1.37 */
+    }
 }
 
 /* Jigsaw container */
 .logo-jigsaw {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  display: block; /* Safari fix */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    display: block; /* Safari fix */
 }
 
 /* Each puzzle piece */
 .logo-piece {
-  position: absolute;
-  background-image: url("images/IMG_9688.png");
-  background-size: 1184px 864px; /* MUST match actual image resolution */
-  background-repeat: no-repeat;
-  will-change: transform, opacity;
-  transform-origin: center;
-  opacity: 0;
+    position: absolute;
+    background-image: url("images/IMG_9688.png");
+    background-size: 1184px 864px; /* MUST match actual image resolution */
+    background-repeat: no-repeat;
+    will-change: transform, opacity;
+    transform-origin: center;
+    opacity: 0;
 }
 
 /* Hover effect after animation completes */
 .logo-jigsaw.completed .logo-piece {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .logo-jigsaw.completed .logo-piece:hover {
-  transform: translateZ(20px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    transform: translateZ(20px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
-     
+
+        
     </style>
 </head>
 <body>
