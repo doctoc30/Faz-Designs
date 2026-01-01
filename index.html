@@ -1050,7 +1050,51 @@
             color: var(--text-gray);
             opacity: 0.7;
         }
+
+
+        :root {
+  --rows: 4;
+  --cols: 6;
+  --anim-speed: 1.5s;
+}
+
+.logo-container {
+  position: relative;
+  width: 600px; /* Adjust to your logo size */
+  height: 400px;
+  margin: 50px auto;
+}
+
+#source-logo {
+  display: none; /* Hide the original image */
+}
+
+#puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  width: 100%;
+  height: 100%;
+}
+
+.puzzle-piece {
+  background-image: url('YOUR_LOGO_URL_HERE');
+  background-size: 600px 400px; /* Must match container size */
+  transition: all var(--anim-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+}
+
+/* State when assembled */
+.puzzle-piece.assembled {
+  transform: translate(0, 0) rotate(0deg) !important;
+  opacity: 1;
+}
+
     </style>
+
+
+
+    
 </head>
 <body>
     <!-- Full Page Menu Overlay -->
@@ -1105,6 +1149,17 @@
             <a href="https://www.vibz.co.uk/funnel.html" class="btn btn-outline">Get a Website</a>
         </div>
     </section>
+
+
+<div class="logo-container">
+    <img src="YOUR_LOGO_URL_HERE" id="source-logo" alt="Logo">
+    <div id="puzzle-grid"></div>
+</div>
+
+<button onclick="assemblePuzzle()">Re-Animate</button>
+
+
+    
 
     <!-- Slider Section -->
     <section style="padding-top: 60px; padding-bottom: 120px;" id="portfolio">
@@ -1493,6 +1548,52 @@
         // Initialize slider
         showSlide(currentSlide);
         startSlider();
+
+
+        const grid = document.getElementById('puzzle-grid');
+const rows = 4;
+const cols = 6;
+const logoUrl = 'YOUR_LOGO_URL_HERE';
+
+function createPuzzle() {
+    grid.innerHTML = '';
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            const piece = document.createElement('div');
+            piece.className = 'puzzle-piece';
+            
+            // Calculate background slice position
+            const x = (c / (cols - 1)) * 100;
+            const y = (r / (rows - 1)) * 100;
+            piece.style.backgroundPosition = `${x}% ${y}%`;
+
+            // Assign random starting positions (flying in from all angles)
+            const randomX = (Math.random() - 0.5) * 1000;
+            const randomY = (Math.random() - 0.5) * 1000;
+            const randomRot = (Math.random() - 0.5) * 360;
+            
+            piece.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRot}deg)`;
+            
+            grid.appendChild(piece);
+        }
+    }
+    
+    // Trigger animation after a short delay
+    setTimeout(assemblePuzzle, 100);
+}
+
+function assemblePuzzle() {
+    const pieces = document.querySelectorAll('.puzzle-piece');
+    pieces.forEach((piece, index) => {
+        // Add a slight stagger so they don't all move at the exact same millisecond
+        setTimeout(() => {
+            piece.classList.add('assembled');
+        }, index * 20); 
+    });
+}
+
+window.onload = createPuzzle;
+
     </script>
 </body>
 </html>
