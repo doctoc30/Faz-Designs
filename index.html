@@ -1142,6 +1142,7 @@
             
             <div class="menu-links">
                 <a href="#home" class="menu-link" onclick="closeMenu()">Home</a>
+                <a href="#conversion" class="menu-link" onclick="closeMenu()">Conversion</a>
                 <a href="#portfolio" class="menu-link" onclick="closeMenu()">Portfolio</a>
                 <a href="#process" class="menu-link" onclick="closeMenu()">Process</a>
                 <a href="#services" class="menu-link" onclick="closeMenu()">Services</a>
@@ -1331,7 +1332,51 @@
         </div>
     </section>
 
-    
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+        <p style="color: var(--text-gray); margin-bottom: 1.5rem; font-weight: 700;">TRUSTED BY INDUSTRY LEADERS</p>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark);">Google</div>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark); opacity: 0.8;">Shopify</div>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark); opacity: 0.8;">Webflow</div>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark); opacity: 0.8;">Figma</div>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--dark);">Adobe</div>
+        </div>
+    </div>
+
+    <!-- Slider Section -->
+    <section style="padding-top: 60px; padding-bottom: 120px;" id="portfolio">
+        <span class="section-label" data-aos="fade-up">Portfolio</span>
+        <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;" data-aos="fade-up">Our Elite Work</h2>
+        <div class="slider-frame">
+            <div class="slide active">
+                <div class="slide-content">
+                    <h2>Plumber</h2>
+                    <a href="#contact" class="btn btn-outline">Get a Website</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Dentist</h2>
+                    <a href="#contact" class="btn btn-outline">Get a Website</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Local Service</h2>
+                    <a href="#contact" class="btn btn-outline">Get a Website</a>
+                </div>
+            </div>
+            <button class="slider-arrow prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow next"><i class="fas fa-chevron-right"></i></button>
+            <div class="slider-controls">
+                <div class="slider-dot active" data-slide="0"></div>
+                <div class="slider-dot" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Stats Section -->
     <section class="stats-section" id="services" data-aos="fade-up">
         <span class="section-label">Impact</span>
@@ -1424,7 +1469,25 @@
         </div>
     </section>
 
- 
+    <!-- Clients Section -->
+    <section class="clients-section">
+        <span class="section-label" data-aos="fade-up">Trusted By</span>
+        <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;" data-aos="fade-up">Elite Brands</h2>
+        <div class="clients-grid">
+            <div class="client-logo" data-aos="fade-up">
+                <i class="fas fa-tooth"></i>
+            </div>
+            <div class="client-logo" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-hard-hat"></i>
+            </div>
+            <div class="client-logo" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-stethoscope"></i>
+            </div>
+            <div class="client-logo" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-gem"></i>
+            </div>
+        </div>
+    </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials-section">
@@ -1631,7 +1694,7 @@
             floatingCta.classList.toggle('floating');
         }, 3000);
 
-        // Menu Functionality
+        // ================== MENU FUNCTIONALITY ==================
         const menuOverlay = document.getElementById('menuOverlay');
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const closeMenuBtn = document.getElementById('closeMenu');
