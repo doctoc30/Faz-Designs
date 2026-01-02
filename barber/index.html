@@ -149,125 +149,140 @@
             <div class="step-dot" data-step="10"></div>
         </div>
 
-        <form id="formWrapper">
-            <input type="hidden" id="hiddenPlan" name="Selected Plan">
-            <input type="hidden" id="hiddenFeatures" name="Selected Features">
-            <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
 
-            <!-- STEP 1: Barber Shop Name -->
-            <div class="form-screen active" id="step-1">
-                <h2>What's Your Barber Shop Name?</h2>
-                <p>Tell us your barber shop name so we can personalize your experience.</p>
-                <input type="text" id="businessInput" placeholder="e.g. The Gentlemen's Cut">
-                <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleBusinessName()">Next</button>
-            </div>
+        
+<form id="formWrapper">
+    <input type="hidden" id="hiddenPlan" name="Selected Plan">
+    <input type="hidden" id="hiddenFeatures" name="Selected Features">
+    <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
 
-            <!-- STEP 2: Project Type -->
-            <div class="form-screen" id="step-2">
-                <h2>Which service do you need?</h2>
-                <div class="options">
-                    <button type="button" class="vibz-btn" onclick="setProjectType('New Website')">New Website</button>
-                    <button type="button" class="vibz-btn" onclick="setProjectType('Redesign Existing')">Redesign Existing</button>
-                    <button type="button" class="vibz-btn" onclick="setProjectType('Maintenance')">Maintenance</button>
-                </div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 3: Features -->
-            <div class="form-screen" id="step-3">
-                <h2>Which features do you want?</h2>
-                <p>Select all that apply:</p>
-                <div class="options">
-                    <button type="button" class="vibz-btn" onclick="toggleFeature('Online Booking')">Online Booking</button>
-                    <button type="button" class="vibz-btn" onclick="toggleFeature('Gallery/Portfolio')">Gallery/Portfolio</button>
-                    <button type="button" class="vibz-btn" onclick="toggleFeature('Local SEO')">Local SEO</button>
-                    <button type="button" class="vibz-btn" onclick="toggleFeature('Reviews Section')">Reviews Section</button>
-                    <button type="button" class="vibz-btn" onclick="toggleFeature('Social Media Integration')">Social Media Integration</button>
-                    <button type="button" class="vibz-btn" onclick="toggleFeature('Branding & Logo')">Branding & Logo</button>
-                </div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 4: Target Audience -->
-            <div class="form-screen" id="step-4">
-                <h2>Who are your main clients?</h2>
-                <div class="options">
-                    <button type="button" class="vibz-btn" onclick="setAudience('Men')">Men</button>
-                    <button type="button" class="vibz-btn" onclick="setAudience('Women')">Women</button>
-                    <button type="button" class="vibz-btn" onclick="setAudience('Children')">Children</button>
-                    <button type="button" class="vibz-btn" onclick="setAudience('Family')">Mixed/Family</button>
-                </div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 5: Website Style -->
-            <div class="form-screen" id="step-5">
-                <h2>What style do you prefer for your website?</h2>
-                <div class="options">
-                    <button type="button" class="vibz-btn" onclick="setStyle('Classic')">Classic</button>
-                    <button type="button" class="vibz-btn" onclick="setStyle('Modern')">Modern</button>
-                    <button type="button" class="vibz-btn" onclick="setStyle('Minimalist')">Minimalist</button>
-                    <button type="button" class="vibz-btn" onclick="setStyle('Premium')">Premium</button>
-                </div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 6: Color Scheme -->
-            <div class="form-screen" id="step-6">
-                <h2>Preferred color scheme?</h2>
-                <div class="options">
-                    <button type="button" class="vibz-btn" onclick="setColor('Black & Gold')">Black & Gold</button>
-                    <button type="button" class="vibz-btn" onclick="setColor('Modern/Vibrant')">Modern/Vibrant</button>
-                    <button type="button" class="vibz-btn" onclick="setColor('Neutral/Classic')">Neutral/Classic</button>
-                    <button type="button" class="vibz-btn" onclick="setColor('Custom')">Custom</button>
-                </div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 7: Website Goal -->
-            <div class="form-screen" id="step-7">
-                <h2>What’s the main goal of your website?</h2>
-                <div class="options">
-                    <button type="button" class="vibz-btn" onclick="setGoal('Attract New Clients')">Attract New Clients</button>
-                    <button type="button" class="vibz-btn" onclick="setGoal('Showcase Styles/Portfolio')">Showcase Styles/Portfolio</button>
-                    <button type="button" class="vibz-btn" onclick="setGoal('Facilitate Bookings')">Facilitate Bookings</button>
-                </div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 8: Booking Method -->
-            <div class="form-screen" id="step-8">
-                <h2>Preferred booking method?</h2>
-                <div class="options">
-                    <button type="button" class="vibz-btn" onclick="setBooking('Online Booking')">Online Booking</button>
-                    <button type="button" class="vibz-btn" onclick="setBooking('Phone/WhatsApp')">Phone/WhatsApp</button>
-                    <button type="button" class="vibz-btn" onclick="setBooking('Contact Form')">Contact Form</button>
-                </div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 9: Plan Type -->
-            <div class="form-screen" id="step-9">
-                <h2>Choose your plan type</h2>
-                <div class="options">
-                    <button type="button" class="vibz-btn" onclick="setPlan('Own Outright')">Own Outright</button>
-                    <button type="button" class="vibz-btn" onclick="setPlan('Monthly Support')">Monthly Support</button>
-                </div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 10: Recommended Plan -->
-            <div class="form-screen" id="step-10">
-                <h2>Your Recommended Plan</h2>
-                <p>Based on your selections, here's what we recommend:</p>
-                <div class="pricing-container" id="pricingCards"></div>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-        </form>
+    <!-- STEP 1: Barber Shop Name -->
+    <div class="form-screen active" id="step-1">
+        <h2>What's Your Barber Shop Name?</h2>
+        <p>Tell us your barber shop name so we can personalize your experience.</p>
+        <input type="text" id="businessInput" placeholder="e.g. The Gentlemen's Cut">
+        <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleBusinessName()">Next</button>
     </div>
-</section>
 
+    <!-- STEP 2: Project Type -->
+    <div class="form-screen" id="step-2">
+        <h2>Which service do you need?</h2>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="setProjectType('New Website')">New Website</button>
+            <button type="button" class="vibz-btn" onclick="setProjectType('Redesign Existing')">Redesign Existing</button>
+            <button type="button" class="vibz-btn" onclick="setProjectType('Maintenance')">Maintenance</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 3: Design Concept -->
+    <div class="form-screen" id="step-3">
+        <h2>Do you have a design concept in mind?</h2>
+        <p>You can enter a code, choose from templates, or request custom design.</p>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="setDesignConcept('Code')">Yes, I have a code</button>
+            <button type="button" class="vibz-btn" onclick="setDesignConcept('Concepts')">Show me concepts</button>
+            <button type="button" class="vibz-btn" onclick="setDesignConcept('Custom')">Custom design</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 4: Features -->
+    <div class="form-screen" id="step-4">
+        <h2>Which features do you want?</h2>
+        <p>Select all that apply:</p>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="toggleFeature('Online Booking')">Online Booking</button>
+            <button type="button" class="vibz-btn" onclick="toggleFeature('Gallery/Portfolio')">Gallery/Portfolio</button>
+            <button type="button" class="vibz-btn" onclick="toggleFeature('Local SEO')">Local SEO</button>
+            <button type="button" class="vibz-btn" onclick="toggleFeature('Reviews Section')">Reviews Section</button>
+            <button type="button" class="vibz-btn" onclick="toggleFeature('Social Media Integration')">Social Media Integration</button>
+            <button type="button" class="vibz-btn" onclick="toggleFeature('Branding & Logo')">Branding & Logo</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 5: Target Audience -->
+    <div class="form-screen" id="step-5">
+        <h2>Who are your main clients?</h2>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="setAudience('Men')">Men</button>
+            <button type="button" class="vibz-btn" onclick="setAudience('Women')">Women</button>
+            <button type="button" class="vibz-btn" onclick="setAudience('Children')">Children</button>
+            <button type="button" class="vibz-btn" onclick="setAudience('Family')">Mixed/Family</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 6: Website Style -->
+    <div class="form-screen" id="step-6">
+        <h2>What style do you prefer for your website?</h2>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="setStyle('Classic')">Classic</button>
+            <button type="button" class="vibz-btn" onclick="setStyle('Modern')">Modern</button>
+            <button type="button" class="vibz-btn" onclick="setStyle('Minimalist')">Minimalist</button>
+            <button type="button" class="vibz-btn" onclick="setStyle('Premium')">Premium</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 7: Color Scheme -->
+    <div class="form-screen" id="step-7">
+        <h2>Preferred color scheme?</h2>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="setColor('Black & Gold')">Black & Gold</button>
+            <button type="button" class="vibz-btn" onclick="setColor('Modern/Vibrant')">Modern/Vibrant</button>
+            <button type="button" class="vibz-btn" onclick="setColor('Neutral/Classic')">Neutral/Classic</button>
+            <button type="button" class="vibz-btn" onclick="setColor('Custom')">Custom</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 8: Website Goal -->
+    <div class="form-screen" id="step-8">
+        <h2>What’s the main goal of your website?</h2>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="setGoal('Attract New Clients')">Attract New Clients</button>
+            <button type="button" class="vibz-btn" onclick="setGoal('Showcase Styles/Portfolio')">Showcase Styles/Portfolio</button>
+            <button type="button" class="vibz-btn" onclick="setGoal('Facilitate Bookings')">Facilitate Bookings</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 9: Booking Method -->
+    <div class="form-screen" id="step-9">
+        <h2>Preferred booking method?</h2>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="setBooking('Online Booking')">Online Booking</button>
+            <button type="button" class="vibz-btn" onclick="setBooking('Phone/WhatsApp')">Phone/WhatsApp</button>
+            <button type="button" class="vibz-btn" onclick="setBooking('Contact Form')">Contact Form</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 10: Plan Type -->
+    <div class="form-screen" id="step-10">
+        <h2>Choose your plan type</h2>
+        <div class="options">
+            <button type="button" class="vibz-btn" onclick="setPlan('Own Outright')">Own Outright</button>
+            <button type="button" class="vibz-btn" onclick="setPlan('Monthly Support')">Monthly Support</button>
+        </div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+    <!-- STEP 11: Recommended Plan -->
+    <div class="form-screen" id="step-11">
+        <h2>Your Recommended Plan</h2>
+        <p>Based on your selections, here's what we recommend:</p>
+        <div class="pricing-container" id="pricingCards"></div>
+        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+    </div>
+
+</form>
+
+
+
+      
 
 <script>
     // Form state management
@@ -451,6 +466,15 @@
             });
         }
     });
+
+
+
+    function setDesignConcept(option) {
+    console.log('Design concept chosen:', option); // for testing
+    next(); // move to the next step automatically
+}
+
+
 </script>
 
 </body>
