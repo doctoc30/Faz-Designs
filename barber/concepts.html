@@ -103,11 +103,12 @@
         }
 
         .hero h1 {
-            font-size: clamp(3.5rem, 12vw, 6rem);
+            font-size: clamp(3.5rem, 12vw, 8rem); /* Exact VIBZ homepage size */
             font-weight: 900;
             line-height: 0.9;
-            letter-spacing: -3px;
-            margin-bottom: 1.5rem;
+            letter-spacing: -4px; /* Exact VIBZ homepage letter spacing */
+            margin-bottom: 2rem; /* Exact VIBZ homepage margin */
+            text-transform: capitalize;
             color: var(--dark);
         }
 
@@ -116,11 +117,11 @@
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.25rem; /* Exact VIBZ homepage size */
             color: var(--text-gray);
-            max-width: 650px;
-            margin-bottom: 3rem;
-            line-height: 1.6;
+            max-width: 550px; /* Exact VIBZ homepage max-width */
+            margin-bottom: 3rem; /* Exact VIBZ homepage margin */
+            line-height: 1.5;
         }
 
         /* ================= BARBER BENEFITS SECTION ================= */
@@ -178,7 +179,7 @@
             line-height: 1.6;
         }
 
-        /* ================= CONCEPT GRID - 80% IMAGE, 20% BUTTONS ================= */
+        /* ================= CONCEPT GRID ================= */
         .concepts-section {
             padding: 100px 6%;
             background: var(--bg);
@@ -197,7 +198,7 @@
         .concepts-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 40px;
             max-width: 1400px;
             margin: 40px auto 0;
         }
@@ -210,7 +211,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
-            height: 650px;
+            height: 700px;
             position: relative;
         }
 
@@ -220,9 +221,9 @@
             border-color: var(--accent);
         }
 
-        /* Image Container - 80% of card */
+        /* Image Container */
         .concept-image {
-            height: 80%;
+            height: 75%;
             position: relative;
             overflow: hidden;
             background: #000;
@@ -288,66 +289,66 @@
             font-weight: 600;
         }
 
-        /* Buttons Container - 20% of card */
+        /* ================= CONCEPT BUTTONS - VIBZ HOMEPAGE STYLE ================= */
         .concept-buttons {
-            height: 20%;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            background: white;
-            border-top: 1px solid var(--border);
-        }
-
-        .concept-btn {
+            height: 25%; /* More space for VIBZ-style buttons */
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            padding: 1.5rem 0.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: none;
+            align-items: center;
+            padding: 2rem;
             background: white;
+            border-top: 1px solid var(--border);
+            gap: 15px;
+        }
+
+        /* VIBZ Homepage Button Style */
+        .btn {
+            padding: 1.2rem 2.5rem; /* Exact VIBZ homepage padding */
+            border-radius: 12px; /* Exact VIBZ homepage radius */
+            text-decoration: none;
+            font-weight: 700; /* Exact VIBZ homepage weight */
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Exact VIBZ transition */
+            font-size: 1.1rem; /* Exact VIBZ homepage size */
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
             cursor: pointer;
+            border: 2px solid;
             font-family: 'Inter', sans-serif;
         }
 
-        .concept-btn:hover {
-            background: var(--light-gray);
-        }
-
-        .concept-btn.active {
+        .btn-fill {
             background: var(--accent);
             color: white;
+            border-color: var(--accent);
         }
 
-        .concept-btn i {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            transition: transform 0.3s ease;
+        .btn-fill:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2); /* Exact VIBZ homepage shadow */
         }
 
-        .concept-btn:hover i {
-            transform: scale(1.2);
-        }
-
-        .btn-text {
-            font-size: 1rem;
-            font-weight: 900;
-            text-align: center;
-            line-height: 1.2;
-        }
-
-        .btn-code {
-            font-size: 0.85rem;
-            font-weight: 900;
+        .btn-outline {
+            background: white;
             color: var(--accent);
-            margin-top: 0.4rem;
+            border-color: var(--accent);
         }
 
-        .concept-btn.active .btn-code {
+        .btn-outline:hover {
+            background: var(--accent);
             color: white;
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2);
+        }
+
+        /* Small code indicator */
+        .concept-code {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 700;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
         }
 
         /* ================= BARBER STATS SECTION ================= */
@@ -395,78 +396,40 @@
             font-weight: 700;
         }
 
-        /* ================= FOOTER - VIBZ HOMEPAGE STYLE ================= */
-        .footer-form {
-            background: radial-gradient(circle at top right, #fff5ee, #ffffff);
-            color: var(--dark);
-            padding: 120px 6% 60px;
+        /* ================= FOOTER - SIMPLIFIED FOR FUNNEL ================= */
+        .footer-simple {
+            background: var(--light-gray);
+            padding: 80px 6%;
+            text-align: center;
             border-top: 1px solid var(--border);
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .footer-form h2 {
-            font-size: 4.5rem;
+        .footer-logo {
             font-weight: 900;
-            line-height: 0.9;
-            letter-spacing: -2px;
-            color: var(--dark);
+            font-size: 2rem;
+            color: var(--accent);
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
         }
 
-        .form-container {
-            background: white;
-            padding: 3rem;
-            border-radius: 40px;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-grid input,
-        .form-grid textarea {
-            width: 100%;
-            padding: 1.5rem;
-            background: white;
-            border: 1px solid var(--border);
-            color: var(--dark);
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .form-grid input:focus,
-        .form-grid textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
-        }
-
-        .submit-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 1.5rem 3rem;
-            border-radius: 16px;
+        .footer-logo::after {
+            content: ".";
+            color: #000;
+            margin-left: 2px;
             font-weight: 900;
-            cursor: pointer;
-            width: 100%;
+        }
+
+        .footer-text {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
             font-size: 1.1rem;
-            transition: 0.3s;
-        }
-
-        .submit-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
         }
 
         .copyright {
             text-align: center;
-            margin-top: 100px;
+            margin-top: 60px;
             color: var(--text-gray);
             border-top: 1px solid var(--border);
             padding-top: 40px;
@@ -478,6 +441,21 @@
         @media (max-width: 1024px) {
             .concepts-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .concept-card {
+                height: 650px;
+            }
+            
+            .hero h1 {
+                font-size: clamp(3rem, 10vw, 6rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .concepts-grid {
+                grid-template-columns: 1fr;
                 gap: 25px;
             }
             
@@ -485,31 +463,9 @@
                 height: 600px;
             }
             
-            .form-grid {
-                gap: 40px;
-            }
-            
-            .footer-form h2 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .concepts-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .concept-card {
-                height: 550px;
-            }
-            
             .hero h1 {
                 font-size: 2.8rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
+                letter-spacing: -2px;
             }
             
             .benefits-grid {
@@ -521,22 +477,15 @@
                 gap: 20px;
             }
             
-            .concept-buttons {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .concept-btn {
-                padding: 1.2rem 0.3rem;
-            }
-            
-            .btn-text {
-                font-size: 0.9rem;
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
             }
         }
 
         @media (max-width: 480px) {
             .concept-card {
-                height: 500px;
+                height: 550px;
             }
             
             .hero h1 {
@@ -545,10 +494,6 @@
             
             .stats-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .concept-btn i {
-                font-size: 1.5rem;
             }
         }
 
@@ -595,14 +540,14 @@
     <!-- Hero Section - Barber Niche Focus -->
     <section class="hero" id="home">
         <h1>
-            <span class="accent">Barber Shop</span><br>
+            Barber Shop<br>
             Website<br>
-            Concepts
+            <span class="accent">Concepts</span>
         </h1>
         <p>
-            <strong>9 premium website designs built exclusively for modern barber shops.</strong> 
-            Each concept is engineered to increase bookings, showcase your work, and build client loyalty. 
-            Mobile-optimized with online booking, gallery displays, and revenue-generating features.
+            9 premium website designs built exclusively for modern barber shops. 
+            Each concept is engineered to increase bookings, showcase your work, 
+            and build client loyalty.
         </p>
         
         <!-- No buttons in hero as requested -->
@@ -611,12 +556,12 @@
     <!-- Barber Benefits Section -->
     <section class="barber-benefits">
         <div style="text-align: center; margin-bottom: 60px;">
-            <span class="section-label">Why Barber-Specific Design Matters</span>
-            <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
-                Websites That <span style="color: var(--accent);">Work For Barbers</span>
+            <span class="section-label">Designed For Barber Shops</span>
+            <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
+                Everything You Need To <span style="color: var(--accent);">Grow</span>
             </h2>
             <p style="font-size: 1.2rem; color: var(--text-gray); max-width: 800px; margin: 0 auto;">
-                Generic websites don't convert. Our barber-specific designs include everything you need to grow your business.
+                Our barber-specific designs include built-in features that actually work for your business.
             </p>
         </div>
 
@@ -625,8 +570,8 @@
                 <div class="benefit-icon">
                     <i class="fas fa-calendar-check"></i>
                 </div>
-                <h3>Online Booking System</h3>
-                <p>24/7 appointment scheduling that reduces no-shows and fills your calendar automatically. Integrated with your preferred calendar system.</p>
+                <h3>Online Booking</h3>
+                <p>24/7 appointment scheduling that reduces no-shows and fills your calendar automatically.</p>
             </div>
             
             <div class="benefit-card">
@@ -634,7 +579,7 @@
                     <i class="fas fa-images"></i>
                 </div>
                 <h3>Portfolio Gallery</h3>
-                <p>Showcase your best work with before/after galleries, style collections, and client transformations that attract new customers.</p>
+                <p>Showcase your best work with before/after galleries and style collections.</p>
             </div>
             
             <div class="benefit-card">
@@ -642,15 +587,15 @@
                     <i class="fas fa-shopping-cart"></i>
                 </div>
                 <h3>Product Sales</h3>
-                <p>Sell grooming products directly from your website with integrated e-commerce. Turn your shop into a 24/7 revenue stream.</p>
+                <p>Sell grooming products directly from your website with integrated e-commerce.</p>
             </div>
             
             <div class="benefit-card">
                 <div class="benefit-icon">
                     <i class="fas fa-mobile-alt"></i>
                 </div>
-                <h3>Mobile First Design</h3>
-                <p>85% of barber shop bookings happen on mobile. Our designs are optimized for smartphones with one-touch booking.</p>
+                <h3>Mobile First</h3>
+                <p>85% of barber shop bookings happen on mobile. Our designs are optimized for smartphones.</p>
             </div>
             
             <div class="benefit-card">
@@ -658,7 +603,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <h3>Client Reviews</h3>
-                <p>Build social proof with integrated review systems, testimonials, and before/after photos from satisfied clients.</p>
+                <p>Build social proof with integrated review systems and testimonials from satisfied clients.</p>
             </div>
             
             <div class="benefit-card">
@@ -666,19 +611,19 @@
                     <i class="fas fa-bolt"></i>
                 </div>
                 <h3>Lightning Fast</h3>
-                <p>Optimized for 100/100 PageSpeed scores. Fast loading sites keep clients engaged and improve search rankings.</p>
+                <p>Optimized for 100/100 PageSpeed scores. Fast loading sites keep clients engaged.</p>
             </div>
         </div>
     </section>
 
     <!-- Concepts Grid -->
     <section class="concepts-section">
-        <span class="section-label">Premium Concepts</span>
+        <span class="section-label">Choose Your Design</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
-            9 Barber-Specific <span style="color: var(--accent);">Website Designs</span>
+            9 Barber-Specific <span style="color: var(--accent);">Concepts</span>
         </h2>
         <p style="font-size: 1.2rem; color: var(--text-gray); max-width: 800px; margin-bottom: 2rem;">
-            Each concept includes mobile optimization, online booking, gallery display, and everything you need to launch successfully.
+            Select a concept to continue to the next step in our funnel. We'll customize it for your shop.
         </p>
         
         <div class="concepts-grid" id="conceptsGrid">
@@ -689,23 +634,17 @@
                     <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Barber Elite">
                     <div class="concept-overlay">
                         <h3 class="concept-title">Barber Elite</h3>
-                        <p class="concept-subtitle">Modern Luxury Experience</p>
+                        <p class="concept-subtitle">Modern Luxury Barber Experience</p>
                     </div>
                 </div>
                 <div class="concept-buttons">
-                    <button class="concept-btn btn-view" data-concept="1">
-                        <i class="fas fa-eye"></i>
-                        <span class="btn-text">View Live Demo</span>
+                    <button class="btn btn-fill select-design" data-concept="1" data-code="B1">
+                        Select This Design
                     </button>
-                    <button class="concept-btn btn-code" data-concept="1">
-                        <i class="fas fa-code"></i>
-                        <span class="btn-text">Concept: B1</span>
-                        <span class="btn-code">PREMIUM</span>
+                    <button class="btn btn-outline view-demo" data-concept="1">
+                        View Live Demo
                     </button>
-                    <button class="concept-btn btn-claim" data-concept="1">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="btn-text">Select This Design</span>
-                    </button>
+                    <div class="concept-code">CODE: BARBER-1</div>
                 </div>
             </div>
 
@@ -720,19 +659,13 @@
                     </div>
                 </div>
                 <div class="concept-buttons">
-                    <button class="concept-btn btn-view" data-concept="2">
-                        <i class="fas fa-eye"></i>
-                        <span class="btn-text">View Live Demo</span>
+                    <button class="btn btn-fill select-design" data-concept="2" data-code="B2">
+                        Select This Design
                     </button>
-                    <button class="concept-btn btn-code" data-concept="2">
-                        <i class="fas fa-code"></i>
-                        <span class="btn-text">Concept: B2</span>
-                        <span class="btn-code">TRADITIONAL</span>
+                    <button class="btn btn-outline view-demo" data-concept="2">
+                        View Live Demo
                     </button>
-                    <button class="concept-btn btn-claim" data-concept="2">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="btn-text">Select This Design</span>
-                    </button>
+                    <div class="concept-code">CODE: BARBER-2</div>
                 </div>
             </div>
 
@@ -747,23 +680,16 @@
                     </div>
                 </div>
                 <div class="concept-buttons">
-                    <button class="concept-btn btn-view" data-concept="3">
-                        <i class="fas fa-eye"></i>
-                        <span class="btn-text">View Live Demo</span>
+                    <button class="btn btn-fill select-design" data-concept="3" data-code="B3">
+                        Select This Design
                     </button>
-                    <button class="concept-btn btn-code" data-concept="3">
-                        <i class="fas fa-code"></i>
-                        <span class="btn-text">Concept: B3</span>
-                        <span class="btn-code">URBAN</span>
+                    <button class="btn btn-outline view-demo" data-concept="3">
+                        View Live Demo
                     </button>
-                    <button class="concept-btn btn-claim" data-concept="3">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="btn-text">Select This Design</span>
-                    </button>
+                    <div class="concept-code">CODE: BARBER-3</div>
                 </div>
             </div>
 
-            <!-- Additional concepts 4-9 would follow same pattern -->
             <!-- Concept 4 -->
             <div class="concept-card" data-concept="4">
                 <div class="concept-image">
@@ -775,19 +701,13 @@
                     </div>
                 </div>
                 <div class="concept-buttons">
-                    <button class="concept-btn btn-view" data-concept="4">
-                        <i class="fas fa-eye"></i>
-                        <span class="btn-text">View Live Demo</span>
+                    <button class="btn btn-fill select-design" data-concept="4" data-code="B4">
+                        Select This Design
                     </button>
-                    <button class="concept-btn btn-code" data-concept="4">
-                        <i class="fas fa-code"></i>
-                        <span class="btn-text">Concept: B4</span>
-                        <span class="btn-code">LUXURY</span>
+                    <button class="btn btn-outline view-demo" data-concept="4">
+                        View Live Demo
                     </button>
-                    <button class="concept-btn btn-claim" data-concept="4">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="btn-text">Select This Design</span>
-                    </button>
+                    <div class="concept-code">CODE: BARBER-4</div>
                 </div>
             </div>
 
@@ -802,19 +722,13 @@
                     </div>
                 </div>
                 <div class="concept-buttons">
-                    <button class="concept-btn btn-view" data-concept="5">
-                        <i class="fas fa-eye"></i>
-                        <span class="btn-text">View Live Demo</span>
+                    <button class="btn btn-fill select-design" data-concept="5" data-code="B5">
+                        Select This Design
                     </button>
-                    <button class="concept-btn btn-code" data-concept="5">
-                        <i class="fas fa-code"></i>
-                        <span class="btn-text">Concept: B5</span>
-                        <span class="btn-code">CLASSIC</span>
+                    <button class="btn btn-outline view-demo" data-concept="5">
+                        View Live Demo
                     </button>
-                    <button class="concept-btn btn-claim" data-concept="5">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="btn-text">Select This Design</span>
-                    </button>
+                    <div class="concept-code">CODE: BARBER-5</div>
                 </div>
             </div>
 
@@ -829,32 +743,86 @@
                     </div>
                 </div>
                 <div class="concept-buttons">
-                    <button class="concept-btn btn-view" data-concept="6">
-                        <i class="fas fa-eye"></i>
-                        <span class="btn-text">View Live Demo</span>
+                    <button class="btn btn-fill select-design" data-concept="6" data-code="B6">
+                        Select This Design
                     </button>
-                    <button class="concept-btn btn-code" data-concept="6">
-                        <i class="fas fa-code"></i>
-                        <span class="btn-text">Concept: B6</span>
-                        <span class="btn-code">SPECIALIST</span>
+                    <button class="btn btn-outline view-demo" data-concept="6">
+                        View Live Demo
                     </button>
-                    <button class="concept-btn btn-claim" data-concept="6">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="btn-text">Select This Design</span>
-                    </button>
+                    <div class="concept-code">CODE: BARBER-6</div>
                 </div>
             </div>
 
-            <!-- Concepts 7, 8, 9 would continue similarly -->
-            <!-- For brevity, showing 6 concepts but you would have 9 total -->
+            <!-- Concept 7 -->
+            <div class="concept-card" data-concept="7">
+                <div class="concept-image">
+                    <div class="concept-number">07</div>
+                    <img src="https://images.unsplash.com/photo-1621605815972-f9e5c6c4a9c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Modern Groom">
+                    <div class="concept-overlay">
+                        <h3 class="concept-title">Modern Groom</h3>
+                        <p class="concept-subtitle">Contemporary Style</p>
+                    </div>
+                </div>
+                <div class="concept-buttons">
+                    <button class="btn btn-fill select-design" data-concept="7" data-code="B7">
+                        Select This Design
+                    </button>
+                    <button class="btn btn-outline view-demo" data-concept="7">
+                        View Live Demo
+                    </button>
+                    <div class="concept-code">CODE: BARBER-7</div>
+                </div>
+            </div>
+
+            <!-- Concept 8 -->
+            <div class="concept-card" data-concept="8">
+                <div class="concept-image">
+                    <div class="concept-number">08</div>
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Premium Trim">
+                    <div class="concept-overlay">
+                        <h3 class="concept-title">Premium Trim</h3>
+                        <p class="concept-subtitle">Executive Grooming</p>
+                    </div>
+                </div>
+                <div class="concept-buttons">
+                    <button class="btn btn-fill select-design" data-concept="8" data-code="B8">
+                        Select This Design
+                    </button>
+                    <button class="btn btn-outline view-demo" data-concept="8">
+                        View Live Demo
+                    </button>
+                    <div class="concept-code">CODE: BARBER-8</div>
+                </div>
+            </div>
+
+            <!-- Concept 9 -->
+            <div class="concept-card" data-concept="9">
+                <div class="concept-image">
+                    <div class="concept-number">09</div>
+                    <img src="https://images.unsplash.com/photo-1580618864180-f6d7d39b8ff6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Street Style">
+                    <div class="concept-overlay">
+                        <h3 class="concept-title">Street Style</h3>
+                        <p class="concept-subtitle">Urban Culture Barber</p>
+                    </div>
+                </div>
+                <div class="concept-buttons">
+                    <button class="btn btn-fill select-design" data-concept="9" data-code="B9">
+                        Select This Design
+                    </button>
+                    <button class="btn btn-outline view-demo" data-concept="9">
+                        View Live Demo
+                    </button>
+                    <div class="concept-code">CODE: BARBER-9</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Barber Stats Section -->
     <section class="barber-stats">
-        <span class="section-label">Impact</span>
+        <span class="section-label">Designed For Results</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
-            Designed For <span style="color: var(--accent);">Barber Success</span>
+            Barber Websites That <span style="color: var(--accent);">Convert</span>
         </h2>
         
         <div class="stats-grid">
@@ -871,198 +839,222 @@
                 <span class="stat-label">Mobile Traffic</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">9</span>
-                <span class="stat-label">Premium Concepts</span>
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Customizable</span>
             </div>
         </div>
     </section>
 
-    <!-- Footer - VIBZ Homepage Style -->
-    <footer class="footer-form" id="contact">
-        <div class="form-grid">
-            <div>
-                <h2>Ready For Your <br><span style="color: var(--accent);">Barber Website?</span></h2>
-                <p style="color: var(--text-gray); margin-top: 2.5rem; font-size: 1.2rem; max-width: 400px; line-height: 1.6;">
-                    Select a concept above and our barber website specialists will customize it for your shop. Launch in 7 days or less.
-                </p>
-            </div>
-            <div class="form-container">
-                <form id="barberContactForm">
-                    <input type="text" placeholder="Barber Shop Name" required>
-                    <input type="email" placeholder="Email Address" required>
-                    <input type="tel" placeholder="Phone Number">
-                    <select style="width: 100%; padding: 1.5rem; border: 1px solid var(--border); border-radius: 16px; margin-bottom: 1.5rem; font-size: 1rem; outline: none; background: white; color: var(--dark);">
-                        <option value="">Select Your Preferred Concept</option>
-                        <option value="b1">Barber Elite (B1)</option>
-                        <option value="b2">Classic Cuts (B2)</option>
-                        <option value="b3">Urban Edge (B3)</option>
-                        <option value="b4">Luxe Barber (B4)</option>
-                        <option value="b5">Gentleman's Cut (B5)</option>
-                        <option value="b6">Beard & Blade (B6)</option>
-                    </select>
-                    <button type="submit" class="submit-btn">GET BARBER WEBSITE QUOTE</button>
-                </form>
-            </div>
-        </div>
+    <!-- Simple Footer -->
+    <footer class="footer-simple">
+        <div class="footer-logo">VIBZ</div>
+        <p class="footer-text">
+            Ready to launch your barber shop website? Select a concept above to continue 
+            to the next step in our funnel. We'll customize your chosen design and have 
+            it ready in 7 days or less.
+        </p>
+        <a href="https://www.vibz.co.uk/funnel.html" class="nav-btn">Get Started Now</a>
         <div class="copyright">
-            © 2025 VIBZ COLLECTIVE. BARBER WEBSITE SPECIALISTS.
+            © 2025 VIBZ COLLECTIVE. BARBER WEBSITE CONCEPT LIBRARY.
         </div>
     </footer>
 
-    <script>
-        // Button functionality
-        const viewButtons = document.querySelectorAll('.btn-view');
-        const codeButtons = document.querySelectorAll('.btn-code');
-        const claimButtons = document.querySelectorAll('.btn-claim');
-        const barberContactForm = document.getElementById('barberContactForm');
+    <!-- Selection Modal -->
+    <div class="selection-modal" id="selectionModal" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+    ">
+        <div style="
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        ">
+            <button onclick="closeModal()" style="
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text-gray);
+            ">×</button>
+            
+            <div style="font-size: 4rem; color: var(--accent); margin-bottom: 1rem;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 1rem; color: var(--dark);" id="modalTitle">
+                Design Selected!
+            </h3>
+            
+            <p style="color: var(--text-gray); margin-bottom: 1.5rem; line-height: 1.6;" id="modalText">
+                Your selection has been saved.
+            </p>
+            
+            <button onclick="continueToFunnel()" class="btn btn-fill" style="margin-bottom: 1rem; width: 100%;">
+                Continue to Next Step
+            </button>
+            
+            <button onclick="closeModal()" class="btn btn-outline" style="width: 100%;">
+                Browse More Designs
+            </button>
+        </div>
+    </div>
 
-        // View button functionality
-        viewButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const conceptId = btn.dataset.concept;
-                const conceptNames = {
-                    1: "Barber Elite (B1)",
-                    2: "Classic Cuts (B2)", 
-                    3: "Urban Edge (B3)",
-                    4: "Luxe Barber (B4)",
-                    5: "Gentleman's Cut (B5)",
-                    6: "Beard & Blade (B6)"
+    <script>
+        // Store selected design
+        let selectedDesign = null;
+        const selectionModal = document.getElementById('selectionModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+
+        // Concept data
+        const conceptData = {
+            1: { name: "Barber Elite", code: "BARBER-1" },
+            2: { name: "Classic Cuts", code: "BARBER-2" },
+            3: { name: "Urban Edge", code: "BARBER-3" },
+            4: { name: "Luxe Barber", code: "BARBER-4" },
+            5: { name: "Gentleman's Cut", code: "BARBER-5" },
+            6: { name: "Beard & Blade", code: "BARBER-6" },
+            7: { name: "Modern Groom", code: "BARBER-7" },
+            8: { name: "Premium Trim", code: "BARBER-8" },
+            9: { name: "Street Style", code: "BARBER-9" }
+        };
+
+        // Select Design buttons
+        document.querySelectorAll('.select-design').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const conceptId = this.dataset.concept;
+                const conceptCode = this.dataset.code;
+                const concept = conceptData[conceptId];
+                
+                // Store selection
+                selectedDesign = {
+                    id: conceptId,
+                    name: concept.name,
+                    code: concept.code,
+                    shortCode: conceptCode
                 };
                 
-                // Show loading state
-                const originalHTML = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span class="btn-text">Loading...</span>';
+                // Store in localStorage for funnel continuation
+                localStorage.setItem('selectedBarberConcept', JSON.stringify(selectedDesign));
                 
+                // Update modal content
+                modalTitle.textContent = `Selected: ${concept.name}`;
+                modalText.innerHTML = `
+                    You've selected <strong>${concept.name}</strong> (${conceptCode})<br><br>
+                    <span style="font-size: 0.9rem; color: var(--accent);">
+                        Concept Code: ${concept.code}
+                    </span>
+                `;
+                
+                // Show modal
+                selectionModal.style.display = 'flex';
+                
+                // Update button state
+                updateSelectedButton(conceptId);
+            });
+        });
+
+        // View Demo buttons
+        document.querySelectorAll('.view-demo').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const conceptId = this.dataset.concept;
+                const concept = conceptData[conceptId];
+                
+                // Show loading state
+                const originalText = this.textContent;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Demo...';
+                this.disabled = true;
+                
+                // Simulate loading
                 setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                    alert(`Opening live demo of ${conceptNames[conceptId]}...\n\nSee the full working website with booking system, gallery, and mobile view.`);
+                    this.textContent = originalText;
+                    this.disabled = false;
+                    
+                    // Open demo in new tab (in real implementation, this would be actual demo URL)
+                    window.open(`#demo-${conceptId}`, '_blank');
+                    alert(`Opening live demo of ${concept.name}...\n\nDemo would show the full working website with all features.`);
                 }, 800);
             });
         });
 
-        // Code button functionality
-        codeButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const conceptId = btn.dataset.concept;
-                const conceptCodes = {
-                    1: "B1 - Barber Elite",
-                    2: "B2 - Classic Cuts",
-                    3: "B3 - Urban Edge", 
-                    4: "B4 - Luxe Barber",
-                    5: "B5 - Gentleman's Cut",
-                    6: "B6 - Beard & Blade"
-                };
-                
-                // Highlight button briefly
-                btn.classList.add('active');
-                setTimeout(() => {
-                    btn.classList.remove('active');
-                }, 300);
-                
-                alert(`Concept Code: ${conceptCodes[conceptId]}\n\nUse this code when contacting us about this specific barber website design.`);
+        // Update selected button state
+        function updateSelectedButton(conceptId) {
+            // Reset all select buttons
+            document.querySelectorAll('.select-design').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.innerHTML = 'Select This Design';
             });
-        });
-
-        // Claim button functionality
-        claimButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const conceptId = btn.dataset.concept;
-                const conceptNames = {
-                    1: "Barber Elite (B1)",
-                    2: "Classic Cuts (B2)",
-                    3: "Urban Edge (B3)",
-                    4: "Luxe Barber (B4)",
-                    5: "Gentleman's Cut (B5)",
-                    6: "Beard & Blade (B6)"
-                };
-                
-                // Update button state
-                const originalHTML = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i><span class="btn-text">Selected!</span>';
-                btn.classList.add('active');
-                
-                // Show success message
-                const successMsg = document.createElement('div');
-                successMsg.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: white;
-                    padding: 2.5rem;
-                    border-radius: 20px;
-                    box-shadow: 0 30px 80px rgba(255, 107, 0, 0.2);
-                    z-index: 2000;
-                    text-align: center;
-                    max-width: 500px;
-                    width: 90%;
-                    border: 2px solid var(--accent);
-                `;
-                successMsg.innerHTML = `
-                    <div style="font-size: 4rem; color: var(--accent); margin-bottom: 1rem;">
-                        <i class="fas fa-scissors"></i>
-                    </div>
-                    <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 1rem; color: var(--dark);">Barber Concept Selected!</h3>
-                    <p style="color: var(--text-gray); margin-bottom: 1.5rem; line-height: 1.6;">
-                        You've selected <strong style="color: var(--accent);">${conceptNames[conceptId]}</strong> for your barber shop.
-                    </p>
-                    <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 2rem;">
-                        Our barber website specialist will contact you within 24 hours to begin customization.
-                    </p>
-                    <button onclick="this.parentElement.remove()" style="
-                        background: var(--accent);
-                        color: white;
-                        border: none;
-                        padding: 1rem 2.5rem;
-                        border-radius: 12px;
-                        font-weight: 900;
-                        cursor: pointer;
-                        font-size: 1rem;
-                    ">Continue Browsing</button>
-                `;
-                
-                document.body.appendChild(successMsg);
-                
-                // Reset button after 5 seconds
-                setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                    btn.classList.remove('active');
-                }, 5000);
-            });
-        });
-
-        // Form submission
-        if (barberContactForm) {
-            barberContactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const submitBtn = this.querySelector('.submit-btn');
-                const originalText = submitBtn.textContent;
-                
-                // Show loading state
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
-                submitBtn.disabled = true;
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> REQUEST SENT!';
-                    submitBtn.style.background = '#4CAF50';
-                    
-                    // Show success message
-                    alert('Thank you! Your barber website request has been received. We will contact you within 24 hours to discuss your project.');
-                    
-                    // Reset form after 3 seconds
-                    setTimeout(() => {
-                        this.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.style.background = '';
-                        submitBtn.disabled = false;
-                    }, 3000);
-                }, 1500);
-            });
+            
+            // Mark selected button
+            const selectedBtn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
+            if (selectedBtn) {
+                selectedBtn.classList.add('selected');
+                selectedBtn.innerHTML = '<i class="fas fa-check"></i> Selected';
+            }
         }
+
+        // Modal functions
+        function closeModal() {
+            selectionModal.style.display = 'none';
+        }
+
+        function continueToFunnel() {
+            if (selectedDesign) {
+                // In real implementation, this would redirect to next funnel step
+                // For now, we'll simulate the redirect
+                const funnelUrl = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
+                
+                // Show loading
+                const continueBtn = selectionModal.querySelector('.btn-fill');
+                const originalText = continueBtn.textContent;
+                continueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+                
+                // Simulate redirect
+                setTimeout(() => {
+                    alert(`Redirecting to next funnel step with ${selectedDesign.name}...\n\nIn production, this would continue to customization questions.`);
+                    // window.location.href = funnelUrl; // Uncomment for real redirect
+                    closeModal();
+                    continueBtn.textContent = originalText;
+                }, 1000);
+            }
+        }
+
+        // Close modal on outside click
+        selectionModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Check for previously selected design on page load
+        window.addEventListener('load', function() {
+            const savedSelection = localStorage.getItem('selectedBarberConcept');
+            if (savedSelection) {
+                try {
+                    selectedDesign = JSON.parse(savedSelection);
+                    updateSelectedButton(selectedDesign.id);
+                } catch (e) {
+                    console.log('No previous selection found');
+                }
+            }
+        });
 
         // Simple scroll animation
         window.addEventListener('scroll', () => {
