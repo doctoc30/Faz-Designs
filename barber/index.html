@@ -115,90 +115,133 @@
 
 <section class="funnel-section">
     <div class="container">
+        <!-- Step Indicators -->
         <div class="step-indicator">
             <div class="step-dot active" data-step="1"></div>
             <div class="step-dot" data-step="2"></div>
             <div class="step-dot" data-step="3"></div>
             <div class="step-dot" data-step="4"></div>
             <div class="step-dot" data-step="5"></div>
+            <div class="step-dot" data-step="6"></div>
+            <div class="step-dot" data-step="7"></div>
+            <div class="step-dot" data-step="8"></div>
+            <div class="step-dot" data-step="9"></div>
+            <div class="step-dot" data-step="10"></div>
         </div>
 
-        <form action="https://formsubmit.co/fazhoq1977@gmail.com" method="POST" id="formWrapper">
+        <form id="formWrapper">
             <input type="hidden" id="hiddenPlan" name="Selected Plan">
             <input type="hidden" id="hiddenFeatures" name="Selected Features">
             <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
 
             <!-- STEP 1: Barber Shop Name -->
-            <div class="form-screen active" id="first-screen">
+            <div class="form-screen active" id="step-1">
                 <h2>What's Your Barber Shop Name?</h2>
-                <p>Tell us your barber shop name so we can create the perfect website.</p>
-                <div class="search-row">
-                    <input type="text" id="businessInput" placeholder="e.g. The Gentlemen's Cut" />
-                    <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleSearch()">Next</button>
-                </div>
-                <p style="margin-bottom: 1.5rem; color: var(--gray);">Or select from popular barber categories:</p>
-                <div class="categories-row">
-                    <button type="button" class="vibz-btn" onclick="selectExample('barber')">Barber</button>
-                    <button type="button" class="vibz-btn" onclick="selectExample('hair salon')">Hair Salon</button>
-                    <button type="button" class="vibz-btn" onclick="selectExample('spa')">Spa</button>
-                </div>
+                <p>Tell us your barber shop name so we can personalize your experience.</p>
+                <input type="text" id="businessInput" placeholder="e.g. The Gentlemen's Cut">
+                <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleBusinessName()">Next</button>
             </div>
 
-            <!-- STEP 2: Services -->
-            <div class="form-screen" id="main-intro-options">
-                <h2>Which Service Do You Want?</h2>
-                <p>Select what you need for your barber shop website:</p>
-                <div style="margin:3rem 0;">
-                    <button type="button" class="vibz-btn vibz-btn-primary" onclick="setPath('new'); next()">New Website</button>
-                    <button type="button" class="vibz-btn" onclick="setPath('redesign'); next()">Redesign Existing</button>
-                    <button type="button" class="vibz-btn" onclick="setPath('maintenance'); next()">Maintenance</button>
+            <!-- STEP 2: Project Type -->
+            <div class="form-screen" id="step-2">
+                <h2>Which service do you need?</h2>
+                <div class="options">
+                    <button type="button" class="vibz-btn" onclick="setProjectType('New Website')">New Website</button>
+                    <button type="button" class="vibz-btn" onclick="setProjectType('Redesign Existing')">Redesign Existing</button>
+                    <button type="button" class="vibz-btn" onclick="setProjectType('Maintenance')">Maintenance</button>
                 </div>
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 3: Barber Features -->
-            <div class="form-screen" id="niche-questions">
-                <h2>Add Special Features</h2>
-                <p>Select features tailored for your barber shop:</p>
-                <div style="margin:3rem 0;">
-                    <button type="button" class="vibz-btn" onclick="selectFeature('booking')">Online Booking</button>
-                    <button type="button" class="vibz-btn" onclick="selectFeature('gallery')">Gallery/Portfolio</button>
-                    <button type="button" class="vibz-btn" onclick="selectFeature('seo')">Local SEO</button>
-                    <button type="button" class="vibz-btn" onclick="selectFeature('branding')">Branding & Logo</button>
-                    <button type="button" class="vibz-btn" onclick="selectFeature('reviews')">Reviews Section</button>
-                    <button type="button" class="vibz-btn" onclick="selectFeature('social')">Social Media Integration</button>
-                </div>
-                <button type="button" class="vibz-btn vibz-btn-primary" onclick="next()">Continue</button>
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- STEP 4: Plans -->
-            <div class="form-screen" id="ownership-choice">
-                <h2>Choose Your Barber Shop Package</h2>
-                <p>Select the option that works best:</p>
-                <div style="margin:3rem 0;">
-                    <button type="button" class="vibz-btn vibz-btn-primary" onclick="selectPlan('own-outright')">Own Outright</button>
-                    <button type="button" class="vibz-btn" onclick="selectPlan('monthly-support')">Monthly Support</button>
+            <!-- STEP 3: Features -->
+            <div class="form-screen" id="step-3">
+                <h2>Which features do you want?</h2>
+                <p>Select all that apply:</p>
+                <div class="options">
+                    <button type="button" class="vibz-btn" onclick="toggleFeature('Online Booking')">Online Booking</button>
+                    <button type="button" class="vibz-btn" onclick="toggleFeature('Gallery/Portfolio')">Gallery/Portfolio</button>
+                    <button type="button" class="vibz-btn" onclick="toggleFeature('Local SEO')">Local SEO</button>
+                    <button type="button" class="vibz-btn" onclick="toggleFeature('Reviews Section')">Reviews Section</button>
+                    <button type="button" class="vibz-btn" onclick="toggleFeature('Social Media Integration')">Social Media Integration</button>
+                    <button type="button" class="vibz-btn" onclick="toggleFeature('Branding & Logo')">Branding & Logo</button>
                 </div>
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 5: Recommended Plan -->
-            <div class="form-screen" id="recommended-plan-screen">
+            <!-- STEP 4: Target Audience -->
+            <div class="form-screen" id="step-4">
+                <h2>Who are your main clients?</h2>
+                <div class="options">
+                    <button type="button" class="vibz-btn" onclick="setAudience('Men')">Men</button>
+                    <button type="button" class="vibz-btn" onclick="setAudience('Women')">Women</button>
+                    <button type="button" class="vibz-btn" onclick="setAudience('Children')">Children</button>
+                    <button type="button" class="vibz-btn" onclick="setAudience('Family')">Mixed/Family</button>
+                </div>
+                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+            </div>
+
+            <!-- STEP 5: Website Style -->
+            <div class="form-screen" id="step-5">
+                <h2>What style do you prefer for your website?</h2>
+                <div class="options">
+                    <button type="button" class="vibz-btn" onclick="setStyle('Classic')">Classic</button>
+                    <button type="button" class="vibz-btn" onclick="setStyle('Modern')">Modern</button>
+                    <button type="button" class="vibz-btn" onclick="setStyle('Minimalist')">Minimalist</button>
+                    <button type="button" class="vibz-btn" onclick="setStyle('Premium')">Premium</button>
+                </div>
+                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+            </div>
+
+            <!-- STEP 6: Color Scheme -->
+            <div class="form-screen" id="step-6">
+                <h2>Preferred color scheme?</h2>
+                <div class="options">
+                    <button type="button" class="vibz-btn" onclick="setColor('Black & Gold')">Black & Gold</button>
+                    <button type="button" class="vibz-btn" onclick="setColor('Modern/Vibrant')">Modern/Vibrant</button>
+                    <button type="button" class="vibz-btn" onclick="setColor('Neutral/Classic')">Neutral/Classic</button>
+                    <button type="button" class="vibz-btn" onclick="setColor('Custom')">Custom</button>
+                </div>
+                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+            </div>
+
+            <!-- STEP 7: Website Goal -->
+            <div class="form-screen" id="step-7">
+                <h2>What’s the main goal of your website?</h2>
+                <div class="options">
+                    <button type="button" class="vibz-btn" onclick="setGoal('Attract New Clients')">Attract New Clients</button>
+                    <button type="button" class="vibz-btn" onclick="setGoal('Showcase Styles/Portfolio')">Showcase Styles/Portfolio</button>
+                    <button type="button" class="vibz-btn" onclick="setGoal('Facilitate Bookings')">Facilitate Bookings</button>
+                </div>
+                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+            </div>
+
+            <!-- STEP 8: Booking Method -->
+            <div class="form-screen" id="step-8">
+                <h2>Preferred booking method?</h2>
+                <div class="options">
+                    <button type="button" class="vibz-btn" onclick="setBooking('Online Booking')">Online Booking</button>
+                    <button type="button" class="vibz-btn" onclick="setBooking('Phone/WhatsApp')">Phone/WhatsApp</button>
+                    <button type="button" class="vibz-btn" onclick="setBooking('Contact Form')">Contact Form</button>
+                </div>
+                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+            </div>
+
+            <!-- STEP 9: Plan Type -->
+            <div class="form-screen" id="step-9">
+                <h2>Choose your plan type</h2>
+                <div class="options">
+                    <button type="button" class="vibz-btn" onclick="setPlan('Own Outright')">Own Outright</button>
+                    <button type="button" class="vibz-btn" onclick="setPlan('Monthly Support')">Monthly Support</button>
+                </div>
+                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+            </div>
+
+            <!-- STEP 10: Recommended Plan -->
+            <div class="form-screen" id="step-10">
                 <h2>Your Recommended Plan</h2>
                 <p>Based on your selections, here's what we recommend:</p>
                 <div class="pricing-container" id="pricingCards"></div>
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
-
-            <!-- SUCCESS SCREEN -->
-            <div class="form-screen" id="success-screen">
-                <div class="success-message">
-                    <h3>🎉 Great! We've Got Your Details</h3>
-                    <p>Our team will contact you within 24 hours to discuss your barber shop website.</p>
-                    <p style="margin-top:1rem;color:var(--gray);font-size:0.9rem;">Check your email for confirmation and next steps.</p>
-                </div>
-                <button type="button" class="vibz-btn vibz-btn-primary" onclick="window.location.href='/'">← Back to Home</button>
             </div>
 
         </form>
@@ -210,9 +253,14 @@
     // Form state management
     let currentStep = 1;
     const formData = {
-        businessType: '',
+        businessName: '',
         projectType: '',
         features: [],
+        audience: '',
+        style: '',
+        color: '',
+        goal: '',
+        booking: '',
         planType: ''
     };
 
@@ -230,7 +278,7 @@
 
     // Step navigation
     function next() {
-        if (currentStep < stepDots.length) {
+        if (currentStep < screens.length) {
             currentStep++;
             updateStepIndicator();
         }
@@ -247,59 +295,72 @@
         stepDots.forEach((dot, index) => {
             dot.classList.toggle('active', index < currentStep);
         });
+        showScreen('step-' + currentStep);
     }
 
-    // Business selection
-    function selectExample(business) {
-        formData.businessType = business;
-        showScreen('main-intro-options');
-        next();
-    }
-
-    function handleSearch() {
+    // STEP 1: Handle business name input
+    function handleBusinessName() {
         const value = businessInput.value.trim();
-        if (value) {
-            formData.businessType = value.toLowerCase();
-            showScreen('main-intro-options');
-            next();
-        } else {
-            alert('Please enter your business type or select from the options.');
-        }
-    }
-
-    // Project type selection
-    function setPath(type) {
-        formData.projectType = type;
-        showScreen('niche-questions');
+        if (value) formData.businessName = value;
         next();
     }
 
-    // Feature selection
-    function selectFeature(feature) {
-        const index = formData.features.indexOf(feature);
-        if (index === -1) {
-            formData.features.push(feature);
-            event.target.classList.add('vibz-btn-primary');
-        } else {
-            formData.features.splice(index, 1);
-            event.target.classList.remove('vibz-btn-primary');
-        }
+    // STEP 2: Project type selection
+    function setProjectType(type) {
+        formData.projectType = type;
+        next();
     }
 
-    // Plan selection
-    function selectPlan(plan) {
+    // STEP 3: Feature selection
+    function toggleFeature(feature) {
+        const index = formData.features.indexOf(feature);
+        if (index === -1) formData.features.push(feature);
+        else formData.features.splice(index, 1);
+    }
+
+    // STEP 4: Target audience
+    function setAudience(audience) {
+        formData.audience = audience;
+        next();
+    }
+
+    // STEP 5: Style preference
+    function setStyle(style) {
+        formData.style = style;
+        next();
+    }
+
+    // STEP 6: Color scheme
+    function setColor(color) {
+        formData.color = color;
+        next();
+    }
+
+    // STEP 7: Website goal
+    function setGoal(goal) {
+        formData.goal = goal;
+        next();
+    }
+
+    // STEP 8: Booking method
+    function setBooking(booking) {
+        formData.booking = booking;
+        next();
+    }
+
+    // STEP 9: Plan type
+    function setPlan(plan) {
         formData.planType = plan;
         showRecommendedPlan();
-        showScreen('recommended-plan-screen');
         next();
     }
 
-    // Display recommended plan dynamically
+    // STEP 10: Show recommended plan dynamically
     function showRecommendedPlan() {
-        const pricingContainer = document.getElementById('pricingCards');
+        const container = document.getElementById('pricingCards');
         let plan;
 
-        if (formData.planType === 'own-outright') {
+        if (formData.planType === 'Own Outright') {
             plan = {
                 name: 'Elite Package',
                 price: '£2,499',
@@ -310,9 +371,8 @@
                     'SEO Optimization',
                     'Google Analytics Setup',
                     'Contact Form Integration',
-                    formData.features.includes('booking') ? 'Booking System' : null,
-                    formData.features.includes('ecommerce') ? 'E-commerce Setup' : null,
-                    formData.features.includes('branding') ? 'Full Brand Identity' : null,
+                    formData.features.includes('Online Booking') ? 'Booking System' : null,
+                    formData.features.includes('Branding & Logo') ? 'Full Brand Identity' : null,
                     '3 Months Support',
                     'PageSpeed Optimization'
                 ].filter(Boolean)
@@ -338,32 +398,24 @@
         }
 
         const featuresHtml = plan.features.map(f => `<li>${f}</li>`).join('');
-        pricingContainer.innerHTML = `
+        container.innerHTML = `
             <div class="pricing-card">
                 <h3>${plan.name}</h3>
                 <div class="price">${plan.price}<span class="price-period">/${plan.period}</span></div>
                 <ul class="pricing-features">${featuresHtml}</ul>
-                <button type="button" class="vibz-btn vibz-btn-primary" onclick="submitForm('${plan.name}')">
+                <button type="button" class="vibz-btn vibz-btn-primary" onclick="goToPayment()">
                     Start This Plan
                 </button>
             </div>
         `;
     }
 
-    // Submit form
-    function submitForm(planName) {
-        document.getElementById('hiddenPlan').value = planName;
-        document.getElementById('hiddenFeatures').value = formData.features.join(',');
-
-        // Payment link placeholder
-        let paymentLink = formData.planType === 'own-outright'
+    // Redirect to payment page
+    function goToPayment() {
+        const link = formData.planType === 'Own Outright'
             ? 'https://buy.stripe.com/test_00g9CBeBea4X6Gg28b'
             : 'https://buy.stripe.com/test_28odSBdBCgVn7Z2fZ1';
-
-        document.getElementById('hiddenPaymentLink').value = paymentLink;
-
-        formWrapper.submit();
-        showScreen('success-screen');
+        window.location.href = link;
     }
 
     // Initialize page
@@ -371,10 +423,13 @@
         updateStepIndicator();
 
         // Mobile menu toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
     });
 </script>
 
