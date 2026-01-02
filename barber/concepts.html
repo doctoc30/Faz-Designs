@@ -1514,6 +1514,30 @@
 
         window.addEventListener('resize', logOrientation);
         window.addEventListener('load', logOrientation);
+   
+    
+    // Wait for DOM
+document.addEventListener("DOMContentLoaded", function() {
+  const selectButtons = document.querySelectorAll(".select-design");
+
+  selectButtons.forEach(btn => {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault(); // Prevent default link behavior
+
+      const concept = btn.getAttribute("data-concept");
+      const code = btn.getAttribute("data-code");
+
+      // Save selection in your funnel state
+      window.funnelData = window.funnelData || {};
+      window.funnelData.selectedConcept = { concept, code };
+
+      // Move to Step 4
+      goToStep(4);
+    });
+  });
+});
+    
+    
     </script>
 </body>
 </html>
