@@ -15,6 +15,7 @@
             --text-gray: #4a4a4a;
             --light-gray: #f9f9f9;
             --border: #eeeeee;
+            --selected-color: #4CAF50;
         }
 
         * {
@@ -445,6 +446,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            position: relative;
         }
 
         .btn-fill {
@@ -456,6 +458,31 @@
         .btn-fill:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2);
+        }
+
+        /* Selected button state */
+        .btn-fill.selected {
+            background: var(--selected-color);
+            border-color: var(--selected-color);
+            animation: pulseSelected 2s infinite;
+        }
+
+        .btn-fill.selected::after {
+            content: ' ✓';
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        @keyframes pulseSelected {
+            0% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+            }
         }
 
         .btn-outline {
@@ -483,6 +510,55 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        /* Clear selection button */
+        .clear-selection {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #f5f5f5;
+            color: var(--text-gray);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .clear-selection:hover {
+            background: #e0e0e0;
+            color: var(--dark);
+        }
+
+        /* Selection indicator */
+        .selection-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--selected-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: none;
+            z-index: 10;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .concept-card.selected .selection-indicator {
+            display: block;
+        }
+
+        .concept-card.selected {
+            border-color: var(--selected-color);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.15);
         }
 
         /* ================= BARBER STATS SECTION ================= */
@@ -657,6 +733,13 @@
                 display: block;
                 font-size: 0.85rem;
                 margin-top: 0.8rem;
+            }
+
+            .selection-indicator {
+                top: 15px;
+                right: 15px;
+                padding: 6px 12px;
+                font-size: 0.7rem;
             }
         }
 
@@ -877,7 +960,18 @@
             and build client loyalty.
         </p>
         
-        <!-- No buttons in hero as requested -->
+        <!-- Selection status indicator -->
+        <div id="selectionStatus" style="margin-top: 20px; padding: 15px; background: rgba(76, 175, 80, 0.1); border-radius: 12px; display: none;">
+            <p style="margin-bottom: 10px; font-weight: 600; color: var(--selected-color);">
+                <i class="fas fa-check-circle"></i> You have a selected design
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-gray);" id="selectedDesignInfo">
+                <!-- Selected design info will be inserted here -->
+            </p>
+            <button id="clearSelectionBtn" class="clear-selection" style="margin-top: 10px;">
+                <i class="fas fa-times"></i> Clear Selection
+            </button>
+        </div>
     </section>
 
     <!-- Concepts Grid -->
@@ -888,11 +982,15 @@
         </h2>
         <p style="font-size: 1.2rem; color: var(--text-gray); max-width: 800px; margin-bottom: 2rem;">
             Select a concept to continue to the next step in our funnel. We'll customize it for your shop.
+            <span id="currentSelectionNote" style="color: var(--selected-color); font-weight: 600; display: none;">
+                • You have a design selected
+            </span>
         </p>
         
         <div class="concepts-grid" id="conceptsGrid">
             <!-- Concept 1 -->
             <div class="concept-card" data-concept="1">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">01</div>
                     <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Barber Elite">
@@ -914,6 +1012,7 @@
 
             <!-- Concept 2 -->
             <div class="concept-card" data-concept="2">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">02</div>
                     <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Classic Cuts">
@@ -935,6 +1034,7 @@
 
             <!-- Concept 3 -->
             <div class="concept-card" data-concept="3">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">03</div>
                     <img src="https://images.unsplash.com/photo-1567894340315-735d7c361db0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Urban Edge">
@@ -956,6 +1056,7 @@
 
             <!-- Concept 4 -->
             <div class="concept-card" data-concept="4">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">04</div>
                     <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Luxe Barber">
@@ -977,6 +1078,7 @@
 
             <!-- Concept 5 -->
             <div class="concept-card" data-concept="5">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">05</div>
                     <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Gentleman's Cut">
@@ -998,6 +1100,7 @@
 
             <!-- Concept 6 -->
             <div class="concept-card" data-concept="6">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">06</div>
                     <img src="https://images.unsplash.com/photo-1580618864180-f6d7d39b8ff6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Beard & Blade">
@@ -1019,6 +1122,7 @@
 
             <!-- Concept 7 -->
             <div class="concept-card" data-concept="7">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">07</div>
                     <img src="https://images.unsplash.com/photo-1621605815972-f9e5c6c4a9c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Modern Groom">
@@ -1040,6 +1144,7 @@
 
             <!-- Concept 8 -->
             <div class="concept-card" data-concept="8">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">08</div>
                     <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Premium Trim">
@@ -1061,6 +1166,7 @@
 
             <!-- Concept 9 -->
             <div class="concept-card" data-concept="9">
+                <div class="selection-indicator">SELECTED</div>
                 <div class="concept-image">
                     <div class="concept-number">09</div>
                     <img src="https://images.unsplash.com/photo-1580618864180-f6d7d39b8ff6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Street Style">
@@ -1207,6 +1313,10 @@
         const selectionModal = document.getElementById('selectionModal');
         const modalTitle = document.getElementById('modalTitle');
         const modalText = document.getElementById('modalText');
+        const selectionStatus = document.getElementById('selectionStatus');
+        const selectedDesignInfo = document.getElementById('selectedDesignInfo');
+        const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+        const currentSelectionNote = document.getElementById('currentSelectionNote');
 
         // Concept data
         const conceptData = {
@@ -1221,6 +1331,68 @@
             9: { name: "Street Style", code: "BARBER-9" }
         };
 
+        // Function to save selection to localStorage
+        function saveSelectionToStorage(design) {
+            if (design) {
+                localStorage.setItem('vibz_selected_design', JSON.stringify(design));
+                localStorage.setItem('vibz_selection_timestamp', Date.now());
+            } else {
+                localStorage.removeItem('vibz_selected_design');
+                localStorage.removeItem('vibz_selection_timestamp');
+            }
+        }
+
+        // Function to load selection from localStorage
+        function loadSelectionFromStorage() {
+            try {
+                const saved = localStorage.getItem('vibz_selected_design');
+                if (saved) {
+                    return JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error('Error loading saved selection:', e);
+            }
+            return null;
+        }
+
+        // Function to update UI based on selection
+        function updateSelectionUI(conceptId) {
+            // Reset all buttons and cards
+            document.querySelectorAll('.select-design').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.innerHTML = 'Select This Design';
+            });
+            
+            document.querySelectorAll('.concept-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // If a concept is selected, update its UI
+            if (conceptId) {
+                const selectedBtn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
+                const selectedCard = document.querySelector(`.concept-card[data-concept="${conceptId}"]`);
+                
+                if (selectedBtn) {
+                    selectedBtn.classList.add('selected');
+                    selectedBtn.innerHTML = '<i class="fas fa-check"></i> Selected';
+                }
+                
+                if (selectedCard) {
+                    selectedCard.classList.add('selected');
+                }
+
+                // Update selection status in hero
+                const concept = conceptData[conceptId];
+                selectedDesignInfo.textContent = `${concept.name} (${concept.code})`;
+                selectionStatus.style.display = 'block';
+                currentSelectionNote.style.display = 'inline';
+            } else {
+                // Hide selection status if no selection
+                selectionStatus.style.display = 'none';
+                currentSelectionNote.style.display = 'none';
+            }
+        }
+
         // Select Design buttons
         document.querySelectorAll('.select-design').forEach(btn => {
             btn.addEventListener('click', function(e) {
@@ -1228,6 +1400,14 @@
                 const conceptId = this.dataset.concept;
                 const conceptCode = this.dataset.code;
                 const concept = conceptData[conceptId];
+                
+                // If clicking already selected button, deselect it
+                if (selectedDesign && selectedDesign.id === conceptId) {
+                    selectedDesign = null;
+                    saveSelectionToStorage(null);
+                    updateSelectionUI(null);
+                    return;
+                }
                 
                 // Store selection
                 selectedDesign = {
@@ -1237,8 +1417,11 @@
                     shortCode: conceptCode
                 };
                 
-                // Store in localStorage for funnel continuation
-                localStorage.setItem('selectedBarberConcept', JSON.stringify(selectedDesign));
+                // Save to localStorage
+                saveSelectionToStorage(selectedDesign);
+                
+                // Update UI
+                updateSelectionUI(conceptId);
                 
                 // Update modal content
                 modalTitle.textContent = `Selected: ${concept.name}`;
@@ -1247,14 +1430,29 @@
                     <span style="font-size: 0.9rem; color: var(--accent);">
                         Concept Code: ${concept.code}
                     </span>
+                    <br><br>
+                    <small style="color: var(--text-gray);">
+                        <i class="fas fa-info-circle"></i> This selection is saved and will persist even after page refresh.
+                    </small>
                 `;
                 
                 // Show modal
                 selectionModal.style.display = 'flex';
-                
-                // Update button state
-                updateSelectedButton(conceptId);
             });
+        });
+
+        // Clear selection button
+        clearSelectionBtn.addEventListener('click', function() {
+            selectedDesign = null;
+            saveSelectionToStorage(null);
+            updateSelectionUI(null);
+            
+            // Show confirmation
+            const originalText = this.textContent;
+            this.innerHTML = '<i class="fas fa-check"></i> Cleared!';
+            setTimeout(() => {
+                this.innerHTML = originalText;
+            }, 2000);
         });
 
         // View Demo buttons
@@ -1279,22 +1477,6 @@
                 }, 800);
             });
         });
-
-        // Update selected button state
-        function updateSelectedButton(conceptId) {
-            // Reset all select buttons
-            document.querySelectorAll('.select-design').forEach(btn => {
-                btn.classList.remove('selected');
-                btn.innerHTML = 'Select This Design';
-            });
-            
-            // Mark selected button
-            const selectedBtn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
-            if (selectedBtn) {
-                selectedBtn.classList.add('selected');
-                selectedBtn.innerHTML = '<i class="fas fa-check"></i> Selected';
-            }
-        }
 
         // Modal functions
         function closeModal() {
@@ -1325,15 +1507,27 @@
             }
         });
 
-        // Check for previously selected design on page load
+        // Load saved selection on page load
         window.addEventListener('load', function() {
-            const savedSelection = localStorage.getItem('selectedBarberConcept');
+            // Load from localStorage
+            const savedSelection = loadSelectionFromStorage();
+            
             if (savedSelection) {
-                try {
-                    selectedDesign = JSON.parse(savedSelection);
-                    updateSelectedButton(selectedDesign.id);
-                } catch (e) {
-                    console.log('No previous selection found');
+                selectedDesign = savedSelection;
+                updateSelectionUI(savedSelection.id);
+                
+                // Check if selection is older than 30 days (optional)
+                const timestamp = localStorage.getItem('vibz_selection_timestamp');
+                if (timestamp) {
+                    const age = Date.now() - parseInt(timestamp);
+                    const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+                    
+                    if (age > thirtyDays) {
+                        // Optional: Clear old selection
+                        // selectedDesign = null;
+                        // saveSelectionToStorage(null);
+                        // updateSelectionUI(null);
+                    }
                 }
             }
         });
