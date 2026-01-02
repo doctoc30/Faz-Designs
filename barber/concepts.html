@@ -305,48 +305,6 @@
             line-height: 1.5;
         }
 
-        /* Mobile scaling for hero text */
-        @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 7rem;
-                letter-spacing: -4px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 6rem;
-                letter-spacing: -3.5px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 4.5rem;
-                letter-spacing: -3px;
-                line-height: 0.9;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 3.5rem;
-                letter-spacing: -2.5px;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .hero h1 {
-                font-size: 3rem;
-                letter-spacing: -2px;
-            }
-        }
-
         /* ================= CONCEPT GRID ================= */
         .concepts-section {
             padding: 100px 6%;
@@ -484,6 +442,9 @@
             cursor: pointer;
             border: 2px solid;
             font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .btn-fill {
@@ -517,6 +478,11 @@
             font-weight: 700;
             margin-top: 0.5rem;
             letter-spacing: 1px;
+            width: 100%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* ================= BARBER STATS SECTION ================= */
@@ -605,7 +571,9 @@
             opacity: 0.7;
         }
 
-        /* ================= MOBILE PORTRAIT STYLING ================= */
+        /* ================= RESPONSIVE DESIGN ================= */
+        
+        /* Mobile Portrait */
         @media (max-width: 768px) {
             /* Mobile scaling for navigation */
             nav {
@@ -643,27 +611,16 @@
                 height: 50px;
             }
 
-            /* Mobile portrait button display - SHOW ONLY 2 BUTTONS */
-            .concept-buttons {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 10px;
-                padding: 1.5rem;
-                height: 20%;
+            /* Hero text mobile scaling */
+            .hero h1 {
+                font-size: 4.5rem;
+                letter-spacing: -3px;
+                line-height: 0.9;
             }
 
-            .btn {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-                width: 48%;
-                max-width: none;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .concept-code {
-                display: none;
+            .hero p {
+                font-size: 1.1rem;
+                max-width: 100%;
             }
 
             /* Concept grid mobile adjustments */
@@ -680,8 +637,86 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
             }
+
+            /* Mobile portrait button display - 2 buttons with code */
+            .concept-buttons {
+                flex-direction: column;
+                padding: 1.5rem;
+                height: auto;
+                min-height: 25%;
+            }
+
+            .btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                width: 100%;
+                max-width: none;
+            }
+
+            .concept-code {
+                display: block;
+                font-size: 0.85rem;
+                margin-top: 0.8rem;
+            }
         }
 
+        /* Mobile Landscape - KEY FIX */
+        @media (max-width: 915px) and (orientation: landscape) {
+            .concept-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.2rem;
+                gap: 12px;
+                height: auto;
+                min-height: 30%;
+            }
+
+            .btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.85rem;
+                flex: 1 1 calc(50% - 12px);
+                min-width: 0;
+                max-width: calc(50% - 12px);
+                width: auto;
+            }
+
+            /* Make the code span full width but smaller */
+            .concept-code {
+                flex: 0 0 100%;
+                order: 3;
+                font-size: 0.8rem;
+                margin-top: 0.5rem;
+                text-align: center;
+                padding: 0.3rem;
+                background: rgba(255, 107, 0, 0.05);
+                border-radius: 6px;
+            }
+
+            /* Adjust concept card height for landscape */
+            .concept-card {
+                height: 550px;
+            }
+
+            .concept-image {
+                height: 70%;
+            }
+
+            /* Adjust hero for landscape */
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 120px 6% 60px;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+                letter-spacing: -2.5px;
+            }
+        }
+
+        /* Small Mobile Portrait */
         @media (max-width: 480px) {
             .concept-card {
                 height: 550px;
@@ -698,10 +733,16 @@
             
             .concept-buttons {
                 padding: 1rem;
-                gap: 8px;
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+                letter-spacing: -2.5px;
             }
         }
 
+        /* Tablet */
         @media (max-width: 1024px) and (min-width: 769px) {
             .concepts-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -710,6 +751,46 @@
             
             .concept-card {
                 height: 650px;
+            }
+        }
+
+        /* Small Mobile Landscape */
+        @media (max-width: 736px) and (orientation: landscape) {
+            .btn {
+                padding: 0.7rem 1rem;
+                font-size: 0.8rem;
+                flex: 1 1 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+            }
+
+            .concept-code {
+                font-size: 0.75rem;
+                padding: 0.2rem;
+            }
+
+            .concept-card {
+                height: 500px;
+            }
+
+            .concept-image {
+                height: 65%;
+            }
+        }
+
+        /* Extra Small Mobile Landscape */
+        @media (max-width: 568px) and (orientation: landscape) {
+            .btn {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            .concept-buttons {
+                padding: 0.8rem;
+                gap: 8px;
+            }
+
+            .concept-code {
+                font-size: 0.7rem;
             }
         }
 
@@ -1256,6 +1337,17 @@
                 }
             }
         });
+
+        // Debug function to check orientation
+        function logOrientation() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const orientation = width > height ? 'Landscape' : 'Portrait';
+            console.log(`Screen: ${width}x${height} (${orientation})`);
+        }
+
+        window.addEventListener('resize', logOrientation);
+        window.addEventListener('load', logOrientation);
     </script>
 </body>
 </html>
