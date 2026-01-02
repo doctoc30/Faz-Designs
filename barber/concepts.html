@@ -31,7 +31,7 @@
             scroll-behavior: smooth;
         }
 
-        /* ================= NAVIGATION - VIBZ HOMEPAGE STYLE ================= */
+        /* ================= NAVIGATION WITH HAMBURGER MENU ================= */
         nav {
             position: fixed;
             top: 0;
@@ -91,7 +91,187 @@
             box-shadow: 0 10px 25px rgba(255, 107, 0, 0.25);
         }
 
-        /* ================= HERO SECTION - BARBER NICHE FOCUS ================= */
+        /* Hamburger Menu Button */
+        .hamburger-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--dark);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--accent);
+        }
+
+        /* Full Page Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-100%);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        /* Menu Content */
+        .menu-content {
+            position: relative;
+            height: 100%;
+            padding: 120px 6%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Menu Header */
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .menu-logo {
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--accent);
+            letter-spacing: -1px;
+        }
+
+        .menu-logo::after {
+            content: ".";
+            color: #000;
+            margin-left: 2px;
+            font-weight: 900;
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-menu:hover {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        /* Menu Links - Hero Style Fonts */
+        .menu-links {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .menu-link {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            color: var(--dark);
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .menu-overlay.active .menu-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-overlay.active .menu-link:nth-child(1) { transition-delay: 0.1s; }
+        .menu-overlay.active .menu-link:nth-child(2) { transition-delay: 0.15s; }
+        .menu-overlay.active .menu-link:nth-child(3) { transition-delay: 0.2s; }
+        .menu-overlay.active .menu-link:nth-child(4) { transition-delay: 0.25s; }
+        .menu-overlay.active .menu-link:nth-child(5) { transition-delay: 0.3s; }
+
+        .menu-link:hover {
+            color: var(--accent);
+            transform: translateX(20px);
+        }
+
+        .menu-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .menu-link:hover::after {
+            width: 100px;
+        }
+
+        /* Menu CTA Section */
+        .menu-cta {
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.35s;
+        }
+
+        .menu-overlay.active .menu-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-cta h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .menu-cta-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* ================= HERO SECTION - EXACT VIBZ HOMEPAGE SIZING ================= */
         .hero {
             height: 100vh;
             display: flex;
@@ -103,11 +283,11 @@
         }
 
         .hero h1 {
-            font-size: clamp(3.5rem, 12vw, 8rem); /* Exact VIBZ homepage size */
+            font-size: clamp(3.5rem, 12vw, 8rem); /* EXACT VIBZ HOMEPAGE SIZE */
             font-weight: 900;
             line-height: 0.9;
-            letter-spacing: -4px; /* Exact VIBZ homepage letter spacing */
-            margin-bottom: 2rem; /* Exact VIBZ homepage margin */
+            letter-spacing: -4px; /* EXACT VIBZ HOMEPAGE SPACING */
+            margin-bottom: 2rem; /* EXACT VIBZ HOMEPAGE MARGIN */
             text-transform: capitalize;
             color: var(--dark);
         }
@@ -117,66 +297,11 @@
         }
 
         .hero p {
-            font-size: 1.25rem; /* Exact VIBZ homepage size */
+            font-size: 1.25rem; /* EXACT VIBZ HOMEPAGE SIZE */
             color: var(--text-gray);
-            max-width: 550px; /* Exact VIBZ homepage max-width */
-            margin-bottom: 3rem; /* Exact VIBZ homepage margin */
+            max-width: 550px; /* EXACT VIBZ HOMEPAGE WIDTH */
+            margin-bottom: 3rem; /* EXACT VIBZ HOMEPAGE MARGIN */
             line-height: 1.5;
-        }
-
-        /* ================= BARBER BENEFITS SECTION ================= */
-        .barber-benefits {
-            padding: 80px 6%;
-            background: var(--light-gray);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .benefit-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 24px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.1);
-        }
-
-        .benefit-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 107, 0, 0.1);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .benefit-icon i {
-            font-size: 1.8rem;
-            color: var(--accent);
-        }
-
-        .benefit-card h3 {
-            font-size: 1.4rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .benefit-card p {
-            color: var(--text-gray);
-            line-height: 1.6;
         }
 
         /* ================= CONCEPT GRID ================= */
@@ -291,7 +416,7 @@
 
         /* ================= CONCEPT BUTTONS - VIBZ HOMEPAGE STYLE ================= */
         .concept-buttons {
-            height: 25%; /* More space for VIBZ-style buttons */
+            height: 25%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -304,12 +429,12 @@
 
         /* VIBZ Homepage Button Style */
         .btn {
-            padding: 1.2rem 2.5rem; /* Exact VIBZ homepage padding */
-            border-radius: 12px; /* Exact VIBZ homepage radius */
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 700; /* Exact VIBZ homepage weight */
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Exact VIBZ transition */
-            font-size: 1.1rem; /* Exact VIBZ homepage size */
+            font-weight: 700;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.1rem;
             width: 100%;
             max-width: 400px;
             text-align: center;
@@ -326,7 +451,7 @@
 
         .btn-fill:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2); /* Exact VIBZ homepage shadow */
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2);
         }
 
         .btn-outline {
@@ -437,8 +562,119 @@
             opacity: 0.7;
         }
 
-        /* ================= RESPONSIVE DESIGN ================= */
-        @media (max-width: 1024px) {
+        /* ================= MOBILE PORTRAIT STYLING ================= */
+        @media (max-width: 768px) {
+            /* Mobile scaling for navigation */
+            nav {
+                padding: 0.8rem 5%;
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1.4rem;
+                font-size: 0.85rem;
+                border-radius: 10px;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .menu-content {
+                padding: 100px 5% 40px;
+            }
+
+            .menu-link {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+                letter-spacing: -2px;
+                margin-bottom: 1rem;
+            }
+
+            .menu-cta-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .close-menu {
+                font-size: 2rem;
+                width: 50px;
+                height: 50px;
+            }
+
+            /* Mobile portrait button display - SHOW ONLY 2 BUTTONS */
+            .concept-buttons {
+                flex-direction: row; /* Change to row for side-by-side */
+                justify-content: space-between;
+                gap: 10px;
+                padding: 1.5rem;
+                height: 20%;
+            }
+
+            .btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                width: 48%; /* Each button takes about half the width */
+                max-width: none;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .concept-code {
+                display: none; /* Hide code on mobile to save space */
+            }
+
+            /* Concept grid mobile adjustments */
+            .concepts-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .concept-card {
+                height: 600px;
+            }
+            
+            .hero h1 {
+                font-size: clamp(3rem, 10vw, 5rem);
+                letter-spacing: -3px;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                max-width: 100%;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .concept-card {
+                height: 550px;
+            }
+            
+            .hero h1 {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+                letter-spacing: -2px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 0.9rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .concept-buttons {
+                padding: 1rem;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
             .concepts-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 30px;
@@ -450,50 +686,6 @@
             
             .hero h1 {
                 font-size: clamp(3rem, 10vw, 6rem);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .concepts-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .concept-card {
-                height: 600px;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-                letter-spacing: -2px;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .concept-card {
-                height: 550px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -526,14 +718,44 @@
     </style>
 </head>
 <body>
-    <!-- Navigation - VIBZ Homepage Style -->
+    <!-- Full Page Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-content">
+            <div class="menu-header">
+                <div class="menu-logo">VIBZ</div>
+                <button class="close-menu" id="closeMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="menu-links">
+                <a href="#home" class="menu-link" onclick="closeMenu()">Home</a>
+                <a href="#concepts" class="menu-link" onclick="closeMenu()">Concepts</a>
+                <a href="#stats" class="menu-link" onclick="closeMenu()">Stats</a>
+                <a href="https://www.vibz.co.uk/funnel.html" class="menu-link" onclick="closeMenu()">Get Started</a>
+                <a href="#contact" class="menu-link" onclick="closeMenu()">Contact</a>
+            </div>
+            
+            <div class="menu-cta">
+                <h3>Ready For Your Barber Website?</h3>
+                <div class="menu-cta-buttons">
+                    <a href="https://www.vibz.co.uk/funnel.html" class="btn btn-fill">Get Started Now</a>
+                    <a href="#concepts" class="btn btn-outline" onclick="closeMenu()">Browse Concepts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation with Hamburger Menu -->
     <nav>
         <div class="nav-left logo">VIBZ</div>
         <div class="nav-center">
             <a href="https://www.vibz.co.uk/funnel.html" class="nav-btn">Get Your Barber Website</a>
         </div>
         <div class="nav-right">
-            <!-- Space for menu if needed -->
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
         </div>
     </nav>
 
@@ -553,71 +775,8 @@
         <!-- No buttons in hero as requested -->
     </section>
 
-    <!-- Barber Benefits Section -->
-    <section class="barber-benefits">
-        <div style="text-align: center; margin-bottom: 60px;">
-            <span class="section-label">Designed For Barber Shops</span>
-            <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
-                Everything You Need To <span style="color: var(--accent);">Grow</span>
-            </h2>
-            <p style="font-size: 1.2rem; color: var(--text-gray); max-width: 800px; margin: 0 auto;">
-                Our barber-specific designs include built-in features that actually work for your business.
-            </p>
-        </div>
-
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-calendar-check"></i>
-                </div>
-                <h3>Online Booking</h3>
-                <p>24/7 appointment scheduling that reduces no-shows and fills your calendar automatically.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-images"></i>
-                </div>
-                <h3>Portfolio Gallery</h3>
-                <p>Showcase your best work with before/after galleries and style collections.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <h3>Product Sales</h3>
-                <p>Sell grooming products directly from your website with integrated e-commerce.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Mobile First</h3>
-                <p>85% of barber shop bookings happen on mobile. Our designs are optimized for smartphones.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <h3>Client Reviews</h3>
-                <p>Build social proof with integrated review systems and testimonials from satisfied clients.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>Lightning Fast</h3>
-                <p>Optimized for 100/100 PageSpeed scores. Fast loading sites keep clients engaged.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Concepts Grid -->
-    <section class="concepts-section">
+    <section class="concepts-section" id="concepts">
         <span class="section-label">Choose Your Design</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
             9 Barber-Specific <span style="color: var(--accent);">Concepts</span>
@@ -819,7 +978,7 @@
     </section>
 
     <!-- Barber Stats Section -->
-    <section class="barber-stats">
+    <section class="barber-stats" id="stats">
         <span class="section-label">Designed For Results</span>
         <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
             Barber Websites That <span style="color: var(--accent);">Convert</span>
@@ -827,26 +986,26 @@
         
         <div class="stats-grid">
             <div class="stat-item">
-                <span class="stat-number">300%</span>
-                <span class="stat-label">More Bookings</span>
+                <span class="stat-number">9</span>
+                <span class="stat-label">Premium Concepts</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number">24/7</span>
-                <span class="stat-label">Online Scheduling</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">85%</span>
-                <span class="stat-label">Mobile Traffic</span>
+                <span class="stat-label">Online Booking</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number">100%</span>
-                <span class="stat-label">Customizable</span>
+                <span class="stat-label">Mobile Optimized</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">7 Days</span>
+                <span class="stat-label">Launch Time</span>
             </div>
         </div>
     </section>
 
     <!-- Simple Footer -->
-    <footer class="footer-simple">
+    <footer class="footer-simple" id="contact">
         <div class="footer-logo">VIBZ</div>
         <p class="footer-text">
             Ready to launch your barber shop website? Select a concept above to continue 
@@ -915,6 +1074,29 @@
     </div>
 
     <script>
+        // Menu functionality from VIBZ homepage
+        const menuOverlay = document.getElementById('menuOverlay');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() {
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburgerBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
         // Store selected design
         let selectedDesign = null;
         const selectionModal = document.getElementById('selectionModal');
@@ -979,7 +1161,7 @@
                 
                 // Show loading state
                 const originalText = this.textContent;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Demo...';
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
                 this.disabled = true;
                 
                 // Simulate loading
@@ -987,8 +1169,7 @@
                     this.textContent = originalText;
                     this.disabled = false;
                     
-                    // Open demo in new tab (in real implementation, this would be actual demo URL)
-                    window.open(`#demo-${conceptId}`, '_blank');
+                    // Open demo in new tab
                     alert(`Opening live demo of ${concept.name}...\n\nDemo would show the full working website with all features.`);
                 }, 800);
             });
@@ -1017,8 +1198,7 @@
 
         function continueToFunnel() {
             if (selectedDesign) {
-                // In real implementation, this would redirect to next funnel step
-                // For now, we'll simulate the redirect
+                // Redirect to next funnel step
                 const funnelUrl = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
                 
                 // Show loading
@@ -1026,12 +1206,9 @@
                 const originalText = continueBtn.textContent;
                 continueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
                 
-                // Simulate redirect
+                // Redirect
                 setTimeout(() => {
-                    alert(`Redirecting to next funnel step with ${selectedDesign.name}...\n\nIn production, this would continue to customization questions.`);
-                    // window.location.href = funnelUrl; // Uncomment for real redirect
-                    closeModal();
-                    continueBtn.textContent = originalText;
+                    window.location.href = funnelUrl;
                 }, 1000);
             }
         }
@@ -1054,19 +1231,6 @@
                     console.log('No previous selection found');
                 }
             }
-        });
-
-        // Simple scroll animation
-        window.addEventListener('scroll', () => {
-            const cards = document.querySelectorAll('.concept-card');
-            cards.forEach(card => {
-                const cardTop = card.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (cardTop < windowHeight * 0.8) {
-                    card.style.opacity = '1';
-                }
-            });
         });
     </script>
 </body>
