@@ -176,33 +176,34 @@
     </div>
 
 
-    <!-- STEP 3: Design Concept -->
+<!-- STEP 3: Design Concept -->
 <div class="form-screen" id="step-3">
     <h2>Do you have a design concept in mind?</h2>
     <p>You can enter a code, choose from templates, or request custom design.</p>
     <div class="options">
         <button type="button" class="vibz-btn" onclick="setDesignConcept('Code')">Yes, I have a code</button>
+        <!-- Link to concepts page -->
         <a href="https://www.vibz.co.uk/barber/concepts.html" class="vibz-btn">Show me concepts</a>
         <button type="button" class="vibz-btn" onclick="setDesignConcept('Custom')">Custom design</button>
     </div>
     <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
 </div>
 
-    <!-- STEP 4: Features -->
-    <div class="form-screen" id="step-4">
-        <h2>Which features do you want?</h2>
-        <p>Select all that apply:</p>
-        <div class="options">
-            <button type="button" class="vibz-btn" onclick="toggleFeature('Online Booking')">Online Booking</button>
-            <button type="button" class="vibz-btn" onclick="toggleFeature('Gallery/Portfolio')">Gallery/Portfolio</button>
-            <button type="button" class="vibz-btn" onclick="toggleFeature('Local SEO')">Local SEO</button>
-            <button type="button" class="vibz-btn" onclick="toggleFeature('Reviews Section')">Reviews Section</button>
-            <button type="button" class="vibz-btn" onclick="toggleFeature('Social Media Integration')">Social Media Integration</button>
-            <button type="button" class="vibz-btn" onclick="toggleFeature('Branding & Logo')">Branding & Logo</button>
-        </div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+<!-- STEP 4: Features -->
+<div class="form-screen" id="step-4">
+    <h2>Which features do you want?</h2>
+    <p>Select all that apply:</p>
+    <div class="options">
+        <button type="button" class="vibz-btn" onclick="toggleFeature('Online Booking')">Online Booking</button>
+        <button type="button" class="vibz-btn" onclick="toggleFeature('Gallery/Portfolio')">Gallery/Portfolio</button>
+        <button type="button" class="vibz-btn" onclick="toggleFeature('Local SEO')">Local SEO</button>
+        <button type="button" class="vibz-btn" onclick="toggleFeature('Reviews Section')">Reviews Section</button>
+        <button type="button" class="vibz-btn" onclick="toggleFeature('Social Media Integration')">Social Media Integration</button>
+        <button type="button" class="vibz-btn" onclick="toggleFeature('Branding & Logo')">Branding & Logo</button>
     </div>
-
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
+    
     <!-- STEP 5: Target Audience -->
     <div class="form-screen" id="step-5">
         <h2>Who are your main clients?</h2>
@@ -475,6 +476,35 @@
     next(); // move to the next step automatically
 }
 
+
+    // STEP 3: Design Concept
+function setDesignConcept(option) {
+    formData.designConcept = option;
+    next(); // proceed to next step
+}
+
+// Jump to a step if URL contains ?step=4&design=...
+function goToStepFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const step = params.get('step');
+    const design = params.get('design');
+
+    if (step) {
+        currentStep = parseInt(step);
+        updateStepIndicator();
+    }
+
+    if (design) {
+        formData.designConcept = design;
+        console.log('Returning from concepts page, selected design:', design);
+    }
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', () => {
+    updateStepIndicator(); // existing
+    goToStepFromURL();     // new
+});
 
 </script>
 
