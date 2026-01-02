@@ -1,1 +1,910 @@
-Wa gwan
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBZ | Concept Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --accent: #FF6B00;
+            --dark: #121212;
+            --text-gray: #4a4a4a;
+            --light-gray: #f9f9f9;
+            --border: #eeeeee;
+            --card-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--accent);
+            letter-spacing: -1px;
+        }
+
+        .logo::after {
+            content: ".";
+            color: #000;
+            margin-left: 2px;
+            font-weight: 900;
+        }
+
+        .nav-btn {
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.25);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 6% 100px;
+            text-align: center;
+            background: radial-gradient(circle at top right, #fff5ee, #ffffff);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Filters */
+        .filters {
+            padding: 2rem 6%;
+            background: var(--light-gray);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.8rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.2);
+        }
+
+        /* Concept Grid */
+        .concepts-section {
+            padding: 80px 6%;
+            background: var(--bg);
+        }
+
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Concept Card */
+        .concept-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .concept-image {
+            height: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .concept-card:hover .concept-image img {
+            transform: scale(1.05);
+        }
+
+        .concept-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 0.8rem;
+            color: var(--accent);
+            backdrop-filter: blur(10px);
+        }
+
+        .concept-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .concept-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+
+        .concept-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .concept-tag {
+            padding: 0.4rem 0.9rem;
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .concept-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .concept-btn {
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-live {
+            background: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
+        }
+
+        .btn-live:hover {
+            background: #e55a00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .btn-code {
+            background: white;
+            color: var(--dark);
+            border: 2px solid var(--border);
+        }
+
+        .btn-code:hover {
+            background: var(--light-gray);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-claim {
+            background: white;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-claim:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        /* Mobile Portrait Styling */
+        @media (max-width: 1024px) {
+            .concepts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .concepts-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding-bottom: 40px;
+            }
+
+            .hero {
+                padding: 150px 5% 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .filters {
+                padding: 1.5rem 5%;
+            }
+
+            .filter-tags {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .concepts-section {
+                padding: 60px 5%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .concept-card {
+                min-height: 500px;
+            }
+
+            .concept-image {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .concept-buttons {
+                gap: 10px;
+            }
+
+            .concept-btn {
+                padding: 0.9rem;
+                font-size: 0.85rem;
+            }
+
+            .concept-title {
+                font-size: 1.3rem;
+            }
+
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .nav-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light-gray);
+            padding: 4rem 6%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--accent);
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo::after {
+            content: ".";
+            color: #000;
+            margin-left: 2px;
+            font-weight: 900;
+        }
+
+        .footer-text {
+            color: var(--text-gray);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .copyright {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 3rem;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .concept-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .concept-card:nth-child(1) { animation-delay: 0.1s; }
+        .concept-card:nth-child(2) { animation-delay: 0.2s; }
+        .concept-card:nth-child(3) { animation-delay: 0.3s; }
+        .concept-card:nth-child(4) { animation-delay: 0.4s; }
+        .concept-card:nth-child(5) { animation-delay: 0.5s; }
+        .concept-card:nth-child(6) { animation-delay: 0.6s; }
+        .concept-card:nth-child(7) { animation-delay: 0.7s; }
+        .concept-card:nth-child(8) { animation-delay: 0.8s; }
+        .concept-card:nth-child(9) { animation-delay: 0.9s; }
+
+        /* Category indicator */
+        .category-indicator {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">VIBZ</div>
+        <a href="https://www.vibz.co.uk/funnel.html" class="nav-btn">Get a Website</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Concept Library</h1>
+        <p>Browse our collection of premium website concepts. Each design is fully responsive, optimized for speed, and ready to be customized for your brand.</p>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="filter-tags">
+            <button class="filter-btn active" data-filter="all">All Concepts</button>
+            <button class="filter-btn" data-filter="barber">Barber Shops</button>
+            <button class="filter-btn" data-filter="dental">Dental Clinics</button>
+            <button class="filter-btn" data-filter="trades">Trades Services</button>
+            <button class="filter-btn" data-filter="fitness">Fitness Studios</button>
+            <button class="filter-btn" data-filter="restaurant">Restaurants</button>
+        </div>
+    </section>
+
+    <!-- Concepts Grid -->
+    <section class="concepts-section">
+        <div class="category-indicator" id="categoryIndicator">Showing All Concepts</div>
+        
+        <div class="concepts-grid" id="conceptsGrid">
+            <!-- Concept 1: Barber Elite -->
+            <div class="concept-card" data-category="barber">
+                <div class="concept-image">
+                    <div class="concept-badge">BARBER</div>
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Barber Elite Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Barber Elite</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Modern</span>
+                        <span class="concept-tag">Booking</span>
+                        <span class="concept-tag">Portfolio</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Barber 1
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 2: Dental Care Pro -->
+            <div class="concept-card" data-category="dental">
+                <div class="concept-image">
+                    <div class="concept-badge">DENTAL</div>
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dental Care Pro Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Dental Care Pro</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Medical</span>
+                        <span class="concept-tag">Appointments</span>
+                        <span class="concept-tag">Trust</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Dental 1
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 3: Electric Masters -->
+            <div class="concept-card" data-category="trades">
+                <div class="concept-image">
+                    <div class="concept-badge">TRADES</div>
+                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Electric Masters Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Electric Masters</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Industrial</span>
+                        <span class="concept-tag">Service Areas</span>
+                        <span class="concept-tag">24/7</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Trades 1
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 4: Fitness Power -->
+            <div class="concept-card" data-category="fitness">
+                <div class="concept-image">
+                    <div class="concept-badge">FITNESS</div>
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fitness Power Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Fitness Power</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Energetic</span>
+                        <span class="concept-tag">Membership</span>
+                        <span class="concept-tag">Schedule</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Fitness 1
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 5: Italian Bistro -->
+            <div class="concept-card" data-category="restaurant">
+                <div class="concept-image">
+                    <div class="concept-badge">RESTAURANT</div>
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Italian Bistro Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Italian Bistro</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Food</span>
+                        <span class="concept-tag">Menu</span>
+                        <span class="concept-tag">Reservations</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Restaurant 1
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 6: Barber Premium -->
+            <div class="concept-card" data-category="barber">
+                <div class="concept-image">
+                    <div class="concept-badge">BARBER</div>
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Barber Premium Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Barber Premium</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Luxury</span>
+                        <span class="concept-tag">Grooming</span>
+                        <span class="concept-tag">Products</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Barber 2
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 7: Dental Smile -->
+            <div class="concept-card" data-category="dental">
+                <div class="concept-image">
+                    <div class="concept-badge">DENTAL</div>
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dental Smile Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Dental Smile</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Family</span>
+                        <span class="concept-tag">Cosmetic</span>
+                        <span class="concept-tag">Insurance</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Dental 2
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 8: Plumbing Pros -->
+            <div class="concept-card" data-category="trades">
+                <div class="concept-image">
+                    <div class="concept-badge">TRADES</div>
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Plumbing Pros Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Plumbing Pros</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Emergency</span>
+                        <span class="concept-tag">Commercial</span>
+                        <span class="concept-tag">Residential</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Trades 2
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 9: Yoga Studio -->
+            <div class="concept-card" data-category="fitness">
+                <div class="concept-image">
+                    <div class="concept-badge">FITNESS</div>
+                    <img src="https://images.unsplash.com/photo-1545389336-cf0907b9cbd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Yoga Studio Concept">
+                </div>
+                <div class="concept-content">
+                    <h3 class="concept-title">Yoga Studio</h3>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Wellness</span>
+                        <span class="concept-tag">Classes</span>
+                        <span class="concept-tag">Meditation</span>
+                    </div>
+                    <div class="concept-buttons">
+                        <a href="#" class="concept-btn btn-live">
+                            <i class="fas fa-eye"></i> View Live Version
+                        </a>
+                        <a href="#" class="concept-btn btn-code">
+                            <i class="fas fa-code"></i> Code: Fitness 2
+                        </a>
+                        <a href="#" class="concept-btn btn-claim">
+                            <i class="fas fa-check-circle"></i> I Want This Concept
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">VIBZ</div>
+        <p class="footer-text">Ready to transform your online presence? Choose a concept and we'll customize it to perfectly fit your brand.</p>
+        <a href="https://www.vibz.co.uk/funnel.html" class="nav-btn">Start Your Project</a>
+        <div class="copyright">
+            © 2024 VIBZ COLLECTIVE. PREMIUM WEBSITE CONCEPTS.
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const conceptCards = document.querySelectorAll('.concept-card');
+        const categoryIndicator = document.getElementById('categoryIndicator');
+        const conceptsGrid = document.getElementById('conceptsGrid');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                // Update category indicator
+                if (filter === 'all') {
+                    categoryIndicator.textContent = 'Showing All Concepts';
+                } else {
+                    const categoryNames = {
+                        'barber': 'Barber Shops',
+                        'dental': 'Dental Clinics',
+                        'trades': 'Trades Services',
+                        'fitness': 'Fitness Studios',
+                        'restaurant': 'Restaurants'
+                    };
+                    categoryIndicator.textContent = `Showing ${categoryNames[filter]} Concepts`;
+                }
+                
+                // Filter cards
+                conceptCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'flex';
+                        card.style.animation = 'fadeInUp 0.6s ease forwards';
+                        card.style.opacity = '0';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                        }, 300);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Reorder grid for better mobile experience
+                setTimeout(() => {
+                    const visibleCards = Array.from(conceptCards).filter(card => 
+                        card.style.display !== 'none'
+                    );
+                    
+                    conceptsGrid.innerHTML = '';
+                    visibleCards.forEach(card => {
+                        conceptsGrid.appendChild(card);
+                    });
+                }, 300);
+            });
+        });
+
+        // Claim button functionality
+        document.querySelectorAll('.btn-claim').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = btn.closest('.concept-card');
+                const title = card.querySelector('.concept-title').textContent;
+                
+                // Show confirmation
+                btn.innerHTML = '<i class="fas fa-check"></i> Concept Selected!';
+                btn.style.background = '#4CAF50';
+                btn.style.borderColor = '#4CAF50';
+                btn.style.color = 'white';
+                
+                // Create success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 20px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+                    z-index: 1001;
+                    text-align: center;
+                    max-width: 400px;
+                    width: 90%;
+                `;
+                successMsg.innerHTML = `
+                    <h3 style="margin-bottom: 1rem; color: var(--accent);">Concept Selected!</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-gray);">You've selected "<strong>${title}</strong>". Our team will contact you within 24 hours to discuss customization.</p>
+                    <button onclick="this.parentElement.remove()" style="
+                        background: var(--accent);
+                        color: white;
+                        border: none;
+                        padding: 1rem 2rem;
+                        border-radius: 12px;
+                        font-weight: 700;
+                        cursor: pointer;
+                    ">Continue Browsing</button>
+                `;
+                
+                document.body.appendChild(successMsg);
+                
+                // Add overlay
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.5);
+                    z-index: 1000;
+                `;
+                overlay.onclick = () => {
+                    successMsg.remove();
+                    overlay.remove();
+                };
+                document.body.appendChild(overlay);
+                
+                // Reset button after 5 seconds
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> I Want This Concept';
+                    btn.style.background = '';
+                    btn.style.borderColor = '';
+                    btn.style.color = '';
+                }, 5000);
+            });
+        });
+
+        // View Live Version button functionality
+        document.querySelectorAll('.btn-live').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = btn.closest('.concept-card');
+                const title = card.querySelector('.concept-title').textContent;
+                const code = card.querySelector('.btn-code').textContent.replace('Code: ', '');
+                
+                // Show loading state
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                
+                // Simulate loading
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    alert(`Opening live preview of ${title} (${code})...\n\nIn a real implementation, this would open the live website.`);
+                }, 1000);
+            });
+        });
+
+        // Mobile scroll optimization
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Add parallax effect to concept cards on mobile
+                conceptCards.forEach((card, index) => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (cardTop < windowHeight * 0.8) {
+                        const speed = 0.1;
+                        const yPos = -(currentScroll * speed) + (index * 50);
+                        card.style.transform = `translateY(${yPos}px)`;
+                    }
+                });
+                
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }
+        });
+
+        // Initialize with all cards visible
+        conceptCards.forEach(card => {
+            card.style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
