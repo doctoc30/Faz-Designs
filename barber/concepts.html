@@ -282,12 +282,13 @@
             background: radial-gradient(circle at top right, #fff5ee, #ffffff);
         }
 
+        /* EXACT VIBZ HOMEPAGE FONT SIZING */
         .hero h1 {
-            font-size: clamp(3.5rem, 12vw, 8rem); /* EXACT VIBZ HOMEPAGE SIZE */
+            font-size: 8rem; /* Fixed size like VIBZ homepage */
             font-weight: 900;
-            line-height: 0.9;
-            letter-spacing: -4px; /* EXACT VIBZ HOMEPAGE SPACING */
-            margin-bottom: 2rem; /* EXACT VIBZ HOMEPAGE MARGIN */
+            line-height: 0.85; /* Tighter line-height like VIBZ */
+            letter-spacing: -5px; /* More aggressive tracking like VIBZ */
+            margin-bottom: 2rem;
             text-transform: capitalize;
             color: var(--dark);
         }
@@ -297,11 +298,53 @@
         }
 
         .hero p {
-            font-size: 1.25rem; /* EXACT VIBZ HOMEPAGE SIZE */
+            font-size: 1.25rem;
             color: var(--text-gray);
-            max-width: 550px; /* EXACT VIBZ HOMEPAGE WIDTH */
-            margin-bottom: 3rem; /* EXACT VIBZ HOMEPAGE MARGIN */
+            max-width: 550px;
+            margin-bottom: 3rem;
             line-height: 1.5;
+        }
+
+        /* Mobile scaling for hero text */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 7rem;
+                letter-spacing: -4px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 6rem;
+                letter-spacing: -3.5px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 4.5rem;
+                letter-spacing: -3px;
+                line-height: 0.9;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 3.5rem;
+                letter-spacing: -2.5px;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 3rem;
+                letter-spacing: -2px;
+            }
         }
 
         /* ================= CONCEPT GRID ================= */
@@ -602,7 +645,7 @@
 
             /* Mobile portrait button display - SHOW ONLY 2 BUTTONS */
             .concept-buttons {
-                flex-direction: row; /* Change to row for side-by-side */
+                flex-direction: row;
                 justify-content: space-between;
                 gap: 10px;
                 padding: 1.5rem;
@@ -612,7 +655,7 @@
             .btn {
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
-                width: 48%; /* Each button takes about half the width */
+                width: 48%;
                 max-width: none;
                 white-space: nowrap;
                 overflow: hidden;
@@ -620,7 +663,7 @@
             }
 
             .concept-code {
-                display: none; /* Hide code on mobile to save space */
+                display: none;
             }
 
             /* Concept grid mobile adjustments */
@@ -633,16 +676,6 @@
                 height: 600px;
             }
             
-            .hero h1 {
-                font-size: clamp(3rem, 10vw, 5rem);
-                letter-spacing: -3px;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-                max-width: 100%;
-            }
-            
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
@@ -652,11 +685,6 @@
         @media (max-width: 480px) {
             .concept-card {
                 height: 550px;
-            }
-            
-            .hero h1 {
-                font-size: clamp(2.5rem, 8vw, 4rem);
-                letter-spacing: -2px;
             }
             
             .stats-grid {
@@ -682,10 +710,6 @@
             
             .concept-card {
                 height: 650px;
-            }
-            
-            .hero h1 {
-                font-size: clamp(3rem, 10vw, 6rem);
             }
         }
 
