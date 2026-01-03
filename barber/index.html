@@ -230,37 +230,43 @@
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 4: Features -->
-            <div class="form-screen" id="step-4">
-                <h2 id="step4Title">Which features do you want?</h2>
-                <p id="step4Message">Select all that apply:</p>
-                
-                <!-- Show design reminder if coming from concepts -->
-                <div id="step4DesignInfo" style="display: none; background: rgba(255, 107, 0, 0.05); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px dashed #FF6B00;">
-                    <p style="margin: 0; color: #4a4a4a; font-size: 0.9rem;">
-                        <i class="fas fa-info-circle" style="color: #FF6B00;"></i>
-                        You selected: <strong><span id="currentDesignName"></span></strong>
-                    </p>
-                </div>
-                
-                <div class="options">
-                    <button type="button" class="vibz-btn feature-btn" data-feature="Online Booking" onclick="toggleFeature(this, 'Online Booking')">Online Booking</button>
-                    <button type="button" class="vibz-btn feature-btn" data-feature="Gallery/Portfolio" onclick="toggleFeature(this, 'Gallery/Portfolio')">Gallery/Portfolio</button>
-                    <button type="button" class="vibz-btn feature-btn" data-feature="Local SEO" onclick="toggleFeature(this, 'Local SEO')">Local SEO</button>
-                    <button type="button" class="vibz-btn feature-btn" data-feature="Reviews Section" onclick="toggleFeature(this, 'Reviews Section')">Reviews Section</button>
-                    <button type="button" class="vibz-btn feature-btn" data-feature="Social Media Integration" onclick="toggleFeature(this, 'Social Media Integration')">Social Media Integration</button>
-                    <button type="button" class="vibz-btn feature-btn" data-feature="Branding & Logo" onclick="toggleFeature(this, 'Branding & Logo')">Branding & Logo</button>
-                </div>
-                
-                <!-- Selected features counter -->
-                <div id="selectedCounter" style="margin-top: 1.5rem; text-align: center; display: none;">
-                    <p style="color: #FF6B00; font-weight: 600;">
-                        <span id="selectedCount">0</span> feature(s) selected
-                    </p>
-                </div>
-                
-                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-            </div>
+            
+         <!-- STEP 4: Features -->
+<div class="form-screen" id="step-4">
+    <h2 id="step4Title">Which features do you want?</h2>
+    <p id="step4Message">Select all that apply:</p>
+    
+    <!-- Show design reminder if coming from concepts -->
+    <div id="step4DesignInfo" style="display: none; background: rgba(255, 107, 0, 0.05); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px dashed #FF6B00;">
+        <p style="margin: 0; color: #4a4a4a; font-size: 0.9rem;">
+            <i class="fas fa-info-circle" style="color: #FF6B00;"></i>
+            You selected: <strong><span id="currentDesignName"></span></strong>
+        </p>
+    </div>
+    
+    <div class="options">
+        <button type="button" class="vibz-btn feature-btn" data-feature="Online Booking" onclick="toggleFeature(this, 'Online Booking')">Online Booking</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Gallery/Portfolio" onclick="toggleFeature(this, 'Gallery/Portfolio')">Gallery/Portfolio</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Local SEO" onclick="toggleFeature(this, 'Local SEO')">Local SEO</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Reviews Section" onclick="toggleFeature(this, 'Reviews Section')">Reviews Section</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Social Media Integration" onclick="toggleFeature(this, 'Social Media Integration')">Social Media Integration</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Branding & Logo" onclick="toggleFeature(this, 'Branding & Logo')">Branding & Logo</button>
+    </div>
+    
+    <!-- Selected features counter -->
+    <div id="selectedCounter" style="margin-top: 1.5rem; text-align: center; display: none;">
+        <p style="color: #FF6B00; font-weight: 600;">
+            <span id="selectedCount">0</span> feature(s) selected
+        </p>
+    </div>
+    
+    <!-- ADD THIS NEXT BUTTON -->
+    <button type="button" class="vibz-btn vibz-btn-primary" onclick="next()" style="margin-top: 1.5rem;">
+        Next Step
+    </button>
+    
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
             
             <!-- STEP 5: Target Audience -->
             <div class="form-screen" id="step-5">
