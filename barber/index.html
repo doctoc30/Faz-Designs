@@ -76,27 +76,7 @@
         .success-message { background:var(--light-gray); padding:3rem; border-radius:32px; margin-top:2rem; border:1px solid var(--border); }
         .success-message h3 { color:var(--primary); margin-bottom:1rem; }
 
-        /* ========== Responsive ========== */
-        @media(max-width:768px) {
-            .nav-links { display:none; }
-            .mobile-menu-btn { display:block; }
-            .form-screen h2 { font-size:2.5rem; }
-            .form-screen p { font-size:1.1rem; padding:0 20px; }
-            .search-row { flex-direction:column; align-items:center; }
-            .search-row input { width:100%; max-width:300px; }
-            .categories-row { gap:10px; }
-            .vibz-btn { min-width:180px; padding:1rem 1.5rem; }
-            .pricing-container { grid-template-columns:1fr; }
-        }
-        @media(max-width:480px) {
-            .form-screen h2 { font-size:2rem; }
-            .vibz-btn { width:100%; max-width:280px; }
-            .categories-row button { flex:0 0 45%; max-width:45%; }
-        }
-
-        @keyframes fadeIn { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
-   
-        /* Step 1 input styling */
+        /* ========== Step 1 input styling ========== */
         #step-1 input[type="text"] {
             width: 100%;
             padding: 1rem 1.2rem;
@@ -134,9 +114,136 @@
             animation: fadeIn 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* ========== Step 4: Code Input & Concept Display ========== */
+        .code-input-container {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        .code-input-large {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            border: 3px solid var(--border);
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        .code-input-large:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.1);
+        }
+
+        .code-status {
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-weight: 600;
+            display: none;
+        }
+
+        .code-status.success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #2e7d32;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            display: block;
+        }
+
+        .code-status.error {
+            background: rgba(244, 67, 54, 0.1);
+            color: #d32f2f;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            display: block;
+        }
+
+        /* Concept Display Card */
+        .concept-display-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            transition: var(--transition);
+            max-width: 500px;
+            margin: 2rem auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .concept-display-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .concept-display-image {
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .concept-display-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .concept-display-card:hover .concept-display-image img {
+            transform: scale(1.05);
+        }
+
+        .concept-display-code {
+            padding: 2rem;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .concept-display-code .code-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .concept-display-code .code-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        /* ========== Responsive ========== */
+        @media(max-width:768px) {
+            .nav-links { display:none; }
+            .mobile-menu-btn { display:block; }
+            .form-screen h2 { font-size:2.5rem; }
+            .form-screen p { font-size:1.1rem; padding:0 20px; }
+            .search-row { flex-direction:column; align-items:center; }
+            .search-row input { width:100%; max-width:300px; }
+            .categories-row { gap:10px; }
+            .vibz-btn { min-width:180px; padding:1rem 1.5rem; }
+            .pricing-container { grid-template-columns:1fr; }
+            .concept-display-image { height: 250px; }
+            .concept-display-code .code-value { font-size: 2rem; }
+        }
+        @media(max-width:480px) {
+            .form-screen h2 { font-size:2rem; }
+            .vibz-btn { width:100%; max-width:280px; }
+            .categories-row button { flex:0 0 45%; max-width:45%; }
+            .code-input-large { font-size: 1.1rem; padding: 1.2rem; }
+        }
+
+        @keyframes fadeIn { 
+            from { opacity:0; transform:translateY(20px); } 
+            to { opacity:1; transform:translateY(0); } 
         }
     </style>
 </head>
@@ -170,6 +277,7 @@
             <div class="step-dot" data-step="8"></div>
             <div class="step-dot" data-step="9"></div>
             <div class="step-dot" data-step="10"></div>
+            <div class="step-dot" data-step="11"></div>
         </div>
 
         <form id="formWrapper">
@@ -178,8 +286,6 @@
             <input type="hidden" id="hiddenFeatures" name="Selected Features">
             <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
             <input type="hidden" id="hiddenDesignCode" name="Design Code">
-            <input type="hidden" id="hiddenDesignName" name="Design Name">
-            <input type="hidden" id="hiddenDesignId" name="Design ID">
 
             <!-- STEP 1: Barber Shop Name -->
             <div class="form-screen active" id="step-1">
@@ -213,10 +319,7 @@
                         </div>
                         <div>
                             <p style="margin: 0; color: #121212; font-weight: 700; font-size: 1.1rem;">
-                                Design Selected: <span id="selectedDesignName" style="color: #FF6B00;"></span>
-                            </p>
-                            <p style="margin: 0; color: #4a4a4a; font-size: 0.9rem;">
-                                Code: <span id="selectedDesignCode" style="font-weight: 600;"></span>
+                                Design Selected: <span id="selectedDesignCode" style="color: #FF6B00;"></span>
                             </p>
                         </div>
                     </div>
@@ -230,46 +333,89 @@
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
+            <!-- STEP 4: Code Input & Concept Display -->
+            <div class="form-screen" id="step-4">
+                <h2>Enter Your Design Code</h2>
+                <p>Type the code for your chosen design (e.g., barber-1, barber-2, etc.)</p>
+                
+                <div class="code-input-container">
+                    <input type="text" 
+                           class="code-input-large" 
+                           id="designCodeInput" 
+                           placeholder="Enter code (e.g., barber-5)"
+                           autocomplete="off">
+                    
+                    <div id="codeStatus" class="code-status"></div>
+                    
+                    <div id="conceptDisplay" style="display: none;">
+                        <div class="concept-display-card">
+                            <div class="concept-display-image">
+                                <img id="conceptDisplayImage" src="" alt="Design Preview">
+                            </div>
+                            <div class="concept-display-code">
+                                <span class="code-label">Design Code</span>
+                                <div class="code-value" id="conceptDisplayCode"></div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="vibz-btn vibz-btn-primary" onclick="confirmDesignSelection()" id="confirmDesignBtn">
+                            Continue with This Design
+                        </button>
+                    </div>
+                    
+                    <button type="button" class="vibz-btn" onclick="tryDifferentCode()" id="tryDifferentBtn" style="display: none; margin-top: 1rem;">
+                        Try Different Code
+                    </button>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <p style="color: var(--gray); font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> 
+                        Accepted formats: "barber-1", "barber 1", "BARBER-1", "B1", or just "1"
+                    </p>
+                </div>
+                
+                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+            </div>
             
-         <!-- STEP 4: Features -->
-<div class="form-screen" id="step-4">
-    <h2 id="step4Title">Which features do you want?</h2>
-    <p id="step4Message">Select all that apply:</p>
-    
-    <!-- Show design reminder if coming from concepts -->
-    <div id="step4DesignInfo" style="display: none; background: rgba(255, 107, 0, 0.05); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px dashed #FF6B00;">
-        <p style="margin: 0; color: #4a4a4a; font-size: 0.9rem;">
-            <i class="fas fa-info-circle" style="color: #FF6B00;"></i>
-            You selected: <strong><span id="currentDesignName"></span></strong>
-        </p>
-    </div>
-    
-    <div class="options">
-        <button type="button" class="vibz-btn feature-btn" data-feature="Online Booking" onclick="toggleFeature(this, 'Online Booking')">Online Booking</button>
-        <button type="button" class="vibz-btn feature-btn" data-feature="Gallery/Portfolio" onclick="toggleFeature(this, 'Gallery/Portfolio')">Gallery/Portfolio</button>
-        <button type="button" class="vibz-btn feature-btn" data-feature="Local SEO" onclick="toggleFeature(this, 'Local SEO')">Local SEO</button>
-        <button type="button" class="vibz-btn feature-btn" data-feature="Reviews Section" onclick="toggleFeature(this, 'Reviews Section')">Reviews Section</button>
-        <button type="button" class="vibz-btn feature-btn" data-feature="Social Media Integration" onclick="toggleFeature(this, 'Social Media Integration')">Social Media Integration</button>
-        <button type="button" class="vibz-btn feature-btn" data-feature="Branding & Logo" onclick="toggleFeature(this, 'Branding & Logo')">Branding & Logo</button>
-    </div>
-    
-    <!-- Selected features counter -->
-    <div id="selectedCounter" style="margin-top: 1.5rem; text-align: center; display: none;">
-        <p style="color: #FF6B00; font-weight: 600;">
-            <span id="selectedCount">0</span> feature(s) selected
-        </p>
-    </div>
-    
-    <!-- ADD THIS NEXT BUTTON -->
-    <button type="button" class="vibz-btn vibz-btn-primary" onclick="next()" style="margin-top: 1.5rem;">
-        Next Step
-    </button>
-    
-    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-</div>
-            
-            <!-- STEP 5: Target Audience -->
+            <!-- STEP 5: Features -->
             <div class="form-screen" id="step-5">
+                <h2 id="step5Title">Which features do you want?</h2>
+                <p id="step5Message">Select all that apply:</p>
+                
+                <!-- Show design reminder -->
+                <div id="step5DesignInfo" style="display: none; background: rgba(255, 107, 0, 0.05); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px dashed #FF6B00;">
+                    <p style="margin: 0; color: #4a4a4a; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle" style="color: #FF6B00;"></i>
+                        Selected Design: <strong><span id="currentDesignCode"></span></strong>
+                    </p>
+                </div>
+                
+                <div class="options">
+                    <button type="button" class="vibz-btn feature-btn" data-feature="Online Booking" onclick="toggleFeature(this, 'Online Booking')">Online Booking</button>
+                    <button type="button" class="vibz-btn feature-btn" data-feature="Gallery/Portfolio" onclick="toggleFeature(this, 'Gallery/Portfolio')">Gallery/Portfolio</button>
+                    <button type="button" class="vibz-btn feature-btn" data-feature="Local SEO" onclick="toggleFeature(this, 'Local SEO')">Local SEO</button>
+                    <button type="button" class="vibz-btn feature-btn" data-feature="Reviews Section" onclick="toggleFeature(this, 'Reviews Section')">Reviews Section</button>
+                    <button type="button" class="vibz-btn feature-btn" data-feature="Social Media Integration" onclick="toggleFeature(this, 'Social Media Integration')">Social Media Integration</button>
+                    <button type="button" class="vibz-btn feature-btn" data-feature="Branding & Logo" onclick="toggleFeature(this, 'Branding & Logo')">Branding & Logo</button>
+                </div>
+                
+                <!-- Selected features counter -->
+                <div id="selectedCounter" style="margin-top: 1.5rem; text-align: center; display: none;">
+                    <p style="color: #FF6B00; font-weight: 600;">
+                        <span id="selectedCount">0</span> feature(s) selected
+                    </p>
+                </div>
+                
+                <button type="button" class="vibz-btn vibz-btn-primary" onclick="next()" style="margin-top: 1.5rem;">
+                    Next Step
+                </button>
+                
+                <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+            </div>
+            
+            <!-- STEP 6: Target Audience -->
+            <div class="form-screen" id="step-6">
                 <h2>Who are your main clients?</h2>
                 <div class="options">
                     <button type="button" class="vibz-btn" onclick="setAudience('Men')">Men</button>
@@ -280,8 +426,8 @@
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 6: Website Style -->
-            <div class="form-screen" id="step-6">
+            <!-- STEP 7: Website Style -->
+            <div class="form-screen" id="step-7">
                 <h2>What style do you prefer for your website?</h2>
                 <div class="options">
                     <button type="button" class="vibz-btn" onclick="setStyle('Classic')">Classic</button>
@@ -292,8 +438,8 @@
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 7: Color Scheme -->
-            <div class="form-screen" id="step-7">
+            <!-- STEP 8: Color Scheme -->
+            <div class="form-screen" id="step-8">
                 <h2>Preferred color scheme?</h2>
                 <div class="options">
                     <button type="button" class="vibz-btn" onclick="setColor('Black & Gold')">Black & Gold</button>
@@ -304,8 +450,8 @@
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 8: Website Goal -->
-            <div class="form-screen" id="step-8">
+            <!-- STEP 9: Website Goal -->
+            <div class="form-screen" id="step-9">
                 <h2>What's the main goal of your website?</h2>
                 <div class="options">
                     <button type="button" class="vibz-btn" onclick="setGoal('Attract New Clients')">Attract New Clients</button>
@@ -315,8 +461,8 @@
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 9: Booking Method -->
-            <div class="form-screen" id="step-9">
+            <!-- STEP 10: Booking Method -->
+            <div class="form-screen" id="step-10">
                 <h2>Preferred booking method?</h2>
                 <div class="options">
                     <button type="button" class="vibz-btn" onclick="setBooking('Online Booking')">Online Booking</button>
@@ -326,8 +472,8 @@
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 10: Plan Type -->
-            <div class="form-screen" id="step-10">
+            <!-- STEP 11: Plan Type -->
+            <div class="form-screen" id="step-11">
                 <h2>Choose your plan type</h2>
                 <div class="options">
                     <button type="button" class="vibz-btn" onclick="setPlan('Own Outright')">Own Outright</button>
@@ -336,8 +482,8 @@
                 <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
             </div>
 
-            <!-- STEP 11: Recommended Plan -->
-            <div class="form-screen" id="step-11">
+            <!-- STEP 12: Recommended Plan -->
+            <div class="form-screen" id="step-12">
                 <h2>Your Recommended Plan</h2>
                 <p id="planRecommendation">Based on your selections, here's what we recommend:</p>
                 <div class="pricing-container" id="pricingCards"></div>
@@ -348,15 +494,35 @@
 </section>
 
 <script>
-// Form state management
+// ========== BARBER CONCEPTS DATABASE ==========
+// EASY TO EDIT: Add new concepts here when you create them
+// Format: { code: "barber-1", image: "image-url.jpg" }
+
+const barberConcepts = [
+    // Current concepts (1-9)
+    { code: "barber-1", image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" },
+    { code: "barber-2", image: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" },
+    { code: "barber-3", image: "https://images.unsplash.com/photo-1567894340315-735d7c361db0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" },
+    { code: "barber-4", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" },
+    { code: "barber-5", image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" },
+    { code: "barber-6", image: "https://images.unsplash.com/photo-1580618864180-f6d7d39b8ff6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" },
+    { code: "barber-7", image: "https://images.unsplash.com/photo-1621605815972-f9e5c6c4a9c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" },
+    { code: "barber-8", image: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" },
+    { code: "barber-9", image: "https://images.unsplash.com/photo-1580618864180-f6d7d39b8ff6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" }
+    
+    // TO ADD NEW CONCEPTS: Copy and edit these lines:
+    // { code: "barber-10", image: "https://your-image-url-here.jpg" },
+    // { code: "barber-11", image: "https://your-image-url-here.jpg" },
+    // etc...
+];
+
+// ========== FORM STATE MANAGEMENT ==========
 let currentStep = 1;
 const formData = {
     businessName: '',
     projectType: '',
     designConcept: '',
     designCode: '',
-    designName: '',
-    designId: '',
     features: [],
     audience: '',
     style: '',
@@ -370,43 +536,145 @@ const formData = {
 const screens = document.querySelectorAll('.form-screen');
 const stepDots = document.querySelectorAll('.step-dot');
 const businessInput = document.getElementById('businessInput');
+const designCodeInput = document.getElementById('designCodeInput');
+const codeStatus = document.getElementById('codeStatus');
+const conceptDisplay = document.getElementById('conceptDisplay');
+const conceptDisplayImage = document.getElementById('conceptDisplayImage');
+const conceptDisplayCode = document.getElementById('conceptDisplayCode');
+const confirmDesignBtn = document.getElementById('confirmDesignBtn');
+const tryDifferentBtn = document.getElementById('tryDifferentBtn');
+
+// ========== CODE VALIDATION & DISPLAY ==========
+
+// Normalize code input (accepts variations)
+function normalizeCode(input) {
+    if (!input) return '';
+    
+    // Convert to lowercase and trim
+    let normalized = input.toString().toLowerCase().trim();
+    
+    // Remove "barber" prefix variations
+    normalized = normalized.replace(/^barber[\s\-]*/i, '');
+    
+    // Remove any remaining non-numeric characters (except dash/hyphen)
+    normalized = normalized.replace(/[^0-9\-]/g, '');
+    
+    // If it's just a number, format as "barber-X"
+    if (/^\d+$/.test(normalized)) {
+        return `barber-${normalized}`;
+    }
+    
+    // If it already has a hyphen, ensure "barber-" prefix
+    if (normalized.includes('-')) {
+        const num = normalized.split('-').pop();
+        if (/^\d+$/.test(num)) {
+            return `barber-${num}`;
+        }
+    }
+    
+    return '';
+}
+
+// Find concept by code (flexible matching)
+function findConceptByCode(input) {
+    const normalizedCode = normalizeCode(input);
+    if (!normalizedCode) return null;
+    
+    // Find exact match
+    return barberConcepts.find(concept => concept.code === normalizedCode);
+}
+
+// Validate and display concept
+function validateAndDisplayConcept() {
+    const input = designCodeInput.value.trim();
+    
+    if (!input) {
+        codeStatus.textContent = '';
+        codeStatus.className = 'code-status';
+        conceptDisplay.style.display = 'none';
+        tryDifferentBtn.style.display = 'none';
+        return;
+    }
+    
+    const concept = findConceptByCode(input);
+    
+    if (concept) {
+        // Show success and display concept
+        codeStatus.textContent = `✓ Valid code: ${concept.code}`;
+        codeStatus.className = 'code-status success';
+        
+        // Display the concept
+        conceptDisplayImage.src = concept.image;
+        conceptDisplayImage.alt = `Design ${concept.code}`;
+        conceptDisplayCode.textContent = concept.code.toUpperCase();
+        conceptDisplay.style.display = 'block';
+        
+        // Update continue button
+        confirmDesignBtn.innerHTML = `<i class="fas fa-check"></i> Continue with ${concept.code.toUpperCase()}`;
+        
+        // Show try different button
+        tryDifferentBtn.style.display = 'inline-block';
+    } else {
+        // Show error
+        codeStatus.textContent = `✗ Design not found. Try "barber-1" to "barber-${barberConcepts.length}"`;
+        codeStatus.className = 'code-status error';
+        conceptDisplay.style.display = 'none';
+        tryDifferentBtn.style.display = 'none';
+    }
+}
+
+// Confirm design selection
+function confirmDesignSelection() {
+    const input = designCodeInput.value.trim();
+    const concept = findConceptByCode(input);
+    
+    if (concept) {
+        formData.designCode = concept.code;
+        formData.designConcept = 'From Code';
+        updateHiddenFields();
+        next();
+    }
+}
+
+// Try different code
+function tryDifferentCode() {
+    designCodeInput.value = '';
+    designCodeInput.focus();
+    codeStatus.textContent = '';
+    codeStatus.className = 'code-status';
+    conceptDisplay.style.display = 'none';
+    tryDifferentBtn.style.display = 'none';
+}
+
+// ========== FUNNEL FUNCTIONS ==========
 
 // Check URL parameters and jump to correct step
 function checkURLParams() {
     const params = new URLSearchParams(window.location.search);
     const step = params.get('step');
     const concept = params.get('concept');
-    const name = params.get('name');
-    const design = params.get('design');
     
-    console.log('URL Params:', { step, concept, name, design });
+    console.log('URL Params:', { step, concept });
     
     // If step parameter exists, jump to that step
     if (step) {
         const stepNum = parseInt(step);
-        if (!isNaN(stepNum) && stepNum >= 1 && stepNum <= 11) {
+        if (!isNaN(stepNum) && stepNum >= 1 && stepNum <= 12) {
             currentStep = stepNum;
             console.log('Jumping to step:', currentStep);
             
             // Store design data if coming from concepts page
-            if (concept && name && design) {
-                formData.designCode = concept;
-                formData.designName = decodeURIComponent(name);
-                formData.designId = design;
-                formData.designConcept = 'From Concepts';
-                
-                console.log('Design selected from concepts:', {
-                    code: concept,
-                    name: decodeURIComponent(name),
-                    id: design
-                });
-                
-                // Store in localStorage for persistence
-                localStorage.setItem('selectedDesign', JSON.stringify({
-                    code: concept,
-                    name: decodeURIComponent(name),
-                    id: design
-                }));
+            if (concept) {
+                const foundConcept = findConceptByCode(concept);
+                if (foundConcept) {
+                    formData.designCode = foundConcept.code;
+                    formData.designConcept = 'From Concepts';
+                    
+                    console.log('Design selected from concepts:', foundConcept.code);
+                    
+                    // Store in localStorage for persistence
+                    localStorage.setItem('selectedDesignCode', foundConcept.code);
+                }
             }
             
             return true; // Indicate we jumped from URL
@@ -414,17 +682,10 @@ function checkURLParams() {
     }
     
     // Check localStorage for saved design
-    const savedDesign = localStorage.getItem('selectedDesign');
-    if (savedDesign) {
-        try {
-            const designData = JSON.parse(savedDesign);
-            formData.designCode = designData.code;
-            formData.designName = designData.name;
-            formData.designId = designData.id;
-            formData.designConcept = 'From Concepts';
-        } catch (e) {
-            console.log('Error parsing saved design:', e);
-        }
+    const savedDesignCode = localStorage.getItem('selectedDesignCode');
+    if (savedDesignCode) {
+        formData.designCode = savedDesignCode;
+        formData.designConcept = 'From Concepts';
     }
     
     return false; // No URL jump
@@ -438,31 +699,43 @@ function showScreen(screenId) {
         screen.classList.add('active');
         
         // Update UI for specific steps
-        if (screenId === 'step-3' && formData.designName) {
+        if (screenId === 'step-3' && formData.designCode) {
             // Show design info in step 3
             document.getElementById('designInfo').style.display = 'block';
-            document.getElementById('selectedDesignName').textContent = formData.designName;
-            document.getElementById('selectedDesignCode').textContent = formData.designCode;
+            document.getElementById('selectedDesignCode').textContent = formData.designCode.toUpperCase();
         }
         
-        if (screenId === 'step-4') {
-            // Update step 4 with design info
-            if (formData.designName) {
-                document.getElementById('step4Title').innerHTML = `Select Features for <span style="color: #FF6B00;">${formData.designName}</span>`;
-                document.getElementById('step4DesignInfo').style.display = 'block';
-                document.getElementById('currentDesignName').textContent = formData.designName;
+        if (screenId === 'step-5') {
+            // Update step 5 with design info
+            if (formData.designCode) {
+                document.getElementById('step5Title').innerHTML = `Select Features for <span style="color: #FF6B00;">${formData.designCode.toUpperCase()}</span>`;
+                document.getElementById('step5DesignInfo').style.display = 'block';
+                document.getElementById('currentDesignCode').textContent = formData.designCode.toUpperCase();
             }
             
             // Update feature buttons based on selections
             updateFeatureButtons();
             updateFeatureCounter();
         }
+        
+        // Auto-focus code input on step 4
+        if (screenId === 'step-4') {
+            setTimeout(() => {
+                designCodeInput.focus();
+                
+                // Pre-fill if we have a design code
+                if (formData.designCode) {
+                    designCodeInput.value = formData.designCode;
+                    validateAndDisplayConcept();
+                }
+            }, 100);
+        }
     }
 }
 
 // Step navigation
 function next() {
-    if (currentStep < 11) {
+    if (currentStep < 12) {
         currentStep++;
         updateStepIndicator();
     }
@@ -484,15 +757,13 @@ function updateStepIndicator() {
     // Show current screen
     showScreen('step-' + currentStep);
     
-    // Update hidden fields with design data
+    // Update hidden fields
     updateHiddenFields();
 }
 
 // Update hidden form fields
 function updateHiddenFields() {
     document.getElementById('hiddenDesignCode').value = formData.designCode || '';
-    document.getElementById('hiddenDesignName').value = formData.designName || '';
-    document.getElementById('hiddenDesignId').value = formData.designId || '';
     document.getElementById('hiddenFeatures').value = formData.features.join(', ');
 }
 
@@ -517,10 +788,16 @@ function setProjectType(type) {
 // STEP 3: Design Concept
 function setDesignConcept(option) {
     formData.designConcept = option;
-    next();
+    
+    if (option === 'Code') {
+        next(); // Go to step 4 (code input)
+    } else if (option === 'Custom') {
+        formData.designCode = 'CUSTOM';
+        next(); // Skip to step 5
+    }
 }
 
-// STEP 4: Feature selection
+// STEP 5: Feature selection
 function toggleFeature(button, feature) {
     const index = formData.features.indexOf(feature);
     
@@ -558,14 +835,14 @@ function updateFeatureCounter() {
     if (count > 0) {
         counter.style.display = 'block';
         countSpan.textContent = count;
-        document.getElementById('step4Message').textContent = `Selected ${count} feature(s). Click Next when ready.`;
+        document.getElementById('step5Message').textContent = `Selected ${count} feature(s). Click Next when ready.`;
     } else {
         counter.style.display = 'none';
-        document.getElementById('step4Message').textContent = 'Select all that apply:';
+        document.getElementById('step5Message').textContent = 'Select all that apply:';
     }
 }
 
-// STEP 5-10: Simple selection functions
+// STEP 6-11: Simple selection functions
 function setAudience(audience) {
     formData.audience = audience;
     next();
@@ -591,14 +868,14 @@ function setBooking(booking) {
     next();
 }
 
-// STEP 10: Plan type
+// STEP 11: Plan type
 function setPlan(plan) {
     formData.planType = plan;
     showRecommendedPlan();
     next();
 }
 
-// STEP 11: Show recommended plan dynamically
+// STEP 12: Show recommended plan dynamically
 function showRecommendedPlan() {
     const container = document.getElementById('pricingCards');
     let plan;
@@ -641,8 +918,12 @@ function showRecommendedPlan() {
     }
 
     // Add design info if coming from concepts
-    if (formData.designName) {
-        plan.features.unshift(`Design: ${formData.designName} (${formData.designCode})`);
+    if (formData.designCode) {
+        if (formData.designCode === 'CUSTOM') {
+            plan.features.unshift('Custom Design (Tailored to your needs)');
+        } else {
+            plan.features.unshift(`Design: ${formData.designCode.toUpperCase()}`);
+        }
     }
 
     const featuresHtml = plan.features.map(f => `<li>${f}</li>`).join('');
@@ -669,6 +950,8 @@ function goToPayment() {
     window.location.href = link;
 }
 
+// ========== INITIALIZATION ==========
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
     // First check URL parameters
@@ -691,13 +974,30 @@ document.addEventListener('DOMContentLoaded', () => {
         businessInput.focus();
     }
     
-    // Highlight step 4 dot if coming from concepts
-    if (jumpedFromURL && currentStep === 4) {
-        const step4Dot = document.querySelector('.step-dot[data-step="4"]');
-        if (step4Dot) {
-            step4Dot.classList.add('jump-point');
+    // Code input validation on typing
+    designCodeInput.addEventListener('input', validateAndDisplayConcept);
+    
+    // Allow Enter key to confirm design
+    designCodeInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const input = designCodeInput.value.trim();
+            const concept = findConceptByCode(input);
+            if (concept) {
+                confirmDesignSelection();
+            }
+        }
+    });
+    
+    // Highlight step 5 dot if coming from concepts
+    if (jumpedFromURL && currentStep === 5) {
+        const step5Dot = document.querySelector('.step-dot[data-step="5"]');
+        if (step5Dot) {
+            step5Dot.classList.add('jump-point');
         }
     }
+    
+    // Log available concepts
+    console.log('Available barber concepts:', barberConcepts.map(c => c.code));
 });
 </script>
 
