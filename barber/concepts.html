@@ -1272,8 +1272,31 @@
     </div>
 
     <script>
+
+        // ==========================
+// HEADER & MENU FUNCTIONALITY
 // ==========================
-// SELECTION DATA & STATE
+const menuOverlay = document.getElementById('menuOverlay');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeMenuBtn = document.getElementById('closeMenu');
+const menuLinks = document.querySelectorAll('.menu-link');
+
+function openMenu() {
+    menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+hamburgerBtn.addEventListener('click', openMenu);
+closeMenuBtn.addEventListener('click', closeMenu);
+menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+// ==========================
+// CONCEPT DATA & STATE
 // ==========================
 let selectedDesign = null;
 
@@ -1286,147 +1309,161 @@ const clearSelectionBtn = document.getElementById('clearSelectionBtn');
 const currentSelectionNote = document.getElementById('currentSelectionNote');
 
 const conceptData = {
-  1: { name: "Barber Elite", code: "BARBER-1" },
-  2: { name: "Classic Cuts", code: "BARBER-2" },
-  3: { name: "Urban Edge", code: "BARBER-3" },
-  4: { name: "Luxe Barber", code: "BARBER-4" },
-  5: { name: "Gentleman's Cut", code: "BARBER-5" },
-  6: { name: "Beard & Blade", code: "BARBER-6" },
-  7: { name: "Modern Groom", code: "BARBER-7" },
-  8: { name: "Premium Trim", code: "BARBER-8" },
-  9: { name: "Street Style", code: "BARBER-9" }
+    1: { name: "Barber Elite", code: "BARBER-1" },
+    2: { name: "Classic Cuts", code: "BARBER-2" },
+    3: { name: "Urban Edge", code: "BARBER-3" },
+    4: { name: "Luxe Barber", code: "BARBER-4" },
+    5: { name: "Gentleman's Cut", code: "BARBER-5" },
+    6: { name: "Beard & Blade", code: "BARBER-6" },
+    7: { name: "Modern Groom", code: "BARBER-7" },
+    8: { name: "Premium Trim", code: "BARBER-8" },
+    9: { name: "Street Style", code: "BARBER-9" }
 };
 
 // ==========================
-// LOCAL STORAGE
+// LOCAL STORAGE FUNCTIONS
 // ==========================
 function saveSelectionToStorage(design) {
-  if (design) {
-    localStorage.setItem('vibz_selected_design', JSON.stringify(design));
-  } else {
-    localStorage.removeItem('vibz_selected_design');
-  }
+    if (design) {
+        localStorage.setItem('vibz_selected_design', JSON.stringify(design));
+        localStorage.setItem('vibz_selection_timestamp', Date.now());
+    } else {
+        localStorage.removeItem('vibz_selected_design');
+        localStorage.removeItem('vibz_selection_timestamp');
+    }
 }
 
 function loadSelectionFromStorage() {
-  try {
-    const saved = localStorage.getItem('vibz_selected_design');
-    if (saved) return JSON.parse(saved);
-  } catch (e) { console.error(e); }
-  return null;
+    try {
+        const saved = localStorage.getItem('vibz_selected_design');
+        if (saved) return JSON.parse(saved);
+    } catch (e) {
+        console.error('Error loading saved selection:', e);
+    }
+    return null;
 }
 
 // ==========================
-// UPDATE UI
+// UPDATE SELECTION UI
 // ==========================
 function updateSelectionUI(conceptId) {
-  document.querySelectorAll('.select-design').forEach(btn => {
-    btn.classList.remove('selected');
-    btn.innerHTML = 'Select This Design';
-  });
-  document.querySelectorAll('.concept-card').forEach(card => {
-    card.classList.remove('selected');
-  });
+    document.querySelectorAll('.select-design').forEach(btn => {
+        btn.classList.remove('selected');
+        btn.innerHTML = 'Select This Design';
+    });
+    document.querySelectorAll('.concept-card').forEach(card => card.classList.remove('selected'));
 
-  if (conceptId) {
-    const btn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
-    const card = document.querySelector(`.concept-card[data-concept="${conceptId}"]`);
-    if (btn) btn.innerHTML = '<i class="fas fa-check"></i> Selected';
-    if (card) card.classList.add('selected');
+    if (conceptId) {
+        const selectedBtn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
+        const selectedCard = document.querySelector(`.concept-card[data-concept="${conceptId}"]`);
+        if (selectedBtn) selectedBtn.innerHTML = '<i class="fas fa-check"></i> Selected';
+        if (selectedCard) selectedCard.classList.add('selected');
 
-    const concept = conceptData[conceptId];
-    selectedDesignInfo.textContent = `${concept.name} (${concept.code})`;
-    selectionStatus.style.display = 'block';
-    currentSelectionNote.style.display = 'inline';
-  } else {
-    selectionStatus.style.display = 'none';
-    currentSelectionNote.style.display = 'none';
-  }
+        const concept = conceptData[conceptId];
+        selectedDesignInfo.textContent = `${concept.name} (${concept.code})`;
+        selectionStatus.style.display = 'block';
+        currentSelectionNote.style.display = 'inline';
+    } else {
+        selectionStatus.style.display = 'none';
+        currentSelectionNote.style.display = 'none';
+    }
 }
 
 // ==========================
-// SELECT DESIGN
+// SELECT DESIGN BUTTONS
 // ==========================
 document.querySelectorAll('.select-design').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    const conceptId = btn.dataset.concept;
-    const concept = conceptData[conceptId];
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const conceptId = this.dataset.concept;
+        const concept = conceptData[conceptId];
 
-    // Toggle deselect
-    if (selectedDesign && selectedDesign.id === conceptId) {
-      selectedDesign = null;
-      saveSelectionToStorage(null);
-      updateSelectionUI(null);
-      return;
-    }
+        // Save selection
+        selectedDesign = { id: conceptId, name: concept.name, code: concept.code, shortCode: this.dataset.code };
+        saveSelectionToStorage(selectedDesign);
+        updateSelectionUI(conceptId);
 
-    // Save selection
-    selectedDesign = { id: conceptId, name: concept.name, code: concept.code, shortCode: btn.dataset.code };
-    saveSelectionToStorage(selectedDesign);
-    updateSelectionUI(conceptId);
+        // Show modal
+        modalTitle.textContent = `Selected: ${concept.name}`;
+        modalText.innerHTML = `
+            You've selected <strong>${concept.name}</strong> (${this.dataset.code})<br><br>
+            <span style="font-size: 0.9rem; color: var(--accent);">
+                Concept Code: ${concept.code}
+            </span>
+        `;
+        selectionModal.style.display = 'flex';
 
-    // Show modal
-    modalTitle.textContent = `Selected: ${concept.name}`;
-    modalText.innerHTML = `
-      You've selected <strong>${concept.name}</strong> (${btn.dataset.code})<br><br>
-      <span style="font-size:0.9rem; color:var(--accent)">Concept Code: ${concept.code}</span>
-    `;
-    selectionModal.style.display = 'flex';
-  });
+        // Move to Step 4 immediately if goToStep exists
+        if (typeof goToStep === "function") {
+            goToStep(4);
+        } else {
+            // fallback: redirect to funnel page with concept query params
+            window.location.href = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
+        }
+    });
 });
 
 // ==========================
-// CLEAR SELECTION
+// CLEAR SELECTION BUTTON
 // ==========================
-clearSelectionBtn.addEventListener('click', () => {
-  selectedDesign = null;
-  saveSelectionToStorage(null);
-  updateSelectionUI(null);
-  const originalText = clearSelectionBtn.textContent;
-  clearSelectionBtn.innerHTML = '<i class="fas fa-check"></i> Cleared!';
-  setTimeout(() => clearSelectionBtn.innerHTML = originalText, 2000);
+clearSelectionBtn.addEventListener('click', function() {
+    selectedDesign = null;
+    saveSelectionToStorage(null);
+    updateSelectionUI(null);
+    const originalText = this.textContent;
+    this.innerHTML = '<i class="fas fa-check"></i> Cleared!';
+    setTimeout(() => this.innerHTML = originalText, 2000);
 });
 
 // ==========================
-// VIEW DEMO
+// VIEW DEMO BUTTONS
 // ==========================
 document.querySelectorAll('.view-demo').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    const concept = conceptData[btn.dataset.concept];
-    alert(`Opening live demo of ${concept.name}...`);
-  });
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const conceptId = this.dataset.concept;
+        const concept = conceptData[conceptId];
+        const originalText = this.textContent;
+
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        this.disabled = true;
+
+        setTimeout(() => {
+            this.textContent = originalText;
+            this.disabled = false;
+            alert(`Opening live demo of ${concept.name}...`);
+        }, 800);
+    });
 });
 
 // ==========================
-// MODAL ACTIONS
+// MODAL FUNCTIONS
 // ==========================
 function closeModal() { selectionModal.style.display = 'none'; }
-
-function continueToFunnel() {
-  if (!selectedDesign) return;
-
-  // Redirect to funnel step 4 with query params
-  const funnelUrl = `https://www.vibz.co.uk/funnel.html?step=4&concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
-  window.location.href = funnelUrl;
-}
-
-selectionModal.addEventListener('click', e => {
-  if (e.target === selectionModal) closeModal();
-});
 
 // ==========================
 // LOAD SAVED SELECTION ON PAGE LOAD
 // ==========================
-window.addEventListener('load', () => {
-  const saved = loadSelectionFromStorage();
-  if (saved) {
-    selectedDesign = saved;
-    updateSelectionUI(saved.id);
-  }
+window.addEventListener('load', function() {
+    const savedSelection = loadSelectionFromStorage();
+    if (savedSelection) {
+        selectedDesign = savedSelection;
+        updateSelectionUI(savedSelection.id);
+    }
 });
-    
+
+// ==========================
+// SCREEN ORIENTATION DEBUG (optional)
+// ==========================
+function logOrientation() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const orientation = width > height ? 'Landscape' : 'Portrait';
+    console.log(`Screen: ${width}x${height} (${orientation})`);
+}
+window.addEventListener('resize', logOrientation);
+window.addEventListener('load', logOrientation);
+
     </script>
 </body>
 </html>
