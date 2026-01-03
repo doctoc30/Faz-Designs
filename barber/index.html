@@ -113,7 +113,34 @@
         border-color: var(--primary);
         outline: none;
     }
-    
+
+
+
+        /* Feature button selection styles */
+.vibz-btn.selected {
+    background-color: #FF6B00 !important;
+    color: white !important;
+    border-color: #FF6B00 !important;
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(255, 107, 0, 0.2);
+}
+
+/* Step indicator for direct jumps */
+.step-dot.jump-point {
+    background-color: #FF6B00;
+    transform: scale(1.3);
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.3);
+}
+
+/* Design info box */
+.design-info-box {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
     
     </style>
 </head>
@@ -150,135 +177,179 @@
         </div>
 
 
-        
+    
 <form id="formWrapper">
     <input type="hidden" id="hiddenPlan" name="Selected Plan">
     <input type="hidden" id="hiddenFeatures" name="Selected Features">
     <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
+<form id="formWrapper">
+    <input type="hidden" id="hiddenPlan" name="Selected Plan">
+    <input type="hidden" id="hiddenFeatures" name="Selected Features">
+    <input type="hidden" id="hiddenPaymentLink" name="Payment Link">
+    <!-- Add these hidden fields for design data -->
+    <input type="hidden" id="hiddenDesignCode" name="Design Code">
+    <input type="hidden" id="hiddenDesignName" name="Design Name">
+    <input type="hidden" id="hiddenDesignId" name="Design ID">
+    
+
 
     <!-- STEP 1: Barber Shop Name -->
-    <div class="form-screen active" id="step-1">
-        <h2>What's Your Barber Shop Name?</h2>
-        <p>Tell us your barber shop name so we can personalize your experience.</p>
-        <input type="text" id="businessInput" placeholder="e.g. The Gentlemen's Cut">
-        <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleBusinessName()">Next</button>
-    </div>
+<div class="form-screen active" id="step-1">
+    <h2>What's Your Barber Shop Name?</h2>
+    <p>Tell us your barber shop name so we can personalize your experience.</p>
+    <input type="text" id="businessInput" placeholder="e.g. The Gentlemen's Cut">
+    <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleBusinessName()">Next</button>
+</div>
 
-    <!-- STEP 2: Project Type -->
-    <div class="form-screen" id="step-2">
-        <h2>Which service do you need?</h2>
-        <div class="options">
-            <button type="button" class="vibz-btn" onclick="setProjectType('New Website')">New Website</button>
-            <button type="button" class="vibz-btn" onclick="setProjectType('Redesign Existing')">Redesign Existing</button>
-            <button type="button" class="vibz-btn" onclick="setProjectType('Maintenance')">Maintenance</button>
-        </div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-    </div>
-
-
-<!-- STEP 3: Design Concept -->
-<div class="form-screen" id="step-3">
-    <h2>Do you have a design concept in mind?</h2>
-    <p>You can enter a code, choose from templates, or request custom design.</p>
+<!-- STEP 2: Project Type -->
+<div class="form-screen" id="step-2">
+    <h2>Which service do you need?</h2>
     <div class="options">
-        <button type="button" class="vibz-btn" onclick="setDesignConcept('Code')">Yes, I have a code</button>
-        <!-- Link to concepts page -->
+        <button type="button" class="vibz-btn" onclick="setProjectType('New Website')">New Website</button>
+        <button type="button" class="vibz-btn" onclick="setProjectType('Redesign Existing')">Redesign Existing</button>
+        <button type="button" class="vibz-btn" onclick="setProjectType('Maintenance')">Maintenance</button>
+    </div>
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
+
+<!-- STEP 3: Design Concept - UPDATED FOR CONCEPTS PAGE INTEGRATION -->
+<div class="form-screen" id="step-3">
+    <h2 id="step3Title">Do you have a design concept in mind?</h2>
+    <p id="step3Message">You can enter a code, choose from templates, or request custom design.</p>
+    
+    <!-- Show design info if coming from concepts page -->
+    <div id="designInfo" style="display: none; background: rgba(255, 107, 0, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; border: 2px solid #FF6B00;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="font-size: 1.5rem; color: #FF6B00;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div>
+                <p style="margin: 0; color: #121212; font-weight: 700; font-size: 1.1rem;">
+                    Design Selected: <span id="selectedDesignName" style="color: #FF6B00;"></span>
+                </p>
+                <p style="margin: 0; color: #4a4a4a; font-size: 0.9rem;">
+                    Code: <span id="selectedDesignCode" style="font-weight: 600;"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="options">
+        <button type="button" class="vibz-btn" onclick="setDesignConcept('Code')" id="codeBtn">Yes, I have a code</button>
         <a href="https://www.vibz.co.uk/barber/concepts.html" class="vibz-btn">Show me concepts</a>
         <button type="button" class="vibz-btn" onclick="setDesignConcept('Custom')">Custom design</button>
     </div>
     <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
 </div>
 
-<!-- STEP 4: Features -->
+<!-- STEP 4: Features - UPDATED FOR CONCEPTS PAGE INTEGRATION -->
 <div class="form-screen" id="step-4">
-    <h2>Which features do you want?</h2>
-    <p>Select all that apply:</p>
-    <div class="options">
-        <button type="button" class="vibz-btn" onclick="toggleFeature('Online Booking')">Online Booking</button>
-        <button type="button" class="vibz-btn" onclick="toggleFeature('Gallery/Portfolio')">Gallery/Portfolio</button>
-        <button type="button" class="vibz-btn" onclick="toggleFeature('Local SEO')">Local SEO</button>
-        <button type="button" class="vibz-btn" onclick="toggleFeature('Reviews Section')">Reviews Section</button>
-        <button type="button" class="vibz-btn" onclick="toggleFeature('Social Media Integration')">Social Media Integration</button>
-        <button type="button" class="vibz-btn" onclick="toggleFeature('Branding & Logo')">Branding & Logo</button>
+    <h2 id="step4Title">Which features do you want?</h2>
+    <p id="step4Message">Select all that apply:</p>
+    
+    <!-- Show design reminder if coming from concepts -->
+    <div id="step4DesignInfo" style="display: none; background: rgba(255, 107, 0, 0.05); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px dashed #FF6B00;">
+        <p style="margin: 0; color: #4a4a4a; font-size: 0.9rem;">
+            <i class="fas fa-info-circle" style="color: #FF6B00;"></i>
+            You selected: <strong><span id="currentDesignName"></span></strong>
+        </p>
     </div>
+    
+    <div class="options">
+        <button type="button" class="vibz-btn feature-btn" data-feature="Online Booking" onclick="toggleFeature('Online Booking')">Online Booking</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Gallery/Portfolio" onclick="toggleFeature('Gallery/Portfolio')">Gallery/Portfolio</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Local SEO" onclick="toggleFeature('Local SEO')">Local SEO</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Reviews Section" onclick="toggleFeature('Reviews Section')">Reviews Section</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Social Media Integration" onclick="toggleFeature('Social Media Integration')">Social Media Integration</button>
+        <button type="button" class="vibz-btn feature-btn" data-feature="Branding & Logo" onclick="toggleFeature('Branding & Logo')">Branding & Logo</button>
+    </div>
+    
+    <!-- Selected features counter -->
+    <div id="selectedCounter" style="margin-top: 1.5rem; text-align: center; display: none;">
+        <p style="color: #FF6B00; font-weight: 600;">
+            <span id="selectedCount">0</span> feature(s) selected
+        </p>
+    </div>
+    
     <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
 </div>
     
-    <!-- STEP 5: Target Audience -->
-    <div class="form-screen" id="step-5">
-        <h2>Who are your main clients?</h2>
-        <div class="options">
-            <button type="button" class="vibz-btn" onclick="setAudience('Men')">Men</button>
-            <button type="button" class="vibz-btn" onclick="setAudience('Women')">Women</button>
-            <button type="button" class="vibz-btn" onclick="setAudience('Children')">Children</button>
-            <button type="button" class="vibz-btn" onclick="setAudience('Family')">Mixed/Family</button>
-        </div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+<!-- STEP 5: Target Audience -->
+<div class="form-screen" id="step-5">
+    <h2>Who are your main clients?</h2>
+    <div class="options">
+        <button type="button" class="vibz-btn" onclick="setAudience('Men')">Men</button>
+        <button type="button" class="vibz-btn" onclick="setAudience('Women')">Women</button>
+        <button type="button" class="vibz-btn" onclick="setAudience('Children')">Children</button>
+        <button type="button" class="vibz-btn" onclick="setAudience('Family')">Mixed/Family</button>
     </div>
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
 
-    <!-- STEP 6: Website Style -->
-    <div class="form-screen" id="step-6">
-        <h2>What style do you prefer for your website?</h2>
-        <div class="options">
-            <button type="button" class="vibz-btn" onclick="setStyle('Classic')">Classic</button>
-            <button type="button" class="vibz-btn" onclick="setStyle('Modern')">Modern</button>
-            <button type="button" class="vibz-btn" onclick="setStyle('Minimalist')">Minimalist</button>
-            <button type="button" class="vibz-btn" onclick="setStyle('Premium')">Premium</button>
-        </div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+<!-- STEP 6: Website Style -->
+<div class="form-screen" id="step-6">
+    <h2>What style do you prefer for your website?</h2>
+    <div class="options">
+        <button type="button" class="vibz-btn" onclick="setStyle('Classic')">Classic</button>
+        <button type="button" class="vibz-btn" onclick="setStyle('Modern')">Modern</button>
+        <button type="button" class="vibz-btn" onclick="setStyle('Minimalist')">Minimalist</button>
+        <button type="button" class="vibz-btn" onclick="setStyle('Premium')">Premium</button>
     </div>
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
 
-    <!-- STEP 7: Color Scheme -->
-    <div class="form-screen" id="step-7">
-        <h2>Preferred color scheme?</h2>
-        <div class="options">
-            <button type="button" class="vibz-btn" onclick="setColor('Black & Gold')">Black & Gold</button>
-            <button type="button" class="vibz-btn" onclick="setColor('Modern/Vibrant')">Modern/Vibrant</button>
-            <button type="button" class="vibz-btn" onclick="setColor('Neutral/Classic')">Neutral/Classic</button>
-            <button type="button" class="vibz-btn" onclick="setColor('Custom')">Custom</button>
-        </div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+<!-- STEP 7: Color Scheme -->
+<div class="form-screen" id="step-7">
+    <h2>Preferred color scheme?</h2>
+    <div class="options">
+        <button type="button" class="vibz-btn" onclick="setColor('Black & Gold')">Black & Gold</button>
+        <button type="button" class="vibz-btn" onclick="setColor('Modern/Vibrant')">Modern/Vibrant</button>
+        <button type="button" class="vibz-btn" onclick="setColor('Neutral/Classic')">Neutral/Classic</button>
+        <button type="button" class="vibz-btn" onclick="setColor('Custom')">Custom</button>
     </div>
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
 
-    <!-- STEP 8: Website Goal -->
-    <div class="form-screen" id="step-8">
-        <h2>What’s the main goal of your website?</h2>
-        <div class="options">
-            <button type="button" class="vibz-btn" onclick="setGoal('Attract New Clients')">Attract New Clients</button>
-            <button type="button" class="vibz-btn" onclick="setGoal('Showcase Styles/Portfolio')">Showcase Styles/Portfolio</button>
-            <button type="button" class="vibz-btn" onclick="setGoal('Facilitate Bookings')">Facilitate Bookings</button>
-        </div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+<!-- STEP 8: Website Goal -->
+<div class="form-screen" id="step-8">
+    <h2>What’s the main goal of your website?</h2>
+    <div class="options">
+        <button type="button" class="vibz-btn" onclick="setGoal('Attract New Clients')">Attract New Clients</button>
+        <button type="button" class="vibz-btn" onclick="setGoal('Showcase Styles/Portfolio')">Showcase Styles/Portfolio</button>
+        <button type="button" class="vibz-btn" onclick="setGoal('Facilitate Bookings')">Facilitate Bookings</button>
     </div>
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
 
-    <!-- STEP 9: Booking Method -->
-    <div class="form-screen" id="step-9">
-        <h2>Preferred booking method?</h2>
-        <div class="options">
-            <button type="button" class="vibz-btn" onclick="setBooking('Online Booking')">Online Booking</button>
-            <button type="button" class="vibz-btn" onclick="setBooking('Phone/WhatsApp')">Phone/WhatsApp</button>
-            <button type="button" class="vibz-btn" onclick="setBooking('Contact Form')">Contact Form</button>
-        </div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+<!-- STEP 9: Booking Method -->
+<div class="form-screen" id="step-9">
+    <h2>Preferred booking method?</h2>
+    <div class="options">
+        <button type="button" class="vibz-btn" onclick="setBooking('Online Booking')">Online Booking</button>
+        <button type="button" class="vibz-btn" onclick="setBooking('Phone/WhatsApp')">Phone/WhatsApp</button>
+        <button type="button" class="vibz-btn" onclick="setBooking('Contact Form')">Contact Form</button>
     </div>
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
 
-    <!-- STEP 10: Plan Type -->
-    <div class="form-screen" id="step-10">
-        <h2>Choose your plan type</h2>
-        <div class="options">
-            <button type="button" class="vibz-btn" onclick="setPlan('Own Outright')">Own Outright</button>
-            <button type="button" class="vibz-btn" onclick="setPlan('Monthly Support')">Monthly Support</button>
-        </div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+<!-- STEP 10: Plan Type -->
+<div class="form-screen" id="step-10">
+    <h2>Choose your plan type</h2>
+    <div class="options">
+        <button type="button" class="vibz-btn" onclick="setPlan('Own Outright')">Own Outright</button>
+        <button type="button" class="vibz-btn" onclick="setPlan('Monthly Support')">Monthly Support</button>
     </div>
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
 
-    <!-- STEP 11: Recommended Plan -->
-    <div class="form-screen" id="step-11">
-        <h2>Your Recommended Plan</h2>
-        <p>Based on your selections, here's what we recommend:</p>
-        <div class="pricing-container" id="pricingCards"></div>
-        <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
-    </div>
+<!-- STEP 11: Recommended Plan -->
+<div class="form-screen" id="step-11">
+    <h2>Your Recommended Plan</h2>
+    <p id="planRecommendation">Based on your selections, here's what we recommend:</p>
+    <div class="pricing-container" id="pricingCards"></div>
+    <button type="button" class="vibz-btn back-button" onclick="prev()">← Go Back</button>
+</div>
+  
 
 </form>
 
@@ -287,225 +358,338 @@
       
 
 <script>
-    // Form state management
-    let currentStep = 1;
-    const formData = {
-        businessName: '',
-        projectType: '',
-        features: [],
-        audience: '',
-        style: '',
-        color: '',
-        goal: '',
-        booking: '',
-        planType: ''
-    };
+// Form state management
+let currentStep = 1;
+const formData = {
+    businessName: '',
+    projectType: '',
+    designConcept: '',
+    designCode: '',
+    designName: '',
+    designId: '',
+    features: [],
+    audience: '',
+    style: '',
+    color: '',
+    goal: '',
+    booking: '',
+    planType: ''
+};
 
-    // DOM elements
-    const screens = document.querySelectorAll('.form-screen');
-    const stepDots = document.querySelectorAll('.step-dot');
-    const businessInput = document.getElementById('businessInput');
-    const formWrapper = document.getElementById('formWrapper');
+// DOM elements
+const screens = document.querySelectorAll('.form-screen');
+const stepDots = document.querySelectorAll('.step-dot');
+const businessInput = document.getElementById('businessInput');
+const formWrapper = document.getElementById('formWrapper');
 
-    // Show a specific screen
-    function showScreen(screenId) {
-        screens.forEach(screen => screen.classList.remove('active'));
-        document.getElementById(screenId).classList.add('active');
-    }
-
-    // Step navigation
-    function next() {
-        if (currentStep < screens.length) {
-            currentStep++;
-            updateStepIndicator();
-        }
-    }
-
-    function prev() {
-        if (currentStep > 1) {
-            currentStep--;
-            updateStepIndicator();
-        }
-    }
-
-    function updateStepIndicator() {
-        stepDots.forEach((dot, index) => {
-            dot.classList.toggle('active', index < currentStep);
-        });
-        showScreen('step-' + currentStep);
-    }
-
-    // STEP 1: Handle business name input
-    function handleBusinessName() {
-        const value = businessInput.value.trim();
-        if (value) formData.businessName = value;
-        next();
-    }
-
-    // STEP 2: Project type selection
-    function setProjectType(type) {
-        formData.projectType = type;
-        next();
-    }
-
-    // STEP 3: Feature selection
-    function toggleFeature(feature) {
-        const index = formData.features.indexOf(feature);
-        if (index === -1) formData.features.push(feature);
-        else formData.features.splice(index, 1);
-    }
-
-    // STEP 4: Target audience
-    function setAudience(audience) {
-        formData.audience = audience;
-        next();
-    }
-
-    // STEP 5: Style preference
-    function setStyle(style) {
-        formData.style = style;
-        next();
-    }
-
-    // STEP 6: Color scheme
-    function setColor(color) {
-        formData.color = color;
-        next();
-    }
-
-    // STEP 7: Website goal
-    function setGoal(goal) {
-        formData.goal = goal;
-        next();
-    }
-
-    // STEP 8: Booking method
-    function setBooking(booking) {
-        formData.booking = booking;
-        next();
-    }
-
-    // STEP 9: Plan type
-    function setPlan(plan) {
-        formData.planType = plan;
-        showRecommendedPlan();
-        next();
-    }
-
-    // STEP 10: Show recommended plan dynamically
-    function showRecommendedPlan() {
-        const container = document.getElementById('pricingCards');
-        let plan;
-
-        if (formData.planType === 'Own Outright') {
-            plan = {
-                name: 'Elite Package',
-                price: '£2,499',
-                period: 'one-time',
-                features: [
-                    'Custom Website Design',
-                    'Mobile Responsive',
-                    'SEO Optimization',
-                    'Google Analytics Setup',
-                    'Contact Form Integration',
-                    formData.features.includes('Online Booking') ? 'Booking System' : null,
-                    formData.features.includes('Branding & Logo') ? 'Full Brand Identity' : null,
-                    '3 Months Support',
-                    'PageSpeed Optimization'
-                ].filter(Boolean)
-            };
-        } else {
-            plan = {
-                name: 'Premium Monthly',
-                price: '£199',
-                period: 'per month',
-                features: [
-                    'Everything in Elite Package',
-                    'Monthly Hosting',
-                    'Weekly Backups',
-                    'Security Monitoring',
-                    'Content Updates',
-                    'Performance Optimization',
-                    '24/7 Support',
-                    'Unlimited Edits',
-                    'SEO Maintenance',
-                    'Analytics Reporting'
-                ]
-            };
-        }
-
-        const featuresHtml = plan.features.map(f => `<li>${f}</li>`).join('');
-        container.innerHTML = `
-            <div class="pricing-card">
-                <h3>${plan.name}</h3>
-                <div class="price">${plan.price}<span class="price-period">/${plan.period}</span></div>
-                <ul class="pricing-features">${featuresHtml}</ul>
-                <button type="button" class="vibz-btn vibz-btn-primary" onclick="goToPayment()">
-                    Start This Plan
-                </button>
-            </div>
-        `;
-    }
-
-    // Redirect to payment page
-    function goToPayment() {
-        const link = formData.planType === 'Own Outright'
-            ? 'https://buy.stripe.com/test_00g9CBeBea4X6Gg28b'
-            : 'https://buy.stripe.com/test_28odSBdBCgVn7Z2fZ1';
-        window.location.href = link;
-    }
-
-    // Initialize page
-    document.addEventListener('DOMContentLoaded', () => {
-        updateStepIndicator();
-
-        // Mobile menu toggle
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', () => {
-                const navLinks = document.querySelector('.nav-links');
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            });
-        }
-    });
-
-
-
-    function setDesignConcept(option) {
-    console.log('Design concept chosen:', option); // for testing
-    next(); // move to the next step automatically
-}
-
-
-    // STEP 3: Design Concept
-function setDesignConcept(option) {
-    formData.designConcept = option;
-    next(); // proceed to next step
-}
-
-// Jump to a step if URL contains ?step=4&design=...
-function goToStepFromURL() {
+// Check URL parameters and jump to correct step
+function checkURLParams() {
     const params = new URLSearchParams(window.location.search);
     const step = params.get('step');
+    const concept = params.get('concept');
+    const name = params.get('name');
     const design = params.get('design');
-
+    
+    console.log('URL Params:', { step, concept, name, design });
+    
+    // If step parameter exists, jump to that step
     if (step) {
-        currentStep = parseInt(step);
-        updateStepIndicator();
+        const stepNum = parseInt(step);
+        if (!isNaN(stepNum) && stepNum >= 1 && stepNum <= 11) {
+            currentStep = stepNum;
+            console.log('Jumping to step:', currentStep);
+            
+            // Store design data if coming from concepts page
+            if (concept && name && design) {
+                formData.designCode = concept;
+                formData.designName = decodeURIComponent(name);
+                formData.designId = design;
+                formData.designConcept = 'From Concepts';
+                
+                console.log('Design selected from concepts:', {
+                    code: concept,
+                    name: decodeURIComponent(name),
+                    id: design
+                });
+                
+                // Also store in localStorage for persistence
+                localStorage.setItem('selectedDesign', JSON.stringify({
+                    code: concept,
+                    name: decodeURIComponent(name),
+                    id: design
+                }));
+            }
+            
+            // Update UI immediately
+            updateStepIndicator();
+            
+            // If coming from concepts page, update step 4 title
+            if (currentStep === 4 && formData.designName) {
+                setTimeout(() => {
+                    const step4Title = document.querySelector('#step-4 h2');
+                    if (step4Title) {
+                        step4Title.innerHTML = `Select Features for <span style="color: #FF6B00;">${formData.designName}</span>`;
+                    }
+                }, 300);
+            }
+            
+            return; // Skip the regular initialization
+        }
     }
-
-    if (design) {
-        formData.designConcept = design;
-        console.log('Returning from concepts page, selected design:', design);
+    
+    // Check localStorage for saved design
+    const savedDesign = localStorage.getItem('selectedDesign');
+    if (savedDesign) {
+        try {
+            const designData = JSON.parse(savedDesign);
+            formData.designCode = designData.code;
+            formData.designName = designData.name;
+            formData.designId = designData.id;
+            formData.designConcept = 'From Concepts';
+        } catch (e) {
+            console.log('Error parsing saved design:', e);
+        }
     }
 }
 
-// Run on page load
-document.addEventListener('DOMContentLoaded', () => {
-    updateStepIndicator(); // existing
-    goToStepFromURL();     // new
-});
+// Show a specific screen
+function showScreen(screenId) {
+    screens.forEach(screen => screen.classList.remove('active'));
+    document.getElementById(screenId).classList.add('active');
+}
 
+// Step navigation
+function next() {
+    if (currentStep < screens.length) {
+        currentStep++;
+        updateStepIndicator();
+    }
+}
+
+function prev() {
+    if (currentStep > 1) {
+        currentStep--;
+        updateStepIndicator();
+    }
+}
+
+function updateStepIndicator() {
+    // Update step dots
+    stepDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index < currentStep);
+    });
+    
+    // Show current screen
+    showScreen('step-' + currentStep);
+    
+    // Update hidden fields with design data
+    updateHiddenFields();
+}
+
+// Update hidden form fields
+function updateHiddenFields() {
+    if (document.getElementById('hiddenDesignCode')) {
+        document.getElementById('hiddenDesignCode').value = formData.designCode || '';
+    }
+    if (document.getElementById('hiddenDesignName')) {
+        document.getElementById('hiddenDesignName').value = formData.designName || '';
+    }
+    if (document.getElementById('hiddenDesignId')) {
+        document.getElementById('hiddenDesignId').value = formData.designId || '';
+    }
+}
+
+// STEP 1: Handle business name input
+function handleBusinessName() {
+    const value = businessInput.value.trim();
+    if (value) {
+        formData.businessName = value;
+        next();
+    } else {
+        alert('Please enter your barber shop name');
+    }
+}
+
+// STEP 2: Project type selection
+function setProjectType(type) {
+    formData.projectType = type;
+    next();
+}
+
+// STEP 3: Design Concept
+function setDesignConcept(option) {
+    formData.designConcept = option;
+    
+    // If coming from concepts page with a design already selected
+    if (option === 'Code' && formData.designCode) {
+        // Auto-fill and skip code input
+        console.log('Auto-filling design code:', formData.designCode);
+        next();
+    } else {
+        next();
+    }
+}
+
+// STEP 4: Feature selection (updated for better UX)
+function toggleFeature(feature) {
+    const index = formData.features.indexOf(feature);
+    const button = event.target;
+    
+    if (index === -1) {
+        formData.features.push(feature);
+        button.style.backgroundColor = '#FF6B00';
+        button.style.color = 'white';
+        button.style.borderColor = '#FF6B00';
+    } else {
+        formData.features.splice(index, 1);
+        button.style.backgroundColor = '';
+        button.style.color = '';
+        button.style.borderColor = '';
+    }
+    
+    // Show selected count
+    const featureButtons = document.querySelectorAll('#step-4 .vibz-btn');
+    const selectedCount = formData.features.length;
+    
+    // Update step 4 subtitle to show selection count
+    const step4Subtitle = document.querySelector('#step-4 p');
+    if (step4Subtitle && selectedCount > 0) {
+        step4Subtitle.innerHTML = `Selected ${selectedCount} feature(s). Click Next when ready.`;
+    }
+}
+
+// STEP 5: Target audience
+function setAudience(audience) {
+    formData.audience = audience;
+    next();
+}
+
+// STEP 6: Style preference
+function setStyle(style) {
+    formData.style = style;
+    next();
+}
+
+// STEP 7: Color scheme
+function setColor(color) {
+    formData.color = color;
+    next();
+}
+
+// STEP 8: Website goal
+function setGoal(goal) {
+    formData.goal = goal;
+    next();
+}
+
+// STEP 9: Booking method
+function setBooking(booking) {
+    formData.booking = booking;
+    next();
+}
+
+// STEP 10: Plan type
+function setPlan(plan) {
+    formData.planType = plan;
+    showRecommendedPlan();
+    next();
+}
+
+// STEP 11: Show recommended plan dynamically
+function showRecommendedPlan() {
+    const container = document.getElementById('pricingCards');
+    let plan;
+
+    if (formData.planType === 'Own Outright') {
+        plan = {
+            name: 'Elite Package',
+            price: '£2,499',
+            period: 'one-time',
+            features: [
+                'Custom Website Design',
+                'Mobile Responsive',
+                'SEO Optimization',
+                'Google Analytics Setup',
+                'Contact Form Integration',
+                formData.features.includes('Online Booking') ? 'Booking System' : null,
+                formData.features.includes('Branding & Logo') ? 'Full Brand Identity' : null,
+                '3 Months Support',
+                'PageSpeed Optimization'
+            ].filter(Boolean)
+        };
+    } else {
+        plan = {
+            name: 'Premium Monthly',
+            price: '£199',
+            period: 'per month',
+            features: [
+                'Everything in Elite Package',
+                'Monthly Hosting',
+                'Weekly Backups',
+                'Security Monitoring',
+                'Content Updates',
+                'Performance Optimization',
+                '24/7 Support',
+                'Unlimited Edits',
+                'SEO Maintenance',
+                'Analytics Reporting'
+            ]
+        };
+    }
+
+    // Add design info if coming from concepts
+    if (formData.designName) {
+        plan.features.unshift(`Design: ${formData.designName} (${formData.designCode})`);
+    }
+
+    const featuresHtml = plan.features.map(f => `<li>${f}</li>`).join('');
+    container.innerHTML = `
+        <div class="pricing-card">
+            <h3>${plan.name}</h3>
+            <div class="price">${plan.price}<span class="price-period">/${plan.period}</span></div>
+            <ul class="pricing-features">${featuresHtml}</ul>
+            <button type="button" class="vibz-btn vibz-btn-primary" onclick="goToPayment()">
+                Start This Plan
+            </button>
+        </div>
+    `;
+}
+
+// Redirect to payment page
+function goToPayment() {
+    // Store all form data before redirecting
+    localStorage.setItem('funnelFormData', JSON.stringify(formData));
+    
+    const link = formData.planType === 'Own Outright'
+        ? 'https://buy.stripe.com/test_00g9CBeBea4X6Gg28b'
+        : 'https://buy.stripe.com/test_28odSBdBCgVn7Z2fZ1';
+    window.location.href = link;
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', () => {
+    // First check URL parameters
+    checkURLParams();
+    
+    // If not redirected from concepts, do normal initialization
+    if (currentStep === 1) {
+        updateStepIndicator();
+    }
+    
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    }
+    
+    // Auto-focus business input if on step 1
+    if (currentStep === 1 && businessInput) {
+        businessInput.focus();
+    }
+});
 </script>
 
 </body>
