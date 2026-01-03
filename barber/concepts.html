@@ -1273,43 +1273,8 @@
 
     <script>
 // ==========================
-// HEADER & MENU FUNCTIONALITY
+// SELECTION DATA & STATE
 // ==========================
-const menuOverlay = document.getElementById('menuOverlay');
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const closeMenuBtn = document.getElementById('closeMenu');
-const menuLinks = document.querySelectorAll('.menu-link');
-
-hamburgerBtn.addEventListener('click', () => {
-    menuOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
-
-closeMenuBtn.addEventListener('click', () => {
-    menuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-});
-
-menuLinks.forEach(link => link.addEventListener('click', () => {
-    menuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}));
-
-// ==========================
-// CONCEPT DATA & STATE
-// ==========================
-const conceptData = {
-    1: { name: "Barber Elite", code: "BARBER-1" },
-    2: { name: "Classic Cuts", code: "BARBER-2" },
-    3: { name: "Urban Edge", code: "BARBER-3" },
-    4: { name: "Luxe Barber", code: "BARBER-4" },
-    5: { name: "Gentleman's Cut", code: "BARBER-5" },
-    6: { name: "Beard & Blade", code: "BARBER-6" },
-    7: { name: "Modern Groom", code: "BARBER-7" },
-    8: { name: "Premium Trim", code: "BARBER-8" },
-    9: { name: "Street Style", code: "BARBER-9" }
-};
-
 let selectedDesign = null;
 
 const selectionModal = document.getElementById('selectionModal');
@@ -1320,136 +1285,146 @@ const selectedDesignInfo = document.getElementById('selectedDesignInfo');
 const clearSelectionBtn = document.getElementById('clearSelectionBtn');
 const currentSelectionNote = document.getElementById('currentSelectionNote');
 
+const conceptData = {
+  1: { name: "Barber Elite", code: "BARBER-1" },
+  2: { name: "Classic Cuts", code: "BARBER-2" },
+  3: { name: "Urban Edge", code: "BARBER-3" },
+  4: { name: "Luxe Barber", code: "BARBER-4" },
+  5: { name: "Gentleman's Cut", code: "BARBER-5" },
+  6: { name: "Beard & Blade", code: "BARBER-6" },
+  7: { name: "Modern Groom", code: "BARBER-7" },
+  8: { name: "Premium Trim", code: "BARBER-8" },
+  9: { name: "Street Style", code: "BARBER-9" }
+};
+
 // ==========================
-// LOCAL STORAGE FUNCTIONS
+// LOCAL STORAGE
 // ==========================
 function saveSelectionToStorage(design) {
-    if (design) {
-        localStorage.setItem('vibz_selected_design', JSON.stringify(design));
-        localStorage.setItem('vibz_selection_timestamp', Date.now());
-    } else {
-        localStorage.removeItem('vibz_selected_design');
-        localStorage.removeItem('vibz_selection_timestamp');
-    }
+  if (design) {
+    localStorage.setItem('vibz_selected_design', JSON.stringify(design));
+  } else {
+    localStorage.removeItem('vibz_selected_design');
+  }
 }
 
 function loadSelectionFromStorage() {
-    try {
-        const saved = localStorage.getItem('vibz_selected_design');
-        if (saved) return JSON.parse(saved);
-    } catch (e) {
-        console.error('Error loading saved selection:', e);
-    }
-    return null;
+  try {
+    const saved = localStorage.getItem('vibz_selected_design');
+    if (saved) return JSON.parse(saved);
+  } catch (e) { console.error(e); }
+  return null;
 }
 
 // ==========================
-// UPDATE SELECTION UI
+// UPDATE UI
 // ==========================
 function updateSelectionUI(conceptId) {
-    document.querySelectorAll('.select-design').forEach(btn => {
-        btn.classList.remove('selected');
-        btn.innerHTML = 'Select This Design';
-    });
-    document.querySelectorAll('.concept-card').forEach(card => card.classList.remove('selected'));
+  document.querySelectorAll('.select-design').forEach(btn => {
+    btn.classList.remove('selected');
+    btn.innerHTML = 'Select This Design';
+  });
+  document.querySelectorAll('.concept-card').forEach(card => {
+    card.classList.remove('selected');
+  });
 
-    if (conceptId) {
-        const selectedBtn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
-        const selectedCard = document.querySelector(`.concept-card[data-concept="${conceptId}"]`);
-        if (selectedBtn) selectedBtn.innerHTML = '<i class="fas fa-check"></i> Selected';
-        if (selectedCard) selectedCard.classList.add('selected');
+  if (conceptId) {
+    const btn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
+    const card = document.querySelector(`.concept-card[data-concept="${conceptId}"]`);
+    if (btn) btn.innerHTML = '<i class="fas fa-check"></i> Selected';
+    if (card) card.classList.add('selected');
 
-        const concept = conceptData[conceptId];
-        selectedDesignInfo.textContent = `${concept.name} (${concept.code})`;
-        selectionStatus.style.display = 'block';
-        currentSelectionNote.style.display = 'inline';
-    } else {
-        selectionStatus.style.display = 'none';
-        currentSelectionNote.style.display = 'none';
-    }
+    const concept = conceptData[conceptId];
+    selectedDesignInfo.textContent = `${concept.name} (${concept.code})`;
+    selectionStatus.style.display = 'block';
+    currentSelectionNote.style.display = 'inline';
+  } else {
+    selectionStatus.style.display = 'none';
+    currentSelectionNote.style.display = 'none';
+  }
 }
 
 // ==========================
-// CLEAR SELECTION BUTTON
-// ==========================
-clearSelectionBtn.addEventListener('click', () => {
-    selectedDesign = null;
-    saveSelectionToStorage(null);
-    updateSelectionUI(null);
-    clearSelectionBtn.innerHTML = '<i class="fas fa-check"></i> Cleared!';
-    setTimeout(() => clearSelectionBtn.innerHTML = 'Clear Selection', 2000);
-});
-
-// ==========================
-// SELECT DESIGN BUTTONS WITH MODAL
+// SELECT DESIGN
 // ==========================
 document.querySelectorAll('.select-design').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const conceptId = btn.dataset.concept;
+    const concept = conceptData[conceptId];
 
-        const conceptId = this.dataset.concept;
-        const concept = {
-            id: conceptId,
-            name: conceptData[conceptId].name,
-            code: this.dataset.code
-        };
+    // Toggle deselect
+    if (selectedDesign && selectedDesign.id === conceptId) {
+      selectedDesign = null;
+      saveSelectionToStorage(null);
+      updateSelectionUI(null);
+      return;
+    }
 
-        selectedDesign = concept;
-        saveSelectionToStorage(selectedDesign);
-        updateSelectionUI(conceptId);
+    // Save selection
+    selectedDesign = { id: conceptId, name: concept.name, code: concept.code, shortCode: btn.dataset.code };
+    saveSelectionToStorage(selectedDesign);
+    updateSelectionUI(conceptId);
 
-        // Show modal with selection details
-        modalTitle.textContent = `Selected: ${concept.name}`;
-        modalText.innerHTML = `
-            You've selected <strong>${concept.name}</strong> (${concept.code})<br><br>
-            <span style="font-size: 0.9rem; color: var(--accent);">
-                Concept Code: ${concept.code}
-            </span><br><br>
-            <small style="color: var(--text-gray);">
-                <i class="fas fa-info-circle"></i> This selection is saved and will persist after page refresh.
-            </small>
-        `;
-        selectionModal.style.display = 'flex';
-    });
+    // Show modal
+    modalTitle.textContent = `Selected: ${concept.name}`;
+    modalText.innerHTML = `
+      You've selected <strong>${concept.name}</strong> (${btn.dataset.code})<br><br>
+      <span style="font-size:0.9rem; color:var(--accent)">Concept Code: ${concept.code}</span>
+    `;
+    selectionModal.style.display = 'flex';
+  });
 });
 
 // ==========================
-// MODAL BUTTONS
+// CLEAR SELECTION
 // ==========================
-function closeModal() {
-    selectionModal.style.display = 'none';
-}
+clearSelectionBtn.addEventListener('click', () => {
+  selectedDesign = null;
+  saveSelectionToStorage(null);
+  updateSelectionUI(null);
+  const originalText = clearSelectionBtn.textContent;
+  clearSelectionBtn.innerHTML = '<i class="fas fa-check"></i> Cleared!';
+  setTimeout(() => clearSelectionBtn.innerHTML = originalText, 2000);
+});
+
+// ==========================
+// VIEW DEMO
+// ==========================
+document.querySelectorAll('.view-demo').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const concept = conceptData[btn.dataset.concept];
+    alert(`Opening live demo of ${concept.name}...`);
+  });
+});
+
+// ==========================
+// MODAL ACTIONS
+// ==========================
+function closeModal() { selectionModal.style.display = 'none'; }
 
 function continueToFunnel() {
-    if (!selectedDesign) return;
-    const funnelUrl = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.code}&name=${encodeURIComponent(selectedDesign.name)}`;
-    window.location.href = funnelUrl;
+  if (!selectedDesign) return;
+
+  // Redirect to funnel step 4 with query params
+  const funnelUrl = `https://www.vibz.co.uk/funnel.html?step=4&concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
+  window.location.href = funnelUrl;
 }
 
 selectionModal.addEventListener('click', e => {
-    if (e.target === selectionModal) closeModal();
-});
-
-// ==========================
-// VIEW DEMO BUTTONS
-// ==========================
-document.querySelectorAll('.view-demo').forEach(btn => {
-    btn.addEventListener('click', e => {
-        e.preventDefault();
-        const conceptId = btn.dataset.concept;
-        alert(`Opening live demo of ${conceptData[conceptId].name}...`);
-    });
+  if (e.target === selectionModal) closeModal();
 });
 
 // ==========================
 // LOAD SAVED SELECTION ON PAGE LOAD
 // ==========================
 window.addEventListener('load', () => {
-    const savedSelection = loadSelectionFromStorage();
-    if (savedSelection) {
-        selectedDesign = savedSelection;
-        updateSelectionUI(savedSelection.id);
-    }
+  const saved = loadSelectionFromStorage();
+  if (saved) {
+    selectedDesign = saved;
+    updateSelectionUI(saved.id);
+  }
 });
     
     </script>
