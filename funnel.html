@@ -738,6 +738,68 @@
                 navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
             });
         });
+
+
+
+
+        // Business search with niche detection
+function handleSearch() {
+    const value = businessInput.value.trim().toLowerCase();
+    
+    if (!value) {
+        alert('Please enter your business type or select from the options.');
+        return;
+    }
+    
+    // Check for niche matches
+    const nicheRedirects = {
+        'barber': 'https://www.vibz.co.uk/barber/',
+        'haircut': 'https://www.vibz.co.uk/barber/',
+        'barbershop': 'https://www.vibz.co.uk/barber/',
+        'barbers': 'https://www.vibz.co.uk/barber/',
+        'hair style': 'https://www.vibz.co.uk/barber/',
+        'hairstyle': 'https://www.vibz.co.uk/barber/',
+        'grooming': 'https://www.vibz.co.uk/barber/',
+        'barber shop': 'https://www.vibz.co.uk/barber/',
+        // Future niches can be added here:
+        // 'plumber': 'https://www.vibz.co.uk/plumber/',
+        // 'dentist': 'https://www.vibz.co.uk/dentist/',
+        // 'cafe': 'https://www.vibz.co.uk/cafe/',
+    };
+    
+    // Check if search matches any niche
+    for (const [keyword, url] of Object.entries(nicheRedirects)) {
+        if (value.includes(keyword)) {
+            console.log(`Redirecting to niche funnel: ${keyword} -> ${url}`);
+            window.location.href = url;
+            return;
+        }
+    }
+    
+    // If no niche match, continue with generic funnel
+    formData.businessType = value;
+    showScreen('main-intro-options');
+    next();
+}
+
+// Also update the selectExample function to check for niche redirects
+function selectExample(business) {
+    // Check if this is a niche with its own funnel
+    const nicheRedirects = {
+        'barber': 'https://www.vibz.co.uk/barber/',
+        // Add other niches as you create them
+    };
+    
+    if (nicheRedirects[business]) {
+        window.location.href = nicheRedirects[business];
+        return;
+    }
+    
+    // Default: continue with generic funnel
+    formData.businessType = business;
+    showScreen('main-intro-options');
+    next();
+}
     </script>
 </body>
 </html>
