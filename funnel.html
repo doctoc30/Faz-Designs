@@ -210,16 +210,18 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        /* Search row */
+        /* ========== SEARCH SUGGESTIONS ========== */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
         .search-row {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .search-row input {
@@ -238,6 +240,60 @@
         .search-row input:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        }
+
+        /* Search suggestions dropdown */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .suggestion-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+            font-weight: 500;
+            color: var(--dark);
+            text-align: left;
+        }
+
+        .suggestion-item:hover {
+            background: rgba(255, 107, 0, 0.05);
+            color: var(--primary);
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item .niche-badge {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--primary);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            font-weight: 600;
+            float: right;
+        }
+
+        .suggestion-item .typo-hint {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-style: italic;
+            margin-left: 0.5rem;
         }
 
         /* Categories row */
@@ -381,6 +437,13 @@
                 max-width: 300px;
             }
 
+            .search-suggestions {
+                width: 100%;
+                max-width: 300px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
             .categories-row {
                 gap: 10px;
             }
@@ -458,9 +521,15 @@
                     <h2>What's Your Business?</h2>
                     <p>Tell us what you do and we'll create the perfect website for your needs.</p>
                     
-                    <div class="search-row">
-                        <input type="text" id="businessInput" placeholder="e.g. Barber, Plumber, Dentist" />
-                        <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleSearch()">Find My Solution</button>
+                    <div class="search-container">
+                        <div class="search-row">
+                            <input type="text" id="businessInput" placeholder="e.g. Barber, Plumber, Dentist" 
+                                   oninput="showSuggestions()" onfocus="showSuggestions()" autocomplete="off" />
+                            <button type="button" class="vibz-btn vibz-btn-primary" onclick="handleSearch()">Find My Solution</button>
+                        </div>
+                        <div class="search-suggestions" id="searchSuggestions">
+                            <!-- Suggestions will be dynamically added here -->
+                        </div>
                     </div>
                     
                     <p style="margin-bottom: 1.5rem; color: var(--gray);">Or select from popular categories:</p>
@@ -555,7 +624,193 @@
     </section>
 
     <script>
-        // Form state management
+        // ========== SEARCH SUGGESTIONS SYSTEM ==========
+        // Currently only barber funnel exists, so only show barber suggestions
+        // Add more niches here as you create their funnels
+        
+        const nicheKeywords = {
+            'barber': {
+                url: 'https://www.vibz.co.uk/barber/',
+                suggestions: [
+                    'Barber',
+                    'Barber Shop',
+                    'Barbershop',
+                    'Haircut',
+                    'Hair Style',
+                    'Hairstyle',
+                    'Men\'s Grooming',
+                    'Barber Studio',
+                    'Gentleman\'s Barber',
+                    'Classic Barber',
+                    'Modern Barber'
+                ],
+                // Common typos to detect and auto-correct
+                typos: ['barbar', 'barbor', 'barbur', 'barbar shop', 'barbor shop']
+            }
+            // Add more niches here as you create them:
+            // 'plumber': { url: 'https://www.vibz.co.uk/plumber/', suggestions: [...] },
+            // 'dentist': { url: 'https://www.vibz.co.uk/dentist/', suggestions: [...] }
+        };
+
+        // Show search suggestions
+        function showSuggestions() {
+            const input = document.getElementById('businessInput');
+            const suggestionsContainer = document.getElementById('searchSuggestions');
+            const searchTerm = input.value.trim().toLowerCase();
+            
+            if (!searchTerm) {
+                // Show popular suggestions when empty
+                showPopularSuggestions();
+                return;
+            }
+            
+            let allSuggestions = [];
+            
+            // Check each niche for matching suggestions
+            for (const [niche, data] of Object.entries(nicheKeywords)) {
+                // Check if search term matches any suggestions for this niche
+                const matchingSuggestions = data.suggestions.filter(suggestion => 
+                    suggestion.toLowerCase().includes(searchTerm)
+                );
+                
+                // Check for typos
+                const hasTypo = data.typos && data.typos.some(typo => 
+                    searchTerm.includes(typo)
+                );
+                
+                // If typo detected, add a "Did you mean?" suggestion
+                if (hasTypo && matchingSuggestions.length === 0) {
+                    matchingSuggestions.push(`Barber? (Did you mean Barber?)`);
+                }
+                
+                // Add niche badge to each suggestion
+                matchingSuggestions.forEach(suggestion => {
+                    allSuggestions.push({
+                        text: suggestion,
+                        url: data.url,
+                        isTypoCorrection: suggestion.includes('Did you mean')
+                    });
+                });
+            }
+            
+            // If no matches found
+            if (allSuggestions.length === 0) {
+                allSuggestions.push({
+                    text: `No matches found. Try "Barber" or select from categories below.`,
+                    url: null,
+                    isInfo: true
+                });
+            }
+            
+            displaySuggestions(allSuggestions, searchTerm);
+        }
+
+        // Show popular suggestions when input is empty
+        function showPopularSuggestions() {
+            let popular = [];
+            
+            // Only show suggestions for niches that have funnels
+            for (const [niche, data] of Object.entries(nicheKeywords)) {
+                // Show first 3 suggestions for each niche as popular
+                data.suggestions.slice(0, 3).forEach(suggestion => {
+                    popular.push({
+                        text: suggestion,
+                        url: data.url,
+                        isPopular: true
+                    });
+                });
+            }
+            
+            // If no niche funnels exist (shouldn't happen), show generic message
+            if (popular.length === 0) {
+                popular.push({
+                    text: 'Type to search for your business type...',
+                    url: null,
+                    isInfo: true
+                });
+            }
+            
+            displaySuggestions(popular);
+        }
+
+        // Display suggestions in dropdown
+        function displaySuggestions(suggestions, searchTerm = '') {
+            const suggestionsContainer = document.getElementById('searchSuggestions');
+            
+            let html = '';
+            suggestions.forEach((item, index) => {
+                let displayText = item.text;
+                
+                // Highlight matching text
+                if (searchTerm && item.text.toLowerCase().includes(searchTerm) && !item.isInfo) {
+                    const startIndex = item.text.toLowerCase().indexOf(searchTerm);
+                    const endIndex = startIndex + searchTerm.length;
+                    displayText = 
+                        item.text.substring(0, startIndex) +
+                        `<strong>${item.text.substring(startIndex, endIndex)}</strong>` +
+                        item.text.substring(endIndex);
+                }
+                
+                // Determine CSS class and onclick action
+                let onClickAction = '';
+                let extraClass = '';
+                
+                if (item.url) {
+                    onClickAction = `onclick="redirectToNiche('${item.url}')"`;
+                    extraClass = 'clickable';
+                } else if (item.isInfo) {
+                    onClickAction = `onclick="this.style.display='none'"`;
+                    extraClass = 'info-item';
+                }
+                
+                html += `
+                    <div class="suggestion-item ${extraClass}" ${onClickAction}>
+                        ${displayText}
+                        ${item.url ? '<span class="niche-badge">Special Funnel</span>' : ''}
+                        ${item.isTypoCorrection ? '<span class="typo-hint">Auto-correct</span>' : ''}
+                        ${item.isPopular ? '<span class="niche-badge">Popular</span>' : ''}
+                    </div>
+                `;
+            });
+            
+            suggestionsContainer.innerHTML = html;
+            suggestionsContainer.style.display = 'block';
+        }
+
+        // Redirect to niche funnel
+        function redirectToNiche(url) {
+            window.location.href = url;
+        }
+
+        // Select a suggestion
+        function selectSuggestion(text, url) {
+            const input = document.getElementById('businessInput');
+            input.value = text;
+            
+            // Hide suggestions
+            document.getElementById('searchSuggestions').style.display = 'none';
+            
+            // If it has a URL, redirect
+            if (url) {
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 300);
+            }
+        }
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(event) {
+            const suggestions = document.getElementById('searchSuggestions');
+            const input = document.getElementById('businessInput');
+            
+            if (suggestions && input) {
+                if (!input.contains(event.target) && !suggestions.contains(event.target)) {
+                    suggestions.style.display = 'none';
+                }
+            }
+        });
+
+        // ========== FORM STATE MANAGEMENT ==========
         let currentStep = 1;
         const formData = {
             businessType: '',
@@ -604,20 +859,60 @@
 
         // Business selection
         function selectExample(business) {
+            // Check if this is a niche with its own funnel
+            if (business === 'barber') {
+                window.location.href = 'https://www.vibz.co.uk/barber/';
+                return;
+            }
+            
+            // Default: continue with generic funnel
             formData.businessType = business;
             showScreen('main-intro-options');
             next();
         }
 
+        // Business search with niche detection
         function handleSearch() {
-            const value = businessInput.value.trim();
-            if (value) {
-                formData.businessType = value.toLowerCase();
-                showScreen('main-intro-options');
-                next();
-            } else {
-                alert('Please enter your business type or select from the options.');
+            const value = businessInput.value.trim().toLowerCase();
+            const suggestionsContainer = document.getElementById('searchSuggestions');
+            
+            // Hide suggestions
+            if (suggestionsContainer) {
+                suggestionsContainer.style.display = 'none';
             }
+            
+            if (!value) {
+                alert('Please enter your business type or select from the options.');
+                return;
+            }
+            
+            // Check for niche matches
+            for (const [niche, data] of Object.entries(nicheKeywords)) {
+                // Check exact suggestions
+                const hasExactMatch = data.suggestions.some(suggestion => 
+                    value === suggestion.toLowerCase()
+                );
+                
+                // Check partial matches
+                const hasPartialMatch = data.suggestions.some(suggestion => 
+                    value.includes(suggestion.toLowerCase()) || suggestion.toLowerCase().includes(value)
+                );
+                
+                // Check typos
+                const hasTypo = data.typos && data.typos.some(typo => 
+                    value.includes(typo)
+                );
+                
+                if (hasExactMatch || hasPartialMatch || hasTypo) {
+                    window.location.href = data.url;
+                    return;
+                }
+            }
+            
+            // If no niche match, continue with generic funnel
+            formData.businessType = value;
+            showScreen('main-intro-options');
+            next();
         }
 
         // Project type selection
@@ -737,69 +1032,13 @@
                 const navLinks = document.querySelector('.nav-links');
                 navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
             });
+            
+            // Auto-focus search input
+            setTimeout(() => {
+                const input = document.getElementById('businessInput');
+                if (input) input.focus();
+            }, 500);
         });
-
-
-
-
-        // Business search with niche detection
-function handleSearch() {
-    const value = businessInput.value.trim().toLowerCase();
-    
-    if (!value) {
-        alert('Please enter your business type or select from the options.');
-        return;
-    }
-    
-    // Check for niche matches
-    const nicheRedirects = {
-        'barber': 'https://www.vibz.co.uk/barber/',
-        'haircut': 'https://www.vibz.co.uk/barber/',
-        'barbershop': 'https://www.vibz.co.uk/barber/',
-        'barbers': 'https://www.vibz.co.uk/barber/',
-        'hair style': 'https://www.vibz.co.uk/barber/',
-        'hairstyle': 'https://www.vibz.co.uk/barber/',
-        'grooming': 'https://www.vibz.co.uk/barber/',
-        'barber shop': 'https://www.vibz.co.uk/barber/',
-        // Future niches can be added here:
-        // 'plumber': 'https://www.vibz.co.uk/plumber/',
-        // 'dentist': 'https://www.vibz.co.uk/dentist/',
-        // 'cafe': 'https://www.vibz.co.uk/cafe/',
-    };
-    
-    // Check if search matches any niche
-    for (const [keyword, url] of Object.entries(nicheRedirects)) {
-        if (value.includes(keyword)) {
-            console.log(`Redirecting to niche funnel: ${keyword} -> ${url}`);
-            window.location.href = url;
-            return;
-        }
-    }
-    
-    // If no niche match, continue with generic funnel
-    formData.businessType = value;
-    showScreen('main-intro-options');
-    next();
-}
-
-// Also update the selectExample function to check for niche redirects
-function selectExample(business) {
-    // Check if this is a niche with its own funnel
-    const nicheRedirects = {
-        'barber': 'https://www.vibz.co.uk/barber/',
-        // Add other niches as you create them
-    };
-    
-    if (nicheRedirects[business]) {
-        window.location.href = nicheRedirects[business];
-        return;
-    }
-    
-    // Default: continue with generic funnel
-    formData.businessType = business;
-    showScreen('main-intro-options');
-    next();
-}
     </script>
 </body>
 </html>
