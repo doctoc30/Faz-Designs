@@ -1178,7 +1178,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         // Menu functionality from VIBZ homepage
         const menuOverlay = document.getElementById('menuOverlay');
         const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -1303,18 +1303,25 @@
 
         function continueToFunnel() {
             if (selectedDesign) {
-                // Redirect to next funnel step
-                const funnelUrl = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
+                // FIXED: Redirect to STEP 4 of the funnel with design data
+                // Changed URL to: ?step=4&concept=CODE&name=NAME&design=ID
+                const funnelUrl = `https://www.vibz.co.uk/barber/funnel.html?step=4&concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}&design=${selectedDesign.id}`;
+                
+                // Store in localStorage for backup
+                localStorage.setItem('selectedBarberConcept', JSON.stringify(selectedDesign));
                 
                 // Show loading
                 const continueBtn = selectionModal.querySelector('.btn-fill');
                 const originalText = continueBtn.textContent;
-                continueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+                continueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting to Step 4...';
+                continueBtn.disabled = true;
                 
                 // Redirect
                 setTimeout(() => {
                     window.location.href = funnelUrl;
-                }, 1000);
+                }, 800);
+            } else {
+                alert('Please select a design first');
             }
         }
 
