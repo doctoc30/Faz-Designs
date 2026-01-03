@@ -1178,6 +1178,7 @@
         </div>
     </div>
 
+
 <script>
         // Menu functionality from VIBZ homepage
         const menuOverlay = document.getElementById('menuOverlay');
@@ -1304,8 +1305,8 @@
         function continueToFunnel() {
             if (selectedDesign) {
                 // FIXED: Redirect to STEP 4 of the funnel with design data
-                // Changed URL to: ?step=4&concept=CODE&name=NAME&design=ID
-                const funnelUrl = `https://www.vibz.co.uk/barber/funnel.html?step=4&concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}&design=${selectedDesign.id}`;
+                // Removed "funnel.html" since your funnel is index.html in /barber/ folder
+                const funnelUrl = `https://www.vibz.co.uk/barber/?step=4&concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}&design=${selectedDesign.id}`;
                 
                 // Store in localStorage for backup
                 localStorage.setItem('selectedBarberConcept', JSON.stringify(selectedDesign));
