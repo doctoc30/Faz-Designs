@@ -997,7 +997,7 @@
 
 <div class="concepts-container">
   <!-- Loop through all 9 concepts -->
-  <!-- Concept 1 -->
+  <!-- Concept Card Template -->
   <div class="concept-card" data-concept="1">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1015,7 +1015,6 @@
     </div>
   </div>
 
-  <!-- Concept 2 -->
   <div class="concept-card" data-concept="2">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1033,7 +1032,6 @@
     </div>
   </div>
 
-  <!-- Concept 3 -->
   <div class="concept-card" data-concept="3">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1051,7 +1049,6 @@
     </div>
   </div>
 
-  <!-- Concept 4 -->
   <div class="concept-card" data-concept="4">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1069,7 +1066,6 @@
     </div>
   </div>
 
-  <!-- Concept 5 -->
   <div class="concept-card" data-concept="5">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1087,7 +1083,6 @@
     </div>
   </div>
 
-  <!-- Concept 6 -->
   <div class="concept-card" data-concept="6">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1105,7 +1100,6 @@
     </div>
   </div>
 
-  <!-- Concept 7 -->
   <div class="concept-card" data-concept="7">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1123,7 +1117,6 @@
     </div>
   </div>
 
-  <!-- Concept 8 -->
   <div class="concept-card" data-concept="8">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1141,7 +1134,6 @@
     </div>
   </div>
 
-  <!-- Concept 9 -->
   <div class="concept-card" data-concept="9">
     <div class="selection-indicator">SELECTED</div>
     <div class="concept-image">
@@ -1257,286 +1249,239 @@
     </div>
 
     <script>
-        // Menu functionality from VIBZ homepage
-        const menuOverlay = document.getElementById('menuOverlay');
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const closeMenuBtn = document.getElementById('closeMenu');
-        const menuLinks = document.querySelectorAll('.menu-link');
+   // ==========================
+// HEADER & MENU FUNCTIONALITY
+// ==========================
+const menuOverlay = document.getElementById('menuOverlay');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeMenuBtn = document.getElementById('closeMenu');
+const menuLinks = document.querySelectorAll('.menu-link');
 
-        function openMenu() {
-            menuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+function openMenu() {
+    menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-        function closeMenu() {
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+function closeMenu() {
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-        hamburgerBtn.addEventListener('click', openMenu);
-        closeMenuBtn.addEventListener('click', closeMenu);
+hamburgerBtn.addEventListener('click', openMenu);
+closeMenuBtn.addEventListener('click', closeMenu);
+menuLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
+// ==========================
+// CONCEPT SELECTION DATA & STATE
+// ==========================
+let selectedDesign = null;
 
-        // Store selected design
-        let selectedDesign = null;
-        const selectionModal = document.getElementById('selectionModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalText = document.getElementById('modalText');
-        const selectionStatus = document.getElementById('selectionStatus');
-        const selectedDesignInfo = document.getElementById('selectedDesignInfo');
-        const clearSelectionBtn = document.getElementById('clearSelectionBtn');
-        const currentSelectionNote = document.getElementById('currentSelectionNote');
+const selectionModal = document.getElementById('selectionModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const selectionStatus = document.getElementById('selectionStatus');
+const selectedDesignInfo = document.getElementById('selectedDesignInfo');
+const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+const currentSelectionNote = document.getElementById('currentSelectionNote');
 
-        // Concept data
-        const conceptData = {
-            1: { name: "Barber Elite", code: "BARBER-1" },
-            2: { name: "Classic Cuts", code: "BARBER-2" },
-            3: { name: "Urban Edge", code: "BARBER-3" },
-            4: { name: "Luxe Barber", code: "BARBER-4" },
-            5: { name: "Gentleman's Cut", code: "BARBER-5" },
-            6: { name: "Beard & Blade", code: "BARBER-6" },
-            7: { name: "Modern Groom", code: "BARBER-7" },
-            8: { name: "Premium Trim", code: "BARBER-8" },
-            9: { name: "Street Style", code: "BARBER-9" }
-        };
+const conceptData = {
+    1: { name: "Barber Elite", code: "BARBER-1" },
+    2: { name: "Classic Cuts", code: "BARBER-2" },
+    3: { name: "Urban Edge", code: "BARBER-3" },
+    4: { name: "Luxe Barber", code: "BARBER-4" },
+    5: { name: "Gentleman's Cut", code: "BARBER-5" },
+    6: { name: "Beard & Blade", code: "BARBER-6" },
+    7: { name: "Modern Groom", code: "BARBER-7" },
+    8: { name: "Premium Trim", code: "BARBER-8" },
+    9: { name: "Street Style", code: "BARBER-9" }
+};
 
-        // Function to save selection to localStorage
-        function saveSelectionToStorage(design) {
-            if (design) {
-                localStorage.setItem('vibz_selected_design', JSON.stringify(design));
-                localStorage.setItem('vibz_selection_timestamp', Date.now());
-            } else {
-                localStorage.removeItem('vibz_selected_design');
-                localStorage.removeItem('vibz_selection_timestamp');
-            }
-        }
+// ==========================
+// LOCAL STORAGE FUNCTIONS
+// ==========================
+function saveSelectionToStorage(design) {
+    if (design) {
+        localStorage.setItem('vibz_selected_design', JSON.stringify(design));
+        localStorage.setItem('vibz_selection_timestamp', Date.now());
+    } else {
+        localStorage.removeItem('vibz_selected_design');
+        localStorage.removeItem('vibz_selection_timestamp');
+    }
+}
 
-        // Function to load selection from localStorage
-        function loadSelectionFromStorage() {
-            try {
-                const saved = localStorage.getItem('vibz_selected_design');
-                if (saved) {
-                    return JSON.parse(saved);
-                }
-            } catch (e) {
-                console.error('Error loading saved selection:', e);
-            }
-            return null;
-        }
+function loadSelectionFromStorage() {
+    try {
+        const saved = localStorage.getItem('vibz_selected_design');
+        if (saved) return JSON.parse(saved);
+    } catch (e) {
+        console.error('Error loading saved selection:', e);
+    }
+    return null;
+}
 
-        // Function to update UI based on selection
-        function updateSelectionUI(conceptId) {
-            // Reset all buttons and cards
-            document.querySelectorAll('.select-design').forEach(btn => {
-                btn.classList.remove('selected');
-                btn.innerHTML = 'Select This Design';
-            });
-            
-            document.querySelectorAll('.concept-card').forEach(card => {
-                card.classList.remove('selected');
-            });
+// ==========================
+// UPDATE SELECTION UI
+// ==========================
+function updateSelectionUI(conceptId) {
+    // Reset buttons and cards
+    document.querySelectorAll('.select-design').forEach(btn => {
+        btn.classList.remove('selected');
+        btn.innerHTML = 'Select This Design';
+    });
+    document.querySelectorAll('.concept-card').forEach(card => {
+        card.classList.remove('selected');
+    });
 
-            // If a concept is selected, update its UI
-            if (conceptId) {
-                const selectedBtn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
-                const selectedCard = document.querySelector(`.concept-card[data-concept="${conceptId}"]`);
-                
-                if (selectedBtn) {
-                    selectedBtn.classList.add('selected');
-                    selectedBtn.innerHTML = '<i class="fas fa-check"></i> Selected';
-                }
-                
-                if (selectedCard) {
-                    selectedCard.classList.add('selected');
-                }
+    if (conceptId) {
+        const selectedBtn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
+        const selectedCard = document.querySelector(`.concept-card[data-concept="${conceptId}"]`);
+        if (selectedBtn) selectedBtn.innerHTML = '<i class="fas fa-check"></i> Selected';
+        if (selectedCard) selectedCard.classList.add('selected');
 
-                // Update selection status in hero
-                const concept = conceptData[conceptId];
-                selectedDesignInfo.textContent = `${concept.name} (${concept.code})`;
-                selectionStatus.style.display = 'block';
-                currentSelectionNote.style.display = 'inline';
-            } else {
-                // Hide selection status if no selection
-                selectionStatus.style.display = 'none';
-                currentSelectionNote.style.display = 'none';
-            }
-        }
+        const concept = conceptData[conceptId];
+        selectedDesignInfo.textContent = `${concept.name} (${concept.code})`;
+        selectionStatus.style.display = 'block';
+        currentSelectionNote.style.display = 'inline';
+    } else {
+        selectionStatus.style.display = 'none';
+        currentSelectionNote.style.display = 'none';
+    }
+}
 
-        // Select Design buttons
-        document.querySelectorAll('.select-design').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const conceptId = this.dataset.concept;
-                const conceptCode = this.dataset.code;
-                const concept = conceptData[conceptId];
-                
-                // If clicking already selected button, deselect it
-                if (selectedDesign && selectedDesign.id === conceptId) {
-                    selectedDesign = null;
-                    saveSelectionToStorage(null);
-                    updateSelectionUI(null);
-                    return;
-                }
-                
-                // Store selection
-                selectedDesign = {
-                    id: conceptId,
-                    name: concept.name,
-                    code: concept.code,
-                    shortCode: conceptCode
-                };
-                
-                // Save to localStorage
-                saveSelectionToStorage(selectedDesign);
-                
-                // Update UI
-                updateSelectionUI(conceptId);
-                
-                // Update modal content
-                modalTitle.textContent = `Selected: ${concept.name}`;
-                modalText.innerHTML = `
-                    You've selected <strong>${concept.name}</strong> (${conceptCode})<br><br>
-                    <span style="font-size: 0.9rem; color: var(--accent);">
-                        Concept Code: ${concept.code}
-                    </span>
-                    <br><br>
-                    <small style="color: var(--text-gray);">
-                        <i class="fas fa-info-circle"></i> This selection is saved and will persist even after page refresh.
-                    </small>
-                `;
-                
-                // Show modal
-                selectionModal.style.display = 'flex';
-            });
-        });
+// ==========================
+// SELECT DESIGN BUTTONS
+// ==========================
+document.querySelectorAll('.select-design').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const conceptId = this.dataset.concept;
+        const concept = conceptData[conceptId];
 
-        // Clear selection button
-        clearSelectionBtn.addEventListener('click', function() {
+        // Deselect if clicking again
+        if (selectedDesign && selectedDesign.id === conceptId) {
             selectedDesign = null;
             saveSelectionToStorage(null);
             updateSelectionUI(null);
-            
-            // Show confirmation
-            const originalText = this.textContent;
-            this.innerHTML = '<i class="fas fa-check"></i> Cleared!';
-            setTimeout(() => {
-                this.innerHTML = originalText;
-            }, 2000);
-        });
-
-        // View Demo buttons
-        document.querySelectorAll('.view-demo').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const conceptId = this.dataset.concept;
-                const concept = conceptData[conceptId];
-                
-                // Show loading state
-                const originalText = this.textContent;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-                this.disabled = true;
-                
-                // Simulate loading
-                setTimeout(() => {
-                    this.textContent = originalText;
-                    this.disabled = false;
-                    
-                    // Open demo in new tab
-                    alert(`Opening live demo of ${concept.name}...\n\nDemo would show the full working website with all features.`);
-                }, 800);
-            });
-        });
-
-        // Modal functions
-        function closeModal() {
-            selectionModal.style.display = 'none';
+            return;
         }
 
-        function continueToFunnel() {
-            if (selectedDesign) {
-                // Redirect to next funnel step
-                const funnelUrl = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
-                
-                // Show loading
-                const continueBtn = selectionModal.querySelector('.btn-fill');
-                const originalText = continueBtn.textContent;
-                continueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
-                
-                // Redirect
-                setTimeout(() => {
-                    window.location.href = funnelUrl;
-                }, 1000);
-            }
-        }
+        // Save selection
+        selectedDesign = { id: conceptId, name: concept.name, code: concept.code, shortCode: this.dataset.code };
+        saveSelectionToStorage(selectedDesign);
+        updateSelectionUI(conceptId);
 
-        // Close modal on outside click
-        selectionModal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Load saved selection on page load
-        window.addEventListener('load', function() {
-            // Load from localStorage
-            const savedSelection = loadSelectionFromStorage();
-            
-            if (savedSelection) {
-                selectedDesign = savedSelection;
-                updateSelectionUI(savedSelection.id);
-                
-                // Check if selection is older than 30 days (optional)
-                const timestamp = localStorage.getItem('vibz_selection_timestamp');
-                if (timestamp) {
-                    const age = Date.now() - parseInt(timestamp);
-                    const thirtyDays = 30 * 24 * 60 * 60 * 1000;
-                    
-                    if (age > thirtyDays) {
-                        // Optional: Clear old selection
-                        // selectedDesign = null;
-                        // saveSelectionToStorage(null);
-                        // updateSelectionUI(null);
-                    }
-                }
-            }
-        });
-
-        // Debug function to check orientation
-        function logOrientation() {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            const orientation = width > height ? 'Landscape' : 'Portrait';
-            console.log(`Screen: ${width}x${height} (${orientation})`);
-        }
-
-        window.addEventListener('resize', logOrientation);
-        window.addEventListener('load', logOrientation);
-   
-    
-    // Wait for DOM
-document.addEventListener("DOMContentLoaded", function() {
-  const selectButtons = document.querySelectorAll(".select-design");
-
-  selectButtons.forEach(btn => {
-    btn.addEventListener("click", function(e) {
-      e.preventDefault(); // Prevent default link behavior
-
-      const concept = btn.getAttribute("data-concept");
-      const code = btn.getAttribute("data-code");
-
-      // Save selection in your funnel state
-      window.funnelData = window.funnelData || {};
-      window.funnelData.selectedConcept = { concept, code };
-
-      // Move to Step 4
-      goToStep(4);
+        // Update modal
+        modalTitle.textContent = `Selected: ${concept.name}`;
+        modalText.innerHTML = `
+            You've selected <strong>${concept.name}</strong> (${this.dataset.code})<br><br>
+            <span style="font-size: 0.9rem; color: var(--accent);">
+                Concept Code: ${concept.code}
+            </span>
+            <br><br>
+            <small style="color: var(--text-gray);">
+                <i class="fas fa-info-circle"></i> This selection is saved and will persist even after page refresh.
+            </small>
+        `;
+        selectionModal.style.display = 'flex';
     });
-  });
 });
-    
+
+// ==========================
+// CLEAR SELECTION BUTTON
+// ==========================
+clearSelectionBtn.addEventListener('click', function() {
+    selectedDesign = null;
+    saveSelectionToStorage(null);
+    updateSelectionUI(null);
+    const originalText = this.textContent;
+    this.innerHTML = '<i class="fas fa-check"></i> Cleared!';
+    setTimeout(() => this.innerHTML = originalText, 2000);
+});
+
+// ==========================
+// VIEW DEMO BUTTONS
+// ==========================
+document.querySelectorAll('.view-demo').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const conceptId = this.dataset.concept;
+        const concept = conceptData[conceptId];
+        const originalText = this.textContent;
+
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        this.disabled = true;
+
+        setTimeout(() => {
+            this.textContent = originalText;
+            this.disabled = false;
+            alert(`Opening live demo of ${concept.name}...\n\nDemo would show the full working website with all features.`);
+        }, 800);
+    });
+});
+
+// ==========================
+// MODAL FUNCTIONS
+// ==========================
+function closeModal() { selectionModal.style.display = 'none'; }
+
+function continueToFunnel() {
+    if (!selectedDesign) return;
+    const funnelUrl = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
+
+    const continueBtn = selectionModal.querySelector('.btn-fill');
+    const originalText = continueBtn.textContent;
+    continueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+
+    setTimeout(() => window.location.href = funnelUrl, 1000);
+}
+
+selectionModal.addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// ==========================
+// LOAD SAVED SELECTION ON PAGE LOAD
+// ==========================
+window.addEventListener('load', function() {
+    const savedSelection = loadSelectionFromStorage();
+    if (savedSelection) {
+        selectedDesign = savedSelection;
+        updateSelectionUI(savedSelection.id);
+    }
+});
+
+// ==========================
+// SCREEN ORIENTATION DEBUG
+// ==========================
+function logOrientation() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const orientation = width > height ? 'Landscape' : 'Portrait';
+    console.log(`Screen: ${width}x${height} (${orientation})`);
+}
+window.addEventListener('resize', logOrientation);
+window.addEventListener('load', logOrientation);
+
+// ==========================
+// FUNNEL STEP REDIRECTION (OPTIONAL IF USING IN-STEP NAV)
+// ==========================
+document.addEventListener("DOMContentLoaded", function() {
+    const selectButtons = document.querySelectorAll(".select-design");
+    selectButtons.forEach(btn => {
+        btn.addEventListener("click", function(e) {
+            e.preventDefault();
+            const concept = btn.getAttribute("data-concept");
+            const code = btn.getAttribute("data-code");
+
+            // Save selection in funnelData (optional global state)
+            window.funnelData = window.funnelData || {};
+            window.funnelData.selectedConcept = { concept, code };
+
+            // Move to Step 4 if using in-page steps
+            if (typeof goToStep === "function") goToStep(4);
+        });
+    });
+});
     
     </script>
 </body>
