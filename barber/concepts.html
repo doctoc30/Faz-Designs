@@ -992,192 +992,215 @@
         </p>
 
         
-     <!-- Concepts Page: Select Design Buttons -->
-<div class="concepts-container">
+<!-- ========================== -->
+<!-- CONCEPTS PAGE - BARBER DESIGNS -->
+<!-- ========================== -->
+<section class="concepts-section" id="concepts">
+    <span class="section-label">Choose Your Design</span>
+    <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
+        9 Barber-Specific <span style="color: var(--accent);">Concepts</span>
+    </h2>
+    <p style="font-size: 1.2rem; color: var(--text-gray); max-width: 800px; margin-bottom: 2rem;">
+        Select a concept to continue to the next step in our funnel. We'll customize it for your shop.
+        <span id="currentSelectionNote" style="color: var(--selected-color); font-weight: 600; display: none;">
+            • You have a design selected
+        </span>
+    </p>
 
-<div class="concepts-container">
-  <!-- Loop through all 9 concepts -->
-  <!-- Concept Card Template -->
-  <div class="concept-card" data-concept="1">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">01</div>
-      <img src="concept1.jpg" alt="Barber Elite">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Barber Elite</h3>
-        <p class="concept-subtitle">Premium Modern Barber Design</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="1" data-code="B1">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="1">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-1</div>
-    </div>
-  </div>
-
-  <div class="concept-card" data-concept="2">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">02</div>
-      <img src="concept2.jpg" alt="Classic Cuts">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Classic Cuts</h3>
-        <p class="concept-subtitle">Timeless Barber Style</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="2" data-code="B2">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="2">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-2</div>
-    </div>
-  </div>
-
-  <div class="concept-card" data-concept="3">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">03</div>
-      <img src="concept3.jpg" alt="Urban Edge">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Urban Edge</h3>
-        <p class="concept-subtitle">Edgy Barber Shop Layout</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="3" data-code="B3">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="3">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-3</div>
-    </div>
-  </div>
-
-  <div class="concept-card" data-concept="4">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">04</div>
-      <img src="concept4.jpg" alt="Luxe Barber">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Luxe Barber</h3>
-        <p class="concept-subtitle">Premium Grooming Experience</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="4" data-code="B4">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="4">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-4</div>
-    </div>
-  </div>
-
-  <div class="concept-card" data-concept="5">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">05</div>
-      <img src="concept5.jpg" alt="Gentleman's Cut">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Gentleman's Cut</h3>
-        <p class="concept-subtitle">Classic & Sophisticated</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="5" data-code="B5">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="5">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-5</div>
-    </div>
-  </div>
-
-  <div class="concept-card" data-concept="6">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">06</div>
-      <img src="concept6.jpg" alt="Beard & Blade">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Beard & Blade</h3>
-        <p class="concept-subtitle">Specialized Grooming</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="6" data-code="B6">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="6">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-6</div>
-    </div>
-  </div>
-
-  <div class="concept-card" data-concept="7">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">07</div>
-      <img src="concept7.jpg" alt="Modern Groom">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Modern Groom</h3>
-        <p class="concept-subtitle">Contemporary Style</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="7" data-code="B7">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="7">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-7</div>
-    </div>
-  </div>
-
-  <div class="concept-card" data-concept="8">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">08</div>
-      <img src="concept8.jpg" alt="Premium Trim">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Premium Trim</h3>
-        <p class="concept-subtitle">Executive Grooming</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="8" data-code="B8">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="8">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-8</div>
-    </div>
-  </div>
-
-  <div class="concept-card" data-concept="9">
-    <div class="selection-indicator">SELECTED</div>
-    <div class="concept-image">
-      <div class="concept-number">09</div>
-      <img src="concept9.jpg" alt="Street Style">
-      <div class="concept-overlay">
-        <h3 class="concept-title">Street Style</h3>
-        <p class="concept-subtitle">Urban Culture Barber</p>
-      </div>
-    </div>
-    <div class="concept-buttons">
-      <button class="btn btn-fill select-design" data-concept="9" data-code="B9">Select This Design</button>
-      <button class="btn btn-outline view-demo" data-concept="9">View Live Demo</button>
-      <div class="concept-code">CODE: BARBER-9</div>
-    </div>
-  </div>
-</div>
-
-    <!-- Barber Stats Section -->
-    <section class="barber-stats" id="stats">
-        <span class="section-label">Designed For Results</span>
-        <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
-            Barber Websites That <span style="color: var(--accent);">Convert</span>
-        </h2>
-        
-        <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-number">9</span>
-                <span class="stat-label">Premium Concepts</span>
+    <!-- CONCEPT CARDS CONTAINER -->
+    <div class="concepts-container">
+        <!-- Repeat for all 9 concepts -->
+        <!-- CARD TEMPLATE -->
+        <div class="concept-card" data-concept="1">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">01</div>
+                <img src="concept1.jpg" alt="Barber Elite">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Barber Elite</h3>
+                    <p class="concept-subtitle">Premium Modern Barber Design</p>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">Online Booking</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Mobile Optimized</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">7 Days</span>
-                <span class="stat-label">Launch Time</span>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="1" data-code="B1">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="1">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-1</div>
             </div>
         </div>
-    </section>
+
+        <!-- Copy paste for concepts 2-9, changing data-concept, images, title, code, etc. -->
+        <div class="concept-card" data-concept="2">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">02</div>
+                <img src="concept2.jpg" alt="Classic Cuts">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Classic Cuts</h3>
+                    <p class="concept-subtitle">Timeless Barber Style</p>
+                </div>
+            </div>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="2" data-code="B2">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="2">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-2</div>
+            </div>
+        </div>
+
+        <!-- Concept 3 -->
+        <div class="concept-card" data-concept="3">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">03</div>
+                <img src="concept3.jpg" alt="Urban Edge">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Urban Edge</h3>
+                    <p class="concept-subtitle">Edgy Barber Shop Layout</p>
+                </div>
+            </div>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="3" data-code="B3">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="3">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-3</div>
+            </div>
+        </div>
+
+        <!-- Concept 4 -->
+        <div class="concept-card" data-concept="4">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">04</div>
+                <img src="concept4.jpg" alt="Luxe Barber">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Luxe Barber</h3>
+                    <p class="concept-subtitle">Premium Grooming Experience</p>
+                </div>
+            </div>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="4" data-code="B4">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="4">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-4</div>
+            </div>
+        </div>
+
+        <!-- Concept 5 -->
+        <div class="concept-card" data-concept="5">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">05</div>
+                <img src="concept5.jpg" alt="Gentleman's Cut">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Gentleman's Cut</h3>
+                    <p class="concept-subtitle">Classic & Sophisticated</p>
+                </div>
+            </div>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="5" data-code="B5">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="5">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-5</div>
+            </div>
+        </div>
+
+        <!-- Concept 6 -->
+        <div class="concept-card" data-concept="6">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">06</div>
+                <img src="concept6.jpg" alt="Beard & Blade">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Beard & Blade</h3>
+                    <p class="concept-subtitle">Specialized Grooming</p>
+                </div>
+            </div>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="6" data-code="B6">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="6">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-6</div>
+            </div>
+        </div>
+
+        <!-- Concept 7 -->
+        <div class="concept-card" data-concept="7">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">07</div>
+                <img src="concept7.jpg" alt="Modern Groom">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Modern Groom</h3>
+                    <p class="concept-subtitle">Contemporary Style</p>
+                </div>
+            </div>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="7" data-code="B7">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="7">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-7</div>
+            </div>
+        </div>
+
+        <!-- Concept 8 -->
+        <div class="concept-card" data-concept="8">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">08</div>
+                <img src="concept8.jpg" alt="Premium Trim">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Premium Trim</h3>
+                    <p class="concept-subtitle">Executive Grooming</p>
+                </div>
+            </div>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="8" data-code="B8">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="8">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-8</div>
+            </div>
+        </div>
+
+        <!-- Concept 9 -->
+        <div class="concept-card" data-concept="9">
+            <div class="selection-indicator">SELECTED</div>
+            <div class="concept-image">
+                <div class="concept-number">09</div>
+                <img src="concept9.jpg" alt="Street Style">
+                <div class="concept-overlay">
+                    <h3 class="concept-title">Street Style</h3>
+                    <p class="concept-subtitle">Urban Culture Barber</p>
+                </div>
+            </div>
+            <div class="concept-buttons">
+                <button class="btn btn-fill select-design" data-concept="9" data-code="B9">Select This Design</button>
+                <button class="btn btn-outline view-demo" data-concept="9">View Live Demo</button>
+                <div class="concept-code">CODE: BARBER-9</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================== -->
+<!-- BARBER STATS -->
+<!-- ========================== -->
+<section class="barber-stats" id="stats">
+    <span class="section-label">Designed For Results</span>
+    <h2 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px;">
+        Barber Websites That <span style="color: var(--accent);">Convert</span>
+    </h2>
+    <div class="stats-grid">
+        <div class="stat-item">
+            <span class="stat-number">9</span>
+            <span class="stat-label">Premium Concepts</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Online Booking</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Mobile Optimized</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">7 Days</span>
+            <span class="stat-label">Launch Time</span>
+        </div>
+    </div>
+</section>
 
     <!-- Simple Footer -->
     <footer class="footer-simple" id="contact">
@@ -1249,7 +1272,7 @@
     </div>
 
     <script>
-   // ==========================
+// ==========================
 // HEADER & MENU FUNCTIONALITY
 // ==========================
 const menuOverlay = document.getElementById('menuOverlay');
@@ -1257,33 +1280,24 @@ const hamburgerBtn = document.getElementById('hamburgerBtn');
 const closeMenuBtn = document.getElementById('closeMenu');
 const menuLinks = document.querySelectorAll('.menu-link');
 
-function openMenu() {
+hamburgerBtn.addEventListener('click', () => {
     menuOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-}
+});
 
-function closeMenu() {
+closeMenuBtn.addEventListener('click', () => {
     menuOverlay.classList.remove('active');
     document.body.style.overflow = '';
-}
+});
 
-hamburgerBtn.addEventListener('click', openMenu);
-closeMenuBtn.addEventListener('click', closeMenu);
-menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+menuLinks.forEach(link => link.addEventListener('click', () => {
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}));
 
 // ==========================
-// CONCEPT SELECTION DATA & STATE
+// CONCEPT DATA & STATE
 // ==========================
-let selectedDesign = null;
-
-const selectionModal = document.getElementById('selectionModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalText = document.getElementById('modalText');
-const selectionStatus = document.getElementById('selectionStatus');
-const selectedDesignInfo = document.getElementById('selectedDesignInfo');
-const clearSelectionBtn = document.getElementById('clearSelectionBtn');
-const currentSelectionNote = document.getElementById('currentSelectionNote');
-
 const conceptData = {
     1: { name: "Barber Elite", code: "BARBER-1" },
     2: { name: "Classic Cuts", code: "BARBER-2" },
@@ -1295,6 +1309,16 @@ const conceptData = {
     8: { name: "Premium Trim", code: "BARBER-8" },
     9: { name: "Street Style", code: "BARBER-9" }
 };
+
+let selectedDesign = null;
+
+const selectionModal = document.getElementById('selectionModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const selectionStatus = document.getElementById('selectionStatus');
+const selectedDesignInfo = document.getElementById('selectedDesignInfo');
+const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+const currentSelectionNote = document.getElementById('currentSelectionNote');
 
 // ==========================
 // LOCAL STORAGE FUNCTIONS
@@ -1323,14 +1347,11 @@ function loadSelectionFromStorage() {
 // UPDATE SELECTION UI
 // ==========================
 function updateSelectionUI(conceptId) {
-    // Reset buttons and cards
     document.querySelectorAll('.select-design').forEach(btn => {
         btn.classList.remove('selected');
         btn.innerHTML = 'Select This Design';
     });
-    document.querySelectorAll('.concept-card').forEach(card => {
-        card.classList.remove('selected');
-    });
+    document.querySelectorAll('.concept-card').forEach(card => card.classList.remove('selected'));
 
     if (conceptId) {
         const selectedBtn = document.querySelector(`.select-design[data-concept="${conceptId}"]`);
@@ -1349,37 +1370,43 @@ function updateSelectionUI(conceptId) {
 }
 
 // ==========================
-// SELECT DESIGN BUTTONS
+// CLEAR SELECTION BUTTON
+// ==========================
+clearSelectionBtn.addEventListener('click', () => {
+    selectedDesign = null;
+    saveSelectionToStorage(null);
+    updateSelectionUI(null);
+    clearSelectionBtn.innerHTML = '<i class="fas fa-check"></i> Cleared!';
+    setTimeout(() => clearSelectionBtn.innerHTML = 'Clear Selection', 2000);
+});
+
+// ==========================
+// SELECT DESIGN BUTTONS WITH MODAL
 // ==========================
 document.querySelectorAll('.select-design').forEach(btn => {
     btn.addEventListener('click', function(e) {
         e.preventDefault();
+
         const conceptId = this.dataset.concept;
-        const concept = conceptData[conceptId];
+        const concept = {
+            id: conceptId,
+            name: conceptData[conceptId].name,
+            code: this.dataset.code
+        };
 
-        // Deselect if clicking again
-        if (selectedDesign && selectedDesign.id === conceptId) {
-            selectedDesign = null;
-            saveSelectionToStorage(null);
-            updateSelectionUI(null);
-            return;
-        }
-
-        // Save selection
-        selectedDesign = { id: conceptId, name: concept.name, code: concept.code, shortCode: this.dataset.code };
+        selectedDesign = concept;
         saveSelectionToStorage(selectedDesign);
         updateSelectionUI(conceptId);
 
-        // Update modal
+        // Show modal with selection details
         modalTitle.textContent = `Selected: ${concept.name}`;
         modalText.innerHTML = `
-            You've selected <strong>${concept.name}</strong> (${this.dataset.code})<br><br>
+            You've selected <strong>${concept.name}</strong> (${concept.code})<br><br>
             <span style="font-size: 0.9rem; color: var(--accent);">
                 Concept Code: ${concept.code}
-            </span>
-            <br><br>
+            </span><br><br>
             <small style="color: var(--text-gray);">
-                <i class="fas fa-info-circle"></i> This selection is saved and will persist even after page refresh.
+                <i class="fas fa-info-circle"></i> This selection is saved and will persist after page refresh.
             </small>
         `;
         selectionModal.style.display = 'flex';
@@ -1387,100 +1414,42 @@ document.querySelectorAll('.select-design').forEach(btn => {
 });
 
 // ==========================
-// CLEAR SELECTION BUTTON
+// MODAL BUTTONS
 // ==========================
-clearSelectionBtn.addEventListener('click', function() {
-    selectedDesign = null;
-    saveSelectionToStorage(null);
-    updateSelectionUI(null);
-    const originalText = this.textContent;
-    this.innerHTML = '<i class="fas fa-check"></i> Cleared!';
-    setTimeout(() => this.innerHTML = originalText, 2000);
+function closeModal() {
+    selectionModal.style.display = 'none';
+}
+
+function continueToFunnel() {
+    if (!selectedDesign) return;
+    const funnelUrl = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.code}&name=${encodeURIComponent(selectedDesign.name)}`;
+    window.location.href = funnelUrl;
+}
+
+selectionModal.addEventListener('click', e => {
+    if (e.target === selectionModal) closeModal();
 });
 
 // ==========================
 // VIEW DEMO BUTTONS
 // ==========================
 document.querySelectorAll('.view-demo').forEach(btn => {
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', e => {
         e.preventDefault();
-        const conceptId = this.dataset.concept;
-        const concept = conceptData[conceptId];
-        const originalText = this.textContent;
-
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-        this.disabled = true;
-
-        setTimeout(() => {
-            this.textContent = originalText;
-            this.disabled = false;
-            alert(`Opening live demo of ${concept.name}...\n\nDemo would show the full working website with all features.`);
-        }, 800);
+        const conceptId = btn.dataset.concept;
+        alert(`Opening live demo of ${conceptData[conceptId].name}...`);
     });
-});
-
-// ==========================
-// MODAL FUNCTIONS
-// ==========================
-function closeModal() { selectionModal.style.display = 'none'; }
-
-function continueToFunnel() {
-    if (!selectedDesign) return;
-    const funnelUrl = `https://www.vibz.co.uk/funnel.html?concept=${selectedDesign.shortCode}&name=${encodeURIComponent(selectedDesign.name)}`;
-
-    const continueBtn = selectionModal.querySelector('.btn-fill');
-    const originalText = continueBtn.textContent;
-    continueBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
-
-    setTimeout(() => window.location.href = funnelUrl, 1000);
-}
-
-selectionModal.addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
 });
 
 // ==========================
 // LOAD SAVED SELECTION ON PAGE LOAD
 // ==========================
-window.addEventListener('load', function() {
+window.addEventListener('load', () => {
     const savedSelection = loadSelectionFromStorage();
     if (savedSelection) {
         selectedDesign = savedSelection;
         updateSelectionUI(savedSelection.id);
     }
-});
-
-// ==========================
-// SCREEN ORIENTATION DEBUG
-// ==========================
-function logOrientation() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const orientation = width > height ? 'Landscape' : 'Portrait';
-    console.log(`Screen: ${width}x${height} (${orientation})`);
-}
-window.addEventListener('resize', logOrientation);
-window.addEventListener('load', logOrientation);
-
-// ==========================
-// FUNNEL STEP REDIRECTION (OPTIONAL IF USING IN-STEP NAV)
-// ==========================
-document.addEventListener("DOMContentLoaded", function() {
-    const selectButtons = document.querySelectorAll(".select-design");
-    selectButtons.forEach(btn => {
-        btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            const concept = btn.getAttribute("data-concept");
-            const code = btn.getAttribute("data-code");
-
-            // Save selection in funnelData (optional global state)
-            window.funnelData = window.funnelData || {};
-            window.funnelData.selectedConcept = { concept, code };
-
-            // Move to Step 4 if using in-page steps
-            if (typeof goToStep === "function") goToStep(4);
-        });
-    });
 });
     
     </script>
