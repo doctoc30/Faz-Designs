@@ -694,16 +694,15 @@
                                     searchTerm.includes('studio') ||
                                     searchTerm.includes('men');
             
-            // If it's barber-related, show ONE suggestion
-            if (isBarberRelated || hasBarberPartial) {
-                suggestionsContainer.innerHTML = `
-                    <div class="suggestion-item" onclick="redirectToBarber()">
-                        Barber <span class="niche-badge">Special Funnel</span>
-                        <span class="typo-hint">All barber services</span>
-                    </div>
-                `;
-                suggestionsContainer.style.display = 'block';
-            }
+          if (isBarberRelated || hasBarberPartial) {
+    suggestionsContainer.innerHTML = `
+        <div class="suggestion-item" onclick="redirectToBarber()">
+            Barber
+        </div>
+    `;
+    suggestionsContainer.style.display = 'block';
+}
+                
             // If not barber-related, show nothing or generic message
             else if (searchTerm.length >= 2) {
                 suggestionsContainer.innerHTML = `
